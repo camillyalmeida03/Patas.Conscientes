@@ -1,0 +1,797 @@
+:root {
+    --azul_claro: #0E457D;
+    --azul_escuro: #003B4A;
+    --rosa: #FE4E77;
+    --rosa_claro: #f1718f;
+    --rosa_texto: #FF2BAA;
+    --cinza245: rgb(245,245,245);
+    --cinza230: rgba(230, 230, 230, 0.767);
+    --cinza215: rgb(215,215,215);
+    --cinza201: rgb(201, 201, 201);
+    --cinza158: rgb(158, 158, 158);
+    --preto_back: #393939;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: var(--cinza230);
+}
+
+/*  ------------------------------------ PÁGINA INICIAL / HOME ----------------------------------------------*/
+
+.conteudo, .slide {
+    background-color: var(--rosa_claro);
+}
+
+header {
+    height: 4rem;
+    width: 100%;
+    background-color: var(--azul_claro);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.logo {
+    height: 3rem;
+    margin-left: 2rem;
+}
+
+/* Links "Institucional", "ONG's" e "Notícias" */
+.links a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 0 1rem;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.links a:hover {
+    transform: translateY(-0.5rem);
+    transition: 1s;
+}
+
+/* BOTÕES "Adote-me" E "Seja nosso parceiro" */
+.btns button{
+    margin: 0 1rem;
+    padding: 0.8rem;
+    color: white;
+    background-color: var(--rosa);
+    border: none;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.btns a {
+    text-decoration: none;
+    color: white;
+}
+
+.btns button:hover {
+    transform: scale(1.1);
+}
+
+.links, .btns {
+    display: inline-block;
+    padding-right: 5rem;
+}
+
+/*Deixa a logo os hyperlinks da div "links", os botões e os icones com o cursor pointer*/
+.logo, .links a, .btns button, .img_links {
+    cursor: pointer;
+}
+
+.usuario {
+    height: 2.3rem;
+}
+
+.favoritos {
+    height: 2rem;
+}
+
+.favoritos:hover, .usuario:hover {
+    transform: scale(1.1);
+}
+
+/* Espaçamento entre os icons */
+.img_links {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/*       AQUI COMEÇA O CARROSSEL     */
+
+.slider {
+    margin: 0 auto;
+    height: 30%;
+    width: 100%;
+    background-color: var(--cinza201);
+    overflow: hidden;
+}
+
+.slides {
+    height: 80%;
+    width: 400%;
+    /*Foi posto com 400% para que só uma imagem aparecesse por vez, pelo menos eu entendi isso :)*/
+    display: flex;
+}
+
+/* "Apaga" os radios para que não fique com dois*/
+.slides input {
+    display: none;
+}
+
+
+.slide {
+    width: 25%;
+    /*Como foi colocado em .slides o width sendo como 400%, agora o width do .slide será de 25%, ou seja, 100% do tamanho do .slider*/
+    position: relative;
+    transition: 2s;
+}
+
+.slide img {
+    width: 100%;
+}
+
+/*Configurações para a div dos botões/radios*/
+.manual_nav {
+    position: absolute;
+    width: 100%;
+    margin-top: -40px;
+    display: flex;
+    justify-content: center;
+}
+
+/*Configurações da cor, tamanho e tal dos radios(diretamente deles, diferente de .manual_nav que é a div onde os radios estão dentro)*/
+.manual_btn {
+    border: 2px solid white;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+/*Isso significa que em todos os botões, menos no último, vão ter as seguites propriedades aplicadas*/
+.manual_btn:not(:last-child) {
+    margin-right: 40px;
+}
+
+.manual_btn:hover {
+    background-color: white;
+}
+
+#radio1:checked ~ .first {
+    margin-left: 0;
+}
+
+#radio2:checked ~ .first {
+    margin-left: -25%;
+}
+
+#radio3:checked ~ .first {
+    margin-left: -50%;
+}
+
+/* SECTION ABAIXO DO CARROSSEL */
+.conteudo {
+    height: 25rem;
+    width:100%;
+    margin: auto;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+}
+
+/* TITULOS E PARAGRAFOS DAS DIV'S INFORMATIVAS */
+.conteudo h1 {
+    font-size: 25px;
+    color: #db0080;
+    margin: 0.8rem 1rem;
+}
+
+.conteudo p {
+    text-align: justify;
+    padding: 0 1rem;
+    font-size: 20px;
+}
+
+/* DESIGN DAS DIV'S INFORMATIVAS */
+.nos_conheca, .como_funciona {
+    padding-bottom: 1rem;
+    height: 90%;
+    width: 30%;
+    display: inline-block;
+    border-radius: 10px;
+    background-color: var(--cinza230);
+}
+
+/* ÁREA DE "RETORNOS" */
+.retornos {
+    height: 35rem;
+    width: 100%;
+    background-color: var(--cinza230);
+}
+
+.titulo_feed {
+    color: var(--azul_escuro);
+    font-size: 20px; 
+    text-align: center;
+    padding: 1.5rem 0 0 0;
+}
+
+/*Divs "feedbacks"*/
+.feedbacks {
+    padding: 2rem 0 1rem 0;
+    height: 85%;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.feedback {
+    height: 90%;
+    width: 20%;
+    border-radius: 10px;
+    background-color: var(--cinza201);
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    flex-direction: column;
+}
+
+.dot {
+    height: 10rem;
+    width: 10rem;
+    background-color: #bbb;
+    border-radius: 50%;
+    position: relative;
+    top: -4rem;
+}
+
+#foto_feed1 {
+    background-image: url(/img/feedback/feeback1.png);
+    background-position: center center;
+    background-size: 100%;
+}
+
+#foto_feed2 {
+    background-image: url(/img/feedback/perfil2.jpg);
+    background-position: center center;
+    background-size: 100%;
+}
+
+#foto_feed3 {
+    background-image: url(/img/feedback/perfil3.jpg);
+    background-position: center center;
+    background-size: 100%;
+}
+
+#foto_feed4 {
+    background-image: url(/img/feedback/perfil4.jpg);
+    background-position: center center;
+    background-size: 100%;
+}
+
+.feed_p {
+    height: 15rem;
+    width: 12rem;
+    position: relative;
+    top: -3rem;
+}
+
+/* Aqui são as configurações do footer */
+footer {
+    height: 15rem;
+    background-color: var(--azul_claro);
+}
+
+.siteMap {
+    height: 10rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+.topInst{
+    text-decoration: none;
+    color: white;
+    display: flex;
+    padding: 0.3rem 0;
+}
+
+.h2map, .pmap {
+    color: white;
+    padding: 0.3rem 0;
+}
+
+.h2map {
+    margin-top: 0.2rem;
+}
+
+.borderBottom {
+    height: 1px;
+    width: 95%;
+    margin: auto;
+    background-color: var(--cinza230);
+}
+
+.rodape {
+    margin: 1rem 2rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.imglogo{
+    height: 2rem;
+    margin: 0.5rem 2rem;
+}
+
+.rodape a{
+    margin-right: 0.8rem;
+    text-decoration: none;    
+}
+
+.contatos img{
+    height: 30px; /*determina o tamanho dos ícones*/
+    gap: 0.5rem; 
+}
+
+/*  ---------------------------------------- PÁGINA DE LOGIN OU ENTRAR ----------------------------------- */
+.main_entrar {
+    background-image: url(/img/banner/entrar\ img.jpg);
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 90vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    /*border: 2px solid purple;*/
+}
+
+/* DIV "SEJA BEM-VINDO" */
+.container {
+    display: flex;
+    justify-content: center; 
+    margin: auto;  
+    width: 70%;
+    /*border: 2px solid blue;*/
+}
+
+.container h1 {
+    text-align: center;
+    width: 90%;
+    padding: 1rem 2rem 0 0;
+    color: var(--azul_escuro);
+    /*border: 2px solid red;*/
+}
+
+/* DIV "Entrar" */
+.entrar {
+    /*border: 2px solid yellowgreen;*/
+    height: 20rem;
+    margin: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2rem;
+    position: relative;
+    top: -3rem;
+}
+
+/*DIV DE LOGIN*/
+.login {
+    width: 325px;
+    border-radius: 20px;
+}
+
+.login input {
+    height: 25px;
+    width: 70%;
+}
+
+.login a {
+    text-decoration: none;
+    position: relative;
+    top: 1rem;
+    left: 2rem;
+}
+
+.login button {
+    display: block;
+    height: 3rem;
+    width: 8rem;
+    margin: auto;
+    position: relative;
+    top: 3rem;
+    font-size: 25px; 
+    background-color: var(--rosa);
+    border-radius: 10px;
+    border: none; 
+    color: white;
+}
+
+.formEntrar input {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 2.2rem;
+    width: 80%;
+    border-radius: 10px;
+    border: none;
+    padding-left: 15px;
+}
+
+#e-mail {
+    margin-top: 2rem;
+}
+
+#senha {
+    margin-top: 1rem;
+}
+
+/* CONFIGURAÇÃO DE DIVS */
+.login, .crie {
+    height: 350px;
+    background-color: var(--cinza230);
+}
+
+.login h1, .crie h1 {
+    display: flex; 
+    justify-content: center;
+    margin-top: 2rem;
+    color: var(--azul_escuro);
+} 
+
+.login button, .crie button {
+    cursor: pointer;
+}
+
+/* DIV CRIAR NOVA CONTA */
+.crie {
+    width: 325px;
+    border-radius: 20px;
+}
+
+.crie button {
+    display: block;
+    margin: auto;
+    font-size: 25px; 
+    background-color: var(--rosa);
+    border-radius: 10px;
+    border: none; 
+    padding: 1rem;
+    width: 70%;
+    color: white;
+}
+
+#conta_ong {
+    margin-top: 2rem;
+}
+
+#conta_adotante {
+    margin-top: 1rem;
+}
+
+#conta_ong a, #conta_adotante a {
+    color: white;
+}
+
+/* ------------------------------------------ INSTITUCIONAL ------------------------------------------- */
+
+.pInstitucional {
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.link {
+    text-decoration: none;
+    color: black;
+}
+
+.mainInstitucional {
+    display: flex;
+}
+
+.mainInstitucional h1 {
+    color: var(--azul_claro);
+    margin: 1rem 0 0.5rem 0;
+}
+
+aside {
+    /* border: 2px solid red; */
+    width: 20%;
+    background-color: var(--cinza201);
+    /* border-radius: 0 15px 0 0; */
+    font-size: 25px;
+    padding: 1rem 0 0 0;
+}
+
+aside p {
+    padding: 1rem 1rem;
+    font-size: 22px;
+    color: var(--azul_claro);
+}
+
+.arrow {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 350vh;
+}
+
+.btnVolta {
+    border: none;
+    border-radius: 50%;
+    height: 4rem;
+    width: 4rem;
+    cursor: pointer;
+}
+
+.btnVolta img {
+    height: 3rem;
+}
+
+.conteudoIns {
+    /* border: 2px solid blue; */
+    width: 80%;
+}
+
+.conteudoIns h1 {
+    padding: 0 1.5rem;
+}
+
+.conteudoIns p {
+    padding: 0.5rem 2rem;
+    font-size: 22px;
+}
+
+.ultimoP {
+    margin: 0 0 1.5rem 0;
+}
+
+.banner{
+    height: 62vh;
+    margin: 0 0 1.5rem 0;
+}
+
+.banner img {
+    height: 100%;
+    width: 100%;
+    /* border-radius: 10px;  */
+}
+
+.ulInstitucional {
+    margin: 0 0 0 4rem;
+}
+
+.ulInstitucional li {
+    font-size: 22px;
+    padding: 0.5rem 0.5rem;
+}
+
+/*  INTEGRANTES  */
+
+.integrantes {
+    width: 100%;
+    background-color: var(--rosa_claro);
+    padding: 0 0 3rem 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.tituloIntegrantes {
+    padding: 3rem 0;
+    height: 3rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tituloIntegrantes > h1 {
+    font-size: 40px;
+    color: white;
+}
+
+.membros {
+    height: 60%;
+    margin: 5rem 0 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    max-width: 100%;
+}
+
+.membro {
+    height: 100%;
+    width: 20rem;
+    background-color: #e6e6e6c4;
+    border-radius: 10px;
+}
+
+.dot2 {
+    height: 10rem;
+    width: 10rem;
+    background-color: #bbb;
+    border-radius: 50%;
+    position: relative;
+    top: -5rem;
+    left: 25%;
+}
+    
+.bio {
+    height: 15rem;
+    padding: 0 1rem;
+    position: relative;
+    top: -4rem;
+    text-align: center;
+}
+
+.bio > p {
+    margin: 1rem 1.5rem;
+    font-size: 18px;
+}
+
+#camilly {
+    background-image: url(/img/feedback/milly.jpg);
+    background-position: center center;
+    background-size: 100%;
+}
+
+#lucas {
+    background-image: url(/img/feedback/lucas.PNG);
+    background-position: center center;
+    background-size: 100%;
+}
+
+#maria {
+    background-image: url(/img/feedback/maria.jpg);
+    background-position: center center;
+    background-size: 100%;
+}
+
+#barbara{
+    background-image: url();
+    background-position: center center;
+    background-size: 100%;
+}
+
+#fernanda{
+    background-image: url();
+    background-position: center center;
+    background-size: 100%;
+}
+
+/*  ------------------------------------------ TORNE-SE PARCEIRO --------------------------------------*/
+
+.bannerParceiro {
+    background-image: url(/img/banner/Banners\ torne-se\ parceiro.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 30rem;
+    width: 100%;
+}
+
+.pParceiro > p{
+    font-size: 22px;
+    margin: 1rem 2rem;
+}
+
+.pParceiro ol {
+    font-size: 20px;
+    padding: 0 0 1rem 4rem;
+}
+
+.pParceiro ol li {
+    padding: 0.5rem 0;
+}
+
+.cadastro {
+    width: 100%;
+    text-align: center;
+    margin: 2rem 0 4rem 0;
+}
+
+.cadastro button {
+    height: 3rem;
+    width: 80%;
+    border-radius: 30px;
+    font-size: 25px;
+    font-weight: 900;
+    color: white;
+    background-color: var(--rosa);
+    border: none;
+    cursor: pointer;
+}
+
+/* ------------------------------------------ CRIAR CONTA ONG ------------------------------------------   */
+
+.h1Form {
+    color: var(--azul_claro);
+    text-align: center;
+    margin: 0 0 1.5rem 0;
+    font-weight: 900;
+}
+
+.formulario {
+    background-color: var(--cinza215);
+    height: 105vh;
+    width: 90vw;
+    border-radius: 20px;
+    margin: auto;
+    margin-bottom: 2rem;
+}
+
+.formTitulos {
+    padding: 2rem 0 0.5rem 1rem;
+    color: var(--azul_claro);
+}
+
+.cadastrar, .dadosResponsavel, .endereco {
+    width: 95%;
+    margin: auto;
+}
+
+.cadastrar input, .dadosResponsavel input, .endereco input {
+    height: 2rem;
+    border: none;
+    border-radius: 10px;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    width: calc(50% - 1.5rem);
+}
+
+input:focus {
+    outline: none;
+    border: 1px solid var(--rosa);
+}
+
+.full {
+    width: calc(100% - 1.5rem);
+}
+
+.btnCadastrar {
+    height: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btnCadastrar button {
+    height: 2.5rem;
+    width: 90%;
+    border: none;
+    border-radius: 30px;
+    background: var(--rosa);
+    font-size: 25px;
+    font-weight: 900;
+    color: white;
+    cursor: pointer;
+}
+
+.icones img{
+   height: 2rem;
+   width:  2rem;
+   display: flex;
+   align-items: flex-end;
+}
