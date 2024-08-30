@@ -30,7 +30,7 @@ body {
 }
 
 header {
-    height: 4rem;
+    height: 5rem;
     width: 100%;
     background-color: var(--azul_claro);
     display: flex;
@@ -40,8 +40,10 @@ header {
 }
 
 .logo {
-    height: 3rem;
-    margin-left: 2rem;
+    width: 25%;
+    margin-left: 1rem;
+    justify-content: center;
+    
 }
 
 /* Links "Institucional", "ONG's" e "Notícias" */
@@ -337,8 +339,8 @@ footer {
 }
 
 .imglogo{
-    height: 2rem;
-    margin: 0.5rem 2rem;
+    width: 4.5%;
+    
 }
 
 .rodape a{
