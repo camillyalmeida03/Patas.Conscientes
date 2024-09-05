@@ -53,6 +53,7 @@ header {
     padding: 0 1rem;
     color: white;
     transition: all 0.3s ease;
+    font-weight: 700;
 }
 
 .links a:hover {
@@ -69,6 +70,7 @@ header {
     border: none;
     border-radius: 10px;
     transition: all 0.3s ease;
+    font-weight: 700;
 }
 
 
