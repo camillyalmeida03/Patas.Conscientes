@@ -1,0 +1,1205 @@
+:root {
+    --azul_claro: #0E457D;
+    --azul_escuro: #003B4A;
+    --rosa: #FE4E77;
+    --rosa_claro: #f1718f;
+    --rosa_texto: #FF2BAA;
+    --cinza245: rgb(245,245,245);
+    --cinza230: rgba(230, 230, 230, 0.767);
+    --cinza215: rgb(215,215,215);
+    --cinza201: rgb(201, 201, 201);
+    --cinza158: rgb(158, 158, 158);
+    --preto_back: #393939;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: var(--cinza230);
+    height:calc(100vh - 5rem);
+}
+
+.azul{ /* cor do texto/título azul */
+    color: var(--azul_claro);
+}
+
+.centro{
+    text-align: center;
+    padding-bottom: 1rem;
+}
+
+.buttonRosa{
+    padding: 1rem;
+    background-color: var(--rosa);
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+    border-radius: 1rem;
+}
+
+/* -----------------------------HEADER----------------------------- */
+
+header{
+    display: flex;
+    height: 5rem;
+    width: 100%;
+    background-color: var(--azul_claro);
+    align-items: center;
+    padding: 0 2rem;
+    justify-content: space-between;
+}
+
+header a{
+    text-decoration: none;
+    color: white;
+    font-weight: 550;
+}
+
+/* logo */
+
+.logobranca{ 
+    height: 5rem;
+}
+
+/* nav - links  */
+
+nav{
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+}
+
+.linksNav{
+    display: flex;
+    gap: 2rem;
+}
+
+.linksNav a{
+    transition: all 0.2s;
+}
+
+/* nav - botões  */
+
+.btnsNav{
+    display: flex;
+    gap: 2rem;
+}
+
+.btnsNav a{
+    display: flex;
+    height: 2.5rem;
+    padding: 0 0.6rem;
+    border-radius: 0.6rem;
+    background-color: var(--rosa);
+    align-items: center;
+    font-size: 14px;
+    transition: all 0.4s;
+}
+
+/* ícones/link nav */
+
+.imglinksHeader{
+    display: flex;
+    gap: 1rem;
+}
+
+.imglinksHeader svg, button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.imglinksHeader svg:hover{
+    fill: var(--rosa_texto);
+    transform: scale(105%);
+}
+
+
+#hamburguer{
+    display: none;
+}
+
+/*       AQUI COMEÇA O CARROSSEL     */
+.slider {
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+    background-color: var(--rosa_claro);
+    overflow: hidden;
+}
+
+.slides {
+    height: 80%;
+    width: 400%;
+    /*Foi posto com 400% para que só uma imagem aparecesse por vez, pelo menos eu entendi isso :)*/
+    display: flex;
+}
+
+/* "Apaga" os radios para que não fique com dois*/
+.slides input {
+    display: none;
+}
+
+
+.slide {
+    width: 25%;
+    /*Como foi colocado em .slides o width sendo como 400%, agora o width do .slide será de 25%, ou seja, 100% do tamanho do .slider*/
+    position: relative;
+    transition: 2s;
+}
+
+.slide img {
+    width: 100%;
+    height: auto;
+}
+
+/*Configurações para a div dos botões/radios*/
+.manual_nav {
+    position: absolute;
+    width: 100%;
+    margin-top: -40px;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+/*Configurações da cor, tamanho e tal dos radios(diretamente deles, diferente de .manual_nav que é a div onde os radios estão dentro)*/
+.manual_btn {
+    border: 2px solid white;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.manual_btn:hover {
+    background-color: white;
+}
+
+#radio1:checked ~ .first {
+    margin-left: 0;
+}
+
+#radio2:checked ~ .first {
+    margin-left: -25%;
+}
+
+#radio3:checked ~ .first {
+    margin-left: -50%;
+}
+
+/* ----------------------------- main - index.html ----------------------------- */
+
+.mainIndex{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: var(--rosa_claro);
+    gap: 5%;
+    padding: 3rem 5%;
+    flex-wrap: wrap;
+}
+
+.quadro{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--cinza230);
+    border-radius: 2rem;
+    width: 35%;
+    align-items: center;
+    padding: 2rem 0;
+    min-height: 14rem;
+}
+
+.quadro h2{
+    text-align: center;
+    width: 80%;
+    color: var(--rosa);
+    font-weight: 700;
+}
+
+.quadro p{  
+    margin-top: 1rem;
+    text-align: justify;
+    width: 80%;
+}
+
+/* ----------------------------- feedbacks - index.html ----------------------------- */
+
+.feedbacksIndex{
+    display: flex;
+    flex-direction: column;
+    gap: 7rem;
+    align-items: center;
+    padding: 3rem 5%;
+    width: 100%;
+    position: relative;
+}
+
+.feedbacks{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    gap: 2%;
+}
+
+.feedback{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--cinza215);
+    width: 17rem;
+    padding: 6rem 2rem 2rem 2rem;
+    margin-bottom: 7rem;
+    border-radius: 2rem;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.feedback p, h2{
+    text-align: center;
+}
+
+.fotoFeed{
+    height: 10rem;
+    width: 10rem;
+    border-radius: 50%;
+    position: absolute;
+    top: -5rem;
+    background-color: var(--cinza215);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#fotoFeed1 {
+    background-image: url(/img/fotos/perfil1.jpg);
+}
+
+#fotoFeed2 {
+    background-image: url(/img/fotos/perfil2.jpg);
+}
+
+#fotoFeed3 {
+    background-image: url(/img/fotos/perfil3.jpg);
+}
+
+#fotoFeed4 {
+    background-image: url(/img/fotos/perfil4.jpg);
+}
+
+/* ----------------------------- FOOTER ----------------------------- */
+
+footer{
+    background-color: var(--azul_claro);
+    display: flex;
+    width: 100%;
+    color: white;
+    flex-direction: column;
+    padding: 2rem 5%;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.especial{
+    position:relative;
+    top: -7rem;
+}
+
+.tituloFooter{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+footer .listasFooter a{
+    text-decoration: none;
+    color: white;
+    transition: all 0.2s;
+    margin-bottom: 0.4rem;
+}
+
+footer .listasFooter a:hover{
+    color: var(--rosa_texto);
+}
+
+.linksFooter{
+    display: flex;
+    width: 100%;
+    gap: 8% ;
+}
+
+.listasFooter{
+    display: flex;
+    flex-direction: column;
+    min-width: 9.5rem;
+    min-height: 8rem;
+}
+
+.listasFooter div{
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.divFooter{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.linhaFooter{
+    display: flex;
+    height: 1px;
+    width: 100%;
+    background-color: white;
+    margin: 1.5rem 0;
+}
+
+.fimFooter{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.fimFooter img{
+    height: 4rem;
+}
+
+.insta{
+    background-color: transparent;
+    height: 2.5rem;
+    transition: all 0.2s;
+}
+
+
+.instagram{
+    height: 2.5rem;
+    background-color: var(--azul_claro);
+}
+
+.insta .instagram path:hover{
+    fill: var(--rosa_texto);
+}
+
+/* ----------------------------- caminho das páginas ----------------------------- */
+
+.caminho{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    height: 3.5rem;
+    position: relative;
+}
+
+.caminho a{
+    text-decoration: none;
+    color: black;
+}
+
+.link{
+    font-weight: 700;
+    transition: all;    
+}
+
+.link:hover{
+    color: var(--rosa_texto);
+}
+
+.caminho img{
+    height: 2rem;
+    border-radius: 50%;
+    transition: all;
+
+}
+
+.caminho img:hover{
+    border: 2px solid var(--rosa);
+}
+
+/* ----------------------------- insticional.html ----------------------------- */
+
+/* Aside */
+
+.asideInst{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--cinza215);
+    height: 10rem;
+    width: 15rem;
+    border-radius: 2rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    position: fixed;
+    margin: 0 2%;
+}
+
+.asideInst p{
+    width: 70%;
+    justify-content: center;
+}
+
+.asideInst a{
+    text-decoration: none;
+    font-weight: 700;
+    color: rgb(90, 90, 90);
+    transition: all 0.2s;
+}
+
+.asideInst a:hover{
+    color: var(--rosa_texto);
+}
+
+/* main */
+.mainInst{
+    display: flex;
+    flex-direction: column;
+}
+
+#barra{ /* espaço em que o aside ficará */
+    width: calc(2% + 15rem);
+}
+
+#sections{
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 15rem);
+    padding: 0 2% 2rem 2%;
+    gap: 4rem;
+}
+
+/* seções */
+
+.gruposecInst{
+    display: flex;
+
+}
+
+.sectionInst div{
+    background-color: var(--cinza215);
+    padding: 1.5rem;
+    border-radius: 2rem;
+    margin-top: 0.5rem;
+}
+
+.sectionInst h2{
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    padding: 1rem 0 2rem 0;
+    font-size: 28px;
+}
+
+.sectionInst p{
+    font-size: 20px;
+    padding: 0 0 1.5rem 0;
+}
+
+.sectionInst ul{
+    font-size: 20px;
+    padding: 1rem 0 2rem 3rem; 
+}
+
+.sectionInst ul li{
+    padding: 0 0 1rem 0;
+}
+
+.sectionInst img{
+    width: 100%;
+    border-radius: 2rem;
+}
+
+/* integrantes */
+
+.integrantesInst{
+    display: flex;
+    flex-direction: column;
+    gap: 7rem;
+    align-items: center;
+    padding: 3rem 5%;
+    width: 100%;
+    position: relative;
+    background-color: var(--rosa_claro);
+}
+
+.integrantesInst h2{
+    color: white;
+}
+
+.integrantes{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    gap: 2%;
+}
+
+.integrante{
+    display: flex;
+    flex-direction: column;
+    background-color: #e6e6e6c4;
+    width: 17rem;
+    min-height: 20rem;
+    padding: 6rem 2rem 2rem 2rem;
+    margin-bottom: 7rem;
+    border-radius: 2rem;
+    align-items: center;
+    position: relative;
+}
+
+.bio{
+    height: 80%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.5rem;
+}
+
+.bio a{
+    color: black;
+}
+
+.fotoInte{
+    height: 10rem;
+    width: 10rem;
+    border-radius: 50%;
+    position: absolute;
+    top: -5rem;
+    background-color: var(--cinza215);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#camilly {
+    background-image: url(/img/fotos/milly.jpg);
+}
+
+#lucas {
+    background-image: url(/img/fotos/lucas.PNG);
+}
+
+#barbara {
+    background-image: url(/img/fotos/perfil3.jpg);
+}
+
+#fernanda {
+    background-image: url(/img/fotos/perfil4.jpg);
+}
+
+/* ----------------------------- ongs.html ----------------------------- */
+
+.mainOng{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 2%;
+    margin-bottom: 2rem;
+}
+
+.corpoOngs{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 2rem;
+}
+
+.cardOng{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1rem;
+    min-height: 21rem;
+    max-height: 21rem;
+    border-radius: 2rem;
+    position: relative;
+}
+
+.cardOngrosa{
+    background-color: var(--rosa);
+    color: white;
+} 
+
+.cardOngazul{
+    background-color: var(--azul_claro);
+    color: white;
+} 
+
+.cardOng img{
+    width: 100%;
+    border-radius: 1rem;
+    margin-bottom: 0.5rem;
+    object-fit: cover;
+}
+
+.imgFav{
+    display: flex;
+    height: 70%;
+}
+
+#adicionarFav{
+    height: 2rem;
+    position: absolute;
+    z-index: 2;
+    top: calc(1rem + 48%);
+    left: 81%;
+}
+
+.descOng{
+    padding-left: 0.8rem;
+}
+
+.descOng h2{
+    margin-bottom: 0.3rem;
+    text-align: start;
+    font-size: 20px;
+}
+
+/* ----------------------------- adotar.html ----------------------------- */
+
+/* Filtro */
+
+.filtro{
+    background-color: var(--cinza215);
+    width: 15rem;
+    min-width: 15rem;
+    border-radius: 2rem;
+    padding: 2rem; 
+    margin: 0 0 0 2%;
+    height: 80%;
+}
+
+.linha{
+    height: 1px;
+    width: 100%;
+    background-color: black;
+    margin: 1rem 0;
+}
+
+.botFiltro{
+    display: flex;
+    justify-content: space-between;
+}
+
+.botFiltro button, h3{
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.camadasFiltro{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.camadasFiltro div{
+    display: flex;
+    gap: 0.3rem;
+}
+
+/* cards adotar */
+
+.buttonFiltrar{
+    display: none;
+    margin-left: 3%;
+    padding: 1rem;
+    font-size: 16px;
+}
+
+.divMainAdotar{
+    display: flex;
+}
+
+.adotarSec{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 1rem;
+    padding: 0 2% 2rem 2%;
+
+}
+
+#cardsAnimais{
+    display: flex;
+}
+
+.adotarMiniCard > img{
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 2rem;
+}
+
+
+.adotarMiniCard{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 2rem;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 1px 1px 1px var(--cinza215);
+    transition: 0.2s all;
+    position: relative;
+}
+
+
+.adotarMiniCard:hover{
+    transform: scale(101%);
+}
+
+.iconsAdotar{
+    display: flex;
+    gap: 1%;
+}
+
+.descMiniAdotar{
+    padding: 1rem; 
+    width: 100%;
+}
+
+.descMiniAdotar a{
+    color: var(--rosa);
+    text-decoration: none;
+}
+
+.nomIconAdotar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.nomIconAdotar svg{
+    height: 2rem;
+    fill: var(--cinza158);
+}
+
+.adicionarFavAdotar svg{
+    fill: var(--rosa_claro);
+}
+
+.nomIconAdotar h2{
+    font-size: 20px;
+}
+
+.nomePet{
+    text-align: left;
+}
+
+/* card Expandido */
+.expandircardPet{
+    display: none;
+    background-color: white;
+    height: 100%;
+    width: 50rem;
+    z-index: 10;
+    border-radius: 1rem;
+    position: absolute;
+}
+
+.expandircardPet > img{
+    height: 100%;
+    width: 40%;
+    border-radius: 1rem;
+    object-fit: cover;
+}
+
+.descExpAdotar{
+    padding: 2rem;
+}
+
+.tituloInfoPet{
+    font-weight: 600;
+}
+
+.expandircardPet a{
+    color: var(--rosa);
+    text-decoration: none;
+    padding-bottom: 1rem;
+}
+
+.expandircardPet .nomIconAdotar{
+    padding: 1rem 0;
+}
+
+#pesoIdade, #especPorte {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+#pesoIdade div, #especPorte div{
+    width: 30%;
+    
+}
+
+#triploInfo div{
+    margin-bottom: 1rem;
+}
+
+.infoPet{
+    width: 100%;
+}
+
+.botCompart{
+    display: flex;
+    justify-content: space-between;
+}
+
+.botCompart svg{
+    height: 3rem;
+    fill: var(--cinza158);
+}
+
+#sobrePet{
+    text-align: justify;
+}
+
+/* ----------------------------- parceiro.html ----------------------------- */
+
+#mainParceiro{
+    padding: 0 2%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+#mainParceiro div{
+    padding: 1rem;
+}
+
+#mainParceiro ol{
+    padding-left: 3rem;
+}
+
+#mainParceiro p, li{
+    font-size: 20px;
+}
+
+#mainParceiro p, ol{
+    padding: 0.5rem;
+}
+
+#mainParceiro img{
+    width: 100%;
+    border-radius: 2rem;
+}
+
+#mainParceiro > a{
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    margin: 1rem 0 3rem 0;
+    width: 60%;
+    text-align: center;
+    font-size: 20px;
+}
+
+
+@media screen and (max-width: 1340px){
+    .adotarSec{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 1250px){
+
+    .corpoOngs{
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+@media screen and (max-width: 1050px) {
+    .buttonFiltrar{
+        display: flex;
+    }
+
+    .filtro{
+        display: none;
+    }
+}
+
+/* responsividade em dispositivos até 950px de largura  */
+@media screen and (max-width: 950px){
+ 
+
+    .imglinksHeader{
+        display: none;
+    }
+
+    #hamburguer{
+        display: flex;
+    }
+
+    h1{
+        font-size: calc(32px - 10%);
+    }
+
+    h2{
+        font-size: calc(26px - 10%);
+    }
+    
+    #barra{
+        display: none;
+    }
+
+    .asideInst{
+        display: none;
+    }
+
+    #sections{
+        width: 100%;
+    }
+    
+    
+     p, li{
+        font-size: 18px;
+    }
+
+    #mainParceiro p{
+        font-size: 18px;
+    }
+
+    .corpoOngs{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+}
+
+/* responsividade em dispositivos até 800px de largura  */
+@media screen and (max-width: 800px){
+    .linksNav{
+        display: none;
+    }
+
+    .imglinksHeader{
+        display: none;
+    }
+
+    #hamburguer{
+        display: flex;
+    }
+
+    .manual_nav {
+        margin-top: -35px;
+    }
+    .quadro{
+        width: 40%;
+    }
+    
+    footer{
+        padding: 2rem 15%;
+    }
+
+    .divFooter{
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .nomIconAdotar h2{
+        font-size: calc(20px - 10%);
+    }
+
+}
+
+/* responsividade em dispositivos até 650px de largura  */
+@media screen and (max-width: 650px){
+    .linksNav{
+        display: none;
+    }
+
+    .imglinksHeader{
+        display: none;
+    }
+
+    #hamburguer{
+        display: flex;
+    }
+
+    .btnsNav a,button{
+        gap: 1rem;
+        font-size: 12px;
+    }
+
+    .manual_nav {
+        margin-top: -30px;
+    }
+
+    .mainIndex{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3rem;
+    }
+
+    .quadro{
+        width: 100%;
+        align-items: center;
+        padding: 2rem 0;
+        height: 80%;
+        min-height: 10rem;
+    }
+
+    h1{
+        font-size: calc(32px - 20%);
+    }
+
+    h2{
+        font-size: calc(26px - 15%);
+    }
+
+    #sections{
+        padding: 0 5% 2rem 5%;
+    }
+    
+   p, li{
+        font-size: 16px;
+    }
+
+    #mainParceiro p{
+        font-size: 16px;
+    }
+
+    .mainOng{
+        padding: 0 5%;
+    }
+
+    .corpoOngs{
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    #adicionarFav{
+        left: 85%;
+    }
+
+    .descOng h2{
+        font-size: calc(20px - 20%);
+    }
+
+    .descOng p{
+        font-size: calc(16px - 10%);
+    }
+
+    .adotarSec{
+        grid-template-columns: repeat(1, 1fr);
+        gap: 2rem;
+        padding: 0 5% 2rem 5%;
+    }
+
+    .centro{
+        padding-bottom: 0;
+    }
+
+    .buttonFiltrar{
+        padding: 1rem 10% 1rem 10%;
+    }
+
+}
+
+/* responsividade em dispositivos até 500px de largura  */
+@media screen and (max-width: 500px){
+    .linksNav{
+        display: none;
+    }
+
+    .imglinksHeader{
+        display: none;
+    }
+
+    #hamburguer{
+        display: flex;
+    }
+
+    .btnsNav{
+        display: none;
+    }
+
+    .manual_nav {
+        margin-top: -20px;
+    }
+
+
+    .manual_btn {
+        padding: 4px;
+    }
+
+    .divFooter{
+        justify-content: center;
+        gap: 2rem;
+    }
+        
+    .sectionInst img{
+        border-radius: 1.5rem;
+    }
+
+
+}
+
+@media screen and (max-width: 450px){
+
+    h1{
+        font-size: calc(32px - 30%);
+    }
+
+
+    #adicionarFav{
+        left: 80%;
+    }
+
+}
+
+@media screen and (max-width: 330px){
+
+    #adicionarFav{
+        left: 75%;
+    }
+
+    h1{
+        font-size: calc(32px - 40%);
+    }
+
+}
+
+/* responsividade em dispositivos até 400px de largura  */
+@media screen and (max-width: 400px){
+    .linksNav{
+        display: none;
+    }
+
+    .imglinksHeader{
+        display: none;
+    }
+
+    #hamburguer{
+        display: flex;
+    }
+
+    .btnsNav{
+        display: none;
+    }
+
+    .linksFooter{
+        flex-wrap: wrap;
+    }
+}
