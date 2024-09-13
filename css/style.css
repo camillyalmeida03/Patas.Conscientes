@@ -10,6 +10,8 @@
     --cinza201: rgb(201, 201, 201);
     --cinza158: rgb(158, 158, 158);
     --preto_back: #393939;
+    --cinza_h3: #272727;
+    --vermelho: #fd2020;
 }
 
 * {
@@ -26,7 +28,10 @@ body {
 
 .azul{ /* cor do texto/título azul */
     color: var(--azul_claro);
+    text-align: center;
 }
+
+
 
 .centro{
     text-align: center;
@@ -263,7 +268,7 @@ nav{
     position: relative;
 }
 
-.feedback p, h2{
+.feedback p, .feedback h2{
     text-align: center;
 }
 
@@ -891,7 +896,7 @@ footer .listasFooter a:hover{
     padding-left: 3rem;
 }
 
-#mainParceiro p, li{
+#mainParceiro p, #mainParceiro li{
     font-size: 20px;
 }
 
@@ -914,6 +919,113 @@ footer .listasFooter a:hover{
     font-size: 20px;
 }
 
+/* ----------------------------- configuracoes.html ----------------------------- */
+
+#mainConfig{
+    display: flex;
+    padding: 1rem 2% 2rem 1rem;
+}
+
+#politicasdoSite{
+    display: none;
+}
+
+#asideConfig{
+    width: 15rem;
+    height: 100%;
+}
+
+#asideConfig div{
+    margin-bottom: 2rem;
+}
+
+.titConfig{
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--cinza_h3);
+}
+
+.buttonConfig{
+    font-size: 16px;
+    margin-top: 0.7rem;
+}
+
+#linhaConfig{
+    width: 1px;
+    background-color: var(--preto_back);
+}
+
+#configConta{
+    padding-left: 3rem;
+    width: 50rem;
+}
+
+#usuarioPerfil{
+    display: flex;
+    margin-top: 1rem;
+    gap: 4rem;
+    align-items: center;
+}
+
+#altFotoUsuario{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+#nomePerfil{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+#fotoUsuario{
+    height: 10rem;
+    width: 10rem;
+    background-image: url(/img/fotos/perfil1.jpg);
+    border-radius: 50%;
+    background-color: var(--cinza215);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.buttonPerfil{
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--cinza_h3);
+    text-align: left;
+}
+
+.vermelho{
+    color: var(--vermelho);
+}
+
+#emailSenhaTel{
+    display: flex;
+    flex-direction: column;
+    gap:1.5rem;
+    padding: 2rem 0;
+}
+
+#emailPerfil, #senhaPerfil, #telefonePerfil{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#nomePerfil .buttonPerfil, #emailPerfil .buttonPerfil, #senhaPerfil .buttonPerfil, #telefonePerfil .buttonPerfil{
+    width: 10rem;
+}
+
+#email::before{
+    content: "Email: ";
+    font-weight: 600;
+    color: var(--preto_back);
+}
 
 @media screen and (max-width: 1340px){
     .adotarSec{

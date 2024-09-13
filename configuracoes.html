@@ -48,39 +48,92 @@
   </header>
 
   <section class="caminho">
-    <p><a href="/index.html" class="link" title="Link que direciona para a página Inicial">Início</a> | Configurações</p>
+    <p><a href="/index.html" class="link" title="Link que direciona para a página Inicial">Início</a> | Configurações
+    </p>
   </section>
 
+  <h1 class="azul">Configurações</h1>
   <main id="mainConfig">
     <aside id="asideConfig">
-        <div>
-            <h3 class="titAsideConfig">Configurações</h3>
-            <button title="Acessar configurações da Conta" id="contaConfig" class="buttonConfig">Conta</button>
-        </div>
 
-        <div>
-            <h3 class="titAsideConfig">Informações</h3>
-            <button title="Acessar Políticas do site" id="politicasSite" class="buttonConfig">Políticas do site</button>
-        </div>
+      <div>
+        <h3 class="titConfig">Configurações</h3>
+        <button title="Acessar configurações da Conta" id="contaConfig" class="buttonConfig">Conta</button>
+      </div>
+
+      <div>
+        <h3 class="titConfig">Informações</h3>
+        <button title="Acessar Políticas do site" id="politicasSite" class="buttonConfig">Políticas do site</button>
+      </div>
     </aside>
 
     <div id="linhaConfig"></div>
 
     <section id="configConta">
-        <h2>Configurações da Conta</h2>
+      <h2 class="titConfig">Configurações da Conta</h2>
 
-        <div id="usuarioPerfil">
-            <div id="altFotoUsuario">
-                <div id="fotoUsuario"></div>
-                <button title="Alterar foto de perfil" class="buttonPerfil" id="altFoto">Alterar foto</button>
-            </div>
-
-            <div id="nomePerfil">
-                <p id="nomeUsuario">Margarete Da Rosa Silva</p>
-                <button title="Alterar foto de usuário" class="buttonPerfil" id="altNomeUsu">Alterar nome</button>
-            </div>
+      <div id="usuarioPerfil">
+        <div id="altFotoUsuario">
+          <div id="fotoUsuario"></div>
+          <button title="Alterar foto de perfil" class="buttonPerfil" id="altFoto">Alterar foto</button>
         </div>
 
+        <div id="nomePerfil">
+          <p id="nomeUsuario">Margarete Da Rosa Silva</p>
+          <button title="Alterar nome de usuário" class="buttonPerfil" id="altNomeUsu">Alterar nome</button>
+        </div>
+      </div>
+
+      <div id="emailSenhaTel">
+        <div id="emailPerfil">
+          <p id="email">margaretedarosasilva@gmail.com</p>
+          <button class="buttonPerfil" title="Alterar seu e-mail">Alterar e-mail</button>
+        </div>
+
+        <div id="senhaPerfil">
+          <p id="senha">******</p>
+          <button class="buttonPerfil" title="Alterar sua senha">Alterar senha</button>
+        </div>
+
+        <div id="telefonePerfil">
+          <p id="telefone">(16) 9999-9999</p>
+          <button class="buttonPerfil" title="Alterar seu telefone">Alterar telefone</button>
+        </div>
+      </div>
+
+      <button class="vermelho buttonPerfil" title="Excluir sua conta">Excluir conta</button>
+
+    </section>
+
+    <section id="politicasdoSite">
+      <h2 class="titConfig">Políticas do site</h2>
+      <p>Bem-vindo ao Patas Conscientes! Nosso compromisso é promover a adoção responsável e o bem-estar animal. Para
+        garantir uma experiência segura e positiva para todos os usuários, pedimos que leia e siga nossas políticas.
+      </p>
+
+      <ol id="listaPoliticas">
+        <li>Privacidade e Segurança Respeitamos a privacidade dos nossos usuários. As informações pessoais fornecidas
+          serão usadas exclusivamente para fins de comunicação entre o site e os usuários, incluindo ONGs, abrigos e
+          voluntários. Não compartilhamos dados com terceiros sem consentimento prévio.</li>
+
+        <li>Adoção Responsável Nosso objetivo é conectar ONGs e abrigos com adotantes comprometidos. Ao se candidatar
+          para adoção, solicitamos que todos os usuários sejam honestos e estejam cientes da responsabilidade de adotar
+          um animal.</li>
+
+        <li>Voluntariado Os voluntários que se inscrevem no Patas Conscientes devem estar cientes das exigências das
+          ONGs parceiras. Encorajamos todos a participar de forma dedicada e respeitosa.</li>
+
+        <li>Conteúdo e Comportamento Todo conteúdo gerado pelos usuários, incluindo comentários e postagens, deve
+          respeitar os princípios de respeito, empatia e solidariedade. Não toleramos discurso de ódio, discriminação ou
+          comportamento inadequado.</li>
+
+        <li>Parcerias e Colaborações As ONGs e abrigos que se tornam parceiras do Patas Conscientes devem estar
+          comprometidas com a ética e o bem-estar animal. Reservamo-nos o direito de encerrar parcerias que não atendam
+          a esses critérios.</li>
+
+        <li>Alterações nas Políticas Patas Conscientes se reserva o direito de modificar estas políticas a qualquer
+          momento. Quaisquer mudanças serão comunicadas aos usuários por meio do site.</li>
+      </ol>
     </section>
   </main>
 
