@@ -923,7 +923,7 @@ footer .listasFooter a:hover{
 
 #mainConfig{
     display: flex;
-    padding: 1rem 2% 2rem 1rem;
+    padding: 1rem 2% 2rem 2%;
 }
 
 #politicasdoSite{
@@ -948,6 +948,14 @@ footer .listasFooter a:hover{
 .buttonConfig{
     font-size: 16px;
     margin-top: 0.7rem;
+    text-align: left;
+}
+
+#contaConfigH3, #politicasSiteH3{
+    cursor: default;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--cinza_h3);
 }
 
 #linhaConfig{
@@ -958,6 +966,10 @@ footer .listasFooter a:hover{
 #configConta{
     padding-left: 3rem;
     width: 50rem;
+}
+
+#contaH3{
+    display: none;
 }
 
 #usuarioPerfil{
@@ -997,6 +1009,7 @@ footer .listasFooter a:hover{
     font-weight: 700;
     color: var(--cinza_h3);
     text-align: left;
+    
 }
 
 .vermelho{
@@ -1018,7 +1031,7 @@ footer .listasFooter a:hover{
 }
 
 #nomePerfil .buttonPerfil, #emailPerfil .buttonPerfil, #senhaPerfil .buttonPerfil, #telefonePerfil .buttonPerfil{
-    width: 10rem;
+    width: 7.5rem;
 }
 
 #email::before{
@@ -1026,6 +1039,20 @@ footer .listasFooter a:hover{
     font-weight: 600;
     color: var(--preto_back);
 }
+
+#senha::before{
+    content: "Senha: ";
+    font-weight: 600;
+    color: var(--preto_back);
+}
+
+#telefone::before{
+    content: "Telefone: ";
+    font-weight: 600;
+    color: var(--preto_back);
+}
+
+
 
 @media screen and (max-width: 1340px){
     .adotarSec{
@@ -1084,9 +1111,9 @@ footer .listasFooter a:hover{
     }
     
     
-     p, li{
+     /* p, li{
         font-size: 18px;
-    }
+    } */
 
     #mainParceiro p{
         font-size: 18px;
@@ -1133,6 +1160,74 @@ footer .listasFooter a:hover{
         font-size: calc(20px - 10%);
     }
 
+    #mainConfig{
+        flex-direction: column;
+        padding: 1rem 5% 2rem 5%;
+
+    }
+
+    #configConta{
+        padding-left: 0;
+        width: 100%;
+        padding-top: 2rem; 
+    }
+
+    #asideConfig{
+        width: 100%;
+        height: 1rem;
+        margin-bottom: 0.5rem;
+        display: flex;
+        gap: 2rem;
+    }
+
+    #contaConfig{
+        display: none;
+    }
+
+    #contaConfigH3, #politicasSite{
+        display: none;
+    }
+
+
+    #contaH3, #politicasSiteH3{
+        display: flex;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--cinza_h3);
+    }
+
+    #linhaConfig{
+        width: 100%;
+        height: 1px;
+        background-color: var(--preto_back);
+    }
+
+    #usuarioPerfil{
+        flex-direction: column;
+        margin-top: 2rem;
+        gap: 3rem;
+    }
+
+    #altFoto{
+        display: none;
+    }
+
+    #altFotoIcon{
+        height: 2rem;
+        width: 2rem;
+        position: relative;
+        left: 3.5rem;
+        bottom: 1rem;
+    }
+
+    #altFotoIcon svg path{
+        fill: var(--cinza158);
+    }
+
+    #email, #telefone, #senha, #nomeUsuario{
+        width: 20rem;
+    }
 }
 
 /* responsividade em dispositivos até 650px de largura  */
@@ -1226,6 +1321,8 @@ footer .listasFooter a:hover{
     .buttonFiltrar{
         padding: 1rem 10% 1rem 10%;
     }
+
+
 
 }
 
