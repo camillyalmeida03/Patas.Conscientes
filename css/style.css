@@ -23,7 +23,8 @@
 
 body {
     background-color: var(--cinza230);
-    height:calc(100vh - 5rem);
+    min-height: 100vh;
+    margin: 0; 
 }
 
 .azul{ /* cor do texto/título azul */
@@ -45,6 +46,11 @@ body {
     font-weight: 700;
     font-size: 16px;
     border-radius: 1rem;
+}
+
+main {
+    flex: 1; /* Faz com que o main ocupe o espaço disponível */
+    min-height: calc(85vh - 5rem);
 }
 
 /* -----------------------------HEADER----------------------------- */
@@ -311,11 +317,7 @@ footer{
     padding: 2rem 5%;
     align-items: center;
     flex-wrap: wrap;
-}
-
-.especial{
-    position:relative;
-    top: -7rem;
+    position: relative;
 }
 
 .tituloFooter{
@@ -928,10 +930,20 @@ footer .listasFooter a:hover{
 
 #politicasdoSite{
     display: none;
+    flex-direction: column;
+    padding-left: 3rem;
+    text-align: justify;
+    gap: 1rem;
+    width: 100%;
+}
+
+#listaPoliticas li{
+    margin-bottom: 1rem;
 }
 
 #asideConfig{
     width: 15rem;
+    min-width: 15rem;
     height: 100%;
 }
 
@@ -960,12 +972,13 @@ footer .listasFooter a:hover{
 
 #linhaConfig{
     width: 1px;
-    background-color: var(--preto_back);
+    background-color: var(--cinza158);
 }
 
 #configConta{
     padding-left: 3rem;
     width: 50rem;
+    display: block;
 }
 
 #contaH3{
@@ -1228,6 +1241,15 @@ footer .listasFooter a:hover{
     #email, #telefone, #senha, #nomeUsuario{
         width: 20rem;
     }
+
+    .titConfig{
+        text-align: center;
+    }
+
+    #politicasdoSite {
+        padding-left: 0;
+        padding-top: 2rem;
+        }
 }
 
 /* responsividade em dispositivos até 650px de largura  */
@@ -1322,7 +1344,9 @@ footer .listasFooter a:hover{
         padding: 1rem 10% 1rem 10%;
     }
 
-
+    #mainConfig{
+        padding: 2rem 2% 2rem 2%;
+    }
 
 }
 
@@ -1362,7 +1386,19 @@ footer .listasFooter a:hover{
         border-radius: 1.5rem;
     }
 
+    #nomePerfil{
+        display: block;
+    }
 
+    #emailPerfil, #senhaPerfil, #telefonePerfil{
+        display: block;
+    }
+
+    #email, #telefone, #senha, #nomeUsuario{
+        margin-bottom: 0.6rem;
+        overflow: hidden;
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 450px){
@@ -1374,6 +1410,12 @@ footer .listasFooter a:hover{
 
     #adicionarFav{
         left: 80%;
+    }
+
+    #usuarioPerfil{
+        flex-direction: column;
+        margin-top: 2rem;
+        gap: 2rem;
     }
 
 }
