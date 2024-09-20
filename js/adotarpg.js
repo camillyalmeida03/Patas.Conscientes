@@ -1,6 +1,12 @@
-// js da página adotar.html
+// window.addEventListener("load", paginacarregada);//a página espera o javascrip carregar antes de executar ele.
 
-// na página adotar.html, ao clicar no card, aparece as informações dele
+// function paginacarregada(){
 
-// Seleciona o elemento adotarMiniCard
-// Seleciona todos os elementos .adotarMiniCard
+//     let fecharFiltros = document.getElementById("fecharFiltros");
+
+//     fecharFiltros.addEventListener("click", function(){
+//         .style.display = 'none';
+//         .style.display = 'flex';
+//     })
+
+//     }

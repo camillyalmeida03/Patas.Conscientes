@@ -48,10 +48,7 @@ body {
     border-radius: 1rem;
 }
 
-main {
-    flex: 1; /* Faz com que o main ocupe o espaço disponível */
-    min-height: calc(85vh - 5rem);
-}
+
 
 /* -----------------------------HEADER----------------------------- */
 
@@ -1089,6 +1086,43 @@ footer .listasFooter a:hover{
     .filtro{
         display: none;
     }
+
+    .filtro{
+        width: 100%;
+        border-radius: 0;
+        padding: 2rem; 
+        height: 100%;
+        position: fixed;
+        z-index: 100;
+        flex-direction: column;
+        margin: 0;
+        top: 0;
+        left: 0;
+    }
+
+    .botFiltro h3{
+        font-size: 28px;
+        font-weight: 700;
+        align-items: center;
+        display: flex;
+        color: var(--azul_claro);
+    }
+
+    #fecharFiltros{
+        display: flex;
+        height: 2rem;
+        width: 2rem;
+        fill: var(--cinza158);
+    }
+
+    .botFiltro > div{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 2rem;
+        width: 30%;
+    }
+        
 }
 
 /* responsividade em dispositivos até 950px de largura  */
