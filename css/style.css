@@ -1,6 +1,9 @@
 :root {
     --azul_claro: #0E457D;
+    --azul_maisclaro: #2269AA;
     --azul_escuro: #003B4A;
+    
+    --azul_opaco: #2268aa82;
     --rosa: #FE4E77;
     --rosa_claro: #f1718f;
     --rosa_texto: #FF2BAA;
@@ -9,6 +12,7 @@
     --cinza215: rgb(215,215,215);
     --cinza201: rgb(201, 201, 201);
     --cinza158: rgb(158, 158, 158);
+    --cinzaCard: #F5F5F5;
     --preto_back: #393939;
     --cinza_h3: #272727;
     --vermelho: #fd2020;
@@ -428,6 +432,10 @@ footer .listasFooter a:hover{
 
 .caminho img:hover{
     border: 2px solid var(--rosa);
+}
+
+.caminhoTransparente{
+    background-color: transparent;
 }
 
 /* ----------------------------- insticional.html ----------------------------- */
@@ -1061,6 +1069,90 @@ footer .listasFooter a:hover{
     font-weight: 600;
     color: var(--preto_back);
 }
+
+/* ----------------------------- login.html ----------------------------- */
+
+#mainLogin{
+    background-image: url(/img/fotos/back_login.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-size: cover;
+    height: 100%;
+    height: calc(100vh - 6rem);
+}
+
+#mainLogin > div{
+    display: flex;
+    justify-content: center;
+}
+
+.loginCard{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    min-width: 18rem;
+    background-color: white;
+    /* height: 20rem; */
+    align-items: center;
+    padding: 2rem;
+    border-radius: 3rem;
+    gap: 1rem;
+    box-shadow: 1px 1px 2px var(--cinza158);
+}
+
+.loginCard form{
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    gap: 1rem;
+}
+
+.loginCard form > input[type="email"], .loginCard form > input[type="password"]{
+    padding: 0.9rem;
+    border-radius: 2.6rem;
+    border: none;
+    background-color: var(--cinza230);
+    box-shadow: 1px 1px 1px var(--azul_claro);
+}
+
+.loginCard form > input[type="email"]::-webkit-input-placeholder, .loginCard form > input[type="password"]::-webkit-input-placeholder{
+    font-weight: 700;
+    color: var(--cinza158);
+}
+
+
+
+#entrarCard{
+    display: flex;
+}
+
+#cadastroCard{
+    display: none;
+    padding: 3rem;
+}
+
+.botLogin{
+    background-color: var(--azul_maisclaro);
+    padding: 0.7rem;
+    border-radius: 2.6rem;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 700;
+    width: 80%  ;
+}
+
+.loginCard .botLogin{
+    width: 100%;
+}
+
+.linkFalso{
+    color: var(--azul_opaco);
+    font-weight: 700;
+}
+
+
 
 
 
