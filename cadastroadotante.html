@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/style.css">
-  <title>Adote um Pet</title>
+  <title>Cadastro de Adotantes</title>
 </head>
 
 <body>
@@ -52,22 +52,23 @@
       adotante</p>
   </section>
 
-  <main id="maincadastAdotante">
+  <main class="mainForms">
     <h1 class="azul">Cadastro de Adotante</h1>
 
     <div class="fundoBranco">
-      <h2>Cadastrar</h2>
 
       <div>
-        <form action="" class="formCadastro">
-          <input type="text" id="nomeCadastrar" class="inputCadastro" placeholder="Nome">
+        <form action="" method="get" class="formCadastro">
+          
+      <h2>Cadastrar</h2>
+          <input type="text" id="nome" class="inputCadastro" placeholder="Nome">
 
-          <input type="email" id="emailCadastrar" class="inputCadastro" placeholder="E-mail">
+          <input type="email" id="email" class="inputCadastro" placeholder="E-mail">
 
           <div>
-            <input type="tel" id="telefoneCadastro" class="inputCadastro" placeholder="Telefone">
+            <input type="tel" id="telefone" class="inputCadastro" placeholder="Telefone">
 
-            <input type="tel" id="celularCadastro" class="inputCadastro" placeholder="Celular">
+            <input type="tel" id="celular" class="inputCadastro" placeholder="Celular">
           </div>
 
           <div>
@@ -78,13 +79,13 @@
               <option value="">Prefiro não dizer</option>
             </select>
 
-            <input type="date" id="dataNascCadastro" placeholder="Data de Nascimento">
+            <input type="date" id="dataNasc" placeholder="Data de Nascimento">
           </div>
 
-          <input type="number" id="cpfCadastro" placeholder="CPF">
+          <input type="number" id="cpf" placeholder="CPF">
 
           <div>
-            <input type="text" id="senhaCadastro" placeholder="Senha">
+            <input type="text" id="senha" placeholder="Senha">
 
             <input type="text" id="confirmaSenha" placeholder="Confirme sua senha">
           </div>
@@ -143,10 +144,9 @@
             <p class="tituloFooter">Entrar</p>
           </a>
           <div>
-            <a href="login.html" title="Link que direciona para a página de criar conta como ONG do site">Criar contas
-              ONG</a>
-              <a href="cadastroadotante.html" title="Link que direciona para a página de criar conta como adotante do site">Criar conta adotante</a>
+            <a href="cadastroong.html" title="Link que direciona para a página de criar conta como ONG do site">Criar contas ONG</a>
 
+            <a href="cadastroadotante.html" title="Link que direciona para a página de criar conta como adotante do site">Criar conta adotante</a>
           </div>
         </div>
       </div>

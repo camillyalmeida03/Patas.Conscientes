@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/style.css">
-    <title>Login</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Formulário de Cadastro para Parceiros</title>
 </head>
 
 <body>
@@ -49,47 +49,77 @@
         </div>
     </header>
 
-    <main id="mainLogin">
+    <section class="caminho">
+        <p><a href="/index.html" class="link" title="Link que direciona para a página Inicial">Início</a> | Formulário
+            de cadastro para Parceiros</p>
+    </section>
 
-        <section class="caminho caminhoTransparente">
-            <p><a href="/index.html" class="link" title="Link que direciona para a página Inicial">Início</a> | Login
-            </p>
-        </section>
+    <main class="mainForms">
+        <h1 class="azul">Formulário de Cadastro</h1>
 
-        <div>
-            <div class="loginCard" id="entrarCard">
-                <h2 class="azul">Entrar</h2>
+        <div class="fundoBranco formParceiro1">
 
-                <form action="" id="formEntrar">
+            <form action="" method="get" class="formCadastro">
+                <h2>Cadastrar</h2>
 
-                    <input type="email" id="emailEntrar" class="inputLogin" placeholder="Digite o seu E-mail"
-                        autocomplete>
+                <fieldset>
+                    <div>
+                        <input type="text" name="" id="nomeOng" class="inputCadastro" placeholder="Nome da ONG">
 
-                    <input type="password" id="senhaEntrar" placeholder="Digite o sua senha" autocomplete>
+                        <input type="email" class="inputCadastro" placeholder="E-mail">
+                    </div>
 
-                    <button title="Recuperar senha" class="linkFalso">Esqueceu sua senha?</button>
+                    <input type="text" class="inputCadastro" placeholder="CNPJ">
+                </fieldset>
 
-                    <button title="Entrar na sua conta" class="botLogin">Confirmar</button>
+                <h2>Dados do Responsável</h2>
 
-                    <button title="Ir para cadastro" class="linkFalso">Não tem conta? Cadastre-se</button>
-                </form>
-            </div>
+                <fieldset>
+                    <input type="text" class="inputCadastro" placeholder="Nome do Responsável">
 
-            <div class="loginCard azul" id="cadastroCard">
-                <h2>Cadastre-se</h2>
+                    <div>
+                        <input type="text" class="inputCadastro" placeholder="CPF">
 
-                <a href="" title="Link que redireciona para o formulário de cadastro de ong" class="botLogin">Conta
-                    ONG</a>
+                        <input type="text" class="inputCadastro" placeholder="E-mail">
+                    </div>
+                </fieldset>
 
-                <a href="" title="Link que redireciona para o formulário de cadastro de adotante" class="botLogin">Conta
-                    Adotante</a>
+                <h2>Endereço</h2>
 
+                <fieldset>
+                    <input type="text" class="inputCadastro" placeholder="CEP">
 
-            </div>
+                    <div>
+                        <input type="text" class="inputCadastro" placeholder="Estado">
+
+                        <input type="text"class="inputCadastro" placeholder="Cidade">
+                    </div>
+
+                    <input type="text" class="inputCadastro" placeholder="Logadouro">
+
+                    <div>
+                        <input type="text" class="inputCadastro" placeholder="Bairro">
+
+                        <input type="text" class="inputCadastro" placeholder="Número">
+                    </div>
+
+                    <input type="text" class="inputCadastro" placeholder="Complemento">
+
+                </fieldset>
+
+                <button title="Ir para a última etapa do formulário" class="buttonRosaForm">Continuar</button>
+
+            </form>
         </div>
 
-    </main>
+        <div class="fundoBranco formParceiro2">
+            <form action="" method="get" class="formCadastro">
+                <h2>Informações Adicionais</h2>
 
+                <textarea name="" id="" placeholder="Descrição da ONG" class="inputCadastro"></textarea>
+            </form>
+        </div>
+    </main>
 
     <footer>
         <section class="linksFooter">
