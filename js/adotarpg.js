@@ -10,3 +10,21 @@
 //     })
 
 //     }
+
+//Função para limpar os radio buttons e deixar todos desmarcados
+function limparRadioButtons() {
+    var radios = document.getElementsByName('filter1');
+    for (var i = 0; i < radios.length; i++) {
+        radios[i].checked = false;
+    }
+
+    var radios = document.getElementsByName('filter2');
+    for (var i = 0; i < radios.length; i++) {
+        radios[i].checked = false;
+    }
+
+    var radios = document.getElementsByName('filter3');
+    for (var i = 0; i < radios.length; i++) {
+        radios[i].checked = false;
+    }
+}
