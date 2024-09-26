@@ -27,4 +27,16 @@ function limparRadioButtons() {
     for (var i = 0; i < radios.length; i++) {
         radios[i].checked = false;
     }
-}
+
+        var todasOngs = ["ong1F", "ong2F", "ong3F", "ong4F", "ong5F"];
+        for (var i = 0; i < todasOngs.length; i++) {
+            document.getElementById(todasOngs[i]).checked = false;
+        }
+
+        var sexos = ["femeaF", "machoF"];
+        for (var i = 0; i < todasOngs.length; i++) {
+            document.getElementById(sexos[i]).checked = false;
+        }
+    }
+
+
