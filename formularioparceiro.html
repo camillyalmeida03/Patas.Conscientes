@@ -22,8 +22,7 @@
             </div>
 
             <div class="btnsNav">
-                <a href="adotar.html"
-                    title="Link que direciona para a página de adoção do site">Adote-me</a>
+                <a href="adotar.html" title="Link que direciona para a página de adoção do site">Adote-me</a>
                 <a href="parceiro.html"
                     title="Link que direciona para a página de cadastro para se tornar parceiro do site do site">Torne-se
                     parceiro</a>
@@ -92,7 +91,7 @@
                     <div>
                         <input type="text" class="inputCadastro" placeholder="Estado">
 
-                        <input type="text"class="inputCadastro" placeholder="Cidade">
+                        <input type="text" class="inputCadastro" placeholder="Cidade">
                     </div>
 
                     <input type="text" class="inputCadastro" placeholder="Logadouro">
@@ -140,28 +139,31 @@
                 <div class="inputCadastro inputArquivo">
                     <p>Quantos pets estão disponíveis para a adoção atualmente?</p>
 
-                    <input type="number">
+                    <input type="number" id="numPets">
                 </div>
 
-                <div>
+                <div id="infoAdocao">
                     <p class="inputCadastro">
                         Tipos de pets disponíveis para a adoção:
                     </p>
 
-                    <div class="inputCadastro">
-                        <input type="radio" name="" id="">
-                        <p>Cachorros</p>
-                    </div>
 
-                    <div class="inputCadastro">
-                        <input type="radio" name="" id="">
-                        <p>Gatos</p>
-                    </div>
-                     
-                    <div class="inputCadastro">
-                        <input type="radio" name="" id="">
-                        <input type="text">
-                        <p>Outros (Específicar)</p>
+                    <div>
+                        <div class="inputCadastro">
+                            <input type="radio" name="" id="">
+                            <p>Cachorros</p>
+                        </div>
+
+                        <div class="inputCadastro">
+                            <input type="radio" name="" id="">
+                            <p>Gatos</p>
+                        </div>
+
+                        <div class="inputCadastro">
+                            <input type="radio" name="" id="">
+                            <input type="text" id="especificarPet">
+                            <p>Outros (Específicar)</p>
+                        </div>
                     </div>
                 </div>
 
@@ -243,6 +245,8 @@
         </section>
 
     </footer>
+
+    <script src="formparceiro.js"></script>
 </body>
 
 </html>

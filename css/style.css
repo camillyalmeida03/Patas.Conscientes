@@ -1252,8 +1252,9 @@ footer .listasFooter a:hover{
 } 
 
 .formParceiro1{
-    display: none;
+    display: flex;
 }
+
 
 .formParceiro2 > div{
     display: flex;
@@ -1261,6 +1262,7 @@ footer .listasFooter a:hover{
     padding: 0 5%;
     gap: 1rem;
     margin-bottom: 2rem;
+    align-items: center;
 }
 
 .formParceiro2 > div textarea{
@@ -1276,6 +1278,41 @@ footer .listasFooter a:hover{
     font-size: 16px;
     font-weight: 600;
     color: var(--cinza_h3);
+}
+
+textarea{
+    font-size: 16px;
+}
+
+#numPets{
+    width: 2.5rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px var(--cinza_h3) solid;
+}
+
+#infoAdocao{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+#infoAdocao > div{
+    display: flex;
+    gap: 0.3rem;
+    flex-direction: column;
+    width: 50%;
+}
+
+#infoAdocao > div > div{
+    display: flex;
+    gap: 0.3rem;
+    align-items: center;
+}
+
+#especificarPet{
+    display: none;
 }
 
 @media screen and (max-width: 1650px){
