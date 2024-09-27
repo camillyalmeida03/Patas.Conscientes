@@ -686,6 +686,10 @@ footer .listasFooter a:hover{
 
 /* ----------------------------- adotar.html ----------------------------- */
 
+.mainAdotar{
+    margin-bottom: 2rem;
+}
+
 /* Filtro */
 
 .filtro{
@@ -741,7 +745,7 @@ footer .listasFooter a:hover{
 
 .adotarSec{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     flex-wrap: wrap;
     width: 100%;
     gap: 1rem;
@@ -764,7 +768,6 @@ footer .listasFooter a:hover{
 .adotarMiniCard{
     display: flex;
     flex-direction: column;
-    height: auto;
     width: 100%;
     background-color: white;
     padding: 1rem;
@@ -1083,8 +1086,7 @@ footer .listasFooter a:hover{
     background-repeat: no-repeat;
     background-size: 100%;
     background-size: cover;
-    height: 100%;
-    height: calc(100vh - 6rem);
+    height: calc(100vh - 5rem);
 }
 
 #mainLogin > div{
@@ -1223,18 +1225,19 @@ footer .listasFooter a:hover{
     width: 100%;
 }
 
-.formCadastro input, .formCadastro select{
+.inputCadastro{
     padding: 0.9rem 1.5rem;
     display: flex;
     align-items: center;
-    border-radius: 2.4rem;
+    border-radius: 1.5rem;
     border: none;
     color: var(--cinza_h3);
     background-color: var(--cinza_input);
     width: 100%;
+    resize: none;
 }
 
-.formCadastro input::placeholder{
+.inputCadastro::placeholder{
     color: var(--cinza_h3);
 }
 
@@ -1252,10 +1255,47 @@ footer .listasFooter a:hover{
     display: none;
 }
 
+.formParceiro2 > div{
+    display: flex;
+    flex-direction: column;
+    padding: 0 5%;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.formParceiro2 > div textarea{
+    height: 8rem;
+}
+
+.inputArquivo{
+    display: flex;
+    justify-content: space-between;
+}
+
+.inputArquivo > button{
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--cinza_h3);
+}
+
+@media screen and (max-width: 1650px){
+    .nomIconAdotar h2{
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 1550px){
+    .adotarSec{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 
 @media screen and (max-width: 1340px){
-    .adotarSec{
-        grid-template-columns: repeat(2, 1fr);
+
+
+    .nomIconAdotar h2{
+        font-size: 18px;
     }
 }
 
@@ -1269,6 +1309,10 @@ footer .listasFooter a:hover{
 
     .corpoOngs{
         grid-template-columns: repeat(3, 1fr);
+    }
+
+    .adotarSec{
+        grid-template-columns: repeat(2, 1fr);
     }
 
 }
@@ -1317,6 +1361,7 @@ footer .listasFooter a:hover{
         gap: 2rem;
         width: 30%;
     }
+    
         
 }
 
@@ -1574,7 +1619,7 @@ footer .listasFooter a:hover{
 
     .adotarSec{
         grid-template-columns: repeat(1, 1fr);
-        gap: 2rem;
+        gap: 1.5rem;
         padding: 0 5% 2rem 5%;
     }
 
