@@ -76,6 +76,11 @@ header a{
 
 .logobranca{ 
     height: 3.5rem;
+    transition: all 0.2s;
+}
+
+.logobranca:hover{
+    transform: scale(105%);
 }
 
 /* nav - links  */
@@ -93,6 +98,11 @@ nav{
 
 .linksNav a{
     transition: all 0.2s;
+}
+
+.linksNav a:hover{
+    color: var(--rosa);
+    transform: scale(102%);
 }
 
 /* nav - botões  */
@@ -113,6 +123,10 @@ nav{
     transition: all 0.4s;
 }
 
+.btnsNav a:hover{
+    transform: scale(105%);
+}
+
 /* ícones/link nav */
 
 .imglinksHeader{
@@ -128,7 +142,7 @@ nav{
 }
 
 .imglinksHeader svg:hover{
-    fill: var(--rosa_texto);
+    fill: var(--rosa);
     transform: scale(105%);
 }
 
@@ -1235,6 +1249,8 @@ footer .listasFooter a:hover{
     background-color: var(--cinza_input);
     width: 100%;
     resize: none;
+    min-width: 10rem;
+    font-size: 16px;
 }
 
 .inputCadastro::placeholder{
@@ -1249,14 +1265,19 @@ footer .listasFooter a:hover{
     padding: 0.6rem;
     border-radius: 2.4rem;
     width: 50%;
+    min-width: 9rem;
 } 
 
-.formParceiro1{
+#formParceiro1{
     display: flex;
 }
 
+#formParceiro2{
+    display: none;
+}
 
-.formParceiro2 > div{
+
+#formParceiro2 > div{
     display: flex;
     flex-direction: column;
     padding: 0 5%;
@@ -1265,7 +1286,7 @@ footer .listasFooter a:hover{
     align-items: center;
 }
 
-.formParceiro2 > div textarea{
+#formParceiro2 > div textarea{
     height: 8rem;
 }
 
@@ -1313,6 +1334,14 @@ textarea{
 
 #especificarPet{
     display: none;
+}
+
+.uploadButton{
+    display: none;
+    height: 1.3rem;
+    width: 1.3rem;
+    min-height: 1.3rem;
+    min-width: 1.3rem;
 }
 
 @media screen and (max-width: 1650px){
@@ -1576,6 +1605,14 @@ textarea{
         padding-left: 0;
         padding-top: 2rem;
         }
+
+        .uploadButton{
+            display: flex;
+        }
+    
+        .arquivoButton{
+            display: none;
+        }
 }
 
 /* responsividade em dispositivos até 650px de largura  */
@@ -1685,6 +1722,13 @@ textarea{
     .fundoBranco{
         align-items: center;
     }
+
+    .formCadastro fieldset div, .formCadastro div{
+        flex-direction: column;
+        display: flex;
+    }
+
+
 
 }
 

@@ -56,7 +56,7 @@
     <main class="mainForms">
         <h1 class="azul">Formulário de Cadastro</h1>
 
-        <div class="fundoBranco formParceiro1">
+        <div class="fundoBranco" id="formParceiro1">
 
             <form action="" method="get" class="formCadastro">
                 <h2>Cadastrar</h2>
@@ -106,12 +106,12 @@
 
                 </fieldset>
 
-                <button title="Ir para a última etapa do formulário" class="buttonRosaForm">Continuar</button>
+                <button title="Ir para a última etapa do formulário" class="buttonRosaForm" id="continuarFormParc">Continuar</button>
 
             </form>
         </div>
 
-        <div class="fundoBranco formParceiro2">
+        <div class="fundoBranco" id="formParceiro2">
             <div>
                 <h2>Informações Adicionais</h2>
 
@@ -119,19 +119,34 @@
 
                 <div class="inputCadastro inputArquivo">
                     <p>Foto de perfil / Logo da ONG</p>
-                    <button title="Escolher arquivo do dispositivo">Escolher arquivo</button>
+                    <button title="Escolher arquivo do dispositivo" class="arquivoButton">Escolher arquivo</button>
+                    <button title="Escolher arquivo do dispositivo" class="uploadButton"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
+                            fill="#5f6368">
+                            <path
+                                d="M440-200h80v-167l64 64 56-57-160-160-160 160 57 56 63-63v167ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z" />
+                        </svg></button>
                 </div>
 
                 <h2>Documentação</h2>
 
                 <div class="inputCadastro inputArquivo">
                     <p>Comprovante do Estatuto da ONG</p>
-                    <button title="Escolher arquivo do dispositivo">Escolher arquivo</button>
+                    <button title="Escolher arquivo do dispositivo" class="arquivoButton">Escolher arquivo</button>
+                    <button title="Escolher arquivo do dispositivo" class="uploadButton"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
+                        fill="#5f6368">
+                        <path
+                            d="M440-200h80v-167l64 64 56-57-160-160-160 160 57 56 63-63v167ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z" />
+                    </svg></button>
                 </div>
 
                 <div class="inputCadastro inputArquivo">
                     <p>Comprovante de CNPJ</p>
-                    <button title="Escolher arquivo do dispositivo">Escolher arquivo</button>
+                    <button title="Escolher arquivo do dispositivo" class="arquivoButton">Escolher arquivo</button>
+                    <button title="Escolher arquivo do dispositivo" class="uploadButton"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
+                        fill="#5f6368">
+                        <path
+                            d="M440-200h80v-167l64 64 56-57-160-160-160 160 57 56 63-63v167ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z" />
+                    </svg></button>
                 </div>
 
                 <h2>Informações sobre Adoção</h2>
@@ -167,7 +182,7 @@
                     </div>
                 </div>
 
-                <button class="buttonRosaForm" title="Finalizar cadastro">Cadastrar</button>
+                <button class="buttonRosaForm" id="cadastrarFormParceiro" title="Finalizar cadastro">Cadastrar</button>
 
             </div>
         </div>
@@ -246,7 +261,7 @@
 
     </footer>
 
-    <script src="formparceiro.js"></script>
+    <script src="js/formparceiro.js"></script>
 </body>
 
 </html>
