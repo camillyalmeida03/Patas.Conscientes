@@ -22,7 +22,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Roboto", sans-serif;;
 }
 
 body {
@@ -257,9 +257,9 @@ nav{
     width: 80%;
 }
 
-/* ----------------------------- feedbacks - index.html ----------------------------- */
+/* ----------------------------- Cards com foto - index.html (feedbacks)/ institucional.html (Integrantes) ----------------------------- */
 
-.feedbacksIndex{
+.secPerson{
     display: flex;
     flex-direction: column;
     gap: 7rem;
@@ -269,7 +269,7 @@ nav{
     position: relative;
 }
 
-.feedbacks{
+.cardsPerson{
     display: flex;
     flex-wrap: wrap;
     width: 100%;
@@ -277,7 +277,7 @@ nav{
     gap: 2%;
 }
 
-.feedback{
+.cardPerson{
     display: flex;
     flex-direction: column;
     background-color: var(--cinza215);
@@ -287,13 +287,25 @@ nav{
     justify-content: center;
     align-items: center;
     position: relative;
+    min-height: 22rem;
 }
 
-.feedback p, .feedback h2{
+.cardPerson p, .cardPerson h2{
+    text-align: justify;
+}
+
+.cardPerson h3{
     text-align: center;
 }
 
-.fotoFeed{
+.bio{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+}
+
+.fotoCard{
     height: 10rem;
     width: 10rem;
     border-radius: 50%;
@@ -319,6 +331,22 @@ nav{
 
 #fotoFeed4 {
     background-image: url(/img/fotos/perfil4.jpg);
+}
+
+#camilly {
+    background-image: url(/img/fotos/milly.jpg);
+}
+
+#lucas {
+    background-image: url(/img/fotos/lucas.PNG);
+}
+
+#barbara {
+    background-image: url(/img/fotos/barbara.jpg);
+}
+
+#fernanda {
+    background-image: url(/img/fotos/fernanda.jpg);
 }
 
 /* ----------------------------- FOOTER ----------------------------- */
@@ -523,20 +551,17 @@ footer .listasFooter a:hover{
 }
 
 .sectionInst h2{
-    height: 2rem;
     display: flex;
     align-items: center;
-    padding: 1rem 0 2rem 0;
-    font-size: 28px;
+    padding: 1rem 0;
+    text-align: left;
 }
 
 .sectionInst p{
-    font-size: 20px;
     padding: 0 0 1.5rem 0;
 }
 
 .sectionInst ul{
-    font-size: 20px;
     padding: 1rem 0 2rem 3rem; 
 }
 
@@ -552,13 +577,6 @@ footer .listasFooter a:hover{
 /* integrantes */
 
 .integrantesInst{
-    display: flex;
-    flex-direction: column;
-    gap: 7rem;
-    align-items: center;
-    padding: 3rem 5%;
-    width: 100%;
-    position: relative;
     background-color: var(--rosa_claro);
 }
 
@@ -566,67 +584,6 @@ footer .listasFooter a:hover{
     color: white;
 }
 
-.integrantes{
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    justify-content: center;
-    gap: 2%;
-}
-
-.integrante{
-    display: flex;
-    flex-direction: column;
-    background-color: #e6e6e6c4;
-    width: 17rem;
-    min-height: 20rem;
-    padding: 6rem 2rem 2rem 2rem;
-    margin-bottom: 7rem;
-    border-radius: 2rem;
-    align-items: center;
-    position: relative;
-}
-
-.bio{
-    height: 80%;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 0.5rem;
-}
-
-.bio a{
-    color: black;
-}
-
-.fotoInte{
-    height: 10rem;
-    width: 10rem;
-    border-radius: 50%;
-    position: absolute;
-    top: -5rem;
-    background-color: var(--cinza215);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-#camilly {
-    background-image: url(/img/fotos/milly.jpg);
-}
-
-#lucas {
-    background-image: url(/img/fotos/lucas.PNG);
-}
-
-#barbara {
-    background-image: url(/img/fotos/perfil3.jpg);
-}
-
-#fernanda {
-    background-image: url(/img/fotos/perfil4.jpg);
-}
 
 /* ----------------------------- ongs.html ----------------------------- */
 
