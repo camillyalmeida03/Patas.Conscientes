@@ -121,6 +121,11 @@ header{
     justify-content: space-between;
 }
 
+.headerInst{
+    position: fixed;
+    z-index: 30;
+}
+
 header a{
     text-decoration: none;
     color: white;
@@ -151,6 +156,31 @@ nav{
     gap: 2rem;
 }
 
+.linksNav > div{
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+#setinha{
+    height: 1rem;
+    transition: all 0.2s;
+}
+
+#institucional{
+    transition: all 0.2s;
+}
+
+#institucional:hover{
+    color: var(--rosa);
+    transform: scale(102%);
+}
+
+#institucional:hover #setinha{
+    fill: var(--rosa);
+    transform: rotate(90deg);
+}
+
 .linksNav a{
     transition: all 0.2s;
 }
@@ -158,6 +188,31 @@ nav{
 .linksNav a:hover{
     color: var(--rosa);
     transform: scale(102%);
+}
+
+.caixaInst{
+    display: none;
+    flex-direction: column;
+    background-color: white;
+    position: fixed;
+    top: 3.2rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 1px 1px 2px var(--cinza158);
+}
+
+.caixaInst > p {
+    padding: 0.2rem 0;
+}
+
+.caixaInst > p > a{
+    color: var(--cinza_h3);
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.caixaInst > p > a:hover{
+    color: var(--rosa);
 }
 
 /* nav - botões  */
@@ -296,7 +351,7 @@ nav{
     width: 30rem;
     align-items: center;
     padding: 2rem 0;
-    height: 15rem;
+    min-height: 16rem;
 }
 
 .quadro h2{
@@ -541,9 +596,23 @@ footer .listasFooter a:hover{
 
 /* ----------------------------- insticional.html ----------------------------- */
 
+.caminhoInst{
+    height: 8.5rem;
+    display: flex;
+    align-items: flex-end;
+}
+
+.caminhoInst > div{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    height: 3.5rem;
+}
+
 /* Aside */
 
-.asideInst{
+/* .asideInst{
     display: flex;
     flex-direction: column;
     background-color: var(--cinza215);
@@ -571,7 +640,7 @@ footer .listasFooter a:hover{
 
 .asideInst a:hover{
     color: var(--rosa_texto);
-}
+} */
 
 /* main */
 .mainInst{
@@ -586,7 +655,7 @@ footer .listasFooter a:hover{
 #sections{
     display: flex;
     flex-direction: column;
-    width: calc(100% - 15rem);
+    width: 100%;
     padding: 0 2% 2rem 2%;
     gap: 4rem;
 }
