@@ -868,6 +868,7 @@ footer .listasFooter a:hover{
 .adotarSec{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     flex-wrap: wrap;
     width: 100%;
     gap: 1rem;
@@ -898,8 +899,8 @@ footer .listasFooter a:hover{
     justify-content: space-between;
     box-shadow: 1px 1px 1px var(--cinza215);
     transition: 0.1s all;
+    gap: 1rem;
     position: relative;
-    max-height: 33rem;
 }
 
 
@@ -934,6 +935,7 @@ footer .listasFooter a:hover{
 
 .nomIconAdotar svg{
     height: 2rem;
+    min-height: 2rem;
     fill: var(--cinza158);
 }
 

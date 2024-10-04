@@ -16,7 +16,6 @@ continuarFormParc.addEventListener("click", function(){
 
 cadastrarFormParceiro.addEventListener("click", function(){
     event.preventDefault();
-
     
     formParceiro1.style.display = 'flex';
     formParceiro2.style.display = 'none';

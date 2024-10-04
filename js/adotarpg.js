@@ -39,4 +39,18 @@ function limparRadioButtons() {
         }
     }
 
+    function abrirFiltros(){
+        const botFiltros = document.getElementById("botFiltros");
+        const filtro = document.getElementById("filtro");
+
+        filtro.style.display = 'flex';
+    }
+
+    function fecharFiltros(){
+        const filtro = document.getElementById("filtro");
+        const fecharFiltros = document.getElementById("fecharFiltros");
+
+        filtro.style.display = 'none';
+
+    }
 
