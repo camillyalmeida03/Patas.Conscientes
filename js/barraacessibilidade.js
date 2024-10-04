@@ -82,6 +82,6 @@ document.getElementById('audioDesc').addEventListener('click', toggleReading);
   // Adicionando os eventos aos botões
   document.getElementById('lupaAumentar').addEventListener('click', zoomIn);
   document.getElementById('lupaDiminuir').addEventListener('click', zoomOut);
-  document.getElementById('modoEscuro').addEventListener('click', activateDarkMode);
+  // document.getElementById('modoEscuro').addEventListener('click', activateDarkMode);
   document.getElementById('modoClaro').addEventListener('click', activateLightMode);
   document.getElementById('audioDesc').addEventListener('click', readPage);

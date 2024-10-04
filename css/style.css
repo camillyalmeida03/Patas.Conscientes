@@ -178,7 +178,6 @@ nav{
 
 #institucional:hover #setinha{
     fill: var(--rosa);
-    transform: rotate(90deg);
 }
 
 .linksNav a{
@@ -195,6 +194,7 @@ nav{
     flex-direction: column;
     background-color: white;
     position: fixed;
+    z-index: 9000;
     top: 3.2rem;
     padding: 1rem;
     border-radius: 1rem;
@@ -398,6 +398,7 @@ nav{
     align-items: center;
     position: relative;
     min-height: 22rem;
+    min-width: 272px;
 }
 
 .cardPerson p, .cardPerson h2{
@@ -549,10 +550,9 @@ footer .listasFooter a:hover{
     fill: var(--rosa_texto);
 }
 
-/* .especial{
+.especial{
     position: relative;
-    top: -5rem;
-} */
+}
 
 /* ----------------------------- caminho das páginas ----------------------------- */
 
@@ -708,6 +708,33 @@ footer .listasFooter a:hover{
     color: white;
 }
 
+/* botão voltar para o topo */
+
+.botaoVoltarTopo{
+    position: absolute;
+    height: 4rem;
+    width: 4rem;
+    background-color: var(--azul_maisclaro);
+    box-shadow: 1px 1px 2px var(--cinza_h3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 2rem;
+    bottom: 2rem;
+    transition: all 0.5s;
+}
+
+.botaoVoltarTopo svg{
+    height: 80%;
+    fill: white;
+    rotate: 270deg;
+}
+
+.botaoVoltarTopo:hover{
+    transform: scale(110%);
+    background-color: var(--azul_claro);
+}
 
 /* ----------------------------- ongs.html ----------------------------- */
 
@@ -1425,6 +1452,10 @@ textarea{
     min-width: 1.3rem;
 }
 
+@media screen and (max-height: 100vh){
+    
+}
+
 @media screen and (max-width: 1650px){
     .nomIconAdotar h2{
         font-size: 18px;
@@ -1696,6 +1727,11 @@ textarea{
         .arquivoButton{
             display: none;
         }
+
+        .botaoVoltarTopo{
+            height: 3rem;
+            width: 3rem;
+        }
 }
 
 /* responsividade em dispositivos até 650px de largura  */
@@ -1892,6 +1928,11 @@ textarea{
     .quadro{
         width: 20rem;
         height: 20rem;
+    }
+
+    .botaoVoltarTopo{
+        right: 0.5rem;
+        bottom: 0.2rem;
     }
 
 }
