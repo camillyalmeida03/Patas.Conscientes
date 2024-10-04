@@ -897,28 +897,32 @@ footer .listasFooter a:hover{
     align-items: center;
     justify-content: space-between;
     box-shadow: 1px 1px 1px var(--cinza215);
-    transition: 0.2s all;
+    transition: 0.1s all;
     position: relative;
+    max-height: 33rem;
 }
 
 
-.adotarMiniCard:hover{
-    transform: scale(101%);
-}
 
 .iconsAdotar{
     display: flex;
-    gap: 1%;
+    gap: 0.2rem;
+    align-items: center;
 }
 
 .descMiniAdotar{
-    padding: 1rem; 
+    padding: 0 1rem; 
     width: 100%;
 }
 
 .descMiniAdotar a{
     color: var(--rosa);
     text-decoration: none;
+    transition: all 0.1s;
+}
+
+.descMiniAdotar a:hover{
+    color: var(--azul_claro);
 }
 
 .nomIconAdotar{
@@ -935,6 +939,11 @@ footer .listasFooter a:hover{
 
 .adicionarFavAdotar svg{
     fill: var(--rosa_claro);
+    transition: all 0.1s;
+}
+
+.adicionarFavAdotar svg:hover, .adotarMiniCard > button:hover{
+    transform: scale(105%);
 }
 
 .nomIconAdotar h2{
