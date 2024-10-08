@@ -873,11 +873,11 @@ footer .listasFooter a:hover{
     width: 100%;
     gap: 1rem;
     padding: 0 2% 2rem 2%;
-
 }
 
-#cardsAnimais{
+.cardsAnimais{
     display: flex;
+    position: relative;
 }
 
 .adotarMiniCard > img{
@@ -886,7 +886,6 @@ footer .listasFooter a:hover{
     object-fit: cover;
     border-radius: 2rem;
 }
-
 
 .adotarMiniCard{
     display: flex;
@@ -902,8 +901,6 @@ footer .listasFooter a:hover{
     gap: 1rem;
     position: relative;
 }
-
-
 
 .iconsAdotar{
     display: flex;
@@ -961,10 +958,13 @@ footer .listasFooter a:hover{
     display: none;
     background-color: white;
     height: 100%;
-    width: 50rem;
+    width: 40rem;
     z-index: 10;
     border-radius: 1rem;
     position: absolute;
+    box-shadow: 1px 1px 3px var(--cinza158);
+    top: calc(100% + 1rem);
+    min-height: 522px;
 }
 
 .expandircardPet > img{
@@ -976,6 +976,10 @@ footer .listasFooter a:hover{
 
 .descExpAdotar{
     padding: 2rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .tituloInfoPet{
@@ -985,16 +989,16 @@ footer .listasFooter a:hover{
 .expandircardPet a{
     color: var(--rosa);
     text-decoration: none;
-    padding-bottom: 1rem;
+    padding-bottom:0.5rem;
 }
 
 .expandircardPet .nomIconAdotar{
-    padding: 1rem 0;
+    padding: 0.5rem 0;
 }
 
 #pesoIdade, #especPorte {
     display: flex;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 #pesoIdade div, #especPorte div{
@@ -1003,7 +1007,7 @@ footer .listasFooter a:hover{
 }
 
 #triploInfo div{
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .infoPet{
