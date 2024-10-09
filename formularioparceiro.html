@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<!--  -->
 
 <head>
     <meta charset="UTF-8" />
@@ -89,43 +88,43 @@
 
                 <fieldset>
                     <div>
-                        <input type="text" name="" id="nomeOng" class="inputCadastro" placeholder="Nome da ONG">
+                        <input type="text" name="" id="nomeOng" class="inputCadastro" placeholder="Nome da ONG" required>
 
-                        <input type="email" class="inputCadastro" placeholder="E-mail">
+                        <input type="email" class="inputCadastro" placeholder="E-mail" required>
                     </div>
 
-                    <input type="text" class="inputCadastro" placeholder="CNPJ">
+                    <input type="text" class="inputCadastro cnpj" placeholder="CNPJ" maxlength="18" required>
                 </fieldset>
 
                 <h2>Dados do Responsável</h2>
 
                 <fieldset>
-                    <input type="text" class="inputCadastro" placeholder="Nome do Responsável">
+                    <input type="text" class="inputCadastro" placeholder="Nome do Responsável" required>
 
                     <div>
-                        <input type="text" class="inputCadastro" placeholder="CPF">
+                        <input type="text" class="inputCadastro cpf" placeholder="CPF" maxlength="14" required>
 
-                        <input type="text" class="inputCadastro" placeholder="E-mail">
+                        <input type="text" class="inputCadastro" placeholder="E-mail" required>
                     </div>
                 </fieldset>
 
                 <h2>Endereço</h2>
 
                 <fieldset>
-                    <input type="text" class="inputCadastro" placeholder="CEP">
+                    <input type="text" class="inputCadastro cep" placeholder="CEP" maxlength="9" required>
 
                     <div>
-                        <input type="text" class="inputCadastro" placeholder="Estado">
+                        <input type="text" class="inputCadastro" placeholder="Estado" required>
 
-                        <input type="text" class="inputCadastro" placeholder="Cidade">
+                        <input type="text" class="inputCadastro" placeholder="Cidade" required>
                     </div>
 
-                    <input type="text" class="inputCadastro" placeholder="Logadouro">
+                    <input type="text" class="inputCadastro" placeholder="Logradouro">
 
                     <div>
-                        <input type="text" class="inputCadastro" placeholder="Bairro">
+                        <input type="text" class="inputCadastro" placeholder="Bairro" required>
 
-                        <input type="text" class="inputCadastro" placeholder="Número">
+                        <input type="text" class="inputCadastro" placeholder="Número" required>
                     </div>
 
                     <input type="text" class="inputCadastro" placeholder="Complemento">
@@ -181,7 +180,7 @@
                 <div class="inputCadastro inputArquivo">
                     <p>Quantos pets estão disponíveis para a adoção atualmente?</p>
 
-                    <input type="number" id="numPets">
+                    <input type="number" id="numPets" required>
                 </div>
 
                 <div id="infoAdocao">
@@ -359,6 +358,7 @@
     <script src="js/formparceiro.js"></script>
     <script src="js/header.js"></script>
     <script src="js/barraacessibilidade.js"></script>
+    <script src="js/formulario.js"></script>
         
 
 </body>

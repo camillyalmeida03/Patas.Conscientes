@@ -88,33 +88,33 @@
         <form action="" method="get" class="formCadastro">
 
           <h2>Cadastrar</h2>
-          <input type="text" id="nome" class="inputCadastro" placeholder="Nome">
+          <input type="text" id="nome" class="inputCadastro" placeholder="Nome" required>
 
-          <input type="email" id="email" class="inputCadastro" placeholder="E-mail">
+          <input type="email" id="email" class="inputCadastro" placeholder="E-mail" required>
 
           <div>
-            <input type="tel" id="telefone" class="inputCadastro" placeholder="Telefone">
+            <input type="tel" id="telefone" class="inputCadastro" placeholder="Telefone" required>
 
-            <input type="tel" id="celular" class="inputCadastro" placeholder="Celular">
+            <input type="tel" id="celular" class="inputCadastro cel" placeholder="Celular" maxlength="14" required>
           </div>
 
           <div>
-            <select name="sexo" id="sexo" class="inputCadastro">
+            <select name="sexo" id="sexo" class="inputCadastro" required>
               <option value="">Sexo</option>
               <option value="">Feminino</option>
               <option value="">Masculino</option>
               <option value="">Prefiro não dizer</option>
             </select>
 
-            <input type="date" id="dataNasc" class="inputCadastro" placeholder="Data de Nascimento">
+            <input type="date" id="dataNasc" class="inputCadastro" placeholder="Data de Nascimento" required>
           </div>
 
-          <input type="number" id="cpf" class="inputCadastro" placeholder="CPF">
+          <input type="text" id="cpf" class="inputCadastro cpf" placeholder="CPF" maxlength="14" required>
 
           <div>
-            <input type="text" id="senha" placeholder="Senha" class="inputCadastro">
+            <input type="text" id="senha" placeholder="Senha" class="inputCadastro" required>
 
-            <input type="text" id="confirmaSenha" placeholder="Confirme sua senha" class="inputCadastro">
+            <input type="text" id="confirmaSenha" placeholder="Confirme sua senha" class="inputCadastro" required>
           </div>
 
 
@@ -265,6 +265,7 @@
   </footer>
   <script src="js/header.js"></script>
   <script src="js/barraacessibilidade.js"></script>
+  <script src="js/formulario.js"></script>
 
 
 </body>

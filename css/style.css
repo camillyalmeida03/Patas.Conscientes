@@ -22,7 +22,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Roboto", sans-serif;;
+    font-family: "Roboto", sans-serif;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -449,7 +450,7 @@ nav{
 }
 
 #lucas {
-    background-image: url(/img/fotos/lucas.PNG);
+    background-image: url(/img/fotos/lucas.jpg);
 }
 
 #barbara {
