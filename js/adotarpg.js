@@ -1,16 +1,3 @@
-// window.addEventListener("load", paginacarregada);//a página espera o javascrip carregar antes de executar ele.
-
-// function paginacarregada(){
-
-//     let fecharFiltros = document.getElementById("fecharFiltros");
-
-//     fecharFiltros.addEventListener("click", function(){
-//         .style.display = 'none';
-//         .style.display = 'flex';
-//     })
-
-//     }
-
 //Função para limpar os radio buttons e deixar todos desmarcados
 function limparRadioButtons() {
     var radios = document.getElementsByName('filter1');
@@ -53,6 +40,23 @@ function limparRadioButtons() {
         filtro.style.display = 'none';
 
     }
+
+    const radios = document.querySelectorAll('input[type="radio"]');
+
+        radios.forEach(radio => {
+            radio.addEventListener('click', function() {
+                if (this.checked) {
+                    const wasChecked = this.dataset.checked === "true";
+                    if (wasChecked) {
+                        this.checked = false;
+                        this.dataset.checked = "false";
+                    } else {
+                        radios.forEach(r => r.dataset.checked = "false");
+                        this.dataset.checked = "true";
+                    }
+                }
+            });
+        });
 
     document.querySelectorAll('.adotarMiniCard').forEach(adotarMiniCard => {
         adotarMiniCard.addEventListener('click', function (e) {
