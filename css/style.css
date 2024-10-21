@@ -858,10 +858,13 @@ footer .listasFooter a:hover {
     display: flex;
     flex-direction: column;
     width: 100%;
+    gap: 1rem;
+    height: 26rem;
     padding: 1rem;
     min-width: 16rem;
     border-radius: 2rem;
     box-shadow: var(--cinza201) 1px 1px 3px;
+    justify-content: space-between;
 }
 
 .cardOngrosa {
@@ -875,6 +878,7 @@ footer .listasFooter a:hover {
 }
 
 .cardOng img {
+    height: 14rem;
     width: 100%;
     aspect-ratio: 3 / 2;
     border-radius: 1rem;
@@ -882,10 +886,8 @@ footer .listasFooter a:hover {
     object-fit: cover;
 }
 
-
 .imgFav {
     display: flex;
-    height: 70%;
     position: relative;
 }
 
@@ -905,6 +907,19 @@ footer .listasFooter a:hover {
     margin-bottom: 0.3rem;
     text-align: start;
     font-size: 20px;
+}
+
+.cidadeOng::before{
+    content: "Cidade: ";
+    font-weight: 600;
+}
+
+.qntdAnimaisOng{
+    font-weight: 600;
+}
+
+.qntdAnimaisOng::after{
+    content: " animais disponíveis.";
 }
 
 /* ----------------------------- adotar.html ----------------------------- */
@@ -1101,7 +1116,14 @@ h3 {
 #pesoIdade div,
 #especPorte div {
     width: 30%;
+}
 
+#pesoPet::after{
+    content: " kg";
+}
+
+#idadePet::after{
+    content: " anos";
 }
 
 #triploInfo div {
@@ -1111,6 +1133,23 @@ h3 {
 .infoPet {
     width: 100%;
     padding: 1rem;
+}
+
+/* Sexo do pet */
+
+.sexoPet{
+    height: 1.8rem;
+    width: 1.8rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.femea{
+    background-image: url(/img/icons/icon_femea.svg);
+}
+
+.macho{
+    background-image: url(/img/icons/icon_macho.svg);
 }
 
 /* FAVORITAR / DESFAVORITAR */

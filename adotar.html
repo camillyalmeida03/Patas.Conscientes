@@ -84,466 +84,616 @@
 
     <button class="buttonFiltrar" title="Botão expandir filtros" id="botFiltros"
       onclick="abrirFiltros()">Filtros</button>
-      <aside class="filtro" id="filtro">
-        <div class="botFiltro">
+    <aside class="filtro" id="filtro">
+      <div class="botFiltro">
 
-          <h3>Filtros</h3>
+        <h3>Filtros</h3>
 
-          <div>
-            <button title="Fechar filtros" id="fecharFiltros" onclick="fecharFiltros()"><svg
-                xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#5f6368">
-                <path
-                  d="m287-216-69-71 192-193-192-195 69-71 194 195 192-195 69 71-192 195 192 193-69 71-192-195-194 195Z" />
-              </svg></button>
-            <button type="button" onclick="limparRadioButtons()" title="Botão para limpar todos os filtros aplicados"
-              id="limparFiltros">Limpar todos</button>
+        <div>
+          <button title="Fechar filtros" id="fecharFiltros" onclick="fecharFiltros()"><svg
+              xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#5f6368">
+              <path
+                d="m287-216-69-71 192-193-192-195 69-71 194 195 192-195 69 71-192 195 192 193-69 71-192-195-194 195Z" />
+            </svg></button>
+          <button type="button" onclick="limparRadioButtons()" title="Botão para limpar todos os filtros aplicados"
+            id="limparFiltros">Limpar todos</button>
+        </div>
+      </div>
+
+      <div class="linha"></div>
+
+      <div class="camadasFiltro" id="cidadeFiltro">
+        <h4>Cidade</h4>
+        <div>
+          <input type="radio" name="filter1" id="mt">
+          <p>Matão</p>
+        </div>
+
+        <div>
+          <input type="radio" name="filter1" id="tq">
+          <p>Taquaritinga</p>
+        </div>
+
+        <div>
+          <input type="radio" name="filter1" id="arq">
+          <p>Araraquara</p>
+        </div>
+      </div>
+
+      <div class="linha"></div>
+
+      <div class="camadasFiltro" id="ongsFiltro">
+        <h4>ONG's</h4>
+        <div>
+          <input type="radio" name="ong1F" id="ong1F">
+          <p>Patas Amigas Matão</p>
+        </div>
+
+        <div>
+          <input type="radio" name="ong2F" id="ong2F">
+          <p>ONG 2</p>
+        </div>
+
+        <div>
+          <input type="radio" name="ong3F" id="ong3F">
+          <p>ONG 3</p>
+        </div>
+
+        <div>
+          <input type="radio" name="ong4F" id="ong4F">
+          <p>ONG 4</p>
+        </div>
+
+        <div>
+          <input type="radio" name="ong5F" id="ong5F">
+          <p>ONG 5</p>
+        </div>
+      </div>
+
+      <div class="linha"></div>
+
+      <div class="camadasFiltro" id="especieFiltro">
+        <h4>Espécie</h4>
+
+        <div>
+          <input type="radio" name="filter2" id="cachorroF">
+          <p>Cachorro</p>
+        </div>
+
+        <div>
+          <input type="radio" name="filter2" id="gatoF">
+          <p>Gato</p>
+        </div>
+      </div>
+
+      <div class="linha"></div>
+
+      <div class="camadasFiltro" id="porteFiltro">
+        <h4>Porte</h4>
+
+        <div>
+          <input type="radio" name="filter3" id="pequenoF">
+          <p>Pequeno</p>
+        </div>
+
+        <div>
+          <input type="radio" name="filter3" id="medioF">
+          <p>Médio</p>
+        </div>
+
+        <div>
+          <input type="radio" name="filter3" id="grandeF">
+          <p>Grande</p>
+        </div>
+      </div>
+
+      <div class="linha"></div>
+
+      <div class="camadasFiltro" id="sexoFiltro">
+        <h4>Sexo</h4>
+
+        <div>
+          <input type="radio" name="femeaF" id="femeaF">
+          <p>Fêmea</p>
+        </div>
+
+        <div>
+          <input type="radio" name="machoF" id="machoF">
+          <p>Macho</p>
+        </div>
+      </div>
+    </aside>
+
+    <section class="adotarSec">
+
+      <div class="cardsAnimais">
+        <div class="adotarMiniCard">
+          <img src="img/fotos/cat1.jpg" alt="Foto do animalzinho á adoção">
+
+          <div class="descMiniAdotar">
+            <div class="nomIconAdotar">
+              <div class="iconsAdotar">
+                <h2 class="nomePet">Mia</h2>
+
+                <div class="sexoPet femea"></div>
+              </div>
+
+              <button class="favoritar adicionarFav" title="Favoritar"></button>
+
+              <button class="favoritar apagarFav" title="DesFavoritar"></button>
+
+            </div>
+            <p><a href="ongs.html" title="Link ONG Patas Amigas Matão">Patas Amigas Matão</a></p>
+          </div>
+
+          <div class="bttcard">
+            <button title="Ver mais informações sobre o pet" class="verMais">Ver mais</button>
+            <button title="Botão para levar a página de adoção deste animal" class="buttonRosa">Adotar</button>
           </div>
         </div>
 
-        <div class="linha"></div>
+        <div class="versoAdotarMiniCard">
 
-        <div class="camadasFiltro" id="cidadeFiltro">
-          <h4>Cidade</h4>
-          <div>
-            <input type="radio" name="filter1" id="mt">
-            <p>Matão</p>
+          <div class="infoPet">
+            <div id="pesoIdade">
+              <div>
+                <h3 class="tituloInfoPet">Peso</h3>
+                <p id="pesoPet">3.5</p>
+              </div>
+
+              <div>
+                <h3 class="tituloInfoPet">Idade</h3>
+                <p id="idadePet">4</p>
+              </div>
+            </div>
+
+            <div id="especPorte">
+              <div>
+                <h3 class="tituloInfoPet">Espécie</h3>
+                <p id="especiePet">Gato</p>
+              </div>
+
+              <div>
+                <h3 class="tituloInfoPet">Porte</h3>
+                <p id="portePet">Pequeno</p>
+              </div>
+            </div>
+
+            <div id="triploInfo">
+              <div>
+                <h3 class="tituloInfoPet">Raça</h3>
+                <p id="racaPet">Vira-Lata pelo baixo</p>
+              </div>
+
+              <div>
+                <h3 class="tituloInfoPet">Local</h3>
+                <p id="localPet">Patas Amigas Matão</p>
+              </div>
+
+              <div>
+                <h3 class="tituloInfoPet">Sobre o pet</h3>
+                <p id="sobrePet">Mia é uma gatinha elegante e graciosa. Com 4 anos, ela já desenvolveu uma personalidade
+                  calma e independente, mas não dispensa momentos de carinho, especialmente nas manhãs ensolaradas
+                  quando gosta de deitar ao sol. Ela é curiosa e adora observar tudo ao seu redor, especialmente do alto
+                  de prateleiras ou janelas, onde se sente como a rainha da casa.
+
+                </p>
+              </div>
+            </div>
           </div>
 
-          <div>
-            <input type="radio" name="filter1" id="tq">
-            <p>Taquaritinga</p>
+          <div class="bttcard">
+            <button title="Ver mais informações sobre o pet" class="verMais">Ver mais</button>
+            <button title="Botão para levar a página de adoção deste animal" class="buttonRosa">Adotar</button>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="cardsAnimais">
+        <div class="adotarMiniCard">
+          <img src="img/fotos/dog4.jpg" alt="Foto do animalzinho á adoção">
+
+          <div class="descMiniAdotar">
+            <div class="nomIconAdotar">
+              <div class="iconsAdotar">
+                <h2 class="nomePet">Thor</h2>
+
+                <div class="sexoPet macho"></div>
+              </div>
+
+              <button class="favoritar adicionarFav" title="Favoritar"></button>
+
+              <button class="favoritar apagarFav" title="DesFavoritar"></button>
+
+            </div>
+            <p><a href="ongs.html" title="Link da ONG Lar dos Peludos Matão">Lar dos Peludos Matão</a></p>
           </div>
 
-          <div>
-            <input type="radio" name="filter1" id="arq">
-            <p>Araraquara</p>
+          <div class="bttcard">
+            <button title="Ver mais informações sobre o pet" class="verMais">Ver mais</button>
+            <button title="Botão para levar a página de adoção deste animal" class="buttonRosa">Adotar</button>
           </div>
         </div>
 
-        <div class="linha"></div>
+        <div class="versoAdotarMiniCard">
 
-        <div class="camadasFiltro" id="ongsFiltro">
-          <h4>ONG's</h4>
-          <div>
-            <input type="radio" name="ong1F" id="ong1F">
-            <p>ONG 1</p>
+          <div class="infoPet">
+            <div id="pesoIdade">
+              <div>
+                <h3 class="tituloInfoPet">Peso</h3>
+                <p id="pesoPet">20</p>
+              </div>
+
+              <div>
+                <h3 class="tituloInfoPet">Idade</h3>
+                <p id="idadePet">5</p>
+              </div>
+            </div>
+
+            <div id="especPorte">
+              <div>
+                <h3 class="tituloInfoPet">Espécie</h3>
+                <p id="especiePet">Cachorro</p>
+              </div>
+
+              <div>
+                <h3 class="tituloInfoPet">Porte</h3>
+                <p id="portePet">Grande</p>
+              </div>
+            </div>
+
+            <div id="triploInfo">
+              <div>
+                <h3 class="tituloInfoPet">Raça</h3>
+                <p id="racaPet">American Pit Bull Terrier</p>
+              </div>
+
+              <div>
+                <h3 class="tituloInfoPet">Local</h3>
+                <p id="localPet">Lar dos Peludos Matão</p>
+              </div>
+
+              <div>
+                <h3 class="tituloInfoPet">Sobre o pet</h3>
+                <p id="sobrePet">Thor é um cão de grande porte, mas por trás de sua aparência robusta, é incrivelmente
+                  gentil. Ele já passou por várias aventuras sozinho, mas continua sendo leal e protetor. Thor se adapta
+                  bem a novos ambientes e espera por alguém que possa oferecer a ele a segurança e o carinho que tanto
+                  merece. Ele será o companheiro perfeito para quem procura um amigo tranquilo, mas que ainda gosta de
+                  longas caminhadas.</p>
+              </div>
+            </div>
           </div>
 
-          <div>
-            <input type="radio" name="ong2F" id="ong2F">
-            <p>ONG 2</p>
+          <div class="bttcard">
+            <button title="Ver mais informações sobre o pet" class="verMais">Ver mais</button>
+            <button title="Botão para levar a página de adoção deste animal" class="buttonRosa">Adotar</button>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="cardsAnimais">
+        <div class="adotarMiniCard">
+          <img src="img/fotos/cat2.jpg" alt="Foto do animalzinho á adoção">
+
+          <div class="descMiniAdotar">
+            <div class="nomIconAdotar">
+              <div class="iconsAdotar">
+                <h2 class="nomePet">Simba</h2>
+
+                <div class="sexoPet macho"></div>
+              </div>
+
+              <button class="favoritar adicionarFav" title="Favoritar"></button>
+
+              <button class="favoritar apagarFav" title="DesFavoritar"></button>
+
+            </div>
+            <p><a href="ongs.html" title="Link  da ONG Vida Animal Matão">Vida Animal Matão</a></p>
           </div>
 
-          <div>
-            <input type="radio" name="ong3F" id="ong3F">
-            <p>ONG 3</p>
-          </div>
-
-          <div>
-            <input type="radio" name="ong4F" id="ong4F">
-            <p>ONG 4</p>
-          </div>
-
-          <div>
-            <input type="radio" name="ong5F" id="ong5F">
-            <p>ONG 5</p>
+          <div class="bttcard">
+            <button title="Ver mais informações sobre o pet" class="verMais">Ver mais</button>
+            <button title="Botão para levar a página de adoção deste animal" class="buttonRosa">Adotar</button>
           </div>
         </div>
 
-        <div class="linha"></div>
+        <div class="versoAdotarMiniCard">
 
-        <div class="camadasFiltro" id="especieFiltro">
-          <h4>Espécie</h4>
+          <div class="infoPet">
+            <div id="pesoIdade">
+              <div>
+                <h3 class="tituloInfoPet">Peso</h3>
+                <p id="pesoPet">6</p>
+              </div>
 
-          <div>
-            <input type="radio" name="filter2" id="cachorroF">
-            <p>Cachorro</p>
+              <div>
+                <h3 class="tituloInfoPet">Idade</h3>
+                <p id="idadePet">6</p>
+              </div>
+            </div>
+
+            <div id="especPorte">
+              <div>
+                <h3 class="tituloInfoPet">Espécie</h3>
+                <p id="especiePet">Gato</p>
+              </div>
+
+              <div>
+                <h3 class="tituloInfoPet">Porte</h3>
+                <p id="portePet">Pequeno</p>
+              </div>
+            </div>
+
+            <div id="triploInfo">
+              <div>
+                <h3 class="tituloInfoPet">Raça</h3>
+                <p id="racaPet">Vira-Lata pelo baixo</p>
+              </div>
+
+              <div>
+                <h3 class="tituloInfoPet">Local</h3>
+                <p id="localPet">Vida Animal Matão</p>
+              </div>
+
+              <div>
+                <h3 class="tituloInfoPet">Sobre o pet</h3>
+                <p id="sobrePet">Simba, com seus 6 anos de vida, já passou por algumas experiências e demonstra uma maturidade tranquila. Ele gosta de observar o ambiente à sua volta com atenção, buscando um lugar onde possa finalmente descansar em paz. Simba tem um ar de realeza e merece encontrar um lar que combine com sua personalidade nobre e afetuosa. Mesmo sem um tutor, ele sabe que ainda encontrará seu lugar.
+
+                </p>
+              </div>
+            </div>
           </div>
 
-          <div>
-            <input type="radio" name="filter2" id="gatoF">
-            <p>Gato</p>
+          <div class="bttcard">
+            <button title="Ver mais informações sobre o pet" class="verMais">Ver mais</button>
+            <button title="Botão para levar a página de adoção deste animal" class="buttonRosa">Adotar</button>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="cardsAnimais">
+        <div class="adotarMiniCard">
+          <img src="img/fotos/dog3.jpg" alt="Foto do animalzinho á adoção">
+
+          <div class="descMiniAdotar">
+            <div class="nomIconAdotar">
+              <div class="iconsAdotar">
+                <h2 class="nomePet">Luna</h2>
+
+                <div class="sexoPet femea"></div>
+              </div>
+
+              <button class="favoritar adicionarFav" title="Favoritar"></button>
+
+              <button class="favoritar apagarFav" title="DesFavoritar"></button>
+
+            </div>
+            <p><a href="ongs.html" title="Link da ONG Cãopanheiros Taquaritinga">Cãopanheiros Taquaritinga</a></p>
+          </div>
+
+          <div class="bttcard">
+            <button title="Ver mais informações sobre o pet" class="verMais">Ver mais</button>
+            <button title="Botão para levar a página de adoção deste animal" class="buttonRosa">Adotar</button>
           </div>
         </div>
 
-        <div class="linha"></div>
+        <div class="versoAdotarMiniCard">
 
-        <div class="camadasFiltro" id="porteFiltro">
-          <h4>Porte</h4>
+          <div class="infoPet">
+            <div id="pesoIdade">
+              <div>
+                <h3 class="tituloInfoPet">Peso</h3>
+                <p id="pesoPet">12</p>
+              </div>
 
-          <div>
-            <input type="radio" name="filter3" id="pequenoF">
-            <p>Pequeno</p>
+              <div>
+                <h3 class="tituloInfoPet">Idade</h3>
+                <p id="idadePet">2</p>
+              </div>
+            </div>
+
+            <div id="especPorte">
+              <div>
+                <h3 class="tituloInfoPet">Espécie</h3>
+                <p id="especiePet">Cachorro</p>
+              </div>
+
+              <div>
+                <h3 class="tituloInfoPet">Porte</h3>
+                <p id="portePet">Grande</p>
+              </div>
+            </div>
+
+            <div id="triploInfo">
+              <div>
+                <h3 class="tituloInfoPet">Raça</h3>
+                <p id="racaPet">Vira-lata pelo médio</p>
+              </div>
+
+              <div>
+                <h3 class="tituloInfoPet">Local</h3>
+                <p id="localPet">Cãopanheiros Taquaritinga</p>
+              </div>
+
+              <div>
+                <h3 class="tituloInfoPet">Sobre o pet</h3>
+                <p id="sobrePet">Luna é uma cachorra alegre e cheia de energia. Ela adora correr e explorar novos ambientes. Mesmo sem ter um tutor, demonstra carinho e afeto por todos que cruzam seu caminho. Com seu porte médio, ela é perfeita para quem procura uma companhia ativa e brincalhona. Luna tem um grande coração e está sempre pronta para receber atenção e dar amor incondicional.</p>
+              </div>
+            </div>
           </div>
 
-          <div>
-            <input type="radio" name="filter3" id="medioF">
-            <p>Médio</p>
+          <div class="bttcard">
+            <button title="Ver mais informações sobre o pet" class="verMais">Ver mais</button>
+            <button title="Botão para levar a página de adoção deste animal" class="buttonRosa">Adotar</button>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="cardsAnimais">
+        <div class="adotarMiniCard">
+          <img src="img/fotos/cat3.jpg" alt="Foto do animalzinho á adoção">
+
+          <div class="descMiniAdotar">
+            <div class="nomIconAdotar">
+              <div class="iconsAdotar">
+                <h2 class="nomePet">Nala</h2>
+
+                <div class="sexoPet femea"></div>
+              </div>
+
+              <button class="favoritar adicionarFav" title="Favoritar"></button>
+
+              <button class="favoritar apagarFav" title="DesFavoritar"></button>
+
+            </div>
+            <p><a href="ongs.html" title="Link da ONG Amor em Patas Taquaritinga">Amor em Patas Taquaritinga</a></p>
           </div>
 
-          <div>
-            <input type="radio" name="filter3" id="grandeF">
-            <p>Grande</p>
+          <div class="bttcard">
+            <button title="Ver mais informações sobre o pet" class="verMais">Ver mais</button>
+            <button title="Botão para levar a página de adoção deste animal" class="buttonRosa">Adotar</button>
           </div>
         </div>
 
-        <div class="linha"></div>
+        <div class="versoAdotarMiniCard">
 
-        <div class="camadasFiltro" id="sexoFiltro">
-          <h4>Sexo</h4>
+          <div class="infoPet">
+            <div id="pesoIdade">
+              <div>
+                <h3 class="tituloInfoPet">Peso</h3>
+                <p id="pesoPet">5</p>
+              </div>
 
-          <div>
-            <input type="radio" name="femeaF" id="femeaF">
-            <p>Fêmea</p>
+              <div>
+                <h3 class="tituloInfoPet">Idade</h3>
+                <p id="idadePet">3</p>
+              </div>
+            </div>
+
+            <div id="especPorte">
+              <div>
+                <h3 class="tituloInfoPet">Espécie</h3>
+                <p id="especiePet">Gato</p>
+              </div>
+
+              <div>
+                <h3 class="tituloInfoPet">Porte</h3>
+                <p id="portePet">Pequeno</p>
+              </div>
+            </div>
+
+            <div id="triploInfo">
+              <div>
+                <h3 class="tituloInfoPet">Raça</h3>
+                <p id="racaPet">Vira-Lata pelo baixo</p>
+              </div>
+
+              <div>
+                <h3 class="tituloInfoPet">Local</h3>
+                <p id="localPet">Amor em Patas Taquaritinga</p>
+              </div>
+
+              <div>
+                <h3 class="tituloInfoPet">Sobre o pet</h3>
+                <p id="sobrePet">Nala é uma exploradora nata! Com 3 anos, ela adora investigar cada cantinho ao seu redor e se divertir sozinha. Ela é independente, mas também sabe valorizar o carinho quando o recebe. Nala está esperando por uma família que aprecie sua curiosidade e seu espírito brincalhão. Apesar de estar sem um tutor, ela permanece cheia de esperança e pronta para encontrar um lar onde possa ser amada.
+
+                </p>
+              </div>
+            </div>
           </div>
 
-          <div>
-            <input type="radio" name="machoF" id="machoF">
-            <p>Macho</p>
+          <div class="bttcard">
+            <button title="Ver mais informações sobre o pet" class="verMais">Ver mais</button>
+            <button title="Botão para levar a página de adoção deste animal" class="buttonRosa">Adotar</button>
           </div>
         </div>
-      </aside>
+      </div>
+      </div>
 
-      <section class="adotarSec">
+      <div class="cardsAnimais">
+        <div class="adotarMiniCard">
+          <img src="img/fotos/dog2.jpg" alt="Foto do animalzinho á adoção">
 
-        <div class="cardsAnimais">
-          <div class="adotarMiniCard">
-            <img src="img/fotos/cat1.jpg" alt="Foto do animalzinho á adoção">
+          <div class="descMiniAdotar">
+            <div class="nomIconAdotar">
+              <div class="iconsAdotar">
+                <h2 class="nomePet">Mel</h2>
 
-            <div class="descMiniAdotar">
-              <div class="nomIconAdotar">
-                <div class="iconsAdotar">
-                  <h2 class="nomePet">Nome do Bichinho</h2>
-
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#5f6368">
-                    <path
-                      d="M440-120v-80h-80v-80h80v-84q-79-14-129.5-75.5T260-582q0-91 64.5-154.5T480-800q91 0 155.5 63.5T700-582q0 81-50.5 142.5T520-364v84h80v80h-80v80h-80Zm40-320q58 0 99-41t41-99q0-58-41-99t-99-41q-58 0-99 41t-41 99q0 58 41 99t99 41Z" />
-                  </svg>
-                </div>
-
-                <button class="favoritar adicionarFav" title="Favoritar"></button>
-
-                <button class="favoritar apagarFav" title="DesFavoritar"></button>
-
+                <div class="sexoPet femea"></div>
               </div>
-              <p><a href="" title="Link com a página de apresentação da ONG 1">ONG 1 - Paz e amor</a></p>
-            </div>
 
-            <div class="bttcard">
-              <button title="Ver mais informações sobre o pet" class="verMais">Ver mais</button>
-              <button title="Botão para levar a página de adoção deste animal" class="buttonRosa">Adotar</button>
+              <button class="favoritar adicionarFav" title="Favoritar"></button>
+
+              <button class="favoritar apagarFav" title="DesFavoritar"></button>
+
             </div>
+            <p><a href="ongs.html" title="Link da ONG Anjos de Quatro Patas">Anjos de Quatro Patas</a></p>
           </div>
 
-          <div class="versoAdotarMiniCard">
-            
-            <div class="infoPet">
-              <div id="pesoIdade">
-                <div>
-                  <h3 class="tituloInfoPet">Peso</h3>
-                  <p id="pesoPet">2</p>
-                </div>
-
-                <div>
-                  <h3 class="tituloInfoPet">Idade</h3>
-                  <p id="idadePet">3</p>
-                </div>
-              </div>
-
-              <div id="especPorte">
-                <div>
-                  <h3 class="tituloInfoPet">Espécie</h3>
-                  <p id="especiePet">Gato</p>
-                </div>
-
-                <div>
-                  <h3 class="tituloInfoPet">Porte</h3>
-                  <p id="pesoPet">Pequeno</p>
-                </div>
-              </div>
-
-              <div id="triploInfo">
-                <div>
-                  <h3 class="tituloInfoPet">Raça</h3>
-                  <p id="racaPet">Vira-Lata pelo baixo</p>
-                </div>
-
-                <div>
-                  <h3 class="tituloInfoPet">Local</h3>
-                  <p id="localPet">ONG 1</p>
-                </div>
-
-                <div>
-                  <h3 class="tituloInfoPet">Sobre o pet</h3>
-                  <p id="sobrePet">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus dicta odit eius
-                    possimus recusandae quasi nesciunt perspiciatis expedita eligendi dolore culpa harum, sint at
-                    quos fuga vitae laudantium deserunt aperiam.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="bttcard">
-              <button title="Ver mais informações sobre o pet" class="verMais">Ver mais</button>
-              <button title="Botão para levar a página de adoção deste animal" class="buttonRosa">Adotar</button>
-            </div>
-          </div>
+          <div class="bttcard">
+            <button title="Ver mais informações sobre o pet" class="verMais">Ver mais</button>
+            <button title="Botão para levar a página de adoção deste animal" class="buttonRosa">Adotar</button>
           </div>
         </div>
 
-        <div class="cardsAnimais">
-          <div class="adotarMiniCard">
-            <img src="img/fotos/cat1.jpg" alt="Foto do animalzinho á adoção">
+        <div class="versoAdotarMiniCard">
 
-            <div class="descMiniAdotar">
-              <div class="nomIconAdotar">
-                <div class="iconsAdotar">
-                  <h2 class="nomePet">Nome do Bichinho</h2>
-
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#5f6368">
-                    <path
-                      d="M440-120v-80h-80v-80h80v-84q-79-14-129.5-75.5T260-582q0-91 64.5-154.5T480-800q91 0 155.5 63.5T700-582q0 81-50.5 142.5T520-364v84h80v80h-80v80h-80Zm40-320q58 0 99-41t41-99q0-58-41-99t-99-41q-58 0-99 41t-41 99q0 58 41 99t99 41Z" />
-                  </svg>
-                </div>
-
-                <button class="favoritar adicionarFav" title="Favoritar"></button>
-
-                <button class="favoritar apagarFav" title="DesFavoritar"></button>
-
+          <div class="infoPet">
+            <div id="pesoIdade">
+              <div>
+                <h3 class="tituloInfoPet">Peso</h3>
+                <p id="pesoPet">7</p>
               </div>
-              <p><a href="" title="Link com a página de apresentação da ONG 1">ONG 1 - Paz e amor</a></p>
+
+              <div>
+                <h3 class="tituloInfoPet">Idade</h3>
+                <p id="idadePet">2</p>
+              </div>
             </div>
 
-            <div class="bttcard">
-              <button title="Ver mais informações sobre o pet" class="verMais">Ver mais</button>
-              <button title="Botão para levar a página de adoção deste animal" class="buttonRosa">Adotar</button>
+            <div id="especPorte">
+              <div>
+                <h3 class="tituloInfoPet">Espécie</h3>
+                <p id="especiePet">Cachorro</p>
+              </div>
+
+              <div>
+                <h3 class="tituloInfoPet">Porte</h3>
+                <p id="portePet">Pequeno</p>
+              </div>
+            </div>
+
+            <div id="triploInfo">
+              <div>
+                <h3 class="tituloInfoPet">Raça</h3>
+                <p id="racaPet">Cavalier King Charles Spaniel</p>
+              </div>
+
+              <div>
+                <h3 class="tituloInfoPet">Local</h3>
+                <p id="localPet">Anjos de Quatro Patas</p>
+              </div>
+
+              <div>
+                <h3 class="tituloInfoPet">Sobre o pet</h3>
+                <p id="sobrePet">Mel é pequena e cheia de energia. Com apenas 2 anos, ela já demonstrou sua independência, mas também é carinhosa e adora brincar. Ela está sempre pronta para explorar e encontrar novas formas de se divertir, seja com pessoas ou com outros cães. Mel está à espera de uma família que valorize seu espírito aventureiro e seu coração doce.</p>
+              </div>
             </div>
           </div>
 
-          <div class="versoAdotarMiniCard">
-            
-            <div class="infoPet">
-              <div id="pesoIdade">
-                <div>
-                  <h3 class="tituloInfoPet">Peso</h3>
-                  <p id="pesoPet">2</p>
-                </div>
-
-                <div>
-                  <h3 class="tituloInfoPet">Idade</h3>
-                  <p id="idadePet">3</p>
-                </div>
-              </div>
-
-              <div id="especPorte">
-                <div>
-                  <h3 class="tituloInfoPet">Espécie</h3>
-                  <p id="especiePet">Gato</p>
-                </div>
-
-                <div>
-                  <h3 class="tituloInfoPet">Porte</h3>
-                  <p id="pesoPet">Pequeno</p>
-                </div>
-              </div>
-
-              <div id="triploInfo">
-                <div>
-                  <h3 class="tituloInfoPet">Raça</h3>
-                  <p id="racaPet">Vira-Lata pelo baixo</p>
-                </div>
-
-                <div>
-                  <h3 class="tituloInfoPet">Local</h3>
-                  <p id="localPet">ONG 1</p>
-                </div>
-
-                <div>
-                  <h3 class="tituloInfoPet">Sobre o pet</h3>
-                  <p id="sobrePet">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus dicta odit eius
-                    possimus recusandae quasi nesciunt perspiciatis expedita eligendi dolore culpa harum, sint at
-                    quos fuga vitae laudantium deserunt aperiam.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="bttcard">
-              <button title="Ver mais informações sobre o pet" class="verMais">Ver mais</button>
-              <button title="Botão para levar a página de adoção deste animal" class="buttonRosa">Adotar</button>
-            </div>
-          </div>
+          <div class="bttcard">
+            <button title="Ver mais informações sobre o pet" class="verMais">Ver mais</button>
+            <button title="Botão para levar a página de adoção deste animal" class="buttonRosa">Adotar</button>
           </div>
         </div>
+      </div>
+      </div>
 
-        <div class="cardsAnimais">
-          <div class="adotarMiniCard">
-            <img src="img/fotos/cat1.jpg" alt="Foto do animalzinho á adoção">
-
-            <div class="descMiniAdotar">
-              <div class="nomIconAdotar">
-                <div class="iconsAdotar">
-                  <h2 class="nomePet">Nome do Bichinho</h2>
-
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#5f6368">
-                    <path
-                      d="M440-120v-80h-80v-80h80v-84q-79-14-129.5-75.5T260-582q0-91 64.5-154.5T480-800q91 0 155.5 63.5T700-582q0 81-50.5 142.5T520-364v84h80v80h-80v80h-80Zm40-320q58 0 99-41t41-99q0-58-41-99t-99-41q-58 0-99 41t-41 99q0 58 41 99t99 41Z" />
-                  </svg>
-                </div>
-
-                <button class="favoritar adicionarFav" title="Favoritar"></button>
-
-                <button class="favoritar apagarFav" title="DesFavoritar"></button>
-
-              </div>
-              <p><a href="" title="Link com a página de apresentação da ONG 1">ONG 1 - Paz e amor</a></p>
-            </div>
-
-            <div class="bttcard">
-              <button title="Ver mais informações sobre o pet" class="verMais">Ver mais</button>
-              <button title="Botão para levar a página de adoção deste animal" class="buttonRosa">Adotar</button>
-            </div>
-          </div>
-
-          <div class="versoAdotarMiniCard">
-            
-            <div class="infoPet">
-              <div id="pesoIdade">
-                <div>
-                  <h3 class="tituloInfoPet">Peso</h3>
-                  <p id="pesoPet">2</p>
-                </div>
-
-                <div>
-                  <h3 class="tituloInfoPet">Idade</h3>
-                  <p id="idadePet">3</p>
-                </div>
-              </div>
-
-              <div id="especPorte">
-                <div>
-                  <h3 class="tituloInfoPet">Espécie</h3>
-                  <p id="especiePet">Gato</p>
-                </div>
-
-                <div>
-                  <h3 class="tituloInfoPet">Porte</h3>
-                  <p id="pesoPet">Pequeno</p>
-                </div>
-              </div>
-
-              <div id="triploInfo">
-                <div>
-                  <h3 class="tituloInfoPet">Raça</h3>
-                  <p id="racaPet">Vira-Lata pelo baixo</p>
-                </div>
-
-                <div>
-                  <h3 class="tituloInfoPet">Local</h3>
-                  <p id="localPet">ONG 1</p>
-                </div>
-
-                <div>
-                  <h3 class="tituloInfoPet">Sobre o pet</h3>
-                  <p id="sobrePet">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus dicta odit eius
-                    possimus recusandae quasi nesciunt perspiciatis expedita eligendi dolore culpa harum, sint at
-                    quos fuga vitae laudantium deserunt aperiam.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="bttcard">
-              <button title="Ver mais informações sobre o pet" class="verMais">Ver mais</button>
-              <button title="Botão para levar a página de adoção deste animal" class="buttonRosa">Adotar</button>
-            </div>
-          </div>
-          </div>
-        </div>
-
-
-        <div class="cardsAnimais">
-          <div class="adotarMiniCard">
-            <img src="img/fotos/cat1.jpg" alt="Foto do animalzinho á adoção">
-
-            <div class="descMiniAdotar">
-              <div class="nomIconAdotar">
-                <div class="iconsAdotar">
-                  <h2 class="nomePet">Nome do Bichinho</h2>
-
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#5f6368">
-                    <path
-                      d="M440-120v-80h-80v-80h80v-84q-79-14-129.5-75.5T260-582q0-91 64.5-154.5T480-800q91 0 155.5 63.5T700-582q0 81-50.5 142.5T520-364v84h80v80h-80v80h-80Zm40-320q58 0 99-41t41-99q0-58-41-99t-99-41q-58 0-99 41t-41 99q0 58 41 99t99 41Z" />
-                  </svg>
-                </div>
-
-                <button class="favoritar adicionarFav" title="Favoritar"></button>
-
-                <button class="favoritar apagarFav" title="DesFavoritar"></button>
-
-              </div>
-              <p><a href="" title="Link com a página de apresentação da ONG 1">ONG 1 - Paz e amor</a></p>
-            </div>
-
-            <div class="bttcard">
-              <button title="Ver mais informações sobre o pet" class="verMais">Ver mais</button>
-              <button title="Botão para levar a página de adoção deste animal" class="buttonRosa">Adotar</button>
-            </div>
-          </div>
-
-          <div class="versoAdotarMiniCard">
-            
-            <div class="infoPet">
-              <div id="pesoIdade">
-                <div>
-                  <h3 class="tituloInfoPet">Peso</h3>
-                  <p id="pesoPet">2</p>
-                </div>
-
-                <div>
-                  <h3 class="tituloInfoPet">Idade</h3>
-                  <p id="idadePet">3</p>
-                </div>
-              </div>
-
-              <div id="especPorte">
-                <div>
-                  <h3 class="tituloInfoPet">Espécie</h3>
-                  <p id="especiePet">Gato</p>
-                </div>
-
-                <div>
-                  <h3 class="tituloInfoPet">Porte</h3>
-                  <p id="pesoPet">Pequeno</p>
-                </div>
-              </div>
-
-              <div id="triploInfo">
-                <div>
-                  <h3 class="tituloInfoPet">Raça</h3>
-                  <p id="racaPet">Vira-Lata pelo baixo</p>
-                </div>
-
-                <div>
-                  <h3 class="tituloInfoPet">Local</h3>
-                  <p id="localPet">ONG 1</p>
-                </div>
-
-                <div>
-                  <h3 class="tituloInfoPet">Sobre o pet</h3>
-                  <p id="sobrePet">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus dicta odit eius
-                    possimus recusandae quasi nesciunt perspiciatis expedita eligendi dolore culpa harum, sint at
-                    quos fuga vitae laudantium deserunt aperiam.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="bttcard">
-              <button title="Ver mais informações sobre o pet" class="verMais">Ver mais</button>
-              <button title="Botão para levar a página de adoção deste animal" class="buttonRosa">Adotar</button>
-            </div>
-          </div>
-          </div>
-        </div>  
-
-      </section>
+    </section>
     </div>
   </main>
 
