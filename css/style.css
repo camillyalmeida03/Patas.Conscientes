@@ -554,6 +554,10 @@ footer{
     flex-wrap: wrap;
 }
 
+footer .logobranca{
+    height: 8rem;
+}
+
 .tituloFooter{
     font-size: 20px;
     font-weight: 600;
@@ -891,6 +895,8 @@ footer .listasFooter a:hover{
 
 .mainAdotar{
     margin-bottom: 2rem;
+
+    display: flex;
 }
 
 /* Filtro */
@@ -942,10 +948,6 @@ footer .listasFooter a:hover{
     font-size: 16px;
 }
 
-.divMainAdotar{
-    display: flex;
-}
-
 .adotarSec{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -956,9 +958,32 @@ footer .listasFooter a:hover{
     padding: 0 2% 2rem 2%;
 }
 
-.cardsAnimais{
+.adotarMiniCard{
     display: flex;
-    position: relative;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    gap: 1rem;
+    overflow: hidden;
+    opacity: 1;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+
+}
+
+.versoAdotarMiniCard{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    inset: 0;
+    padding: 1rem;
+    overflow: auto;
+    transform: rotateY(180deg);
+    z-index: -1;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    height: 100%;
+    justify-content: space-between;
 }
 
 .adotarMiniCard > img{
@@ -968,10 +993,12 @@ footer .listasFooter a:hover{
     border-radius: 2rem;
 }
 
-.adotarMiniCard{
+.cardsAnimais{
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 100%;
+    min-height: 100%;
     background-color: white;
     padding: 1rem;
     border-radius: 2rem;
@@ -979,8 +1006,9 @@ footer .listasFooter a:hover{
     justify-content: space-between;
     box-shadow: 1px 1px 1px var(--cinza215);
     transition: 0.1s all;
-    gap: 1rem;
     position: relative;
+    transform-style: preserve-3d;
+
 }
 
 .iconsAdotar{
@@ -1017,69 +1045,40 @@ footer .listasFooter a:hover{
     fill: var(--cinza158);
 }
 
-.adicionarFavAdotar svg{
-    fill: var(--rosa_claro);
+.bttcard{
+    display: flex;
+    width: 100%;
+    padding: 0 1rem;
+    justify-content: space-between;
     transition: all 0.1s;
 }
 
-.adicionarFavAdotar svg:hover, .adotarMiniCard > button:hover{
+.bttcard .buttonRosa:hover{
     transform: scale(105%);
 }
 
-.nomIconAdotar h2{
-    font-size: 20px;
+.verMais{
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--cinza_h3);
+    transition: all 0.1s;
+
 }
 
-.nomePet{
-    text-align: left;
-}
+.verMais:hover{
+    color: var(--rosa);
 
-/* card Expandido */
-.expandircardPet{
-    display: none;
-    background-color: white;
-    height: 100%;
-    width: 40rem;
-    z-index: 10;
-    border-radius: 1rem;
-    position: absolute;
-    box-shadow: 1px 1px 3px var(--cinza158);
-    top: calc(100% + 1rem);
-    min-height: 522px;
-}
-
-.expandircardPet > img{
-    height: 100%;
-    width: 40%;
-    border-radius: 1rem;
-    object-fit: cover;
-}
-
-.descExpAdotar{
-    padding: 2rem;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 }
 
 .tituloInfoPet{
     font-weight: 600;
 }
 
-.expandircardPet a{
-    color: var(--rosa);
-    text-decoration: none;
-    padding-bottom:0.5rem;
-}
-
-.expandircardPet .nomIconAdotar{
-    padding: 0.5rem 0;
-}
-
 #pesoIdade, #especPorte {
     display: flex;
     margin-bottom: 0.5rem;
+    width: 100%;
+    justify-content: space-between;
 }
 
 #pesoIdade div, #especPorte div{
@@ -1093,21 +1092,29 @@ footer .listasFooter a:hover{
 
 .infoPet{
     width: 100%;
+    padding: 1rem;
 }
 
-.botCompart{
-    display: flex;
-    justify-content: space-between;
+/* FAVORITAR / DESFAVORITAR */
+
+.favoritar{
+    height: 2rem;
+    width: 2rem;
 }
 
-.botCompart svg{
-    height: 3rem;
-    fill: var(--cinza158);
+.favoritar:hover, .adotarMiniCard > button:hover{
+    transform: scale(105%);
 }
 
-#sobrePet{
-    text-align: justify;
+.adicionarFav{
+    background-image: url(/img/icons/adicionar_favorito.svg);
 }
+
+.apagarFav{
+    background-image: url(/img/icons/favorito_adicionado.svg);
+    display: none;
+}
+
 
 /* ----------------------------- parceiro.html ----------------------------- */
 
@@ -1637,6 +1644,10 @@ textarea{
         gap: 2rem;
         width: 30%;
     }
+
+    .mainAdotar{
+        flex-direction: column;
+    }
     
         
 }
@@ -1729,10 +1740,7 @@ textarea{
         padding: 2rem 15%;
     }
 
-    .divFooter{
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
+
     
     .nomIconAdotar h2{
         font-size: calc(20px - 10%);
@@ -1983,11 +1991,6 @@ textarea{
 
     .manual_btn {
         padding: 4px;
-    }
-
-    .divFooter{
-        justify-content: center;
-        gap: 2rem;
     }
         
     .sectionInst img{

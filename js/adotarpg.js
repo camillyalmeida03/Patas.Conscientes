@@ -58,52 +58,34 @@ function limparRadioButtons() {
             });
         });
 
-    document.querySelectorAll('.adotarMiniCard').forEach(adotarMiniCard => {
-        adotarMiniCard.addEventListener('click', function (e) {
-            e.stopPropagation(); // Impede o clique de propagar para o documento
-    
-            const expandircardPet = this.querySelector('.expandircardPet');
-    
-            // Verifique se expandircardPet existe
-            if (!expandircardPet) {
-                console.error('Elemento .expandircardPet não encontrado dentro de adotarMiniCard');
-                return; // Saia da função se o elemento não existir
+        let verMais = document.querySelectorAll(".verMais");
+
+        for (let g = 0; g < verMais.length; g++) {
+            verMais[g].addEventListener("click", girarcartao);
+        }
+        
+        function girarcartao() {
+            // Capturar o pai imediato do elemento de botão que foi clicado
+            let pai = this.parentNode;
+        
+            // Executar o código a seguir em loop, enquanto a condição não for alcançada
+            // Enquanto o elemento pai não tiver o nome de classe -cardsAnimais-
+            while (pai.className != "cardsAnimais") {
+                // pai recebe o pai do pai...e faz em loop
+                pai = pai.parentNode;
             }
-    
-            const adotarMiniCardRect = this.getBoundingClientRect();
-            const expandircardPetRect = expandircardPet.getBoundingClientRect();
-    
-            expandircardPet.style.display = 'flex';
-    
-            const spaceTop = adotarMiniCardRect.top;
-            const spaceBottom = window.innerHeight - adotarMiniCardRect.bottom;
-            const spaceLeft = adotarMiniCardRect.left;
-            const spaceRight = window.innerWidth - adotarMiniCardRect.right;
-    
-            if (spaceRight >= expandircardPetRect.width) {
-                expandircardPet.style.left = `${adotarMiniCardRect.right}px`;
-                expandircardPet.style.top = `${adotarMiniCardRect.top}px`;
-            } else if (spaceLeft >= expandircardPetRect.width) {
-                expandircardPet.style.left = `${adotarMiniCardRect.left - expandircardPetRect.width}px`;
-                expandircardPet.style.top = `${adotarMiniCardRect.top}px`;
-            } else if (spaceBottom >= expandircardPetRect.height) {
-                expandircardPet.style.top = `${adotarMiniCardRect.bottom}px`;
-                expandircardPet.style.left = `${adotarMiniCardRect.left}px`;
-            } else if (spaceTop >= expandircardPetRect.height) {
-                expandircardPet.style.top = `${adotarMiniCardRect.top - expandircardPetRect.height}px`;
-                expandircardPet.style.left = `${adotarMiniCardRect.left}px`;
+        
+            // Se a propriedade css transform estiver vazia ou for rotateY(0deg)
+            if (pai.style.transform == "" || pai.style.transform == "rotateY(0deg)") {
+                // Aplica o giro de 180 graus negativos
+                pai.style.transform = "rotateY(-180deg)";
+            } else if (pai.style.transform == "rotateY(-180deg)") {
+                // Retorna o giro para 0 graus
+                pai.style.transform = "rotateY(0deg)";
             }
-        });
-    });
-    
-    document.addEventListener('click', (e) => {
-        document.querySelectorAll('.expandircardPet').forEach(expandircardPet => {
-            if (expandircardPet.style.display === 'flex' && !expandircardPet.parentElement.contains(e.target)) {
-                expandircardPet.style.display = 'none';
-            }
-        });
-    });
-    
+        }
+        
+
 
 
 
