@@ -6,9 +6,9 @@
     --rosa: #FE4E77;
     --rosa_claro: #f1718f;
     --rosa_texto: #FF2BAA;
-    --cinza245: rgb(245,245,245);
+    --cinza245: rgb(245, 245, 245);
     --cinza230: rgba(230, 230, 230, 0.767);
-    --cinza215: rgb(215,215,215);
+    --cinza215: rgb(215, 215, 215);
     --cinza201: rgb(201, 201, 201);
     --cinza158: rgb(158, 158, 158);
     --cinza_input: #DFDBDB;
@@ -29,26 +29,27 @@
 body {
     background-color: var(--cinza230);
     min-height: 100vh;
-    margin: 0; 
+    margin: 0;
 }
 
-.maincem{
+.maincem {
     min-height: 100vh;
 }
 
-.azul{ /* cor do texto/título azul */
+.azul {
+    /* cor do texto/título azul */
     color: var(--azul_claro);
     text-align: center;
 }
 
 
 
-.centro{
+.centro {
     text-align: center;
     padding-bottom: 1rem;
 }
 
-.buttonRosa{
+.buttonRosa {
     padding: 1rem;
     background-color: var(--rosa);
     color: white;
@@ -63,7 +64,8 @@ body {
 /* Estilos da Barra de Acessibilidade */
 .accessibility-bar {
     position: fixed;
-    left: -300px; /* Oculto inicialmente fora da tela */
+    left: -300px;
+    /* Oculto inicialmente fora da tela */
     top: 35vh;
     width: 6rem;
     background-color: var(--cinza215);
@@ -80,7 +82,8 @@ body {
 }
 
 .accessibility-bar.show {
-    left: 10px; /* Exibe a barra ao passar o mouse ou clicar */
+    left: 10px;
+    /* Exibe a barra ao passar o mouse ou clicar */
 }
 
 .accessibility-icon {
@@ -99,19 +102,20 @@ body {
     z-index: 1001;
 }
 
-.pathbtAcss{
+.pathbtAcss {
     transition: all 0.2s;
     background-color: transparent;
 }
 
-.pathbtAcssClick{
+.pathbtAcssClick {
     fill: var(--azul_maisclaro);
 }
 
-.pathbtAcss:hover{
+.pathbtAcss:hover {
     transform: scale(101%);
     fill: var(--azul_maisclaro);
 }
+
 /* -----------------------------Gerador de notícias----------------------------- */
 
 .container {
@@ -154,7 +158,8 @@ body {
     flex-direction: column;
     gap: 1.4rem;
     padding: 2rem;
-    background-color: white; /* Cor de fundo */
+    background-color: white;
+    /* Cor de fundo */
     border-radius: 2rem;
     width: 70%;
     min-width: 18rem;
@@ -192,7 +197,7 @@ body {
 
 /* -----------------------------HEADER----------------------------- */
 
-header{
+header {
     display: flex;
     height: 5rem;
     width: 100%;
@@ -202,12 +207,12 @@ header{
     justify-content: space-between;
 }
 
-.headerInst{
+.headerInst {
     position: fixed;
     z-index: 30;
 }
 
-header a{
+header a {
     text-decoration: none;
     color: white;
     font-weight: 550;
@@ -215,62 +220,62 @@ header a{
 
 /* logo */
 
-.logobranca{ 
+.logobranca {
     height: 3.5rem;
     transition: all 0.2s;
 }
 
-.logobranca:hover{
+.logobranca:hover {
     transform: scale(105%);
 }
 
 /* nav - links  */
 
-nav{
+nav {
     display: flex;
     gap: 4rem;
     align-items: center;
 }
 
-.linksNav{
+.linksNav {
     display: flex;
     gap: 2rem;
 }
 
-.linksNav > div{
+.linksNav>div {
     display: flex;
     align-items: center;
     gap: 0.2rem;
 }
 
-#setinha{
+#setinha {
     height: 1rem;
     transition: all 0.2s;
 }
 
-#institucional{
+#institucional {
     transition: all 0.2s;
 }
 
-#institucional:hover{
+#institucional:hover {
     color: var(--rosa);
     transform: scale(102%);
 }
 
-#institucional:hover #setinha{
+#institucional:hover #setinha {
     fill: var(--rosa);
 }
 
-.linksNav a{
+.linksNav a {
     transition: all 0.2s;
 }
 
-.linksNav a:hover{
+.linksNav a:hover {
     color: var(--rosa);
     transform: scale(102%);
 }
 
-.caixaInst{
+.caixaInst {
     display: none;
     flex-direction: column;
     background-color: white;
@@ -282,28 +287,28 @@ nav{
     box-shadow: 1px 1px 2px var(--cinza158);
 }
 
-.caixaInst > p {
+.caixaInst>p {
     padding: 0.2rem 0;
 }
 
-.caixaInst > p > a{
+.caixaInst>p>a {
     color: var(--cinza_h3);
     font-weight: 500;
     transition: all 0.2s;
 }
 
-.caixaInst > p > a:hover{
+.caixaInst>p>a:hover {
     color: var(--rosa);
 }
 
 /* nav - botões  */
 
-.btnsNav{
+.btnsNav {
     display: flex;
     gap: 2rem;
 }
 
-.btnsNav a{
+.btnsNav a {
     display: flex;
     height: 2.5rem;
     padding: 0 0.6rem;
@@ -314,31 +319,32 @@ nav{
     transition: all 0.4s;
 }
 
-.btnsNav a:hover{
+.btnsNav a:hover {
     transform: scale(105%);
 }
 
 /* ícones/link nav */
 
-.imglinksHeader{
+.imglinksHeader {
     display: flex;
     gap: 1rem;
 }
 
-.imglinksHeader svg, button{
+.imglinksHeader svg,
+button {
     background-color: transparent;
     border: none;
     cursor: pointer;
     transition: all 0.5s;
 }
 
-.imglinksHeader svg:hover{
+.imglinksHeader svg:hover {
     fill: var(--rosa);
     transform: scale(105%);
 }
 
 
-#hamburguer{
+#hamburguer {
     display: none;
 }
 
@@ -399,22 +405,22 @@ nav{
     background-color: white;
 }
 
-#radio1:checked ~ .first {
+#radio1:checked~.first {
     margin-left: 0;
 }
 
-#radio2:checked ~ .first {
+#radio2:checked~.first {
     margin-left: -25%;
 }
 
-#radio3:checked ~ .first {
+#radio3:checked~.first {
     margin-left: -50%;
 }
 
 /* ----------------------------- main - index.html ----------------------------- */
 
 
-.mainIndex{
+.mainIndex {
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -424,7 +430,7 @@ nav{
     flex-wrap: wrap;
 }
 
-.quadro{
+.quadro {
     display: flex;
     flex-direction: column;
     background-color: var(--cinza230);
@@ -435,14 +441,14 @@ nav{
     min-height: 16rem;
 }
 
-.quadro h2{
+.quadro h2 {
     text-align: center;
     width: 80%;
     color: var(--rosa);
     font-weight: 700;
 }
 
-.quadro p{  
+.quadro p {
     margin-top: 1rem;
     text-align: justify;
     width: 80%;
@@ -450,7 +456,7 @@ nav{
 
 /* ----------------------------- Cards com foto - index.html (feedbacks)/ institucional.html (Integrantes) ----------------------------- */
 
-.secPerson{
+.secPerson {
     display: flex;
     flex-direction: column;
     gap: 7rem;
@@ -460,7 +466,7 @@ nav{
     position: relative;
 }
 
-.cardsPerson{
+.cardsPerson {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
@@ -468,7 +474,7 @@ nav{
     gap: 2%;
 }
 
-.cardPerson{
+.cardPerson {
     display: flex;
     flex-direction: column;
     background-color: var(--cinza215);
@@ -482,22 +488,23 @@ nav{
     min-width: 272px;
 }
 
-.cardPerson p, .cardPerson h2{
+.cardPerson p,
+.cardPerson h2 {
     text-align: justify;
 }
 
-.cardPerson h3{
+.cardPerson h3 {
     text-align: center;
 }
 
-.bio{
+.bio {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     height: 100%;
 }
 
-.fotoCard{
+.fotoCard {
     height: 10rem;
     width: 10rem;
     border-radius: 50%;
@@ -543,7 +550,7 @@ nav{
 
 /* ----------------------------- FOOTER ----------------------------- */
 
-footer{
+footer {
     background-color: var(--azul_claro);
     display: flex;
     width: 100%;
@@ -554,53 +561,61 @@ footer{
     flex-wrap: wrap;
 }
 
-footer .logobranca{
+footer .logobranca {
     height: 8rem;
 }
 
-.tituloFooter{
+.tituloFooter {
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 0.5rem;
 }
 
-footer .listasFooter a{
+footer .listasFooter a {
     text-decoration: none;
     color: white;
     transition: all 0.2s;
     margin-bottom: 0.4rem;
 }
 
-footer .listasFooter a:hover{
-    color: var(--rosa_texto);
+footer .listasFooter a:hover {
+    color: var(--rosa);
 }
 
-.linksFooter{
+.linksFooter {
     display: flex;
     width: 100%;
-    gap: 8% ;
+    gap: 8%;
 }
 
-.listasFooter{
+.listasFooter {
     display: flex;
     flex-direction: column;
-    min-width: 9.5rem;
+    width: 12rem;
     min-height: 8rem;
+    padding: 1rem;
 }
 
-.listasFooter div{
+.listasFooter div {
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
 }
 
-.divFooter{
+.divFooter {
     display: flex;
     width: 100%;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
-.linhaFooter{
+.divFooter>div {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.linhaFooter {
     display: flex;
     height: 1px;
     width: 100%;
@@ -608,40 +623,40 @@ footer .listasFooter a:hover{
     margin: 1.5rem 0;
 }
 
-.fimFooter{
+.fimFooter {
     display: flex;
     justify-content: space-between;
     width: 100%;
     align-items: center;
 }
 
-.fimFooter img{
+.fimFooter img {
     height: 4rem;
 }
 
-.insta{
+.insta {
     background-color: transparent;
     height: 2.5rem;
     transition: all 0.2s;
 }
 
 
-.instagram{
+.instagram {
     height: 2.5rem;
     background-color: var(--azul_claro);
 }
 
-.insta .instagram path:hover{
-    fill: var(--rosa_texto);
+.insta:hover .instagram path {
+    fill: var(--rosa);
 }
 
-.especial{
+.especial {
     position: relative;
 }
 
 /* ----------------------------- caminho das páginas ----------------------------- */
 
-.caminho{
+.caminho {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -650,44 +665,44 @@ footer .listasFooter a:hover{
     position: relative;
 }
 
-.caminho a{
+.caminho a {
     text-decoration: none;
     color: black;
 }
 
-.link{
+.link {
     font-weight: 700;
-    transition: all;    
+    transition: all;
 }
 
-.link:hover{
+.link:hover {
     color: var(--rosa_texto);
 }
 
-.caminho img{
+.caminho img {
     height: 2rem;
     border-radius: 50%;
     transition: all;
 
 }
 
-.caminho img:hover{
+.caminho img:hover {
     border: 2px solid var(--rosa);
 }
 
-.caminhoTransparente{
+.caminhoTransparente {
     background-color: transparent;
 }
 
 /* ----------------------------- insticional.html ----------------------------- */
 
-.caminhoInst{
+.caminhoInst {
     height: 8.5rem;
     display: flex;
     align-items: flex-end;
 }
 
-.caminhoInst > div{
+.caminhoInst>div {
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -728,16 +743,17 @@ footer .listasFooter a:hover{
 } */
 
 /* main */
-.mainInst{
+.mainInst {
     display: flex;
     flex-direction: column;
 }
 
-#barra{ /* espaço em que o aside ficará */
+#barra {
+    /* espaço em que o aside ficará */
     width: calc(2% + 15rem);
 }
 
-#sections{
+#sections {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -747,55 +763,55 @@ footer .listasFooter a:hover{
 
 /* seções */
 
-.gruposecInst{
+.gruposecInst {
     display: flex;
 
 }
 
-.sectionInst div{
+.sectionInst div {
     background-color: var(--cinza215);
     padding: 1.5rem;
     border-radius: 2rem;
     margin-top: 0.5rem;
 }
 
-.sectionInst h2{
+.sectionInst h2 {
     display: flex;
     align-items: center;
     padding: 1rem 0;
     text-align: left;
 }
 
-.sectionInst p{
+.sectionInst p {
     padding: 0 0 1.5rem 0;
 }
 
-.sectionInst ul{
-    padding: 1rem 0 2rem 3rem; 
+.sectionInst ul {
+    padding: 1rem 0 2rem 3rem;
 }
 
-.sectionInst ul li{
+.sectionInst ul li {
     padding: 0 0 1rem 0;
 }
 
-.sectionInst img{
+.sectionInst img {
     width: 100%;
     border-radius: 2rem;
 }
 
 /* integrantes */
 
-.integrantesInst{
+.integrantesInst {
     background-color: var(--rosa_claro);
 }
 
-.integrantesInst h2{
+.integrantesInst h2 {
     color: white;
 }
 
 /* botão voltar para o topo */
 
-.botaoVoltarTopo{
+.botaoVoltarTopo {
     position: absolute;
     height: 4rem;
     width: 4rem;
@@ -810,20 +826,20 @@ footer .listasFooter a:hover{
     transition: all 0.5s;
 }
 
-.botaoVoltarTopo svg{
+.botaoVoltarTopo svg {
     height: 80%;
     fill: white;
     rotate: 270deg;
 }
 
-.botaoVoltarTopo:hover{
+.botaoVoltarTopo:hover {
     transform: scale(110%);
     background-color: var(--azul_claro);
 }
 
 /* ----------------------------- ongs.html ----------------------------- */
 
-.mainOng{
+.mainOng {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -831,49 +847,49 @@ footer .listasFooter a:hover{
     margin-bottom: 2rem;
 }
 
-.corpoOngs{
+.mainOng .fundoBranco {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    background-color: white;
-    padding: 2rem;
     border-radius: 2rem;
+    width: 100%;
 }
 
-.cardOng{
+.cardOng {
     display: flex;
     flex-direction: column;
     width: 100%;
     padding: 1rem;
-    min-height: 21rem;
-    max-height: 21rem;
+    min-width: 16rem;
     border-radius: 2rem;
-    position: relative;
+    box-shadow: var(--cinza201) 1px 1px 3px;
 }
 
-.cardOngrosa{
+.cardOngrosa {
     background-color: var(--rosa);
     color: white;
-} 
+}
 
-.cardOngazul{
+.cardOngazul {
     background-color: var(--azul_claro);
     color: white;
-} 
+}
 
-.cardOng img{
+.cardOng img {
     width: 100%;
+    aspect-ratio: 3 / 2;
     border-radius: 1rem;
     margin-bottom: 0.5rem;
     object-fit: cover;
 }
 
-.imgFav{
+
+.imgFav {
     display: flex;
     height: 70%;
+    position: relative;
 }
 
-#adicionarFav{
+#adicionarFav {
     height: 2rem;
     position: absolute;
     z-index: 2;
@@ -881,11 +897,11 @@ footer .listasFooter a:hover{
     left: 81%;
 }
 
-.descOng{
+.descOng {
     padding-left: 0.8rem;
 }
 
-.descOng h2{
+.descOng h2 {
     margin-bottom: 0.3rem;
     text-align: start;
     font-size: 20px;
@@ -893,62 +909,62 @@ footer .listasFooter a:hover{
 
 /* ----------------------------- adotar.html ----------------------------- */
 
-.mainAdotar{
+.mainAdotar {
     margin-bottom: 2rem;
-
     display: flex;
 }
 
 /* Filtro */
 
-.filtro{
+.filtro {
     background-color: var(--cinza215);
     width: 15rem;
     min-width: 15rem;
     border-radius: 2rem;
-    padding: 2rem; 
+    padding: 2rem;
     margin: 0 0 0 2%;
     height: 80%;
 }
 
-.linha{
+.linha {
     height: 1px;
     width: 100%;
     background-color: black;
     margin: 1rem 0;
 }
 
-.botFiltro{
+.botFiltro {
     display: flex;
     justify-content: space-between;
 }
 
-.botFiltro button, h3{
+.botFiltro button,
+h3 {
     font-size: 17px;
     font-weight: 400;
 }
 
-.camadasFiltro{
+.camadasFiltro {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
 
-.camadasFiltro div{
+.camadasFiltro div {
     display: flex;
     gap: 0.3rem;
 }
 
 /* cards adotar */
 
-.buttonFiltrar{
+.buttonFiltrar {
     display: none;
     margin-left: 3%;
     padding: 1rem;
     font-size: 16px;
 }
 
-.adotarSec{
+.adotarSec {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, 1fr);
@@ -958,7 +974,7 @@ footer .listasFooter a:hover{
     padding: 0 2% 2rem 2%;
 }
 
-.adotarMiniCard{
+.adotarMiniCard {
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -971,7 +987,7 @@ footer .listasFooter a:hover{
 
 }
 
-.versoAdotarMiniCard{
+.versoAdotarMiniCard {
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -986,14 +1002,14 @@ footer .listasFooter a:hover{
     justify-content: space-between;
 }
 
-.adotarMiniCard > img{
+.adotarMiniCard>img {
     aspect-ratio: 1 / 1;
     width: 100%;
     object-fit: cover;
     border-radius: 2rem;
 }
 
-.cardsAnimais{
+.cardsAnimais {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -1011,41 +1027,41 @@ footer .listasFooter a:hover{
 
 }
 
-.iconsAdotar{
+.iconsAdotar {
     display: flex;
     gap: 0.2rem;
     align-items: center;
 }
 
-.descMiniAdotar{
-    padding: 0 1rem; 
+.descMiniAdotar {
+    padding: 0 1rem;
     width: 100%;
 }
 
-.descMiniAdotar a{
+.descMiniAdotar a {
     color: var(--rosa);
     text-decoration: none;
     transition: all 0.1s;
 }
 
-.descMiniAdotar a:hover{
+.descMiniAdotar a:hover {
     color: var(--azul_claro);
 }
 
-.nomIconAdotar{
+.nomIconAdotar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
 }
 
-.nomIconAdotar svg{
+.nomIconAdotar svg {
     height: 2rem;
     min-height: 2rem;
     fill: var(--cinza158);
 }
 
-.bttcard{
+.bttcard {
     display: flex;
     width: 100%;
     padding: 0 1rem;
@@ -1053,11 +1069,11 @@ footer .listasFooter a:hover{
     transition: all 0.1s;
 }
 
-.bttcard .buttonRosa:hover{
+.bttcard .buttonRosa:hover {
     transform: scale(105%);
 }
 
-.verMais{
+.verMais {
     font-size: 16px;
     font-weight: 700;
     color: var(--cinza_h3);
@@ -1065,90 +1081,100 @@ footer .listasFooter a:hover{
 
 }
 
-.verMais:hover{
+.verMais:hover {
     color: var(--rosa);
 
 }
 
-.tituloInfoPet{
+.tituloInfoPet {
     font-weight: 600;
 }
 
-#pesoIdade, #especPorte {
+#pesoIdade,
+#especPorte {
     display: flex;
     margin-bottom: 0.5rem;
     width: 100%;
     justify-content: space-between;
 }
 
-#pesoIdade div, #especPorte div{
+#pesoIdade div,
+#especPorte div {
     width: 30%;
-    
+
 }
 
-#triploInfo div{
+#triploInfo div {
     margin-bottom: 0.5rem;
 }
 
-.infoPet{
+.infoPet {
     width: 100%;
     padding: 1rem;
 }
 
 /* FAVORITAR / DESFAVORITAR */
 
-.favoritar{
+.favoritar {
     height: 2rem;
     width: 2rem;
 }
 
-.favoritar:hover, .adotarMiniCard > button:hover{
+.favoritar:hover,
+.adotarMiniCard>button:hover {
     transform: scale(105%);
 }
 
-.adicionarFav{
+.adicionarFav {
     background-image: url(/img/icons/adicionar_favorito.svg);
 }
 
-.apagarFav{
+.apagarFav {
     background-image: url(/img/icons/favorito_adicionado.svg);
     display: none;
 }
 
+.cardOng .favoritar{
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+}
 
 /* ----------------------------- parceiro.html ----------------------------- */
 
-#mainParceiro{
+#mainParceiro {
     padding: 0 2%;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
 }
 
-#mainParceiro div{
+#mainParceiro div {
     padding: 1rem;
 }
 
-#mainParceiro ol{
+#mainParceiro ol {
     padding-left: 3rem;
 }
 
-#mainParceiro p, #mainParceiro li{
+#mainParceiro p,
+#mainParceiro li {
     font-size: 20px;
 }
 
-#mainParceiro p, ol{
+#mainParceiro p,
+ol {
     padding: 0.5rem;
 }
 
-#mainParceiro img{
+#mainParceiro img {
     width: 100%;
     border-radius: 2rem;
 }
 
-#mainParceiro > a{
+#mainParceiro>a {
     display: flex;
     justify-content: center;
     text-decoration: none;
@@ -1160,13 +1186,13 @@ footer .listasFooter a:hover{
 
 /* ----------------------------- configuracoes.html ----------------------------- */
 
-#mainConfig{
+#mainConfig {
     display: flex;
     padding: 1rem 2% 2rem 2%;
     min-height: 60vh;
 }
 
-#politicasdoSite{
+#politicasdoSite {
     display: none;
     flex-direction: column;
     padding-left: 3rem;
@@ -1175,62 +1201,63 @@ footer .listasFooter a:hover{
     width: 100%;
 }
 
-#listaPoliticas li{
+#listaPoliticas li {
     margin-bottom: 1rem;
 }
 
-#asideConfig{
+#asideConfig {
     width: 15rem;
     min-width: 15rem;
     height: 100%;
 }
 
-#asideConfig div{
+#asideConfig div {
     margin-bottom: 2rem;
 }
 
-.titConfig{
+.titConfig {
     font-size: 16px;
     font-weight: 700;
     color: var(--cinza_h3);
 }
 
-.buttonConfig{
+.buttonConfig {
     font-size: 16px;
     margin-top: 0.7rem;
     text-align: left;
 }
 
-#contaConfigH3, #politicasSiteH3{
+#contaConfigH3,
+#politicasSiteH3 {
     cursor: default;
     font-size: 16px;
     font-weight: 700;
     color: var(--cinza_h3);
 }
 
-#linhaConfig{
+#linhaConfig {
     width: 1px;
     background-color: var(--cinza158);
 }
 
-#configConta{
+#configConta {
     padding-left: 3rem;
     width: 50rem;
     display: block;
 }
 
-#contaH3{
+#contaH3 {
     display: none;
 }
 
-#usuarioPerfil{
+#usuarioPerfil {
     display: flex;
     margin-top: 1rem;
     gap: 4rem;
     align-items: center;
 }
 
-#altFotoUsuario{
+#altFotoUsuario {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1238,13 +1265,13 @@ footer .listasFooter a:hover{
     gap: 0.5rem;
 }
 
-#nomePerfil{
+#nomePerfil {
     display: flex;
     width: 100%;
     justify-content: space-between;
 }
 
-#fotoUsuario{
+#fotoUsuario {
     height: 10rem;
     width: 10rem;
     background-image: url(/img/fotos/perfil1.jpg);
@@ -1255,49 +1282,54 @@ footer .listasFooter a:hover{
     background-repeat: no-repeat;
 }
 
-.buttonPerfil{
+.buttonPerfil {
     font-size: 16px;
     font-weight: 700;
     color: var(--cinza_h3);
     text-align: left;
-    
+
 }
 
-.vermelho{
+.vermelho {
     color: var(--vermelho);
 }
 
-#emailSenhaTel{
+#emailSenhaTel {
     display: flex;
     flex-direction: column;
-    gap:1.5rem;
+    gap: 1.5rem;
     padding: 2rem 0;
 }
 
-#emailPerfil, #senhaPerfil, #telefonePerfil{
+#emailPerfil,
+#senhaPerfil,
+#telefonePerfil {
     display: flex;
     width: 100%;
     justify-content: space-between;
     align-items: center;
 }
 
-#nomePerfil .buttonPerfil, #emailPerfil .buttonPerfil, #senhaPerfil .buttonPerfil, #telefonePerfil .buttonPerfil{
+#nomePerfil .buttonPerfil,
+#emailPerfil .buttonPerfil,
+#senhaPerfil .buttonPerfil,
+#telefonePerfil .buttonPerfil {
     width: 7.5rem;
 }
 
-#email::before{
+#email::before {
     content: "Email: ";
     font-weight: 600;
     color: var(--preto_back);
 }
 
-#senha::before{
+#senha::before {
     content: "Senha: ";
     font-weight: 600;
     color: var(--preto_back);
 }
 
-#telefone::before{
+#telefone::before {
     content: "Telefone: ";
     font-weight: 600;
     color: var(--preto_back);
@@ -1305,7 +1337,7 @@ footer .listasFooter a:hover{
 
 /* ----------------------------- login.html ----------------------------- */
 
-#mainLogin{
+#mainLogin {
     background-image: url(/img/fotos/back_login.jpg);
     background-position: center;
     background-repeat: no-repeat;
@@ -1314,12 +1346,12 @@ footer .listasFooter a:hover{
     height: calc(100vh - 5rem);
 }
 
-#mainLogin > div{
+#mainLogin>div {
     display: flex;
     justify-content: center;
 }
 
-.loginCard{
+.loginCard {
     display: flex;
     flex-direction: column;
     width: 25%;
@@ -1334,14 +1366,15 @@ footer .listasFooter a:hover{
     overflow: hidden;
 }
 
-.loginCard form{
+.loginCard form {
     display: flex;
     flex-direction: column;
     width: 95%;
     gap: 1rem;
 }
 
-.loginCard form > input[type="email"], .loginCard form > input[type="password"]{
+.loginCard form>input[type="email"],
+.loginCard form>input[type="password"] {
     padding: 0.9rem;
     border-radius: 2.6rem;
     border: none;
@@ -1349,21 +1382,22 @@ footer .listasFooter a:hover{
     box-shadow: 1px 1px 1px var(--azul_claro);
 }
 
-.loginCard form > input[type="email"]::-webkit-input-placeholder, .loginCard form > input[type="password"]::-webkit-input-placeholder{
+.loginCard form>input[type="email"]::-webkit-input-placeholder,
+.loginCard form>input[type="password"]::-webkit-input-placeholder {
     font-weight: 700;
     color: var(--cinza158);
 }
 
-#entrarCard{
+#entrarCard {
     display: flex;
 }
 
-#cadastroCard{
+#cadastroCard {
     display: none;
     padding: 3rem;
 }
 
-.botLogin{
+.botLogin {
     background-color: var(--azul_maisclaro);
     padding: 0.7rem;
     border-radius: 2.6rem;
@@ -1371,21 +1405,21 @@ footer .listasFooter a:hover{
     text-decoration: none;
     font-size: 20px;
     font-weight: 700;
-    width: 80%  ;
+    width: 80%;
 }
 
-.loginCard .botLogin{
+.loginCard .botLogin {
     width: 100%;
 }
 
-.linkFalso{
+.linkFalso {
     color: var(--azul_opaco);
     font-weight: 700;
 }
 
 /* ----------------------------- cadastroadotante.html cadastroong.html ----------------------------- */
 
-.mainForms{
+.mainForms {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1393,7 +1427,7 @@ footer .listasFooter a:hover{
     margin-bottom: 2rem;
 }
 
-.fundoBranco{
+.fundoBranco {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -1403,19 +1437,19 @@ footer .listasFooter a:hover{
     width: 70%;
 }
 
-.fundoBranco > div{
+.fundoBranco>div {
     display: flex;
     justify-content: center;
     width: 100%;
 }
 
-.mainForms h2{
+.mainForms h2 {
     width: 100%;
     color: var(--cinza_h3);
     margin-top: 1rem;
 }
 
-.formCadastro{
+.formCadastro {
     width: 100%;
     padding: 0 5%;
     display: flex;
@@ -1425,7 +1459,7 @@ footer .listasFooter a:hover{
     align-items: center;
 }
 
-.formCadastro fieldset{
+.formCadastro fieldset {
     border: none;
     width: 100%;
     display: flex;
@@ -1433,24 +1467,24 @@ footer .listasFooter a:hover{
     gap: 1rem;
 }
 
-.formCadastro h2{
+.formCadastro h2 {
     display: flex;
     justify-content: flex-start;
 }
 
-.formCadastro > div{
+.formCadastro>div {
     display: flex;
     gap: 1rem;
     width: 100%;
 }
 
-.formCadastro fieldset > div{
+.formCadastro fieldset>div {
     display: flex;
     gap: 1rem;
     width: 100%;
 }
 
-.inputCadastro{
+.inputCadastro {
     padding: 0.9rem 1.5rem;
     display: flex;
     align-items: center;
@@ -1464,11 +1498,11 @@ footer .listasFooter a:hover{
     font-size: 16px;
 }
 
-.inputCadastro::placeholder{
+.inputCadastro::placeholder {
     color: var(--cinza_h3);
 }
 
-.buttonRosaForm{
+.buttonRosaForm {
     background-color: var(--rosa);
     color: white;
     font-weight: 700;
@@ -1477,18 +1511,18 @@ footer .listasFooter a:hover{
     border-radius: 2.4rem;
     width: 50%;
     min-width: 9rem;
-} 
+}
 
-#formParceiro1{
+#formParceiro1 {
     display: flex;
 }
 
-#formParceiro2{
+#formParceiro2 {
     display: none;
 }
 
 
-#formParceiro2 > div{
+#formParceiro2>div {
     display: flex;
     flex-direction: column;
     padding: 0 5%;
@@ -1497,57 +1531,57 @@ footer .listasFooter a:hover{
     align-items: center;
 }
 
-#formParceiro2 > div textarea{
+#formParceiro2>div textarea {
     height: 8rem;
 }
 
-.inputArquivo{
+.inputArquivo {
     display: flex;
     justify-content: space-between;
 }
 
-.inputArquivo > button{
+.inputArquivo>button {
     font-size: 16px;
     font-weight: 600;
     color: var(--cinza_h3);
 }
 
-textarea{
+textarea {
     font-size: 16px;
 }
 
-#numPets{
+#numPets {
     width: 2.5rem;
     background-color: transparent;
     border: none;
     border-bottom: 1px var(--cinza_h3) solid;
 }
 
-#infoAdocao{
+#infoAdocao {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     width: 100%;
 }
 
-#infoAdocao > div{
+#infoAdocao>div {
     display: flex;
     gap: 0.3rem;
     flex-direction: column;
     width: 50%;
 }
 
-#infoAdocao > div > div{
+#infoAdocao>div>div {
     display: flex;
     gap: 0.3rem;
     align-items: center;
 }
 
-#especificarPet{
+#especificarPet {
     display: none;
 }
 
-.uploadButton{
+.uploadButton {
     display: none;
     height: 1.3rem;
     width: 1.3rem;
@@ -1555,45 +1589,54 @@ textarea{
     min-width: 1.3rem;
 }
 
-@media screen and (max-height: 100vh){
-    
-}
+@media screen and (max-height: 100vh) {}
 
-@media screen and (max-width: 1650px){
-    .nomIconAdotar h2{
+@media screen and (max-width: 1650px) {
+    .nomIconAdotar h2 {
         font-size: 18px;
     }
 }
 
-@media screen and (max-width: 1550px){
-    .adotarSec{
+@media screen and (max-width: 1550px) {
+    .adotarSec {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
 
-@media screen and (max-width: 1340px){
+@media screen and (max-width: 1340px) {
 
 
-    .nomIconAdotar h2{
+    .nomIconAdotar h2 {
         font-size: 18px;
     }
 }
 
-@media screen and (max-width: 1286px){
-    .especial1{
+@media screen and (max-width: 1286px) {
+    .especial1 {
         margin-top: 7rem;
     }
 }
 
-@media screen and (max-width: 1250px){
+@media screen and (max-width: 1250px) {
 
-    .corpoOngs{
+    .mainOng .fundoBranco {
+        display: grid;
         grid-template-columns: repeat(3, 1fr);
+        border-radius: 2rem;
+        width: 100%;
     }
 
-    .adotarSec{
+    .adotarSec {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .divFooter {
+        flex-direction: column;
+    }
+
+    .divFooter>div {
+        width: 100%;
     }
 
 }
@@ -1601,18 +1644,18 @@ textarea{
 @media screen and (max-width: 1050px) {
 
 
-    .buttonFiltrar{
+    .buttonFiltrar {
         display: flex;
     }
 
-    .filtro{
+    .filtro {
         display: none;
     }
 
-    .filtro{
+    .filtro {
         width: 100%;
         border-radius: 0;
-        padding: 2rem; 
+        padding: 2rem;
         height: 100%;
         position: fixed;
         z-index: 100;
@@ -1622,7 +1665,7 @@ textarea{
         left: 0;
     }
 
-    .botFiltro h3{
+    .botFiltro h3 {
         font-size: 28px;
         font-weight: 700;
         align-items: center;
@@ -1630,14 +1673,14 @@ textarea{
         color: var(--azul_claro);
     }
 
-    #fecharFiltros{
+    #fecharFiltros {
         display: flex;
         height: 2rem;
         width: 2rem;
         fill: var(--cinza158);
     }
 
-    .botFiltro > div{
+    .botFiltro>div {
         display: flex;
         flex-direction: column;
         align-items: flex-end;
@@ -1645,120 +1688,128 @@ textarea{
         width: 30%;
     }
 
-    .mainAdotar{
+    .mainAdotar {
         flex-direction: column;
     }
-    
-        
+
+
 }
 
 /* responsividade em dispositivos até 950px de largura  */
-@media screen and (max-width: 950px){
- 
+@media screen and (max-width: 950px) {
 
-    .imglinksHeader{
+
+    .imglinksHeader {
         display: none;
     }
 
-    #hamburguer{
+    #hamburguer {
         display: flex;
     }
 
-    .btnsNav{
+    .btnsNav {
         gap: 1rem;
     }
 
-    .linksNav{
+    .linksNav {
         gap: 1rem;
     }
 
-    nav{
+    nav {
         gap: 2rem;
     }
 
-    h1{
+    h1 {
         font-size: calc(32px - 10%);
     }
 
-    h2{
+    h2 {
         font-size: calc(26px - 10%);
     }
-    
-    #barra{
+
+    #barra {
         display: none;
     }
 
-    .asideInst{
+    .asideInst {
         display: none;
     }
 
-    #sections{
+    #sections {
         width: 100%;
     }
-    
-    
-     /* p, li{
+
+
+    /* p, li{
         font-size: 18px;
     } */
 
-    #mainParceiro p{
+    #mainParceiro p {
         font-size: 18px;
     }
 
-    .corpoOngs{
+    .mainOng .fundoBranco {
         grid-template-columns: repeat(2, 1fr);
     }
 
 
 }
 
-@media screen and (max-width: 944px){
-    .especial2{
+@media screen and (max-width: 944px) {
+    .especial2 {
         margin-top: 7rem;
     }
 }
 
+@media screen and (max-width:850px) {
+    .linksFooter {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    footer {
+        padding: 2rem 15%;
+    }
+
+}
+
 /* responsividade em dispositivos até 800px de largura  */
-@media screen and (max-width: 800px){
-    .linksNav{
+@media screen and (max-width: 800px) {
+    .linksNav {
         display: none;
     }
 
-    .imglinksHeader{
+    .imglinksHeader {
         display: none;
     }
 
-    #hamburguer{
+    #hamburguer {
         display: flex;
     }
 
     .manual_nav {
         margin-top: -35px;
     }
-    
-    footer{
-        padding: 2rem 15%;
-    }
 
 
-    
-    .nomIconAdotar h2{
+    .nomIconAdotar h2 {
         font-size: calc(20px - 10%);
     }
 
-    #mainConfig{
+    #mainConfig {
         flex-direction: column;
         padding: 1rem 5% 2rem 5%;
 
     }
 
-    #configConta{
+    #configConta {
         padding-left: 0;
         width: 100%;
-        padding-top: 2rem; 
+        padding-top: 2rem;
     }
 
-    #asideConfig{
+    #asideConfig {
         width: 100%;
         height: 1rem;
         margin-bottom: 0.5rem;
@@ -1766,16 +1817,18 @@ textarea{
         gap: 2rem;
     }
 
-    #contaConfig{
+    #contaConfig {
         display: none;
     }
 
-    #contaConfigH3, #politicasSite{
+    #contaConfigH3,
+    #politicasSite {
         display: none;
     }
 
 
-    #contaH3, #politicasSiteH3{
+    #contaH3,
+    #politicasSiteH3 {
         display: flex;
         cursor: pointer;
         font-size: 16px;
@@ -1783,23 +1836,23 @@ textarea{
         color: var(--cinza_h3);
     }
 
-    #linhaConfig{
+    #linhaConfig {
         width: 100%;
         height: 1px;
         background-color: var(--preto_back);
     }
 
-    #usuarioPerfil{
+    #usuarioPerfil {
         flex-direction: column;
         margin-top: 2rem;
         gap: 3rem;
     }
 
-    #altFoto{
+    #altFoto {
         display: none;
     }
 
-    #altFotoIcon{
+    #altFotoIcon {
         height: 2rem;
         width: 2rem;
         position: relative;
@@ -1807,57 +1860,61 @@ textarea{
         bottom: 1rem;
     }
 
-    #altFotoIcon svg path{
+    #altFotoIcon svg path {
         fill: var(--cinza158);
     }
 
-    #email, #telefone, #senha, #nomeUsuario{
+    #email,
+    #telefone,
+    #senha,
+    #nomeUsuario {
         width: 20rem;
     }
 
-    .titConfig{
+    .titConfig {
         text-align: center;
     }
 
     #politicasdoSite {
         padding-left: 0;
         padding-top: 2rem;
-        }
-
-        .uploadButton{
-            display: flex;
-        }
-    
-        .arquivoButton{
-            display: none;
-        }
-
-        .botaoVoltarTopo{
-            height: 3rem;
-            width: 3rem;
-        }
-
-        #news-container, 
-        .search-bar input {
-            width: 80%;
-        }
-}
-
-/* responsividade em dispositivos até 650px de largura  */
-@media screen and (max-width: 650px){
-    .linksNav{
-        display: none;
     }
 
-    .imglinksHeader{
-        display: none;
-    }
-
-    #hamburguer{
+    .uploadButton {
         display: flex;
     }
 
-    .btnsNav a,button{
+    .arquivoButton {
+        display: none;
+    }
+
+    .botaoVoltarTopo {
+        height: 3rem;
+        width: 3rem;
+    }
+
+    #news-container,
+    .search-bar input {
+        width: 80%;
+    }
+}
+
+/* responsividade em dispositivos até 650px de largura  */
+@media screen and (max-width: 650px) {
+    .linksNav {
+        display: none;
+    }
+
+    .imglinksHeader {
+        display: none;
+    }
+
+    #hamburguer {
+        display: flex;
+    }
+
+    .btnsNav a,
+    button {
         gap: 1rem;
         font-size: 12px;
     }
@@ -1866,92 +1923,91 @@ textarea{
         margin-top: -30px;
     }
 
-    .mainIndex{
+    .mainIndex {
         flex-direction: column;
         align-items: center;
         justify-content: center;
         gap: 3rem;
     }
 
-    .quadro{
+    .quadro {
         width: 25rem;
         align-items: center;
         padding: 2rem 0;
     }
 
-    h1{
+    h1 {
         font-size: calc(32px - 20%);
     }
 
-    h2{
+    h2 {
         font-size: calc(26px - 15%);
     }
 
-    #sections{
+    #sections {
         padding: 0 5% 2rem 5%;
     }
-    
-   p, li{
+
+    p,
+    li {
         font-size: 16px;
     }
 
-    #mainParceiro p{
+    #mainParceiro p {
         font-size: 16px;
     }
 
-    .mainOng{
+    .mainOng {
         padding: 0 5%;
     }
 
-    .corpoOngs{
+    .mainOng .fundoBranco {
         grid-template-columns: repeat(1, 1fr);
     }
 
-    #adicionarFav{
+
+    #adicionarFav {
         left: 85%;
     }
 
-    .descOng h2{
+    .descOng h2 {
         font-size: calc(20px - 20%);
     }
 
-    .descOng p{
+    .descOng p {
         font-size: calc(16px - 10%);
     }
 
-    .adotarSec{
+    .adotarSec {
         grid-template-columns: repeat(1, 1fr);
         gap: 1.5rem;
         padding: 0 5% 2rem 5%;
     }
 
-    .centro{
-        padding-bottom: 0;
-    }
-
-    .buttonFiltrar{
+    .buttonFiltrar {
         padding: 1rem 10% 1rem 10%;
     }
 
-    #mainConfig{
+    #mainConfig {
         padding: 2rem 2% 2rem 2%;
     }
 
-    .formCadastro > div{
+    .formCadastro>div {
         display: flex;
         flex-direction: column;
         gap: 1rem;
     }
 
-    .fundoBranco{
+    .fundoBranco {
         width: 90%;
     }
 
-    .fundoBranco{
+    .fundoBranco {
         align-items: center;
     }
 
-    .formCadastro fieldset div, .formCadastro div{
+    .formCadastro fieldset div,
+    .formCadastro div {
         flex-direction: column;
         display: flex;
     }
@@ -1960,27 +2016,38 @@ textarea{
 
 }
 
-@media screen and (max-width: 616px){
-    .especial3{
+@media screen and (max-width: 616px) {
+    .especial3 {
         margin-top: 7rem;
     }
 }
 
+@media screen and (max-width: 550px) {
+    .divFooter>div {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .linksFooter .logobranca{
+        height: 6rem;
+    }
+}
+
 /* responsividade em dispositivos até 500px de largura  */
-@media screen and (max-width: 500px){
-    .linksNav{
+@media screen and (max-width: 500px) {
+    .linksNav {
         display: none;
     }
 
-    .imglinksHeader{
+    .imglinksHeader {
         display: none;
     }
 
-    #hamburguer{
+    #hamburguer {
         display: flex;
     }
 
-    .btnsNav{
+    .btnsNav {
         display: none;
     }
 
@@ -1992,95 +2059,100 @@ textarea{
     .manual_btn {
         padding: 4px;
     }
-        
-    .sectionInst img{
+
+    .sectionInst img {
         border-radius: 1.5rem;
     }
 
-    #nomePerfil{
+    #nomePerfil {
         display: block;
     }
 
-    #emailPerfil, #senhaPerfil, #telefonePerfil{
+    #emailPerfil,
+    #senhaPerfil,
+    #telefonePerfil {
         display: block;
     }
 
-    #email, #telefone, #senha, #nomeUsuario{
+    #email,
+    #telefone,
+    #senha,
+    #nomeUsuario {
         margin-bottom: 0.6rem;
         overflow: hidden;
         width: 100%;
     }
 }
 
-@media screen and (max-width: 450px){
+@media screen and (max-width: 450px) {
 
-    h1{
+    h1 {
         font-size: calc(32px - 30%);
     }
 
 
-    #adicionarFav{
+    #adicionarFav {
         left: 80%;
     }
 
-    #usuarioPerfil{
+    #usuarioPerfil {
         flex-direction: column;
         margin-top: 2rem;
         gap: 2rem;
     }
 
-    .quadro{
+    .quadro {
         width: 20rem;
         height: 20rem;
     }
 
-    .botaoVoltarTopo{
+    .botaoVoltarTopo {
         right: 0.5rem;
         bottom: 0.2rem;
     }
 
 }
 
-@media screen and (max-width: 350px){
+@media screen and (max-width: 350px) {
 
-    .quadro{
+    .quadro {
         width: 15rem;
         height: 24rem;
     }
 
 }
 
-@media screen and (max-width: 330px){
+@media screen and (max-width: 330px) {
 
-    #adicionarFav{
+    #adicionarFav {
         left: 75%;
     }
 
-    h1{
+    h1 {
         font-size: calc(32px - 40%);
     }
 
 }
 
 /* responsividade em dispositivos até 400px de largura  */
-@media screen and (max-width: 400px){
-    .linksNav{
+@media screen and (max-width: 400px) {
+    .linksNav {
         display: none;
     }
 
-    .imglinksHeader{
+    .imglinksHeader {
         display: none;
     }
 
-    #hamburguer{
+    #hamburguer {
         display: flex;
     }
 
-    .btnsNav{
+    .btnsNav {
         display: none;
     }
 
-    .linksFooter{
+    .linksFooter {
         flex-wrap: wrap;
     }
 }

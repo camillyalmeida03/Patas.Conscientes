@@ -1,7 +1,7 @@
 window.addEventListener("load", paginacarregada);//a página espera o javascrip carregar antes de executar ele.
 
 function paginacarregada() {
-    const divs = document.querySelectorAll(".nomIconAdotar");
+    const divs = document.querySelectorAll(".nomIconAdotar, .imgFav");
 
     divs.forEach(div => {
         const adicionarFav = div.querySelector(".adicionarFav");
