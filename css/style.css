@@ -1225,7 +1225,7 @@ ol {
 
 /* ----------------------------- configuracoes.html ----------------------------- */
 
-#mainConfig {
+.mainConfig {
     display: flex;
     padding: 1rem 2% 2rem 2%;
     min-height: 60vh;
@@ -1244,13 +1244,13 @@ ol {
     margin-bottom: 1rem;
 }
 
-#asideConfig {
+.asideConfig {
     width: 15rem;
     min-width: 15rem;
     height: 100%;
 }
 
-#asideConfig div {
+.asideConfig div {
     margin-bottom: 2rem;
 }
 
@@ -1274,12 +1274,12 @@ ol {
     color: var(--cinza_h3);
 }
 
-#linhaConfig {
+.linhaConfig {
     width: 1px;
     background-color: var(--cinza158);
 }
 
-#configConta {
+#configConta, #secPetFav {
     padding-left: 3rem;
     width: 50rem;
     display: block;
@@ -1627,6 +1627,14 @@ textarea {
     min-height: 1.3rem;
     min-width: 1.3rem;
 }
+
+/* ----------------------------- favoritos.html ----------------------------- */
+
+.asideFav{
+    width: 5rem;
+    min-width: none;
+}
+
 
 @media screen and (max-height: 100vh) {}
 
