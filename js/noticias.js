@@ -73,7 +73,7 @@ function exibirNoticias(noticias) {
 // Função para buscar notícias da API
 async function buscarNoticias(query = '') {
     // Se não houver uma pesquisa do usuário, usa o tema do dia
-    const tema = query || temaPorDia(); // Usa a função temaPorDia para gerar um tema automaticamente
+    const pet = query || temaPorDia(); // Usa a função temaPorDia para gerar um tema automaticamente
     const apiURL = `https://sample-express-server.vercel.app/news?q=${pet}`;
 
     try {
