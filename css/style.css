@@ -625,7 +625,7 @@ footer .listasFooter a:hover {
 
 .fimFooter {
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
     width: 100%;
     align-items: center;
 }
