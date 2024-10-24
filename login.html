@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<!--  -->
 
 <head>
     <meta charset="UTF-8" />
@@ -87,18 +86,19 @@
 
                 <form action="" id="formEntrar">
 
-                    <input type="email" id="emailEntrar" class="inputLogin" placeholder="Digite o seu E-mail"
-                        autocomplete>
-
+                    <input type="text" id="email" class="inputLogin" placeholder="Digite o seu E-mail"
+                        autocomplete ><p id="erro1" ></p>
+                        
                     <input type="password" id="senhaEntrar" placeholder="Digite o sua senha" autocomplete>
 
                     <button title="Recuperar senha" class="linkFalso">Esqueceu sua senha?</button>
 
-                    <button title="Entrar na sua conta" class="botLogin">Confirmar</button>
+                    <button title="Entrar na sua conta" class="botLogin"> <a href="index.html" id="confirmar">
+                    Confirmar</button>
 
                     <button title="Ir para cadastro" class="linkFalso" id="acssCadastrar">Não tem conta?
                         Cadastre-se</button>
-                </form>
+                </form>   
             </div>
 
             <div class="loginCard azul" id="cadastroCard">

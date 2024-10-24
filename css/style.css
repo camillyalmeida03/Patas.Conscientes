@@ -1409,19 +1409,20 @@ ol {
     display: flex;
     flex-direction: column;
     width: 95%;
-    gap: 1rem;
+    /* gap: 1rem; */
 }
 
-.loginCard form>input[type="email"],
+.loginCard form>input[type="text"],
 .loginCard form>input[type="password"] {
     padding: 0.9rem;
     border-radius: 2.6rem;
     border: none;
     background-color: var(--cinza230);
     box-shadow: 1px 1px 1px var(--azul_claro);
+    margin-top: 1rem;
 }
 
-.loginCard form>input[type="email"]::-webkit-input-placeholder,
+.loginCard form>input[type="text"]::-webkit-input-placeholder,
 .loginCard form>input[type="password"]::-webkit-input-placeholder {
     font-weight: 700;
     color: var(--cinza158);
@@ -1429,6 +1430,7 @@ ol {
 
 #entrarCard {
     display: flex;
+
 }
 
 #cadastroCard {
@@ -1436,15 +1438,14 @@ ol {
     padding: 3rem;
 }
 
-.botLogin {
+.botLogin{
     background-color: var(--azul_maisclaro);
     padding: 0.7rem;
     border-radius: 2.6rem;
-    color: white;
-    text-decoration: none;
     font-size: 20px;
     font-weight: 700;
     width: 80%;
+    margin-top: 1rem;
 }
 
 .loginCard .botLogin {
@@ -1454,6 +1455,17 @@ ol {
 .linkFalso {
     color: var(--azul_opaco);
     font-weight: 700;
+    margin-top: 1rem;
+}
+
+#erro1{
+    color: var(--vermelho);
+    margin-left: 0.5rem;
+}
+
+#confirmar{
+    color: white;
+    text-decoration: none;
 }
 
 /* ----------------------------- cadastroadotante.html cadastroong.html ----------------------------- */
