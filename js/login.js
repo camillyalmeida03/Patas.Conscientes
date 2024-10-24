@@ -36,30 +36,44 @@ function paginacarregada(){
     if (!regexEmail.test(email) || email.length <= 3) {
         erro1.textContent = 'Por favor, insira um email válido.';
     } else {
-        erro1.style.display = 'none'; // Aqui você pode prosseguir com o envio do formulário
-        // Para prosseguir com o envio, você pode usar:
-        // this.submit();
+        erro1.style.display = 'none'; 
+    }
+  });
+
+  //Validação senha
+  document.getElementById('formEntrar').addEventListener('submit', function(event) {
+    event.preventDefault(); // Evita o envio do formulário
+  
+    const senhaEntrar = document.getElementById('senhaEntrar').value;
+    const erro2 = document.getElementById('erro2');
+  
+    if (senhaEntrar !== '12345') {
+        erro2.textContent = 'Por favor, insira uma senha válida';
+    } else {
+        erro2.style.display = 'none'; 
     }
   });
   
+  //Botão confirmar
   document.getElementById('formEntrar').addEventListener('submit', function(event) {
     event.preventDefault(); // Evita o envio do formulário
   
    
     const email = document.getElementById('email').value;
+    const senhaEntrar = document.getElementById('senhaEntrar').value;
     
     // Validação do e-mail: formato padrão
     const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     
-    if (!regexNome.test(nome) || nome.length <= 3) {
-      nome.textContent = 'Por favor, insira um nome válido (apenas letras, mais de 3 letras).';
-    } else if (!regexEmail.test(email)) {
+    if (!regexEmail.test(email)) {
       email.textContent = 'Por favor, insira um e-mail válido.';
-    } else {
-      submit.style.display = 'none'; // Aqui você pode prosseguir com o envio do formulário
-      certo.textContent = 'Formulário enviado com sucesso!'; // Mensagem de sucesso
-      certo.style.color = 'green'; // Altera a cor da mensagem para verde
-      // Para prosseguir com o envio, você pode usar:
-      // this.submit();
+    } else if ( senhaEntrar !== '12345') {
+      senhaEntrar.textContent = 'Por favor, insira uma senha válida.';
+    }else {
+      window.location.href = 'index.html';
     }
-  });
+  }
+  );
+
+  // else {
+  //   window.location.href = 'index.html';

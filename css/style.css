@@ -1442,6 +1442,8 @@ ol {
     background-color: var(--azul_maisclaro);
     padding: 0.7rem;
     border-radius: 2.6rem;
+    text-decoration: none;
+    color: white;
     font-size: 20px;
     font-weight: 700;
     width: 80%;
@@ -1458,15 +1460,11 @@ ol {
     margin-top: 1rem;
 }
 
-#erro1{
+#erro1, #erro2 {
     color: var(--vermelho);
     margin-left: 0.5rem;
 }
 
-#confirmar{
-    color: white;
-    text-decoration: none;
-}
 
 /* ----------------------------- cadastroadotante.html cadastroong.html ----------------------------- */
 
