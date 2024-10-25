@@ -11,6 +11,7 @@
     --cinza215: rgb(215, 215, 215);
     --cinza201: rgb(201, 201, 201);
     --cinza158: rgb(158, 158, 158);
+    --cinza: rgb(107, 107, 107);
     --cinza_input: #DFDBDB;
     --cinzaCard: #F5F5F5;
     --preto_back: #393939;
@@ -42,7 +43,9 @@ body {
     text-align: center;
 }
 
-
+.marcAzul a{
+    color: var(--azul_claro);
+}
 
 .centro {
     text-align: center;
@@ -343,6 +346,83 @@ button {
     transform: scale(105%);
 }
 
+/* menu hamburguer / expandir menu */
+
+#expandirMenu{
+    position: fixed;
+    background-color: var(--cinza245);
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    right: -100%;
+    z-index: 2000;
+    padding: 2rem;
+    width: 100%;
+    height: 100vh;
+}
+
+#expandirMenu .linha{
+    background-color: var(--cinza201);
+    max-height: 1px;
+    min-height: 1px;
+}
+
+#expandirMenu div #setinha{
+    fill: var(--cinza);
+    rotate: 90deg;
+}
+
+#expandirMenu a{
+    color: var(--cinza);
+}
+
+#expandirMenu a:hover{
+    color: var(--azul_claro);
+}
+
+.linksMenu{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding:0 2rem;
+}
+
+.linksMenu ul{
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.5rem;
+    padding-left: 1.5rem;
+    gap: 0.2rem;
+}
+
+.linksMenu ul li{
+    list-style-type: none;
+}
+
+.linksMenu ul li:before{
+    content: "- ";
+    color: var(--cinza);
+}
+
+#topoMenu{
+    display: flex;
+    margin-bottom: 2rem;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+#topoMenu svg{
+    fill: var(--cinza);
+}
+
+#topoMenu img{
+    height: 3rem;
+    transition: all 0.5s;
+}
+
+#topoMenu img:hover{
+    transform: scale(105%);
+}
 
 #hamburguer {
     display: none;
