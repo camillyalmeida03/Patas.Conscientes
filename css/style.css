@@ -1616,7 +1616,6 @@ ol {
 .inputCadastro {
     padding: 0.9rem 1.5rem;
     display: flex;
-    /* align-items: center; */
     border-radius: 1.5rem;
     border: none;
     color: var(--cinza_h3);
@@ -1625,6 +1624,11 @@ ol {
     resize: none;
     min-width: 10rem;
     font-size: 16px;
+    /* align-items: center; */
+}
+
+#alinhar{
+    align-items: center;
 }
 
 .inputCadastro input[type="checkbox"] {
@@ -1691,10 +1695,13 @@ textarea {
 }
 
 #numPets {
-    width: 2.5rem;
+    width: 3rem;
+    height: 2rem;
     background-color: transparent;
     border: none;
     border-bottom: 1px var(--cinza_h3) solid;
+    text-align: center;
+    font-size: 1.1rem;
 }
 
 #infoAdocao {
