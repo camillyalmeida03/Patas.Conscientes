@@ -1331,7 +1331,7 @@ ol {
 }
 
 .asideConfig div {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .titConfig {
@@ -1450,6 +1450,18 @@ ol {
 
 #telefone::before {
     content: "Telefone: ";
+    font-weight: 600;
+    color: var(--preto_back);
+}
+
+#cpf::before {
+    content: "CPF: ";
+    font-weight: 600;
+    color: var(--preto_back);
+}
+
+#dataNasc::before {
+    content: "Data de Nascimento: ";
     font-weight: 600;
     color: var(--preto_back);
 }
