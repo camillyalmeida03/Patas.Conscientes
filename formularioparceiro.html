@@ -204,7 +204,8 @@
             <div>
                 <h2>Informações Adicionais</h2>
 
-                <textarea name="" id="" placeholder="Descrição da ONG" class="inputCadastro"></textarea>
+                <textarea name="" id="mensagem" placeholder="Descrição da ONG" class="inputCadastro" maxlength="200" oninput="atualizarContagem();"></textarea>
+                <p id="contarCaracteres"><span id="contagem">0</span>/200</p>
 
                 <div class="inputCadastro inputArquivo">
                     <p>Foto de perfil / Logo da ONG</p>
@@ -247,28 +248,21 @@
                 </div>
 
                 <div id="infoAdocao">
-                    <p class="inputCadastro">
-                        Tipos de pets disponíveis para a adoção:
-                    </p>
 
+                    <h2>Tipos de pets disponíveis para a adoção</h2>
+                    
+                        <div  class="inputCadastro">
+                            <label><input type="checkbox" name="" id="">Cachoros</label>
+                          
+                            <label><input type="checkbox" name="" id="">Gatos</label>
 
-                    <div>
-                        <div class="inputCadastro">
-                            <input type="radio" name="" id="">
-                            <p>Cachorros</p>
-                        </div>
-
-                        <div class="inputCadastro">
-                            <input type="radio" name="" id="">
-                            <p>Gatos</p>
-                        </div>
-
-                        <div class="inputCadastro">
-                            <input type="radio" name="" id="">
+                           <label>
+                            <input type="checkbox" name="" id="">Outros (Específicar)
                             <input type="text" id="especificarPet">
-                            <p>Outros (Específicar)</p>
+                          </label>
+                            
                         </div>
-                    </div>
+                   
                 </div>
 
                 <button class="buttonRosaForm" id="cadastrarFormParceiro" title="Finalizar cadastro">Cadastrar</button>

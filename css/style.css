@@ -1616,7 +1616,7 @@ ol {
 .inputCadastro {
     padding: 0.9rem 1.5rem;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     border-radius: 1.5rem;
     border: none;
     color: var(--cinza_h3);
@@ -1626,6 +1626,10 @@ ol {
     min-width: 10rem;
     font-size: 16px;
 }
+
+.inputCadastro input[type="checkbox"] {
+    margin-right: 8px; /* Espaço entre o checkbox e o texto */
+  }
 
 .inputCadastro::placeholder {
     color: var(--cinza_h3);
@@ -1679,6 +1683,13 @@ textarea {
     font-size: 16px;
 }
 
+#contarCaracteres{
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    margin-right: 1rem ;
+}
+
 #numPets {
     width: 2.5rem;
     background-color: transparent;
@@ -1689,7 +1700,7 @@ textarea {
 #infoAdocao {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem;
     width: 100%;
 }
 

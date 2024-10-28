@@ -21,3 +21,7 @@ cadastrarFormParceiro.addEventListener("click", function(){
     formParceiro2.style.display = 'none';
 })
 }
+
+function atualizarContagem() {
+    contagem.innerHTML = mensagem.value.length;
+  }
