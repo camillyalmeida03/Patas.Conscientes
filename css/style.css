@@ -1,11 +1,13 @@
-:root {
+:root{
     --azul_claro: #0E457D;
     --azul_maisclaro: #2269AA;
     --azul_escuro: #003B4A;
     --azul_opaco: #2268aa82;
+
     --rosa: #FE4E77;
     --rosa_claro: #f1718f;
     --rosa_texto: #FF2BAA;
+
     --cinza245: rgb(245, 245, 245);
     --cinza230: rgba(230, 230, 230, 0.767);
     --cinza215: rgb(215, 215, 215);
@@ -16,10 +18,11 @@
     --cinzaCard: #F5F5F5;
     --preto_back: #393939;
     --cinza_h3: #272727;
+
     --vermelho: #fd2020;
 }
 
-* {
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -27,10 +30,18 @@
     scroll-behavior: smooth;
 }
 
+/* ------------------------------------------------------------ Modo Claro ------------------------------------------------------------ */
+
 body {
     background-color: var(--cinza230);
     min-height: 100vh;
     margin: 0;
+}
+
+/* Config Main */
+
+main{
+    padding: 0 2rem 2rem 2rem;
 }
 
 .maincem {
@@ -40,16 +51,11 @@ body {
 .azul {
     /* cor do texto/título azul */
     color: var(--azul_claro);
-    text-align: center;
-}
-
-.marcAzul a{
-    color: var(--azul_claro);
 }
 
 .centro {
+    /* alinhar texto ao centro */
     text-align: center;
-    padding-bottom: 1rem;
 }
 
 .buttonRosa {
@@ -122,7 +128,6 @@ body {
 /* -----------------------------Gerador de notícias----------------------------- */
 
 .container {
-    padding: 1rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -134,7 +139,7 @@ body {
 
 .search-bar input {
     padding: 0.8rem;
-    width: 70%;
+    width: 80%;
     min-width: 18rem;
     font-size: 16px;
     border-radius: 2.6rem;
@@ -164,10 +169,9 @@ body {
     background-color: white;
     /* Cor de fundo */
     border-radius: 2rem;
-    width: 70%;
+    width: 80%;
     min-width: 18rem;
-
-    margin: 0 auto;
+    margin: auto;
 }
 
 /* Efeito de hover nos itens de notícia */
@@ -388,7 +392,7 @@ button {
 }
 
 .linksMenu ul{
-    display: flex;
+    display: none;
     flex-direction: column;
     margin-top: 0.5rem;
     padding-left: 1.5rem;
@@ -427,6 +431,30 @@ button {
 #hamburguer {
     display: none;
 }
+
+#comboInst{
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+#setaInst{
+    background-color: var(--cinza215);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+    height: 1rem;
+    fill: var(--cinza158);
+}
+
+#setaInst:hover{
+    background-color: var(--cinza201);
+}
+
+#setaInst:hover path{
+    fill: var(--azul_claro);
+}
+
 
 /*       AQUI COMEÇA O CARROSSEL     */
 .slider {
@@ -506,7 +534,7 @@ button {
     justify-content: center;
     background-color: var(--rosa_claro);
     gap: 2rem;
-    padding: 3rem 5%;
+    padding: 3rem 0;
     flex-wrap: wrap;
 }
 
@@ -541,8 +569,10 @@ button {
     flex-direction: column;
     gap: 7rem;
     align-items: center;
-    padding: 3rem 5%;
-    width: 100%;
+    width: calc(100% + 4rem);
+    padding: 3rem 0; 
+    bottom: -2rem;
+    left: -2rem;
     position: relative;
 }
 
@@ -636,7 +666,7 @@ footer {
     width: 100%;
     color: white;
     flex-direction: column;
-    padding: 2rem 5%;
+    padding: 2rem;
     align-items: center;
     flex-wrap: wrap;
 }
@@ -780,6 +810,7 @@ footer .listasFooter a:hover {
     height: 8.5rem;
     display: flex;
     align-items: flex-end;
+    min-width: 275px;
 }
 
 .caminhoInst>div {
@@ -788,39 +819,8 @@ footer .listasFooter a:hover {
     width: 100%;
     align-items: center;
     height: 3.5rem;
+    min-width: 275px;
 }
-
-/* Aside */
-
-/* .asideInst{
-    display: flex;
-    flex-direction: column;
-    background-color: var(--cinza215);
-    height: 10rem;
-    width: 15rem;
-    border-radius: 2rem;
-    align-items: center;
-    justify-content: center;
-    gap: 0.3rem;
-    position: fixed;
-    margin: 0 2%;
-}
-
-.asideInst p{
-    width: 70%;
-    justify-content: center;
-}
-
-.asideInst a{
-    text-decoration: none;
-    font-weight: 700;
-    color: rgb(90, 90, 90);
-    transition: all 0.2s;
-}
-
-.asideInst a:hover{
-    color: var(--rosa_texto);
-} */
 
 /* main */
 .mainInst {
@@ -837,7 +837,6 @@ footer .listasFooter a:hover {
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 0 2% 2rem 2%;
     gap: 4rem;
 }
 
@@ -853,6 +852,7 @@ footer .listasFooter a:hover {
     padding: 1.5rem;
     border-radius: 2rem;
     margin-top: 0.5rem;
+    min-width: 275px;
 }
 
 .sectionInst h2 {
@@ -877,6 +877,7 @@ footer .listasFooter a:hover {
 .sectionInst img {
     width: 100%;
     border-radius: 2rem;
+    min-width: 275px;
 }
 
 /* integrantes */
@@ -923,7 +924,6 @@ footer .listasFooter a:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 2%;
     margin-bottom: 2rem;
 }
 
@@ -935,11 +935,13 @@ footer .listasFooter a:hover {
     border-radius: 1rem;
     padding: 1rem;
     width: 70%;
+    min-width: calc(275px + 2rem);
 }
 
 .gridOng {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     border-radius: 2rem;
     width: 100%;
 }
@@ -1014,7 +1016,6 @@ footer .listasFooter a:hover {
 /* ----------------------------- adotar.html ----------------------------- */
 
 .mainAdotar {
-    margin-bottom: 2rem;
     display: flex;
 }
 
@@ -1026,7 +1027,6 @@ footer .listasFooter a:hover {
     min-width: 15rem;
     border-radius: 2rem;
     padding: 2rem;
-    margin: 0 0 0 2%;
     height: 80%;
 }
 
@@ -1064,8 +1064,9 @@ h3 {
 .buttonFiltrar {
     display: none;
     margin-left: 3%;
-    padding: 1rem;
+    padding: 0 1rem 1rem 1rem;
     font-size: 16px;
+    width: 4rem;
 }
 
 .adotarSec {
@@ -1075,7 +1076,7 @@ h3 {
     flex-wrap: wrap;
     width: 100%;
     gap: 1rem;
-    padding: 0 2% 2rem 2%;
+    padding-left: 2%;
 }
 
 .adotarMiniCard {
@@ -1119,6 +1120,7 @@ h3 {
     width: 100%;
     height: 100%;
     min-height: 100%;
+    min-width: 275px;
     background-color: white;
     padding: 1rem;
     border-radius: 2rem;
@@ -1271,7 +1273,6 @@ h3 {
 /* ----------------------------- parceiro.html ----------------------------- */
 
 #mainParceiro {
-    padding: 0 2%;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -1295,6 +1296,7 @@ ol {
 #mainParceiro img {
     width: 100%;
     border-radius: 2rem;
+    min-width: 275px;
 }
 
 #mainParceiro>a {
@@ -1311,7 +1313,6 @@ ol {
 
 .mainAside {
     display: flex;
-    padding: 1rem 2% 2rem 2%;
     min-height: 60vh;
 }
 
@@ -1575,7 +1576,6 @@ ol {
     flex-direction: column;
     align-items: center;
     gap: 2rem;
-    margin-bottom: 2rem;
 }
 
 
@@ -1772,9 +1772,9 @@ textarea {
     padding: 0 1rem;
 }
 
-.mainAside .adotarSec{
+/* .mainAside .adotarSec{
     padding: 0 1rem;
-}
+} */
 
 @media screen and (max-height: 100vh) {}
 
@@ -1956,7 +1956,12 @@ textarea {
     }
 
     footer {
-        padding: 2rem 15%;
+        padding: 2rem 1rem;
+    }
+
+    .divFooter>div {
+        justify-content: center;
+        gap: 2rem;
     }
 
 }
@@ -1986,7 +1991,6 @@ textarea {
 
     .mainAside {
         flex-direction: column;
-        padding: 1rem 5% 2rem 5%;
     }
 
     .configConta {
@@ -2053,13 +2057,6 @@ textarea {
 
     #altFotoIcon svg path {
         fill: var(--cinza158);
-    }
-
-    #email,
-    #telefone,
-    #senha,
-    #nomeUsuario {
-        width: 20rem;
     }
 
     .titConfig {
@@ -2140,10 +2137,6 @@ textarea {
         font-size: calc(26px - 15%);
     }
 
-    #sections {
-        padding: 0 5% 2rem 5%;
-    }
-
     p,
     li {
         font-size: 16px;
@@ -2180,17 +2173,13 @@ textarea {
     }
 
     .buttonFiltrar {
-        padding: 1rem 10% 1rem 10%;
+        padding: 0 10% 1rem 10%;
     }
 
     .formCadastro>div {
         display: flex;
         flex-direction: column;
         gap: 1rem;
-    }
-
-    .fundoBranco {
-        width: 90%;
     }
 
     .fundoBranco {
@@ -2222,10 +2211,28 @@ textarea {
     .linksFooter .logobranca{
         height: 6rem;
     }
+
+    .search-bar input {
+        width: 100%;
+    }
+    
+    /* Estilo para o container de notícias */
+    #news-container {
+        width: 100%;
+    }
 }
 
 /* responsividade em dispositivos até 500px de largura  */
 @media screen and (max-width: 500px) {
+
+    main{
+        padding: 0 1rem 2rem 1rem;
+    }
+
+    .caminho{
+        padding: 0 1rem;
+    }
+
     .linksNav {
         display: none;
     }
@@ -2304,7 +2311,9 @@ textarea {
 
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 375px) {
+
+
 
     .quadro {
         width: 15rem;

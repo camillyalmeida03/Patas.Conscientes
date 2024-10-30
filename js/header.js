@@ -4,8 +4,28 @@ document.addEventListener('DOMContentLoaded', function() {
     const setinha = document.getElementById("setinha");
     const instA = document.getElementById("instA");
 
+
+    // Função aparecer ulMenu ao clicar na setinha na expansão do menu hamburguer
+
     const ulMenu = document.getElementById('ulMenu');
-    const instMenu = document.getElementById('instMenu');
+    const setaInst = document.getElementById("setaInst");
+
+    function mostrarulMenu(){
+        if(ulMenu.style.display === 'none'){
+            ulMenu.style.display = 'flex';
+            setaInst.style.transform = 'rotate(90deg)'
+            setaInst.style.fill = '#0E457D'
+            setaInst.style.backgroundColor = 'rgb(201, 201, 201)'
+        }else{
+            ulMenu.style.display = 'none';
+            setaInst.style.transform = 'rotate(0deg)'
+            setaInst.style.fill = ''
+            setaInst.style.backgroundColor = ''
+        }
+    }
+
+    setaInst.addEventListener('click', mostrarulMenu);
+
 
     function mostrarCaixa() {
         caixaInst.style.display = 'flex'; // Mudei para 'flex' para manter a estrutura
