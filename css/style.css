@@ -26,6 +26,7 @@
     --cinza46: rgb(46, 46, 46);
     --cinza34: rgb(34, 34, 34);
     --cinza147: rgb(147, 147, 147);
+    --cinza100: rgb(100, 100, 100);
 }
 
 * {
@@ -34,6 +35,11 @@
     box-sizing: border-box;
     font-family: "Roboto", sans-serif;
     scroll-behavior: smooth;
+}
+
+a{
+    text-decoration: none;
+    color: black;
 }
 
 body {
@@ -63,9 +69,14 @@ main {
     color: var(--azul_claro);
 }
 
+.azulME{
+    color: var(--azul_maisclaro);
+}
+
 .centro {
     /* alinhar texto ao centro */
     text-align: center;
+    margin-bottom: 1rem;
 }
 
 .buttonRosa {
@@ -143,6 +154,10 @@ main {
     gap: 1rem;
 }
 
+.containerME{
+    background-color: var(--cinza34);
+}
+
 .search-bar {
     text-align: center;
 }
@@ -168,6 +183,15 @@ main {
 .news-item p {
     color: var(--cinza_h3);
     text-align: justify;
+}
+
+.newsitemME{
+    border: 1px solid black;
+    background-color: var(--cinza100);
+}
+
+.newsitemME p{
+    color: white !important;
 }
 
 /* Estilo para o container de notícias */
@@ -792,6 +816,11 @@ footer .listasFooter a:hover {
     position: relative;
 }
 
+.caminhoME p a /* modo escuro do caminho */{
+    color: white;
+}
+
+
 .caminho a {
     text-decoration: none;
     color: black;
@@ -853,6 +882,11 @@ footer .listasFooter a:hover {
     left: -2rem;
 }
 
+.mainInstME .cardPerson{
+    background-color: var(--cinza230);
+    color: black;
+}
+
 #barra {
     /* espaço em que o aside ficará */
     width: calc(2% + 15rem);
@@ -878,6 +912,10 @@ footer .listasFooter a:hover {
     border-radius: 2rem;
     margin-top: 0.5rem;
     min-width: 275px;
+}
+
+.sectionInstME div{
+    background-color: var(--cinza34);
 }
 
 .sectionInst h2 {
@@ -963,6 +1001,14 @@ footer .listasFooter a:hover {
     min-width: calc(275px + 2rem);
 }
 
+.fundoPreto /* Modo escuro do .fundobranco */{
+    background-color: var(--cinza34);
+}
+
+.fundoPreto div h2{
+    color: white;
+}
+
 .gridOng {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -981,16 +1027,20 @@ footer .listasFooter a:hover {
     min-width: 16rem;
     border-radius: 2rem;
     box-shadow: var(--cinza201) 1px 1px 3px;
+    color: white;
+}
+
+.cardOngME{
+    box-shadow: black 1px 1px 3px;
 }
 
 .cardOngrosa {
     background-color: var(--rosa);
-    color: white;
+
 }
 
 .cardOngazul {
     background-color: var(--azul_claro);
-    color: white;
 }
 
 .cardOng img {
@@ -1059,6 +1109,10 @@ footer .listasFooter a:hover {
     background-color: var(--cinza147);
 }
 
+.filtroME .botFiltro div button{
+    color: white;
+}
+
 #limparFiltros{
     transition: none;
 }
@@ -1070,7 +1124,7 @@ footer .listasFooter a:hover {
     margin: 1rem 0;
 }
 
-.linhaME{
+.linhaME {
     background-color: white;
 }
 
@@ -1429,6 +1483,10 @@ ol {
     background-color: var(--cinza158);
 }
 
+.linhaRowME{
+    background-color: black;
+}
+
 .configConta,
 #secPetFav {
     padding-left: 3rem;
@@ -1507,32 +1565,7 @@ ol {
     width: 7.5rem;
 }
 
-#email::before {
-    content: "Email: ";
-    font-weight: 600;
-    color: var(--preto_back);
-}
-
-#senha::before {
-    content: "Senha: ";
-    font-weight: 600;
-    color: var(--preto_back);
-}
-
-#telefone::before {
-    content: "Telefone: ";
-    font-weight: 600;
-    color: var(--preto_back);
-}
-
-#cpf::before {
-    content: "CPF: ";
-    font-weight: 600;
-    color: var(--preto_back);
-}
-
-#dataNasc::before {
-    content: "Data de Nascimento: ";
+.before{
     font-weight: 600;
     color: var(--preto_back);
 }
@@ -1566,6 +1599,13 @@ ol {
     gap: 1rem;
     box-shadow: 1px 1px 2px var(--cinza158);
     overflow: hidden;
+}
+
+.loginCardME{
+    background-color: var(--cinza34);
+    box-shadow: 1px 1px 2px black;
+
+
 }
 
 .loginCard form {
@@ -1623,6 +1663,10 @@ ol {
     margin-top: 1rem;
 }
 
+.linkFalsoME{
+    color: white;
+}
+
 #erro1,
 #erro2 {
     color: var(--vermelho);
@@ -1639,7 +1683,9 @@ ol {
     gap: 2rem;
 }
 
-
+.mainFormsME h2{
+    color: white;
+}
 
 .fundoBranco>div {
     display: flex;
@@ -1661,6 +1707,10 @@ ol {
     gap: 1rem;
     margin-bottom: 2rem;
     align-items: center;
+}
+
+.formCadastroME h2{
+    color: white;
 }
 
 .formCadastro fieldset {
@@ -1715,6 +1765,21 @@ ol {
     color: var(--cinza_h3);
 }
 
+.inputCadastroME{
+    background-color: var(--cinza147);
+    color: var(--cinza215);
+
+}
+
+.inputCadastroME option{
+    color: var(--cinza215);
+    
+}
+
+.inputCadastroME::placeholder{
+    color: var(--cinza215);
+}
+
 .buttonRosaForm {
     background-color: var(--rosa);
     color: white;
@@ -1759,6 +1824,10 @@ ol {
     color: var(--cinza_h3);
 }
 
+.inputArquivoME p{
+    color: white;
+}
+
 textarea {
     font-size: 16px;
 }
@@ -1800,6 +1869,10 @@ textarea {
     align-items: center;
 }
 
+.infoAdocaoME div label{
+    color: white;
+}
+
 #especificarPet {
     display: none;
 }
@@ -1832,6 +1905,16 @@ textarea {
 .mainAside .gridOng {
     gap: 1rem;
     padding: 0 1rem;
+}
+
+
+
+.whiteText{
+    color: white !important
+}
+
+.whiteText::before{
+    color: white;
 }
 
 
