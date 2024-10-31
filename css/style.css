@@ -1,4 +1,4 @@
-:root{
+:root {
     --azul_claro: #0E457D;
     --azul_maisclaro: #2269AA;
     --azul_escuro: #003B4A;
@@ -20,9 +20,15 @@
     --cinza_h3: #272727;
 
     --vermelho: #fd2020;
+
+    /* modo escuro */
+
+    --cinza46: rgb(46, 46, 46);
+    --cinza34: rgb(34, 34, 34);
+    --cinza147: rgb(147, 147, 147);
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -30,17 +36,21 @@
     scroll-behavior: smooth;
 }
 
-/* ------------------------------------------------------------ Modo Claro ------------------------------------------------------------ */
-
 body {
     background-color: var(--cinza230);
     min-height: 100vh;
     margin: 0;
 }
 
+.bodyME{ /* modo escuro do body */
+    background-color: var(--cinza46);
+    color: white;
+}
+
+
 /* Config Main */
 
-main{
+main {
     padding: 0 2rem 2rem 2rem;
 }
 
@@ -352,7 +362,7 @@ button {
 
 /* menu hamburguer / expandir menu */
 
-#expandirMenu{
+#expandirMenu {
     position: fixed;
     background-color: var(--cinza245);
     display: flex;
@@ -365,33 +375,33 @@ button {
     height: 100vh;
 }
 
-#expandirMenu .linha{
+#expandirMenu .linha {
     background-color: var(--cinza201);
     max-height: 1px;
     min-height: 1px;
 }
 
-#expandirMenu div #setinha{
+#expandirMenu div #setinha {
     fill: var(--cinza);
     rotate: 90deg;
 }
 
-#expandirMenu a{
+#expandirMenu a {
     color: var(--cinza);
 }
 
-#expandirMenu a:hover{
+#expandirMenu a:hover {
     color: var(--azul_claro);
 }
 
-.linksMenu{
+.linksMenu {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding:0 2rem;
+    padding: 0 2rem;
 }
 
-.linksMenu ul{
+.linksMenu ul {
     display: none;
     flex-direction: column;
     margin-top: 0.5rem;
@@ -399,32 +409,32 @@ button {
     gap: 0.2rem;
 }
 
-.linksMenu ul li{
+.linksMenu ul li {
     list-style-type: none;
 }
 
-.linksMenu ul li:before{
+.linksMenu ul li:before {
     content: "- ";
     color: var(--cinza);
 }
 
-#topoMenu{
+#topoMenu {
     display: flex;
     margin-bottom: 2rem;
     justify-content: space-between;
     align-items: flex-start;
 }
 
-#topoMenu svg{
+#topoMenu svg {
     fill: var(--cinza);
 }
 
-#topoMenu img{
+#topoMenu img {
     height: 3rem;
     transition: all 0.5s;
 }
 
-#topoMenu img:hover{
+#topoMenu img:hover {
     transform: scale(105%);
 }
 
@@ -432,13 +442,13 @@ button {
     display: none;
 }
 
-#comboInst{
+#comboInst {
     display: flex;
     align-items: center;
     gap: 0.7rem;
 }
 
-#setaInst{
+#setaInst {
     background-color: var(--cinza215);
     border-radius: 50%;
     cursor: pointer;
@@ -447,11 +457,11 @@ button {
     fill: var(--cinza158);
 }
 
-#setaInst:hover{
+#setaInst:hover {
     background-color: var(--cinza201);
 }
 
-#setaInst:hover path{
+#setaInst:hover path {
     fill: var(--azul_claro);
 }
 
@@ -560,6 +570,7 @@ button {
     margin-top: 1rem;
     text-align: justify;
     width: 80%;
+    color: black;
 }
 
 /* ----------------------------- Cards com foto - index.html (feedbacks)/ institucional.html (Integrantes) ----------------------------- */
@@ -568,12 +579,14 @@ button {
     display: flex;
     flex-direction: column;
     gap: 7rem;
+    width: 100%;
+    justify-content: center;
     align-items: center;
-    width: calc(100% + 4rem);
-    padding: 3rem 0; 
-    bottom: -2rem;
-    left: -2rem;
+    padding: 3rem 2rem;
+    bottom: 0;
+    left: 0;
     position: relative;
+    margin-bottom: 4rem;
 }
 
 .cardsPerson {
@@ -596,6 +609,10 @@ button {
     position: relative;
     min-height: 22rem;
     min-width: 272px;
+}
+
+.cardPersonME{ /* modo escuro do cardPerson */
+    background-color: var(--cinza34);
 }
 
 .cardPerson p,
@@ -828,6 +845,14 @@ footer .listasFooter a:hover {
     flex-direction: column;
 }
 
+.mainInst .secPerson {
+    width: calc(100% + 4rem);
+    margin-bottom: 0;
+    margin-top: 4rem;
+    bottom: -2rem;
+    left: -2rem;
+}
+
 #barra {
     /* espaço em que o aside ficará */
     width: calc(2% + 15rem);
@@ -1000,16 +1025,16 @@ footer .listasFooter a:hover {
     font-size: 20px;
 }
 
-.cidadeOng::before{
+.cidadeOng::before {
     content: "Cidade: ";
     font-weight: 600;
 }
 
-.qntdAnimaisOng{
+.qntdAnimaisOng {
     font-weight: 600;
 }
 
-.qntdAnimaisOng::after{
+.qntdAnimaisOng::after {
     content: " animais disponíveis.";
 }
 
@@ -1030,11 +1055,23 @@ footer .listasFooter a:hover {
     height: 80%;
 }
 
+.filtroME{
+    background-color: var(--cinza147);
+}
+
+#limparFiltros{
+    transition: none;
+}
+
 .linha {
     height: 1px;
     width: 100%;
     background-color: black;
     margin: 1rem 0;
+}
+
+.linhaME{
+    background-color: white;
 }
 
 .botFiltro {
@@ -1130,7 +1167,11 @@ h3 {
     transition: 0.1s all;
     position: relative;
     transform-style: preserve-3d;
+}
 
+.cardsAnimaisME{
+    background-color: var(--cinza34);
+    box-shadow: 1px 1px 1px black;
 }
 
 .iconsAdotar {
@@ -1144,13 +1185,21 @@ h3 {
     width: 100%;
 }
 
-.descMiniAdotar a {
+.linkDesc {
     color: var(--rosa);
     text-decoration: none;
     transition: all 0.1s;
 }
 
-.descMiniAdotar a:hover {
+.linkDescME{
+    transition: all 0.1s;
+}
+
+.linkDescME:hover{
+    color: white;
+}
+
+.linkDesc:hover {
     color: var(--azul_claro);
 }
 
@@ -1184,12 +1233,14 @@ h3 {
     font-weight: 700;
     color: var(--cinza_h3);
     transition: all 0.1s;
+}
 
+.verMaisME{
+    color: white;
 }
 
 .verMais:hover {
     color: var(--rosa);
-
 }
 
 .tituloInfoPet {
@@ -1209,11 +1260,11 @@ h3 {
     width: 30%;
 }
 
-#pesoPet::after{
+#pesoPet::after {
     content: " kg";
 }
 
-#idadePet::after{
+#idadePet::after {
     content: " anos";
 }
 
@@ -1228,19 +1279,27 @@ h3 {
 
 /* Sexo do pet */
 
-.sexoPet{
+.sexoPet {
     height: 1.8rem;
     width: 1.8rem;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-.femea{
+.femea {
     background-image: url(/img/icons/icon_femea.svg);
 }
 
-.macho{
+.femeaME{
+    background-image: url(/img/icons/icon_femea_white.svg);
+}
+
+.macho {
     background-image: url(/img/icons/icon_macho.svg);
+}
+
+.machoME{
+    background-image: url(/img/icons/icon_macho_white.svg);
 }
 
 /* FAVORITAR / DESFAVORITAR */
@@ -1264,7 +1323,7 @@ h3 {
     display: none;
 }
 
-.cardOng .favoritar{
+.cardOng .favoritar {
     position: absolute;
     bottom: 1rem;
     right: 1rem;
@@ -1348,12 +1407,12 @@ ol {
     margin-bottom: 1rem;
 }
 
-.buttonConfig{
+.buttonConfig {
     font-weight: 700;
     transition: 0.2s;
 }
 
-.buttonConfig:hover{
+.buttonConfig:hover {
     color: var(--azul_claro);
 }
 
@@ -1370,7 +1429,8 @@ ol {
     background-color: var(--cinza158);
 }
 
-.configConta, #secPetFav {
+.configConta,
+#secPetFav {
     padding-left: 3rem;
     width: 50rem;
     display: block;
@@ -1541,7 +1601,7 @@ ol {
     padding: 3rem;
 }
 
-.botLogin{
+.botLogin {
     background-color: var(--azul_maisclaro);
     padding: 0.7rem;
     border-radius: 2.6rem;
@@ -1563,7 +1623,8 @@ ol {
     margin-top: 1rem;
 }
 
-#erro1, #erro2 {
+#erro1,
+#erro2 {
     color: var(--vermelho);
     margin-left: 0.5rem;
 }
@@ -1641,13 +1702,14 @@ ol {
     /* align-items: center; */
 }
 
-#alinhar{
+#alinhar {
     align-items: center;
 }
 
 .inputCadastro input[type="checkbox"] {
-    margin-right: 8px; /* Espaço entre o checkbox e o texto */
-  }
+    margin-right: 8px;
+    /* Espaço entre o checkbox e o texto */
+}
 
 .inputCadastro::placeholder {
     color: var(--cinza_h3);
@@ -1701,11 +1763,11 @@ textarea {
     font-size: 16px;
 }
 
-#contarCaracteres{
+#contarCaracteres {
     display: flex;
     justify-content: end;
     width: 100%;
-    margin-right: 1rem ;
+    margin-right: 1rem;
 }
 
 #numPets {
@@ -1752,31 +1814,26 @@ textarea {
 
 /* ----------------------------- favoritos.html ----------------------------- */
 
-.asideFav{
+.asideFav {
     width: 5rem;
     min-width: 5rem;
     display: flex;
 }
 
-.favoritado .apagarFav{
+.favoritado .apagarFav {
     display: flex;
 }
 
 
-#lado2{
+#lado2 {
     display: none;
 }
 
-.mainAside .gridOng{
+.mainAside .gridOng {
     gap: 1rem;
     padding: 0 1rem;
 }
 
-/* .mainAside .adotarSec{
-    padding: 0 1rem;
-} */
-
-@media screen and (max-height: 100vh) {}
 
 @media screen and (max-width: 1650px) {
     .nomIconAdotar h2 {
@@ -1799,7 +1856,7 @@ textarea {
     }
 }
 
-@media screen and (max-width: 1286px) {
+@media screen and (max-width: 1220px) {
     .especial1 {
         margin-top: 7rem;
     }
@@ -1942,7 +1999,7 @@ textarea {
 
 }
 
-@media screen and (max-width: 944px) {
+@media screen and (max-width: 914px) {
     .especial2 {
         margin-top: 7rem;
     }
@@ -1999,7 +2056,8 @@ textarea {
         padding-top: 2rem;
     }
 
-    .asideRow, .asideFav div {
+    .asideRow,
+    .asideFav div {
         width: 100%;
         height: 1rem;
         margin-bottom: 0.5rem;
@@ -2032,8 +2090,8 @@ textarea {
         margin-bottom: 1rem;
     }
 
-    
-    .mainAside .gridOng{
+
+    .mainAside .gridOng {
         padding: 0;
     }
 
@@ -2086,10 +2144,10 @@ textarea {
         width: 80%;
     }
 
-    .mainAside .adotarSec{
-        padding: 0 ;
+    .mainAside .adotarSec {
+        padding: 0;
     }
-    
+
 }
 
 /* responsividade em dispositivos até 650px de largura  */
@@ -2196,7 +2254,7 @@ textarea {
 
 }
 
-@media screen and (max-width: 616px) {
+@media screen and (max-width: 619px) {
     .especial3 {
         margin-top: 7rem;
     }
@@ -2208,14 +2266,14 @@ textarea {
         justify-content: center;
     }
 
-    .linksFooter .logobranca{
+    .linksFooter .logobranca {
         height: 6rem;
     }
 
     .search-bar input {
         width: 100%;
     }
-    
+
     /* Estilo para o container de notícias */
     #news-container {
         width: 100%;
@@ -2225,11 +2283,20 @@ textarea {
 /* responsividade em dispositivos até 500px de largura  */
 @media screen and (max-width: 500px) {
 
-    main{
+    main {
         padding: 0 1rem 2rem 1rem;
     }
 
-    .caminho{
+    .mainInst .secPerson{
+        width: calc(100% + 3rem);
+    }
+
+    .mainInst .secPerson .cardsPerson{
+        position: relative;
+        left: 0.5rem;
+    }
+
+    .caminho {
         padding: 0 1rem;
     }
 

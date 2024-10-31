@@ -42,16 +42,70 @@ let fontSize = 16;
     document.body.style.fontSize = `${fontSize}px`;
   };
   
-  // Função para ativar o modo escuro
+  // -------------------------------------------------------------- MODO ESCURO --------------------------------------------------------------
+    
+  
+  
   const activateDarkMode = () => {
-    document.body.style.backgroundColor = '#121212';
-    document.body.style.color = '#FFFFFF';
+
+    // configurações gerais
+    document.body.classList.add('bodyME');
+
+    const linha = document.getElementsByClassName('linha');
+    for (let i = 0; i < linha.length; i++){//loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .linha
+      linha[i].classList.add('linhaME');
+    }
+
+
+
+    // index.html
+    const quadro = document.getElementsByClassName('quadro');
+    for (let i = 0; i < quadro.length; i++) { //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .quadro
+      quadro[i].classList.add('quadro');
+    }  
+
+    const cardPerson = document.getElementsByClassName('cardPerson'); //index.html + institucional.hmtl
+    for (let i = 0; i < cardPerson.length; i++) { //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .cardPerson
+      cardPerson[i].classList.add('cardPersonME');
+    }  
+
+  
+    // adotar.html
+
+    const filtro = document.getElementsByClassName('filtro'); 
+    for (let i = 0; i < filtro.length; i++){//loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .filtro
+      filtro[i].classList.add('filtroME');
+    }
+
+    const limparFiltros = document.getElementById('limparFiltros');
+    limparFiltros.style.color = 'white'
+
+    const cardsAnimais = document.getElementsByClassName('cardsAnimais');
+    for (let i = 0; i < cardsAnimais.length; i++){//loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .cardsAnimais
+      cardsAnimais[i].classList.add('cardsAnimaisME');
+    }
+
+    const femea = document.getElementsByClassName('femea');
+    for (let i = 0; i < femea.length; i++){//loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .femea
+      femea[i].classList.add('femeaME');
+    }
+
+    const macho = document.getElementsByClassName('macho');
+    for (let i = 0; i < macho.length; i++){//loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .macho
+      macho[i].classList.add('machoME');
+    }
+
+    const verMais = document.getElementsByClassName('verMais');
+    for (let i = 0; i < verMais.length; i++){//loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .verMais
+      verMais[i].classList.add('verMaisME');
+    }
+
   };
   
   // Função para ativar o modo claro
   const activateLightMode = () => {
-    document.body.style.backgroundColor = '#FFFFFF';
-    document.body.style.color = '#000000';
+    document.body.style.backgroundColor = '';
+    document.body.style.color = '';
   };
   
   // Função para ler o conteúdo da página
@@ -82,6 +136,6 @@ document.getElementById('audioDesc').addEventListener('click', toggleReading);
   // Adicionando os eventos aos botões
   document.getElementById('lupaAumentar').addEventListener('click', zoomIn);
   document.getElementById('lupaDiminuir').addEventListener('click', zoomOut);
-  // document.getElementById('modoEscuro').addEventListener('click', activateDarkMode);
+  document.getElementById('modoEscuro').addEventListener('click', activateDarkMode);
   document.getElementById('modoClaro').addEventListener('click', activateLightMode);
   document.getElementById('audioDesc').addEventListener('click', readPage);
