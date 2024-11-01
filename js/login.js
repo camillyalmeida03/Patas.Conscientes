@@ -77,3 +77,16 @@ function paginacarregada(){
 
   // else {
   //   window.location.href = 'index.html';
+
+  // Seleciona o ícone de olho pelo id "togglePassword"
+document.getElementById("togglePassword").addEventListener("click", function() {
+  // Seleciona o campo de senha pelo id "senhaEntrar"
+  const passwordField = document.getElementById("senhaEntrar");
+  
+  // Alterna o tipo de campo de "password" para "text" e vice-versa
+  const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
+  passwordField.setAttribute("type", type);
+  
+  // Alterna o ícone do olho entre "👁️" e "🙈"
+  this.textContent = type === "password" ? "👁️" : "🙈";
+});
