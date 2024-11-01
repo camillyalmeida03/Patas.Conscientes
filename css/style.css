@@ -1604,8 +1604,6 @@ ol {
 .loginCardME{
     background-color: var(--cinza34);
     box-shadow: 1px 1px 2px black;
-
-
 }
 
 .loginCard form {
@@ -1616,7 +1614,8 @@ ol {
 }
 
 .loginCard form>input[type="text"],
-.loginCard form>input[type="password"] {
+.loginCard form>input[type="password"],
+.passwordContainer{
     padding: 0.9rem;
     border-radius: 2.6rem;
     border: none;
@@ -1625,15 +1624,30 @@ ol {
     margin-top: 1rem;
 }
 
+.passwordContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.passwordContainer input[type="password"],
+.passwordContainer input[type="text"],
+.inputLogin{
+    background-color: transparent;
+    border: none;
+    width: 90%;
+    outline: none;
+}
+
+
 .loginCard form>input[type="text"]::-webkit-input-placeholder,
-.loginCard form>input[type="password"]::-webkit-input-placeholder {
+.loginCard form>input[type="password"]::-webkit-input-placeholder,
+.passwordContainer input::-webkit-input-placeholder{
     font-weight: 700;
     color: var(--cinza158);
 }
 
 #entrarCard {
     display: flex;
-
 }
 
 #cadastroCard {
@@ -1671,6 +1685,16 @@ ol {
 #erro2 {
     color: var(--vermelho);
     margin-left: 0.5rem;
+}
+
+#olho{
+    cursor: pointer;
+    width: 1.5rem;
+}
+
+.eye-icon{
+    display: flex;
+    align-items: center;
 }
 
 
