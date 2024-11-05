@@ -66,4 +66,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// abrir configurações de perfil
 
+let abrirConfigPerfil = document.getElementById('abrirConfigPerfil');
+let suaconta = document.getElementById('suaconta');
+let cadastrarPopup = document.getElementById('cadastrarPopup');
+let sairDaConta = document.getElementById('sairDaConta');
+let svgPerfil = document.getElementById('svgPerfil');
+
+function configuracoesdePefil(){
+    if(suaconta.style.display === "none"){
+        suaconta.style.display = 'flex'
+        svgPerfil.style.fill = 'var(--rosa)'
+    }else{
+        suaconta.style.display = 'none'
+        svgPerfil.style.fill = ''
+    }
+}
+
+abrirConfigPerfil.addEventListener('click', configuracoesdePefil);
