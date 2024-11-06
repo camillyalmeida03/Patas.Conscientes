@@ -211,6 +211,12 @@ function paginacarregada() {
     for (let i = 0; i < expandirMenu.length; i++) { //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .expandirMenu
       expandirMenu[i].classList.add('expandirMenuME');
     }
+
+    // conta popup
+    const contaPopup = document.getElementsByClassName('contaPopup');
+    for (let i = 0; i < contaPopup.length; i++) { //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .contaPopup
+      contaPopup[i].classList.add('contaPopupME');
+    }
   };
 
   // Função para ativar o modo claro
@@ -364,6 +370,13 @@ function paginacarregada() {
       expandirMenu[i].classList.remove('expandirMenuME');
     }
 
+    // conta popup
+
+    const contaPopup = document.getElementsByClassName('contaPopup');
+    for (let i = 0; i < contaPopup.length; i++) {
+      contaPopup[i].classList.remove('contaPopupME');
+    }
+
   };
 
   // Função para ler o conteúdo da página
@@ -396,24 +409,22 @@ function paginacarregada() {
   document.getElementById('lupaDiminuir').addEventListener('click', zoomOut);
 
   // Adicionar o evento de clique aos botões
-  document.getElementById('modoEscuro').addEventListener('click', () => {
-    activateDarkMode();
-    localStorage.setItem('modoEscuro', 'ativado'); // Salva o estado
-  });
+document.getElementById('modoEscuro').addEventListener('click', () => {
+  activateDarkMode();
+  localStorage.setItem('modoEscuro', 'ativado'); // Salva o estado
+});
 
-  document.getElementById('modoClaro').addEventListener('click', () => {
-    activateLightMode();
-    localStorage.setItem('modoEscuro', 'desativado'); // Salva o estado
-  });
+document.getElementById('modoClaro').addEventListener('click', () => {
+  activateLightMode();
+  localStorage.setItem('modoEscuro', 'desativado'); // Salva o estado
+});
 
-  // Verificar o estado do localStorage no carregamento da página
-  if (localStorage.getItem('modoEscuro') === 'ativado') {
-    activateDarkMode();
-  } else {
-    activateLightMode();
-  }
+// Verificar o estado do localStorage no carregamento da página
+if (localStorage.getItem('modoEscuro') === 'ativado') {
+  activateDarkMode();
+} else {
+  activateLightMode();
+}
 
-
-  document.getElementById('modoEscuro').addEventListener('click', activateDarkMode);
 
 }

@@ -503,6 +503,20 @@ button {
     box-shadow: 3px 3px 5px var(--cinza158);
 }
 
+.contaPopupME{
+    background-color: var(--cinza100);
+    box-shadow: 3px 3px 5px var(--cinza_h3);
+}
+
+.contaPopupME p, .contaPopupME a{
+    color: white !important;
+}
+
+.contaPopupME a:hover{
+    color: var(--azul_claro) !important;
+}
+
+
 #suaconta{
     display: none;
 }

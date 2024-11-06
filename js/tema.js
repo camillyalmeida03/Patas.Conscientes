@@ -165,6 +165,12 @@ function paginacarregada() {
         for (let i = 0; i < expandirMenu.length; i++) { //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .expandirMenu
             expandirMenu[i].classList.add('expandirMenuME');
         }
+
+        // conta popup
+        const contaPopup = document.getElementsByClassName('contaPopup');
+        for (let i = 0; i < contaPopup.length; i++) { //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .contaPopup
+            contaPopup[i].classList.add('contaPopupME');
+        }
     };
 
     // Função para ativar o modo claro
@@ -318,30 +324,45 @@ function paginacarregada() {
             expandirMenu[i].classList.remove('expandirMenuME');
         }
 
+        // conta popup
+
+        const contaPopup = document.getElementsByClassName('contaPopup');
+        for (let i = 0; i < contaPopup.length; i++) {
+            contaPopup[i].classList.remove('contaPopupME');
+        }
+
     };
 
     const checkbox = document.getElementById('definirTema');
     if (checkbox) {
-        // Adiciona um event listener ao checkbox
+        // Adiciona um event listener ao checkbox para mudanças manuais
         checkbox.addEventListener('change', function() {
             if (this.checked) {
-                activateDarkMode(); // Chama a função de modo escuro
-                localStorage.setItem('theme', 'dark'); // Guarda a preferência
+                activateDarkMode();
+                localStorage.setItem('modoEscuro', 'ativado');
             } else {
-                activateLightMode(); // Chama a função de modo claro
-                localStorage.setItem('theme', 'light'); // Guarda a preferência
+                activateLightMode();
+                localStorage.setItem('modoEscuro', 'desativado');
             }
         });
-
-        // Verifica o localStorage ao carregar a página
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            activateDarkMode();
-            checkbox.checked = true;
-        } else {
-            activateLightMode();
-            checkbox.checked = false;
+    
+        // Função para sincronizar o checkbox com o localStorage
+        function sincronizarCheckboxComLocalStorage() {
+            const savedTheme = localStorage.getItem('modoEscuro');
+            if (savedTheme === 'ativado') {
+                activateDarkMode();
+                checkbox.checked = true;
+            } else {
+                activateLightMode();
+                checkbox.checked = false;
+            }
         }
+    
+        // Chama a função ao carregar a página
+        sincronizarCheckboxComLocalStorage();
+    
+        // Verifica mudanças no localStorage em tempo real
+        window.addEventListener('storage', sincronizarCheckboxComLocalStorage);
     } else {
         console.error("Checkbox com id 'definirTema' não encontrado.");
     }
