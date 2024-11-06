@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg" viewBox="0 0 1207 1030.2">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke-linecap: round;
+        stroke-width: 100px;
+      }
+
+      .cls-1, .cls-2 {
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        stroke-width: 7px;
+      }
+    </style>
+  </defs>
+  <!-- Generator: Adobe Illustrator 28.7.1, SVG Export Plug-In . SVG Version: 1.2.0 Build 142)  -->
+  <g>
+    <g id="Camada_1">
+      <g id="svg2">
+        <sodipodi:namedview id="namedview30" bordercolor="#666666" borderopacity="1" gridtolerance="10" guidetolerance="10" inkscape:current-layer="svg2" inkscape:cx="455.50398" inkscape:cy="417.05123" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:window-height="876" inkscape:window-maximized="1" inkscape:window-width="1535" inkscape:window-x="65" inkscape:window-y="24" inkscape:zoom="0.37249375" objecttolerance="10" pagecolor="#ffffff" showgrid="false"/>
+        <path id="path6686" class="cls-2" d="M783.3,512.1c0,95.3-80.7,172.6-180.2,172.6s-180.2-77.3-180.2-172.6,80.7-172.6,180.2-172.6,180.2,77.3,180.2,172.6ZM603.5,152.7c-103,.5-209.8,25.5-310.9,73.6-75.1,37.1-148.2,89.5-211.7,154.1-31.2,33-71,80.8-77.4,131.8.8,44.2,48.1,98.7,77.4,131.8,59.5,62.1,130.8,113,211.7,154.2,94.3,45.8,198.6,72.1,310.9,73.6,103.1-.5,209.9-25.8,310.9-73.6,75.1-37.1,148.2-89.5,211.7-154.2,31.2-33,71-80.8,77.4-131.8-.8-44.2-48.1-98.7-77.4-131.8-59.5-62.1-130.8-113-211.7-154.1-94.2-45.7-198.8-71.9-310.9-73.6h0ZM603.4,242c156.1,0,282.7,121,282.7,270.3s-126.6,270.3-282.7,270.3-282.7-121-282.7-270.3,126.6-270.3,282.7-270.3h0Z" inkscape:connector-curvature="0"/>
+        <line class="cls-1" x1="109.7" y1="980.2" x2="1057.3" y2="50"/>
+      </g>
+    </g>
+  </g>
+</svg>
