@@ -70,9 +70,12 @@ function limparRadioButtons() {
         
             // Executar o código a seguir em loop, enquanto a condição não for alcançada
             // Enquanto o elemento pai não tiver o nome de classe -cardsAnimais-
-            while (pai.className != "cardsAnimais") {
-                // pai recebe o pai do pai...e faz em loop
+            while (!pai.classList.contains("cardsAnimais")) {
+                // Verifica se o pai contém a classe específica, independente de outras classes
                 pai = pai.parentNode;
+            
+                // Opcional: verifica se `pai` ainda é um elemento válido para evitar loops infinitos
+                if (!pai) break;
             }
         
             // Se a propriedade css transform estiver vazia ou for rotateY(0deg)
