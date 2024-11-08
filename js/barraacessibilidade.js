@@ -76,6 +76,15 @@ function paginacarregada() {
     }
 
     //menu
+    //menu
+    const expandirMenu = document.getElementById('expandirMenu');
+    //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .expandirMenu
+    expandirMenu.classList.add('expandirMenuME');
+
+    const logoMenu = document.getElementById('logoMenu');
+    if (logoMenu) {
+      logoMenu.src = '/img/icons/logobranca.svg'; // Substitua 'NOVO_URL_DA_IMAGEM' pelo URL desejado
+    }
 
 
     // index.html
@@ -204,12 +213,6 @@ function paginacarregada() {
     const linkFalso = document.getElementsByClassName('linkFalso');
     for (let i = 0; i < linkFalso.length; i++) { //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .linkFalso
       linkFalso[i].classList.add('linkFalsoME');
-    }
-
-    //menu
-    const expandirMenu = document.getElementById('expandirMenu');
-    for (let i = 0; i < expandirMenu.length; i++) { //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .expandirMenu
-      expandirMenu[i].classList.add('expandirMenuME');
     }
 
     // conta popup
@@ -365,9 +368,14 @@ function paginacarregada() {
     }
 
     // menu
-    const expandirMenu = document.getElementsByClassName('expandirMenu');
-    for (let i = 0; i < expandirMenu.length; i++) {
-      expandirMenu[i].classList.remove('expandirMenuME');
+    const expandirMenu = document.getElementById('expandirMenu');
+    if (expandirMenu) {
+      expandirMenu.classList.remove('expandirMenuME');
+    }
+
+    const logoMenu = document.getElementById('logoMenu');
+    if (logoMenu) {
+      logoMenu.src = '/img/icons/logopreta.svg'; // Substitua 'NOVO_URL_DA_IMAGEM' pelo URL desejado
     }
 
     // conta popup
@@ -409,22 +417,22 @@ function paginacarregada() {
   document.getElementById('lupaDiminuir').addEventListener('click', zoomOut);
 
   // Adicionar o evento de clique aos botões
-document.getElementById('modoEscuro').addEventListener('click', () => {
-  activateDarkMode();
-  localStorage.setItem('modoEscuro', 'ativado'); // Salva o estado
-});
+  document.getElementById('modoEscuro').addEventListener('click', () => {
+    activateDarkMode();
+    localStorage.setItem('modoEscuro', 'ativado'); // Salva o estado
+  });
 
-document.getElementById('modoClaro').addEventListener('click', () => {
-  activateLightMode();
-  localStorage.setItem('modoEscuro', 'desativado'); // Salva o estado
-});
+  document.getElementById('modoClaro').addEventListener('click', () => {
+    activateLightMode();
+    localStorage.setItem('modoEscuro', 'desativado'); // Salva o estado
+  });
 
-// Verificar o estado do localStorage no carregamento da página
-if (localStorage.getItem('modoEscuro') === 'ativado') {
-  activateDarkMode();
-} else {
-  activateLightMode();
-}
+  // Verificar o estado do localStorage no carregamento da página
+  if (localStorage.getItem('modoEscuro') === 'ativado') {
+    activateDarkMode();
+  } else {
+    activateLightMode();
+  }
 
 
 }

@@ -162,9 +162,14 @@ function paginacarregada() {
 
         //menu
         const expandirMenu = document.getElementById('expandirMenu');
-        for (let i = 0; i < expandirMenu.length; i++) { //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .expandirMenu
-            expandirMenu[i].classList.add('expandirMenuME');
+        //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .expandirMenu
+        expandirMenu.classList.add('expandirMenuME');
+
+        const logoMenu = document.getElementById('logoMenu');
+        if (logoMenu) {
+            logoMenu.src = '/img/icons/logobranca.svg'; // Substitua 'NOVO_URL_DA_IMAGEM' pelo URL desejado
         }
+
 
         // conta popup
         const contaPopup = document.getElementsByClassName('contaPopup');
@@ -318,11 +323,17 @@ function paginacarregada() {
             linkFalso[i].classList.remove('linkFalsoME');
         }
 
-        // menu
-        const expandirMenu = document.getElementsByClassName('expandirMenu');
-        for (let i = 0; i < expandirMenu.length; i++) {
-            expandirMenu[i].classList.remove('expandirMenuME');
+        // Menu
+        const expandirMenu = document.getElementById('expandirMenu');
+        if (expandirMenu) {
+            expandirMenu.classList.remove('expandirMenuME');
         }
+
+        const logoMenu = document.getElementById('logoMenu');
+        if (logoMenu) {
+            logoMenu.src = '/img/icons/logopreta.svg'; // Substitua 'NOVO_URL_DA_IMAGEM' pelo URL desejado
+        }
+
 
         // conta popup
 
@@ -336,7 +347,7 @@ function paginacarregada() {
     const checkbox = document.getElementById('definirTema');
     if (checkbox) {
         // Adiciona um event listener ao checkbox para mudanças manuais
-        checkbox.addEventListener('change', function() {
+        checkbox.addEventListener('change', function () {
             if (this.checked) {
                 activateDarkMode();
                 localStorage.setItem('modoEscuro', 'ativado');
@@ -345,7 +356,7 @@ function paginacarregada() {
                 localStorage.setItem('modoEscuro', 'desativado');
             }
         });
-    
+
         // Função para sincronizar o checkbox com o localStorage
         function sincronizarCheckboxComLocalStorage() {
             const savedTheme = localStorage.getItem('modoEscuro');
@@ -357,15 +368,15 @@ function paginacarregada() {
                 checkbox.checked = false;
             }
         }
-    
+
         // Chama a função ao carregar a página
         sincronizarCheckboxComLocalStorage();
-    
+
         // Verifica mudanças no localStorage em tempo real
         window.addEventListener('storage', sincronizarCheckboxComLocalStorage);
     } else {
         console.error("Checkbox com id 'definirTema' não encontrado.");
     }
-    
+
 
 }

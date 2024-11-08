@@ -13,19 +13,17 @@ function paginacarregada() {
                 adicionarFav.style.display = 'none';
                 apagarFav.style.display = 'flex';
 
-                const imgRemovido = document.querySelector('body > img[src="/img/feedback/white_card_removido_fav.svg"]');
-                if (imgRemovido) {
-                    imgRemovido.remove();
-                }
+                // Remove qualquer imagem de feedback existente
+                removeFeedbackImage();
 
-                // Criação do elemento de imagem
+                // Criação do elemento de imagem para "adicionado"
                 const imgAdd = document.createElement('img');
-                imgAdd.src = '/img/feedback/white_card_add_fav.svg'; // Defina a URL da imagem
+                imgAdd.src = '/img/feedback/fav_adicionado.svg';
                 imgAdd.style.position = 'fixed';
                 imgAdd.style.top = '5rem';
-                imgAdd.style.right = '0';
+                imgAdd.style.right = '2rem';
                 imgAdd.style.zIndex = '4000';
-                imgAdd.style.height = '20rem';
+                imgAdd.style.height = '6rem';
 
                 // Adiciona a imagem ao body
                 document.body.appendChild(imgAdd);
@@ -41,20 +39,17 @@ function paginacarregada() {
                 apagarFav.style.display = 'none';
                 adicionarFav.style.display = 'flex';
 
-                // Remove a imagem criada anteriormente
-                const imgAdd = document.querySelector('body > img[src="/img/feedback/white_card_add_fav.svg"]');
-                if (imgAdd) {
-                    imgAdd.remove();
-                }
+                // Remove qualquer imagem de feedback existente
+                removeFeedbackImage();
 
-                // Criação do elemento de imagem
+                // Criação do elemento de imagem para "removido"
                 const imgRemovido = document.createElement('img');
-                imgRemovido.src = '/img/feedback/white_card_removido_fav.svg'; // Defina a URL da imagem
+                imgRemovido.src = '/img/feedback/fav_removido.svg';
                 imgRemovido.style.position = 'fixed';
-                imgRemovido.style.top = '0rem';
-                imgRemovido.style.right = '0';
+                imgRemovido.style.top = '5rem';
+                imgRemovido.style.right = '2rem';
                 imgRemovido.style.zIndex = '4000';
-                imgRemovido.style.height = '20rem';
+                imgRemovido.style.height = '6rem';
 
                 // Adiciona a imagem ao body
                 document.body.appendChild(imgRemovido);
@@ -66,4 +61,12 @@ function paginacarregada() {
             });
         }
     });
+}
+
+// Função para remover qualquer imagem de feedback existente
+function removeFeedbackImage() {
+    const imgFeedback = document.querySelector('body > img[src="/img/feedback/fav_adicionado.svg"], body > img[src="/img/feedback/fav_removido.svg"]');
+    if (imgFeedback) {
+        imgFeedback.remove();
+    }
 }

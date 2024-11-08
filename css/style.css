@@ -399,6 +399,20 @@ button {
     height: 100vh;
 }
 
+.expandirMenuME{
+    background-color: var(--cinza34) !important;
+}
+
+.expandirMenuME a{
+    color: white !important;
+}
+
+.expandirMenuME .linha{
+    background-color: var(--cinza100) !important;
+}
+
+
+
 #expandirMenu .linha {
     background-color: var(--cinza201);
     max-height: 1px;
@@ -416,6 +430,15 @@ button {
 
 #expandirMenu a:hover {
     color: var(--azul_claro);
+}
+
+.expandirMenuME #setaInst{
+    fill: white !important; 
+    background-color: black;
+}
+
+.expandirMenuME #setaInst{
+    background-color: var(--cinza100) !important;
 }
 
 .linksMenu {
@@ -754,7 +777,7 @@ button {
     justify-content: center;
     background-color: var(--rosa_claro);
     gap: 2rem;
-    padding: 3rem 0;
+    padding: 3rem 2rem;
     flex-wrap: wrap;
 }
 
