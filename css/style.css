@@ -171,6 +171,16 @@ main {
     border: 1px solid var(--cinza215);
 }
 
+.searchinputME{
+    background-color: var(--cinza147);
+    border: 1px solid black !important;
+    color: white;
+}
+
+.searchinputME::placeholder{
+    color: var(--cinza201);
+}
+
 .news-item {
     padding: 1rem;
     border: 1px solid var(--cinza215);
@@ -186,13 +196,21 @@ main {
 }
 
 .newsitemME{
-    border: 1px solid black;
-    background-color: var(--cinza100);
+    background-color: var(--cinza100) !important;
+    border: 1px solid var(--cinza100) !important;
+    color: white !important;
+}
+
+.newsitemME a{
+    color: var(--azul_claro);
 }
 
 .newsitemME p{
     color: white !important;
 }
+
+
+
 
 /* Estilo para o container de notícias */
 #news-container {
@@ -206,6 +224,10 @@ main {
     width: 80%;
     min-width: 18rem;
     margin: auto;
+}
+
+.newscontainerME{
+    background-color: var(--cinza34) !important;
 }
 
 /* Efeito de hover nos itens de notícia */
@@ -226,6 +248,11 @@ main {
 .news-title:hover {
     text-decoration: underline;
     color: var(--azul_maisclaro);
+}
+
+.newsitemME a:hover {
+    text-decoration: underline;
+    color: var(--azul_claro);
 }
 
 /* Estilo para a descrição da notícia */
@@ -2000,8 +2027,7 @@ ol {
 
 .inputCadastroME{
     background-color: var(--cinza147);
-    color: var(--cinza215);
-
+    color: white;
 }
 
 .inputCadastroME option{

@@ -29,9 +29,6 @@ function paginacarregada() {
             azul[i].classList.add('azulME');
         }
 
-        //menu
-
-
         // index.html
         const quadro = document.getElementsByClassName('quadro');
         for (let i = 0; i < quadro.length; i++) { //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .quadro
@@ -167,15 +164,55 @@ function paginacarregada() {
 
         const logoMenu = document.getElementById('logoMenu');
         if (logoMenu) {
-            logoMenu.src = '/img/icons/logobranca.svg'; // Substitua 'NOVO_URL_DA_IMAGEM' pelo URL desejado
+            logoMenu.src = '/img/icons/logobranca.svg';
         }
-
 
         // conta popup
         const contaPopup = document.getElementsByClassName('contaPopup');
         for (let i = 0; i < contaPopup.length; i++) { //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .contaPopup
             contaPopup[i].classList.add('contaPopupME');
         }
+
+
+        // notícias
+        const newscontainer = document.getElementById('news-container');
+        newscontainer.classList.add('newscontainerME');
+
+// Adiciona a classe 'searchinputME' ao elemento com o id 'search-input' assim que a página carrega
+const searchInput = document.getElementById('search-input');
+if (searchInput) {
+    searchInput.classList.add('searchinputME');
+}
+
+// Função para adicionar a classe 'newsitemME' a elementos com a classe 'news-item'
+function addNewsitemME() {
+    const newsItems = document.getElementsByClassName('news-item');
+    for (let i = 0; i < newsItems.length; i++) {
+        newsItems[i].classList.add('newsitemME');
+    }
+}
+
+// Configura o observer para monitorar o DOM por alterações
+const observer = new MutationObserver((mutationsList) => {
+    for (let mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+            mutation.addedNodes.forEach((node) => {
+                // Verifica se o nó adicionado é um elemento e tem a classe 'news-item'
+                if (node.nodeType === 1 && node.classList.contains('news-item')) {
+                    node.classList.add('newsitemME');
+                }
+            });
+        }
+    }
+});
+
+// Inicia o observer observando o body (ou outro contêiner específico)
+observer.observe(document.body, { childList: true, subtree: true });
+
+// Chama a função uma vez ao carregar a página, caso já existam elementos 'news-item'
+addNewsitemME();
+
+
     };
 
     // Função para ativar o modo claro
@@ -332,6 +369,35 @@ function paginacarregada() {
         const logoMenu = document.getElementById('logoMenu');
         if (logoMenu) {
             logoMenu.src = '/img/icons/logopreta.svg'; // Substitua 'NOVO_URL_DA_IMAGEM' pelo URL desejado
+        }
+
+        // noticias
+        const newscontainer = document.getElementById('news-container');
+        if (newscontainer) {
+            newscontainer.classList.remove('newscontainerME');
+        }
+
+        // Configura o observer para monitorar o DOM por alterações
+        const observer = new MutationObserver((mutationsList) => {
+            for (let mutation of mutationsList) {
+                if (mutation.type === 'childList') {
+                    mutation.addedNodes.forEach((node) => {
+                        // Verifica se o nó adicionado é um elemento e tem a classe 'news-item'
+                        if (node.nodeType === 1 && node.classList.contains('news-item')) {
+                            node.classList.remove('newsitemME');
+                        }
+                    });
+                }
+            }
+        });
+
+        // Inicia o observer observando o body (ou outro contêiner específico)
+        observer.observe(document.body, { childList: true, subtree: true });
+
+
+        const searchinput = document.getElementById('search-input');
+        if (searchinput) {
+            searchinput.classList.remove('searchinputME')
         }
 
 

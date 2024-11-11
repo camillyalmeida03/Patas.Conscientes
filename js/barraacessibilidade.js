@@ -30,8 +30,6 @@ function paginacarregada() {
     }
   });
 
-
-
   let fontSize = 16;
   // Função para aumentar o zoom
   const zoomIn = () => {
@@ -75,7 +73,53 @@ function paginacarregada() {
       azul[i].classList.add('azulME');
     }
 
-    //menu
+    // notícias
+    const newscontainer = document.getElementById('news-container');
+    if (newscontainer) {
+      newscontainer.classList.add('newscontainerME');
+    }
+
+    // Função para adicionar a classe 'newsitemME' a elementos com a classe 'news-item'
+    // Adiciona a classe 'searchinputME' ao elemento com o id 'search-input' assim que a página carrega
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+      searchInput.classList.add('searchinputME');
+    }
+
+    // Função para adicionar a classe 'newsitemME' a elementos com a classe 'news-item'
+    function addNewsitemME() {
+      const newsItems = document.getElementsByClassName('news-item');
+      for (let i = 0; i < newsItems.length; i++) {
+        newsItems[i].classList.add('newsitemME');
+      }
+    }
+
+    // Configura o observer para monitorar o DOM por alterações
+    const observer = new MutationObserver((mutationsList) => {
+      for (let mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+          mutation.addedNodes.forEach((node) => {
+            // Verifica se o nó adicionado é um elemento e tem a classe 'news-item'
+            if (node.nodeType === 1 && node.classList.contains('news-item')) {
+              node.classList.add('newsitemME');
+            }
+          });
+        }
+      }
+    });
+
+    // Inicia o observer observando o body (ou outro contêiner específico)
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Chama a função uma vez ao carregar a página, caso já existam elementos 'news-item'
+    addNewsitemME();
+
+
+    const searchinput = document.getElementById('search-input');
+    if (searchinput) {
+      searchinput.classList.add('searchinputME')
+    }
+
     //menu
     const expandirMenu = document.getElementById('expandirMenu');
     //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .expandirMenu
@@ -220,6 +264,7 @@ function paginacarregada() {
     for (let i = 0; i < contaPopup.length; i++) { //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .contaPopup
       contaPopup[i].classList.add('contaPopupME');
     }
+
   };
 
   // Função para ativar o modo claro
@@ -367,6 +412,34 @@ function paginacarregada() {
       linkFalso[i].classList.remove('linkFalsoME');
     }
 
+    // noticias
+    const newscontainer = document.getElementById('news-container');
+    if (newscontainer) {
+      newscontainer.classList.remove('newscontainerME');
+    }
+
+    // Configura o observer para monitorar o DOM por alterações
+    const observer = new MutationObserver((mutationsList) => {
+      for (let mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+          mutation.addedNodes.forEach((node) => {
+            // Verifica se o nó adicionado é um elemento e tem a classe 'news-item'
+            if (node.nodeType === 1 && node.classList.contains('news-item')) {
+              node.classList.remove('newsitemME');
+            }
+          });
+        }
+      }
+    });
+
+    // Inicia o observer observando o body (ou outro contêiner específico)
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    const searchinput = document.getElementById('search-input');
+    if (searchinput) {
+      searchinput.classList.remove('searchinputME')
+    }
+
     // menu
     const expandirMenu = document.getElementById('expandirMenu');
     if (expandirMenu) {
@@ -410,7 +483,6 @@ function paginacarregada() {
 
   // Adiciona o evento de clique ao botão
   document.getElementById('audioDesc').addEventListener('click', toggleReading);
-
 
   // Adicionando os eventos aos botões
   document.getElementById('lupaAumentar').addEventListener('click', zoomIn);
