@@ -86,33 +86,35 @@ function paginacarregada() {
       searchInput.classList.add('searchinputME');
     }
 
+    const lupa = document.getElementsByClassName('lupa');
+    for (let i = 0; i < lupa.length; i++) { //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .lupa
+        lupa[i].src = '/img/icons/lupa_pesquisa_branca.svg'
+    }
+
     // Função para adicionar a classe 'newsitemME' a elementos com a classe 'news-item'
-    function addNewsitemME() {
+
       const newsItems = document.getElementsByClassName('news-item');
       for (let i = 0; i < newsItems.length; i++) {
         newsItems[i].classList.add('newsitemME');
       }
-    }
 
-    // Configura o observer para monitorar o DOM por alterações
-    const observer = new MutationObserver((mutationsList) => {
-      for (let mutation of mutationsList) {
-        if (mutation.type === 'childList') {
-          mutation.addedNodes.forEach((node) => {
-            // Verifica se o nó adicionado é um elemento e tem a classe 'news-item'
-            if (node.nodeType === 1 && node.classList.contains('news-item')) {
-              node.classList.add('newsitemME');
-            }
-          });
+
+      const addClassObserver = new MutationObserver((mutationsList) => {
+        for (let mutation of mutationsList) {
+          if (mutation.type === 'childList') {
+            mutation.addedNodes.forEach((node) => {
+              // Verifica se o nó adicionado é um elemento e tem a classe 'news-item'
+              if (node.nodeType === 1 && node.classList.contains('news-item')) {
+                node.classList.add('newsitemME');
+              }
+            });
+          }
         }
-      }
-    });
-
-    // Inicia o observer observando o body (ou outro contêiner específico)
-    observer.observe(document.body, { childList: true, subtree: true });
-
-    // Chama a função uma vez ao carregar a página, caso já existam elementos 'news-item'
-    addNewsitemME();
+      });
+    
+      // Inicia o observador para adicionar a classe 'newsitemME'
+      addClassObserver.observe(document.body, { childList: true, subtree: true });
+    
 
 
     const searchinput = document.getElementById('search-input');
@@ -418,23 +420,24 @@ function paginacarregada() {
       newscontainer.classList.remove('newscontainerME');
     }
 
-    // Configura o observer para monitorar o DOM por alterações
-    const observer = new MutationObserver((mutationsList) => {
-      for (let mutation of mutationsList) {
-        if (mutation.type === 'childList') {
-          mutation.addedNodes.forEach((node) => {
-            // Verifica se o nó adicionado é um elemento e tem a classe 'news-item'
-            if (node.nodeType === 1 && node.classList.contains('news-item')) {
-              node.classList.remove('newsitemME');
-            }
-          });
-        }
-      }
-    });
+    const lupa = document.getElementsByClassName('lupa');
+    for (let i = 0; i < lupa.length; i++) { //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .lupa
+        lupa[i].src = '/img/icons/lupa_pesquisa_cinza.svg'
+    }
 
-    // Inicia o observer observando o body (ou outro contêiner específico)
-    observer.observe(document.body, { childList: true, subtree: true });
-
+    function removeAllNewsitemME() {
+      // Seleciona todos os elementos com a classe 'newsitemME'
+      const elements = document.querySelectorAll('.newsitemME');
+      
+      // Remove a classe 'newsitemME' de cada elemento encontrado
+      elements.forEach((element) => {
+        element.classList.remove('newsitemME');
+      });
+    }
+    
+    // Chama a função para remover a classe de todos os elementos existentes
+    removeAllNewsitemME();
+    
     const searchinput = document.getElementById('search-input');
     if (searchinput) {
       searchinput.classList.remove('searchinputME')
