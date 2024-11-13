@@ -28,7 +28,7 @@ function paginacarregada(){
   document.getElementById('formEntrar').addEventListener('submit', function(event) {
     event.preventDefault(); // Evita o envio do formulário
   
-    const email = document.getElementById('email').value;
+    const email = document.getElementById('email2').value;
     const erro1 = document.getElementById('erro1');
   
     const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -59,7 +59,7 @@ function paginacarregada(){
     event.preventDefault(); // Evita o envio do formulário
   
    
-    const email = document.getElementById('email').value;
+    const email = document.getElementById('email2').value;
     const senhaEntrar = document.getElementById('senhaEntrar').value;
     
     // Validação do e-mail: formato padrão

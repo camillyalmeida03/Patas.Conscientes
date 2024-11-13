@@ -1889,6 +1889,17 @@ ol {
     width: 100%;
 }
 
+.alinharErro{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: 1rem;
+}
+
+.alinharErro p,
+.error-message{
+    margin-left: 1rem;
+}
 .mainForms h2 {
     width: 100%;
     color: var(--cinza_h3);
@@ -1992,7 +2003,7 @@ ol {
 }
 
 #formParceiro2 {
-    display: none;
+    display: block;
 }
 
 
@@ -2079,6 +2090,12 @@ textarea {
     width: 1.3rem;
     min-height: 1.3rem;
     min-width: 1.3rem;
+}
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    display: none;
+   
 }
 
 /* ----------------------------- favoritos.html ----------------------------- */
@@ -2530,7 +2547,6 @@ textarea {
         flex-direction: column;
         display: flex;
     }
-
 
 
 }

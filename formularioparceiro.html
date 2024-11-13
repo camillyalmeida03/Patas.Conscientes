@@ -221,130 +221,62 @@
 
         <div class="fundoBranco" id="formParceiro1">
 
-            <form action="" method="get" class="formCadastro" id="formParceiro">
-                <h2>Cadastrar</h2>
+          <form action="" method="get" class="formCadastro" id="formParceiro">
+            <h2>Cadastrar</h2>
+            <fieldset>
+                <div>
 
-                <fieldset>
-                    <div>
-                        <input type="text" name="" id="nomeOng" class="inputCadastro" placeholder="Nome da ONG" required>
-                        <p id="erro3"></p>
-                        <input type="email" id="email" class="inputCadastro" placeholder="E-mail" required>
-                        <p id="erro1"></p>
-                    </div>
+                  <div class="alinharErro">
+                    <input type="text" name="" id="nomeOng" class="inputCadastro" placeholder="Nome da ONG" required>
+                    <p id="erro3" class="error-message"></p>
+                  </div>
 
-                    <input type="text" class="inputCadastro cnpj" placeholder="CNPJ" maxlength="18" required>
-                </fieldset>
+                  <div class="alinharErro">
+                    <input type="email" id="email1" class="inputCadastro" placeholder="E-mail"required>
+                    <p id="erro1" class="error-message"></p>
+                  </div>
 
-                <h2>Dados do Responsável</h2>
+                </div>
 
-                <fieldset>
-                    <input type="text" class="inputCadastro" placeholder="Nome do Responsável" required>
-
-                    <div>
-                        <input type="text" class="inputCadastro cpf" placeholder="CPF" maxlength="14" required>
-
-                        <input type="text" class="inputCadastro" placeholder="E-mail" required>
-                    </div>
-                </fieldset>
-
-                <h2>Endereço</h2>
-
-                <fieldset>
-                    <input type="text" class="inputCadastro cep" placeholder="CEP" maxlength="9" required>
-
-                    <div>
-                        <input type="text" class="inputCadastro" placeholder="Estado" required>
-
-                        <input type="text" class="inputCadastro" placeholder="Cidade" required>
-                    </div>
-
-                    <input type="text" class="inputCadastro" placeholder="Logradouro">
-
-                    <div>
-                        <input type="text" class="inputCadastro" placeholder="Bairro" required>
-
-                        <input type="text" class="inputCadastro" placeholder="Número" required>
-                    </div>
-
-                    <input type="text" class="inputCadastro" placeholder="Complemento">
-
-                </fieldset>
-
-                <button type="submit" title="Ir para a última etapa do formulário" class="buttonRosaForm"
-                    id="continuarFormParc">Continuar</button>
-
-            </form>
+                <input type="text" class="inputCadastro cnpj" placeholder="CNPJ" maxlength="18" required>
+                <p id="erroCnpj" class="error-message"></p>
+            </fieldset>
+    
+            <h2>Dados do Responsável</h2>
+            <fieldset>
+                <input type="text" class="inputCadastro" placeholder="Nome do Responsável" required>
+                <p id="erroNomeResponsavel" class="error-message"></p>
+                <div>
+                  <div class="alinharErro">
+                    <input type="text" class="inputCadastro cpf" placeholder="CPF" maxlength="14" required>
+                    <p id="erroCpfResponsavel" class="error-message"></p>
+                  </div>
+                  <div class="alinharErro">
+                    <input type="email" class="inputCadastro" placeholder="E-mail" required>
+                    <p id="erroEmailResponsavel" class="error-message"></p>
+                  </div>
+                </div>
+            </fieldset>
+    
+            <h2>Endereço</h2>
+            <fieldset>
+                <input type="text" class="inputCadastro cep" placeholder="CEP" maxlength="9" required>
+                <div>
+                    <input type="text" class="inputCadastro" placeholder="Estado" required>
+                    <input type="text" class="inputCadastro" placeholder="Cidade" required>
+                </div>
+                <input type="text" class="inputCadastro" placeholder="Logradouro">
+                <div>
+                    <input type="text" class="inputCadastro" placeholder="Bairro" required>
+                    <input type="text" class="inputCadastro" placeholder="Número" required>
+                </div>
+                <input type="text" class="inputCadastro" placeholder="Complemento">
+            </fieldset>
+    
+            <button type="submit" title="Ir para a última etapa do formulário" class="buttonRosaForm" id="continuarFormParc">Continuar</button>
+        </form>
         </div>
 
-        <div class="fundoBranco" id="formParceiro2">
-            <div>
-                <h2>Informações Adicionais</h2>
-
-                <textarea name="" id="mensagem" placeholder="Descrição da ONG" class="inputCadastro" maxlength="200" oninput="atualizarContagem();"></textarea>
-                <p id="contarCaracteres"><span id="contagem">0</span>/200</p>
-
-                <div class="inputCadastro inputArquivo">
-                    <p>Foto de perfil / Logo da ONG</p>
-                    <button title="Escolher arquivo do dispositivo" class="arquivoButton">Escolher arquivo</button>
-                    <button title="Escolher arquivo do dispositivo" class="uploadButton"><svg
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#5f6368">
-                            <path
-                                d="M440-200h80v-167l64 64 56-57-160-160-160 160 57 56 63-63v167ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z" />
-                        </svg></button>
-                </div>
-
-                <h2>Documentação</h2>
-
-                <div class="inputCadastro inputArquivo">
-                    <p>Comprovante do Estatuto da ONG</p>
-                    <button title="Escolher arquivo do dispositivo" class="arquivoButton">Escolher arquivo</button>
-                    <button title="Escolher arquivo do dispositivo" class="uploadButton"><svg
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#5f6368">
-                            <path
-                                d="M440-200h80v-167l64 64 56-57-160-160-160 160 57 56 63-63v167ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z" />
-                        </svg></button>
-                </div>
-
-                <div class="inputCadastro inputArquivo">
-                    <p>Comprovante de CNPJ</p>
-                    <button title="Escolher arquivo do dispositivo" class="arquivoButton">Escolher arquivo</button>
-                    <button title="Escolher arquivo do dispositivo" class="uploadButton"><svg
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#5f6368">
-                            <path
-                                d="M440-200h80v-167l64 64 56-57-160-160-160 160 57 56 63-63v167ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z" />
-                        </svg></button>
-                </div>
-
-                <h2>Informações sobre Adoção</h2>
-
-                <div id="alinhar" class="inputCadastro inputArquivo">
-                    <p >Quantos pets estão disponíveis para a adoção atualmente?</p>
-
-                    <input type="number" min="1" id="numPets" required>
-                </div>
-
-                <div id="infoAdocao">
-
-                    <h2>Tipos de pets disponíveis para a adoção</h2>
-                    
-                        <div  class="inputCadastro">
-                            <label><input type="checkbox" name="" id="">Cachoros</label>
-                          
-                            <label><input type="checkbox" name="" id="">Gatos</label>
-
-                           <label>
-                            <input type="checkbox" name="" id="">Outros (Específicar)
-                            <input type="text" id="especificarPet">
-                          </label>
-                            
-                        </div>
-                   
-                </div>
-
-                <button class="buttonRosaForm" id="cadastrarFormParceiro" title="Finalizar cadastro">Cadastrar</button>
-
-            </div>
-        </div>
     </main>
 
     <div class="accessibility-bar" id="accessibilityBar">
