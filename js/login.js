@@ -75,6 +75,9 @@ function paginacarregada(){
   }
   );
 
+  // else {
+  //   window.location.href = 'index.html';
+
   // Seleciona o ícone de olho pelo id "togglePassword"
 document.getElementById("togglePassword").addEventListener("click", function() {
   // Seleciona o campo de senha pelo id "senhaEntrar"
@@ -84,13 +87,6 @@ document.getElementById("togglePassword").addEventListener("click", function() {
   const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
   passwordField.setAttribute("type", type);
   
-// Seleciona a imagem do olho pelo id "olho"
-const eyeIcon = document.getElementById("olho");
-
-// Alterna a imagem do olho aberto para o olho fechado e vice-versa
-if (type === "password") {
-  eyeIcon.src = "/img/icons/olhoaberto.svg";
-} else {
-  eyeIcon.src = "/img/icons/olhofechado.svg";
-}
+  // Alterna o ícone do olho entre "👁️" e "🙈"
+  this.textContent = type === "password" ? "👁️" : "🙈";
 });

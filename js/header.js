@@ -3,48 +3,44 @@ document.addEventListener('DOMContentLoaded', function() {
     const caixaInst = document.querySelector('.caixaInst');
     const setinha = document.getElementById("setinha");
     const instA = document.getElementById("instA");
-
-
-    // Função aparecer ulMenu ao clicar na setinha na expansão do menu hamburguer
-
-    const ulMenu = document.getElementById('ulMenu');
-    const setaInst = document.getElementById("setaInst");
-
-    function mostrarulMenu(){
-        if(ulMenu.style.display === 'none'){
-            ulMenu.style.display = 'flex';
-            setaInst.style.transform = 'rotate(90deg)'
-            setaInst.style.fill = '#0E457D'
-            setaInst.style.backgroundColor = 'rgb(201, 201, 201)'
-        }else{
-            ulMenu.style.display = 'none';
-            setaInst.style.transform = 'rotate(0deg)'
-            setaInst.style.fill = ''
-            setaInst.style.backgroundColor = ''
+    
+    let mouseOverCaixa = false;
+    
+    // Função para mostrar a caixa e alterar estilos
+    function mostrarCaixa() {
+        caixaInst.style.display = 'flex'; // Mostra a caixa
+        instA.style.color = '#FE4E77';
+        setinha.style.transform = 'rotate(90deg)';
+        setinha.style.fill = '#FE4E77';
+        mouseOverCaixa = true; // Indica que o mouse está sobre a caixa ou institucional
+    }
+    
+    // Função para esconder a caixa se o mouse não estiver em institucional ou caixaInst
+    function esconderCaixa() {
+        if (!mouseOverCaixa) { // Somente esconde se o mouse não estiver em nenhum dos dois
+            caixaInst.style.display = 'none';
+            instA.style.color = 'white';
+            setinha.style.transform = 'rotate(0deg)';
+            setinha.style.fill = 'white';
         }
     }
-
-    setaInst.addEventListener('click', mostrarulMenu);
-
-
-    function mostrarCaixa() {
-        caixaInst.style.display = 'flex'; // Mudei para 'flex' para manter a estrutura
-        instA.style.color = '#FE4E77';
-        setinha.style.rotate = '90deg';
-        setinha.style.fill =  '#FE4E77';
-    }
-
-    function esconderCaixa() {
-        caixaInst.style.display = 'none';
-        instA.style.color = 'white';
-        setinha.style.rotate = '0deg';
-        setinha.style.fill =  'white';
-    }
-
+    
+    // Eventos para mostrar e esconder a caixa
     institucional.addEventListener('mouseenter', mostrarCaixa);
-    caixaInst.addEventListener('mouseenter', mostrarCaixa);
-    caixaInst.addEventListener('mouseleave', esconderCaixa);
-
+    institucional.addEventListener('mouseleave', () => {
+        mouseOverCaixa = false; // Indica que o mouse saiu de institucional
+        esconderCaixa();
+    });
+    
+    caixaInst.addEventListener('mouseenter', () => {
+        mouseOverCaixa = true; // Indica que o mouse entrou em caixaInst
+        mostrarCaixa();
+    });
+    
+    caixaInst.addEventListener('mouseleave', () => {
+        mouseOverCaixa = false; // Indica que o mouse saiu de caixaInst
+        esconderCaixa();
+    });    
 
     let hamburguer = document.getElementById("hamburguer");
     hamburguer.addEventListener("click", interagirmenu);
