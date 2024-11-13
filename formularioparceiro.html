@@ -221,14 +221,15 @@
 
         <div class="fundoBranco" id="formParceiro1">
 
-            <form action="" method="get" class="formCadastro">
+            <form action="" method="get" class="formCadastro" id="formParceiro">
                 <h2>Cadastrar</h2>
 
                 <fieldset>
                     <div>
                         <input type="text" name="" id="nomeOng" class="inputCadastro" placeholder="Nome da ONG" required>
-
-                        <input type="email" class="inputCadastro" placeholder="E-mail" required>
+                        <p id="erro3"></p>
+                        <input type="email" id="email" class="inputCadastro" placeholder="E-mail" required>
+                        <p id="erro1"></p>
                     </div>
 
                     <input type="text" class="inputCadastro cnpj" placeholder="CNPJ" maxlength="18" required>
@@ -269,7 +270,7 @@
 
                 </fieldset>
 
-                <button title="Ir para a última etapa do formulário" class="buttonRosaForm"
+                <button type="submit" title="Ir para a última etapa do formulário" class="buttonRosaForm"
                     id="continuarFormParc">Continuar</button>
 
             </form>

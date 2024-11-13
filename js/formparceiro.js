@@ -25,3 +25,45 @@ cadastrarFormParceiro.addEventListener("click", function(){
 function atualizarContagem() {
     contagem.innerHTML = mensagem.value.length;
   }
+
+// Validação do formulário campo nome
+
+document.addEventListener('DOMContentLoaded', function () {  
+document.getElementById('formParceiro').addEventListener('submit', function(event) {
+    event.preventDefault(); // Evita o envio do formulário
+  
+    const nome = document.getElementById('nomeOng').value;
+    const erro3 = document.getElementById('erro3');
+  
+    const regexNome = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+    if (!regexNome.test(nome) || nome.length <= 3) {
+        erro3.textContent = 'Por favor, insira um nome.';
+        erro3.style.display = 'block';
+    } else {
+        erro3.style.display = 'none'; 
+    }
+  });
+
+// Validação do formulário campo email
+
+document.getElementById('formParceiro').addEventListener('submit', function(event) {
+    event.preventDefault(); // Evita o envio do formulário
+  
+    const email = document.getElementById('email').value;
+    const erro1 = document.getElementById('erro3');
+  
+    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+    if (!regexEmail.test(email) || email.length <= 3) {
+        erro1.textContent = 'Por favor, insira um nome válido.';
+    } else {
+        erro1.style.display = 'none'; 
+        window.location.href = 'index.html';
+    }
+  });
+
+
+
+
+});

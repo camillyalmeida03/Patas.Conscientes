@@ -75,9 +75,6 @@ function paginacarregada(){
   }
   );
 
-  // else {
-  //   window.location.href = 'index.html';
-
   // Seleciona o ícone de olho pelo id "togglePassword"
 document.getElementById("togglePassword").addEventListener("click", function() {
   // Seleciona o campo de senha pelo id "senhaEntrar"
