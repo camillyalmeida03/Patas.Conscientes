@@ -110,6 +110,18 @@ function pesquisarNoticias(event) {
     }
 }
 
+// Função para pesquisar notícias ao clicar no botão
+function pesquisarNoticiasPorClique() {
+    const query = document.getElementById('search-input').value;
+    buscarNoticias(query); // Chama a função com o termo pesquisado
+}
+
+// Evento de clique no botão searchNoticias
+document.getElementById('searchNoticias').addEventListener('click', pesquisarNoticiasPorClique);
+
+// Evento de tecla "Enter" no campo de input para realizar a pesquisa
+document.getElementById('search-input').addEventListener('keydown', pesquisarNoticias);
+
 // Carregar notícias com o tema do dia quando a página carregar
 window.onload = () => {
     buscarNoticias(); // Busca notícias com o tema do dia automaticamente
@@ -117,3 +129,4 @@ window.onload = () => {
 
 // Atualizar as notícias a cada 1 hora (3600000 ms)
 setInterval(buscarNoticias, 3600000);
+    
