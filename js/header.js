@@ -3,6 +3,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const caixaInst = document.querySelector('.caixaInst');
     const setinha = document.getElementById("setinha");
     const instA = document.getElementById("instA");
+
+    const setaInst = document.getElementById("setaInst");
+    const ulMenu = document.getElementById("ulMenu");
+    
+    function mostrarulMenu() {
+        if (ulMenu.style.display === 'none') {
+            ulMenu.style.display = 'flex';
+            setaInst.style.transform = 'rotate(90deg)';
+            setaInst.style.fill = '#0E457D';
+            setaInst.style.backgroundColor = 'rgb(201, 201, 201)';
+        } else {
+            ulMenu.style.display = 'none';
+            setaInst.style.transform = 'rotate(0deg)';
+            setaInst.style.fill = ''; // Resetando a cor de preenchimento
+            setaInst.style.backgroundColor = ''; // Resetando a cor de fundo
+        }
+    }
+    
+    setaInst.addEventListener('click', mostrarulMenu);
     
     let mouseOverCaixa = false;
     

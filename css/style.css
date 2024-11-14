@@ -995,7 +995,7 @@ footer .listasFooter a:hover {
 .listasFooter {
     display: flex;
     flex-direction: column;
-    width: 12rem;
+    width: 15rem;
     min-height: 8rem;
     padding: 1rem;
 }
@@ -2320,7 +2320,6 @@ textarea {
 /* responsividade em dispositivos até 950px de largura  */
 @media screen and (max-width: 950px) {
 
-
     .imglinksHeader {
         display: none;
     }
@@ -2377,6 +2376,19 @@ textarea {
 
 }
 
+@media screen and (max-width: 930px){
+    .linksFooter{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .divFooter>div{
+        gap: 2rem;
+        justify-content: center;
+    }
+
+}
+
 @media screen and (max-width: 914px) {
     .especial2 {
         margin-top: 7rem;
@@ -2384,25 +2396,21 @@ textarea {
 }
 
 @media screen and (max-width:850px) {
-    .linksFooter {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-    }
 
-    footer {
-        padding: 2rem 1rem;
-    }
-
-    .divFooter>div {
-        justify-content: center;
-        gap: 2rem;
-    }
 
 }
 
 /* responsividade em dispositivos até 800px de largura  */
 @media screen and (max-width: 800px) {
+
+    .accessibility-bar{
+        top: 30vh;
+    }
+
+    .accessibility-icon{
+        top: 30vh;
+    }
+
     .linksNav {
         display: none;
     }
