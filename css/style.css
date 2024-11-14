@@ -1694,6 +1694,7 @@ ol {
     min-height: 60vh;
 }
 
+
 .politicasdoSite {
     display: none;
     flex-direction: column;
@@ -1711,6 +1712,7 @@ ol {
     width: 15rem;
     min-width: 15rem;
     height: 100%;
+    
 }
 
 
