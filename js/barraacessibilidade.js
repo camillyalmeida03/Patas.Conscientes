@@ -88,33 +88,33 @@ function paginacarregada() {
 
     const lupa = document.getElementsByClassName('lupa');
     for (let i = 0; i < lupa.length; i++) { //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .lupa
-        lupa[i].src = '/img/icons/lupa_pesquisa_branca.svg'
+      lupa[i].src = '/img/icons/lupa_pesquisa_branca.svg'
     }
 
     // Função para adicionar a classe 'newsitemME' a elementos com a classe 'news-item'
 
-      const newsItems = document.getElementsByClassName('news-item');
-      for (let i = 0; i < newsItems.length; i++) {
-        newsItems[i].classList.add('newsitemME');
-      }
+    const newsItems = document.getElementsByClassName('news-item');
+    for (let i = 0; i < newsItems.length; i++) {
+      newsItems[i].classList.add('newsitemME');
+    }
 
 
-      const addClassObserver = new MutationObserver((mutationsList) => {
-        for (let mutation of mutationsList) {
-          if (mutation.type === 'childList') {
-            mutation.addedNodes.forEach((node) => {
-              // Verifica se o nó adicionado é um elemento e tem a classe 'news-item'
-              if (node.nodeType === 1 && node.classList.contains('news-item')) {
-                node.classList.add('newsitemME');
-              }
-            });
-          }
+    const addClassObserver = new MutationObserver((mutationsList) => {
+      for (let mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+          mutation.addedNodes.forEach((node) => {
+            // Verifica se o nó adicionado é um elemento e tem a classe 'news-item'
+            if (node.nodeType === 1 && node.classList.contains('news-item')) {
+              node.classList.add('newsitemME');
+            }
+          });
         }
-      });
-    
-      // Inicia o observador para adicionar a classe 'newsitemME'
-      addClassObserver.observe(document.body, { childList: true, subtree: true });
-    
+      }
+    });
+
+    // Inicia o observador para adicionar a classe 'newsitemME'
+    addClassObserver.observe(document.body, { childList: true, subtree: true });
+
 
 
     const searchinput = document.getElementById('search-input');
@@ -202,13 +202,20 @@ function paginacarregada() {
       inputArquivo[i].classList.add('inputArquivoME');
     }
 
-    // const infoAdocao = document.getElementById('infoAdocao');
-    // infoAdocao.className('infoAdocaoME');
+    const infoAdocao = document.getElementById('infoAdocao');
+    if (infoAdocao) {
+      infoAdocao.classList.add('infoAdocaoME');
+    }
 
-    // const numPets = document.getElementById('numPets');
-    // numPets.style.borderBottom = '1px white solid';
+    const numPets = document.getElementById('numPets');
+    if (numPets) {
+      numPets.style.borderBottom = '1px white solid';
+    }
 
-
+    const botFiltros = document.getElementById('botFiltros');
+    if (botFiltros) {
+      botFiltros.style.color = 'white'
+    }
 
     // configuracoes.html
     const titConfig = document.getElementsByClassName('titConfig');
@@ -365,6 +372,22 @@ function paginacarregada() {
       inputArquivo[i].classList.remove('inputArquivoME');
     }
 
+    const infoAdocao = document.getElementById('infoAdocao');
+    if (infoAdocao) {
+      infoAdocao.classList.remove('infoAdocaoME');
+    }
+
+    const numPets = document.getElementById('numPets');
+    if (numPets) {
+      numPets.style.borderBottom = ''; // Remove o estilo de borda
+    }
+
+    const botFiltros = document.getElementById('botFiltros');
+    if (botFiltros) {
+      botFiltros.style.color = ''; // Remove a cor do texto
+    }
+
+
     // configuracoes.html
     const titConfig = document.getElementsByClassName('titConfig');
     for (let i = 0; i < titConfig.length; i++) {
@@ -422,22 +445,22 @@ function paginacarregada() {
 
     const lupa = document.getElementsByClassName('lupa');
     for (let i = 0; i < lupa.length; i++) { //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .lupa
-        lupa[i].src = '/img/icons/lupa_pesquisa_cinza.svg'
+      lupa[i].src = '/img/icons/lupa_pesquisa_cinza.svg'
     }
 
     function removeAllNewsitemME() {
       // Seleciona todos os elementos com a classe 'newsitemME'
       const elements = document.querySelectorAll('.newsitemME');
-      
+
       // Remove a classe 'newsitemME' de cada elemento encontrado
       elements.forEach((element) => {
         element.classList.remove('newsitemME');
       });
     }
-    
+
     // Chama a função para remover a classe de todos os elementos existentes
     removeAllNewsitemME();
-    
+
     const searchinput = document.getElementById('search-input');
     if (searchinput) {
       searchinput.classList.remove('searchinputME')

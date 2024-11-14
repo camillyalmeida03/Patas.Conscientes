@@ -443,6 +443,18 @@ button {
     height: 100vh;
 }
 
+#expandirMenu .tema{
+    color: var(--cinza);
+    padding: 0 2rem;
+    margin-top: 2rem;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+.expandirMenuME .tema{
+    color: white !important;
+}
+
 .expandirMenuME{
     background-color: var(--cinza34) !important;
 }
@@ -623,7 +635,7 @@ button {
     gap: 1rem;
 }
 
-#tema{
+.tema{
     display: flex;
     width: 100%;
     justify-content: space-between;
