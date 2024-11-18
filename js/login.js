@@ -78,15 +78,20 @@ function paginacarregada(){
   // else {
   //   window.location.href = 'index.html';
 
-  // Seleciona o ícone de olho pelo id "togglePassword"
-document.getElementById("togglePassword").addEventListener("click", function() {
-  // Seleciona o campo de senha pelo id "senhaEntrar"
-  const passwordField = document.getElementById("senhaEntrar");
+ // Seleciona o botão e o campo de senha
+const togglePasswordButton = document.getElementById("togglePassword");
+const passwordField = document.getElementById("senhaEntrar");
+const eyeIcon = document.getElementById("olho");
+
+togglePasswordButton.addEventListener("click", function (event) {
+  event.preventDefault(); // Evita o envio do formulário ao clicar no botão
   
-  // Alterna o tipo de campo de "password" para "text" e vice-versa
-  const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
-  passwordField.setAttribute("type", type);
+  // Alterna o tipo de campo entre "password" e "text"
+  const isPassword = passwordField.getAttribute("type") === "password";
+  passwordField.setAttribute("type", isPassword ? "text" : "password");
   
-  // Alterna o ícone do olho entre "👁️" e "🙈"
-  this.textContent = type === "password" ? "👁️" : "🙈";
+  // Alterna a imagem do olho entre aberto e fechado
+  eyeIcon.setAttribute("src", isPassword ? "img/icons/olhofechado.svg" : "img/icons/olhoaberto.svg");
+  eyeIcon.setAttribute("alt", isPassword ? "Esconder senha" : "Mostrar senha");
 });
+

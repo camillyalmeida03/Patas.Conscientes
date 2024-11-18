@@ -1712,9 +1712,14 @@ ol {
     width: 15rem;
     min-width: 15rem;
     height: 100%;
-    
+    display: flex;
 }
 
+.alinhando{
+    display: flex;
+    flex-direction: column;
+    margin-left: 0;
+}
 
 .titConfig {
     font-size: 16px;
@@ -1898,7 +1903,7 @@ ol {
     align-items: center;
 }
 .passwordContainer input[type="password"],
-.passwordContainer input[type="text"], .inputLogin{
+.passwordContainer input[type="text"]{
     background-color: transparent;
     border: none;
     width: 90%;
@@ -2196,6 +2201,7 @@ textarea {
     width: 5rem;
     min-width: 5rem;
     display: flex;
+    flex-direction: column;
 }
 
 .favoritado .apagarFav {
