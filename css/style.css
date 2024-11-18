@@ -1889,6 +1889,7 @@ ol {
     background-color: var(--cinza230);
     box-shadow: 1px 1px 1px var(--azul_claro);
     margin-top: 1rem;
+    height: 2.5rem;
 }
 
 .passwordContainer{
@@ -1897,14 +1898,12 @@ ol {
     align-items: center;
 }
 .passwordContainer input[type="password"],
-.passwordContainer input[type="text"],
-.inputLogin{
+.passwordContainer input[type="text"], .inputLogin{
     background-color: transparent;
     border: none;
     width: 90%;
     outline: none;
 }
-
 
 .loginCard form>input[type="text"]::-webkit-input-placeholder,
 .loginCard form>input[type="password"]::-webkit-input-placeholder,
@@ -2188,8 +2187,7 @@ textarea {
 .error-message {
     color: red;
     font-size: 0.9em;
-    display: none;
-   
+    display: block;
 }
 
 /* ----------------------------- favoritos.html ----------------------------- */

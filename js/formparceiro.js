@@ -27,89 +27,113 @@ function atualizarContagem() {
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('formParceiro').addEventListener('submit', function(event) {
+    const form = document.getElementById('formParceiro');
+
+    form.addEventListener('submit', function(event) {
         event.preventDefault(); // Evita o envio do formulário inicialmente
-
-        const nomeOng = document.getElementById('nomeOng').value.trim();
-        const emailOng = document.getElementById('email1').value.trim();
-        const cnpj = document.querySelector('.cnpj').value.trim();
-        const nomeResponsavel = document.querySelector('.inputCadastro[placeholder="Nome do Responsável"]').value.trim();
-        const cpfResponsavel = document.querySelector('.cpf').value.trim();
-        const emailResponsavel = document.querySelector('.inputCadastro[placeholder="E-mail"]').value.trim();
-
-        const erroNomeOng = document.getElementById('erro3');
-        const erroEmailOng = document.getElementById('erro1');
-        const erroCnpj = document.getElementById('erroCnpj');
-        const erroNomeResponsavel = document.getElementById('erroNomeResponsavel');
-        const erroCpfResponsavel = document.getElementById('erroCpfResponsavel');
-        const erroEmailResponsavel = document.getElementById('erroEmailResponsavel');
-
-        // Expressões regulares para validação
-        const regexNome = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]+$/;
-        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const regexCnpj = /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/;
-        const regexCpf = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
 
         // Variável de controle de validade do formulário
         let formularioValido = true;
 
-        // Validação do nome da ONG
-        if (!regexNome.test(nomeOng) || nomeOng.length <= 3) {
-            erroNomeOng.innerHTML = 'Por favor, insira um nome válido.';
-            erroNomeOng.style.display = 'block';
-            formularioValido = false;
-        } else {
-            erroNomeOng.style.display = 'none';
-        }
-
-        // Validação do e-mail da ONG
-        if (!regexEmail.test(emailOng)) {
-            erroEmailOng.innerHTML = 'Por favor, insira um e-mail válido.';
-            erroEmailOng.style.display = 'block';
-            formularioValido = false;
-        } else {
-            erroEmailOng.style.display = 'none';
-        }
-
-        // Validação do CNPJ
-        if (!regexCnpj.test(cnpj)) {
-            erroCnpj.innerHTML = 'Por favor, insira um CNPJ válido (formato: XX.XXX.XXX/XXXX-XX).';
-            erroCnpj.style.display = 'block';
-            formularioValido = false;
-        } else {
-            erroCnpj.style.display = 'none';
-        }
-
-        // Validação do nome do responsável
-        if (!regexNome.test(nomeResponsavel) || nomeResponsavel.length <= 3) {
-            erroNomeResponsavel.innerHTML = 'Por favor, insira um nome válido.';
-            erroNomeResponsavel.style.display = 'block';
-            formularioValido = false;
-        } else {
-            erroNomeResponsavel.style.display = 'none';
-        }
-
-        // Validação do CPF do responsável
-        if (!regexCpf.test(cpfResponsavel)) {
-            erroCpfResponsavel.innerHTML = 'Por favor, insira um CPF válido (formato: XXX.XXX.XXX-XX).';
-            erroCpfResponsavel.style.display = 'block';
-            formularioValido = false;
-        } else {
-            erroCpfResponsavel.style.display = 'none';
-        }
-
-        // Validação do e-mail do responsável
-        if (!regexEmail.test(emailResponsavel)) {
-            erroEmailResponsavel.innerHTML = 'Por favor, insira um e-mail válido.';
-            erroEmailResponsavel.style.display = 'block';
-            formularioValido = false;
-        } else {
-            erroEmailResponsavel.style.display = 'none';
-        }
+        // Validações independentes de cada campo
+        if (!validarNomeOng()) formularioValido = false;
+        if (!validarEmailOng()) formularioValido = false;
+        if (!validarCnpj()) formularioValido = false;
+        if (!validarNomeResponsavel()) formularioValido = false;
+        if (!validarCpfResponsavel()) formularioValido = false;
+        if (!validarEmailResponsavel()) formularioValido = false;
 
         // Se todos os campos estiverem válidos, redireciona para a próxima página
         if (formularioValido) {
             window.location.href = "formularioparceiro2.html"; // Substitua pela URL desejada
         }
     });
+
+    // Funções de validação individuais
+    function validarNomeOng() {
+        const nomeOng = document.getElementById('nomeOng').value.trim();
+        const erroNomeOng = document.getElementById('erro3');
+        const regexNome = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]+$/;
+        if (!regexNome.test(nomeOng) || nomeOng.length <= 3) {
+            erroNomeOng.innerHTML = 'Por favor, insira um nome válido.';
+            erroNomeOng.style.display = 'block';
+            return false;
+        } else {
+            erroNomeOng.style.display = 'none';
+            return true;
+        }
+    }
+
+    function validarEmailOng() {
+        const emailOng = document.getElementById('emailOng').value.trim();
+        const erroEmailOng = document.getElementById('erroEmail');
+        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!regexEmail.test(emailOng)) {
+            erroEmailOng.innerHTML = 'Por favor, insira um e-mail válido.';
+            erroEmailOng.style.display = 'block';
+            return false;
+        } else {
+            erroEmailOng.style.display = 'none';
+            return true;
+        }
+    }
+
+    function validarCnpj() {
+        const cnpj = document.getElementById('cnpj').value.trim();
+        const erroCnpj = document.getElementById('erroCnpj');
+        const regexCnpj = /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/;
+        if (!regexCnpj.test(cnpj)) {
+            erroCnpj.innerHTML = 'Por favor, insira um CNPJ válido (formato: XX.XXX.XXX/XXXX-XX).';
+            erroCnpj.style.display = 'block';
+            return false;
+        } else {
+            erroCnpj.style.display = 'none';
+            return true;
+        }
+    }
+
+    function validarNomeResponsavel() {
+        const nomeResponsavel = document.getElementById('nomeResp').value.trim();
+        const erroNomeResponsavel = document.getElementById('erroNomeResponsavel');
+        const regexNome = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]+$/;
+        if (!regexNome.test(nomeResponsavel) || nomeResponsavel.length <= 3) {
+            erroNomeResponsavel.innerHTML = 'Por favor, insira um nome válido.';
+            erroNomeResponsavel.style.display = 'block';
+            return false;
+        } else {
+            erroNomeResponsavel.style.display = 'none';
+            return true;
+        }
+    }
+
+    function validarCpfResponsavel() {
+        const cpfResponsavel = document.getElementById('cpf').value.trim();
+        const erroCpfResponsavel = document.getElementById('erroCpfResponsavel');
+        const regexCpf = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
+        if (!regexCpf.test(cpfResponsavel)) {
+            erroCpfResponsavel.innerHTML = 'Por favor, insira um CPF válido (formato: XXX.XXX.XXX-XX).';
+            erroCpfResponsavel.style.display = 'block';
+            return false;
+        } else {
+            erroCpfResponsavel.style.display = 'none';
+            return true;
+        }
+    }
+
+    function validarEmailResponsavel() {
+        const emailResponsavel = document.getElementById('emailResp').value.trim();
+        const erroEmailResponsavel = document.getElementById('erroEmailResponsavel');
+        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!regexEmail.test(emailResponsavel)) {
+            erroEmailResponsavel.innerHTML = 'Por favor, insira um e-mail válido.';
+            erroEmailResponsavel.style.display = 'block';
+            return false;
+        } else {
+            erroEmailResponsavel.style.display = 'none';
+            return true;
+        }
+    }
 });
+
+
+
