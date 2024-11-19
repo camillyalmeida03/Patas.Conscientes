@@ -46,6 +46,8 @@ function atualizarContagem() {
         // Se todos os campos estiverem válidos, redireciona para a próxima página
         if (formularioValido) {
             window.location.href = "formularioparceiro2.html"; // Substitua pela URL desejada
+        }else {
+            window.location.href = "formularioparceiro.html#mainFormParc";
         }
     });
 

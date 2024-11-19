@@ -62,4 +62,20 @@ function paginacarregada() {
                 }
             })
         });
+
+        // Seleciona todos os elementos com a classe 'cel'
+        const tel = document.querySelectorAll(".tel");
+
+        // Para cada elemento, adiciona um ouvinte de evento de clique
+        tel.forEach(tel => {
+            tel.addEventListener('keydown', function () {
+                if (tel.value.length === 0) {
+                    tel.value += "(";
+                } else if (tel.value.length === 3) {
+                    tel.value += ")";
+                } else if (tel.value.length === 9) {
+                    tel.value += "-";
+                }
+            })
+        });
 }
