@@ -1896,7 +1896,6 @@ ol {
     margin-top: 1rem;
     height: 2.5rem;
 }
-
 .passwordContainer{
     display: flex;
     justify-content: space-between;
@@ -1904,10 +1903,10 @@ ol {
 }
 .passwordContainer input[type="password"],
 .passwordContainer input[type="text"]{
-    background-color: transparent;
     border: none;
     width: 90%;
     outline: none;
+    background-color: transparent ;
 }
 
 .loginCard form>input[type="text"]::-webkit-input-placeholder,
@@ -2192,7 +2191,7 @@ textarea {
 .error-message {
     color: red;
     font-size: 0.9em;
-    display: block;
+    display: none;
 }
 
 /* ----------------------------- favoritos.html ----------------------------- */

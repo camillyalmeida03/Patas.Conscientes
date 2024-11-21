@@ -75,9 +75,6 @@ function paginacarregada(){
   }
   );
 
-  // else {
-  //   window.location.href = 'index.html';
-
  // Seleciona o botão e o campo de senha
 const togglePasswordButton = document.getElementById("togglePassword");
 const passwordField = document.getElementById("senhaEntrar");

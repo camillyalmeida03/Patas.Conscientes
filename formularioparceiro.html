@@ -245,33 +245,33 @@
         <fieldset>
             <div>
                 <div class="alinharErro">
-                    <input type="text" name="" id="nomeOng" class="inputCadastro" placeholder="Nome da ONG" required>
+                    <input type="text" name="" id="nomeOng" class="inputCadastro" placeholder="Nome da ONG" >
                     <p id="erro3" class="error-message"></p>
                 </div>
 
                 <div class="alinharErro">
-                    <input type="text" id="emailOng" class="inputCadastro" placeholder="E-mail" required>
+                    <input type="text" id="emailOng" class="inputCadastro" placeholder="E-mail" >
                     <p id="erroEmail" class="error-message"></p>
                 </div>
             </div>
-            <input type="text" id="cnpj" class="inputCadastro cnpj" placeholder="CNPJ" maxlength="18" required>
+            <input type="text" id="cnpj" class="inputCadastro cnpj" placeholder="CNPJ" maxlength="18" >
             <p id="erroCnpj" class="error-message"></p>
         </fieldset>
 
         <h2>Dados do Responsável</h2>
         <fieldset>
             <div class="alinharErro">
-                <input type="text" id="nomeResp" class="inputCadastro" placeholder="Nome do Responsável" required>
+                <input type="text" id="nomeResp" class="inputCadastro" placeholder="Nome do Responsável" >
                 <p id="erroNomeResponsavel" class="error-message"></p>
             </div>
 
             <div>
                 <div class="alinharErro">
-                    <input type="text" class="inputCadastro cpf" id="cpf" placeholder="CPF" maxlength="14" required>
+                    <input type="text" class="inputCadastro cpf" id="cpf" placeholder="CPF" maxlength="14" >
                     <p id="erroCpfResponsavel" class="error-message"></p>
                 </div>
                 <div class="alinharErro">
-                    <input type="text" id="emailResp" class="inputCadastro" placeholder="E-mail" required>
+                    <input type="text" id="emailResp" class="inputCadastro" placeholder="E-mail" >
                     <p id="erroEmailResponsavel" class="error-message"></p>
                 </div>
             </div>
@@ -279,15 +279,28 @@
 
         <h2>Endereço</h2>
         <fieldset>
-            <input type="text" class="inputCadastro cep" placeholder="CEP" maxlength="9" required>
+            <input type="text" id="cep" class="inputCadastro cep" placeholder="CEP" maxlength="9" >
+            <p id="erroCep" class="error-message"></p>
             <div>
-                <input type="text" class="inputCadastro" placeholder="Estado" required>
-                <input type="text" class="inputCadastro" placeholder="Cidade" required>
+              <div class="alinharErro">
+                <input type="text" id="estado" class="inputCadastro" placeholder="Estado" >
+                <p id="erroEstado" class="error-message"></p>
+              </div>
+              <div class="alinharErro">
+                <input type="text" id="cidade" class="inputCadastro" placeholder="Cidade" >
+                <p id="erroCidade" class="error-message"></p>
+              </div>
             </div>
             <input type="text" class="inputCadastro" placeholder="Logradouro">
             <div>
-                <input type="text" class="inputCadastro" placeholder="Bairro" required>
-                <input type="text" class="inputCadastro" placeholder="Número" required>
+              <div class="alinharErro">
+                <input type="text" id="bairro" class="inputCadastro" placeholder="Bairro" >
+                <p id="erroBairro" class="error-message"></p>
+              </div>
+              <div class="alinharErro">
+                <input type="text" id="nmr" class="inputCadastro" placeholder="Número" >
+                <p id="erroNmr" class="error-message"></p>
+              </div>
             </div>
             <input type="text" class="inputCadastro" placeholder="Complemento">
         </fieldset>
