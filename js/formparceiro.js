@@ -9,14 +9,14 @@
 
 // continuarFormParc.addEventListener("click", function(){
 //     event.preventDefault();
-    
+
 //     formParceiro1.style.display = 'none';
 //     formParceiro2.style.display = 'flex';
 // })
 
 // cadastrarFormParceiro.addEventListener("click", function(){
 //     event.preventDefault();
-    
+
 //     formParceiro1.style.display = 'flex';
 //     formParceiro2.style.display = 'none';
 // })
@@ -24,9 +24,9 @@
 
 function atualizarContagem() {
     contagem.innerHTML = mensagem.value.length;
-  }
+}
 
-  document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('formParceiro');
 
     form.addEventListener('submit', function (event) {
@@ -194,13 +194,11 @@ function atualizarContagem() {
     function validarEstado() {
         const estado = document.getElementById('estado').value.trim();
         const erroEstado = document.getElementById('erroEstado');
-    
+
         // Lista de estados brasileiros
         const estados = [
-            "Acre", "Alagoas", "Amapá", "Amazonas", "Bahia", "Ceará", "Espírito Santo", "Goiás", "Maranhão",
-            "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Pará", "Paraíba", "Paraná", "Pernambuco",
-            "Piauí", "Rio de Janeiro", "Rio Grande do Norte", "Rio Grande do Sul", "Rondônia", "Roraima",
-            "Santa Catarina", "São Paulo", "Sergipe", "Tocantins"
+            "Acre","AC", "Alagoas", "AL", "Amapá", "AP", "Amazonas", "AM", "Bahia", "BA", "Ceará", "CE", "Espírito Santo", "ES", "Goiás", "GO", "Maranhão", "MA", "Mato Grosso", "MT", "Mato Grosso do Sul", "MS", "Minas Gerais", "MG", "Pará", "PA", "Paraíba", "PB", "Paraná", "PR", "Pernambuco", "PE", "Piauí", "PI", "Rio de Janeiro", "RJ", "Rio Grande do Norte", "RN", "Rio Grande do Sul", "RS", "Rondônia", "RO", "Roraima", "RR", "Santa Catarina", "SC", "São Paulo", "SP", "Sergipe", "SE", "Tocantins", "TO"
+
         ];
 
         if (estado === '') {
@@ -216,7 +214,7 @@ function atualizarContagem() {
         erroEstado.style.display = 'none';
         return true;
     }
-    
+
 
     function validarCidade() {
         const cidade = document.getElementById('cidade').value.trim();
@@ -257,7 +255,7 @@ function atualizarContagem() {
     function validarNmr() {
         const nmr = document.getElementById('nmr').value.trim();
         const erroNmr = document.getElementById('erroNmr');
-        const regexNmr= /^[0-9]+[a-zA-Z0-9/-]*$/;;
+        const regexNmr = /^[0-9]+[a-zA-Z0-9/-]*$/;;
 
         if (nmr === '') {
             erroNmr.innerHTML = 'O campo Número é obrigatório.';
