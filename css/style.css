@@ -1001,7 +1001,8 @@ footer .listasFooter a:hover {
 .linksFooter {
     display: flex;
     width: 100%;
-    gap: 8%;
+    gap: 4rem;
+    justify-content: space-between;
 }
 
 .listasFooter {
@@ -1020,15 +1021,9 @@ footer .listasFooter a:hover {
 
 .divFooter {
     display: flex;
-    width: 100%;
-    justify-content: space-between;
+    gap: 1rem;
     flex-wrap: wrap;
-}
-
-.divFooter>div {
-    width: 50%;
-    display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
 .linhaFooter {
@@ -2271,13 +2266,8 @@ textarea {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .divFooter {
-        flex-direction: column;
-    }
 
-    .divFooter>div {
-        width: 100%;
-    }
+
 
 }
 
@@ -2391,21 +2381,17 @@ textarea {
         grid-template-columns: repeat(2, 1fr);
     }
 
-
-}
-
-@media screen and (max-width: 930px){
     .linksFooter{
         flex-direction: column;
         align-items: center;
+        gap: 2rem;
     }
 
-    .divFooter>div{
-        gap: 2rem;
+    .divFooter{
         justify-content: center;
     }
-
 }
+
 
 @media screen and (max-width: 914px) {
     .especial2 {
@@ -2663,11 +2649,6 @@ textarea {
 }
 
 @media screen and (max-width: 550px) {
-    .divFooter>div {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
     .linksFooter .logobranca {
         height: 6rem;
     }
