@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function validarNmr() {
         const nmr = document.getElementById('nmr').value.trim();
         const erroNmr = document.getElementById('erroNmr');
-        const regexNmr = /^[0-9]+[a-zA-Z0-9/-]*$/;;
+        const regexNmr = /^[0-9]+[a-zA-Z0-9/-]*$/;
 
         if (nmr === '') {
             erroNmr.innerHTML = 'O campo Número é obrigatório.';
