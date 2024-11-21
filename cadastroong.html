@@ -237,33 +237,55 @@
 
   <h1 class="azul centro">Cadastro de ONG</h1>
 
-  <main class="mainForms">
+  <main id="MainFormCadOng" class="mainForms">
 
     <div class="fundoBranco">
-      <form action="" method="get" class="formCadastro">
+      <form action="" method="get" id="formOng" class="formCadastro">
         <h2>Cadastrar</h2>
-
-        <input type="text" name="" id="nomeOng" class="inputCadastro" placeholder="Nome da ONG" required>
-
-        <input type="text" class="inputCadastro cnpj" placeholder="CNPJ" maxlength="18" required>
-
-        <input type="text" class="inputCadastro" placeholder="Nome do responsável" required>
-
-        <div>
-          <input type="tel" class="inputCadastro tel" placeholder="Telefone" maxlength="14" required>
-
-          <input type="tel" class="inputCadastro cel" placeholder="Celular" maxlength="14" required>
+        <div class="alinharErro">
+          <input type="text" name="" id="nomeOng" class="inputCadastro" placeholder="Nome da ONG" >
+          <p id="erroNome" class="error-message"></p>
         </div>
 
-        <input type="email" class="inputCadastro" placeholder="E-mail" required>
-
-        <div>
-          <input type="password" class="inputCadastro" placeholder="Senha" required>
-
-          <input type="password" class="inputCadastro" placeholder="Confirme sua senha" required>
+        <div class="alinharErro">
+          <input type="text" id="cnpj" class="inputCadastro cnpj" placeholder="CNPJ" maxlength="18" >
+          <p id="erroCnpj" class="error-message"></p>
         </div>
 
-        <button title="Confirmar cadastro" class="buttonRosaForm">Confirmar</button>
+        <div class="alinharErro">
+          <input type="text" id="nomeResp" class="inputCadastro" placeholder="Nome do responsável" >
+          <p id="erroNomeResponsavel" class="error-message"></p>
+        </div>
+
+        <div>
+        <div class="alinharErro">
+          <input type="tel" id="tel" class="inputCadastro tel" placeholder="Telefone" maxlength="15" >
+          <p id="erroTelefone" class="error-message"></p>
+        </div>
+        <div class="alinharErro">
+          <input type="tel" id="cel" class="inputCadastro cel" placeholder="Celular" maxlength="15" >
+          <p id="erroCel" class="error-message"></p>
+        </div>
+        </div>
+
+        <div class="alinharErro">
+          <input type="email" id="emailCad" class="inputCadastro" placeholder="E-mail" >
+          <p id="erroEmail" class="error-message"></p>
+        </div>
+
+        <div>
+          <div class="alinharErro">
+            <input id="senha" type="password" class="inputCadastro" placeholder="Senha" >
+            <p id="erroSenha" class="error-message"></p>
+          </div>
+
+          <div class="alinharErro">
+            <input id="confirmarSenha" type="password" class="inputCadastro" placeholder="Confirme sua senha" >
+            <p id="erroSenha2" class="error-message"></p>
+          </div>
+        </div>
+
+        <button type="submit" title="Confirmar cadastro" class="buttonRosaForm">Confirmar</button>
       </form>
     </div>
 
@@ -421,6 +443,7 @@
   <script src="js/header.js"></script>
   <script src="js/barraacessibilidade.js"></script>
   <script src="js/formulario.js"></script>
+  <script src="js/formcadong.js"></script>
   <script src="js/tema.js"></script>
 
 

@@ -2192,6 +2192,7 @@ textarea {
     color: red;
     font-size: 0.9em;
     display: none;
+    text-align: left;
 }
 
 /* ----------------------------- favoritos.html ----------------------------- */

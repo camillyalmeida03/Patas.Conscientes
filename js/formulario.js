@@ -56,8 +56,8 @@ function paginacarregada() {
                 if (cel.value.length === 0) {
                     cel.value += "(";
                 } else if (cel.value.length === 3) {
-                    cel.value += ")";
-                } else if (cel.value.length === 9) {
+                    cel.value += ") ";
+                } else if (cel.value.length === 10) {
                     cel.value += "-";
                 }
             })
@@ -72,10 +72,12 @@ function paginacarregada() {
                 if (tel.value.length === 0) {
                     tel.value += "(";
                 } else if (tel.value.length === 3) {
-                    tel.value += ")";
-                } else if (tel.value.length === 9) {
+                    tel.value += ") ";
+                } else if (tel.value.length === 10) {
                     tel.value += "-";
                 }
             })
         });
 }
+
+
