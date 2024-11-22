@@ -271,6 +271,15 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+document.getElementById('outros').addEventListener('change', function() {
+    var campoOutros = document.getElementById('campoOutros');
+    if (this.checked) {
+      campoOutros.style.display = 'block';
+    } else {
+      campoOutros.style.display = 'none';
+    }
+  });
+
 
 
 

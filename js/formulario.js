@@ -63,7 +63,7 @@ function paginacarregada() {
             })
         });
 
-        // Seleciona todos os elementos com a classe 'cel'
+        // Seleciona todos os elementos com a classe 'Tel'
         const tel = document.querySelectorAll(".tel");
 
         // Para cada elemento, adiciona um ouvinte de evento de clique
