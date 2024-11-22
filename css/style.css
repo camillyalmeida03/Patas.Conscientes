@@ -79,6 +79,11 @@ main {
     margin-bottom: 1rem;
 }
 
+.h2P{
+    font-size: 16px;
+    font-weight: normal;
+}
+
 .buttonRosa {
     padding: 1rem;
     background-color: var(--rosa);
@@ -1708,6 +1713,7 @@ ol {
     min-width: 15rem;
     height: 100%;
     display: flex;
+    flex-direction: column;
 }
 
 .alinhando{
@@ -2453,6 +2459,7 @@ textarea {
         margin-bottom: 0.5rem;
         display: flex;
         gap: 2rem;
+        flex-direction: row;
     }
 
     #contaConfig {
@@ -2637,6 +2644,10 @@ textarea {
     .formCadastro div {
         flex-direction: column;
         display: flex;
+    }
+
+    .alinharErro{
+        width: 100%;
     }
 
 
