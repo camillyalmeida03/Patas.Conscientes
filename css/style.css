@@ -27,6 +27,9 @@
     --cinza34: rgb(34, 34, 34);
     --cinza147: rgb(147, 147, 147);
     --cinza100: rgb(100, 100, 100);
+
+    --azulME1: rgb(30, 144, 255);
+    --azulME2: rgb(35, 165, 240);
 }
 
 * {
@@ -70,7 +73,7 @@ main {
 }
 
 .azulME{
-    color: var(--azul_maisclaro);
+    color: var(--azulME2);
 }
 
 .centro {
@@ -226,7 +229,7 @@ main {
 }
 
 .newsitemME a{
-    color: var(--azul_claro);
+    color: var(--azulME1);
 }
 
 .newsitemME p{
