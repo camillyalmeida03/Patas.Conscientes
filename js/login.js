@@ -48,7 +48,7 @@ function paginacarregada(){
     const erro2 = document.getElementById('erro2');
   
     if (senhaEntrar !== '12345') {
-        erro2.textContent = 'Por favor, insira uma senha válida';
+        erro2.textContent = 'Por favor, insira uma senha válida.';
     } else {
         erro2.style.display = 'none'; 
     }
