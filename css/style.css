@@ -1118,7 +1118,7 @@ footer .listasFooter a:hover {
     background-color: transparent;
 }
 
-/* ----------------------------- insticional.html ----------------------------- */
+/* ----------------------------- institucional.html ----------------------------- */
 
 .caminhoInst {
     height: 8.5rem;
@@ -1699,6 +1699,10 @@ ol {
     height: 7rem !important;
     margin-top: 1rem;
     background-color: var(--cinza245);
+    border-radius: 1.5rem;
+    border: none;
+    resize: none ;
+    padding: 1rem;
 }
 
 /* ----------------------------- configuracoes.html ----------------------------- */
@@ -1995,6 +1999,7 @@ ol {
 .mainFormsME h2{
     color: white;
 }
+
 
 .fundoBranco>div {
     display: flex;
