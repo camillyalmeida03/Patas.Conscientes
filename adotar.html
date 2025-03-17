@@ -80,8 +80,7 @@
     <div class="linksMenu">
 
       <div id="comboInst">
-        <a href="institucional.html" title="Link que direciona para a página Institucional do site"
-          id="instA">Institucional</a>
+        <a href="institucional.html" title="Link que direciona para a página Institucional do site">Institucional</a>
 
         <svg id="setaInst" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#ffff">
           <path d="m485.91-480-184-184L376-738.09 634.09-480 376-221.91 301.91-296l184-184Z" />
@@ -136,8 +135,8 @@
     <div class="tema">
       <p>Tema</p>
 
-      <label class="ui-switch">
-        <input type="checkbox" class="definirTema">
+      <label class="ui-switch" aria-label="Alternar tema">
+        <input type="checkbox" class="definirTema" />
         <div class="slid">
           <div class="circle"></div>
         </div>
@@ -184,12 +183,12 @@
       <div class="tema">
         <p>Tema</p>
 
-        <label class="ui-switch">
-          <input type="checkbox" class="definirTema">
+        <label class="ui-switch" aria-label="Alternar tema">
+          <input type="checkbox" class="definirTema" />
           <div class="slid">
             <div class="circle"></div>
           </div>
-        </label>
+        </label>        
       </div>
     </div>
 
@@ -219,12 +218,13 @@
       <div id="tema">
         <p>Tema</p>
 
-        <label class="ui-switch">
-          <input type="checkbox">
+        <label class="ui-switch" aria-label="Alternar tema">
+          <input type="checkbox" class="definirTema" />
           <div class="slid">
             <div class="circle"></div>
           </div>
         </label>
+        
       </div>
     </div>
   </div>
@@ -240,132 +240,141 @@
 
     <button class="buttonFiltrar" title="Botão expandir filtros" id="botFiltros"
       onclick="abrirFiltros()">Filtros</button>
-    <aside class="filtro" id="filtro">
-      <div class="botFiltro">
-
-        <h2 class="h2P">Filtros</h2>
-
-        <div>
-          <button title="Fechar filtros" id="fecharFiltros" onclick="fecharFiltros()"><svg
-              xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#5f6368">
-              <path
-                d="m287-216-69-71 192-193-192-195 69-71 194 195 192-195 69 71-192 195 192 193-69 71-192-195-194 195Z" />
-            </svg></button>
-          <button type="button" onclick="limparRadioButtons()" title="Botão para limpar todos os filtros aplicados"
-            id="limparFiltros">Limpar todos</button>
+      <aside class="filtro" id="filtro">
+        <div class="botFiltro">
+      
+          <h2 class="h2P">Filtros</h2>
+      
+          <div>
+            <button title="Fechar filtros" id="fecharFiltros" onclick="fecharFiltros()" aria-label="Fechar filtros">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#5f6368">
+                <path d="m287-216-69-71 192-193-192-195 69-71 194 195 192-195 69 71-192 195 192 193-69 71-192-195-194 195Z" />
+              </svg>
+            </button>
+      
+            <button type="button" onclick="limparRadioButtons()" title="Botão para limpar todos os filtros aplicados"
+              id="limparFiltros" aria-label="Limpar todos os filtros">Limpar todos
+            </button>
+          </div>
+      
         </div>
-      </div>
-
-      <div class="linha"></div>
-
-      <div class="camadasFiltro" id="cidadeFiltro">
-        <h3>Cidade</h3>
-        <div>
-          <input type="radio" name="filter1" id="mt">
-          <label>Matão</label>
+      
+        <div class="linha"></div>
+      
+        <!-- Filtro Cidade -->
+        <div class="camadasFiltro" id="cidadeFiltro">
+          <h3>Cidade</h3>
+          <div>
+            <input type="radio" name="filter1" id="mt">
+            <label for="mt">Matão</label>
+          </div>
+      
+          <div>
+            <input type="radio" name="filter1" id="tq">
+            <label for="tq">Taquaritinga</label>
+          </div>
+      
+          <div>
+            <input type="radio" name="filter1" id="arq">
+            <label for="arq">Araraquara</label>
+          </div>
         </div>
-
-        <div>
-          <input type="radio" name="filter1" id="tq">
-          <label>Taquaritinga</label>
+      
+        <div class="linha"></div>
+      
+        <!-- Filtro ONG's -->
+        <div class="camadasFiltro" id="ongsFiltro">
+          <h3>ONG's</h3>
+      
+          <div>
+            <input type="checkbox" name="ong1F" id="ong1F">
+            <label for="ong1F">Patas Amigas Matão</label>
+          </div>
+      
+          <div>
+            <input type="checkbox" name="ong2F" id="ong2F">
+            <label for="ong2F">Lar dos Peludos Matão</label>
+          </div>
+      
+          <div>
+            <input type="checkbox" name="ong3F" id="ong3F">
+            <label for="ong3F">Vida Animal Matão</label>
+          </div>
+      
+          <div>
+            <input type="checkbox" name="ong4F" id="ong4F">
+            <label for="ong4F">Cãopanheiros Taquaritinga</label>
+          </div>
+      
+          <div>
+            <input type="checkbox" name="ong5F" id="ong5F">
+            <label for="ong5F">Amor em Patas Taquaritinga</label>
+          </div>
+      
+          <div>
+            <input type="checkbox" name="ong6F" id="ong6F">
+            <label for="ong6F">Anjos de Quatro Patas</label>
+          </div>
         </div>
-
-        <div>
-          <input type="radio" name="filter1" id="arq">
-          <label>Araraquara</label>
+      
+        <div class="linha"></div>
+      
+        <!-- Filtro Espécie -->
+        <div class="camadasFiltro" id="especieFiltro">
+          <h3>Espécie</h3>
+      
+          <div>
+            <input type="radio" name="filter2" id="cachorroF">
+            <label for="cachorroF">Cachorro</label>
+          </div>
+      
+          <div>
+            <input type="radio" name="filter2" id="gatoF">
+            <label for="gatoF">Gato</label>
+          </div>
         </div>
-      </div>
-
-      <div class="linha"></div>
-
-      <div class="camadasFiltro" id="ongsFiltro">
-        <h3>ONG's</h3>
-        <div>
-          <input type="checkbox" name="ong1F" id="ong1F">
-          <label>Patas Amigas Matão</label>
+      
+        <div class="linha"></div>
+      
+        <!-- Filtro Porte -->
+        <div class="camadasFiltro" id="porteFiltro">
+          <h3>Porte</h3>
+      
+          <div>
+            <input type="radio" name="filter3" id="pequenoF">
+            <label for="pequenoF">Pequeno</label>
+          </div>
+      
+          <div>
+            <input type="radio" name="filter3" id="medioF">
+            <label for="medioF">Médio</label>
+          </div>
+      
+          <div>
+            <input type="radio" name="filter3" id="grandeF">
+            <label for="grandeF">Grande</label>
+          </div>
         </div>
-
-        <div>
-          <input type="checkbox" name="ong2F" id="ong2F">
-          <label>Lar dos Peludos Matão</</label>
+      
+        <div class="linha"></div>
+      
+        <!-- Filtro Sexo -->
+        <div class="camadasFiltro" id="sexoFiltro">
+          <h3>Sexo</h3>
+      
+          <div>
+            <input type="checkbox" name="sexo" id="femeaF">
+            <label for="femeaF">Fêmea</label>
+          </div>
+      
+          <div>
+            <input type="checkbox" name="sexo" id="machoF">
+            <label for="machoF">Macho</label>
+          </div>
         </div>
-
-        <div>
-          <input type="checkbox" name="ong3F" id="ong3F">
-          <label>Vida Animal Matão</label>
-        </div>
-
-        <div>
-          <input type="checkbox" name="ong4F" id="ong4F">
-          <label>Cãopanheiros Taquaritinga</label>
-
-        </div>
-
-        <div>
-          <input type="checkbox" name="ong5F" id="ong5F">
-          <label>Amor em Patas Taquaritinga</label>
-        </div>
-
-        <div>
-          <input type="checkbox" name="ong5F" id="ong5F">
-          <label>Anjos de Quatro Patas</label>
-        </div>
-      </div>
-
-      <div class="linha"></div>
-
-      <div class="camadasFiltro" id="especieFiltro">
-        <h3>Espécie</h3>
-
-        <div>
-          <input type="radio" name="filter2" id="cachorroF">
-          <label>Cachorro</label>
-        </div>
-
-        <div>
-          <input type="radio" name="filter2" id="gatoF">
-          <label>Gato</label>
-        </div>
-      </div>
-
-      <div class="linha"></div>
-
-      <div class="camadasFiltro" id="porteFiltro">
-        <h3>Porte</h3>
-
-        <div>
-          <input type="radio" name="filter3" id="pequenoF">
-          <label>Pequeno</label>
-        </div>
-
-        <div>
-          <input type="radio" name="filter3" id="medioF">
-          <label>Médio</label>
-        </div>
-
-        <div>
-          <input type="radio" name="filter3" id="grandeF">
-          <label>Grande</label>
-        </div>
-      </div>
-
-      <div class="linha"></div>
-
-      <div class="camadasFiltro" id="sexoFiltro">
-        <h3>Sexo</h3>
-
-        <div>
-          <input type="checkbox" name="femeaF" id="femeaF">
-          <label>Fêmea</label>
-        </div>
-
-        <div>
-          <input type="checkbox" name="machoF" id="machoF">
-          <label>Macho</label>
-        </div>
-      </div>
-    </aside>
-
+      
+      </aside>
+      
     <section class="adotarSec">
 
       <div class="cardsAnimais">
@@ -992,7 +1001,7 @@
     <section class="fimFooter">
 
 
-      <div class="insta"><a href="https://www.instagram.com/patas_conscientes?igsh=MXY0enptMWlveXQ4bQ==" target="_blank"
+      <div class="insta"><a href="https://www.instagram.com/patas_conscientes?igsh=MXY0enptMWlveXQ4bQ==" target="_blank" rel="noopener"
           title="Link que direciona para a página do Instagram do Patas Conscientes"><svg class="instagram"
             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
             <path fill="#ffffff"

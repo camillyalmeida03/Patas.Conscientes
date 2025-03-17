@@ -2046,6 +2046,12 @@ ol {
     gap: 1rem;
 }
 
+.labelEstado{
+    position: absolute;
+    left: -200rem;
+    color: transparent;
+}
+
 .formCadastro h2 {
     display: flex;
     justify-content: flex-start;

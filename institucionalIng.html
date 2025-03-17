@@ -67,8 +67,7 @@
     <div class="linksMenu">
 
       <div id="comboInst">
-        <a href="institucional.html" title="Link to the Institutional page of the site"
-          id="instA">Institutional</a>
+        <a href="institucional.html" title="Link to the Institutional page of the site">Institutional</a>
 
         <svg id="setaInst" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#ffff">
           <path d="m485.91-480-184-184L376-738.09 634.09-480 376-221.91 301.91-296l184-184Z" />
@@ -118,12 +117,13 @@
     <div class="tema">
       <p>Theme</p>
     
-      <label class="ui-switch">
-        <input type="checkbox" class="definirTema">
+      <label class="ui-switch" aria-label="Alternar tema">
+        <input type="checkbox" class="definirTema" />
         <div class="slid">
           <div class="circle"></div>
         </div>
       </label>
+      
     </div>
     </div>
     
@@ -162,12 +162,13 @@
         <div class="tema">
           <p>Theme</p>
     
-          <label class="ui-switch">
-            <input type="checkbox" class="definirTema">
+          <label class="ui-switch" aria-label="Alternar tema">
+            <input type="checkbox" class="definirTema" />
             <div class="slid">
               <div class="circle"></div>
             </div>
-          </label>
+          </label>    
+          
         </div>
       </div>
     
@@ -197,12 +198,13 @@
         <div id="tema">
           <p>Theme</p>
     
-          <label class="ui-switch">
-            <input type="checkbox">
+          <label class="ui-switch" aria-label="Alternar tema">
+            <input type="checkbox" class="definirTema" id="temaToggle" aria-hidden="true">
             <div class="slid">
               <div class="circle"></div>
             </div>
           </label>
+          
         </div>
       </div>
     </div>    
@@ -516,7 +518,7 @@
   
     <section class="fimFooter">
       <div class="insta">
-        <a href="https://www.instagram.com/patas_conscientes?igsh=MXY0enptMWlveXQ4bQ==" target="_blank" 
+        <a href="https://www.instagram.com/patas_conscientes?igsh=MXY0enptMWlveXQ4bQ==" target="_blank" rel="noopener noreferrer"
           title="Link that directs to the Patas Conscientes Instagram page">
           <svg class="instagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
             <path fill="#ffffff" 
