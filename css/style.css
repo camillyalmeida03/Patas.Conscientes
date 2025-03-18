@@ -1164,7 +1164,7 @@ footer .listasFooter a:hover {
     display: flex;
     flex-direction: column;
     width: 100%;
-    gap: 4rem;
+    gap: 0.8rem;
 }
 
 /* seções */
