@@ -83,8 +83,9 @@ main {
 }
 
 .h2P{
-    font-size: 16px;
+    font-size: 18px;
     font-weight: normal;
+    font-weight: 600;
 }
 
 .buttonRosa {
@@ -1373,6 +1374,7 @@ footer .listasFooter a:hover {
     height: 80%;
 }
 
+
 .filtroME{
     background-color: var(--cinza147);
 }
@@ -1383,12 +1385,17 @@ footer .listasFooter a:hover {
 
 #limparFiltros{
     transition: none;
+    font-size: 14px;
+}
+
+#limparFiltros:hover{
+    color: var(--azul_claro);
 }
 
 .linha {
     height: 1px;
     width: 100%;
-    background-color: black;
+    background-color: var(--cinza158);
     margin: 1rem 0;
 }
 
@@ -1399,18 +1406,20 @@ footer .listasFooter a:hover {
 .botFiltro {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
-.botFiltro button,
-h3 {
-    font-size: 17px;
-    font-weight: 400;
-}
+
 
 .camadasFiltro {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+}
+
+.camadasFiltro h3{
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .camadasFiltro div {
@@ -1425,7 +1434,20 @@ h3 {
     margin-left: 3%;
     padding: 0 1rem 1rem 1rem;
     font-size: 16px;
-    width: 4rem;
+    transition: none;
+    align-items: center;
+    justify-content: space-between;
+    width: 6.5rem;
+}
+
+.buttonFiltrar svg{
+    flex-shrink: 0;
+    fill: #000000;
+}
+
+.buttonFiltrar:hover, .buttonFiltrar:hover svg path {
+    color: var(--azul_maisclaro);
+    fill: var(--azul_maisclaro);
 }
 
 .adotarSec {
