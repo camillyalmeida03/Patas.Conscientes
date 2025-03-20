@@ -1395,6 +1395,14 @@ footer .listasFooter a:hover {
     color: var(--azul_claro);
 }
 
+.limparFiltrosME{
+    color: white !important;
+}
+
+.limparFiltrosME:hover{
+    color: var(--azul_escuro) !important;
+}
+
 .no-scroll{
     overflow: hidden;
 }
@@ -1415,6 +1423,18 @@ footer .listasFooter a:hover {
     justify-content: space-between;
     align-items: center;
 }
+
+.botFiltroME{
+    color: white !important;
+}	
+
+.botFiltroME svg path{
+    fill: white;
+}
+
+.botFiltroME:hover{
+    color: var(--azul_maisclaro) !important;
+}	
 
 .camadasFiltro {
     display: flex;
@@ -2345,7 +2365,7 @@ textarea {
     .filtro {
         width: 100%;
         border-radius: 0;
-        padding: 2rem;
+        padding: 2rem 2rem 10rem 2rem;
         min-height: 100vh;
         position: fixed;
         z-index: 100;

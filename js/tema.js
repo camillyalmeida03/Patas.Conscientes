@@ -46,6 +46,12 @@ function paginacarregada() {
             filtro[i].classList.add('filtroME');
         }
 
+        const limparFiltros = document.getElementById('limparFiltros');
+        if (limparFiltros) {
+          limparFiltros.classList.add('limparFiltrosME');
+        }
+        
+
         const cardsAnimais = document.getElementsByClassName('cardsAnimais'); //adotar.html e favoritos.html 
         for (let i = 0; i < cardsAnimais.length; i++) {//loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .cardsAnimais
             cardsAnimais[i].classList.add('cardsAnimaisME');
@@ -110,7 +116,7 @@ function paginacarregada() {
 
         const botFiltros = document.getElementById('botFiltros');
         if (botFiltros) {
-            botFiltros.style.color = 'white'
+          botFiltros.classList.add('botFiltroME');
         }
 
         // configuracoes.html
@@ -267,6 +273,12 @@ function paginacarregada() {
             filtro[i].classList.remove('filtroME');
         }
 
+        const limparFiltros = document.getElementById('limparFiltros');
+        if (limparFiltros) {
+          limparFiltros.classList.remove('limparFiltrosME');
+        }
+        
+
         const cardsAnimais = document.getElementsByClassName('cardsAnimais');
         for (let i = 0; i < cardsAnimais.length; i++) {
             cardsAnimais[i].classList.remove('cardsAnimaisME');
@@ -330,7 +342,7 @@ function paginacarregada() {
 
         const botFiltros = document.getElementById('botFiltros');
         if (botFiltros) {
-            botFiltros.style.color = ''; // Remove a cor do texto
+          botFiltros.classList.remove('botFiltroME');
         }
 
 
