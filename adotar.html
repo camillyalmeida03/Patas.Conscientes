@@ -240,25 +240,31 @@
   <main class="mainAdotar">
 
     <button class="buttonFiltrar" title="Botão expandir filtros" id="botFiltros" onclick="abrirFiltros()">Filtros
-      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M460-140v-200h40v80h320v40H500v80h-40Zm-320-80v-40h200v40H140Zm160-160v-80H140v-40h160v-80h40v200h-40Zm160-80v-40h360v40H460Zm160-160v-200h40v80h160v40H660v80h-40Zm-480-80v-40h360v40H140Z"/></svg>  
+      <!-- Ícone do filtro -->
+      <svg viewBox="0 -960 960 960">
+        <path
+          d="M460-140v-200h40v80h320v40H500v80h-40Zm-320-80v-40h200v40H140Zm160-160v-80H140v-40h160v-80h40v200h-40Zm160-80v-40h360v40H460Zm160-160v-200h40v80h160v40H660v80h-40Zm-480-80v-40h360v40H140Z" />
+      </svg>
     </button>
+
     <aside class="filtro" id="filtro">
       <div class="botFiltro">
 
         <h2 class="h2P">Filtros</h2>
 
-        <div>
-          <button title="Fechar filtros" id="fecharFiltros" onclick="fecharFiltros()" aria-label="Fechar filtros">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#5f6368">
-              <path
-                d="m287-216-69-71 192-193-192-195 69-71 194 195 192-195 69 71-192 195 192 193-69 71-192-195-194 195Z" />
-            </svg>
-          </button>
+        <button title="Fechar filtros" id="fecharFiltros" onclick="fecharFiltros()" aria-label="Fechar filtros">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#5f6368">
+            <path
+              d="m287-216-69-71 192-193-192-195 69-71 194 195 192-195 69 71-192 195 192 193-69 71-192-195-194 195Z" />
+          </svg>
+        </button>
 
-          <button type="button" onclick="limparRadioButtons()" title="Botão para limpar todos os filtros aplicados"
-            id="limparFiltros" aria-label="Limpar todos os filtros">Limpar todos
-          </button>
-        </div>
+      </div>
+
+      <button type="button" onclick="limparRadioButtons()" title="Botão para limpar todos os filtros aplicados"
+        id="limparFiltros" aria-label="Limpar todos os filtros">Limpar todos
+      </button>
+
 
       </div>
 

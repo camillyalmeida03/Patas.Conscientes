@@ -1,7 +1,7 @@
 function limparRadioButtons() {
     // Grupos de radio buttons para limpar
     const radioGroups = ['filter1', 'filter2', 'filter3'];
-    
+
     // Desmarca todos os radios em cada grupo
     radioGroups.forEach(group => {
         const radios = document.getElementsByName(group);
@@ -33,22 +33,34 @@ function limparRadioButtons() {
     }, 3000);
 }
 
+const filtro = document.getElementById("filtro");
+const botFiltros = document.getElementById("botFiltros");
+const fecharFiltrosBtn = document.getElementById("fecharFiltros"); // Alterei o nome da variável
 
-
+// Função para abrir os filtros
 function abrirFiltros() {
-    const botFiltros = document.getElementById("botFiltros");
-    const filtro = document.getElementById("filtro");
-
-    filtro.style.display = 'flex';
+    filtro.style.display = "flex";
+    document.body.classList.add("no-scroll");
 }
 
-function fecharFiltros() {
-    const filtro = document.getElementById("filtro");
-    const fecharFiltros = document.getElementById("fecharFiltros");
-
-    filtro.style.display = 'none';
-
+// Função para fechar os filtros
+function fecharFiltros() {  
+    filtro.style.display = "none";
+    document.body.classList.remove("no-scroll");
 }
+
+// Adicionando eventos
+botFiltros.addEventListener("click", abrirFiltros);
+fecharFiltrosBtn.addEventListener("click", fecharFiltros);
+
+// 🔥 Evento para restaurar sidebar ao aumentar a tela
+window.addEventListener("resize", () => {
+    if (window.innerWidth > 1050) {  
+        filtro.style.removeProperty("display");
+        document.body.classList.remove("no-scroll");
+    }
+});
+
 
 const radios = document.querySelectorAll('input[type="radio"]');
 
