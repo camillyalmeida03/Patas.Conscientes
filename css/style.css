@@ -1302,12 +1302,12 @@ footer .listasFooter a:hover {
     box-shadow: black 1px 1px 3px;
 }
 
-.cardOngrosa {
+.cardOng:nth-child(odd) {
     background-color: var(--rosa);
 
 }
 
-.cardOngazul {
+.cardOng:nth-child(even) {
     background-color: var(--azul_claro);
 }
 
