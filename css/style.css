@@ -1880,6 +1880,19 @@ ol {
     margin-bottom: 1rem;
 }
 
+.abrirOpções{
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    gap: 0.5rem;
+    
+}
+
+.temas{
+    font-size: 16px;
+  
+}
+
 .asideRow {
     width: 15rem;
     min-width: 15rem;
