@@ -35,30 +35,10 @@ function paginacarregada(){
 
     //Seta de abrir leque de opções na aba tema 
 
-    // document.getElementById("setaOpções").addEventListener("click", function() {
-    //     let menu = document.getElementById("menu");
-        
-    //     // Alterna entre exibir e esconder o menu
-    //     if (menu.style.display === "block") {
-    //         menu.style.display = "none";
-    //     } else {
-    //         menu.style.display = "block";
-    //     }
-    // });
-
-    // document.addEventListener("click", function(event) {
-    //     let menu = document.getElementById("menu");
-    //     let button = document.getElementById("abrirOpções");
-    
-    //     // Se o clique NÃO foi no botão e nem no menu, ele fecha
-    //     if (event.target !== menu && event.target !== button) {
-    //         menu.style.display = "none";
-    //     }
-    // });
-
 
     function abrir() {
         let menu = document.getElementById("menu");
+        let seta = document.getElementById("setaConfig");
     
         if (menu.style.display === "flex" || menu.style.display === "") {
             menu.style.display = "none";
@@ -66,7 +46,12 @@ function paginacarregada(){
             menu.style.display = "flex";
         }
 
-        
+        if (seta.style.transform === "rotate(0deg)" || seta.style.transform === "") {
+            seta.style.transform = "rotate(-180deg)";
+        } else {
+            seta.style.transform = "rotate(0deg)";
+        }
+
 
     }
     

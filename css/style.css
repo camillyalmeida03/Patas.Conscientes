@@ -498,12 +498,12 @@ button {
     color: var(--azul_claro);
 }
 
-.expandirMenuME #setaInst {
+.expandirMenuME #setaInst{
     fill: white !important;
     background-color: black;
 }
 
-.expandirMenuME #setaInst {
+.expandirMenuME #setaInst{
     background-color: var(--cinza100) !important;
 }
 
@@ -561,7 +561,7 @@ button {
     gap: 0.7rem;
 }
 
-#setaInst {
+#setaInst{
     background-color: var(--cinza215);
     border-radius: 50%;
     cursor: pointer;
@@ -570,11 +570,12 @@ button {
     fill: var(--cinza158);
 }
 
-#setaInst:hover {
+#setaInst:hover, #setaConfig:hover {
     background-color: var(--cinza201);
 }
 
-#setaInst:hover path {
+#setaInst:hover path,
+#setaConfig:hover {
     fill: var(--azul_claro);
 }
 
@@ -1890,7 +1891,17 @@ ol {
 
 .temas{
     font-size: 16px;
-  
+}
+
+.setaOpções{
+    display: flex;
+    gap: 0.5rem;
+}
+
+.girarSeta{
+    display: inline-flex;
+    border: 1px solid red;
+    transform: rotate(180deg);
 }
 
 .asideRow {
@@ -1917,6 +1928,14 @@ ol {
     font-size: 16px;
     text-align: left;
     margin-bottom: 1rem;
+}
+
+#setaConfig{
+    transform: rotate(90deg);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 2rem;
 }
 
 .buttonConfig {
