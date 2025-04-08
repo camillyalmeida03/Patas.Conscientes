@@ -1,13 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('formOng');
 
-    form.addEventListener('submit', function (event) {
-        event.preventDefault(); // Evita o envio do formulário inicialmente
+    // Aplica máscara nos campos
+    aplicarMascaraInput('cnpj', 'cnpj');
+    aplicarMascaraInput('tel', 'tel');
+    aplicarMascaraInput('cel', 'cel');
 
-        // Variável de controle de validade do formulário
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
         let formularioValido = true;
 
-        // Validações independentes de cada campo
         if (!validarNomeOng()) formularioValido = false;
         if (!validarCnpj()) formularioValido = false;
         if (!validarNomeResponsavel()) formularioValido = false;
@@ -16,18 +19,45 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!validarEmail()) formularioValido = false;
         if (!validarSenha()) formularioValido = false;
         if (!validarSenha2()) formularioValido = false;
-        
 
-        // Se o formulário não for válido, rola para o topo da página
         if (!formularioValido) {
             document.getElementById('MainFormCadOng').scrollIntoView({ behavior: 'smooth' });
         } else {
-            // Redireciona para a próxima página caso o formulário seja válido
-            window.location.href = "index.html"; // Substitua pela URL desejada
+            window.location.href = "index.html";
         }
     });
 
-    // Funções de validação individuais
+    // Função de máscara que não trava o backspace
+    function aplicarMascaraInput(id, tipo) {
+        const input = document.getElementById(id);
+        input.addEventListener('input', () => {
+            let valor = input.value.replace(/\D/g, '');
+
+            if (tipo === 'cnpj') {
+                valor = valor.substring(0, 14);
+                valor = valor.replace(/^(\d{2})(\d)/, "$1.$2");
+                valor = valor.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
+                valor = valor.replace(/\.(\d{3})(\d)/, ".$1/$2");
+                valor = valor.replace(/(\d{4})(\d{1,2})$/, "$1-$2");
+            }
+
+            if (tipo === 'tel' || tipo === 'cel') {
+                valor = valor.substring(0, 11);
+                if (valor.length <= 10) {
+                    valor = valor.replace(/(\d{2})(\d)/, "($1) $2");
+                    valor = valor.replace(/(\d{4})(\d)/, "$1-$2");
+                } else {
+                    valor = valor.replace(/(\d{2})(\d)/, "($1) $2");
+                    valor = valor.replace(/(\d{5})(\d)/, "$1-$2");
+                }
+            }
+
+            input.value = valor;
+        });
+    }
+
+    // [Suas funções de validação continuam iguais...]
+
     function validarNomeOng() {
         const nomeOng = document.getElementById('nomeOng').value.trim();
         const erroNomeOng = document.getElementById('erroNome');
@@ -88,16 +118,14 @@ document.addEventListener('DOMContentLoaded', function () {
     function validarTel() {
         const telefone = document.getElementById('tel').value.trim();
         const erroTelefone = document.getElementById('erroTelefone');
-        
-        // Expressão regular para validar um número de telefone no formato (XX) XXXXX-XXXX
-        const regexTelefone = /^\(\d{2}\)\s\d{5}-\d{4}$/;
-    
+        const regexTelefone = /^\(\d{2}\)\s\d{4,5}-\d{4}$/;
+
         if (telefone === '') {
             erroTelefone.innerHTML = 'O campo Telefone é obrigatório.';
             erroTelefone.style.display = 'block';
             return false;
         } else if (!regexTelefone.test(telefone)) {
-            erroTelefone.innerHTML = 'Por favor, insira um telefone válido (formato: (XX) XXXXX-XXXX).';
+            erroTelefone.innerHTML = 'Por favor, insira um telefone válido (formato: (XX) XXXX-XXXX ou (XX) XXXXX-XXXX).';
             erroTelefone.style.display = 'block';
             return false;
         } else {
@@ -109,10 +137,8 @@ document.addEventListener('DOMContentLoaded', function () {
     function validarCel() {
         const cel = document.getElementById('cel').value.trim();
         const erroCel = document.getElementById('erroCel');
-        
-        // Expressão regular para validar um número de telefone no formato (XX) XXXXX-XXXX
         const regexCel = /^\(\d{2}\)\s\d{5}-\d{4}$/;
-    
+
         if (cel === '') {
             erroCel.innerHTML = 'O campo Celular é obrigatório.';
             erroCel.style.display = 'block';
@@ -149,10 +175,8 @@ document.addEventListener('DOMContentLoaded', function () {
     function validarSenha() {
         const senha = document.getElementById('senha').value;
         const erroSenha = document.getElementById('erroSenha');
-        
-        // Expressão regular para verificar os requisitos da senha
         const regexSenha = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    
+
         if (senha === '') {
             erroSenha.innerHTML = 'O campo senha é obrigatório.';
             erroSenha.style.display = 'block';
@@ -166,13 +190,12 @@ document.addEventListener('DOMContentLoaded', function () {
             return true;
         }
     }
-    
+
     function validarSenha2() {
         const senha = document.getElementById('senha').value.trim();
         const confirmarSenha = document.getElementById('confirmarSenha').value.trim();
         const erroSenha = document.getElementById('erroSenha2');
-    
-        // Verificar se as senhas coincidem
+
         if (senha === '') {
             erroSenha.innerHTML = 'O campo Senha é obrigatório.';
             erroSenha.style.display = 'block';
@@ -186,5 +209,5 @@ document.addEventListener('DOMContentLoaded', function () {
             return true;
         }
     }
-    
+
 });

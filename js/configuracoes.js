@@ -46,10 +46,10 @@ function paginacarregada(){
             menu.style.display = "flex";
         }
 
-        if (seta.style.transform === "rotate(0deg)" || seta.style.transform === "") {
-            seta.style.transform = "rotate(-180deg)";
+        if (seta.style.transform === "rotate(-90deg)" || seta.style.transform === "") {
+            seta.style.transform = "rotate(90deg)";
         } else {
-            seta.style.transform = "rotate(0deg)";
+            seta.style.transform = "rotate(-90deg)";
         }
 
 

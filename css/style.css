@@ -1843,7 +1843,7 @@ ol {
     font-size: 20px;
 }
 
-.CampoEspecificar {
+.campoEspecificar {
     display: none;
     width: 100%;
     height: 100%;
@@ -1901,7 +1901,6 @@ ol {
 .girarSeta{
     display: inline-flex;
     border: 1px solid red;
-    transform: rotate(180deg);
 }
 
 .asideRow {
@@ -1931,7 +1930,6 @@ ol {
 }
 
 #setaConfig{
-    transform: rotate(90deg);
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.2s;
@@ -2331,7 +2329,8 @@ ol {
     justify-content: space-between;
 }
 
-.inputArquivo>button {
+.inputArquivo>button,
+.container>label{
     font-size: 16px;
     font-weight: 600;
     color: var(--cinza_h3);
@@ -2340,7 +2339,13 @@ ol {
 .inputArquivoME p {
     color: white;
 }
+.arquivo{
+    display: none;
+}
 
+.container{
+    display: flex;
+}
 textarea {
     font-size: 16px;
 }
@@ -2376,11 +2381,11 @@ textarea {
     width: 50%;
 }
 
-#infoAdocao>div>div {
+/* #infoAdocao>div>div {
     display: flex;
     gap: 0.3rem;
     align-items: center;
-}
+} */
 
 .infoAdocaoME div label {
     color: white;
