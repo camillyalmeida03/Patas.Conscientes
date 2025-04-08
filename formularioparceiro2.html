@@ -247,7 +247,12 @@
 
                 <div class="inputCadastro inputArquivo">
                     <p>Foto de perfil / Logo da ONG</p>
-                    <button title="Escolher arquivo do dispositivo" class="arquivoButton">Escolher arquivo</button>
+
+                    <div class="container" >
+                      <label for="arquivo" >Escolher arquivo</label>
+                      <input class="arquivo" id="arquivo" type="file">
+                    </div>
+                 
                     <button title="Escolher arquivo do dispositivo" class="uploadButton"><svg
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#5f6368">
                             <path
@@ -255,11 +260,16 @@
                         </svg></button>
                 </div>
 
+                
+
                 <h2>Documentação</h2>
 
                 <div class="inputCadastro inputArquivo">
                     <p>Comprovante do Estatuto da ONG</p>
-                    <button title="Escolher arquivo do dispositivo" class="arquivoButton">Escolher arquivo</button>
+                    <div class="container" >
+                      <label for="arquivo1" >Escolher arquivo</label>
+                      <input class="arquivo" id="arquivo1" type="file">
+                    </div>
                     <button title="Escolher arquivo do dispositivo" class="uploadButton"><svg
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#5f6368">
                             <path
@@ -269,7 +279,10 @@
 
                 <div class="inputCadastro inputArquivo">
                     <p>Comprovante de CNPJ</p>
-                    <button title="Escolher arquivo do dispositivo" class="arquivoButton">Escolher arquivo</button>
+                    <div class="container" >
+                      <label for="arquivo2" >Escolher arquivo</label>
+                      <input class="arquivo" id="arquivo2" type="file">
+                    </div>
                     <button title="Escolher arquivo do dispositivo" class="uploadButton"><svg
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#5f6368">
                             <path
@@ -297,8 +310,9 @@
                             <label><input type="checkbox" name="" id="">Gatos</label>
 
                             <label> <input type="checkbox" name="" id="outros">Outros (Específicar)</label>
+
                             <div class="campoEspecificar" id="campoOutros">
-                              <label for="especificar" class="visually-hidden">Especifique outros detalhes</label>
+                              <label for="especificar">Especifique outros detalhes</label>
                               <textarea placeholder="Especifique..." id="especificar" name="especificar" aria-label="Especifique outros detalhes"></textarea>
                             </div>
                             
