@@ -570,12 +570,13 @@ button {
     fill: var(--cinza158);
 }
 
-#setaInst:hover, #setaConfig:hover {
+#setaInst:hover 
+/* #setaConfig:hover */
+ {
     background-color: var(--cinza201);
 }
 
-#setaInst:hover path,
-#setaConfig:hover {
+#setaInst:hover path {
     fill: var(--azul_claro);
 }
 
@@ -1894,13 +1895,17 @@ ol {
 }
 
 .setaOpções{
-    display: flex;
+ 
     gap: 0.5rem;
+    display: flex;
+    align-items: center; 
 }
 
 .girarSeta{
-    display: inline-flex;
+    display: flex;
     border: 1px solid red;
+    align-items: center;
+    justify-content: center;
 }
 
 .asideRow {
@@ -1909,6 +1914,7 @@ ol {
     height: 100%;
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
 }
 
 .alinhando {
@@ -1934,11 +1940,22 @@ ol {
     cursor: pointer;
     transition: all 0.2s;
     width: 2rem;
+    
+}
+
+.alinharSetaTema {
+    display: flex;
+    height: 20px;
+    /* justify-content: flex-start; Alinha os itens com espaço entre eles */
+    /* align-items: center; Centraliza os itens verticalmente */
+
 }
 
 .buttonConfig {
     font-weight: 700;
     transition: 0.2s;
+    margin: 0; /* Ajuste de margem */
+
 }
 
 .buttonConfig:hover {

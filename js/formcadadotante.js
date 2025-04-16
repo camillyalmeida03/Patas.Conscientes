@@ -95,27 +95,71 @@ document.addEventListener('DOMContentLoaded', function () {
             return true;
             }
     }
-    function validarTel() {
-        const telefone = document.getElementById('telAdt').value.trim();
-        const erroTelefone = document.getElementById('erroTelAdt');
+
+    // function validarTel() {
+    //     const telefone = document.getElementById('telAdt').value.trim();
+    //     const erroTelefone = document.getElementById('erroTelAdt');
             
-        // Expressão regular para validar um número de telefone no formato (XX) XXXXX-XXXX
-        const regexTelefone = /^\(\d{2}\)\s\d{5}-\d{4}$/;
+    //     // Expressão regular para validar um número de telefone no formato (XX) XXXXX-XXXX
+    //     const regexTelefone = /^\(\d{2}\)\s\d{5}-\d{4}$/;
         
-        if (telefone === '') {
-            erroTelefone.innerHTML = 'O campo Telefone é obrigatório.';
+    //     if (telefone === '') {
+    //         erroTelefone.innerHTML = 'O campo Telefone é obrigatório.';
+    //         erroTelefone.style.display = 'block';
+    //         return false;
+    //     } else if (!regexTelefone.test(telefone)) {
+    //         erroTelefone.innerHTML = 'Por favor, insira um telefone válido (formato: (XX) XXXXX-XXXX).';
+    //         erroTelefone.style.display = 'block';
+    //         return false;
+    //     } else {
+    //         erroTelefone.style.display = 'none';
+    //         return true;
+    //         }
+    // }
+    function validarTel() {
+        const telefone = document.getElementById('telAdt');
+        const erroTelefone = document.getElementById('erroTelAdt');
+        let valorTelefone = telefone.value.trim();
+    
+        // Remover formatação para validar apenas números
+        const telefoneSemFormatacao = valorTelefone.replace(/[^\d]/g, '');
+    
+        // Validação: Verificar se contém exatamente 11 dígitos
+        if (telefoneSemFormatacao.length !== 11) {
+            erroTelefone.innerHTML = 'Por favor, insira um telefone válido com 11 dígitos.';
             erroTelefone.style.display = 'block';
             return false;
-        } else if (!regexTelefone.test(telefone)) {
-            erroTelefone.innerHTML = 'Por favor, insira um telefone válido (formato: (XX) XXXXX-XXXX).';
-            erroTelefone.style.display = 'block';
-            return false;
-        } else {
-            erroTelefone.style.display = 'none';
-            return true;
-            }
+        }
+    
+        // Caso seja válido, limpar mensagem de erro
+        erroTelefone.style.display = 'none';
+        return true;
     }
     
+    // Máscara dinâmica sem impedir apagamento
+    document.getElementById('telAdt').addEventListener('input', function (e) {
+        let valor = this.value.replace(/\D/g, ''); // Remove tudo que não for número
+        const cursorPos = this.selectionStart; // Salvar a posição do cursor
+    
+        // Aplicar máscara somente se houver números
+        if (valor.length > 0) {
+            if (valor.length > 11) valor = valor.slice(0, 11); // Limitar a 11 dígitos
+            if (valor.length > 6) {
+                this.value = `(${valor.slice(0, 2)}) ${valor.slice(2, 7)}-${valor.slice(7)}`;
+            } else if (valor.length > 2) {
+                this.value = `(${valor.slice(0, 2)}) ${valor.slice(2)}`;
+            } else {
+                this.value = valor;
+            }
+        } else {
+            this.value = ''; // Se não houver número, deixa vazio
+        }
+    
+        // Restaurar a posição do cursor após aplicar a máscara
+        this.setSelectionRange(cursorPos, cursorPos);
+    });
+
+
     function validarCel() {
         const cel = document.getElementById('celAdt').value.trim();
         const erroCel = document.getElementById('erroCelAdt');

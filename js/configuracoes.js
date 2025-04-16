@@ -40,10 +40,10 @@ function paginacarregada(){
         let menu = document.getElementById("menu");
         let seta = document.getElementById("setaConfig");
     
-        if (menu.style.display === "flex" || menu.style.display === "") {
-            menu.style.display = "none";
-        } else {
+        if (menu.style.display === "none" || menu.style.display === "") {
             menu.style.display = "flex";
+        } else {
+            menu.style.display = "none";
         }
 
         if (seta.style.transform === "rotate(-90deg)" || seta.style.transform === "") {

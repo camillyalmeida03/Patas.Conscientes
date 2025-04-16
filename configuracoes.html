@@ -249,18 +249,23 @@
         <button title="Acessar Políticas do site" id="botao2" class="buttonConfig">Políticas do site</button>
       </div>
 
-     
-
-        <div class="setaOpções">
+     <div class="alinharSetaTema ">
+      <button onclick="abrir()" title="abrir opções de tema" class="buttonConfig">Temas</button>
+      <div class="setaOpções">
+        
           
-            <button onclick="abrir()" title="abrir opções de tema" class="buttonConfig">Temas</button>
+          <div id="girarSeta" onclick="abrir()">
+            <img style="transform: rotate(90deg);" id="setaConfig"  src="/img/icons/seta_minimalista.svg" alt="">
+            <!-- <svg style="transform: rotate(90deg);" id="setaConfig" width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="black" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="40,30 60,50 40,70" />
+            </svg> -->
             
-            <div id="girarSeta" onclick="abrir()">
-              <img style="transform: rotate(90deg);" id="setaConfig"  src="/img/icons/seta_girar.png" alt="">
-            </div>
-           
           </div>
-          
+         
+        </div>
+
+     </div>
+    
           <div class="abrirOpções" id="menu" >
             <button class="temas">Seguir o tema padrão</button>
             <button class="temas">Claro</button>
