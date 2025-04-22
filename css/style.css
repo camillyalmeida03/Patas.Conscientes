@@ -1893,16 +1893,20 @@ ol {
     font-size: 16px;
 }
 
+.bordad{
+    border: 1px solid red;
+}
+
 .setaOpções{
  
     gap: 0.5rem;
     display: flex;
     align-items: center; 
+    justify-content: center;
 }
 
-.girarSeta{
+#girarSeta{
     display: flex;
-    border: 1px solid red;
     align-items: center;
     justify-content: center;
 }
@@ -1935,16 +1939,17 @@ ol {
 }
 
 #setaConfig{
-    border-radius: 50%;
     cursor: pointer;
     transition: all 0.2s;
-    width: 2rem;
-    
+    width: 0.5rem;        
+    margin-top: 2.5px;
 }
 
 .alinharSetaTema {
     display: flex;
     height: 20px;
+    gap: 10px;
+    align-items: center;
     /* justify-content: flex-start; Alinha os itens com espaço entre eles */
     /* align-items: center; Centraliza os itens verticalmente */
 
