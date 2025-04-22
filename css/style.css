@@ -1540,7 +1540,6 @@ h3 {
     height: 100%;
     width: 40%;
     background-color: var(--cinza215);
-    background-image: url(/img/fotos/cat1.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -1719,7 +1718,7 @@ h3 {
 }
 
 
-.infoPet {
+.informPet {
     width: 100%;
     max-height: 360px;
     overflow: auto;
@@ -1728,7 +1727,7 @@ h3 {
 }
 
 /* Estilizando a barra de rolagem */
-.infoPet::-webkit-scrollbar {
+.informPet::-webkit-scrollbar {
     width: 6px;
     /* Largura da barra de rolagem vertical */
     height: 6px;
@@ -1737,19 +1736,19 @@ h3 {
 }
 
 /* Estilizando o fundo da barra de rolagem */
-.infoPet::-webkit-scrollbar-track {
+.informPet::-webkit-scrollbar-track {
     background: var(--cinza230);
     border-radius: 10px;
 }
 
 /* Estilizando a "pegada" da barra de rolagem */
-.infoPet::-webkit-scrollbar-thumb {
+.informPet::-webkit-scrollbar-thumb {
     background: var(--cinza215);
     border-radius: 10px;
 }
 
 /* Quando o usuário passa o mouse sobre a barra de rolagem */
-.infoPet::-webkit-scrollbar-thumb:hover {
+.informPet::-webkit-scrollbar-thumb:hover {
     background: var(--cinza158);
 }
 
