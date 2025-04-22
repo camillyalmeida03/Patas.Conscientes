@@ -421,6 +421,7 @@ class CardsPets {
     this.InfoPet = InfoPet;
     const adotarSec = document.querySelector(".adotarSec"); // Identifica o elemento pai de tudo que já existe no html
 
+    
     this.cardsAnimais = this.createElement(
       "div",
       "cardsAnimais",

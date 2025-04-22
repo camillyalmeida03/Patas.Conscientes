@@ -308,6 +308,7 @@ class UIAbaMaisSobrePet {
     }
 }
 
+
 // Simulação de carregamento de dados
 async function carregarPets() {
     const response = await fetch("/api/pets"); // No futuro, API do banco de dados
