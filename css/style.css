@@ -1717,6 +1717,10 @@ h3 {
     margin-bottom: 0.5rem;
 }
 
+.expansaoCard .informPet{
+    padding: 0 1rem;
+    max-height: none;
+}
 
 .informPet {
     width: 100%;
@@ -2854,8 +2858,12 @@ textarea {
     }
 
     .adotarSec {
-        grid-template-columns: repeat(1, 1fr);
         gap: 1.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        gap: 1rem;
+        align-items: flex-start;
     }
 
     .buttonFiltrar {
