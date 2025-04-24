@@ -136,12 +136,14 @@
     <div class="tema">
       <p>Tema</p>
 
-      <label class="ui-switch">
-        <input type="checkbox" class="definirTema">
+      <label class="ui-switch" for="toggle-tema">
+        <span class="sr-only">Ativar tema escuro</span>
+        <input type="checkbox" id="toggle-tema" class="definirTema" aria-label="Ativar tema escuro">
         <div class="slid">
           <div class="circle"></div>
         </div>
       </label>
+      
     </div>
   </div>
 
@@ -185,11 +187,12 @@
         <p>Tema</p>
 
         <label class="ui-switch">
-          <input type="checkbox" class="definirTema">
-          <div class="slid">
+          <input type="checkbox" class="definirTema" aria-label="Alternar tema escuro">
+          <div class="slid" aria-hidden="true">
             <div class="circle"></div>
           </div>
         </label>
+        
       </div>
     </div>
 
@@ -220,11 +223,12 @@
         <p>Tema</p>
 
         <label class="ui-switch">
-          <input type="checkbox">
-          <div class="slid">
+          <input type="checkbox" aria-label="Alternar tema escuro">
+          <div class="slid" aria-hidden="true">
             <div class="circle"></div>
           </div>
         </label>
+        
       </div>
     </div>
   </div>

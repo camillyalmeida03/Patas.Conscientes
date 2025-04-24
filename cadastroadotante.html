@@ -271,12 +271,14 @@
             <div class="alinharErro">
 
               <!-- <label id="label-genero" for="genero" class="sr-only">Sexo</label> -->
-              <select name="sexo" id="genero" class="inputCadastro" aria-labelledby="label-genero">
-                <option value="" disabled selected>Selecione seu gênero</option>
+              <label id="label-genero" for="genero">Gênero</label>
+              <select name="sexo" id="genero" class="inputCadastro" aria-labelledby="label-genero" required>
+                <option value="" disabled hidden selected>Selecione seu gênero</option>
                 <option value="feminino">Feminino</option>
                 <option value="masculino">Masculino</option>
                 <option value="naoInformar">Prefiro não dizer</option>
               </select>
+              
               <p id="erroGenero" class="error-message"></p>
             </div>
 

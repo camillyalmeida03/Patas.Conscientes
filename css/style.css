@@ -1386,22 +1386,43 @@ footer .listasFooter a:hover {
     height: 80%;
 }
 
-.filtroME {
+
+.filtroME{
     background-color: var(--cinza147);
 }
 
-.filtroME .botFiltro div button {
+.filtroME .botFiltro div button{
     color: white;
 }
 
-#limparFiltros {
+#limparFiltros{
     transition: none;
+    font-size: 14px;
+    display: flex;
+    width: 6rem;
+    padding: 0.3rem 0;
+}
+
+#limparFiltros:hover{
+    color: var(--azul_claro);
+}
+
+.limparFiltrosME{
+    color: white !important;
+}
+
+.limparFiltrosME:hover{
+    color: var(--azul_escuro) !important;
+}
+
+.no-scroll{
+    overflow: hidden;
 }
 
 .linha {
     height: 1px;
     width: 100%;
-    background-color: black;
+    background-color: var(--cinza158);
     margin: 1rem 0;
 }
 
@@ -1412,18 +1433,30 @@ footer .listasFooter a:hover {
 .botFiltro {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
-.botFiltro button,
-h3 {
-    font-size: 17px;
-    font-weight: 400;
+.botFiltroME{
+    color: white !important;
+}	
+
+.botFiltroME svg path{
+    fill: white;
 }
+
+.botFiltroME:hover{
+    color: var(--azul_maisclaro) !important;
+}	
 
 .camadasFiltro {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+}
+
+.camadasFiltro h3{
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .camadasFiltro div {
@@ -2530,14 +2563,15 @@ textarea {
     .filtro {
         width: 100%;
         border-radius: 0;
-        padding: 2rem;
-        height: 100%;
+        padding: 2rem 2rem 10rem 2rem;
+        min-height: 100vh;
         position: fixed;
         z-index: 100;
         flex-direction: column;
         margin: 0;
         top: 0;
         left: 0;
+        overflow-y: auto;
     }
 
     .botFiltro h3 {
@@ -2562,6 +2596,7 @@ textarea {
         gap: 2rem;
         width: 30%;
     }
+
 
     .mainAdotar {
         flex-direction: column;
