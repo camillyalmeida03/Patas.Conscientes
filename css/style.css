@@ -99,6 +99,7 @@ main {
 }
 
 
+
 /* ----------------------------- Barra Acessibilidade ----------------------------- */
 
 /* Estilos da Barra de Acessibilidade */
@@ -498,12 +499,12 @@ button {
     color: var(--azul_claro);
 }
 
-.expandirMenuME #setaInst{
+.expandirMenuME #setaInst {
     fill: white !important;
     background-color: black;
 }
 
-.expandirMenuME #setaInst{
+.expandirMenuME #setaInst {
     background-color: var(--cinza100) !important;
 }
 
@@ -561,20 +562,22 @@ button {
     gap: 0.7rem;
 }
 
-#setaInst{
+#setaInst {
     background-color: var(--cinza215);
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.2s;
     height: 1rem;
     fill: var(--cinza158);
+    transform: rotate(90deg);
 }
+/* 
+#setaInst:hover */
 
-#setaInst:hover 
 /* #setaConfig:hover */
- {
+    /* {
     background-color: var(--cinza201);
-}
+} */
 
 #setaInst:hover path {
     fill: var(--azul_claro);
@@ -1387,15 +1390,15 @@ footer .listasFooter a:hover {
 }
 
 
-.filtroME{
+.filtroME {
     background-color: var(--cinza147);
 }
 
-.filtroME .botFiltro div button{
+.filtroME .botFiltro div button {
     color: white;
 }
 
-#limparFiltros{
+#limparFiltros {
     transition: none;
     font-size: 14px;
     display: flex;
@@ -1403,26 +1406,30 @@ footer .listasFooter a:hover {
     padding: 0.3rem 0;
 }
 
-#limparFiltros:hover{
+#limparFiltros:hover {
     color: var(--azul_claro);
 }
 
-.limparFiltrosME{
+.limparFiltrosME {
     color: white !important;
 }
 
-.limparFiltrosME:hover{
+.limparFiltrosME:hover {
     color: var(--azul_escuro) !important;
 }
 
-.no-scroll{
+.no-scroll {
     overflow: hidden;
 }
 
 .linha {
+    flex-shrink: 0;
+    flex-grow: 0;
+
+    max-height: 1px;
     height: 1px;
     width: 100%;
-    background-color: var(--cinza158);
+    background-color: var(--cinza201);
     margin: 1rem 0;
 }
 
@@ -1436,17 +1443,17 @@ footer .listasFooter a:hover {
     align-items: center;
 }
 
-.botFiltroME{
+.botFiltroME {
     color: white !important;
-}	
+}
 
-.botFiltroME svg path{
+.botFiltroME svg path {
     fill: white;
 }
 
-.botFiltroME:hover{
+.botFiltroME:hover {
     color: var(--azul_maisclaro) !important;
-}	
+}
 
 .camadasFiltro {
     display: flex;
@@ -1454,7 +1461,7 @@ footer .listasFooter a:hover {
     gap: 0.5rem;
 }
 
-.camadasFiltro h3{
+.camadasFiltro h3 {
     font-size: 16px;
     font-weight: 600;
 }
@@ -1515,7 +1522,8 @@ footer .listasFooter a:hover {
 .fundoAba {
     height: 100vh;
     width: 100vw;
-    position: fixed; /* Fixado na tela, independente do scroll */
+    position: fixed;
+    /* Fixado na tela, independente do scroll */
     z-index: 2;
     top: 0;
     left: 0;
@@ -1680,7 +1688,7 @@ footer .listasFooter a:hover {
     fill: var(--cinza158);
 }
 
-.adotarMiniCard .bttcard{
+.adotarMiniCard .bttcard {
     padding: 0 1rem;
 }
 
@@ -1750,7 +1758,7 @@ footer .listasFooter a:hover {
     margin-bottom: 0.5rem;
 }
 
-.expansaoCard .informPet{
+.expansaoCard .informPet {
     padding: 0 1rem;
     max-height: none;
 }
@@ -1918,43 +1926,51 @@ ol {
     margin-bottom: 1rem;
 }
 
-.abrirOpções{
+.abrirOpções {
     display: none;
     flex-direction: column;
-    align-items:flex-start;
+    align-items: flex-start;
     gap: 0.5rem;
-    
 }
 
-.temas{
+.temas {
     font-size: 16px;
+    color: var(--cinza34);
 }
 
-.bordad{
+.bordad {
     border: 1px solid red;
 }
 
-.setaOpções{
- 
+.setaOpções {
+
     gap: 0.5rem;
     display: flex;
-    align-items: center; 
+    align-items: center;
     justify-content: center;
 }
 
-#girarSeta{
+#girarSeta {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .asideRow {
-    width: 15rem;
-    min-width: 15rem;
+    width: 10rem;
+    min-width: 10rem;
     height: 100%;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+}
+
+.mainAside .asideRow{
+    gap: 0;
+}
+
+.asideRow .linha{
+    margin: 0;
 }
 
 .alinhando {
@@ -1970,37 +1986,39 @@ ol {
 }
 
 .buttonConfig {
+    width: 100%;
+    height: 2.5rem;
     font-size: 16px;
     text-align: left;
-    margin-bottom: 1rem;
+    padding-left: 0.5rem;
+    transition: 0.2s;
+    margin: 0;
+    color: var(--cinza46);
 }
 
-#setaConfig{
+#temasSeta{
+    display: flex;
+    align-items: center;
+}
+
+#setaConfig {
     cursor: pointer;
     transition: all 0.2s;
-    width: 0.5rem;        
-    margin-top: 2.5px;
+    width: 0.5rem;
+    margin-left: 0.5rem;
+    fill: none;
+    stroke: var(--cinza46);
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
-.alinharSetaTema {
-    display: flex;
-    height: 20px;
-    gap: 10px;
-    align-items: center;
-    /* justify-content: flex-start; Alinha os itens com espaço entre eles */
-    /* align-items: center; Centraliza os itens verticalmente */
-
-}
-
-.buttonConfig {
-    font-weight: 700;
-    transition: 0.2s;
-    margin: 0; /* Ajuste de margem */
-
+#configConta{
+    background-color: var(--cinza215);
 }
 
 .buttonConfig:hover {
-    color: var(--azul_claro);
+    background-color: var(--cinza215);
 }
 
 #contaConfigH3,
@@ -2013,7 +2031,7 @@ ol {
 
 .linhaRow {
     width: 1px;
-    background-color: var(--cinza158);
+    background-color: var(--cinza201);
 }
 
 .linhaRowME {
@@ -2388,7 +2406,7 @@ ol {
 }
 
 .inputArquivo>button,
-.container>label{
+.container>label {
     font-size: 16px;
     font-weight: 600;
     color: var(--cinza_h3);
@@ -2397,13 +2415,15 @@ ol {
 .inputArquivoME p {
     color: white;
 }
-.arquivo{
+
+.arquivo {
     display: none;
 }
 
-.container{
+.container {
     display: flex;
 }
+
 textarea {
     font-size: 16px;
 }
@@ -2482,7 +2502,7 @@ textarea {
 }
 
 
-#lado2 {
+#ladoPoliticas {
     display: none;
 }
 
@@ -2726,8 +2746,6 @@ textarea {
     .asideRow,
     .asideFav div {
         width: 100%;
-        height: 1rem;
-        margin-bottom: 0.5rem;
         display: flex;
         gap: 2rem;
         flex-direction: row;
@@ -2754,10 +2772,22 @@ textarea {
     .linhaRow {
         width: 100%;
         height: 1px;
-        background-color: var(--preto_back);
         margin-bottom: 1rem;
     }
 
+    .asideRow .linha{
+        display: none;
+    }
+
+    .mainAside .asideRow {
+        gap: 2rem;
+    }
+
+    .buttonConfig{
+        text-align: center;
+        padding:0 0.5rem;
+        width: auto ;
+    }
 
     .mainAside .gridOng {
         padding: 0;

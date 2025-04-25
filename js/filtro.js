@@ -1,3 +1,5 @@
+//Este arquivo é responsável por trazer as funcionalidades dos filtros.
+
 function limparRadioButtons() {
     // Grupos de radio buttons para limpar
     const radioGroups = ['filter1', 'filter2', 'filter3'];
