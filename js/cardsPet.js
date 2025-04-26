@@ -38,6 +38,7 @@ class CardsPets {
       this.InfoPet = InformacoesPet;
       this.card = this.gerarCard(InformacoesPet);
     }
+    this.informacoesExibidas = false;
   }
 
   // Método responsável por otimizar a linha de criação de cada elemento HTML
@@ -419,66 +420,229 @@ class CardsPets {
     document.body.style.overflow = "auto";
   }
 
-  //Método responsável por gerar um card para cada pet
-  gerarCard(InfoPet) {
-    this.InfoPet = InfoPet;
-    const adotarSec = document.querySelector(".adotarSec"); // Identifica o elemento pai de tudo que já existe no html
-
-    this.cardsAnimais = this.createElement(
+  mostrarMaisInformacoesPetCard() {
+    this.conjFavoritarCompartilhar = this.createElement(
       "div",
-      "cardsAnimais",
-      null,
-      adotarSec
-    );
-
-    this.adotarMiniCard = this.createElement(
-      "div",
-      "adotarMiniCard",
-      null,
-      this.cardsAnimais
-    );
-
-    this.fotoPet = this.createImg(
-      [],
-      this.InfoPet.foto,
-      "Foto de " + this.InfoPet.nome,
-      "lazy",
-      this.adotarMiniCard
-    );
-
-    this.descMiniAdotar = this.createElement(
-      "div",
-      "descMiniAdotar",
-      null,
-      this.adotarMiniCard
-    );
-
-    this.nomIconAdotar = this.createElement(
-      "div",
-      ["nomIconAdotar", "favoritado"],
-      null,
-      this.descMiniAdotar
-    );
-
-    this.iconsAdotar = this.createElement(
-      "div",
-      "iconsAdotar",
+      "conjFavoritarCompartilhar",
       null,
       this.nomIconAdotar
     );
 
-    this.nomePet = this.createElement(
-      "h2",
-      "nomePet",
-      this.InfoPet.nome,
-      this.iconsAdotar
+    this.compartilharPet = this.createButton(
+      "compartilharPet",
+      null,
+      this.conjFavoritarCompartilhar,
+      "Compartilhar " + this.InfoPet.nome
     );
 
-    this.sexoPet = this.createElement("div", "sexoPet", null, this.iconsAdotar);
+    this.adicionarFavorito = this.createButton(
+      ["favoritar", "adicionarFav"],
+      null,
+      this.conjFavoritarCompartilhar,
+      " Favoritar " + this.InfoPet.nome
+    );
 
-    // Chamar o método que faz a condição do sexo do pet
-    this.condicaoSexoPet(this.InfoPet);
+    this.compartilharPet.innerHTML = `<svg viewBox="0 -960 960 960" fill="#000000"><path d="M640.22-116q-44.91 0-76.26-31.41-31.34-31.41-31.34-76.28 0-9 5.15-30.16L297.31-402.31q-14.46 14-33.41 22-18.94 8-40.59 8-44.71 0-76.01-31.54Q116-435.39 116-480q0-44.61 31.3-76.15 31.3-31.54 76.01-31.54 21.74 0 40.64 8 18.9 8 33.36 22l240.46-148.08q-2.38-7.38-3.77-14.77-1.38-7.39-1.38-15.77 0-44.87 31.43-76.28Q595.49-844 640.4-844t76.25 31.44Q748-781.13 748-736.22q0 44.91-31.41 76.26-31.41 31.34-76.28 31.34-21.85 0-40.5-8.19Q581.15-645 566.69-659L326.23-510.54q2.38 7.39 3.77 14.77 1.38 7.39 1.38 15.77 0 8.38-1.38 15.77-1.39 7.38-3.77 14.77L566.69-301q14.46-14 33.16-22.19 18.7-8.19 40.46-8.19 44.87 0 76.28 31.43Q748-268.51 748-223.6t-31.44 76.25Q685.13-116 640.22-116Zm.09-52q23.67 0 39.68-16.01Q696-200.02 696-223.69q0-23.67-16.01-39.68-16.01-16.02-39.68-16.02-23.67 0-39.68 16.02-16.02 16.01-16.02 39.68 0 23.67 16.02 39.68Q616.64-168 640.31-168Zm-417-256.31q23.83 0 39.95-16.01 16.13-16.01 16.13-39.68 0-23.67-16.13-39.68-16.12-16.01-39.95-16.01-23.51 0-39.41 16.01Q168-503.67 168-480q0 23.67 15.9 39.68 15.9 16.01 39.41 16.01Zm417-256.3q23.67 0 39.68-16.02Q696-712.64 696-736.31q0-23.67-16.01-39.68Q663.98-792 640.31-792q-23.67 0-39.68 16.01-16.02 16.01-16.02 39.68 0 23.67 16.02 39.68 16.01 16.02 39.68 16.02Zm0 456.92ZM223.69-480Zm416.62-256.31Z" /></svg>`;
 
+    this.p = this.createElement("p", null, null, this.descMiniAdotar);
+
+    this.linkDesc = this.createA(
+      "linkDesc",
+      "ongs.html",
+      "Link para a página de " + this.InfoPet.ongNome,
+      this.InfoPet.ongNome,
+      this.p
+    );
+
+    this.expansaoCard = this.createElement(
+      "div",
+      "expansaoCard",
+      null,
+      this.adotarMiniCard
+    );
+
+    this.informPet = this.createElement(
+      "div",
+      "informPet",
+      null,
+      this.expansaoCard
+    );
+
+    this.pesoIdade = this.createElement(
+      "div",
+      "pesoIdade",
+      null,
+      this.informPet,
+      "pesoIdade"
+    );
+
+    this.conjTituloPeso = this.createElement("div", [], null, this.pesoIdade);
+
+    this.tituloPeso = this.createElement(
+      "h3",
+      "tituloInfoPet",
+      "Peso",
+      this.conjTituloPeso
+    );
+
+    this.pesoPet = this.createElement(
+      "p",
+      [],
+      this.InfoPet.peso,
+      this.conjTituloPeso,
+      "pesoPet"
+    );
+
+    this.conjTituloIdade = this.createElement("div", [], null, this.pesoIdade);
+
+    this.tituloIdade = this.createElement(
+      "h3",
+      "tituloInfoPet",
+      "Idade",
+      this.conjTituloIdade
+    );
+
+    this.idadePet = this.createElement(
+      "p",
+      [],
+      this.InfoPet.idade,
+      this.conjTituloIdade,
+      "idadePet"
+    );
+
+    this.especPorte = this.createElement(
+      "div",
+      "especPorte",
+      null,
+      this.informPet,
+      "especPorte"
+    );
+
+    this.conjTituloEspecie = this.createElement(
+      "div",
+      [],
+      null,
+      this.especPorte
+    );
+
+    this.tituloEspecie = this.createElement(
+      "h3",
+      "tituloInfoPet",
+      "Espécie",
+      this.conjTituloEspecie
+    );
+
+    this.especiePet = this.createElement(
+      "p",
+      [],
+      this.InfoPet.especie,
+      this.conjTituloEspecie
+    );
+
+    this.especiePet.id = "especiePet";
+
+    this.conjTituloPorte = this.createElement("div", [], null, this.especPorte);
+
+    this.tituloPorte = this.createElement(
+      "h3",
+      "tituloInfoPet",
+      "Porte",
+      this.conjTituloPorte
+    );
+
+    this.portePet = this.createElement(
+      "p",
+      [],
+      this.InfoPet.porte,
+      this.conjTituloPorte,
+      "portePet"
+    );
+
+    this.triploInfo = this.createElement(
+      "div",
+      "triploInfo",
+      null,
+      this.informPet,
+      "triploInfo"
+    );
+
+    this.conjTituloRaca = this.createElement("div", [], null, this.triploInfo);
+
+    this.tituloRaca = this.createElement(
+      "h3",
+      "tituloInfoPet",
+      "Raça",
+      this.conjTituloRaca
+    );
+
+    this.racaPet = this.createElement(
+      "p",
+      [],
+      this.InfoPet.raca,
+      this.conjTituloRaca,
+      "racaPet"
+    );
+
+    this.conjTituloOng = this.createElement("div", [], null, this.triploInfo);
+
+    this.tituloOng = this.createElement(
+      "h3",
+      "tituloInfoPet",
+      "Local",
+      this.conjTituloOng
+    );
+
+    this.ongPet = this.createElement(
+      "p",
+      [],
+      this.InfoPet.ongNome,
+      this.conjTituloOng,
+      "ongPet"
+    );
+
+    this.conjTituloSobre = this.createElement("div", [], null, this.triploInfo);
+
+    this.tituloSobre = this.createElement(
+      "h3",
+      "tituloInfoPet",
+      "Sobre",
+      this.conjTituloSobre
+    );
+
+    this.sobrePet = this.createElement(
+      "p",
+      [],
+      this.InfoPet.sobre,
+      this.conjTituloSobre,
+      "sobrePet"
+    );
+
+    this.bttcard = this.createElement(
+      "div",
+      "bttcard",
+      null,
+      this.adotarMiniCard
+    );
+
+    this.verMenos = this.createButton(
+      "verMenos",
+      "Ver menos", // Texto do botão
+      this.bttcard,
+      "Ver menos informações sobre " + this.InfoPet.nome
+    );
+
+    this.botaoAdotar = this.createButton(
+      "buttonRosa",
+      "Adotar",
+      this.bttcard,
+      "Adotar " + this.InfoPet.nome
+    );
+
+    this.cardsAnimais.classList.add("mostrar-mais");
+    this.informacoesExibidas = true;
+  }
+
+  mostrarCardNormal() {
     this.favoritar = this.createButton(
       ["favoritar", "apagarFav"],
       null,
@@ -496,266 +660,102 @@ class CardsPets {
       this.p
     );
 
+    this.bttcard = this.createElement(
+      "div",
+      "bttcard",
+      null,
+      this.adotarMiniCard
+    );
 
+    this.verMais = this.createButton(
+      "verMais",
+      "Ver mais",
+      this.bttcard,
+      "Ver mais informações sobre " + this.InfoPet.nome
+    );
 
-        // this.expansaoCard = this.createElement(
-        //   "div",
-        //   "expansaoCard",
-        //   null,
-        //   this.adotarMiniCard
-        // );
+    this.botaoAdotar = this.createButton(
+      "buttonRosa",
+      "Adotar",
+      this.bttcard,
+      "Adotar " + this.InfoPet.nome
+    );
 
-        // this.informPet = this.createElement(
-        //   "div",
-        //   "informPet",
-        //   null,
-        //   this.expansaoCard
-        // );
+    this.cardsAnimais.classList.remove("mostrar-mais");
+    this.informacoesExibidas = false;
+  }
 
-        // this.pesoIdade = this.createElement(
-        //   "div",
-        //   "pesoIdade",
-        //   null,
-        //   this.informPet,
-        //   "pesoIdade"
-        // );
+  //Método responsável por gerar um card para cada pet
+  gerarCard(InfoPet) {
+    this.InfoPet = InfoPet;
+    const adotarSec = document.querySelector(".adotarSec"); // Identifica o elemento pai de tudo que já existe no html
 
-        // this.conjTituloPeso = this.createElement(
-        //   "div",
-        //   [],
-        //   null,
-        //   this.pesoIdade
-        // );
+    if (adotarSec) {
+      this.adotarSec = adotarSec;
 
-        // this.tituloPeso = this.createElement(
-        //   "h3",
-        //   "tituloInfoPet",
-        //   "Peso",
-        //   this.conjTituloPeso
-        // );
+      this.cardsAnimais = this.createElement(
+        "div",
+        "cardsAnimais",
+        null,
+        adotarSec
+      );
 
-        // this.pesoPet = this.createElement(
-        //   "p",
-        //   [],
-        //   InfoPet.peso,
-        //   this.conjTituloPeso,
-        //   "pesoPet"
-        // );
+      this.adotarMiniCard = this.createElement(
+        "div",
+        "adotarMiniCard",
+        null,
+        this.cardsAnimais
+      );
 
-        // this.conjTituloIdade = this.createElement(
-        //   "div",
-        //   [],
-        //   null,
-        //   this.pesoIdade
-        // );
+      this.fotoPet = this.createImg(
+        [],
+        this.InfoPet.foto,
+        "Foto de " + this.InfoPet.nome,
+        "lazy",
+        this.adotarMiniCard
+      );
 
-        // this.tituloIdade = this.createElement(
-        //   "h3",
-        //   "tituloInfoPet",
-        //   "Idade",
-        //   this.conjTituloIdade
-        // );
+      this.descMiniAdotar = this.createElement(
+        "div",
+        "descMiniAdotar",
+        null,
+        this.adotarMiniCard
+      );
 
-        // this.idadePet = this.createElement(
-        //   "p",
-        //   [],
-        //   InfoPet.idade,
-        //   this.conjTituloIdade,
-        //   "idadePet"
-        // );
+      this.nomIconAdotar = this.createElement(
+        "div",
+        ["nomIconAdotar", "favoritado"],
+        null,
+        this.descMiniAdotar
+      );
 
-        // this.especPorte = this.createElement(
-        //   "div",
-        //   "especPorte",
-        //   null,
-        //   this.informPet,
-        //   "especPorte"
-        // );
+      this.iconsAdotar = this.createElement(
+        "div",
+        "iconsAdotar",
+        null,
+        this.nomIconAdotar
+      );
 
-        // this.conjTituloEspecie = this.createElement(
-        //   "div",
-        //   [],
-        //   null,
-        //   this.especPorte
-        // );
-        // this.tituloEspecie = this.createElement(
-        //   "h3",
-        //   "tituloInfoPet",
-        //   "Espécie",
-        //   this.conjTituloEspecie
-        // );
-        // this.especiePet = this.createElement(
-        //   "p",
-        //   [],
-        //   InfoPet.especie,
-        //   this.conjTituloEspecie
-        // );
-        // this.especiePet.id = "especiePet";
+      this.nomePet = this.createElement(
+        "h2",
+        "nomePet",
+        this.InfoPet.nome,
+        this.iconsAdotar
+      );
 
-        // this.conjTituloPorte = this.createElement(
-        //   "div",
-        //   [],
-        //   null,
-        //   this.especPorte
-        // );
+      this.sexoPet = this.createElement(
+        "div",
+        "sexoPet",
+        null,
+        this.iconsAdotar
+      );
 
-        // this.tituloPorte = this.createElement(
-        //   "h3",
-        //   "tituloInfoPet",
-        //   "Porte",
-        //   this.conjTituloPorte
-        // );
+      // Chamar o método que faz a condição do sexo do pet
+      this.condicaoSexoPet(this.InfoPet);
 
-        // this.portePet = this.createElement(
-        //   "p",
-        //   [],
-        //   InfoPet.porte,
-        //   this.conjTituloPorte,
-        //   "portePet"
-        // );
-
-        // this.triploInfo = this.createElement(
-        //   "div",
-        //   "triploInfo",
-        //   null,
-        //   this.informPet,
-        //   "triploInfo"
-        // );
-
-        // this.conjTituloRaca = this.createElement(
-        //   "div",
-        //   [],
-        //   null,
-        //   this.triploInfo
-        // );
-
-        // this.tituloRaca = this.createElement(
-        //   "h3",
-        //   "tituloInfoPet",
-        //   "Raça",
-        //   this.conjTituloRaca
-        // );
-
-        // this.racaPet = this.createElement(
-        //   "p",
-        //   [],
-        //   InfoPet.raca,
-        //   this.conjTituloRaca,
-        //   "racaPet"
-        // );
-
-        // this.conjTituloOng = this.createElement(
-        //   "div",
-        //   [],
-        //   null,
-        //   this.triploInfo
-        // );
-
-        // this.tituloOng = this.createElement(
-        //   "h3",
-        //   "tituloInfoPet",
-        //   "Local",
-        //   this.conjTituloOng
-        // );
-
-        // this.ongPet = this.createElement(
-        //   "p",
-        //   [],
-        //   InfoPet.ongNome,
-        //   this.conjTituloOng,
-        //   "ongPet"
-        // );
-
-        // this.conjTituloSobre = this.createElement(
-        //   "div",
-        //   [],
-        //   null,
-        //   this.triploInfo
-        // );
-
-        // this.tituloSobre = this.createElement(
-        //   "h3",
-        //   "tituloInfoPet",
-        //   "Sobre",
-        //   this.conjTituloSobre
-        // );
-
-        // this.sobrePet = this.createElement(
-        //   "p",
-        //   [],
-        //   InfoPet.sobre,
-        //   this.conjTituloSobre,
-        //   "sobrePet"
-        // );
-
-        // this.bttcard = this.createElement(
-        //   "div",
-        //   "bttcard",
-        //   null,
-        //   this.adotarMiniCard
-        // );
-
-        // this.botaoAdotar = this.createButton(
-        //   "buttonRosa",
-        //   "Adotar",
-        //   this.bttcard,
-        //   "Adotar " + this.InfoPet.nome
-        // );
-
-        // this.conjFavoritarCompartilhar = this.createElement(
-        //   "div",
-        //   "conjFavoritarCompartilhar",
-        //   null,
-        //   this.bttcard
-        // );
-
-        // this.adicionarFavorito = this.createButton(
-        //   ["favoritar", "adicionarFav"],
-        //   null,
-        //   this.conjFavoritarCompartilhar,
-        //   " Favoritar " + this.InfoPet.nome
-        // );
-
-        // this.apagarFavorito = this.createButton(
-        //   ["favoritar", "apagarFav"],
-        //   null,
-        //   this.conjFavoritarCompartilhar,
-        //   "DesFavoritar " + this.InfoPet.nome
-        // );
-
-        // this.compartilharPet = this.createButton(
-        //   "compartilharPet",
-        //   null,
-        //   this.conjFavoritarCompartilhar,
-        //   "Compartilhar " + this.InfoPet.nome
-        // );
-
-        // this.compartilharPet.innerHTML = `<svg viewBox="0 -960 960 960" fill="#000000"><path d="M640.22-116q-44.91 0-76.26-31.41-31.34-31.41-31.34-76.28 0-9 5.15-30.16L297.31-402.31q-14.46 14-33.41 22-18.94 8-40.59 8-44.71 0-76.01-31.54Q116-435.39 116-480q0-44.61 31.3-76.15 31.3-31.54 76.01-31.54 21.74 0 40.64 8 18.9 8 33.36 22l240.46-148.08q-2.38-7.38-3.77-14.77-1.38-7.39-1.38-15.77 0-44.87 31.43-76.28Q595.49-844 640.4-844t76.25 31.44Q748-781.13 748-736.22q0 44.91-31.41 76.26-31.41 31.34-76.28 31.34-21.85 0-40.5-8.19Q581.15-645 566.69-659L326.23-510.54q2.38 7.39 3.77 14.77 1.38 7.39 1.38 15.77 0 8.38-1.38 15.77-1.39 7.38-3.77 14.77L566.69-301q14.46-14 33.16-22.19 18.7-8.19 40.46-8.19 44.87 0 76.28 31.43Q748-268.51 748-223.6t-31.44 76.25Q685.13-116 640.22-116Zm.09-52q23.67 0 39.68-16.01Q696-200.02 696-223.69q0-23.67-16.01-39.68-16.01-16.02-39.68-16.02-23.67 0-39.68 16.02-16.02 16.01-16.02 39.68 0 23.67 16.02 39.68Q616.64-168 640.31-168Zm-417-256.31q23.83 0 39.95-16.01 16.13-16.01 16.13-39.68 0-23.67-16.13-39.68-16.12-16.01-39.95-16.01-23.51 0-39.41 16.01Q168-503.67 168-480q0 23.67 15.9 39.68 15.9 16.01 39.41 16.01Zm417-256.3q23.67 0 39.68-16.02Q696-712.64 696-736.31q0-23.67-16.01-39.68Q663.98-792 640.31-792q-23.67 0-39.68 16.01-16.02 16.01-16.02 39.68 0 23.67 16.02 39.68 16.01 16.02 39.68 16.02Zm0 456.92ZM223.69-480Zm416.62-256.31Z" /></svg>`;
-
-        //
-
-        this.bttcard = this.createElement(
-          "div",
-          "bttcard",
-          null,
-          this.adotarMiniCard
-        );
-
-        this.verMais = this.createButton(
-          "verMais",
-          "Ver mais",
-          this.bttcard,
-          "Ver mais informações sobre " + this.InfoPet.nome
-        );
-
-        this.botaoAdotar = this.createButton(
-          "buttonRosa",
-          "Adotar",
-          this.bttcard,
-          "Adotar " + this.InfoPet.nome
-        );
-      }
-
+      this.mostrarCardNormal();
+    }
+  }
 
   // Método responsável por fazer a condição do sexo do Pet
   condicaoSexoPet(InfoPet) {
@@ -766,12 +766,24 @@ class CardsPets {
     }
   }
 
-  expandirCard() {
-    window.addEventListener("resize", function () {
-      if (window.innerWidth <= 650) {
-      } else {
-      }
-    });
+  limparCardNormal() {
+    if (this.bttcard) this.bttcard.innerHTML = "";
+    if (this.p) this.p.innerHTML = "";
+    if (this.favoritar && this.favoritar.parentNode) {
+      this.favoritar.parentNode.removeChild(this.favoritar);
+    }
+  }
+
+  limparCardMaisInfo() {
+    if (this.bttcard) this.bttcard.innerHTML = ""; // Limpa o conteúdo do botão
+    if (this.p) this.p.innerHTML = ""; // Limpa o parágrafo
+    if (this.favoritar && this.favoritar.parentNode) {
+      this.favoritar.parentNode.removeChild(this.favoritar); // Remove o botão de favoritar
+    }
+    if (this.informPet) this.informPet.innerHTML = ""; // Limpa o conteúdo de informações do pet
+    if (this.conjFavoritarCompartilhar)
+      this.conjFavoritarCompartilhar.innerHTML = ""; // Limpa o conteúdo de compartilhar/favoritar
+    this.informacoesExibidas = false; // Marca como não exibido
   }
 }
 
@@ -879,22 +891,53 @@ function paginacarregada() {
     petExemplo6,
   ];
 
+  let cards = []; // Certifique-se de inicializar o array cards
   pets.forEach((pet) => {
     const card = new CardsPets();
+    card.modalPet(pet);
+    card.gerarCard(pet);
 
-    card.modalPet(pet); // Configura o modal com as informações do pet
-    card.gerarCard(pet); // Gera o card visível com informações resumidas
-
-    // Garante que os botões existem antes de adicionar os eventos
     if (card.verMais) {
       card.verMais.addEventListener("click", () => {
-        card.mostrarFundoDaAba(); // Exibe o fundo/modal com mais informações
+        if (window.innerWidth <= 650) {
+          if (!card.informacoesExibidas) {
+            card.limparCardNormal();
+            card.mostrarMaisInformacoesPetCard();
+          }
+        } else {
+          card.mostrarFundoDaAba();
+          // card.limparCardMaisInfo()
+        }
       });
     }
 
-    if (card.fecharAba) {
-      card.fecharAba.addEventListener("click", () => {
-        card.esconderFundoDaAba(); // Fecha o fundo/modal
+    // Alteração: Agora estamos acessando card.verMenos
+    if (card.verMenos) {
+      card.verMenos.addEventListener("click", () => {
+        console.log('Clicou em "ver menos"');
+        card.limparCardMaisInfo(); // Limpa as informações do card
+        card.informacoesExibidas = false; // Marca que as informações não estão mais visíveis
+
+        // Opcional: Pode ser necessário adicionar uma nova lógica para recriar o botão "ver menos" se necessário
+        // Por exemplo, chamando a função para reexibir o conteúdo do card
+        card.mostrarMaisInformacoesPetCard();
+      });
+    } else {
+      console.error("Erro: O botão 'verMenos' não foi criado corretamente.");
+    }
+
+    // Salva o card no array para o resize usar depois
+    cards.push(card);
+  });
+
+  // ✅ Agora, só UM resize, fora do forEach
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 650) {
+      cards.forEach((card) => {
+        if (card.informacoesExibidas) {
+          card.limparCardNormal(); // ⬅️ Primeiro limpa
+          card.mostrarCardNormal(); // ⬅️ Depois monta o card normal
+        }
       });
     }
   });

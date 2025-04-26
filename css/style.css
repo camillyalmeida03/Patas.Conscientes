@@ -1713,18 +1713,18 @@ footer .listasFooter a:hover {
     transform: scale(105%);
 }
 
-.verMais {
+.verMais, .verMenos {
     font-size: 16px;
     font-weight: 700;
     color: var(--cinza_h3);
     transition: all 0.1s;
 }
 
-.verMaisME {
+.verMaisME, .verMenosME {
     color: white;
 }
 
-.verMais:hover {
+.verMais:hover, .verMenos:hover {
     color: var(--rosa);
 }
 
@@ -2908,7 +2908,6 @@ textarea {
     .gridOng {
         grid-template-columns: repeat(1, 1fr);
     }
-
 
     #adicionarFav {
         left: 85%;
