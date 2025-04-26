@@ -626,10 +626,11 @@ class CardsPets {
 
     this.verMenos = this.createButton(
       "verMenos",
-      "Ver menos", // Texto do botão
+      "Ver menos",  // Texto do botão
       this.bttcard,
       "Ver menos informações sobre " + this.InfoPet.nome
     );
+    
 
     this.botaoAdotar = this.createButton(
       "buttonRosa",
@@ -775,15 +776,7 @@ class CardsPets {
   }
 
   limparCardMaisInfo() {
-    if (this.bttcard) this.bttcard.innerHTML = ""; // Limpa o conteúdo do botão
-    if (this.p) this.p.innerHTML = ""; // Limpa o parágrafo
-    if (this.favoritar && this.favoritar.parentNode) {
-      this.favoritar.parentNode.removeChild(this.favoritar); // Remove o botão de favoritar
-    }
-    if (this.informPet) this.informPet.innerHTML = ""; // Limpa o conteúdo de informações do pet
-    if (this.conjFavoritarCompartilhar)
-      this.conjFavoritarCompartilhar.innerHTML = ""; // Limpa o conteúdo de compartilhar/favoritar
-    this.informacoesExibidas = false; // Marca como não exibido
+
   }
 }
 
@@ -891,12 +884,14 @@ function paginacarregada() {
     petExemplo6,
   ];
 
-  let cards = []; // Certifique-se de inicializar o array cards
+  const cards = [];
+
   pets.forEach((pet) => {
     const card = new CardsPets();
+  
     card.modalPet(pet);
     card.gerarCard(pet);
-
+  
     if (card.verMais) {
       card.verMais.addEventListener("click", () => {
         if (window.innerWidth <= 650) {
@@ -910,26 +905,37 @@ function paginacarregada() {
         }
       });
     }
-
+  
     // Alteração: Agora estamos acessando card.verMenos
     if (card.verMenos) {
       card.verMenos.addEventListener("click", () => {
         console.log('Clicou em "ver menos"');
-        card.limparCardMaisInfo(); // Limpa as informações do card
-        card.informacoesExibidas = false; // Marca que as informações não estão mais visíveis
-
-        // Opcional: Pode ser necessário adicionar uma nova lógica para recriar o botão "ver menos" se necessário
-        // Por exemplo, chamando a função para reexibir o conteúdo do card
-        card.mostrarMaisInformacoesPetCard();
+        if (this.bttcard) this.bttcard.innerHTML = "";
+        if (this.p) this.p.innerHTML = "";
+        if (this.favoritar && this.favoritar.parentNode) {
+          this.favoritar.parentNode.removeChild(this.favoritar);
+        }
+        if (this.informPet) this.informPet.innerHTML = "";
+        if (this.conjFavoritarCompartilhar) this.conjFavoritarCompartilhar.innerHTML = "";
+    
+    
+        this.informacoesExibidas = false;  // Limpa as informações do card
+        card.informacoesExibidas = false;  // Marca que as informações não estão mais visíveis
       });
     } else {
       console.error("Erro: O botão 'verMenos' não foi criado corretamente.");
     }
-
+  
+    if (card.fecharAba) {
+      card.fecharAba.addEventListener("click", () => {
+        card.esconderFundoDaAba();
+      });
+    }
+  
     // Salva o card no array para o resize usar depois
     cards.push(card);
   });
-
+  
   // ✅ Agora, só UM resize, fora do forEach
   window.addEventListener("resize", () => {
     if (window.innerWidth > 650) {
@@ -941,4 +947,5 @@ function paginacarregada() {
       });
     }
   });
+  
 }
