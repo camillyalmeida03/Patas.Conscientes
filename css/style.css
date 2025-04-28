@@ -46,10 +46,15 @@ a {
     color: black;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: var(--cinza230);
     min-height: 100vh;
     margin: 0;
+    scroll-behavior: smooth;
 }
 
 .bodyME {
@@ -571,11 +576,12 @@ button {
     fill: var(--cinza158);
     transform: rotate(90deg);
 }
+
 /* 
 #setaInst:hover */
 
 /* #setaConfig:hover */
-    /* {
+/* {
     background-color: var(--cinza201);
 } */
 
@@ -1698,7 +1704,22 @@ footer .listasFooter a:hover {
     justify-content: space-between;
     transition: all 0.1s;
     background-color: white;
+}
 
+.adotarMiniCard .bttcardME{
+    background-color: var(--cinza34);
+}
+
+.maisInfoPetME{
+    background-color: var(--cinza34);
+}
+
+.maisInfoPetME .tituloInfoPet, .maisInfoPetME .informPet .tituloInfoPet{
+    color: white;
+}
+
+.maisInfoPetME .iconFechar{
+    fill: white;
 }
 
 .maisInfoPet .bttcard {
@@ -1713,18 +1734,21 @@ footer .listasFooter a:hover {
     transform: scale(105%);
 }
 
-.verMais, .verMenos {
+.verMais,
+.verMenos {
     font-size: 16px;
     font-weight: 700;
     color: var(--cinza_h3);
     transition: all 0.1s;
 }
 
-.verMaisME, .verMenosME {
+.verMaisME,
+.verMenosME {
     color: white;
 }
 
-.verMais:hover, .verMenos:hover {
+.verMais:hover,
+.verMenos:hover {
     color: var(--rosa);
 }
 
@@ -1769,6 +1793,7 @@ footer .listasFooter a:hover {
     overflow: auto;
     box-sizing: border-box;
     scroll-padding-right: 10px;
+    scroll-behavior: smooth;
 }
 
 /* Estilizando a barra de rolagem */
@@ -1965,11 +1990,11 @@ ol {
     gap: 0.5rem;
 }
 
-.mainAside .asideRow{
+.mainAside .asideRow {
     gap: 0;
 }
 
-.asideRow .linha{
+.asideRow .linha {
     margin: 0;
 }
 
@@ -1996,7 +2021,7 @@ ol {
     color: var(--cinza46);
 }
 
-#temasSeta{
+#temasSeta {
     display: flex;
     align-items: center;
 }
@@ -2013,7 +2038,7 @@ ol {
     stroke-linejoin: round;
 }
 
-#configConta{
+#configConta {
     background-color: var(--cinza215);
 }
 
@@ -2775,7 +2800,7 @@ textarea {
         margin-bottom: 1rem;
     }
 
-    .asideRow .linha{
+    .asideRow .linha {
         display: none;
     }
 
@@ -2783,10 +2808,10 @@ textarea {
         gap: 2rem;
     }
 
-    .buttonConfig{
+    .buttonConfig {
         text-align: center;
-        padding:0 0.5rem;
-        width: auto ;
+        padding: 0 0.5rem;
+        width: auto;
     }
 
     .mainAside .gridOng {

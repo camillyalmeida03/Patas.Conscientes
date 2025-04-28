@@ -417,13 +417,13 @@ class CardsPets {
     });
   }
 
-    //Método responsável por esconder o modal ao clicar no X
+  //Método responsável por esconder o modal ao clicar no X
   esconderFundoDaAba() {
     this.fundoAba.style.display = "none";
     document.body.style.overflow = "auto";
   }
 
-    //Método responsável por expandir o card na versão mobile
+  //Método responsável por expandir o card na versão mobile
   mostrarMaisInformacoesPetCard() {
     this.conjFavoritarCompartilhar = this.createElement(
       "div",
@@ -632,7 +632,7 @@ class CardsPets {
       "verMenos",
       "Ver menos",
       this.bttcard,
-      "Ver menos sobre" + this.InfoPet.nome
+      "Ver menos sobre " + this.InfoPet.nome
     );
 
     this.verMenos.addEventListener("click", () => {
@@ -659,7 +659,7 @@ class CardsPets {
     });
   }
 
-    //Método responsável por mostrar o card minimizado 
+  //Método responsável por mostrar o card minimizado
   mostrarCardNormal() {
     this.limparCardNormal();
     this.favoritar = this.createButton(
@@ -796,7 +796,7 @@ class CardsPets {
     }
   }
 
-    //Método responsável por limpar o card em seu estado normal para virar card expandido
+  //Método responsável por limpar o card em seu estado normal para virar card expandido
   limparCardNormal() {
     if (this.bttcard && this.bttcard.parentNode) {
       this.bttcard.remove();
@@ -809,7 +809,7 @@ class CardsPets {
     }
   }
 
-    //Método responsável por limpar o conteúdo do card expandido para virar o card normal
+  //Método responsável por limpar o conteúdo do card expandido para virar o card normal
   limparCardMaisInfo() {
     if (this.expansaoCard && this.expansaoCard.parentNode) {
       this.expansaoCard.remove();
@@ -831,7 +831,7 @@ class CardsPets {
 window.addEventListener("load", paginacarregada); //A página espera o JS carregar antes de executar ele
 
 function paginacarregada() {
-    //Informações de pets provisórios
+  //Informações de pets provisórios
   const petExemplo = new InformacoesPet(
     1,
     "img/fotos/cat2.jpg",
@@ -932,21 +932,20 @@ function paginacarregada() {
     petExemplo6,
   ];
 
-    //Array que guarda os cards
+  //Array que guarda os cards
   const cards = [];
 
-    //Aqui é definido o que cada pet recebe de configuração assim que "nasce"
+  //Aqui é definido o que cada pet recebe de configuração assim que "nasce"
   pets.forEach((pet) => {
-      //É criada uma nova instância de CardsPets (Classe que tem todas as configurações de cada card)
+    //É criada uma nova instância de CardsPets (Classe que tem todas as configurações de cada card)
     const card = new CardsPets();
 
-      //Chamando métodos que geram o card e seu modal
+    //Chamando métodos que geram o card e seu modal
     card.modalPet(pet);
     card.gerarCard(pet);
 
     //Executa cada código que têm aqui dentro assim que o JS terminar de criar todo o html
     setTimeout(() => {
-      
       if (card.verMais) {
         card.verMais.addEventListener("click", () => {
           if (window.innerWidth <= 650) {
