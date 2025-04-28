@@ -393,6 +393,7 @@ class CardsPets {
     this.compartilharPet.innerHTML = `<svg viewBox="0 -960 960 960" fill="#000000"><path d="M640.22-116q-44.91 0-76.26-31.41-31.34-31.41-31.34-76.28 0-9 5.15-30.16L297.31-402.31q-14.46 14-33.41 22-18.94 8-40.59 8-44.71 0-76.01-31.54Q116-435.39 116-480q0-44.61 31.3-76.15 31.3-31.54 76.01-31.54 21.74 0 40.64 8 18.9 8 33.36 22l240.46-148.08q-2.38-7.38-3.77-14.77-1.38-7.39-1.38-15.77 0-44.87 31.43-76.28Q595.49-844 640.4-844t76.25 31.44Q748-781.13 748-736.22q0 44.91-31.41 76.26-31.41 31.34-76.28 31.34-21.85 0-40.5-8.19Q581.15-645 566.69-659L326.23-510.54q2.38 7.39 3.77 14.77 1.38 7.39 1.38 15.77 0 8.38-1.38 15.77-1.39 7.38-3.77 14.77L566.69-301q14.46-14 33.16-22.19 18.7-8.19 40.46-8.19 44.87 0 76.28 31.43Q748-268.51 748-223.6t-31.44 76.25Q685.13-116 640.22-116Zm.09-52q23.67 0 39.68-16.01Q696-200.02 696-223.69q0-23.67-16.01-39.68-16.01-16.02-39.68-16.02-23.67 0-39.68 16.02-16.02 16.01-16.02 39.68 0 23.67 16.02 39.68Q616.64-168 640.31-168Zm-417-256.31q23.83 0 39.95-16.01 16.13-16.01 16.13-39.68 0-23.67-16.13-39.68-16.12-16.01-39.95-16.01-23.51 0-39.41 16.01Q168-503.67 168-480q0 23.67 15.9 39.68 15.9 16.01 39.41 16.01Zm417-256.3q23.67 0 39.68-16.02Q696-712.64 696-736.31q0-23.67-16.01-39.68Q663.98-792 640.31-792q-23.67 0-39.68 16.01-16.02 16.01-16.02 39.68 0 23.67 16.02 39.68 16.01 16.02 39.68 16.02Zm0 456.92ZM223.69-480Zm416.62-256.31Z" /></svg>`;
   }
 
+  //Método responsável por mostrar o modal de cada pet
   mostrarFundoDaAba() {
     if (window.innerWidth > 650) {
       // Só exibe se a largura for maior que 650px
@@ -406,6 +407,7 @@ class CardsPets {
     this.verificarResize();
   }
 
+  //Método responsável por verificar se é mobile ou desktop
   verificarResize() {
     // Verifica se a largura da tela mudar para 650px ou menos
     window.addEventListener("resize", () => {
@@ -415,11 +417,13 @@ class CardsPets {
     });
   }
 
+    //Método responsável por esconder o modal ao clicar no X
   esconderFundoDaAba() {
     this.fundoAba.style.display = "none";
     document.body.style.overflow = "auto";
   }
 
+    //Método responsável por expandir o card na versão mobile
   mostrarMaisInformacoesPetCard() {
     this.conjFavoritarCompartilhar = this.createElement(
       "div",
@@ -626,11 +630,17 @@ class CardsPets {
 
     this.verMenos = this.createButton(
       "verMenos",
-      "Ver menos",  // Texto do botão
+      "Ver menos",
       this.bttcard,
-      "Ver menos informações sobre " + this.InfoPet.nome
+      "Ver menos sobre" + this.InfoPet.nome
     );
-    
+
+    this.verMenos.addEventListener("click", () => {
+      if (window.innerWidth <= 650) {
+        this.limparCardNormal();
+        this.mostrarCardNormal();
+      }
+    });
 
     this.botaoAdotar = this.createButton(
       "buttonRosa",
@@ -641,9 +651,17 @@ class CardsPets {
 
     this.cardsAnimais.classList.add("mostrar-mais");
     this.informacoesExibidas = true;
+
+    this.verMenos.addEventListener("click", () => {
+      this.limparCardMaisInfo();
+      this.limparCardNormal();
+      this.mostrarCardNormal();
+    });
   }
 
+    //Método responsável por mostrar o card minimizado 
   mostrarCardNormal() {
+    this.limparCardNormal();
     this.favoritar = this.createButton(
       ["favoritar", "apagarFav"],
       null,
@@ -684,6 +702,17 @@ class CardsPets {
 
     this.cardsAnimais.classList.remove("mostrar-mais");
     this.informacoesExibidas = false;
+
+    this.verMais.addEventListener("click", () => {
+      if (window.innerWidth <= 650) {
+        if (!this.informacoesExibidas) {
+          this.limparCardNormal();
+          this.mostrarMaisInformacoesPetCard();
+        }
+      } else {
+        this.mostrarFundoDaAba();
+      }
+    });
   }
 
   //Método responsável por gerar um card para cada pet
@@ -767,22 +796,42 @@ class CardsPets {
     }
   }
 
+    //Método responsável por limpar o card em seu estado normal para virar card expandido
   limparCardNormal() {
-    if (this.bttcard) this.bttcard.innerHTML = "";
-    if (this.p) this.p.innerHTML = "";
+    if (this.bttcard && this.bttcard.parentNode) {
+      this.bttcard.remove();
+    }
+    if (this.p && this.p.parentNode) {
+      this.p.remove();
+    }
     if (this.favoritar && this.favoritar.parentNode) {
-      this.favoritar.parentNode.removeChild(this.favoritar);
+      this.favoritar.remove();
     }
   }
 
+    //Método responsável por limpar o conteúdo do card expandido para virar o card normal
   limparCardMaisInfo() {
+    if (this.expansaoCard && this.expansaoCard.parentNode) {
+      this.expansaoCard.remove();
+    }
 
+    if (
+      this.conjFavoritarCompartilhar &&
+      this.conjFavoritarCompartilhar.parentNode
+    ) {
+      this.conjFavoritarCompartilhar.remove();
+    }
+
+    if (this.bttcard && this.bttcard.parentNode) {
+      this.bttcard.remove();
+    }
   }
 }
 
-window.addEventListener("load", paginacarregada); //A página espera o JS carregar antes de executar ele.
+window.addEventListener("load", paginacarregada); //A página espera o JS carregar antes de executar ele
 
 function paginacarregada() {
+    //Informações de pets provisórios
   const petExemplo = new InformacoesPet(
     1,
     "img/fotos/cat2.jpg",
@@ -873,8 +922,7 @@ function paginacarregada() {
     "ongs.html"
   );
 
-  // Supondo que todos os objetos InformacoesPet já estão definidos: petExemplo, petExemplo2, ..., petExemplo6
-
+  // Array com os pets definidos
   const pets = [
     petExemplo,
     petExemplo2,
@@ -884,68 +932,68 @@ function paginacarregada() {
     petExemplo6,
   ];
 
+    //Array que guarda os cards
   const cards = [];
 
+    //Aqui é definido o que cada pet recebe de configuração assim que "nasce"
   pets.forEach((pet) => {
+      //É criada uma nova instância de CardsPets (Classe que tem todas as configurações de cada card)
     const card = new CardsPets();
-  
+
+      //Chamando métodos que geram o card e seu modal
     card.modalPet(pet);
     card.gerarCard(pet);
-  
-    if (card.verMais) {
-      card.verMais.addEventListener("click", () => {
-        if (window.innerWidth <= 650) {
-          if (!card.informacoesExibidas) {
-            card.limparCardNormal();
-            card.mostrarMaisInformacoesPetCard();
+
+    //Executa cada código que têm aqui dentro assim que o JS terminar de criar todo o html
+    setTimeout(() => {
+      
+      if (card.verMais) {
+        card.verMais.addEventListener("click", () => {
+          if (window.innerWidth <= 650) {
+            // Se for celular: expande o card
+            if (!card.informacoesExibidas) {
+              card.limparCardNormal();
+              card.mostrarMaisInformacoesPetCard();
+            }
+          } else {
+            // Se for desktop: mostra o modal
+            card.mostrarFundoDaAba();
           }
-        } else {
-          card.mostrarFundoDaAba();
-          // card.limparCardMaisInfo()
-        }
-      });
-    }
-  
-    // Alteração: Agora estamos acessando card.verMenos
-    if (card.verMenos) {
-      card.verMenos.addEventListener("click", () => {
-        console.log('Clicou em "ver menos"');
-        if (this.bttcard) this.bttcard.innerHTML = "";
-        if (this.p) this.p.innerHTML = "";
-        if (this.favoritar && this.favoritar.parentNode) {
-          this.favoritar.parentNode.removeChild(this.favoritar);
-        }
-        if (this.informPet) this.informPet.innerHTML = "";
-        if (this.conjFavoritarCompartilhar) this.conjFavoritarCompartilhar.innerHTML = "";
-    
-    
-        this.informacoesExibidas = false;  // Limpa as informações do card
-        card.informacoesExibidas = false;  // Marca que as informações não estão mais visíveis
-      });
-    } else {
-      console.error("Erro: O botão 'verMenos' não foi criado corretamente.");
-    }
-  
+        });
+      }
+
+      if (card.verMenos) {
+        card.verMenos.addEventListener("click", () => {
+          // Clicou em ver menos → volta ao card normal
+          card.limparCardMaisInfo();
+          card.limparCardNormal();
+          card.mostrarCardNormal();
+        });
+      }
+    }, 0);
+
     if (card.fecharAba) {
       card.fecharAba.addEventListener("click", () => {
         card.esconderFundoDaAba();
       });
     }
-  
+
     // Salva o card no array para o resize usar depois
     cards.push(card);
   });
-  
+
   // ✅ Agora, só UM resize, fora do forEach
   window.addEventListener("resize", () => {
     if (window.innerWidth > 650) {
       cards.forEach((card) => {
         if (card.informacoesExibidas) {
-          card.limparCardNormal(); // ⬅️ Primeiro limpa
-          card.mostrarCardNormal(); // ⬅️ Depois monta o card normal
+          console.log("Redimensionou - revertendo card:", card.InfoPet.nome);
+          card.limparCardMaisInfo();
+          card.limparCardNormal();
+          card.mostrarCardNormal();
         }
+        card.esconderFundoDaAba();
       });
     }
   });
-  
 }
