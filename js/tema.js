@@ -132,29 +132,68 @@ function paginacarregada() {
         macho[i].classList.add("machoME");
       }
   
-      const bttcard = document.getElementsByClassName("bttcard"); //adotar.html e favoritos.html
-      for (let i = 0; i < bttcard.length; i++) {
-        //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .verMais
-        bttcard[i].classList.add("bttcardME");
-      }
+      // Adiciona classes no modo escuro
+      document.querySelectorAll(".bttcard:not(.bttcardME)").forEach((elem) => {
+        elem.classList.add("bttcardME");
+      });
   
-      const verMenos = document.getElementsByClassName("verMenos"); //adotar.html e favoritos.html
-      for (let i = 0; i < verMenos.length; i++) {
-        //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .verMais
-        verMenos[i].classList.add("verMaisME");
-      }
+      document.querySelectorAll(".verMais:not(.verMaisME)").forEach((elem) => {
+        elem.classList.add("verMaisME");
+      });
   
-      const maisInfoPet = document.getElementsByClassName("maisInfoPet"); //adotar.html e favoritos.html
-      for (let i = 0; i < maisInfoPet.length; i++) {
-        //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .verMais
-        maisInfoPet[i].classList.add("maisInfoPetME");
-      }
+      document.querySelectorAll(".verMenos:not(.verMenosME)").forEach((elem) => {
+        elem.classList.add("verMenosME");
+      });
   
-      const verMais = document.getElementsByClassName("verMais"); //adotar.html e favoritos.html
-      for (let i = 0; i < verMais.length; i++) {
-        //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .verMais
-        verMais[i].classList.add("verMaisME");
-      }
+      document
+        .querySelectorAll(".tituloInfoPet:not(.tituloInfoPetME)")
+        .forEach((elem) => {
+          elem.classList.add("tituloInfoPetME");
+        });
+  
+      document
+        .querySelectorAll(".maisInfoPet:not(.maisInfoPetME)")
+        .forEach((elem) => {
+          elem.classList.add("maisInfoPetME");
+        });
+  
+      // Ativar o observer para elementos criados dinamicamente no modo escuro
+      const observerDark = new MutationObserver(() => {
+        document.querySelectorAll(".bttcard:not(.bttcardME)").forEach((elem) => {
+          elem.classList.add("bttcardME");
+        });
+  
+        document.querySelectorAll(".verMais:not(.verMaisME)").forEach((elem) => {
+          elem.classList.add("verMaisME");
+        });
+  
+        document
+          .querySelectorAll(".verMenos:not(.verMenosME)")
+          .forEach((elem) => {
+            elem.classList.add("verMenosME");
+          });
+  
+        document
+          .querySelectorAll(".tituloInfoPet:not(.tituloInfoPetME)")
+          .forEach((elem) => {
+            elem.classList.add("tituloInfoPetME");
+          });
+  
+        document
+          .querySelectorAll(".maisInfoPet:not(.maisInfoPetME)")
+          .forEach((elem) => {
+            elem.classList.add("maisInfoPetME");
+          });
+      });
+  
+      // Ativa o observador no <body> para monitorar elementos adicionados dinamicamente
+      observerDark.observe(document.body, {
+        childList: true,
+        subtree: true,
+      });
+  
+      // Salvar no localStorage para persistir o estado
+      localStorage.setItem("modoEscuro", "ativado");
   
       // formulários
       const fundoBranco = document.getElementsByClassName("fundoBranco");
@@ -322,22 +361,49 @@ function paginacarregada() {
       if (limparFiltros) {
         limparFiltros.classList.remove("limparFiltrosME");
       }
-  
-      // Remove classe do botão do card
       document.querySelectorAll(".bttcardME").forEach((elem) => {
         elem.classList.remove("bttcardME");
       });
   
-      // Remove classe do botão ver menos
       document.querySelectorAll(".verMaisME, .verMenosME").forEach((elem) => {
         elem.classList.remove("verMaisME", "verMenosME");
       });
   
-      // Remove classe do container de informações
+      document.querySelectorAll(".tituloInfoPetME").forEach((elem) => {
+        elem.classList.remove("tituloInfoPetME");
+      });
+  
       document.querySelectorAll(".maisInfoPetME").forEach((elem) => {
         elem.classList.remove("maisInfoPetME");
       });
   
+      // Ativar o observer para elementos criados dinamicamente no modo claro
+      const observerLight = new MutationObserver(() => {
+        document.querySelectorAll(".bttcardME").forEach((elem) => {
+          elem.classList.remove("bttcardME");
+        });
+  
+        document.querySelectorAll(".verMaisME, .verMenosME").forEach((elem) => {
+          elem.classList.remove("verMaisME", "verMenosME");
+        });
+  
+        document.querySelectorAll(".tituloInfoPetME").forEach((elem) => {
+          elem.classList.remove("tituloInfoPetME");
+        });
+  
+        document.querySelectorAll(".maisInfoPetME").forEach((elem) => {
+          elem.classList.remove("maisInfoPetME");
+        });
+      });
+  
+      // Ativa o observador no <body> para monitorar elementos adicionados dinamicamente
+      observerLight.observe(document.body, {
+        childList: true,
+        subtree: true,
+      });
+  
+      // Salvar no localStorage para persistir o estado
+      localStorage.setItem("modoEscuro", "desativado");
       const cardsAnimais = document.getElementsByClassName("cardsAnimais");
       for (let i = 0; i < cardsAnimais.length; i++) {
         cardsAnimais[i].classList.remove("cardsAnimaisME");
@@ -501,15 +567,17 @@ function paginacarregada() {
         contaPopup[i].classList.remove("contaPopupME");
       }
     };
-    const checkboxes = document.querySelectorAll('.definirTema');
+    const checkboxes = document.querySelectorAll('.definirTema'); // Obtém os checkboxes com a classe 'definirTema'
     if (checkboxes.length > 0) {
         checkboxes.forEach((checkbox) => {
             // Adiciona um event listener ao checkbox para mudanças manuais
             checkbox.addEventListener('change', function () {
                 if (this.checked) {
+                    // Se o checkbox estiver marcado, ativa o modo escuro
                     activateDarkMode();
                     localStorage.setItem('modoEscuro', 'ativado');
                 } else {
+                    // Se o checkbox não estiver marcado, ativa o modo claro
                     activateLightMode();
                     localStorage.setItem('modoEscuro', 'desativado');
                 }
@@ -517,28 +585,30 @@ function paginacarregada() {
                 sincronizarCheckboxes();
             });
         });
-
+    
         // Função para sincronizar todos os checkboxes com o localStorage
         function sincronizarCheckboxes() {
-            const savedTheme = localStorage.getItem('modoEscuro');
+            const savedTheme = localStorage.getItem('modoEscuro'); // Verifica o tema salvo no localStorage
             checkboxes.forEach((checkbox) => {
                 if (savedTheme === 'ativado') {
-                    activateDarkMode();
+                    // Se o tema salvo for escuro, marca o checkbox
                     checkbox.checked = true;
+                    activateDarkMode(); // Ativa o modo escuro
                 } else {
-                    activateLightMode();
+                    // Se o tema salvo for claro, desmarca o checkbox
                     checkbox.checked = false;
+                    activateLightMode(); // Ativa o modo claro
                 }
             });
         }
-
-        // Chama a função ao carregar a página
+    
+        // Chama a função ao carregar a página para aplicar o tema baseado no localStorage
         sincronizarCheckboxes();
-
-        // Verifica mudanças no localStorage em tempo real
+    
+        // Verifica mudanças no localStorage em tempo real (para garantir que outros scripts também alterem o tema)
         window.addEventListener('storage', sincronizarCheckboxes);
     } else {
         console.error("Nenhum checkbox com a classe 'definirTema' encontrado.");
     }
-
+    
 }    
