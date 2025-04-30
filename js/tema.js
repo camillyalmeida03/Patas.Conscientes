@@ -259,6 +259,19 @@ function paginacarregada() {
         //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .buttonPerfil
         buttonPerfil[i].classList.add("whiteText");
       }
+
+      const temas = document.getElementsByClassName("temas");
+      for (let i = 0; i < temas.length; i++) {
+        //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .buttonPerfil
+        temas[i].classList.add("temasME");
+      }
+
+      const abrirOpcoes = document.getElementsByClassName("abrirOpcoes");
+      for (let i = 0; i < abrirOpcoes.length; i++) {
+        //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .buttonPerfil
+        abrirOpcoes[i].classList.add("abrirOpcoesME");
+      }
+  
   
       const before = document.getElementsByClassName("before");
       for (let i = 0; i < before.length; i++) {
@@ -270,6 +283,8 @@ function paginacarregada() {
       for (let i = 0; i < buttonConfig.length; i++) {
         //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .buttonConfig
         buttonConfig[i].classList.add("whiteText");
+        buttonConfig[i].classList.add("buttonConfigME");
+
       }
   
       //favoritos.html ongs.html
@@ -480,7 +495,20 @@ function paginacarregada() {
       for (let i = 0; i < buttonPerfil.length; i++) {
         buttonPerfil[i].classList.remove("whiteText");
       }
+
+      const temas = document.getElementsByClassName("temas");
+      for (let i = 0; i < temas.length; i++) {
+        //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .buttonPerfil
+        temas[i].classList.remove("temasME");
+      }
+
+      const abrirOpcoes = document.getElementsByClassName("abrirOpcoes");
+      for (let i = 0; i < abrirOpcoes.length; i++) {
+        //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .buttonPerfil
+        abrirOpcoes[i].classList.remove("abrirOpcoesME");
+      }
   
+
       const before = document.getElementsByClassName("before");
       for (let i = 0; i < before.length; i++) {
         before[i].classList.remove("whiteText");
@@ -489,6 +517,7 @@ function paginacarregada() {
       const buttonConfig = document.getElementsByClassName("buttonConfig");
       for (let i = 0; i < buttonConfig.length; i++) {
         buttonConfig[i].classList.remove("whiteText");
+        buttonConfig[i].classList.remove("buttonConfigME");
       }
   
       // favoritos.html, ongs.html

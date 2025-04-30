@@ -1439,10 +1439,6 @@ footer .listasFooter a:hover {
     margin: 1rem 0;
 }
 
-.linhaME {
-    background-color: white;
-}
-
 .botFiltro {
     display: flex;
     justify-content: space-between;
@@ -1955,16 +1951,37 @@ ol {
     margin-bottom: 1rem;
 }
 
-.abrirOpções {
+.abrirOpcoes {
     display: none;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.5rem;
+}
+
+.abrirOpcoesME {
+    background-color: var(--cinza46) !important;
+    box-shadow: 3px 3px 5px var(--cinza34) !important;
+
+}
+
+
+.temasME{
+    color: white !important;
+}
+
+.temasME:hover{
+    background-color: var(--cinza100) !important;
 }
 
 .temas {
     font-size: 16px;
     color: var(--cinza34);
+    width: 100%;
+    padding: 0.4rem 0 0.4rem 0.2rem;
+    text-align: left;
+}
+
+.temas:hover{
+    background-color: var(--cinza215);
 }
 
 .bordad {
@@ -1972,7 +1989,6 @@ ol {
 }
 
 .setaOpções {
-
     gap: 0.5rem;
     display: flex;
     align-items: center;
@@ -2025,9 +2041,26 @@ ol {
     color: var(--cinza46);
 }
 
+.buttonConfig:hover{
+    background-color: var(--cinza215);
+}
+
+.buttonConfigME:hover{
+    background-color: var(--cinza100) !important;
+}
+
+.buttonConfigME #setaConfig{
+    stroke: white;
+}
+
+.conjuntoOpcoesTema{
+    position: relative;
+}
+
 #temasSeta {
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 #setaConfig {
@@ -2042,13 +2075,6 @@ ol {
     stroke-linejoin: round;
 }
 
-#configConta {
-    background-color: var(--cinza215);
-}
-
-.buttonConfig:hover {
-    background-color: var(--cinza215);
-}
 
 #contaConfigH3,
 #politicasSiteH3 {
@@ -2063,8 +2089,8 @@ ol {
     background-color: var(--cinza201);
 }
 
-.linhaRowME {
-    background-color: black;
+.linhaRowME, .linhaME {
+    background-color: var(--cinza100);
 }
 
 .configConta,
@@ -2816,6 +2842,15 @@ textarea {
         text-align: center;
         padding: 0 0.5rem;
         width: auto;
+    }
+
+    .abrirOpcoes{
+        box-shadow: 3px 3px 5px var(--cinza158);
+        position: absolute;
+        top: 3rem;
+        left: 0.5rem;
+        width: 10rem;
+        background-color: rgb(236,236,236);
     }
 
     .mainAside .gridOng {

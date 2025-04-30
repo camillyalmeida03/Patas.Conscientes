@@ -14,18 +14,14 @@ class AsideConfig {
   
     acessarPoliticas() {
       this.ladoPoliticas.style.display = "flex";
-        this.politicasConta.style.backgroundColor = "var(--cinza215)";
       this.ladoConfig.style.display = "none";
-      this.configConta.style.backgroundColor = "transparent";
 
     }
   
     acessarConfig() {
       this.ladoPoliticas.style.display = "none";
-      this.politicasConta.style.backgroundColor = "transparent";
 
       this.ladoConfig.style.display = "block";
-      this.configConta.style.backgroundColor = "var(--cinza215)";
     }
   }
   
