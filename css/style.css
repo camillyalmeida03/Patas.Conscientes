@@ -110,7 +110,7 @@ main {
 /* Estilos da Barra de Acessibilidade */
 .accessibility-bar {
     position: fixed;
-    left: -300px;
+    right: -300px;
     /* Oculto inicialmente fora da tela */
     top: 35vh;
     width: 6rem;
@@ -128,14 +128,14 @@ main {
 }
 
 .accessibility-bar.show {
-    left: 10px;
+    right: 10px;
     /* Exibe a barra ao passar o mouse ou clicar */
 }
 
 .accessibility-icon {
     position: fixed;
-    left: 10px;
-    top: 35vh;
+    right: 10px;
+    top: 27vh;
     cursor: pointer;
     background-color: var(--azul_claro);
     padding: 10px;
