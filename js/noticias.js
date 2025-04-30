@@ -48,27 +48,32 @@ function exibirNoticias(noticias) {
     }
 
     noticiasFiltradas.forEach(noticia => {
-        const newsItem = document.createElement('div');
-        newsItem.classList.add('news-item');
-
-        // Cria o título como link
-        const titulo = document.createElement('a');
-        titulo.href = noticia.url; // Define a URL da notícia
-        titulo.textContent = noticia.title; // Define o título da notícia
-        titulo.target = '_blank'; // Abre o link em uma nova aba
-        titulo.classList.add('news-title'); // Classe CSS para o estilo do título
-
+        // Cria o link que vai envolver toda a notícia
+        const link = document.createElement('a');
+        link.href = noticia.url;
+        link.target = '_blank';
+        link.classList.add('news-item'); // Pode continuar usando a mesma classe
+        link.style.textDecoration = 'none'; // Remove sublinhado padrão, se quiser
+    
+        // Título da notícia
+        const titulo = document.createElement('h3');
+        titulo.textContent = noticia.title;
+        titulo.classList.add('news-title');
+    
+        // Descrição da notícia
         const descricao = document.createElement('p');
-        descricao.textContent = noticia.description; // Adiciona a descrição da notícia
-
-        // Adiciona os elementos na div de notícia
-        newsItem.appendChild(titulo); // Adiciona o título/link
-        newsItem.appendChild(descricao); // Adiciona a descrição
-
-        // Adiciona a notícia ao container
-        container.appendChild(newsItem);
+        descricao.textContent = noticia.description;
+    
+        // Adiciona o título e descrição dentro do link
+        link.appendChild(titulo);
+        link.appendChild(descricao);
+    
+        // Adiciona ao container principal
+        container.appendChild(link);
     });
+    
 }
+
 
 // Função para buscar notícias da API
 async function buscarNoticias(query = '') {

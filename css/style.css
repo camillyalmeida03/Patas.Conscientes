@@ -263,6 +263,14 @@ main {
     background-color: var(--cinza34) !important;
 }
 
+.newscontainerME .news-title{
+    color: var(--azulME2);
+}
+
+.newscontainerME .news-title:hover{
+    color: var(--azulME1);
+}
+
 /* Efeito de hover nos itens de notícia */
 .news-item:hover {
     transform: scale(1.02);

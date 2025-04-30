@@ -45,12 +45,6 @@ function paginacarregada() {
         searchInput.classList.add("searchinputME");
       }
   
-      const lupa = document.getElementsByClassName("lupa");
-      for (let i = 0; i < lupa.length; i++) {
-        //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .lupa
-        lupa[i].src = "/img/icons/lupa_pesquisa_branca.svg";
-      }
-  
       // Função para adicionar a classe 'newsitemME' a elementos com a classe 'news-item'
   
       const newsItems = document.getElementsByClassName("news-item");
@@ -554,11 +548,6 @@ function paginacarregada() {
         newscontainer.classList.remove("newscontainerME");
       }
   
-      const lupa = document.getElementsByClassName("lupa");
-      for (let i = 0; i < lupa.length; i++) {
-        //loop para adicionar essa classe para adicionar a nova classe para cada elemento com a classe .lupa
-        lupa[i].src = "/img/icons/lupa_pesquisa_cinza.svg";
-      }
   
       function removeAllNewsitemME() {
         // Seleciona todos os elementos com a classe 'newsitemME'
