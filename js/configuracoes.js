@@ -34,34 +34,8 @@ class AsideConfig {
     configConta?.addEventListener("click", () => newAsideConfig.acessarConfig());
     politicasConta?.addEventListener("click", () => newAsideConfig.acessarPoliticas());
   });
-  
-function paginacarregada() {
-  // let contaConfig = document.getElementById("botao1");
-  // let politicasSite = document.getElementById("botao2");
-  // let politicasSiteH3 = document.getElementById("politicasSiteH3");
-  // let contaH3 = document.getElementById("contaH3");
-  // let configConta = document.getElementById("configConta");
-  // let politicasdoSite = document.querySelector(".politicasdoSite");
-  // politicasSite.addEventListener("click", function(){
-  //     configConta.style.display = 'none';
-  //     politicasdoSite.style.display = 'flex';
-  // })
-  // contaConfig.addEventListener("click", function(){
-  //     politicasdoSite.style.display = 'none';
-  //     configConta.style.display = 'block' ;
-  // })
-  // contaH3.addEventListener("click", function(){
-  //     politicasdoSite.style.display = 'none';
-  //     configConta.style.display = 'block' ;
-  // })
-  // politicasSiteH3.addEventListener("click", function(){
-  //     configConta.style.display = 'none';
-  //     politicasdoSite.style.display = 'flex';
-  // })
-}
 
 //Seta de abrir leque de opções na aba tema
-
 function abrir() {
   let menu = document.getElementById("menu");
   let seta = document.getElementById("setaConfig");
