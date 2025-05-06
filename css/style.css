@@ -2584,7 +2584,29 @@ textarea {
     color: white;
 }
 
+/* ----------------------------- mostrarOng.html ----------------------------- */
 
+.identificarOng{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fotoOng{
+    width: 50%;
+    aspect-ratio: 2 / 1  ;
+    border-radius: 2rem;
+    object-fit: cover;
+    margin-bottom: 3rem;
+}
+
+.qntdPet{
+    padding: 0 2rem 0.5rem 2rem;
+}
+
+.mostrarOng .adotarSec{
+    padding: 0;
+}
 
 
 @media screen and (max-width: 1650px) {
@@ -2683,6 +2705,10 @@ textarea {
 
     .mainAdotar {
         flex-direction: column;
+    }
+
+    .fotoOng{
+        width: 70%;
     }
 
 
@@ -2915,6 +2941,10 @@ textarea {
 
     .mainAside .adotarSec {
         padding: 0;
+    }
+
+    .fotoOng{
+        width: 100%;
     }
 
 }

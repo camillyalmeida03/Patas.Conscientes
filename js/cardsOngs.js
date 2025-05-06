@@ -4,7 +4,7 @@
 import { CriarElementos } from "./criarElementos.js";
 
 // Classe que representa puxar informações da ONG
-class InformacoesOng {
+export class InformacoesOng {
   constructor(id, foto, nome, descricao, cidade, qntdanimais) {
     this.id = id;
     this.foto = foto;
@@ -16,7 +16,7 @@ class InformacoesOng {
 }
 
 // Classe que cria os cards das ONGs
-class CardsOngs {
+export class CardsOngs {
   constructor(InformacoesOng = null) {
     this.criarElemento = new CriarElementos();
 
@@ -100,6 +100,10 @@ class CardsOngs {
       console.log("ERROR: gridOng não encontrada");
     }
   }
+
+  abrirOngPage() {
+    console.log("Conexão entre arquivos ocorreu perfeitamente");
+  }
 }
 
 // Exemplo de informação de ONG
@@ -159,4 +163,5 @@ const cards = [];
 ongs.forEach((ong) => {
   const card = new CardsOngs(ong);
   cards.push(card);
+  
 });
