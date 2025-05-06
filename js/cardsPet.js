@@ -1,5 +1,8 @@
 //Este arquivo JS é responsável por gerar os cards de cada pet.
 
+// Importando dados do arquivo criarElementos.js
+import { CriarElementos } from "./criarElementos.js";
+
 // Classe representando os dados de um Pet
 class InformacoesPet {
   constructor(
@@ -34,6 +37,8 @@ class InformacoesPet {
 // Classe responsável por gerar os cards e os modais de cada pet
 class CardsPets {
   constructor(InformacoesPet = null) {
+    this.criarElemento = new CriarElementos();
+    
     if (InformacoesPet) {
       this.InfoPet = InformacoesPet;
       this.card = this.gerarCard(InformacoesPet);
@@ -41,112 +46,37 @@ class CardsPets {
     this.informacoesExibidas = false;
   }
 
-  // Método responsável por otimizar a linha de criação de cada elemento HTML
-  // O método recebe o nome da tag, as classes, texto interno do elemento e seu pai
-  createElement(tag, classes = [], innerText = "", parent = null, id = "") {
-    const element = document.createElement(tag);
-
-    if (id) element.id = id; // Adiciona o id se fornecido
-
-    if (Array.isArray(classes)) {
-      element.classList.add(...classes);
-    } else if (classes) {
-      element.classList.add(classes);
-    }
-
-    if (innerText) element.innerText = innerText;
-    if (parent) parent.appendChild(element);
-
-    return element;
-  }
-
-  // Método responsável por otimizar a linha de criação de cada elemento IMG
-  // O método recebe as classes, src, alt, loading e seu pai
-  createImg(classes = [], src = "", alt = "", loading = "lazy", parent = null) {
-    const img = document.createElement("img");
-
-    if (Array.isArray(classes)) {
-      img.classList.add(...classes);
-    } else if (classes) {
-      img.classList.add(classes);
-    }
-
-    if (src) img.src = src;
-    if (loading) img.loading = loading;
-    if (alt) img.alt = alt;
-    if (parent) parent.appendChild(img);
-
-    return img;
-  }
-
-  // Método responsável por otimizar a linha de criação de cada botão no HTML
-  // O método recebe o nome da as classes, texto interno do elemento, seu pai e seu title
-  createButton(classes = [], innerText = "", parent = null, title = "") {
-    const button = document.createElement("button");
-
-    if (Array.isArray(classes)) {
-      button.classList.add(...classes);
-    } else if (classes) {
-      button.classList.add(classes);
-    }
-
-    if (innerText) button.innerText = innerText;
-    if (parent) parent.appendChild(button);
-    if (title) button.title = title;
-
-    return button;
-  }
-
-  // Método responsável por otimizar a linha de criação de cada elemento A
-  // O método recebe o nome da as classes, href, title, texto interno do elemento e seu pai
-  createA(classes = [], href = "", title = "", innerText = "", parent = null) {
-    const a = document.createElement("a");
-
-    if (Array.isArray(classes)) {
-      a.classList.add(...classes);
-    } else if (classes) {
-      a.classList.add(classes);
-    }
-
-    if (href) a.href = href;
-    if (title) a.title = title;
-    if (innerText) a.innerText = innerText;
-    if (parent) parent.appendChild(a);
-
-    return a;
-  }
-
   // Método responsável por criar o modal de cada pet
   modalPet(InfoPet) {
     this.InfoPet = InfoPet;
-    this.fundoAba = this.createElement("div", "fundoAba", null, document.body);
+    this.fundoAba = this.criarElemento.createElement("div", "fundoAba", null, document.body);
     this.fundoAba.style.display = "none"; // Esconde o fundo da aba
 
-    this.maisInfoPet = this.createElement(
+    this.maisInfoPet = this.criarElemento.createElement(
       "div",
       "maisInfoPet",
       null,
       this.fundoAba
     );
 
-    this.fotoPet = this.createElement("div", "fotoPet", null, this.maisInfoPet);
+    this.fotoPet = this.criarElemento.createElement("div", "fotoPet", null, this.maisInfoPet);
     this.fotoPet.style.backgroundImage = `url(${this.InfoPet.foto})`;
 
-    this.infoBotaoCardPet = this.createElement(
+    this.infoBotaoCardPet = this.criarElemento.createElement(
       "div",
       "infoBotaoCardPet",
       null,
       this.maisInfoPet
     );
 
-    this.conjOngBotFechar = this.createElement(
+    this.conjOngBotFechar = this.criarElemento.createElement(
       "div",
       "conjOngBotFechar",
       null,
       this.infoBotaoCardPet
     );
 
-    this.linkOng = this.createA(
+    this.linkOng = this.criarElemento.createA(
       ["linkDesc"],
       this.InfoPet.ongLink,
       `Link para - ${this.InfoPet.ongNome}`,
@@ -154,7 +84,7 @@ class CardsPets {
       this.conjOngBotFechar
     );
 
-    this.fecharAba = this.createButton(
+    this.fecharAba = this.criarElemento.createButton(
       [],
       null,
       this.conjOngBotFechar,
@@ -165,20 +95,20 @@ class CardsPets {
     <path d="m287-216-69-71 192-193-192-195 69-71 194 195 192-195 69 71-192 195 192 193-69 71-192-195-194 195Z" />
     </svg>`;
 
-    this.conjNomeSexo = this.createElement(
+    this.conjNomeSexo = this.criarElemento.createElement(
       "div",
       "conjNomeSexo",
       null,
       this.infoBotaoCardPet
     );
-    this.nomePet = this.createElement(
+    this.nomePet = this.criarElemento.createElement(
       "h2",
       [],
       InfoPet.nome,
       this.conjNomeSexo
     );
 
-    this.sexoPet = this.createElement(
+    this.sexoPet = this.criarElemento.createElement(
       "div",
       "sexoPet",
       null,
@@ -188,21 +118,21 @@ class CardsPets {
     // Chamar o método que faz a condição do sexo do pet
     this.condicaoSexoPet(this.InfoPet);
 
-    this.conjInfoPetBtt = this.createElement(
+    this.conjInfoPetBtt = this.criarElemento.createElement(
       "div",
       "conjInfoPetBtt",
       null,
       this.infoBotaoCardPet
     );
 
-    this.informPet = this.createElement(
+    this.informPet = this.criarElemento.createElement(
       "div",
       "informPet",
       null,
       this.conjInfoPetBtt
     );
 
-    this.pesoIdade = this.createElement(
+    this.pesoIdade = this.criarElemento.createElement(
       "div",
       "pesoIdade",
       null,
@@ -210,16 +140,16 @@ class CardsPets {
       "pesoIdade"
     );
 
-    this.conjTituloPeso = this.createElement("div", [], null, this.pesoIdade);
+    this.conjTituloPeso = this.criarElemento.createElement("div", [], null, this.pesoIdade);
 
-    this.tituloPeso = this.createElement(
+    this.tituloPeso = this.criarElemento.createElement(
       "h3",
       "tituloInfoPet",
       "Peso",
       this.conjTituloPeso
     );
 
-    this.pesoPet = this.createElement(
+    this.pesoPet = this.criarElemento.createElement(
       "p",
       [],
       InfoPet.peso,
@@ -227,16 +157,16 @@ class CardsPets {
       "pesoPet"
     );
 
-    this.conjTituloIdade = this.createElement("div", [], null, this.pesoIdade);
+    this.conjTituloIdade = this.criarElemento.createElement("div", [], null, this.pesoIdade);
 
-    this.tituloIdade = this.createElement(
+    this.tituloIdade = this.criarElemento.createElement(
       "h3",
       "tituloInfoPet",
       "Idade",
       this.conjTituloIdade
     );
 
-    this.idadePet = this.createElement(
+    this.idadePet = this.criarElemento.createElement(
       "p",
       [],
       InfoPet.idade,
@@ -244,7 +174,7 @@ class CardsPets {
       "idadePet"
     );
 
-    this.especPorte = this.createElement(
+    this.especPorte = this.criarElemento.createElement(
       "div",
       "especPorte",
       null,
@@ -252,19 +182,19 @@ class CardsPets {
       "especPorte"
     );
 
-    this.conjTituloEspecie = this.createElement(
+    this.conjTituloEspecie = this.criarElemento.createElement(
       "div",
       [],
       null,
       this.especPorte
     );
-    this.tituloEspecie = this.createElement(
+    this.tituloEspecie = this.criarElemento.createElement(
       "h3",
       "tituloInfoPet",
       "Espécie",
       this.conjTituloEspecie
     );
-    this.especiePet = this.createElement(
+    this.especiePet = this.criarElemento.createElement(
       "p",
       [],
       InfoPet.especie,
@@ -272,16 +202,16 @@ class CardsPets {
     );
     this.especiePet.id = "especiePet";
 
-    this.conjTituloPorte = this.createElement("div", [], null, this.especPorte);
+    this.conjTituloPorte = this.criarElemento.createElement("div", [], null, this.especPorte);
 
-    this.tituloPorte = this.createElement(
+    this.tituloPorte = this.criarElemento.createElement(
       "h3",
       "tituloInfoPet",
       "Porte",
       this.conjTituloPorte
     );
 
-    this.portePet = this.createElement(
+    this.portePet = this.criarElemento.createElement(
       "p",
       [],
       InfoPet.porte,
@@ -289,7 +219,7 @@ class CardsPets {
       "portePet"
     );
 
-    this.triploInfo = this.createElement(
+    this.triploInfo = this.criarElemento.createElement(
       "div",
       "triploInfo",
       null,
@@ -297,16 +227,16 @@ class CardsPets {
       "triploInfo"
     );
 
-    this.conjTituloRaca = this.createElement("div", [], null, this.triploInfo);
+    this.conjTituloRaca = this.criarElemento.createElement("div", [], null, this.triploInfo);
 
-    this.tituloRaca = this.createElement(
+    this.tituloRaca = this.criarElemento.createElement(
       "h3",
       "tituloInfoPet",
       "Raça",
       this.conjTituloRaca
     );
 
-    this.racaPet = this.createElement(
+    this.racaPet = this.criarElemento.createElement(
       "p",
       [],
       InfoPet.raca,
@@ -314,16 +244,16 @@ class CardsPets {
       "racaPet"
     );
 
-    this.conjTituloOng = this.createElement("div", [], null, this.triploInfo);
+    this.conjTituloOng = this.criarElemento.createElement("div", [], null, this.triploInfo);
 
-    this.tituloOng = this.createElement(
+    this.tituloOng = this.criarElemento.createElement(
       "h3",
       "tituloInfoPet",
       "Local",
       this.conjTituloOng
     );
 
-    this.ongPet = this.createElement(
+    this.ongPet = this.criarElemento.createElement(
       "p",
       [],
       InfoPet.ongNome,
@@ -331,16 +261,16 @@ class CardsPets {
       "ongPet"
     );
 
-    this.conjTituloSobre = this.createElement("div", [], null, this.triploInfo);
+    this.conjTituloSobre = this.criarElemento.createElement("div", [], null, this.triploInfo);
 
-    this.tituloSobre = this.createElement(
+    this.tituloSobre = this.criarElemento.createElement(
       "h3",
       "tituloInfoPet",
       "Sobre",
       this.conjTituloSobre
     );
 
-    this.sobrePet = this.createElement(
+    this.sobrePet = this.criarElemento.createElement(
       "p",
       [],
       InfoPet.sobre,
@@ -348,42 +278,42 @@ class CardsPets {
       "sobrePet"
     );
 
-    this.bttcard = this.createElement(
+    this.bttcard = this.criarElemento.createElement(
       "div",
       "bttcard",
       null,
       this.conjInfoPetBtt
     );
 
-    this.botaoAdotar = this.createButton(
+    this.botaoAdotar = this.criarElemento.createButton(
       "buttonRosa",
       "Adotar",
       this.bttcard,
       "Adotar " + this.InfoPet.nome
     );
 
-    this.conjFavoritarCompartilhar = this.createElement(
+    this.conjFavoritarCompartilhar = this.criarElemento.createElement(
       "div",
       "conjFavoritarCompartilhar",
       null,
       this.bttcard
     );
 
-    this.adicionarFavorito = this.createButton(
+    this.adicionarFavorito = this.criarElemento.createButton(
       ["favoritar", "adicionarFav"],
       null,
       this.conjFavoritarCompartilhar,
       " Favoritar " + this.InfoPet.nome
     );
 
-    this.apagarFavorito = this.createButton(
+    this.apagarFavorito = this.criarElemento.createButton(
       ["favoritar", "apagarFav"],
       null,
       this.conjFavoritarCompartilhar,
       "DesFavoritar " + this.InfoPet.nome
     );
 
-    this.compartilharPet = this.createButton(
+    this.compartilharPet = this.criarElemento.createButton(
       "compartilharPet",
       null,
       this.conjFavoritarCompartilhar,
@@ -425,21 +355,21 @@ class CardsPets {
 
   //Método responsável por expandir o card na versão mobile
   mostrarMaisInformacoesPetCard() {
-    this.conjFavoritarCompartilhar = this.createElement(
+    this.conjFavoritarCompartilhar = this.criarElemento.createElement(
       "div",
       "conjFavoritarCompartilhar",
       null,
       this.nomIconAdotar
     );
 
-    this.compartilharPet = this.createButton(
+    this.compartilharPet = this.criarElemento.createButton(
       "compartilharPet",
       null,
       this.conjFavoritarCompartilhar,
       "Compartilhar " + this.InfoPet.nome
     );
 
-    this.adicionarFavorito = this.createButton(
+    this.adicionarFavorito = this.criarElemento.createButton(
       ["favoritar", "adicionarFav"],
       null,
       this.conjFavoritarCompartilhar,
@@ -448,9 +378,9 @@ class CardsPets {
 
     this.compartilharPet.innerHTML = `<svg viewBox="0 -960 960 960" fill="#000000"><path d="M640.22-116q-44.91 0-76.26-31.41-31.34-31.41-31.34-76.28 0-9 5.15-30.16L297.31-402.31q-14.46 14-33.41 22-18.94 8-40.59 8-44.71 0-76.01-31.54Q116-435.39 116-480q0-44.61 31.3-76.15 31.3-31.54 76.01-31.54 21.74 0 40.64 8 18.9 8 33.36 22l240.46-148.08q-2.38-7.38-3.77-14.77-1.38-7.39-1.38-15.77 0-44.87 31.43-76.28Q595.49-844 640.4-844t76.25 31.44Q748-781.13 748-736.22q0 44.91-31.41 76.26-31.41 31.34-76.28 31.34-21.85 0-40.5-8.19Q581.15-645 566.69-659L326.23-510.54q2.38 7.39 3.77 14.77 1.38 7.39 1.38 15.77 0 8.38-1.38 15.77-1.39 7.38-3.77 14.77L566.69-301q14.46-14 33.16-22.19 18.7-8.19 40.46-8.19 44.87 0 76.28 31.43Q748-268.51 748-223.6t-31.44 76.25Q685.13-116 640.22-116Zm.09-52q23.67 0 39.68-16.01Q696-200.02 696-223.69q0-23.67-16.01-39.68-16.01-16.02-39.68-16.02-23.67 0-39.68 16.02-16.02 16.01-16.02 39.68 0 23.67 16.02 39.68Q616.64-168 640.31-168Zm-417-256.31q23.83 0 39.95-16.01 16.13-16.01 16.13-39.68 0-23.67-16.13-39.68-16.12-16.01-39.95-16.01-23.51 0-39.41 16.01Q168-503.67 168-480q0 23.67 15.9 39.68 15.9 16.01 39.41 16.01Zm417-256.3q23.67 0 39.68-16.02Q696-712.64 696-736.31q0-23.67-16.01-39.68Q663.98-792 640.31-792q-23.67 0-39.68 16.01-16.02 16.01-16.02 39.68 0 23.67 16.02 39.68 16.01 16.02 39.68 16.02Zm0 456.92ZM223.69-480Zm416.62-256.31Z" /></svg>`;
 
-    this.p = this.createElement("p", null, null, this.descMiniAdotar);
+    this.p = this.criarElemento.createElement("p", null, null, this.descMiniAdotar);
 
-    this.linkDesc = this.createA(
+    this.linkDesc = this.criarElemento.createA(
       "linkDesc",
       "ongs.html",
       "Link para a página de " + this.InfoPet.ongNome,
@@ -458,21 +388,21 @@ class CardsPets {
       this.p
     );
 
-    this.expansaoCard = this.createElement(
+    this.expansaoCard = this.criarElemento.createElement(
       "div",
       "expansaoCard",
       null,
       this.adotarMiniCard
     );
 
-    this.informPet = this.createElement(
+    this.informPet = this.criarElemento.createElement(
       "div",
       "informPet",
       null,
       this.expansaoCard
     );
 
-    this.pesoIdade = this.createElement(
+    this.pesoIdade = this.criarElemento.createElement(
       "div",
       "pesoIdade",
       null,
@@ -480,16 +410,16 @@ class CardsPets {
       "pesoIdade"
     );
 
-    this.conjTituloPeso = this.createElement("div", [], null, this.pesoIdade);
+    this.conjTituloPeso = this.criarElemento.createElement("div", [], null, this.pesoIdade);
 
-    this.tituloPeso = this.createElement(
+    this.tituloPeso = this.criarElemento.createElement(
       "h3",
       "tituloInfoPet",
       "Peso",
       this.conjTituloPeso
     );
 
-    this.pesoPet = this.createElement(
+    this.pesoPet = this.criarElemento.createElement(
       "p",
       [],
       this.InfoPet.peso,
@@ -497,16 +427,16 @@ class CardsPets {
       "pesoPet"
     );
 
-    this.conjTituloIdade = this.createElement("div", [], null, this.pesoIdade);
+    this.conjTituloIdade = this.criarElemento.createElement("div", [], null, this.pesoIdade);
 
-    this.tituloIdade = this.createElement(
+    this.tituloIdade = this.criarElemento.createElement(
       "h3",
       "tituloInfoPet",
       "Idade",
       this.conjTituloIdade
     );
 
-    this.idadePet = this.createElement(
+    this.idadePet = this.criarElemento.createElement(
       "p",
       [],
       this.InfoPet.idade,
@@ -514,7 +444,7 @@ class CardsPets {
       "idadePet"
     );
 
-    this.especPorte = this.createElement(
+    this.especPorte = this.criarElemento.createElement(
       "div",
       "especPorte",
       null,
@@ -522,21 +452,21 @@ class CardsPets {
       "especPorte"
     );
 
-    this.conjTituloEspecie = this.createElement(
+    this.conjTituloEspecie = this.criarElemento.createElement(
       "div",
       [],
       null,
       this.especPorte
     );
 
-    this.tituloEspecie = this.createElement(
+    this.tituloEspecie = this.criarElemento.createElement(
       "h3",
       "tituloInfoPet",
       "Espécie",
       this.conjTituloEspecie
     );
 
-    this.especiePet = this.createElement(
+    this.especiePet = this.criarElemento.createElement(
       "p",
       [],
       this.InfoPet.especie,
@@ -545,16 +475,16 @@ class CardsPets {
 
     this.especiePet.id = "especiePet";
 
-    this.conjTituloPorte = this.createElement("div", [], null, this.especPorte);
+    this.conjTituloPorte = this.criarElemento.createElement("div", [], null, this.especPorte);
 
-    this.tituloPorte = this.createElement(
+    this.tituloPorte = this.criarElemento.createElement(
       "h3",
       "tituloInfoPet",
       "Porte",
       this.conjTituloPorte
     );
 
-    this.portePet = this.createElement(
+    this.portePet = this.criarElemento.createElement(
       "p",
       [],
       this.InfoPet.porte,
@@ -562,7 +492,7 @@ class CardsPets {
       "portePet"
     );
 
-    this.triploInfo = this.createElement(
+    this.triploInfo = this.criarElemento.createElement(
       "div",
       "triploInfo",
       null,
@@ -570,16 +500,16 @@ class CardsPets {
       "triploInfo"
     );
 
-    this.conjTituloRaca = this.createElement("div", [], null, this.triploInfo);
+    this.conjTituloRaca = this.criarElemento.createElement("div", [], null, this.triploInfo);
 
-    this.tituloRaca = this.createElement(
+    this.tituloRaca = this.criarElemento.createElement(
       "h3",
       "tituloInfoPet",
       "Raça",
       this.conjTituloRaca
     );
 
-    this.racaPet = this.createElement(
+    this.racaPet = this.criarElemento.createElement(
       "p",
       [],
       this.InfoPet.raca,
@@ -587,16 +517,16 @@ class CardsPets {
       "racaPet"
     );
 
-    this.conjTituloOng = this.createElement("div", [], null, this.triploInfo);
+    this.conjTituloOng = this.criarElemento.createElement("div", [], null, this.triploInfo);
 
-    this.tituloOng = this.createElement(
+    this.tituloOng = this.criarElemento.createElement(
       "h3",
       "tituloInfoPet",
       "Local",
       this.conjTituloOng
     );
 
-    this.ongPet = this.createElement(
+    this.ongPet = this.criarElemento.createElement(
       "p",
       [],
       this.InfoPet.ongNome,
@@ -604,16 +534,16 @@ class CardsPets {
       "ongPet"
     );
 
-    this.conjTituloSobre = this.createElement("div", [], null, this.triploInfo);
+    this.conjTituloSobre = this.criarElemento.createElement("div", [], null, this.triploInfo);
 
-    this.tituloSobre = this.createElement(
+    this.tituloSobre = this.criarElemento.createElement(
       "h3",
       "tituloInfoPet",
       "Sobre",
       this.conjTituloSobre
     );
 
-    this.sobrePet = this.createElement(
+    this.sobrePet = this.criarElemento.createElement(
       "p",
       [],
       this.InfoPet.sobre,
@@ -621,14 +551,14 @@ class CardsPets {
       "sobrePet"
     );
 
-    this.bttcard = this.createElement(
+    this.bttcard = this.criarElemento.createElement(
       "div",
       "bttcard",
       null,
       this.adotarMiniCard
     );
 
-    this.verMenos = this.createButton(
+    this.verMenos = this.criarElemento.createButton(
       "verMenos",
       "Ver menos",
       this.bttcard,
@@ -642,7 +572,7 @@ class CardsPets {
       }
     });
 
-    this.botaoAdotar = this.createButton(
+    this.botaoAdotar = this.criarElemento.createButton(
       "buttonRosa",
       "Adotar",
       this.bttcard,
@@ -662,16 +592,16 @@ class CardsPets {
   //Método responsável por mostrar o card minimizado
   mostrarCardNormal() {
     this.limparCardNormal();
-    this.favoritar = this.createButton(
+    this.favoritar = this.criarElemento.createButton(
       ["favoritar", "apagarFav"],
       null,
       this.nomIconAdotar,
       "DesFavoritar"
     );
 
-    this.p = this.createElement("p", null, null, this.descMiniAdotar);
+    this.p = this.criarElemento.createElement("p", null, null, this.descMiniAdotar);
 
-    this.linkDesc = this.createA(
+    this.linkDesc = this.criarElemento.createA(
       "linkDesc",
       "ongs.html",
       "Link para a página de " + this.InfoPet.ongNome,
@@ -679,21 +609,21 @@ class CardsPets {
       this.p
     );
 
-    this.bttcard = this.createElement(
+    this.bttcard = this.criarElemento.createElement(
       "div",
       "bttcard",
       null,
       this.adotarMiniCard
     );
 
-    this.verMais = this.createButton(
+    this.verMais = this.criarElemento.createButton(
       "verMais",
       "Ver mais",
       this.bttcard,
       "Ver mais informações sobre " + this.InfoPet.nome
     );
 
-    this.botaoAdotar = this.createButton(
+    this.botaoAdotar = this.criarElemento.createButton(
       "buttonRosa",
       "Adotar",
       this.bttcard,
@@ -723,21 +653,21 @@ class CardsPets {
     if (adotarSec) {
       this.adotarSec = adotarSec;
 
-      this.cardsAnimais = this.createElement(
+      this.cardsAnimais = this.criarElemento.createElement(
         "div",
         "cardsAnimais",
         null,
         adotarSec
       );
 
-      this.adotarMiniCard = this.createElement(
+      this.adotarMiniCard = this.criarElemento.createElement(
         "div",
         "adotarMiniCard",
         null,
         this.cardsAnimais
       );
 
-      this.fotoPet = this.createImg(
+      this.fotoPet = this.criarElemento.createImg(
         [],
         this.InfoPet.foto,
         "Foto de " + this.InfoPet.nome,
@@ -745,35 +675,35 @@ class CardsPets {
         this.adotarMiniCard
       );
 
-      this.descMiniAdotar = this.createElement(
+      this.descMiniAdotar = this.criarElemento.createElement(
         "div",
         "descMiniAdotar",
         null,
         this.adotarMiniCard
       );
 
-      this.nomIconAdotar = this.createElement(
+      this.nomIconAdotar = this.criarElemento.createElement(
         "div",
         ["nomIconAdotar", "favoritado"],
         null,
         this.descMiniAdotar
       );
 
-      this.iconsAdotar = this.createElement(
+      this.iconsAdotar = this.criarElemento.createElement(
         "div",
         "iconsAdotar",
         null,
         this.nomIconAdotar
       );
 
-      this.nomePet = this.createElement(
+      this.nomePet = this.criarElemento.createElement(
         "h2",
         "nomePet",
         this.InfoPet.nome,
         this.iconsAdotar
       );
 
-      this.sexoPet = this.createElement(
+      this.sexoPet = this.criarElemento.createElement(
         "div",
         "sexoPet",
         null,
