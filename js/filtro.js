@@ -33,6 +33,17 @@ function limparRadioButtons() {
     setTimeout(() => {
         feedback.remove();
     }, 3000);
+
+    // Exibe todos os cards novamente
+    const cards = document.querySelectorAll(".cardsAnimais");
+    cards.forEach(card => card.style.display = "block");
+
+    // Resetar os filtros para que todos os pets apareçam
+    const filtros = document.querySelectorAll('input[name="filter1"]');
+    filtros.forEach(filtro => filtro.checked = false);
+    
+    // Quando os filtros são desmarcados, todos os cards são exibidos
+    cards.forEach(card => card.style.display = "block");
 }
 
 const filtro = document.getElementById("filtro");
@@ -82,3 +93,29 @@ radios.forEach(radio => {
 
 
 // Função para aplicar os filtro cidades
+
+document.querySelectorAll('input[name="filter1"]').forEach(radio => {
+    radio.addEventListener('change', function () {
+      const cidadeSelecionada = this.id;
+  
+      // Mapeamento: cidade → array de IDs dos pets
+      const mapaIds = {
+        mt: ["pet-3", "pet-6"],
+        tq: ["pet-2", "pet-5"],
+        arq: ["pet-1", "pet-4"]
+      };
+  
+      const idsVisiveis = mapaIds[cidadeSelecionada];
+      
+  
+      // Esconde todos os cards
+      document.querySelectorAll(".cardsAnimais").forEach(card => {
+        if (idsVisiveis.includes(card.id)) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
+  });
+  

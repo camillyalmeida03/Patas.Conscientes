@@ -660,12 +660,16 @@ class CardsPets {
         adotarSec
       );
 
+      this.cardsAnimais.id = `pet-${this.InfoPet.id}`;
+
+
       this.adotarMiniCard = this.criarElemento.createElement(
         "div",
         "adotarMiniCard",
         null,
         this.cardsAnimais
       );
+
 
       this.fotoPet = this.criarElemento.createImg(
         [],
