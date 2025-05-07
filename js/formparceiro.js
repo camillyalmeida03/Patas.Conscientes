@@ -1,26 +1,3 @@
-// window.addEventListener("load", paginacarregada);
-
-// function paginacarregada(){
-
-// let formParceiro1 = document.getElementById("formParceiro1");
-// let formParceiro2 = document.getElementById("formParceiro2");
-// let continuarFormParc = document.getElementById("continuarFormParc");
-// let cadastrarFormParceiro = document.getElementById("cadastrarFormParceiro");
-
-// continuarFormParc.addEventListener("click", function(){
-//     event.preventDefault();
-
-//     formParceiro1.style.display = 'none';
-//     formParceiro2.style.display = 'flex';
-// })
-
-// cadastrarFormParceiro.addEventListener("click", function(){
-//     event.preventDefault();
-
-//     formParceiro1.style.display = 'flex';
-//     formParceiro2.style.display = 'none';
-// })
-// }
 
 function atualizarContagem() {
     contagem.innerHTML = mensagem.value.length;
@@ -115,6 +92,22 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    document.getElementById("cnpj").addEventListener("input", function (e) {
+        let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
+    
+        // Aplica a máscara de CNPJ: 00.000.000/0000-00
+        if (value.length > 2)
+            value = value.replace(/^(\d{2})(\d)/, "$1.$2");
+        if (value.length > 5)
+            value = value.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
+        if (value.length > 8)
+            value = value.replace(/\.(\d{3})(\d)/, ".$1/$2");
+        if (value.length > 12)
+            value = value.replace(/(\d{4})(\d)/, "$1-$2");
+    
+        e.target.value = value;
+    });
+
     function validarNomeResponsavel() {
         const nomeResponsavel = document.getElementById('nomeResp').value.trim();
         const erroNomeResponsavel = document.getElementById('erroNomeResponsavel');
@@ -153,6 +146,22 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    document.getElementById("cpf").addEventListener("input", function (e) {
+        let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
+    
+        // Aplica a máscara de CPF: 000.000.000-00
+        if (value.length > 3)
+            value = value.replace(/^(\d{3})(\d)/, "$1.$2");
+        if (value.length > 6)
+            value = value.replace(/^(\d{3})\.(\d{3})(\d)/, "$1.$2.$3");
+        if (value.length > 9)
+            value = value.replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d)/, "$1.$2.$3-$4");
+    
+        e.target.value = value;
+    });
+
+
+
     function validarEmailResponsavel() {
         const emailResponsavel = document.getElementById('emailResp').value.trim();
         const erroEmailResponsavel = document.getElementById('erroEmailResponsavel');
@@ -190,6 +199,16 @@ document.addEventListener('DOMContentLoaded', function () {
             return true;
         }
     }
+
+    document.getElementById("cep").addEventListener("input", function (e) {
+        let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
+    
+        // Aplica a máscara de CEP: 00000-000
+        if (value.length > 5)
+            value = value.replace(/^(\d{5})(\d)/, "$1-$2");
+    
+        e.target.value = value;
+    });
 
     function validarEstado() {
         const estado = document.getElementById('estado').value.trim();

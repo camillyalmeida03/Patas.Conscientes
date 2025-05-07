@@ -136,27 +136,16 @@ document.addEventListener('DOMContentLoaded', function () {
         return true;
     }
     
-    // Máscara dinâmica sem impedir apagamento
-    document.getElementById('telAdt').addEventListener('input', function (e) {
-        let valor = this.value.replace(/\D/g, ''); // Remove tudo que não for número
-        const cursorPos = this.selectionStart; // Salvar a posição do cursor
+    document.getElementById("telAdt").addEventListener("input", function (e) {
+        let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
     
-        // Aplicar máscara somente se houver números
-        if (valor.length > 0) {
-            if (valor.length > 11) valor = valor.slice(0, 11); // Limitar a 11 dígitos
-            if (valor.length > 6) {
-                this.value = `(${valor.slice(0, 2)}) ${valor.slice(2, 7)}-${valor.slice(7)}`;
-            } else if (valor.length > 2) {
-                this.value = `(${valor.slice(0, 2)}) ${valor.slice(2)}`;
-            } else {
-                this.value = valor;
-            }
-        } else {
-            this.value = ''; // Se não houver número, deixa vazio
-        }
+        // Aplica a máscara de telefone fixo: (XX) XXXX-XXXX
+        if (value.length > 2)
+            value = value.replace(/^(\d{2})(\d)/, "($1) $2");
+        if (value.length > 6)
+            value = value.replace(/(\d{4})(\d)/, "$1-$2");
     
-        // Restaurar a posição do cursor após aplicar a máscara
-        this.setSelectionRange(cursorPos, cursorPos);
+        e.target.value = value;
     });
 
 
@@ -181,6 +170,18 @@ document.addEventListener('DOMContentLoaded', function () {
             }
     }
 
+    document.getElementById("celAdt").addEventListener("input", function (e) {
+        let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
+    
+        // Aplica a máscara de celular: (XX) 9XXXX-XXXX
+        if (value.length > 2)
+            value = value.replace(/^(\d{2})(\d)/, "($1) $2");
+        if (value.length > 7)
+            value = value.replace(/(\d{5})(\d)/, "$1-$2");
+    
+        e.target.value = value;
+    });
+
 
     function validarCpf() {
         const cpfAdt = document.getElementById('cpfAdt').value.trim();
@@ -200,6 +201,20 @@ document.addEventListener('DOMContentLoaded', function () {
             return true;
             }
     }
+
+    document.getElementById("cpfAdt").addEventListener("input", function (e) {
+        let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
+    
+        // Aplica a máscara
+        if (value.length > 3)
+            value = value.replace(/^(\d{3})(\d)/, "$1.$2");
+        if (value.length > 6)
+            value = value.replace(/^(\d{3})\.(\d{3})(\d)/, "$1.$2.$3");
+        if (value.length > 9)
+            value = value.replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d)/, "$1.$2.$3-$4");
+    
+        e.target.value = value;
+    });
 
     function validarSenha() {
         const senhaAdt = document.getElementById('senhaAdt').value;

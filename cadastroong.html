@@ -253,6 +253,21 @@
           <p id="erroCnpj" class="error-message"></p>
         </div>
 
+        <!-- <script>
+          document.getElementById("cnpj").addEventListener("input", function (e) {
+            let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
+          
+            // Aplica a máscara
+            value = value.replace(/^(\d{2})(\d)/, "$1.$2");
+            value = value.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
+            value = value.replace(/\.(\d{3})(\d)/, ".$1/$2");
+            value = value.replace(/(\d{4})(\d)/, "$1-$2");
+          
+            e.target.value = value;
+          });
+          </script> -->
+          
+
         <div class="alinharErro">
           <input type="text" id="nomeResp" class="inputCadastro" placeholder="Nome do responsável" >
           <p id="erroNomeResponsavel" class="error-message"></p>
@@ -439,7 +454,7 @@
 
   <script src="js/header.js" defer></script>
   <script src="js/barraacessibilidade.js" defer></script>
-  <script src="js/formulario.js" defer></script>
+  <!-- <script src="js/formulario.js" defer></script> -->
   <script src="js/formcadong.js" defer></script>
   <script src="js/tema.js" defer></script>
 

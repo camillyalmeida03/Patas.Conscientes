@@ -79,3 +79,6 @@ radios.forEach(radio => {
         }
     });
 });
+
+
+// Função para aplicar os filtro cidades
