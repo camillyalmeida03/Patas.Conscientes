@@ -33,12 +33,12 @@ export class CardsOngs {
     if (gridOng) {
       console.log("gridOng foi encontrada");
 
-      this.cardOng = this.criarElemento.createElement(
-        "div",
+      this.cardOng = this.criarElemento.createButton(
         "cardOng",
         null,
-        gridOng
-      );
+        gridOng, 
+        "Ver mais sobre " + this.InfoOng.nome
+      )
 
       this.imgFav = this.criarElemento.createElement(
         "div",

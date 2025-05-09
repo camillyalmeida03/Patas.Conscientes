@@ -1328,6 +1328,10 @@ footer .listasFooter a:hover {
     color: white;
 }
 
+.cardOng:hover{
+    transform: scale(102%);
+}
+
 .cardOngME {
     box-shadow: black 1px 1px 3px;
 }
@@ -1365,6 +1369,12 @@ footer .listasFooter a:hover {
 
 .descOng {
     padding-left: 0.8rem;
+    transition: all 0.2s;
+}
+
+.descOng p {
+    font-size: 16px;
+    text-align: start;
 }
 
 .descOng h2 {
