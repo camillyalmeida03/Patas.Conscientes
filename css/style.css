@@ -223,6 +223,15 @@ main {
     background-color: var(--cinza245);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     width: 100%;
+    display: flex;
+    gap: 1rem;
+}
+
+.fotoNoticia{
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    height: 15rem;
+    border-radius: 0.8rem;
 }
 
 .news-item p {

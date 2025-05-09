@@ -54,6 +54,16 @@ function exibirNoticias(noticias) {
         link.target = '_blank';
         link.classList.add('news-item'); // Pode continuar usando a mesma classe
         link.style.textDecoration = 'none'; // Remove sublinhado padrão, se quiser
+
+        // Foto da notícia
+        const foto = document.createElement('img');
+        foto.src = noticia.urlToImage;
+        foto.alt = noticia.title;
+        foto.classList.add('fotoNoticia')
+
+        // Divisão dos textos, separa texto da imagem
+        const divText = document.createElement('div')
+        divText.classList.add("divText");
     
         // Título da notícia
         const titulo = document.createElement('h3');
@@ -65,8 +75,10 @@ function exibirNoticias(noticias) {
         descricao.textContent = noticia.description;
     
         // Adiciona o título e descrição dentro do link
-        link.appendChild(titulo);
-        link.appendChild(descricao);
+        link.appendChild(foto);
+        link.appendChild(divText);
+        divText.appendChild(titulo);
+        divText.appendChild(descricao);
     
         // Adiciona ao container principal
         container.appendChild(link);
