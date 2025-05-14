@@ -4,13 +4,15 @@
 import { CriarElementos } from "./criarElementos.js";
 
 export class Favoritar {
-  constructor(infoOng = null) {
+  constructor(infoOng = null, InfoPet = null) {
     this.criarElemento = new CriarElementos();
     this.infoOng = infoOng;
+    this.InfoPet = InfoPet;
     this.adicionarFavorito = null;
     this.apagarFavorito = null;
   }
 
+  // Mostra mensagem de feedback confirmando que foi favoritado
   adicionarFeedbackFavoritado() {
     const imgAdd = document.createElement("img");
     imgAdd.src = "/img/feedback/fav_adicionado.svg";
@@ -23,6 +25,7 @@ export class Favoritar {
     setTimeout(() => imgAdd.remove(), 3000);
   }
 
+  // Mostra mensagem de feedback confirmando que foi desfavoritado
   adicionarFeedbackDesfavoritado() {
     const imgRem = document.createElement("img");
     imgRem.src = "/img/feedback/fav_removido.svg";
@@ -35,6 +38,7 @@ export class Favoritar {
     setTimeout(() => imgRem.remove(), 3000);
   }
 
+  // Remove o feedback, caso eles esteja na tela
   removeFeedback() {
     const imgFeedback = document.querySelector(
       'body > img[src="/img/feedback/fav_adicionado.svg"], body > img[src="/img/feedback/fav_removido.svg"]'
@@ -42,7 +46,8 @@ export class Favoritar {
     if (imgFeedback) imgFeedback.remove();
   }
 
-  cliqueNoBotFavoritar(elementoPai) {
+  // Evento de clique no botão de favoritar
+  cliqueNoBotFavoritar(elementoPai, nome) {
     this.adicionarFavorito.addEventListener("click", (event) => {
       event.preventDefault();
 
@@ -54,17 +59,18 @@ export class Favoritar {
         ["favoritar", "apagarFav"],
         null,
         elementoPai,
-        "DesFavoritar " + this.infoOng.nome
+        "DesFavoritar " + nome
       );
 
-      this.cliqueNoBotDesfavoritar(elementoPai);
+      this.cliqueNoBotDesfavoritar(elementoPai, nome);
 
       this.removeFeedback();
       this.adicionarFeedbackFavoritado();
     });
   }
 
-  cliqueNoBotDesfavoritar(elementoPai) {
+  // Evento de clique no botão de desfavoritar
+  cliqueNoBotDesfavoritar(elementoPai, nome) {
     this.apagarFavorito.addEventListener("click", (event) => {
       event.preventDefault();
 
@@ -76,33 +82,32 @@ export class Favoritar {
         ["favoritar", "adicionarFav"],
         null,
         elementoPai,
-        "Favoritar " + this.infoOng.nome
+        "Favoritar " + nome
       );
 
-      this.cliqueNoBotFavoritar(elementoPai);
+      this.cliqueNoBotFavoritar(elementoPai, nome);
 
       this.removeFeedback();
       this.adicionarFeedbackDesfavoritado();
     });
   }
 
-  criarBotoesCards(elementoPai) {
+  // Cria os botões nos cards
+  criarBotoesCards(elementoPai, nome) {
     console.log("Conexão acontecendo");
 
     this.adicionarFavorito = this.criarElemento.createButton(
       ["favoritar", "adicionarFav"],
       null,
       elementoPai,
-      "Favoritar " + this.infoOng.nome
+      "Favoritar " + nome
     );
 
-    this.cliqueNoBotFavoritar(elementoPai);
+    this.cliqueNoBotFavoritar(elementoPai, nome);
 
     return this.adicionarFavorito;
   }
 }
-
-
 
 //     const divs = document.querySelectorAll(".nomIconAdotar, .imgFav");
 

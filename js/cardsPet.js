@@ -2,6 +2,7 @@
 
 // Importando dados do arquivo criarElementos.js
 import { CriarElementos } from "./criarElementos.js";
+import { Favoritar } from "./favoritar.js";
 
 // Classe representando os dados de um Pet
 class InformacoesPet {
@@ -38,7 +39,7 @@ class InformacoesPet {
 class CardsPets {
   constructor(InformacoesPet = null) {
     this.criarElemento = new CriarElementos();
-    
+
     if (InformacoesPet) {
       this.InfoPet = InformacoesPet;
       this.card = this.gerarCard(InformacoesPet);
@@ -49,7 +50,12 @@ class CardsPets {
   // Método responsável por criar o modal de cada pet
   modalPet(InfoPet) {
     this.InfoPet = InfoPet;
-    this.fundoAba = this.criarElemento.createElement("div", "fundoAba", null, document.body);
+    this.fundoAba = this.criarElemento.createElement(
+      "div",
+      "fundoAba",
+      null,
+      document.body
+    );
     this.fundoAba.style.display = "none"; // Esconde o fundo da aba
 
     this.maisInfoPet = this.criarElemento.createElement(
@@ -59,7 +65,12 @@ class CardsPets {
       this.fundoAba
     );
 
-    this.fotoPet = this.criarElemento.createElement("div", "fotoPet", null, this.maisInfoPet);
+    this.fotoPet = this.criarElemento.createElement(
+      "div",
+      "fotoPet",
+      null,
+      this.maisInfoPet
+    );
     this.fotoPet.style.backgroundImage = `url(${this.InfoPet.foto})`;
 
     this.infoBotaoCardPet = this.criarElemento.createElement(
@@ -140,7 +151,12 @@ class CardsPets {
       "pesoIdade"
     );
 
-    this.conjTituloPeso = this.criarElemento.createElement("div", [], null, this.pesoIdade);
+    this.conjTituloPeso = this.criarElemento.createElement(
+      "div",
+      [],
+      null,
+      this.pesoIdade
+    );
 
     this.tituloPeso = this.criarElemento.createElement(
       "h3",
@@ -157,7 +173,12 @@ class CardsPets {
       "pesoPet"
     );
 
-    this.conjTituloIdade = this.criarElemento.createElement("div", [], null, this.pesoIdade);
+    this.conjTituloIdade = this.criarElemento.createElement(
+      "div",
+      [],
+      null,
+      this.pesoIdade
+    );
 
     this.tituloIdade = this.criarElemento.createElement(
       "h3",
@@ -202,7 +223,12 @@ class CardsPets {
     );
     this.especiePet.id = "especiePet";
 
-    this.conjTituloPorte = this.criarElemento.createElement("div", [], null, this.especPorte);
+    this.conjTituloPorte = this.criarElemento.createElement(
+      "div",
+      [],
+      null,
+      this.especPorte
+    );
 
     this.tituloPorte = this.criarElemento.createElement(
       "h3",
@@ -227,7 +253,12 @@ class CardsPets {
       "triploInfo"
     );
 
-    this.conjTituloRaca = this.criarElemento.createElement("div", [], null, this.triploInfo);
+    this.conjTituloRaca = this.criarElemento.createElement(
+      "div",
+      [],
+      null,
+      this.triploInfo
+    );
 
     this.tituloRaca = this.criarElemento.createElement(
       "h3",
@@ -244,7 +275,12 @@ class CardsPets {
       "racaPet"
     );
 
-    this.conjTituloOng = this.criarElemento.createElement("div", [], null, this.triploInfo);
+    this.conjTituloOng = this.criarElemento.createElement(
+      "div",
+      [],
+      null,
+      this.triploInfo
+    );
 
     this.tituloOng = this.criarElemento.createElement(
       "h3",
@@ -261,7 +297,12 @@ class CardsPets {
       "ongPet"
     );
 
-    this.conjTituloSobre = this.criarElemento.createElement("div", [], null, this.triploInfo);
+    this.conjTituloSobre = this.criarElemento.createElement(
+      "div",
+      [],
+      null,
+      this.triploInfo
+    );
 
     this.tituloSobre = this.criarElemento.createElement(
       "h3",
@@ -299,18 +340,11 @@ class CardsPets {
       this.bttcard
     );
 
-    this.adicionarFavorito = this.criarElemento.createButton(
-      ["favoritar", "adicionarFav"],
-      null,
+    // Chama o método favoritar, adiciona botão de favoritar e sua funcionalidade
+    this.favoritar = new Favoritar(InfoPet);
+    this.botaoFavorito = this.favoritar.criarBotoesCards(
       this.conjFavoritarCompartilhar,
-      " Favoritar " + this.InfoPet.nome
-    );
-
-    this.apagarFavorito = this.criarElemento.createButton(
-      ["favoritar", "apagarFav"],
-      null,
-      this.conjFavoritarCompartilhar,
-      "DesFavoritar " + this.InfoPet.nome
+      this.InfoPet.nome
     );
 
     this.compartilharPet = this.criarElemento.createButton(
@@ -354,7 +388,7 @@ class CardsPets {
   }
 
   //Método responsável por expandir o card na versão mobile
-  mostrarMaisInformacoesPetCard() {
+  mostrarMaisInformacoesPetCard(InfoPet) {
     this.conjFavoritarCompartilhar = this.criarElemento.createElement(
       "div",
       "conjFavoritarCompartilhar",
@@ -369,16 +403,21 @@ class CardsPets {
       "Compartilhar " + this.InfoPet.nome
     );
 
-    this.adicionarFavorito = this.criarElemento.createButton(
-      ["favoritar", "adicionarFav"],
-      null,
+    // Chama o método favoritar, adiciona botão de favoritar e sua funcionalidade
+    this.favoritar = new Favoritar(InfoPet);
+    this.botaoFavorito = this.favoritar.criarBotoesCards(
       this.conjFavoritarCompartilhar,
-      " Favoritar " + this.InfoPet.nome
+      this.InfoPet.nome
     );
 
     this.compartilharPet.innerHTML = `<svg viewBox="0 -960 960 960" fill="#000000"><path d="M640.22-116q-44.91 0-76.26-31.41-31.34-31.41-31.34-76.28 0-9 5.15-30.16L297.31-402.31q-14.46 14-33.41 22-18.94 8-40.59 8-44.71 0-76.01-31.54Q116-435.39 116-480q0-44.61 31.3-76.15 31.3-31.54 76.01-31.54 21.74 0 40.64 8 18.9 8 33.36 22l240.46-148.08q-2.38-7.38-3.77-14.77-1.38-7.39-1.38-15.77 0-44.87 31.43-76.28Q595.49-844 640.4-844t76.25 31.44Q748-781.13 748-736.22q0 44.91-31.41 76.26-31.41 31.34-76.28 31.34-21.85 0-40.5-8.19Q581.15-645 566.69-659L326.23-510.54q2.38 7.39 3.77 14.77 1.38 7.39 1.38 15.77 0 8.38-1.38 15.77-1.39 7.38-3.77 14.77L566.69-301q14.46-14 33.16-22.19 18.7-8.19 40.46-8.19 44.87 0 76.28 31.43Q748-268.51 748-223.6t-31.44 76.25Q685.13-116 640.22-116Zm.09-52q23.67 0 39.68-16.01Q696-200.02 696-223.69q0-23.67-16.01-39.68-16.01-16.02-39.68-16.02-23.67 0-39.68 16.02-16.02 16.01-16.02 39.68 0 23.67 16.02 39.68Q616.64-168 640.31-168Zm-417-256.31q23.83 0 39.95-16.01 16.13-16.01 16.13-39.68 0-23.67-16.13-39.68-16.12-16.01-39.95-16.01-23.51 0-39.41 16.01Q168-503.67 168-480q0 23.67 15.9 39.68 15.9 16.01 39.41 16.01Zm417-256.3q23.67 0 39.68-16.02Q696-712.64 696-736.31q0-23.67-16.01-39.68Q663.98-792 640.31-792q-23.67 0-39.68 16.01-16.02 16.01-16.02 39.68 0 23.67 16.02 39.68 16.01 16.02 39.68 16.02Zm0 456.92ZM223.69-480Zm416.62-256.31Z" /></svg>`;
 
-    this.p = this.criarElemento.createElement("p", null, null, this.descMiniAdotar);
+    this.p = this.criarElemento.createElement(
+      "p",
+      null,
+      null,
+      this.descMiniAdotar
+    );
 
     this.linkDesc = this.criarElemento.createA(
       "linkDesc",
@@ -410,7 +449,12 @@ class CardsPets {
       "pesoIdade"
     );
 
-    this.conjTituloPeso = this.criarElemento.createElement("div", [], null, this.pesoIdade);
+    this.conjTituloPeso = this.criarElemento.createElement(
+      "div",
+      [],
+      null,
+      this.pesoIdade
+    );
 
     this.tituloPeso = this.criarElemento.createElement(
       "h3",
@@ -427,7 +471,12 @@ class CardsPets {
       "pesoPet"
     );
 
-    this.conjTituloIdade = this.criarElemento.createElement("div", [], null, this.pesoIdade);
+    this.conjTituloIdade = this.criarElemento.createElement(
+      "div",
+      [],
+      null,
+      this.pesoIdade
+    );
 
     this.tituloIdade = this.criarElemento.createElement(
       "h3",
@@ -475,7 +524,12 @@ class CardsPets {
 
     this.especiePet.id = "especiePet";
 
-    this.conjTituloPorte = this.criarElemento.createElement("div", [], null, this.especPorte);
+    this.conjTituloPorte = this.criarElemento.createElement(
+      "div",
+      [],
+      null,
+      this.especPorte
+    );
 
     this.tituloPorte = this.criarElemento.createElement(
       "h3",
@@ -500,7 +554,12 @@ class CardsPets {
       "triploInfo"
     );
 
-    this.conjTituloRaca = this.criarElemento.createElement("div", [], null, this.triploInfo);
+    this.conjTituloRaca = this.criarElemento.createElement(
+      "div",
+      [],
+      null,
+      this.triploInfo
+    );
 
     this.tituloRaca = this.criarElemento.createElement(
       "h3",
@@ -517,7 +576,12 @@ class CardsPets {
       "racaPet"
     );
 
-    this.conjTituloOng = this.criarElemento.createElement("div", [], null, this.triploInfo);
+    this.conjTituloOng = this.criarElemento.createElement(
+      "div",
+      [],
+      null,
+      this.triploInfo
+    );
 
     this.tituloOng = this.criarElemento.createElement(
       "h3",
@@ -534,7 +598,12 @@ class CardsPets {
       "ongPet"
     );
 
-    this.conjTituloSobre = this.criarElemento.createElement("div", [], null, this.triploInfo);
+    this.conjTituloSobre = this.criarElemento.createElement(
+      "div",
+      [],
+      null,
+      this.triploInfo
+    );
 
     this.tituloSobre = this.criarElemento.createElement(
       "h3",
@@ -590,16 +659,21 @@ class CardsPets {
   }
 
   //Método responsável por mostrar o card minimizado
-  mostrarCardNormal() {
+  mostrarCardNormal(InfoPet) {
     this.limparCardNormal();
-    this.favoritar = this.criarElemento.createButton(
-      ["favoritar", "apagarFav"],
-      null,
+    // Chama o método favoritar, adiciona botão de favoritar e sua funcionalidade
+    this.favoritar = new Favoritar(InfoPet);
+    this.botaoFavorito = this.favoritar.criarBotoesCards(
       this.nomIconAdotar,
-      "DesFavoritar"
+      this.InfoPet.nome
     );
 
-    this.p = this.criarElemento.createElement("p", null, null, this.descMiniAdotar);
+    this.p = this.criarElemento.createElement(
+      "p",
+      null,
+      null,
+      this.descMiniAdotar
+    );
 
     this.linkDesc = this.criarElemento.createA(
       "linkDesc",
@@ -662,14 +736,12 @@ class CardsPets {
 
       this.cardsAnimais.id = `pet-${this.InfoPet.id}`;
 
-
       this.adotarMiniCard = this.criarElemento.createElement(
         "div",
         "adotarMiniCard",
         null,
         this.cardsAnimais
       );
-
 
       this.fotoPet = this.criarElemento.createImg(
         [],

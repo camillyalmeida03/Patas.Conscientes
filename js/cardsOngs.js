@@ -59,15 +59,9 @@ export class CardsOngs {
         this.imgFav
       );
 
+      // Chama o método favoritar, adiciona botão de favoritar e sua funcionalidade
       this.favoritar = new Favoritar(InfoOng);
-      this.teste = this.favoritar.criarBotoesCards(this.imgFav);
-
-      // this.favoritar = this.criarElemento.createButton(
-      //   ["favoritar", "apagarFav"],
-      //   null,
-      //   this.imgFav,
-      //   "Desfavoritar " + this.InfoOng.nome
-      // );
+      this.botaoFavorito = this.favoritar.criarBotoesCards(this.imgFav, this.InfoOng.nome);
 
       this.descOng = this.criarElemento.createElement(
         "div",
