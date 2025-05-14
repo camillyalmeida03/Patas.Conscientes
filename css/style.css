@@ -57,13 +57,6 @@ body {
     scroll-behavior: smooth;
 }
 
-.bodyME {
-    /* modo escuro do body */
-    background-color: var(--cinza46);
-    color: white;
-}
-
-
 /* Config Main */
 
 main {
@@ -171,10 +164,6 @@ main {
     align-items: center;
 }
 
-.containerME {
-    background-color: var(--cinza34);
-}
-
 .search-bar {
     text-align: center;
     position: relative;
@@ -188,16 +177,6 @@ main {
     font-size: 16px;
     border-radius: 2.6rem;
     border: 1px solid var(--cinza215);
-}
-
-.searchinputME {
-    background-color: var(--cinza147);
-    border: 1px solid black !important;
-    color: white;
-}
-
-.searchinputME::placeholder {
-    color: var(--cinza201);
 }
 
 .lupaPesquisa img {
@@ -228,14 +207,14 @@ main {
     gap: 1rem;
 }
 
-.fotoNoticia{
+.fotoNoticia {
     aspect-ratio: 1 / 1;
     object-fit: cover;
     height: 15rem;
     border-radius: 0.8rem;
 }
 
-.divText{
+.divText {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -245,21 +224,6 @@ main {
     color: var(--cinza_h3);
     text-align: justify;
 }
-
-.newsitemME {
-    background-color: var(--cinza100) !important;
-    border: 1px solid var(--cinza100) !important;
-    color: white !important;
-}
-
-.newsitemME a {
-    color: var(--azulME1);
-}
-
-.newsitemME p {
-    color: white !important;
-}
-
 
 /* Estilo para o container de notícias */
 #news-container {
@@ -273,18 +237,6 @@ main {
     width: 80%;
     min-width: 18rem;
     margin: auto;
-}
-
-.newscontainerME {
-    background-color: var(--cinza34) !important;
-}
-
-.newscontainerME .news-title{
-    color: var(--azulME2);
-}
-
-.newscontainerME .news-title:hover{
-    color: var(--azulME1);
 }
 
 /* Efeito de hover nos itens de notícia */
@@ -305,11 +257,6 @@ main {
 .news-title:hover {
     text-decoration: underline;
     color: var(--azul_maisclaro);
-}
-
-.newsitemME a:hover {
-    text-decoration: underline;
-    color: var(--azul_claro);
 }
 
 /* Estilo para a descrição da notícia */
@@ -491,24 +438,6 @@ button {
     gap: 1rem;
 }
 
-.expandirMenuME .tema {
-    color: white !important;
-}
-
-.expandirMenuME {
-    background-color: var(--cinza34) !important;
-}
-
-.expandirMenuME a {
-    color: white !important;
-}
-
-.expandirMenuME .linha {
-    background-color: var(--cinza100) !important;
-}
-
-
-
 #expandirMenu .linha {
     background-color: var(--cinza201);
     max-height: 1px;
@@ -526,15 +455,6 @@ button {
 
 #expandirMenu a:hover {
     color: var(--azul_claro);
-}
-
-.expandirMenuME #setaInst {
-    fill: white !important;
-    background-color: black;
-}
-
-.expandirMenuME #setaInst {
-    background-color: var(--cinza100) !important;
 }
 
 .linksMenu {
@@ -601,14 +521,6 @@ button {
     transform: rotate(90deg);
 }
 
-/* 
-#setaInst:hover */
-
-/* #setaConfig:hover */
-/* {
-    background-color: var(--cinza201);
-} */
-
 #setaInst:hover path {
     fill: var(--azul_claro);
 }
@@ -626,21 +538,6 @@ button {
     gap: 1rem;
     box-shadow: 3px 3px 5px var(--cinza158);
 }
-
-.contaPopupME {
-    background-color: var(--cinza100);
-    box-shadow: 3px 3px 5px var(--cinza_h3);
-}
-
-.contaPopupME p,
-.contaPopupME a {
-    color: white !important;
-}
-
-.contaPopupME a:hover {
-    color: var(--azul_claro) !important;
-}
-
 
 #suaconta {
     display: none;
@@ -947,11 +844,6 @@ button {
     min-width: 272px;
 }
 
-.cardPersonME {
-    /* modo escuro do cardPerson */
-    background-color: var(--cinza34);
-}
-
 .cardPerson p,
 .cardPerson h2 {
     text-align: left;
@@ -1124,14 +1016,6 @@ footer .listasFooter a:hover {
     position: relative;
 }
 
-.caminhoME p a
-
-/* modo escuro do caminho */
-    {
-    color: white;
-}
-
-
 .caminho a {
     text-decoration: none;
     color: black;
@@ -1193,11 +1077,6 @@ footer .listasFooter a:hover {
     left: -2rem;
 }
 
-.mainInstME .cardPerson {
-    background-color: var(--cinza230);
-    color: black;
-}
-
 #barra {
     /* espaço em que o aside ficará */
     width: calc(2% + 15rem);
@@ -1223,10 +1102,6 @@ footer .listasFooter a:hover {
     border-radius: 2rem;
     margin-top: 0.5rem;
     min-width: 275px;
-}
-
-.sectionInstME div {
-    background-color: var(--cinza34);
 }
 
 .sectionInst h2 {
@@ -1344,10 +1219,6 @@ footer .listasFooter a:hover {
     color: white;
 }
 
-.cardOngME {
-    box-shadow: black 1px 1px 3px;
-}
-
 .cardOng:nth-child(odd) {
     background-color: var(--rosa);
 
@@ -1425,15 +1296,6 @@ footer .listasFooter a:hover {
     height: 80%;
 }
 
-
-.filtroME {
-    background-color: var(--cinza147);
-}
-
-.filtroME .botFiltro div button {
-    color: white;
-}
-
 #limparFiltros {
     transition: none;
     font-size: 14px;
@@ -1444,14 +1306,6 @@ footer .listasFooter a:hover {
 
 #limparFiltros:hover {
     color: var(--azul_claro);
-}
-
-.limparFiltrosME {
-    color: white !important;
-}
-
-.limparFiltrosME:hover {
-    color: var(--azul_escuro) !important;
 }
 
 .no-scroll {
@@ -1473,18 +1327,6 @@ footer .listasFooter a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.botFiltroME {
-    color: white !important;
-}
-
-.botFiltroME svg path {
-    fill: white;
-}
-
-.botFiltroME:hover {
-    color: var(--azul_maisclaro) !important;
 }
 
 .camadasFiltro {
@@ -1659,11 +1501,6 @@ footer .listasFooter a:hover {
     transition: 0.1s all;
 }
 
-.cardsAnimaisME {
-    background-color: var(--cinza34);
-    box-shadow: 1px 1px 1px black;
-}
-
 .infoBotaoCardPet {
     height: 100%;
     display: flex;
@@ -1695,14 +1532,6 @@ footer .listasFooter a:hover {
     transition: all 0.1s;
 }
 
-.linkDescME {
-    transition: all 0.1s;
-}
-
-.linkDescME:hover {
-    color: white;
-}
-
 .linkDesc:hover {
     color: var(--azul_claro);
 }
@@ -1732,26 +1561,6 @@ footer .listasFooter a:hover {
     background-color: white;
 }
 
-.adotarMiniCard .bttcardME{
-    background-color: var(--cinza34);
-}
-
-.tituloInfoPetME{
-    color: white !important; 
-}
-
-.maisInfoPetME{
-    background-color: var(--cinza34) !important;
-}
-
-.maisInfoPetME .tituloInfoPet, .maisInfoPetME .informPet .tituloInfoPet{
-    color: white;
-}
-
-.maisInfoPetME .iconFechar{
-    fill: white;
-}
-
 .maisInfoPet .bttcard {
     position: absolute;
     z-index: 2;
@@ -1770,11 +1579,6 @@ footer .listasFooter a:hover {
     font-weight: 700;
     color: var(--cinza_h3);
     transition: all 0.1s;
-}
-
-.verMaisME,
-.verMenosME {
-    color: white;
 }
 
 .verMais:hover,
@@ -1865,16 +1669,8 @@ footer .listasFooter a:hover {
     background-image: url(/img/icons/icon_femea.svg);
 }
 
-.femeaME {
-    background-image: url(/img/icons/icon_femea_white.svg);
-}
-
 .macho {
     background-image: url(/img/icons/icon_macho.svg);
-}
-
-.machoME {
-    background-image: url(/img/icons/icon_macho_white.svg);
 }
 
 /* FAVORITAR / DESFAVORITAR */
@@ -1987,21 +1783,6 @@ ol {
     align-items: flex-start;
 }
 
-.abrirOpcoesME {
-    background-color: var(--cinza46) !important;
-    box-shadow: 3px 3px 5px var(--cinza34) !important;
-
-}
-
-
-.temasME{
-    color: white !important;
-}
-
-.temasME:hover{
-    background-color: var(--cinza100) !important;
-}
-
 .temas {
     font-size: 16px;
     color: var(--cinza34);
@@ -2010,7 +1791,7 @@ ol {
     text-align: left;
 }
 
-.temas:hover{
+.temas:hover {
     background-color: var(--cinza215);
 }
 
@@ -2071,19 +1852,11 @@ ol {
     color: var(--cinza46);
 }
 
-.buttonConfig:hover{
+.buttonConfig:hover {
     background-color: var(--cinza215);
 }
 
-.buttonConfigME:hover{
-    background-color: var(--cinza100) !important;
-}
-
-.buttonConfigME #setaConfig{
-    stroke: white;
-}
-
-.conjuntoOpcoesTema{
+.conjuntoOpcoesTema {
     position: relative;
 }
 
@@ -2117,10 +1890,6 @@ ol {
 .linhaRow {
     width: 1px;
     background-color: var(--cinza201);
-}
-
-.linhaRowME, .linhaME {
-    background-color: var(--cinza100);
 }
 
 .configConta,
@@ -2237,11 +2006,6 @@ ol {
     overflow: hidden;
 }
 
-.loginCardME {
-    background-color: var(--cinza34);
-    box-shadow: 1px 1px 2px black;
-}
-
 .loginCard form {
     display: flex;
     flex-direction: column;
@@ -2313,10 +2077,6 @@ ol {
     margin-top: 1rem;
 }
 
-.linkFalsoME {
-    color: white;
-}
-
 #erro1,
 #erro2 {
     color: var(--vermelho);
@@ -2342,11 +2102,6 @@ ol {
     align-items: center;
     gap: 2rem;
 }
-
-.mainFormsME h2 {
-    color: white;
-}
-
 
 .fundoBranco>div {
     display: flex;
@@ -2380,10 +2135,6 @@ ol {
     gap: 1rem;
     margin-bottom: 2rem;
     align-items: center;
-}
-
-.formCadastroME h2 {
-    color: white;
 }
 
 .formCadastro fieldset {
@@ -2438,20 +2189,6 @@ ol {
     color: var(--cinza_h3);
 }
 
-.inputCadastroME {
-    background-color: var(--cinza147);
-    color: white;
-}
-
-.inputCadastroME option {
-    color: var(--cinza215);
-
-}
-
-.inputCadastroME::placeholder {
-    color: var(--cinza215);
-}
-
 .buttonRosaForm {
     background-color: var(--rosa);
     color: white;
@@ -2495,10 +2232,6 @@ ol {
     font-size: 16px;
     font-weight: 600;
     color: var(--cinza_h3);
-}
-
-.inputArquivoME p {
-    color: white;
 }
 
 .arquivo {
@@ -2549,10 +2282,6 @@ textarea {
     gap: 0.3rem;
     align-items: center;
 } */
-
-.infoAdocaoME div label {
-    color: white;
-}
 
 #especificarPet {
     display: none;
@@ -2608,26 +2337,288 @@ textarea {
 
 /* ----------------------------- mostrarOng.html ----------------------------- */
 
-.identificarOng{
+.identificarOng {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.fotoOng{
+.fotoOng {
     width: 50%;
-    aspect-ratio: 2 / 1  ;
+    aspect-ratio: 2 / 1;
     border-radius: 2rem;
     object-fit: cover;
     margin-bottom: 3rem;
 }
 
-.qntdPet{
+.qntdPet {
     padding: 0 2rem 0.5rem 2rem;
 }
 
-.mostrarOng .adotarSec{
+.mostrarOng .adotarSec {
     padding: 0;
+}
+
+/* -------- MODO ESCURO ------------------------------------------------------------------------------------------------------- */
+
+.bodyME {
+    background-color: var(--cinza46);
+    color: white;
+}
+
+/* Notícias */
+.bodyME .container {
+    background-color: var(--cinza34);
+}
+
+.bodyME #search-input {
+    background-color: var(--cinza147);
+    border: 1px solid black !important;
+    color: white;
+}
+
+.bodyME #search-input::placeholder {
+    color: var(--cinza201);
+}
+
+.bodyME .news-item {
+    background-color: var(--cinza100) !important;
+    border: 1px solid var(--cinza100) !important;
+    color: white !important;
+}
+
+.bodyME .news-item a {
+    color: var(--azulME1);
+}
+
+.bodyME .news-item p {
+    color: white !important;
+}
+
+.bodyME #news-container {
+    background-color: var(--cinza34) !important;
+}
+
+.bodyME #news-container .news-title {
+    color: var(--azulME2);
+}
+
+.bodyME #news-container .news-title:hover {
+    color: var(--azulME1);
+}
+
+.bodyME .news-item a:hover {
+    text-decoration: underline;
+    color: var(--azul_claro);
+}
+
+/* Header */
+.bodyME #expandirMenu .tema {
+    color: white !important;
+}
+
+.bodyME #expandirMenu {
+    background-color: var(--cinza34) !important;
+}
+
+.bodyME #expandirMenu a {
+    color: white !important;
+}
+
+.bodyME #expandirMenu .linha {
+    background-color: var(--cinza100) !important;
+}
+
+.bodyME #expandirMenu #setaInst {
+    fill: white !important;
+    background-color: black;
+}
+
+.bodyME #expandirMenu #setaInst {
+    background-color: var(--cinza100) !important;
+}
+
+.bodyME .contaPopup {
+    background-color: var(--cinza100);
+    box-shadow: 3px 3px 5px var(--cinza_h3);
+}
+
+.bodyME .contaPopup p,
+.bodyME .contaPopup a {
+    color: white !important;
+}
+
+.bodyME .contaPopup a:hover {
+    color: var(--azul_claro) !important;
+}
+
+/* index.html */
+.bodyME .cardPerson {
+    /* modo escuro do cardPerson */
+    background-color: var(--cinza34);
+}
+
+/* Caminho das páginas (migalha de pão) */
+.bodyME .caminho p a {
+    color: white;
+}
+
+/* Institucional */
+.bodyME .mainInst .cardPerson {
+    background-color: var(--cinza230);
+    color: black;
+}
+
+.bodyME .sectionInst div {
+    background-color: var(--cinza34);
+}
+
+/* ONGs */
+.bodyME .cardOng {
+    box-shadow: black 1px 1px 3px;
+}
+
+/* Adote-me */
+.bodyME .filtro {
+    background-color: var(--cinza147);
+}
+
+.bodyME .filtro .botFiltro div button {
+    color: white;
+}
+
+.bodyME #limparFiltros {
+    color: white !important;
+}
+
+.bodyME #limparFiltros:hover {
+    color: var(--azul_escuro) !important;
+}
+
+.bodyME .botFiltro {
+    color: white !important;
+}
+
+.bodyME .botFiltro svg path {
+    fill: white;
+}
+
+.bodyME .botFiltro:hover {
+    color: var(--azul_maisclaro) !important;
+}
+
+.bodyME .cardsAnimais {
+    background-color: var(--cinza34);
+    box-shadow: 1px 1px 1px black;
+}
+
+.bodyME .linkDesc {
+    transition: all 0.1s;
+}
+
+.bodyME .linkDesc:hover {
+    color: white;
+}
+
+.bodyME .adotarMiniCard .bttcard {
+    background-color: var(--cinza34);
+}
+
+.bodyME .tituloInfoPet {
+    color: white !important;
+}
+
+.bodyME .maisInfoPet {
+    background-color: var(--cinza34) !important;
+}
+
+.bodyME .maisInfoPet .tituloInfoPet,
+.bodyME .maisInfoPet .informPet .tituloInfoPet {
+    color: white;
+}
+
+.bodyME .maisInfoPet .iconFechar {
+    fill: white;
+}
+
+.bodyME .verMais,
+.bodyME .verMenos {
+    color: white;
+}
+
+.bodyME .femea {
+    background-image: url(/img/icons/icon_femea_white.svg);
+}
+
+.bodyME .macho {
+    background-image: url(/img/icons/icon_macho_white.svg);
+}
+
+/* Configurações */
+.bodyME .abrirOpcoes {
+    background-color: var(--cinza46) !important;
+    box-shadow: 3px 3px 5px var(--cinza34) !important;
+}
+
+.bodyME .temas {
+    color: white !important;
+}
+
+.bodyME .temas:hover {
+    background-color: var(--cinza100) !important;
+}
+
+.bodyME .buttonConfig:hover {
+    background-color: var(--cinza100) !important;
+}
+
+.bodyME .buttonConfig #setaConfig {
+    stroke: white;
+}
+
+.bodyME .linhaRow,
+.bodyME .linha {
+    background-color: var(--cinza100);
+}
+
+/* Login */
+.bodyME .loginCard {
+    background-color: var(--cinza34);
+    box-shadow: 1px 1px 2px black;
+}
+
+.bodyME .linkFalso {
+    color: white;
+}
+
+/* Cadastros */
+.bodyME .mainForms h2 {
+    color: white;
+}
+
+.bodyME .formCadastro h2 {
+    color: white;
+}
+
+.bodyME .inputCadastro {
+    background-color: var(--cinza147);
+    color: white;
+}
+
+.bodyME .inputCadastro option {
+    color: var(--cinza215);
+}
+
+.bodyME.inputCadastro::placeholder {
+    color: var(--cinza215);
+}
+
+.bodyME .inputArquivo p {
+    color: white;
+}
+
+.bodyME #infoAdocao div label {
+    color: white;
 }
 
 
@@ -2729,7 +2720,7 @@ textarea {
         flex-direction: column;
     }
 
-    .fotoOng{
+    .fotoOng {
         width: 70%;
     }
 
@@ -2900,13 +2891,13 @@ textarea {
         width: auto;
     }
 
-    .abrirOpcoes{
+    .abrirOpcoes {
         box-shadow: 3px 3px 5px var(--cinza158);
         position: absolute;
         top: 3rem;
         left: 0.5rem;
         width: 10rem;
-        background-color: rgb(236,236,236);
+        background-color: rgb(236, 236, 236);
     }
 
     .mainAside .gridOng {
@@ -2961,7 +2952,7 @@ textarea {
         width: 80%;
     }
 
-    .news-item{
+    .news-item {
         flex-direction: column;
     }
 
@@ -2969,7 +2960,7 @@ textarea {
         padding: 0;
     }
 
-    .fotoOng{
+    .fotoOng {
         width: 100%;
     }
 
