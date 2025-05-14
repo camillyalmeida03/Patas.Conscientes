@@ -33,8 +33,10 @@ export class CardsOngs {
     if (gridOng) {
       console.log("gridOng foi encontrada");
 
-      this.cardOng = this.criarElemento.createButton(
+      this.cardOng = this.criarElemento.createA(
         "cardOng",
+        "ongPage.html",
+        "Ir para a página de " + InfoOng.nome,
         null,
         gridOng, 
         "Ver mais sobre " + this.InfoOng.nome

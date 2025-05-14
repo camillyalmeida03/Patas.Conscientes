@@ -1344,10 +1344,6 @@ footer .listasFooter a:hover {
     color: white;
 }
 
-.cardOng:hover{
-    transform: scale(102%);
-}
-
 .cardOngME {
     box-shadow: black 1px 1px 3px;
 }
