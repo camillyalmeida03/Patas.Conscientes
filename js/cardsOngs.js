@@ -1,6 +1,7 @@
 // Este arquivo é responsável por criar os cards das ONGs via JS.
 
 // Importando dados do arquivo criarElementos.js
+import { Favoritar } from "./favoritar.js";
 import { CriarElementos } from "./criarElementos.js";
 
 // Classe que representa puxar informações da ONG
@@ -19,6 +20,7 @@ export class InformacoesOng {
 export class CardsOngs {
   constructor(InformacoesOng = null) {
     this.criarElemento = new CriarElementos();
+    this.favoritar = new Favoritar();
 
     if (InformacoesOng) {
       this.InfoOng = InformacoesOng;
@@ -38,9 +40,9 @@ export class CardsOngs {
         "ongPage.html",
         "Ir para a página de " + InfoOng.nome,
         null,
-        gridOng, 
+        gridOng,
         "Ver mais sobre " + this.InfoOng.nome
-      )
+      );
 
       this.imgFav = this.criarElemento.createElement(
         "div",
@@ -57,12 +59,15 @@ export class CardsOngs {
         this.imgFav
       );
 
-      this.favoritar = this.criarElemento.createButton(
-        ["favoritar", "apagarFav"],
-        null,
-        this.imgFav,
-        "Desfavoritar " + this.InfoOng.nome
-      );
+      this.favoritar = new Favoritar(InfoOng);
+      this.teste = this.favoritar.criarBotoesCards(this.imgFav);
+
+      // this.favoritar = this.criarElemento.createButton(
+      //   ["favoritar", "apagarFav"],
+      //   null,
+      //   this.imgFav,
+      //   "Desfavoritar " + this.InfoOng.nome
+      // );
 
       this.descOng = this.criarElemento.createElement(
         "div",
@@ -165,5 +170,4 @@ const cards = [];
 ongs.forEach((ong) => {
   const card = new CardsOngs(ong);
   cards.push(card);
-  
 });

@@ -4,31 +4,104 @@
 import { CriarElementos } from "./criarElementos.js";
 
 export class Favoritar {
-    constructor(InformacoesPet = null){
-        this.infoPet =  InformacoesPet;
+  constructor(infoOng = null) {
+    this.criarElemento = new CriarElementos();
+    this.infoOng = infoOng;
+    this.adicionarFavorito = null;
+    this.apagarFavorito = null;
+  }
 
-        this.criarElemento = new CriarElementos();
-    }
+  adicionarFeedbackFavoritado() {
+    const imgAdd = document.createElement("img");
+    imgAdd.src = "/img/feedback/fav_adicionado.svg";
+    imgAdd.style.position = "fixed";
+    imgAdd.style.top = "5rem";
+    imgAdd.style.right = "2rem";
+    imgAdd.style.zIndex = "4000";
+    imgAdd.style.height = "6rem";
+    document.body.appendChild(imgAdd);
+    setTimeout(() => imgAdd.remove(), 3000);
+  }
 
-    // criarBotoes(){
-    //     console.log("Conexão acontecendo")
+  adicionarFeedbackDesfavoritado() {
+    const imgRem = document.createElement("img");
+    imgRem.src = "/img/feedback/fav_removido.svg";
+    imgRem.style.position = "fixed";
+    imgRem.style.top = "5rem";
+    imgRem.style.right = "2rem";
+    imgRem.style.zIndex = "4000";
+    imgRem.style.height = "6rem";
+    document.body.appendChild(imgRem);
+    setTimeout(() => imgRem.remove(), 3000);
+  }
 
-        
-    // this.adicionarFavorito = this.criarElemento.createButton(
-    //   ["favoritar", "adicionarFav"],
-    //   null,
-    //   this.conjFavoritarCompartilhar,
-    //   " Favoritar " + this.InfoPet.nome
-    // );
+  removeFeedback() {
+    const imgFeedback = document.querySelector(
+      'body > img[src="/img/feedback/fav_adicionado.svg"], body > img[src="/img/feedback/fav_removido.svg"]'
+    );
+    if (imgFeedback) imgFeedback.remove();
+  }
 
-    // this.apagarFavorito = this.criarElemento.createButton(
-    //   ["favoritar", "apagarFav"],
-    //   null,
-    //   this.conjFavoritarCompartilhar,
-    //   "DesFavoritar " + this.InfoPet.nome
-    // );
-    // }
+  cliqueNoBotFavoritar(elementoPai) {
+    this.adicionarFavorito.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      this.adicionarFavorito.classList.remove("adicionarFav");
+      this.adicionarFavorito.remove(); // Remove o botão atual
+
+      // Cria o botão de desfavoritar
+      this.apagarFavorito = this.criarElemento.createButton(
+        ["favoritar", "apagarFav"],
+        null,
+        elementoPai,
+        "DesFavoritar " + this.infoOng.nome
+      );
+
+      this.cliqueNoBotDesfavoritar(elementoPai);
+
+      this.removeFeedback();
+      this.adicionarFeedbackFavoritado();
+    });
+  }
+
+  cliqueNoBotDesfavoritar(elementoPai) {
+    this.apagarFavorito.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      this.apagarFavorito.classList.remove("apagarFav");
+      this.apagarFavorito.remove(); // Remove o botão atual
+
+      // Cria o botão de favoritar novamente
+      this.adicionarFavorito = this.criarElemento.createButton(
+        ["favoritar", "adicionarFav"],
+        null,
+        elementoPai,
+        "Favoritar " + this.infoOng.nome
+      );
+
+      this.cliqueNoBotFavoritar(elementoPai);
+
+      this.removeFeedback();
+      this.adicionarFeedbackDesfavoritado();
+    });
+  }
+
+  criarBotoesCards(elementoPai) {
+    console.log("Conexão acontecendo");
+
+    this.adicionarFavorito = this.criarElemento.createButton(
+      ["favoritar", "adicionarFav"],
+      null,
+      elementoPai,
+      "Favoritar " + this.infoOng.nome
+    );
+
+    this.cliqueNoBotFavoritar(elementoPai);
+
+    return this.adicionarFavorito;
+  }
 }
+
 
 
 //     const divs = document.querySelectorAll(".nomIconAdotar, .imgFav");
