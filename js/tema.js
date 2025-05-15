@@ -74,14 +74,15 @@ class ModoEscuroEClaro {
       });
     });
 
-    // Botão: modo escuro
-    if (this.botaoModoEscuro || this.botaoModoEscuroConfig) {
+    if (this.botaoModoEscuro) {
       this.botaoModoEscuro.addEventListener("click", () => {
         this.modoEscuro();
         localStorage.setItem("modoEscuro", "ativado");
         this.sincronizarCheckboxes();
       });
+    }
 
+    if (this.botaoModoEscuroConfig) {
       this.botaoModoEscuroConfig.addEventListener("click", () => {
         this.modoEscuro();
         localStorage.setItem("modoEscuro", "ativado");
@@ -89,14 +90,15 @@ class ModoEscuroEClaro {
       });
     }
 
-    // Botão: modo claro
-    if (this.botaoModoClaro || this.botaoModoClaroConfig) {
+    if (this.botaoModoClaro) {
       this.botaoModoClaro.addEventListener("click", () => {
         this.modoClaro();
         localStorage.setItem("modoEscuro", "desativado");
         this.sincronizarCheckboxes();
       });
+    }
 
+    if (this.botaoModoClaroConfig) {
       this.botaoModoClaroConfig.addEventListener("click", () => {
         this.modoClaro();
         localStorage.setItem("modoEscuro", "desativado");
