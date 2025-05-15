@@ -290,14 +290,40 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-document.getElementById('outros').addEventListener('change', function() {
-    var campoOutros = document.getElementById('campoOutros');
-    if (this.checked) {
-      campoOutros.style.display = 'block';
-    } else {
-      campoOutros.style.display = 'none';
+//API CEP
+document.getElementById('cep').addEventListener('blur', async function () {
+    const cep = this.value.replace(/\D/g, ''); // remove hífen e não números
+  
+    if (cep.length !== 8) {
+      document.getElementById("erroCep").textContent = "CEP inválido.";
+      return;
+    }
+  
+    try {
+      const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+      const data = await response.json();
+  
+      if (data.erro) {
+        document.getElementById("erroCep").textContent = "CEP não encontrado.";
+        return;
+      }
+  
+      document.getElementById("erroCep").textContent = "";
+  
+      document.getElementById("logradouro").value = data.logradouro || "";
+      document.getElementById("bairro").value = data.bairro || "";
+      document.getElementById("cidade").value = data.localidade || "";
+      document.getElementById("estado").value = data.uf || "";
+      document.getElementById("complemento").value = data.complemento || "";
+  
+    } catch (error) {
+      document.getElementById("erroCep").textContent = "Erro ao buscar o CEP.";
+      console.error(error);
     }
   });
+  
+
+
 
 
 

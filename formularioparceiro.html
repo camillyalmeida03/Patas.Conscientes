@@ -279,62 +279,41 @@
 
         <h2>Endereço</h2>
         <fieldset>
-            <input type="text" id="cep" class="inputCadastro cep" placeholder="CEP" maxlength="9" >
-            <p id="erroCep" class="error-message"></p>
-            <div>
-
-              <div class="alinharErro">
-                <select id="estado" class="inputCadastro" name="estado" aria-label="Selecione seu estado">
-                  <option value="" disabled selected>Selecione seu estado:</option>
-                  <option value="AC">AC</option>
-                  <option value="AL">AL</option>
-                  <option value="AP">AP</option>
-                  <option value="AM">AM</option>
-                  <option value="BA">BA</option>
-                  <option value="CE">CE</option>
-                  <option value="DF">DF</option>
-                  <option value="ES">ES</option>
-                  <option value="GO">GO</option>
-                  <option value="MA">MA</option>
-                  <option value="MT">MT</option>
-                  <option value="MS">MS</option>
-                  <option value="MG">MG</option>
-                  <option value="PA">PA</option>
-                  <option value="PB">PB</option>
-                  <option value="PR">PR</option>
-                  <option value="PE">PE</option>
-                  <option value="PI">PI</option>
-                  <option value="RJ">RJ</option>
-                  <option value="RN">RN</option>
-                  <option value="RS">RS</option>
-                  <option value="RO">RO</option>
-                  <option value="RR">RR</option>
-                  <option value="SC">SC</option>
-                  <option value="SP">SP</option>
-                  <option value="SE">SE</option>
-                  <option value="TO">TO</option>
-                </select>
-                
-                <p id="erroEstado" class="error-message"></p>
-              </div>
-              
-              <div class="alinharErro">
-                <input type="text" id="cidade" class="inputCadastro" placeholder="Cidade" >
-                <p id="erroCidade" class="error-message"></p>
-              </div>
+          <input type="text" id="cep" class="inputCadastro cep" placeholder="CEP" maxlength="9">
+          <p id="erroCep" class="error-message"></p>
+      
+          <div>
+            <div class="alinharErro">
+              <select id="estado" class="inputCadastro" name="estado" aria-label="Selecione seu estado">
+                <option value="" disabled selected>Selecione seu estado:</option>
+                <!-- Estados já preenchidos -->
+                <option value="SP">SP</option>
+                <option value="RJ">RJ</option>
+                <!-- ... -->
+              </select>
+              <p id="erroEstado" class="error-message"></p>
             </div>
-            <input type="text" class="inputCadastro" placeholder="Logradouro">
-            <div>
-              <div class="alinharErro">
-                <input type="text" id="bairro" class="inputCadastro" placeholder="Bairro" >
-                <p id="erroBairro" class="error-message"></p>
-              </div>
-              <div class="alinharErro">
-                <input type="text" id="nmr" class="inputCadastro" placeholder="Número" >
-                <p id="erroNmr" class="error-message"></p>
-              </div>
+      
+            <div class="alinharErro">
+              <input type="text" id="cidade" class="inputCadastro" placeholder="Cidade">
+              <p id="erroCidade" class="error-message"></p>
             </div>
-            <input type="text" class="inputCadastro" placeholder="Complemento">
+          </div>
+      
+          <input type="text" id="logradouro" class="inputCadastro" placeholder="Logradouro">
+      
+          <div>
+            <div class="alinharErro">
+              <input type="text" id="bairro" class="inputCadastro" placeholder="Bairro">
+              <p id="erroBairro" class="error-message"></p>
+            </div>
+            <div class="alinharErro">
+              <input type="text" id="nmr" class="inputCadastro" placeholder="Número">
+              <p id="erroNmr" class="error-message"></p>
+            </div>
+          </div>
+      
+          <input type="text" id="complemento" class="inputCadastro" placeholder="Complemento">
         </fieldset>
 
         <button type="submit" title="Ir para a última etapa do formulário" class="buttonRosaForm" id="continuarFormParc">Continuar</button>
