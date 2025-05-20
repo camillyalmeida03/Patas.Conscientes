@@ -2336,14 +2336,19 @@ textarea {
     position: relative;
 }
 
-.caminhoBanner .caminho, .caminhoBanner .caminho a {
+.caminhoBanner .caminho,
+.caminhoBanner .caminho a {
     z-index: 3;
     color: white;
 }
 
+.espacoBanner,
+.bannerPerfilOng {
+    aspect-ratio: 7/2;
+}
+
 .espacoBanner {
     width: 100%;
-    aspect-ratio: 3/1;
 }
 
 .bannerPerfilOng {
@@ -2351,7 +2356,6 @@ textarea {
     top: 0;
     background-color: wheat;
     width: 100%;
-    aspect-ratio: 3/1;
     z-index: 1;
     object-fit: cover;
     background-image: url(/img/fotos/ong4.jpg);
@@ -2372,8 +2376,53 @@ textarea {
 }
 
 .perfilOng .adotarSec {
-    padding: 0 2rem 2rem 2rem;
+    padding: 0 2rem 2rem 0;
+    grid-template-columns: repeat(3, 1fr);
 }
+
+.divPetOngPerfil {
+    display: grid;
+    grid-template-columns: 22rem 1fr;
+    gap: 1rem;
+    /* espaço entre colunas */
+}
+
+.ongPerfilInfo,
+.espacoPerfilOng {
+    /* margin: 0 2rem; */
+    width: 100%;
+    bottom: 12rem;
+}
+
+.ongPerfilInfo {
+    width: 100%;
+    padding: 0 0 0 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ongPerfilInfo .fotoCard {
+    background-color: wheat;
+    position: relative;
+    height: 12rem;
+    width: 12rem;
+    z-index: 4;
+    top: 0rem;
+    border: 1px red solid;
+}
+
+.cardPerfilOng {
+    padding-top: 7rem;
+    width: 100%;
+    flex-direction: column;
+    background-color: var(--cinza215);
+    padding: 6rem 2rem 2rem 2rem;
+    border-radius: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+
 
 /* -------- MODO ESCURO ------------------------------------------------------------------------------------------------------- */
 
@@ -2628,6 +2677,10 @@ textarea {
     .nomIconAdotar h2 {
         font-size: 18px;
     }
+
+    .perfilOng .adotarSec {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media screen and (max-width: 1220px) {
@@ -2711,6 +2764,9 @@ textarea {
         width: 70%;
     }
 
+    .perfilOng .adotarSec {
+        grid-template-columns: repeat(1, 1fr);
+    }
 
 }
 
@@ -2788,7 +2844,20 @@ textarea {
     }
 }
 
-@media screen and (max-width:850px) {}
+@media screen and (max-width:850px) {
+    .divPetOngPerfil {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .perfilOng .adotarSec {
+        padding: 0 2rem 2rem 2rem;
+    }
+
+    .ongPerfilInfo {
+        padding: 0 2rem 0 2rem;
+    }
+}
 
 /* responsividade em dispositivos até 800px de largura  */
 @media screen and (max-width: 800px) {
@@ -3074,6 +3143,12 @@ textarea {
         width: 100% !important;
     }
 
+
+    .espacoBanner,
+    .bannerPerfilOng {
+        aspect-ratio: 7/3;
+    }
+
 }
 
 @media screen and (max-width: 550px) {
@@ -3162,7 +3237,6 @@ textarea {
         overflow: hidden;
         width: 100%;
     }
-
 
 }
 
