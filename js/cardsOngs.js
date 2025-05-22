@@ -37,7 +37,7 @@ export class CardsOngs {
 
       this.cardOng = this.criarElemento.createA(
         "cardOng",
-        "ongPage.html",
+        "ongs.html",
         "Ir para a página de " + InfoOng.nome,
         null,
         gridOng,
