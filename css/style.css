@@ -13,6 +13,7 @@
     --cinza215: rgb(215, 215, 215);
     --cinza201: rgb(201, 201, 201);
     --cinza158: rgb(158, 158, 158);
+    --cinza80: rgb(80, 80, 80);
     --cinza: rgb(107, 107, 107);
     --cinza_input: #DFDBDB;
     --cinzaCard: #F5F5F5;
@@ -2344,7 +2345,7 @@ textarea {
 
 .espacoBanner,
 .bannerPerfilOng {
-    aspect-ratio: 7/2;
+    aspect-ratio: 4/1;
 }
 
 .espacoBanner {
@@ -2375,6 +2376,7 @@ textarea {
     z-index: 2;
 }
 
+
 .perfilOng .adotarSec {
     padding: 0 2rem 2rem 0;
     grid-template-columns: repeat(3, 1fr);
@@ -2391,11 +2393,13 @@ textarea {
 .espacoPerfilOng {
     /* margin: 0 2rem; */
     width: 100%;
-    bottom: 12rem;
+
 }
 
 .ongPerfilInfo {
     width: 100%;
+    position: relative;
+    top: -5rem;
     padding: 0 0 0 2rem;
     display: flex;
     flex-direction: column;
@@ -2403,26 +2407,56 @@ textarea {
 }
 
 .ongPerfilInfo .fotoCard {
-    background-color: wheat;
-    position: relative;
+    background-image: url(/img/fotos/dog2.jpg);
+    position: absolute;
     height: 12rem;
     width: 12rem;
     z-index: 4;
-    top: 0rem;
-    border: 1px red solid;
+    top: -6rem;
+    overflow: visible; /* permite que o after ultrapasse */
 }
 
+
+
 .cardPerfilOng {
+    position: relative;
+    z-index: 3;
     padding-top: 7rem;
+    display: flex;
     width: 100%;
     flex-direction: column;
     background-color: var(--cinza215);
-    padding: 6rem 2rem 2rem 2rem;
+    padding: 8rem 2rem 2rem 2rem;
     border-radius: 2rem;
     justify-content: center;
     align-items: center;
 }
 
+.infoCardOngPerfil{
+    width: 100%;
+}
+
+.endereco::before, .petsDisponiveis::before, .redesOng{
+    font-weight: 700;
+    color: var(--cinza80);
+}
+
+.endereco::before{
+    content: "Endereço: ";
+}
+
+.petsDisponiveis::before{
+    content: "Pets disponíveis: ";
+}
+
+.redes{
+    display: flex;
+    flex-direction: column;
+    height: 3rem;
+    aspect-ratio: 1 / 1;
+    gap: 0.3rem;
+    padding: 0;
+}
 
 /* -------- MODO ESCURO ------------------------------------------------------------------------------------------------------- */
 
