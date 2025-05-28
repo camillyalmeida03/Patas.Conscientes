@@ -40,15 +40,15 @@ const Erase = async (request, response) => {
 
 const Create = async (request, response) => {
     try {
-        const { nome, telefone, celular, email, senha } = request.body;
+        const {nome, email, telefone, celular, sexo, data_nascimento, cpf, senha, comentario} = request.body;
 
         // gera o hash da senha
         const saltRounds = 10;
         const senhaHash = await bcrypt.hash(senha, saltRounds);
 
         const data = await banco.query(
-            'INSERT INTO usuarios (nome, telefone, celular, email, senha) VALUES ( ?, ?, ?, ?, ?)',
-            [nome, telefone, celular, email, senhaHash] // aqui usamos a senha já criptografada
+            'INSERT INTO usuarios ( nome, email, telefone, celular, sexo, data_nascimento, cpf, senha, comentario, foto) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            [nome, email, telefone, celular, sexo, data_nascimento, cpf, senhaHash, comentario]
         );
 
         response.status(200).send({ message: 'Usuário cadastrado com sucesso' });
@@ -163,4 +163,25 @@ const Login = async (request, response) => {
     }
 };
 
-module.exports = {GetAll, GetById, Erase, Create, Update, SolicitarCriacao, Solicitarexclusao, SolicitarRecuperacaoSenha, Login};
+const Createcontaadotante = async (request, response) => {
+    try {
+        const { nome, telefone, celular, email, senha, sexo, data_nascimento, cpf } = request.body;
+
+        // gera o hash da senha
+        const saltRounds = 10;
+        const senhaHash = await bcrypt.hash(senha, saltRounds);
+
+        const data = await banco.query(
+            'INSERT INTO usuarios (nome, email, telefone, celular, sexo, data_nascimento, cpf, senha) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+            [nome, email, telefone, celular, sexo, data_nascimento, cpf, senhaHash]
+        );
+
+        response.status(200).send({ message: 'Usuário cadastrado com sucesso' });
+    } catch (error) {
+        console.log("Erro ao conectar ao banco de dados: ", error.message);
+        response.status(401).send({ message: "Falha ao executar a ação!" });
+    }
+};
+
+
+module.exports = {GetAll, GetById, Erase, Create, Update, SolicitarCriacao, Solicitarexclusao, SolicitarRecuperacaoSenha, Login, Createcontaadotante};
