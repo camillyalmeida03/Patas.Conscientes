@@ -6,6 +6,7 @@ const bcrypt = require("bcrypt");
 
 const { enviarEmailRecuperacao, enviaremailcriacao, enviaremailexclusao } = require('../utils/emailService');
 
+
 const GetAll = async (request, response) => {
     try {
         const data = await banco.query("SELECT * FROM usuarios");
@@ -40,15 +41,17 @@ const Erase = async (request, response) => {
 
 const Create = async (request, response) => {
     try {
-        const {nome, email, telefone, celular, sexo, data_nascimento, cpf, senha, comentario} = request.body;
+        const {nome, email, telefone, celular, senha, tipo} = request.body;
 
         // gera o hash da senha
         const saltRounds = 10;
         const senhaHash = await bcrypt.hash(senha, saltRounds);
+        const foto = request.file ? `/uploads/foto_perfil/${request.file.filename}` : null;
+
 
         const data = await banco.query(
-            'INSERT INTO usuarios ( nome, email, telefone, celular, sexo, data_nascimento, cpf, senha, comentario, foto) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-            [nome, email, telefone, celular, sexo, data_nascimento, cpf, senhaHash, comentario]
+            'INSERT INTO usuariospadrao ( nome, email, telefone, celular, senha, tipo, foto) VALUES( ?, ?, ?, ?, ?, ?, ?)',
+            [nome, email, telefone, celular, senhaHash, tipo, foto]
         );
 
         response.status(200).send({ message: 'Usuário cadastrado com sucesso' });
@@ -57,6 +60,77 @@ const Create = async (request, response) => {
         response.status(401).send({ message: "Falha ao executar a ação!" });
     }
 }
+
+const Createadotante = async (request, response) => {
+  try {
+        const { nome, email, telefone, celular, senha, tipo } = request.body;
+
+        // gera o hash da senha
+        const saltRounds = 10;
+        const senhaHash = await bcrypt.hash(senha, saltRounds);
+        const foto = request.file ? `/uploads/foto_perfil/${request.file.filename}` : null;
+
+        // inserir na tabela principal
+        const [result] = await banco.query(
+            'INSERT INTO usuariospadrao (nome, email, telefone, celular, senha, foto, tipo) VALUES (?, ?, ?, ?, ?, ?, ?)',
+            [nome, email, telefone, celular, senhaHash, foto, tipo]
+        );
+
+        const usuario_id = result.insertId;
+
+        // Inserir nas tabelas específicas conforme o tipo
+        if (tipo === 'adotante') {
+            const { sexo, data_nascimento, cpf } = request.body;
+            await banco.query(
+                'INSERT INTO adotante (usuario_id, sexo, data_nascimento, cpf) VALUES (?, ?, ?, ?)',
+                [usuario_id, sexo, data_nascimento, cpf]
+            );
+        }
+
+        response.status(200).send({ message: 'Usuário cadastrado com sucesso' });
+
+    } catch (error) {
+        console.log("Erro ao conectar ao banco de dados: ", error.message);
+        response.status(401).send({ message: "Falha ao executar a ação!" });
+    }
+}
+const Createong = async (request, response) => {
+  try {
+        const { nome, email, telefone, celular, senha, tipo } = request.body;
+
+        // gera o hash da senha
+        const saltRounds = 10;
+        const senhaHash = await bcrypt.hash(senha, saltRounds);
+        const foto = request.file ? `/uploads/foto_perfil/${request.file.filename}` : null;
+
+        // inserir na tabela principal
+        const [result] = await banco.query(
+            'INSERT INTO usuariospadrao (nome, email, telefone, celular, senha, foto, tipo) VALUES (?, ?, ?, ?, ?, ?, "ong")',
+            [nome, email, telefone, celular, senhaHash, foto, tipo]
+        );
+
+        const usuario_id = result.insertId;
+
+        // Inserir nas tabelas específicas conforme o tipo
+        if (tipo === 'ong') {
+            const { cnpj, nome_ong } = request.body;
+            await banco.query(
+                'INSERT INTO ongs (usuario_id, cnpj, nome_ong) VALUES (?, ?, ?)',
+                [usuario_id, cnpj, nome_ong]
+            );
+        }
+
+        response.status(200).send({ message: 'Usuário cadastrado com sucesso' });
+
+    } catch (error) {
+        console.log("Erro ao conectar ao banco de dados: ", error.message);
+        response.status(401).send({ message: "Falha ao executar a ação!" });
+    }
+}
+
+
+
+
 
 const Update = async (request, response) => {
     try {
@@ -184,4 +258,4 @@ const Createcontaadotante = async (request, response) => {
 };
 
 
-module.exports = {GetAll, GetById, Erase, Create, Update, SolicitarCriacao, Solicitarexclusao, SolicitarRecuperacaoSenha, Login, Createcontaadotante};
+module.exports = {GetAll, GetById, Erase, Create, Update, SolicitarCriacao, Solicitarexclusao, SolicitarRecuperacaoSenha, Login, Createcontaadotante, Createadotante, Createong};
