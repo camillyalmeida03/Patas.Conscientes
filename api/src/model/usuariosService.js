@@ -50,7 +50,7 @@ const Create = async (request, response) => {
 
 
         const data = await banco.query(
-            'INSERT INTO usuariospadrao ( nome, email, telefone, celular, senha, tipo, foto) VALUES( ?, ?, ?, ?, ?, ?, ?)',
+            'INSERT INTO usuarios ( nome, email, telefone, celular, senha, tipo, foto) VALUES( ?, ?, ?, ?, ?, ?, ?)',
             [nome, email, telefone, celular, senhaHash, tipo, foto]
         );
 
@@ -72,7 +72,7 @@ const Createadotante = async (request, response) => {
 
         // inserir na tabela principal
         const [result] = await banco.query(
-            'INSERT INTO usuariospadrao (nome, email, telefone, celular, senha, foto, tipo) VALUES (?, ?, ?, ?, ?, ?, ?)',
+            'INSERT INTO usuarios (nome, email, telefone, celular, senha, foto, tipo) VALUES (?, ?, ?, ?, ?, ?, ?)',
             [nome, email, telefone, celular, senhaHash, foto, tipo]
         );
 
@@ -105,7 +105,7 @@ const Createong = async (request, response) => {
 
         // inserir na tabela principal
         const [result] = await banco.query(
-            'INSERT INTO usuariospadrao (nome, email, telefone, celular, senha, foto, tipo) VALUES (?, ?, ?, ?, ?, ?, "ong")',
+            'INSERT INTO usuarios (nome, email, telefone, celular, senha, foto, tipo) VALUES (?, ?, ?, ?, ?, ?, "ong")',
             [nome, email, telefone, celular, senhaHash, foto, tipo]
         );
 
@@ -129,21 +129,101 @@ const Createong = async (request, response) => {
 }
 
 
-
-
-
 const Update = async (request, response) => {
     try {
         const id = request.params.id;
-        const {nome, email, senha, tema, cidade_pais, cargo, nome_de_usuario, descricao, banner, url_do_perfil_do_instagram, url_do_perfil_do_x_twitter} = request.body;
-        const foto = request.file ? `/uploads/foto_perfil${request.file.filename}` : null;
-        const data = await banco.query('UPDATE usuarios SET nome=?, email=?, senha=?, foto=?, celular=?, telefone=? WHERE id=?', [nome, email, senha, foto, tema, cidade_pais, cargo, nome_de_usuario, descricao, banner, url_do_perfil_do_instagram, url_do_perfil_do_x_twitter, id]);
-        response.status(200).send(data[0]);
+        const { nome, email, telefone, celular, senha, tipo } = request.body;
+        const foto = request.file ? `/uploads/foto_perfil/${request.file.filename}` : null;
+
+        const data = await banco.query(
+            'UPDATE usuarios SET nome=?, email=?, telefone=?, celular=?, senha=?, foto=?, tipo=? WHERE id=?',
+            [nome, email, telefone, celular, senha, foto, tipo, id]
+        );
+
+        response.status(200).send({ message: "Usuário atualizado com sucesso!" });
     } catch (error) {
-        console.log("Erro ao conectar ao banco de dados: ", error.message);
-        response.status(401).send({"message": "Falha ao executar a ação!"})
+        console.log("Erro ao atualizar o usuário: ", error.message);
+        response.status(401).send({ message: "Falha ao executar a ação!" });
     }
 }
+
+const AtualizarNome = async (request, response) => {
+    try {
+        const id = request.params.id;
+        const { nome } = request.body;
+
+        await banco.query('UPDATE usuariospadrao SET nome = ? WHERE id = ?', [nome, id]);
+
+        response.status(200).send({ message: "Nome atualizado com sucesso!" });
+    } catch (error) {
+        console.log("Erro ao atualizar nome:", error.message);
+        response.status(500).send({ message: "Erro ao atualizar nome" });
+    }
+};
+
+const AtualizarFoto = async (request, response) => {
+    try {
+        const id = request.params.id;
+        const foto = request.file ? `/uploads/foto_perfil/${request.file.filename}` : null;
+
+        if (!foto) {
+            return response.status(400).send({ message: "Nenhuma foto foi enviada." });
+        }
+
+        await banco.query('UPDATE usuariospadrao SET foto = ? WHERE id = ?', [foto, id]);
+
+        response.status(200).send({ message: "Foto atualizada com sucesso!" });
+    } catch (error) {
+        console.log("Erro ao atualizar foto:", error.message);
+        response.status(500).send({ message: "Erro ao atualizar foto" });
+    }
+};
+
+const AtualizarEmail = async (request, response) => {
+    try {
+        const id = request.params.id;
+        const { email } = request.body;
+
+        await banco.query('UPDATE usuariospadrao SET email = ? WHERE id = ?', [email, id]);
+
+        response.status(200).send({ message: "Email atualizado com sucesso!" });
+    } catch (error) {
+        console.log("Erro ao atualizar email:", error.message);
+        response.status(500).send({ message: "Erro ao atualizar email" });
+    }
+};
+
+const AtualizarSenha = async (request, response) => {
+    try {
+        const id = request.params.id;
+        const { senha } = request.body;
+
+        const senhaHash = await bcrypt.hash(senha, 10);
+
+        await banco.query('UPDATE usuariospadrao SET senha = ? WHERE id = ?', [senhaHash, id]);
+
+        response.status(200).send({ message: "Senha atualizada com sucesso!" });
+    } catch (error) {
+        console.log("Erro ao atualizar senha:", error.message);
+        response.status(500).send({ message: "Erro ao atualizar senha" });
+    }
+};
+
+const AtualizarTelefone = async (request, response) => {
+    try {
+        const id = request.params.id;
+        const { telefone } = request.body;
+
+        await banco.query('UPDATE usuariospadrao SET telefone = ? WHERE id = ?', [telefone, id]);
+
+        response.status(200).send({ message: "Telefone atualizado com sucesso!" });
+    } catch (error) {
+        console.log("Erro ao atualizar telefone:", error.message);
+        response.status(500).send({ message: "Erro ao atualizar telefone" });
+    }
+};
+
+
 
 const SolicitarCriacao = async (request, response) => {
     try {
@@ -258,4 +338,4 @@ const Createcontaadotante = async (request, response) => {
 };
 
 
-module.exports = {GetAll, GetById, Erase, Create, Update, SolicitarCriacao, Solicitarexclusao, SolicitarRecuperacaoSenha, Login, Createcontaadotante, Createadotante, Createong};
+module.exports = {GetAll, GetById, Erase, Create, Update, SolicitarCriacao, Solicitarexclusao, SolicitarRecuperacaoSenha, Login, Createcontaadotante, Createadotante, Createong, AtualizarNome, AtualizarFoto, AtualizarEmail, AtualizarSenha, AtualizarTelefone};

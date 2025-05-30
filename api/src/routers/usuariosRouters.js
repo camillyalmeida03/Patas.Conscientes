@@ -1,5 +1,5 @@
 const {Router} = require('express');
-const {GetAll, GetById, Erase, Create, Update, SolicitarCriacao, Solicitarexclusao, SolicitarRecuperacaoSenha, Login, Createcontaadotante, Createadotante,  Createong} = require("../model/usuariosService")
+const {GetAll, GetById, Erase, Create, Update, SolicitarCriacao, Solicitarexclusao, SolicitarRecuperacaoSenha, Login, Createcontaadotante, Createadotante, Createong, AtualizarNome, AtualizarFoto, AtualizarEmail, AtualizarSenha, AtualizarTelefone} = require("../model/usuariosService")
 const upload = require('../config/upload_foto_perfil'); 
 
 
@@ -17,5 +17,11 @@ rota.post("/solicitar-recuperacao-senha", SolicitarRecuperacaoSenha);
 rota.post("/criar-conta-adotante", Createcontaadotante);
 rota.post("/criar-adotante", upload.single("foto"), Createadotante);
 rota.post("/criar-ong", upload.single("foto"), Createong);
+rota.put("/atualizar-foto/:id", upload.single("foto"), AtualizarFoto);
+rota.put("/atualizar-nome/:id", AtualizarNome);
+rota.put("/atualizar-email/:id", AtualizarEmail);
+rota.put("/atualizar-senha/:id", AtualizarSenha);
+rota.put("/atualizar-telefone/:id", AtualizarTelefone);
+
 
 module.exports = rota;

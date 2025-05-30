@@ -1,7 +1,5 @@
 //Este arquivo é responsável por trazer as funcionalidades da página de configurações.
 
-window.addEventListener("load", paginacarregada); //a página espera o javascrip carregar antes de executar ele.
-
 // Funcionalidade do aside
 class AsideConfig {
     constructor() {
@@ -55,3 +53,29 @@ function abrir() {
     seta.style.transform = "rotate(0deg)";
   }
 }
+
+// conexão com o localStorage
+const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+
+
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    const response = await fetch(`http://localhost:8080/usuarios/${usuario.id}`);
+    const data = await response.json();
+
+    if (Array.isArray(data) && data.length === 1) {
+      document.getElementById("nomeUsuarioconfig").innerHTML = data[0].nome;
+      document.getElementById("emailuserconfig").innerHTML = `<span class="before">E-mail:</span> ${data[0].email}`;
+      document.getElementById("telefoneconfig").innerHTML = `<span class="before">Telefone:</span> ${data[0].telefone}`;
+
+    } else {
+     console.log("Usuário não encontrado ou dados inválidos.");
+
+
+    }
+  } catch (error) {
+  console.log("Erro ao buscar dados do usuário:", error);
+  // alert("Você não está logado", error);
+}
+
+});

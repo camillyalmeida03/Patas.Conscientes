@@ -70,7 +70,7 @@ function paginacarregada(){
     } else if ( senhaEntrar !== '12345') {
       senhaEntrar.textContent = 'Por favor, insira uma senha válida.';
     }else {
-      window.location.href = 'index.html';
+      // window.location.href = 'index.html';
     }
   }
   );

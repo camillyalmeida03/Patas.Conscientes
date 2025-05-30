@@ -23,6 +23,8 @@
 
     --vermelho: #fd2020;
 
+    --verde: #2E8B57;
+
     /* modo escuro */
 
     --cinza46: rgb(46, 46, 46);
@@ -1936,6 +1938,10 @@ ol {
 .vermelho {
     color: var(--vermelho);
 }
+.verde {
+    color: var(--verde);
+}
+
 
 #emailSenhaTel {
     display: flex;

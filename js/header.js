@@ -87,6 +87,7 @@ let abrirConfigPerfil = document.getElementById('abrirConfigPerfil');
 let suaconta = document.getElementById('suaconta');
 let cadastrarPopup = document.getElementById('cadastrarPopup');
 let sairDaConta = document.getElementById('sairDaConta');
+let entrarnaconta = document.getElementById('entrarnaconta');
 let svgPerfil = document.getElementById('svgPerfil');
 
 function configuracoesdePefil(){
@@ -99,4 +100,7 @@ function configuracoesdePefil(){
     }
 }
 
+function irparaologin() {
+    window.location.href = "/login.html";
+}
 abrirConfigPerfil.addEventListener('click', configuracoesdePefil);

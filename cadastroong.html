@@ -169,7 +169,7 @@
 
       <div>
         <p id="nomeUsuario">Margarete Da Rosa Silva</p>
-        <p id="email">margaretedarosasilva@gmail.com</p>
+        <p id="emaildouser">margaretedarosasilva@gmail.com</p>
       </div>
     </div>
 
@@ -241,7 +241,7 @@
 
     <div class="fundoBranco">
       
-      <form action="" method="get" id="formOng" class="formCadastro">
+      <form action="" id="formOng" class="formCadastro">
         <h2>Cadastrar</h2>
         <div class="alinharErro">
           <input type="text" name="" id="nomeOng" class="inputCadastro" placeholder="Nome da ONG" >
@@ -305,6 +305,11 @@
       </form>
     </div>
 
+    <div id="verificacaoContainer" style=" display: none; margin-top: 1rem;">
+                    <label for="codigoVerificacao">Digite o código enviado ao seu Email:</label>
+                    <input type="text" id="codigoVerificacao" placeholder="Ex: 123456">
+                    <button type="button" id="verificarCodigoBtn">Verificar Código</button>
+          </div>
   </main>
 
   <div class="accessibility-bar" id="accessibilityBar">
@@ -457,6 +462,8 @@
   <!-- <script src="js/formulario.js" defer></script> -->
   <script src="js/formcadong.js" defer></script>
   <script src="js/tema.js" defer></script>
+  <script src="js/carregar_pagina.js"></script>
+
 
 </body>
 
