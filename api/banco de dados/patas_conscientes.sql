@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 29/05/2025 às 21:58
+-- Tempo de geração: 30/05/2025 às 22:08
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -34,15 +34,6 @@ CREATE TABLE `adotante` (
   `cpf` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Despejando dados para a tabela `adotante`
---
-
-INSERT INTO `adotante` (`usuario_id`, `sexo`, `data_nascimento`, `cpf`) VALUES
-(8, 'masculino', '2024-01-17', '1234562345'),
-(12, 'masculino', '2024-01-17', '1234562345'),
-(13, 'masculino', '2024-01-17', '522.172.878-85');
-
 -- --------------------------------------------------------
 
 --
@@ -60,7 +51,8 @@ CREATE TABLE `ongs` (
 --
 
 INSERT INTO `ongs` (`usuario_id`, `nome_ong`, `cnpj`) VALUES
-(7, 'qwdacx ', 'wdesfvfds');
+(7, 'qwdacx ', 'fervfdf'),
+(20, 'patas', '14.343.242/3455-25');
 
 -- --------------------------------------------------------
 
@@ -70,36 +62,6 @@ INSERT INTO `ongs` (`usuario_id`, `nome_ong`, `cnpj`) VALUES
 
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
-  `nome` varchar(100) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `telefone` varchar(20) DEFAULT NULL,
-  `celular` varchar(20) DEFAULT NULL,
-  `sexo` enum('feminino','masculino','naoInformar') DEFAULT NULL,
-  `data_nascimento` date DEFAULT NULL,
-  `cpf` varchar(25) DEFAULT NULL,
-  `senha` varchar(100) NOT NULL,
-  `comentario` varchar(300) DEFAULT NULL,
-  `foto` varchar(155) DEFAULT NULL,
-  `tipo_de_user` tinyint(1) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `usuarios`
---
-
-INSERT INTO `usuarios` (`id`, `nome`, `email`, `telefone`, `celular`, `sexo`, `data_nascimento`, `cpf`, `senha`, `comentario`, `foto`, `tipo_de_user`) VALUES
-(1, 'João da Silva', 'joao@email.com', '(11) 1234-5678', '(11) 91234-5678', 'masculino', '2000-05-15', '123.456.789-00', 'senha123segura', 'Gosto de tecnologia e programação.', 'imagens/joao_perfil.jpg', 0),
-(6, 'João da Silva', 'joao@email.coms', '(11) 1234-56782', '(11) 91234-56782', 'masculino', '2000-05-15', '123.456.789-01', '$2b$10$nXTxLhJ62aJNL4bZFfUypuJ6PEpidlfGtIdT2o8O8Eq61WLzq9Zp6', NULL, NULL, 0),
-(9, 'OTÁVIO DOMINGUES DA SILVA', 'otaviodominguessilva@gmail.com', '(16) 9963-20063', '(11) 11111-1111', 'masculino', '2024-01-17', '522.172.878-85', '$2b$10$P3pOUk.1LxDkZoPQltbrFeLh5lN5jklTt3j8H6h53RdAnQ3JBNh4G', NULL, NULL, 0);
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `usuariospadrao`
---
-
-CREATE TABLE `usuariospadrao` (
-  `id` int(11) NOT NULL,
   `nome` varchar(155) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
   `telefone` varchar(20) DEFAULT NULL,
@@ -107,18 +69,18 @@ CREATE TABLE `usuariospadrao` (
   `senha` varchar(100) NOT NULL,
   `foto` varchar(100) DEFAULT NULL,
   `tipo` enum('adotante','ong','parceiro') NOT NULL,
-  `criado_em` timestamp NOT NULL DEFAULT current_timestamp()
+  `criado_em` timestamp NOT NULL DEFAULT current_timestamp(),
+  `acessibilidade_ativa` enum('Ligada','Desligada') DEFAULT NULL,
+  `tema` enum('Claro','Escuro') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `usuariospadrao`
+-- Despejando dados para a tabela `usuarios`
 --
 
-INSERT INTO `usuariospadrao` (`id`, `nome`, `email`, `telefone`, `celular`, `senha`, `foto`, `tipo`, `criado_em`) VALUES
-(7, 'dedvsf vdd', 'dasdascx ', 'qwdas', 'qdsac', '$2b$10$rBaRpD6lH34GwBoGlvwBQe.GrHDSkz0OpVqcFFS1i57XcppgseE3q', '/uploads/foto_perfil/1748547886996-Captura de tela 2025-02-06 201543.png', 'ong', '2025-05-29 19:44:47'),
-(8, 'dddddddd', 'sddddddddddddddd', '213243543', '12345645', '$2b$10$/oMmRHETLePO7epz8dcp0eMO1COSjO.Gox94VkqQLnQMpLTUaamEq', '/uploads/foto_perfil/1748547904157-Captura de tela 2025-02-04 163541.png', 'adotante', '2025-05-29 19:45:04'),
-(12, 'dddwqasdddddd', 'sdddddddddddddddads', '21343543', '1234545', '$2b$10$6bNAi9RswF4g4mAn12WykOeb6T.Ki7R/u9SYURAeErJzgJGhkfP2O', '/uploads/foto_perfil/1748548518514-Captura de tela 2025-02-04 163541.png', 'adotante', '2025-05-29 19:55:18'),
-(13, 'OTÁVIO DOMINGUES DA SILVA', 'otaviodominguessilva@gmail.com', '(16) 9963-20063', '(11) 11111-1111', '$2b$10$PLccfnHpvYn8VB0ESPfglOM4uOEOkTNMvdrtZVNtKPzRg8PckqZt.', NULL, 'adotante', '2025-05-29 19:57:45');
+INSERT INTO `usuarios` (`id`, `nome`, `email`, `telefone`, `celular`, `senha`, `foto`, `tipo`, `criado_em`, `acessibilidade_ativa`, `tema`) VALUES
+(7, 'João da ONG', 'joao@exemplo.com', '(11) 2345-6789', '(11) 91234-5678', 'novaSenha123', NULL, 'ong', '2025-05-29 19:44:47', NULL, NULL),
+(20, 'OTÁVIO DOMINGUES DA SILVA', 'otaviodominguessilva@gmail.com', '(16) 99632-0063', '(16) 99632-0063', '$2b$10$wgfqG3NDSudDAJQQeteWyuUo0d9fEPD25OHA2FdYyRQORNCGBD1HW', '/img/fotos/perfil1.jpg', 'ong', '2025-05-30 18:15:04', NULL, NULL);
 
 --
 -- Índices para tabelas despejadas
@@ -141,14 +103,6 @@ ALTER TABLE `ongs`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`),
-  ADD UNIQUE KEY `cpf` (`cpf`);
-
---
--- Índices de tabela `usuariospadrao`
---
-ALTER TABLE `usuariospadrao`
-  ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
@@ -159,13 +113,7 @@ ALTER TABLE `usuariospadrao`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT de tabela `usuariospadrao`
---
-ALTER TABLE `usuariospadrao`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Restrições para tabelas despejadas
@@ -175,13 +123,13 @@ ALTER TABLE `usuariospadrao`
 -- Restrições para tabelas `adotante`
 --
 ALTER TABLE `adotante`
-  ADD CONSTRAINT `adotante_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuariospadrao` (`id`);
+  ADD CONSTRAINT `adotante_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`);
 
 --
 -- Restrições para tabelas `ongs`
 --
 ALTER TABLE `ongs`
-  ADD CONSTRAINT `ongs_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuariospadrao` (`id`);
+  ADD CONSTRAINT `ongs_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
