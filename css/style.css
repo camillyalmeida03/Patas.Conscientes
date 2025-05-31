@@ -567,7 +567,7 @@ button {
     gap: 1rem;
 }
 
-.contaPopup #usuarioPerfil #fotoUsuario {
+.contaPopup #usuarioPerfil #fotoUsuario, #fotoUsuarioconfig {
     height: 7rem;
     width: 7rem;
 }
@@ -1916,7 +1916,7 @@ ol {
     justify-content: space-between;
 }
 
-#fotoUsuario {
+#fotoUsuario, #fotoUsuarioconfig {
     height: 10rem;
     width: 10rem;
     background-image: url(/img/fotos/perfil1.jpg);
@@ -1970,6 +1970,12 @@ ol {
     font-weight: 600;
     color: var(--preto_back);
 }
+
+.negrito {
+  font-weight: bold;
+}
+
+
 
 /* ----------------------------- login.html ----------------------------- */
 

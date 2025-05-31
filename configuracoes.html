@@ -280,8 +280,12 @@
 
       <div id="usuarioPerfil">
         <div id="altFotoUsuario">
-          <div id="fotoUsuario"></div>
-          <button title="Alterar foto de perfil" class="buttonPerfil" id="altFoto">Alterar foto</button>
+          <div id="fotoUsuarioconfig"></div>
+          <form action="" id="formFotoUsuario" class="formalterardados" >
+            <label for="fotoPerfil" title="Selecione uma foto de perfil" class="negrito">Alterar foto</label>
+            <input type="file" id="fotoPerfil" accept="image/*" style="display: none;" >
+          </form>
+          <!-- <button title="Alterar foto de perfil" class="buttonPerfil" id="altFoto">Alterar foto</button> -->
           <button title="Alterar foto de perfil" id="altFotoIcon"><svg xmlns="http://www.w3.org/2000/svg"
               viewBox="0 -960 960 960" fill="#5f6368">
               <path
@@ -291,8 +295,20 @@
 
         <div id="nomePerfil">
           <p id="nomeUsuarioconfig">Margarete Da Rosa Silva</p>
-          <button title="Alterar nome de usuário" class="buttonPerfil" id="altNomeUsu">Alterar nome</button>
+          <button title="Alterar nome de usuário" class="buttonPerfil" id="altNomeUsu" onclick="alterarnoomeuser()">Alterar nome</button>
         </div>
+
+        <div class="alterardados" style="display: none;" id="formNomeUsuario">
+          <form action="" id="formNomeUsuario" class="formalterardados">
+            <label for="nomeUsuario" class="negrito">Nome de usuário</label>
+            <input type="text" id="nomeUsuario" name="nomeUsuario" class="inputdados" placeholder="Digite seu nome de usuário"
+              required>
+            <button type="submit" class="buttonPerfil" title="Salvar alterações no nome de usuário">Salvar</button>
+          </form>
+        </div>
+
+
+
       </div>
 
       <div id="emailSenhaTel">
@@ -301,28 +317,79 @@
           <p id="cpf/cnpj"><span class="before">CPF:</span> 000.000.000-00</p>
         </div>
 
+        <div class="alterardados" style="display: none;">
+          <form action="" id="formcpfUsuario" class="formalterardados">
+            <label for="cpfUsuario" class="negrito">Cpf do usuário</label>
+            <input type="text" id="cpfUsuario" name="cpfUsuario" class="inputdados" placeholder="Digite seu cpf"
+              required>
+            <button type="submit" class="buttonPerfil" title="Salvar alterações no cpf">Salvar</button>
+          </form>
+        </div>
+
+
         <div id="dataNascimento">
           <p id="dataNasc"><span class="before">Data de nascimento:</span> 01/01/2001</p>
         </div>
 
-        <div id="emailPerfil">
-          <p id="emailuserconfig"><span class="before">E-mail:</span> margaretedarosasilva@gmail.com</p>
-          <button class="buttonPerfil" title="Alterar seu e-mail">Alterar e-mail</button>
+        <div class="alterardados" style="display: none;">
+          <form action="" id="formdataUsuario" class="formalterardados">
+            <label for="dataUsuario" class="negrito">Data de nascimento</label>
+            <input type="date" id="dataUsuario" name="dataUsuario" class="inputdados"
+              placeholder="Digite sua data de nascimento" required>
+            <button type="submit" class="buttonPerfil" title="Salvar alterações na data de nascimento">Salvar</button>
+          </form>
         </div>
 
-        <div id="senhaPerfil">
+        <div id="emailPerfil">
+          <p id="emailuserconfig"><span class="before">E-mail:</span> margaretedarosasilva@gmail.com</p>
+          <button class="buttonPerfil" title="Alterar seu e-mail" onclick="alteraremail()">Alterar e-mail</button>
+        </div>
+
+        <div class="alterardados" style="display: none;" id="formEmailUsuario">
+          <form action="" id="formEmailUsuario" class="formalterardados">
+            <label for="emailUsuario" class="negrito">E-mail do usuário</label>
+            <input type="email" id="emailUsuario" name="emailUsuario" class="inputdados"
+              placeholder="Digite seu e-mail" required>
+            <button type="submit" class="buttonPerfil" title="Salvar alterações no e-mail">Salvar</button>
+          </form>
+          </div>
+
+
+
+        <div id="senhaPerfil" >
           <p id="senha"><span class="before">Senha:</span> ******</p>
-          <button class="buttonPerfil" title="Alterar sua senha">Alterar senha</button>
+          <button class="buttonPerfil" title="Alterar sua senha" onclick="alterarsenha()">Alterar senha</button>
+        </div>
+
+        <div class="alterardados" style="display: none;" id="formSenhaUsuario">
+          <form action="" id="formSenhaUsuario" class="formalterardados">
+            <label for="senhaUsuario" class="negrito">Senha do usuário</label>
+            <input type="password" id="senhaUsuario" name="senhaUsuario" class="inputdados"
+              placeholder="Digite sua senha" required>
+            <button type="submit" class="buttonPerfil" title="Salvar alterações na senha">Salvar</button>
+          </form>
         </div>
 
         <div id="telefonePerfil">
           <p id="telefoneconfig"><span class="before">Telefone:</span> (16) 9999-9999</p>
-          <button class="buttonPerfil" title="Alterar seu telefone">Alterar telefone</button>
+          <button class="buttonPerfil" title="Alterar seu telefone" onclick="alterartelefone()">Alterar telefone</button>
+        </div>
+
+        <div class="alterardados" style="display: none;" id="formTelefoneUsuario">
+          <form action="" id="formTelefoneUsuario" class="formalterardados">
+            <label for="telefoneUsuario" class="negrito">Telefone do usuário</label>
+            <input type="tel" id="telefoneUsuario" name="telefoneUsuario" class="inputdados"
+              placeholder="Digite seu telefone" required>
+            <button type="submit" class="buttonPerfil" title="Salvar alterações no telefone">Salvar</button>
+          </form>
         </div>
       </div>
       <!--  -->
 
-      <button class="vermelho buttonPerfil" title="Excluir sua conta">Excluir conta</button>
+      <form action="" id="formExcluirConta" class="formalterardados">
+        <button id="excluirconta" class="vermelho buttonPerfil" title="Excluir sua conta">Excluir conta</button>
+      </form>
+
 
     </section>
 

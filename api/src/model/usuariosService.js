@@ -152,7 +152,7 @@ const AtualizarNome = async (request, response) => {
         const id = request.params.id;
         const { nome } = request.body;
 
-        await banco.query('UPDATE usuariospadrao SET nome = ? WHERE id = ?', [nome, id]);
+        await banco.query('UPDATE usuarios SET nome = ? WHERE id = ?', [nome, id]);
 
         response.status(200).send({ message: "Nome atualizado com sucesso!" });
     } catch (error) {
@@ -170,7 +170,7 @@ const AtualizarFoto = async (request, response) => {
             return response.status(400).send({ message: "Nenhuma foto foi enviada." });
         }
 
-        await banco.query('UPDATE usuariospadrao SET foto = ? WHERE id = ?', [foto, id]);
+        await banco.query('UPDATE usuarios SET foto = ? WHERE id = ?', [foto, id]);
 
         response.status(200).send({ message: "Foto atualizada com sucesso!" });
     } catch (error) {
@@ -184,7 +184,7 @@ const AtualizarEmail = async (request, response) => {
         const id = request.params.id;
         const { email } = request.body;
 
-        await banco.query('UPDATE usuariospadrao SET email = ? WHERE id = ?', [email, id]);
+        await banco.query('UPDATE usuarios SET email = ? WHERE id = ?', [email, id]);
 
         response.status(200).send({ message: "Email atualizado com sucesso!" });
     } catch (error) {
@@ -200,7 +200,7 @@ const AtualizarSenha = async (request, response) => {
 
         const senhaHash = await bcrypt.hash(senha, 10);
 
-        await banco.query('UPDATE usuariospadrao SET senha = ? WHERE id = ?', [senhaHash, id]);
+        await banco.query('UPDATE usuarios SET senha = ? WHERE id = ?', [senhaHash, id]);
 
         response.status(200).send({ message: "Senha atualizada com sucesso!" });
     } catch (error) {
@@ -214,7 +214,7 @@ const AtualizarTelefone = async (request, response) => {
         const id = request.params.id;
         const { telefone } = request.body;
 
-        await banco.query('UPDATE usuariospadrao SET telefone = ? WHERE id = ?', [telefone, id]);
+        await banco.query('UPDATE usuarios SET telefone = ? WHERE id = ?', [telefone, id]);
 
         response.status(200).send({ message: "Telefone atualizado com sucesso!" });
     } catch (error) {
