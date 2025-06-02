@@ -2502,6 +2502,43 @@ textarea {
     padding-bottom: 1rem;
 }
 
+.adicionarBttOngAdm{
+    display: flex;
+    flex-direction: column;
+}
+
+.adicionarBttOngAdm .buttonRosa{
+    background-color: var(--rosa_texto);
+}
+
+.caixaEscolha{
+    position: fixed;
+    background-color: var(--cinza215);
+    padding: 2rem;
+    border-radius: 1rem;
+    top: 30%;
+    left: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    display: none;
+}
+
+.caixaEscolha h3{
+    width: 100%;
+    text-align: center;
+}
+
+.buttonsAdicionar{
+    display: flex;
+    gap: 2rem;
+    padding-top: 1rem;
+}
+
+.buttonsAdicionar button{
+    width: 8rem;
+    background-color: var(--rosa_texto);
+}
 /* -------- MODO ESCURO ------------------------------------------------------------------------------------------------------- */
 
 .bodyME {
