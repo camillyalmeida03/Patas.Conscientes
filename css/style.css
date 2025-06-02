@@ -567,7 +567,8 @@ button {
     gap: 1rem;
 }
 
-.contaPopup #usuarioPerfil #fotoUsuario, #fotoUsuarioconfig {
+.contaPopup #usuarioPerfil #fotoUsuario,
+#fotoUsuarioconfig {
     height: 7rem;
     width: 7rem;
 }
@@ -1390,7 +1391,7 @@ footer .listasFooter a:hover {
     width: 100vw;
     position: fixed;
     /* Fixado na tela, independente do scroll */
-    z-index: 2;
+    z-index: 6;
     top: 0;
     left: 0;
     background-color: var(--cinzaFundoAba);
@@ -1399,7 +1400,6 @@ footer .listasFooter a:hover {
     justify-content: center;
     display: none;
 }
-
 
 .conjOngBotFechar {
     display: flex;
@@ -1916,7 +1916,8 @@ ol {
     justify-content: space-between;
 }
 
-#fotoUsuario, #fotoUsuarioconfig {
+#fotoUsuario,
+#fotoUsuarioconfig {
     height: 10rem;
     width: 10rem;
     background-image: url(/img/fotos/perfil1.jpg);
@@ -1938,6 +1939,7 @@ ol {
 .vermelho {
     color: var(--vermelho);
 }
+
 .verde {
     color: var(--verde);
 }
@@ -1972,7 +1974,7 @@ ol {
 }
 
 .negrito {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 
@@ -2405,7 +2407,6 @@ textarea {
 .espacoPerfilOng {
     /* margin: 0 2rem; */
     width: 100%;
-
 }
 
 .ongPerfilInfo {
@@ -2425,9 +2426,10 @@ textarea {
     width: 12rem;
     z-index: 4;
     top: -6rem;
-    overflow: visible; /* permite que o after ultrapasse */
+    overflow: visible;
+    /* permite que o after ultrapasse */
+    border: solid 5px var(--cinza215);
 }
-
 
 
 .cardPerfilOng {
@@ -2436,6 +2438,7 @@ textarea {
     padding-top: 7rem;
     display: flex;
     width: 100%;
+    min-width: 275px;
     flex-direction: column;
     background-color: var(--cinza215);
     padding: 8rem 2rem 2rem 2rem;
@@ -2444,30 +2447,59 @@ textarea {
     align-items: center;
 }
 
-.infoCardOngPerfil{
+.infoCardOngPerfil {
     width: 100%;
 }
 
-.endereco::before, .petsDisponiveis::before, .redesOng{
+.endereco::before,
+.petsDisponiveis::before,
+.redesOng {
     font-weight: 700;
     color: var(--cinza80);
 }
 
-.endereco::before{
+.endereco::before {
     content: "Endereço: ";
 }
 
-.petsDisponiveis::before{
+.petsDisponiveis::before {
     content: "Pets disponíveis: ";
 }
 
-.redes{
+.redes {
     display: flex;
     flex-direction: column;
-    height: 3rem;
-    aspect-ratio: 1 / 1;
-    gap: 0.3rem;
-    padding: 0;
+    gap: 0.5rem;
+    padding: 0.8rem 0;
+}
+
+.redes a {
+    background-color: var(--rosa);
+    padding: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 0.8rem;
+    color: white;
+    gap: 0.5rem;
+    width: fit-content;
+    transition: all 0.4s;
+}
+
+.redes a:hover {
+    transform: scale(105%);
+    background-color: var(--rosa_claro);
+}
+
+.redes a img {
+    height: 1.5rem;
+}
+
+.maisSobreOng{
+    padding: 0 2rem;
+}
+
+.maisSobreOng h2, .maisSobreOng p{
+    padding-bottom: 1rem;
 }
 
 /* -------- MODO ESCURO ------------------------------------------------------------------------------------------------------- */
@@ -2539,7 +2571,11 @@ textarea {
 .bodyME .formCadastro h2,
 .bodyME .inputCadastro,
 .bodyME .inputArquivo p,
-.bodyME #infoAdocao div label {
+.bodyME #infoAdocao div label,
+.bodyME .endereco::before,
+.bodyME .petsDisponiveis::before,
+.bodyME .redesOng,
+.bodyME .h1NomeOng {
     color: white !important;
 }
 
@@ -2703,6 +2739,19 @@ textarea {
     color: var(--cinza215);
 }
 
+/* Página de Perfil das ONGs */
+
+.bodyME .ongPerfilInfo .fotoCard {
+    border: solid 5px var(--cinza100);
+}
+
+.bodyME .cardPerfilOng {
+    background-color: var(--cinza100);
+}
+
+.bodyME .ongPerfilInfo .linha{
+    background-color: var(--cinza80);
+}
 
 @media screen and (max-width: 1650px) {
     .nomIconAdotar h2 {
@@ -3372,5 +3421,13 @@ textarea {
 
     .linksFooter {
         flex-wrap: wrap;
+    }
+
+    .ongPerfilInfo {
+        top: -2rem;
+    }
+
+   .perfilOng .adotarSec {
+        padding: 0 1rem 2rem 1rem;
     }
 }
