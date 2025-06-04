@@ -237,9 +237,7 @@
         <!-- Caminho (Migalha de pão) -->
         <div class="caminhoBanner">
             <section class="caminho">
-                <p><a href="/index.html" class="link" title="Link que direciona para a página Inicial">Início</a> | Nome
-                    da
-                    ONG
+                <p><a href="/index.html" class="link" title="Link que direciona para a página Inicial">Início</a> | <a href="" id="caminhoPerfilOng">Nome da ONG</a>
                 </p>
             </section>
 
@@ -247,23 +245,23 @@
                 <!-- Simula espaço que o banner ocupa para que a section de baixo não se funda ao banner -->
             </div>
 
-            <section class="bannerPerfilOng">
+            <section class="bannerPerfilOng" id="bannerOng">
             </section>
         </div>
 
         <div class="divPetOngPerfil">
             <section class="ongPerfilInfo">
-                <div class="fotoCard">
+                <div class="fotoCard" id="fotoOng">
                     <!-- Aqui estará a foto de perfil da ONG -->
                 </div>
 
                 <div class="cardPerfilOng">
-                    <h1 class="h1NomeOng">Nome da ONG</h1>
+                    <h1 class="h1NomeOng" id="nomeOng"></h1>
                     <div class="infoCardOngPerfil">
                         <div class="linha"></div>
-                        <p class="endereco">Nome da rua</p>
+                        <p class="endereco" id="enderecoOng">Nome da rua</p>
                         <div class="linha"></div>
-                        <p class="petsDisponiveis">25</p>
+                        <p class="petsDisponiveis" id="petsDisponiveis">25</p>
                         <div class="linha"></div>
                         <p class="redesOng">Nossas redes:</p>
                         <div class="redes">
@@ -311,7 +309,7 @@
                 <section class="maisSobreOng">
                     <h2 class="azul">Conheça mais sobre nós</h2>
 
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, voluptatem. Eum quo natus ex
+                    <p id="descricaoOng">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, voluptatem. Eum quo natus ex
                         provident
                         obcaecati voluptates, vero perferendis labore quaerat voluptatibus fugit vel officia ipsum aut
                         ducimus aliquid magni?Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quas
@@ -324,7 +322,7 @@
 
                 </section>
 
-                <section class="adotarSec">
+                <section class="adotarSec" id="petsAdotarSec">
                 </section>
             </div>
 
@@ -497,7 +495,7 @@
 <script src="js/header.js" defer></script>
 <script src="/js/tema.js" defer></script>
 <script type="module" src="/js/cardsPet.js"></script>
-<script type="module" src="/js/ongPage.js"></script>
+<script type="module" src="/js/Ongs/ongPage.js"></script>
 <script src="js/carregar_pagina.js"></script>
 
 
