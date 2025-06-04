@@ -204,8 +204,32 @@ const enviaremailexclusao = async (email, nome, codigo) => {
   console.log("Email de criação de conta enviado:", info.messageId);
 };
 
+const enviarEmailLogin = async (email, nome, ip, navegador, sistema) => {
+  const info = await transporter.sendMail({
+    from: '"Patas Conscientes" <patasconscientes@gmail.com>',
+    to: email,
+    subject: "🔐 Novo Login na Sua Conta - Patas Conscientes",
+    html: `
+      <div style="font-family: Arial, sans-serif; padding: 16px;">
+        <h2>Login realizado com sucesso</h2>
+        <p>Olá, <strong>${nome}</strong>!</p>
+        <p>Detectamos um novo login na sua conta.</p>
+        <p><strong>IP:</strong> ${ip}</p>
+        <p><strong>Navegador:</strong> ${navegador}</p>
+        <p><strong>Sistema Operacional:</strong> ${sistema}</p>
+        <p style="color: red;"><strong>⚠️ Se não foi você, altere sua senha imediatamente.</strong></p>
+      </div>
+    `
+  });
+
+  console.log("Email de login enviado:", info.messageId);
+};
+
+
+
 module.exports = {
   enviarEmailRecuperacao,
   enviaremailcriacao,
   enviaremailexclusao,
+  enviarEmailLogin,
 };
