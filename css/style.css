@@ -2369,11 +2369,10 @@ textarea {
 .bannerPerfilOng {
     position: absolute;
     top: 0;
-    background-color: wheat;
+    background-color: gray;
     width: 100%;
     z-index: 1;
     object-fit: cover;
-    background-image: url(/img/fotos/ong4.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -2420,7 +2419,7 @@ textarea {
 }
 
 .ongPerfilInfo .fotoCard {
-    background-image: url(/img/fotos/dog2.jpg);
+    background-color: gray;
     position: absolute;
     height: 12rem;
     width: 12rem;
@@ -2469,11 +2468,20 @@ textarea {
 .redes {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    padding: 0.8rem 0;
 }
 
-.redes a {
+.redesOng{
+    padding-bottom: 0.5rem;
+}
+
+.redes .bttRedes{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.redes .bttRedes a {
+    display: flex;
     background-color: var(--rosa);
     padding: 0.5rem;
     display: inline-flex;
@@ -2538,6 +2546,10 @@ textarea {
 .buttonsAdicionar button{
     width: 8rem;
     background-color: var(--rosa_texto);
+}
+
+#nomeOng{
+    text-align: center;
 }
 /* -------- MODO ESCURO ------------------------------------------------------------------------------------------------------- */
 
