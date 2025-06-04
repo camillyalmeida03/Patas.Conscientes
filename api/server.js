@@ -3,6 +3,10 @@ const { checkConnection } = require("./src/model/database");
 const rotasUsuarios = require("./src/routers/usuariosRouters");
 const rotasOngs = require("./src/routers/ongsRouters");
 const rotasAdotantes = require("./src/routers/adotantesRouters");
+const rotasEnderecos = require("./src/routers/enderecosRouters");
+const rotasBairros = require("./src/routers/bairrosRouters");
+const rotasCidades = require("./src/routers/cidadesRouters");
+const rotasRuas = require("./src/routers/ruasRouters");
 const cors = require('cors');
 const path = require('path');
 const dotenv = require("dotenv");
@@ -27,6 +31,11 @@ app.get("/", (request, response) => {
 app.use("/usuarios", rotasUsuarios);
 app.use("/ongs", rotasOngs);
 app.use("/adotantes", rotasAdotantes);
+app.use("/enderecos", rotasEnderecos);
+app.use("/bairros", rotasBairros);
+app.use("/cidades", rotasCidades);
+app.use("/ruas", rotasRuas);
+
 
 app.listen(Port, () => {
     console.log(`Servidor rodando na porta: ${Port}`)

@@ -397,8 +397,8 @@ const Login = async (request, response) => {
 
     const parser = new UAParser(request.headers['user-agent']);
     const ua = parser.getResult();
-    const navegador = `${ua.browser.name} ${ua.browser.version}`;      // Ex: "Edge 137.0.0"
-    const sistema = `${ua.os.name} ${ua.os.version}`;                 // Ex: "Windows 11"
+    const navegador = `${ua.browser.name} ${ua.browser.version}`;      
+    const sistema = `${ua.os.name} ${ua.os.version}`;                 
 
     // 4) Envia o email de notificação de login – só chamamos UMA vez, passando todos os dados
     await enviarEmailLogin(
