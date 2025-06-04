@@ -4,7 +4,9 @@ const {banco} = require("./database")
 
 const bcrypt = require("bcrypt");
 
-const { enviarEmailRecuperacao, enviaremailcriacao, enviaremailexclusao } = require('../utils/emailService');
+const UAParser = require('ua-parser-js');
+
+const { enviarEmailRecuperacao, enviaremailcriacao, enviaremailexclusao, enviarEmailLogin } = require('../utils/emailService');
 
 
 const GetAll = async (request, response) => {
@@ -288,34 +290,135 @@ const SolicitarRecuperacaoSenha = async (req, res) => {
     }
 };
 
+// const Login = async (request, response) => {
+//     const { email, senha } = request.body;
+
+//     try {
+//         const [rows] = await banco.query("SELECT * FROM usuarios WHERE email = ?", [email]);
+
+//         if (rows.length === 0) {
+//             return response.status(401).send({ message: "Email ou senha inválidos" });
+//         }
+
+//         const usuario = rows[0];
+
+//         // Aqui compara a senha digitada com a criptografada
+//         const senhaValida = await bcrypt.compare(senha, usuario.senha);
+
+//         if (!senhaValida) {
+//             return response.status(401).send({ message: "Email ou senha inválidos" });
+//         }
+
+//         const nome = result[0].nome;
+//     const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+//     const navegador = req.headers['user-agent'];
+
+//     // Envia o email com IP e navegador
+//     await enviarEmailLogin(email, nome, ip, navegador);
+
+//         // Login OK, pode retornar os dados (sem a senha de preferência)
+//         delete usuario.senha; // remove a senha da resposta
+//         response.status(200).send({ usuario });
+
+//     } catch (error) {
+//         console.error("Erro ao verificar login:", error.message);
+//         response.status(500).send({ message: "Erro interno no servidor" });
+//     }
+// };
+
+// const Login = async (request, response) => {
+//     const { email, senha } = request.body;
+
+//     try {
+//         const [rows] = await banco.query("SELECT * FROM usuarios WHERE email = ?", [email]);
+
+//         if (rows.length === 0) {
+//             return response.status(401).send({ message: "Email ou senha inválidos" });
+//         }
+
+//         const usuario = rows[0];
+
+//         // Aqui compara a senha digitada com a criptografada
+//         const senhaValida = await bcrypt.compare(senha, usuario.senha);
+
+//         if (!senhaValida) {
+//             return response.status(401).send({ message: "Email ou senha inválidos" });
+//         }
+
+//         const parser = new UAParser(req.headers['user-agent']);
+//         const ua = parser.getResult();
+
+//         const ip = (req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').split(',')[0].trim();
+//         const navegador = `${ua.browser.name} ${ua.browser.version}`;
+//         const sistema = `${ua.os.name} ${ua.os.version}`;
+
+//          await enviarEmailLogin(email, nome, ip, navegador, sistema);
+
+
+//         // Envia o email com IP e navegador
+//         await enviarEmailLogin(email, usuario.nome, ip, navegador);
+
+//         // Login OK, pode retornar os dados (sem a senha de preferência)
+//         delete usuario.senha;
+//         response.status(200).send({ usuario });
+
+//     } catch (error) {
+//         console.error("Erro ao verificar login:", error.message);
+//         response.status(500).send({ message: "Erro interno no servidor" });
+//     }
+// };
+
 const Login = async (request, response) => {
-    const { email, senha } = request.body;
+  const { email, senha } = request.body;
 
-    try {
-        const [rows] = await banco.query("SELECT * FROM usuarios WHERE email = ?", [email]);
+  try {
+    // 1) Busca usuário pelo email
+    const [rows] = await banco.query(
+      "SELECT * FROM usuarios WHERE email = ?",
+      [email]
+    );
 
-        if (rows.length === 0) {
-            return response.status(401).send({ message: "Email ou senha inválidos" });
-        }
-
-        const usuario = rows[0];
-
-        // Aqui compara a senha digitada com a criptografada
-        const senhaValida = await bcrypt.compare(senha, usuario.senha);
-
-        if (!senhaValida) {
-            return response.status(401).send({ message: "Email ou senha inválidos" });
-        }
-
-        // Login OK, pode retornar os dados (sem a senha de preferência)
-        delete usuario.senha; // remove a senha da resposta
-        response.status(200).send({ usuario });
-
-    } catch (error) {
-        console.error("Erro ao verificar login:", error.message);
-        response.status(500).send({ message: "Erro interno no servidor" });
+    if (rows.length === 0) {
+      return response.status(401).send({ message: "Email ou senha inválidos" });
     }
+
+    const usuario = rows[0];
+
+    // 2) Compara a senha digitada com a criptografada
+    const senhaValida = await bcrypt.compare(senha, usuario.senha);
+    if (!senhaValida) {
+      return response.status(401).send({ message: "Email ou senha inválidos" });
+    }
+
+    // 3) Extrair IP (limpando possíveis proxies) e User-Agent
+    const ip = (request.headers['x-forwarded-for'] || request.socket.remoteAddress || '')
+      .split(',')[0]
+      .trim();
+
+    const parser = new UAParser(request.headers['user-agent']);
+    const ua = parser.getResult();
+    const navegador = `${ua.browser.name} ${ua.browser.version}`;      // Ex: "Edge 137.0.0"
+    const sistema = `${ua.os.name} ${ua.os.version}`;                 // Ex: "Windows 11"
+
+    // 4) Envia o email de notificação de login – só chamamos UMA vez, passando todos os dados
+    await enviarEmailLogin(
+      email,
+      usuario.nome,
+      ip,
+      navegador,
+      sistema
+    );
+
+    // 5) Responde o login bem-sucedido (sem retornar a senha)
+    delete usuario.senha;
+    response.status(200).send({ usuario });
+
+  } catch (error) {
+    console.error("Erro ao verificar login:", error.message);
+    response.status(500).send({ message: "Erro interno no servidor" });
+  }
 };
+
 
 const Createcontaadotante = async (request, response) => {
     try {
