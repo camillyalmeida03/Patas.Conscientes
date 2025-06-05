@@ -3,6 +3,7 @@
 // Importando informações de outros arquivos
 import { CriarElementos } from "./criarElementos.js";
 
+
 export class Favoritar {
   constructor(infoOng = null, InfoPet = null) {
     this.criarElemento = new CriarElementos();

@@ -359,6 +359,7 @@ class CardsPets {
 
   //Método responsável por expandir o card na versão mobile
   mostrarMaisInformacoesPetCard(InfoPet) {
+
     this.conjFavoritarCompartilhar = this.criarElemento.createElement(
       "div",
       "conjFavoritarCompartilhar",

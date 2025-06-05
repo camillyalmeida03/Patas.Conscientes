@@ -34,5 +34,5 @@ if (ongSelecionada) {
   let bannerOng = document.getElementById("bannerOng");
   bannerOng.style.backgroundImage = `url(${ongSelecionada.banner})`;
 } else {
-  document.querySelector(".container").innerHTML = "<p>ONG não encontrada.</p>";
+  document.querySelector(".adotarSec").innerHTML = "<p>ONG não encontrada.</p>";
 }
