@@ -6,22 +6,75 @@ const bcrypt = require("bcrypt");
 
 const GetAll = async (request, response) => {
     try {
-        const data = await banco.query("SELECT * FROM ongs");
-        response.status(200).send(data[0]);
+        const query = `
+            SELECT 
+                o.usuario_id AS ong_id,
+                o.nome_ong, 
+                o.cnpj, 
+                u.nome AS nome_responsavel,
+                u.email,
+                u.telefone,
+                u.celular,
+                u.foto,
+                u.tipo AS tipo_usuario, 
+                u.criado_em AS data_cadastro_usuario
+            FROM 
+                ongs o
+            INNER JOIN 
+                usuarios u ON o.usuario_id = u.id
+            WHERE
+                u.tipo = 'ong';
+        `;
+        const [ongs] = await banco.query(query); // mysql2/promise retorna [rows, fields]
+
+        response.status(200).send(ongs);
+
     } catch (error) {
-        console.log("Erro ao conectar ao banco de dados: ", error.message);
-        response.status(401).send({"message": "Falha ao executar a ação!"})
+        console.error("Erro ao buscar todas as ONGs:", error.message);
+        response.status(500).send({ message: "Falha ao buscar ONGs. Tente novamente mais tarde." });
     } 
 };
 
+
 const GetById = async (request, response) => {
     try {
-        const id = request.params.id;
-        const data = await banco.query("SELECT * FROM ongs WHERE id=?", [id]);
-        response.status(200).send(data[0]);
+        const ongUsuarioId = request.params.id; // Este ID da rota agora é o usuario_id
+
+        if (!ongUsuarioId) {
+            return response.status(400).send({ message: "ID da ONG (usuário) não fornecido." });
+        }
+
+        const query = `
+            SELECT 
+                o.usuario_id AS ong_id, 
+                o.nome_ong, 
+                o.cnpj,
+                u.nome AS nome_responsavel,
+                u.email,
+                u.telefone,
+                u.celular,
+                u.foto,
+                u.tipo AS tipo_usuario,
+                u.criado_em AS data_cadastro_usuario
+            FROM 
+                ongs o
+            INNER JOIN 
+                usuarios u ON o.usuario_id = u.id
+            WHERE 
+                o.usuario_id = ? 
+                AND u.tipo = 'ong';
+        `;
+        const [ongs] = await banco.query(query, [ongUsuarioId]);
+
+        if (ongs.length > 0) {
+            response.status(200).send(ongs[0]); // Retorna o primeiro (e único) resultado
+        } else {
+            response.status(404).send({ message: "ONG não encontrada." });
+        }
+
     } catch (error) {
-        console.log("Erro ao conectar ao banco de dados: ", error.message);
-        response.status(401).send({"message": "Falha ao executar a ação!"})
+        console.error("Erro ao buscar ONG por ID (usuário):", error.message);
+        response.status(500).send({ message: "Falha ao buscar a ONG. Tente novamente mais tarde." });
     }
 };
 
