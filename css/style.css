@@ -524,6 +524,7 @@ button {
     fill: var(--azul_claro);
 }
 
+
 /* conta pop-up */
 .contaPopup {
     position: absolute;
@@ -1926,6 +1927,8 @@ ol {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+            pointer-events: none;
+
 }
 
 .buttonPerfil {
