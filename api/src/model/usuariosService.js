@@ -440,5 +440,36 @@ const Createcontaadotante = async (request, response) => {
     }
 };
 
+const verificartipo = async (request, response) => {
+    try {
+        const id = request.params.id;
+        const data = await banco.query("SELECT tipo FROM usuarios WHERE id = ?", [id]);      
+        response.status(200).send(data[0]);
+    } catch (err) {
+        res.status(500).send({ message: "Erro ao definir tipo.", error: err.message });
+    }
+};
 
-module.exports = {GetAll, GetById, Erase, Create, Update, SolicitarCriacao, Solicitarexclusao, SolicitarRecuperacaoSenha, Login, Createcontaadotante, Createadotante, Createong, AtualizarNome, AtualizarFoto, AtualizarEmail, AtualizarSenha, AtualizarTelefone};
+const getbyidconfigong = async (request, response) => {
+    try {
+        const id = request.params.id;
+        const data = await banco.query("SELECT usuarios.nome, usuarios.email, usuarios.telefone, usuarios.celular, usuarios.foto, usuarios.criado_em, ongs.nome_ong, ongs.cnpj FROM usuarios JOIN ongs ON usuarios.id = ongs.usuario_id WHERE usuarios.id = ?;", [id]);      
+        response.status(200).send(data[0]);
+    } catch (err) {
+        res.status(500).send({ message: "Erro ao definir tipo.", error: err.message });
+    }
+};
+const getbyidconfigadotante = async (request, response) => {
+    try {
+        const id = request.params.id;
+        const data = await banco.query("SELECT usuarios.nome, usuarios.email, usuarios.telefone, usuarios.celular, usuarios.foto, usuarios criado_em, adotante.data_nascimento, adotante.cpf FROM usuarios JOIN adotante ON usuarios.id = adotante.usuario_id WHERE usuarios.id = ?;", [id]);      
+        response.status(200).send(data[0]);
+    } catch (err) {
+        res.status(500).send({ message: "Erro ao definir tipo.", error: err.message });
+    }
+};
+
+
+
+
+module.exports = {GetAll, GetById, Erase, Create, Update, SolicitarCriacao, Solicitarexclusao, SolicitarRecuperacaoSenha, Login, Createcontaadotante, Createadotante, Createong, AtualizarNome, AtualizarFoto, AtualizarEmail, AtualizarSenha, AtualizarTelefone, verificartipo, getbyidconfigong, getbyidconfigadotante};
