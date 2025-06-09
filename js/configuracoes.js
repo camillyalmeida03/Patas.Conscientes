@@ -97,6 +97,65 @@ function alterartelefone() {
 // conexão com o banco para carregar dados do usuario
 
 
+//virificar tipo de usuario logado
+
+    document.addEventListener("DOMContentLoaded", async () => {
+    try {
+        if (typeof usuario === 'undefined' || !usuario.id) {
+            console.error("Variável 'usuario' ou 'usuario.id' não encontrada.");
+            return; // Para a execução se não houver ID
+        }
+
+        const response = await fetch(`http://localhost:8080/usuarios/verificar-tipo/${usuario.id}`);
+        const data = await response.json();
+
+        // Pega os elementos da página
+        const divcpfoucnpj = document.getElementById("cpfConta");
+        const divnomeoudata = document.getElementById("dataNascimento");
+
+
+        // --- LÓGICA CORRIGIDA ---
+
+        // Primeiro, verifica se a API retornou dados válidos
+        if (data && data.length > 0) {
+            const userData = data[0]; // Fica mais fácil de ler
+
+
+
+            // Caso 1: O usuário ainda NÃO escolheu um tipo
+            if (userData.tipo === null) {
+              divcpfoucnpj.innerHTML = `<p id="cpfoucnpj"><span class="before">CPF/CNPJ:</span> Não definido</p>`;
+              // Caso 2: O usuário é do tipo 'adotante'
+            } else if (userData.tipo === 'adotante') {
+              const response = await fetch(`http://localhost:8080/usuarios/configadotante/${usuario.id}`);
+              const data = await response.json();
+              const userData = data[0]; // Fica mais fácil de ler
+              divcpfoucnpj.innerHTML = `<p id="cpfoucnpj"><span class="before">CPF:</span> ${userData.cpf}</p>`;
+              divnomeoudata.innerHTML = `<p id="dataNasc"><span class="before">Data de nascimento:</span> ${userData.data_nascimento}</p>`;
+              
+              // Caso 3: O usuário é do tipo 'ong'
+            } else if (userData.tipo === 'ong') {
+              const response = await fetch(`http://localhost:8080/usuarios/configong/${usuario.id}`);
+              const data = await response.json();
+              const userData = data[0]; // Fica mais fácil de ler
+              divcpfoucnpj.innerHTML = `<p id="cpf/cnpj"><span class="before">cnpj:</span> ${userData.cnpj}</p>`
+              divnomeoudata.innerHTML = `<p id="dataNasc"><span class="before">Nome da ong:</span>${userData.nome_ong}</p>`;
+
+            }
+
+        } else {
+            console.error("Nenhum dado de usuário foi retornado pela API.");
+            // Você pode querer mostrar uma mensagem de erro para o usuário aqui
+        }
+
+    } catch (err) {
+        console.error("Erro ao buscar ou processar dados do usuário:", err);
+    }
+});
+
+// fim do verificar tipo de usuario logado
+
+
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     const response = await fetch(`http://localhost:8080/usuarios/${usuario.id}`);
