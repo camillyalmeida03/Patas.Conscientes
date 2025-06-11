@@ -1927,7 +1927,7 @@ ol {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-            pointer-events: none;
+    pointer-events: none;
 
 }
 
@@ -2473,11 +2473,11 @@ textarea {
     flex-direction: column;
 }
 
-.redesOng{
+.redesOng {
     padding-bottom: 0.5rem;
 }
 
-.redes .bttRedes{
+.redes .bttRedes {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -2505,55 +2505,76 @@ textarea {
     height: 1.5rem;
 }
 
-.maisSobreOng{
+.maisSobreOng {
     padding: 0 2rem;
 }
 
-.maisSobreOng h2, .maisSobreOng p{
+.maisSobreOng h2,
+.maisSobreOng p {
     padding-bottom: 1rem;
 }
 
-.adicionarBttOngAdm{
+.adicionarBttOngAdm {
     display: flex;
     flex-direction: column;
 }
 
-.adicionarBttOngAdm .buttonRosa{
+.adicionarBttOngAdm .buttonRosa {
     background-color: var(--rosa_texto);
 }
 
-.caixaEscolha{
+.fundoModal {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    /* Fixado na tela, independente do scroll */
+    z-index: 12;
+    top: 0;
+    left: 0;
+    background-color: var(--cinzaFundoAba);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    /* Centraliza verticalmente */
+    justify-content: center;
+}
+
+.caixaEscolha {
     position: fixed;
     background-color: var(--cinza215);
     padding: 2rem;
     border-radius: 1rem;
-    top: 30%;
-    left: 45%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+}
+
+.escondido{
     display: none;
 }
 
-.caixaEscolha h3{
+.caixaEscolha h3 {
     width: 100%;
     text-align: center;
 }
 
-.buttonsAdicionar{
+.buttonsAdicionar {
     display: flex;
-    gap: 2rem;
+    gap: 3rem;
     padding-top: 1rem;
 }
 
-.buttonsAdicionar button{
+.buttonsAdicionar button {
     width: 8rem;
     background-color: var(--rosa_texto);
 }
 
-#nomeOng{
+#nomeOng {
     text-align: center;
 }
+
 /* -------- MODO ESCURO ------------------------------------------------------------------------------------------------------- */
 
 .bodyME {
@@ -2801,7 +2822,7 @@ textarea {
     background-color: var(--cinza100);
 }
 
-.bodyME .ongPerfilInfo .linha{
+.bodyME .ongPerfilInfo .linha {
     background-color: var(--cinza80);
 }
 
@@ -3479,7 +3500,7 @@ textarea {
         top: -2rem;
     }
 
-   .perfilOng .adotarSec {
+    .perfilOng .adotarSec {
         padding: 0 1rem 2rem 1rem;
     }
 }
