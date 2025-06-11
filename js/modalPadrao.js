@@ -5,7 +5,7 @@ class ModalPadrao {
     this.fundoModal = fundoModal;
     this.modal = fundoModal.querySelector(".modal");
     this.botaoFechar = fundoModal.querySelector(".fechar-modal");
-    this.fotoOng = document.getElementById('fotoOng'); 
+    this.fotoOng = document.getElementById("fotoOng");
     this.originalZIndexFoto = window.getComputedStyle(this.fotoOng).zIndex;
     this.ultimoFoco = null;
     this.ativo = true;
@@ -35,12 +35,10 @@ class ModalPadrao {
   }
 
   abrir() {
-
-    if(this.fotoOng){
+    if (this.fotoOng) {
       this.fotoOng.style.zIndex = 4;
     }
     if (!this.ativo) return;
-
 
     const modalAtual = ModalPadrao.pilha[ModalPadrao.pilha.length - 1];
     if (modalAtual && modalAtual !== this) {
@@ -104,7 +102,31 @@ window.addEventListener("DOMContentLoaded", () => {
   );
 
   // Quando clicar no botão, abre o modal
-  document.getElementById("abrirModalAdicionar").addEventListener("click", () => {
-    modalAdicionar.abrir();
-  });
+  document
+    .getElementById("abrirModalAdicionar")
+    .addEventListener("click", () => {
+      modalAdicionar.abrir();
+    });
+
+  const modalAdicionarFunc = new ModalPadrao(
+    document.getElementById("fundoAdicionarFuncionario")
+  );
+
+  // Quando clicar no botão, abre o modal
+  document
+    .getElementById("botaoAdicionarFuncionario")
+    .addEventListener("click", () => {
+      modalAdicionarFunc.abrir();
+    });
+
+  const modalAdicionarPet = new ModalPadrao(
+    document.getElementById("fundoAdicionarPet")
+  );
+
+  // Quando clicar no botão, abre o modal
+  document
+    .getElementById("botaoAdicionarPet")
+    .addEventListener("click", () => {
+      modalAdicionarPet.abrir();
+    });
 });

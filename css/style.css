@@ -2240,7 +2240,6 @@ ol {
 .container>label {
     font-size: 16px;
     font-weight: 600;
-    color: var(--cinza_h3);
 }
 
 .arquivo {
@@ -2427,7 +2426,7 @@ textarea {
     height: 12rem;
     width: 12rem;
     z-index: 4;
-        /* permite que o after ultrapasse */
+    /* permite que o after ultrapasse */
     border: solid 5px var(--cinza215);
 }
 
@@ -2540,33 +2539,80 @@ textarea {
 }
 
 .caixaEscolha {
+    width: 30%;
+}
+
+.modal {
     position: fixed;
-    background-color: var(--cinza215);
+    background-color: white;
     padding: 2rem;
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    min-width: 275px;
 }
 
-.escondido{
+.modal form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+}
+
+.modal form input[type=button] {
+    border: none;
+}
+
+.modal form input[type=text] {
+    width: 100%;
+}
+
+.alinharDoisInput {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.alinharDoisInput input {
+    width: 100%;
+}
+
+#adicionarFuncionario {
+    width: 25%;
+}
+
+.escondido {
     display: none;
 }
 
-.caixaEscolha h3 {
+.modal h3 {
     width: 100%;
     text-align: center;
 }
 
+.modal .buttonRosa {
+    background-color: var(--rosa_texto);
+}
+
 .buttonsAdicionar {
     display: flex;
-    gap: 3rem;
+    justify-content: center;
+    padding: 0 1rem;
+    gap: 1rem;
     padding-top: 1rem;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 .buttonsAdicionar button {
     width: 8rem;
     background-color: var(--rosa_texto);
+}
+
+#adicionarPet {
+    width: 40%;
 }
 
 #nomeOng {
@@ -2586,6 +2632,10 @@ textarea {
 /* Notícias */
 .bodyME .container {
     background-color: var(--cinza34);
+}
+
+.bodyME .container label{
+    background-color: var(--cinza147);
 }
 
 .bodyME .lupaPesquisa img {
@@ -2824,6 +2874,10 @@ textarea {
     background-color: var(--cinza80);
 }
 
+.bodyME .modal {
+    background-color: var(--cinza80);
+}
+
 @media screen and (max-width: 1650px) {
     .nomIconAdotar h2 {
         font-size: 18px;
@@ -2868,7 +2922,9 @@ textarea {
         grid-template-columns: repeat(2, 1fr);
     }
 
-
+    #adicionarPet {
+        width: 70%;
+    }
 
 
 }
@@ -2932,6 +2988,11 @@ textarea {
 
     .perfilOng .adotarSec {
         grid-template-columns: repeat(1, 1fr);
+    }
+
+
+    .alinharDoisInput input {
+        width: 100% !important;
     }
 
 }
@@ -3184,6 +3245,9 @@ textarea {
         width: 100%;
     }
 
+    .container label {
+        display: none;
+    }
 }
 
 /* responsividade em dispositivos até 650px de largura  */
@@ -3298,6 +3362,9 @@ textarea {
     }
 
 
+    .alinharDoisInput {
+        flex-direction: column;
+    }
 }
 
 @media screen and (max-width: 619px) {
@@ -3403,6 +3470,10 @@ textarea {
         overflow: hidden;
         width: 100%;
     }
+
+    #adicionarPet {
+    width: 90%;
+}
 
 }
 

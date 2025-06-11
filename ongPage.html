@@ -268,6 +268,7 @@
 
                     </div>
 
+                    <!-- Modal com botões para adição de PETs ou Funcionários -->
                     <div class="fundoModal escondido" id="fundoAdicionarModal">
                         <div class="caixaEscolha modal" id="adicionarModal">
                             <button aria-label="Fechar" title="Fechar" class="fechar-modal">
@@ -281,14 +282,116 @@
                             <h3>O que pretende adicionar?</h3>
                             <div class="buttonsAdicionar">
 
-                                <button aria-label="Adicionar animal" title="Adicionar animal"
-                                    class="buttonRosa">Pet</button>
+                                <button aria-label="Adicionar animal" title="Adicionar animal" class="buttonRosa"
+                                    id="botaoAdicionarPet">Pet</button>
                                 <button aria-label="Adicionar funcionário" title="Adicionar funcionário"
-                                    class="buttonRosa">Funcionário</button>
+                                    class="buttonRosa" id="botaoAdicionarFuncionario">Funcionário</button>
                             </div>
 
                         </div>
                     </div>
+
+                    <!-- Modal de adicionar Funcionario -->
+                    <div class="fundoModal escondido" id="fundoAdicionarFuncionario">
+                        <div class="modal" id="adicionarFuncionario">
+                            <button aria-label="Fechar" title="Fechar" class="fechar-modal">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+                                    width="24px" fill="#5f6368">
+                                    <path
+                                        d="m287-216-69-71 192-193-192-195 69-71 194 195 192-195 69 71-192 195 192 193-69 71-192-195-194 195Z" />
+                                </svg>
+                            </button>
+
+
+                            <form action="" method="get" id="formEmailFuncionario">
+                                <h3>Adicionar funcionário</h3>
+
+                                <div>
+                                    <input type="text" id="emailOng" class="inputCadastro" placeholder="E-mail">
+                                    <p id="erroEmail" class="error-message"></p>
+                                </div>
+
+                                <input type="button" value="Adicionar" class="buttonRosa" aria-label="Adicionar">
+                            </form>
+
+                        </div>
+                    </div>
+
+                    <!-- Modal de adicionar Pet -->
+                    <div class="fundoModal escondido" id="fundoAdicionarPet">
+                        <div class="modal" id="adicionarPet">
+                            <button aria-label="Fechar" title="Fechar" class="fechar-modal">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+                                    width="24px" fill="#5f6368">
+                                    <path
+                                        d="m287-216-69-71 192-193-192-195 69-71 194 195 192-195 69 71-192 195 192 193-69 71-192-195-194 195Z" />
+                                </svg>
+                            </button>
+
+                            <form action="" method="get" id="formInfoPet">
+                                <h3>Dados do animal</h3>
+
+                                <div class="inputCadastro inputArquivo">
+                                    <p>Foto do animal</p>
+
+                                    <div class="container">
+                                        <label for="arquivo">Escolher</label>
+                                        <input class="arquivo" id="arquivo" type="file">
+                                    </div>
+
+                                    <button type="button" aria-label="Escolher" title="Escolher arquivo do dispositivo" class="uploadButton"><svg
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#5f6368">
+                                            <path
+                                                d="M440-200h80v-167l64 64 56-57-160-160-160 160 57 56 63-63v167ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z" />
+                                        </svg>
+                                    </button>
+
+                                </div>
+
+
+                                <div>
+                                    <input type="text" name="" id="nome" class="inputCadastro" placeholder="Nome">
+                                    <p id="erro3" class="error-message"></p>
+                                </div>
+
+                                <div class="alinharDoisInput">
+                                    <div >
+                                        <input type="text" id="pesoPet" class="inputCadastro" placeholder="Peso">
+                                        <p id="" class="error-message"></p>
+                                    </div>
+                                    <div>
+                                        <input type="text" id="idadePet" class="inputCadastro" placeholder="Idade">
+                                        <p id="" class="error-message"></p>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <input type="text" name="" id="especiePet" class="inputCadastro"
+                                        placeholder="Espécie">
+                                    <p id="" class="error-message"></p>
+                                </div>
+
+                                <div class="alinharDoisInput">
+                                    <div>
+                                        <input type="text" id="portePet" class="inputCadastro" placeholder="Porte">
+                                        <p id="" class="error-message"></p>
+                                    </div>
+                                    <div>
+                                        <input type="text" id="racaPet" class="inputCadastro" placeholder="Raça">
+                                        <p id="" class="error-message"></p>
+                                    </div>
+                                </div>
+
+                                <textarea name="" id="mensagem" placeholder="Descrição" class="inputCadastro"
+                                    maxlength="200" oninput="atualizarContagem();"></textarea>
+                                <p id="contarCaracteres"><span id="contagem">0</span>/200</p>
+
+                                <input type="button" value="Adicionar" class="buttonRosa" aria-label="Adicionar">
+
+                            </form>
+                        </div>
+                    </div>
+
 
                 </div>
             </section>
@@ -480,6 +583,7 @@
 <script type="module" src="/js/Ongs/ongPage.js"></script>
 <script type="module" src="/js/modalPadrao.js"></script>
 <script src="js/carregar_pagina.js"></script>
+<script src="js/formularios/formparceiro.js"></script>
 
 
 </html>
