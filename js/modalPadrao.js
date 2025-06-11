@@ -5,6 +5,8 @@ class ModalPadrao {
     this.fundoModal = fundoModal;
     this.modal = fundoModal.querySelector(".modal");
     this.botaoFechar = fundoModal.querySelector(".fechar-modal");
+    this.fotoOng = document.getElementById('fotoOng'); 
+    this.originalZIndexFoto = window.getComputedStyle(this.fotoOng).zIndex;
     this.ultimoFoco = null;
     this.ativo = true;
 
@@ -12,14 +14,15 @@ class ModalPadrao {
   }
 
   iniciar() {
-    if (this.botaoFechar) {
-      this.botaoFechar.addEventListener("click", () => this.fechar());
-    }
+    // verifica se o botão de fechar existe e adiciona um evento de clique nele
+    this.botaoFechar?.addEventListener("click", () => this.fechar());
 
+    // Caso clique fora do modal, no fundoModal, ele fecha
     this.fundoModal.addEventListener("click", (e) => {
       if (e.target === this.fundoModal) this.fechar();
     });
 
+    // Ao clicar no ESC, o modal se fecha
     document.addEventListener("keydown", (e) => {
       if (
         e.key === "Escape" &&
@@ -32,7 +35,12 @@ class ModalPadrao {
   }
 
   abrir() {
+
+    if(this.fotoOng){
+      this.fotoOng.style.zIndex = 4;
+    }
     if (!this.ativo) return;
+
 
     const modalAtual = ModalPadrao.pilha[ModalPadrao.pilha.length - 1];
     if (modalAtual && modalAtual !== this) {
@@ -91,10 +99,12 @@ class ModalPadrao {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-    const modalAdicionar = new ModalPadrao(document.getElementById("adicionarModal"));
+  const modalAdicionar = new ModalPadrao(
+    document.getElementById("fundoAdicionarModal")
+  );
 
-    // Quando clicar no botão, abre o modal
-    document.getElementById("botaoAbrirModal").addEventListener("click", () => {
-      modalAdicionar.abrir();
-    });
+  // Quando clicar no botão, abre o modal
+  document.getElementById("abrirModalAdicionar").addEventListener("click", () => {
+    modalAdicionar.abrir();
   });
+});

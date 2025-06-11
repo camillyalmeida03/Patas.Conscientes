@@ -13,6 +13,9 @@ const ongSelecionada = ongs.find((ong) => ong.id === id);
 if (ongSelecionada) {
   console.log("ONG ENCONTRADA");
 
+  let titleOng = document.getElementById("titleOng");
+  titleOng.textContent = `${ongSelecionada.nome} - Patas Conscientes`
+
   let nomeOng = document.getElementById("nomeOng");
   nomeOng.textContent = ongSelecionada.nome;
 
@@ -141,6 +144,8 @@ class AdicionarBotao {
       this.adicionarBttOngAdm,
       "Adicionar..."
     );
+
+    this.botaoAdd.id = "abrirModalAdicionar"
   }
 }
 
