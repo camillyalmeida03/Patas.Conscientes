@@ -21,7 +21,7 @@ export const ongs = [
     "img/fotos/ong3.jpg",
     "Vida Animal Matão",
     "Av. Central, 456 - Matão",
-    { instagram: "", facebook: "" },
+    { instagram: "instagram", facebook: "" },
     [],
     "Organização comprometida com o resgate e a adoção de animais em situações vulneráveis.",
     "Matão",

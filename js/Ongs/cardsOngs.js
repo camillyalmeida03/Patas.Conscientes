@@ -1,5 +1,6 @@
 // Este arquivo é responsável por criar os cards das ONGs via JS.
 
+
 // Importando dados do arquivo criarElementos.js
 import { Favoritar } from "../favoritar.js";
 import { CriarElementos } from "../criarElementos.js";

@@ -45,6 +45,7 @@ export class CriarElementos{
       // O método recebe o nome da as classes, texto interno do elemento, seu pai e seu title
       createButton(classes = [], innerText = "", parent = null, title = "") {
         const button = document.createElement("button");
+        
     
         if (Array.isArray(classes)) {
           button.classList.add(...classes);
