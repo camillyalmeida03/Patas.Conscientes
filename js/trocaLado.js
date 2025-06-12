@@ -1,21 +1,35 @@
 // Este arquivo é responsável por fazer a troca de lados em algumas páginas
 
-class TrocaLado{
-    constructor(){
-    }
+class TrocaLado {
+  trocar(ladoParaEsconder, ladoParaMostrar, botao) {
+    botao.addEventListener("click", () => {
+      ladoParaEsconder.style.display = "none";
+      ladoParaMostrar.style.display = "flex";
+    });
+  }
 
-    lado1(lado2, lado1){
-        lado2.style.display ==="none";
-        lado1.style.display ==="flex";
-    }
-
-    lado2(lado2, lado1){
-        lado1.style.display ==="none";
-        lado2.style.display ==="flex";
-    }
+  trocarGrid(ladoParaEsconder, ladoParaMostrar, botao) {
+    botao.addEventListener("click", () => {
+      ladoParaEsconder.style.display = "none";
+      ladoParaMostrar.style.display = "grid";
+    });
+  }
 }
 
 let petsLadoFavoritos = document.getElementById("petsLadoFavoritos");
 let ongLadoFavoritos = document.getElementById("ongLadoFavoritos");
+let botaoPetLadoFavoritos = document.getElementById("botaoPetLadoFavoritos");
+let botaoOngLadoFavoritos = document.getElementById("botaoOngLadoFavoritos");
 
 let trocaLadoFavoritos = new TrocaLado();
+
+trocaLadoFavoritos.trocarGrid(
+  ongLadoFavoritos,
+  petsLadoFavoritos,
+  botaoPetLadoFavoritos
+);
+trocaLadoFavoritos.trocarGrid(
+  petsLadoFavoritos,
+  ongLadoFavoritos,
+  botaoOngLadoFavoritos
+);

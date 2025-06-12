@@ -2333,7 +2333,9 @@ textarea {
     padding: 0 1rem;
 }
 
-
+#ongLadoFavoritos{
+    display: none;
+}
 
 .whiteText {
     color: white !important
