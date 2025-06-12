@@ -2576,7 +2576,7 @@ textarea {
 }
 
 .alinharDoisInput input {
-    width: 100%;
+    width: 20rem;
 }
 
 #adicionarFuncionario {
@@ -2876,6 +2876,10 @@ textarea {
 
 .bodyME .modal {
     background-color: var(--cinza80);
+}
+
+.bodyME .fechar-modal svg, .bodyME .uploadButton svg{
+    fill: white;
 }
 
 @media screen and (max-width: 1650px) {
