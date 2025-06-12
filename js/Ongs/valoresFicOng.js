@@ -69,7 +69,7 @@ export const ongs = [
     "img/fotos/ong1.jpg",
     "Patas Amigas Matão",
     "Rua do Amor, 303 - Matão",
-    { instagram: "", facebook: "" },
+    { instagram: "insad", facebook: "https://pt-br.facebook.com/" },
     [],
     "A ONG resgata cães e gatos abandonados, focando em adoções responsáveis.",
     "Matão",

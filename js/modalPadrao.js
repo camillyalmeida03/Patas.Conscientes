@@ -1,3 +1,5 @@
+// Este arquivo é responsável por definir o comportamento padrão de todos os modais.
+
 class ModalPadrao {
   static pilha = [];
 
@@ -5,7 +7,7 @@ class ModalPadrao {
     this.fundoModal = fundoModal;
     this.modal = fundoModal.querySelector(".modal");
     this.botaoFechar = fundoModal.querySelector(".fechar-modal");
-    this.fotoOng = document.getElementById("fotoOng");
+    this.fotoOng = document.querySelector(".fotoCard");
     this.originalZIndexFoto = window.getComputedStyle(this.fotoOng).zIndex;
     this.ultimoFoco = null;
     this.ativo = true;
@@ -35,9 +37,6 @@ class ModalPadrao {
   }
 
   abrir() {
-    if (this.fotoOng) {
-      this.fotoOng.style.zIndex = 4;
-    }
     if (!this.ativo) return;
 
     const modalAtual = ModalPadrao.pilha[ModalPadrao.pilha.length - 1];

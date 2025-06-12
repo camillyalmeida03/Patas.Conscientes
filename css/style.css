@@ -2422,7 +2422,7 @@ textarea {
 
 .ongPerfilInfo .fotoCard {
     background-color: gray;
-    position: absolute;
+    /* position: absolute; */
     height: 12rem;
     width: 12rem;
     z-index: 4;
