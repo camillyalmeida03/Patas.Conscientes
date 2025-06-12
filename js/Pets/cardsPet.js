@@ -622,6 +622,7 @@ class CardsPets {
     this.cardsAnimais.classList.add("mostrar-mais");
     this.informacoesExibidas = true;
 
+
     this.verMenos.addEventListener("click", () => {
       this.limparCardMaisInfo();
       this.limparCardNormal();
@@ -781,8 +782,11 @@ class CardsPets {
     if (this.p && this.p.parentNode) {
       this.p.remove();
     }
-    if (this.favoritar && this.favoritar.parentNode) {
-      this.favoritar.remove();
+    if (this.nomIconAdotar && this.nomIconAdotar.parentNode) {
+      this.favoritarDireto = Array.from(this.nomIconAdotar.children).find(filho => filho.classList.contains('favoritar'));
+      if (this.favoritarDireto) {
+        this.favoritarDireto.remove();
+      }
     }
   }
 
@@ -798,6 +802,8 @@ class CardsPets {
     ) {
       this.conjFavoritarCompartilhar.remove();
     }
+
+
 
     if (this.bttcard && this.bttcard.parentNode) {
       this.bttcard.remove();

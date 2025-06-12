@@ -13,6 +13,7 @@ export class Favoritar {
     this.apagarFavorito = null;
   }
 
+
   // Mostra mensagem de feedback confirmando que foi favoritado
   adicionarFeedbackFavoritado() {
     const imgAdd = document.createElement("img");
@@ -95,86 +96,23 @@ export class Favoritar {
 
   // Cria os botões nos cards
   criarBotoesCards(elementoPai, nome) {
-    console.log("Conexão acontecendo");
+    // Verifica se já existe um botão de favoritar ou desfavoritar no elemento pai
+    const botaoExistente = elementoPai.querySelector(".favoritar");
 
-    this.adicionarFavorito = this.criarElemento.createButton(
-      ["favoritar", "adicionarFav"],
-      null,
-      elementoPai,
-      "Favoritar " + nome
-    );
+    if (!botaoExistente) {
+      // Cria o botão de favoritar
+      this.adicionarFavorito = this.criarElemento.createButton(
+        ["favoritar", "adicionarFav"],
+        null,
+        elementoPai,
+        "Favoritar " + nome
+      );
 
-    this.cliqueNoBotFavoritar(elementoPai, nome);
+      // Adiciona o evento de clique
+      this.cliqueNoBotFavoritar(elementoPai, nome);
+    }
 
-    return this.adicionarFavorito;
+    // Retorna o botão atual (se já existia, ou o recém-criado)
+    return elementoPai.querySelector(".favoritar");
   }
 }
-
-//     const divs = document.querySelectorAll(".nomIconAdotar, .imgFav");
-
-//     divs.forEach(div => {
-//         const adicionarFav = div.querySelector(".adicionarFav");
-//         const apagarFav = div.querySelector(".apagarFav");
-
-//         if (adicionarFav && apagarFav) {
-//             // Evento para adicionar
-//             adicionarFav.addEventListener('click', function() {
-//                 adicionarFav.style.display = 'none';
-//                 apagarFav.style.display = 'flex';
-
-//                 // Remove qualquer imagem de feedback existente
-//                 removeFeedbackImage();
-
-//                 // Criação do elemento de imagem para "adicionado"
-//                 const imgAdd = document.createElement('img');
-//                 imgAdd.src = '/img/feedback/fav_adicionado.svg';
-//                 imgAdd.style.position = 'fixed';
-//                 imgAdd.style.top = '5rem';
-//                 imgAdd.style.right = '2rem';
-//                 imgAdd.style.zIndex = '4000';
-//                 imgAdd.style.height = '6rem';
-
-//                 // Adiciona a imagem ao body
-//                 document.body.appendChild(imgAdd);
-
-//                 // Remove a imagem após 3 segundos
-//                 setTimeout(() => {
-//                     imgAdd.remove();
-//                 }, 3000);
-//             });
-
-//             // Evento para apagar
-//             apagarFav.addEventListener('click', function() {
-//                 apagarFav.style.display = 'none';
-//                 adicionarFav.style.display = 'flex';
-
-//                 // Remove qualquer imagem de feedback existente
-//                 removeFeedbackImage();
-
-//                 // Criação do elemento de imagem para "removido"
-//                 const imgRemovido = document.createElement('img');
-//                 imgRemovido.src = '/img/feedback/fav_removido.svg';
-//                 imgRemovido.style.position = 'fixed';
-//                 imgRemovido.style.top = '5rem';
-//                 imgRemovido.style.right = '2rem';
-//                 imgRemovido.style.zIndex = '4000';
-//                 imgRemovido.style.height = '6rem';
-
-//                 // Adiciona a imagem ao body
-//                 document.body.appendChild(imgRemovido);
-
-//                 // Remove a imagem após 3 segundos
-//                 setTimeout(() => {
-//                     imgRemovido.remove();
-//                 }, 3000);
-//             });
-//         }
-//     });
-
-// // Função para remover qualquer imagem de feedback existente
-// function removeFeedbackImage() {
-//     const imgFeedback = document.querySelector('body > img[src="/img/feedback/fav_adicionado.svg"], body > img[src="/img/feedback/fav_removido.svg"]');
-//     if (imgFeedback) {
-//         imgFeedback.remove();
-//     }
-// }
