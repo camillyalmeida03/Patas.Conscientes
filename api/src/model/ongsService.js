@@ -89,6 +89,7 @@ const Erase = async (request, response) => {
     }
 };
 
+
 const AtualizarNomeOng = async (request, response) => {
     try {
         const id = request.params.id;
@@ -117,8 +118,74 @@ const AtualizarCnpj = async (request, response) => {
     }
 };
 
+const CreateOng = async (request, response) => {
+    try {
+        const {
+            nome_responsavel,
+            email,
+            telefone,
+            celular,
+            senha,
+            foto,
+            nome_ong,
+            cnpj
+        } = request.body;
+
+        // Verificação básica
+        if (!nome_responsavel || !email || !senha || !nome_ong || !cnpj) {
+            return response.status(400).send({
+                message: "Campos obrigatórios faltando: nome do responsável, email, senha, nome da ONG e CNPJ são obrigatórios."
+            });
+        }
+
+        // Verifica se o email já existe
+        const [usuariosExistentes] = await banco.query("SELECT id FROM usuarios WHERE email = ?", [email]);
+        if (usuariosExistentes.length > 0) {
+            return response.status(409).send({ message: "Email já cadastrado." });
+        }
+
+        // Criptografar a senha
+        const senhaCriptografada = await bcrypt.hash(senha, 10);
+
+        // Inserir na tabela de usuários
+        const queryUsuario = `
+            INSERT INTO usuarios (nome, email, telefone, celular, senha, foto, tipo)
+            VALUES (?, ?, ?, ?, ?, ?, 'ong');
+        `;
+        const [usuarioResult] = await banco.query(queryUsuario, [
+            nome_responsavel,
+            email,
+            telefone,
+            celular,
+            senhaCriptografada,
+            foto
+        ]);
+
+        const usuarioId = usuarioResult.insertId;
+
+        // Inserir na tabela de ONGs
+        const queryOng = `
+            INSERT INTO ongs (usuario_id, nome_ong, cnpj)
+            VALUES (?, ?, ?);
+        `;
+        await banco.query(queryOng, [usuarioId, nome_ong, cnpj]);
+
+        response.status(201).send({
+            message: "ONG cadastrada com sucesso!",
+            usuario_id: usuarioId
+        });
+
+    } catch (error) {
+        console.error("Erro ao criar ONG:", error.message);
+        response.status(500).send({
+            message: "Erro ao cadastrar a ONG. Tente novamente mais tarde."
+        });
+    }
+};
 
 
 
 
-module.exports = {GetAll, GetById, Erase, AtualizarNomeOng, AtualizarCnpj};
+
+
+module.exports = {GetAll, GetById, Erase, AtualizarNomeOng, AtualizarCnpj, CreateOng};

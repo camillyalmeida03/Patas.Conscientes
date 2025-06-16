@@ -1,0 +1,21 @@
+###
+
+#testando API usuários
+GET http://localhost:4501/usuarios/22
+
+###
+GET http://localhost:4501/ongs
+
+### Criar nova ONG
+POST http://localhost:4501/ongs/criar-ong
+Content-Type: application/json
+{
+  "nome_responsavel": "Maria Souza",
+  "email": "maria@ongesperanca.org",
+  "telefone": "1633334444",
+  "celular": "16988887777",
+  "senha": "12345678",
+  "foto": "foto.png",
+  "nome_ong": "ONG Esperança",
+  "cnpj": "12.345.678/0001-90"
+}
