@@ -1,21 +1,30 @@
 ###
 
 #testando API usuários
-GET http://localhost:4501/usuarios/22
+
+GET http://localhost:4501/usuarios/25
+
 
 ###
 GET http://localhost:4501/ongs
 
+### Get by id ONG
+GET http://localhost:4501/ongs/25
+
 ### Criar nova ONG
+
 POST http://localhost:4501/ongs/criar-ong
 Content-Type: application/json
+
 {
-  "nome_responsavel": "Maria Souza",
-  "email": "maria@ongesperanca.org",
-  "telefone": "1633334444",
-  "celular": "16988887777",
-  "senha": "12345678",
-  "foto": "foto.png",
-  "nome_ong": "ONG Esperança",
-  "cnpj": "12.345.678/0001-90"
+  "nome_responsavel": "Ana Maria",
+  "email": "anamaria@exemplo.com",
+  "telefone": "1633330000",
+  "celular": "16999999999",
+  "senha": "senhaSegura123",
+  "foto": "ana.jpg",
+  "nome_ong": "Patas Unidas",
+  "cnpj": "12.345.678/0001-90",
+  "banner": "banner_ong.jpg",
+  "descricao": "ONG dedicada ao resgate de animais em situação de risco."
 }

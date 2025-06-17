@@ -225,65 +225,71 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Espera o carregamento da página
-  
-  form.addEventListener("submit", (event) => {
-    event.preventDefault(); // Evita o envio do formulário padrão
 
-    // Captura os valores dos inputs
-    const nomeOng = document.getElementById("nomeOng").value;
-    const cnpj = document.getElementById("cnpj").value;
-    const nomeResp = document.getElementById("nomeResp").value;
-    const tel = document.getElementById("tel").value;
-    const cel = document.getElementById("cel").value;
-    const email = document.getElementById("emailCad").value;
-    const senha = document.getElementById("senha").value;
-    const confirmarSenha = document.getElementById("confirmarSenha").value;
-    
-    // Validação simples
-    if (senha !== confirmarSenha) {
-      document.getElementById("erroSenha2").textContent = "As senhas não coincidem.";
-      return;
-    }
+form.addEventListener("submit", (event) => {
+  event.preventDefault(); // Evita o envio do formulário padrão
 
-    // Prepara o objeto para enviar
-    const ongData = {
-      nome_responsavel: nomeResp,
-      email,
-      telefone: tel,
-      celular: cel,
-      senha,
-      foto: "", // Se você tiver um campo de foto no formulário, adicione ele aqui
-      nome_ong: nomeOng,
-      cnpj
-    };
+  // Captura os valores dos inputs
+  const nomeOng = document.getElementById("nomeOng").value;
+  const cnpj = document.getElementById("cnpj").value;
+  const nomeResp = document.getElementById("nomeResp").value;
+  const tel = document.getElementById("tel").value;
+  const cel = document.getElementById("cel").value;
+  const email = document.getElementById("emailCad").value;
+  const senha = document.getElementById("senha").value;
+  const confirmarSenha = document.getElementById("confirmarSenha").value;
 
-    // Envia os dados para a rota /ongs/criar-ong usando fetch
-    fetch("http://localhost:4501/ongs/criar-ong", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(ongData), // Envia os dados como JSON
+  // Validação simples
+  if (senha !== confirmarSenha) {
+    document.getElementById("erroSenha2").textContent = "As senhas não coincidem.";
+    return;
+  }
+
+  // Prepara o objeto para enviar
+  const ongData = {
+    nome_responsavel: nomeResp,
+    email,
+    telefone: tel,
+    celular: cel,
+    senha,
+    foto: "", // Se você tiver um campo de foto no formulário, adicione ele aqui
+    nome_ong: nomeOng,
+    cnpj,
+  };
+
+  // Envia os dados para a rota /ongs/criar-ong usando fetch
+  fetch("http://localhost:4501/ongs/criar-ong", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(ongData), // Envia os dados como JSON
+  })
+    .then((response) => {
+      if (!response.ok) {
+        return response.json().then((errorData) => {
+          throw new Error(errorData.message || "Erro desconhecido");
+        });
+      }
+      return response.json();
     })
-      .then(response => {
-        if (!response.ok) {
-          return response.json().then(errorData => {
-            throw new Error(errorData.message || "Erro desconhecido");
-          });
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log("Sucesso:", data);
-        alert("ONG cadastrada com sucesso!");
-        form.reset(); // Limpa o formulário após o sucesso
-      })
-      .catch(error => {
-        console.error("Erro ao cadastrar ONG:", error);
-        alert("Erro ao cadastrar ONG. Tente novamente mais tarde.");
-      });
-  });
+    .then((data) => {
+      console.log("Sucesso:", data);
+      alert("ONG cadastrada com sucesso!");
+
+      // Salva os dados no localStorage antes de ir para a próxima página
+      localStorage.setItem("dadosCadastro", JSON.stringify(ongData));
+
+      // Vai para a segunda página do formulário
+      window.location.href = "formularioparceiro.html";
+    })
+    .catch((error) => {
+      console.error("Erro ao cadastrar ONG:", error);
+      alert("Erro ao cadastrar ONG. Tente novamente mais tarde.");
+    });
+}) 
 });
+
 
 // conexão com o banco de dados
 
