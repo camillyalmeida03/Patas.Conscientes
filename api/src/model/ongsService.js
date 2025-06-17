@@ -95,7 +95,7 @@ const GetById = async (request, response) => {
 const Erase = async (request, response) => {
   try {
     const id = request.params.id;
-    const data = await banco.query("DELETE FROM ongs WHERE id=?", [id]);
+    const data = await banco.query("DELETE FROM ongs WHERE usuario_id=?", [id]);
     response.status(200).send(data[0]);
   } catch (error) {
     console.log("Erro ao conectar ao banco de dados: ", error.message);
@@ -105,13 +105,13 @@ const Erase = async (request, response) => {
 
 const AtualizarNomeOng = async (request, response) => {
   try {
-    const id = request.params.id;
+    const id = request.params.id; // usuário_id da ONG
     const { nome_ong } = request.body;
 
-    await banco.query("UPDATE ongs SET nome_ong = ? WHERE usuario_id = ?", [
-      nome_ong,
-      id,
-    ]);
+    await banco.query(
+      "UPDATE ongs SET nome_ong = ? WHERE usuario_id = ?",
+      [nome_ong, id]
+    );
 
     response
       .status(200)
@@ -121,6 +121,7 @@ const AtualizarNomeOng = async (request, response) => {
     response.status(500).send({ message: "Erro ao atualizar nome da ONG" });
   }
 };
+
 
 const AtualizarCnpj = async (request, response) => {
   try {
@@ -156,7 +157,7 @@ const CreateOng = async (request, response) => {
     if (!nome_responsavel || !email || !senha || !nome_ong || !cnpj) {
       return response.status(400).send({
         message:
-          "Campos obrigatórios faltando: nome do responsável, email, senha, nome da ONG e CNPJ são obrigatórios.",
+          "Algum dos campos obrigatórios faltando: nome do responsável, email, senha, nome da ONG e CNPJ são obrigatórios.",
       });
     }
 
