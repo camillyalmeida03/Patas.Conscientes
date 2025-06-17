@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05/06/2025 às 02:41
+-- Tempo de geração: 17/06/2025 às 14:06
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -94,16 +94,23 @@ CREATE TABLE `especies_pets` (
 CREATE TABLE `ongs` (
   `usuario_id` int(11) NOT NULL,
   `nome_ong` varchar(100) DEFAULT NULL,
-  `cnpj` varchar(25) DEFAULT NULL
+  `cnpj` varchar(25) DEFAULT NULL,
+  `banner` varchar(100) DEFAULT NULL,
+  `descricao` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `ongs`
 --
 
-INSERT INTO `ongs` (`usuario_id`, `nome_ong`, `cnpj`) VALUES
-(7, 'qwdacx ', 'fervfdf'),
-(20, 'patas', '14.343.242/3455-25');
+INSERT INTO `ongs` (`usuario_id`, `nome_ong`, `cnpj`, `banner`, `descricao`) VALUES
+(7, 'qwdacx ', 'fervfdf', NULL, NULL),
+(20, 'patas', '14.343.242/3455-25', NULL, NULL),
+(22, 'ONG Esperança', '12.345.678/0001-90', NULL, NULL),
+(23, 'ONG Patas amigas', '12.345.678/9023-43', NULL, NULL),
+(24, 'Ajuda Animal', '12.345.678/0001-90', NULL, NULL),
+(25, 'Patas Unidas', '12.345.678/0001-90', NULL, NULL),
+(31, 'ONG Patas amigas', '11.111.111/1111-11', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -266,7 +273,12 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `nome`, `email`, `telefone`, `celular`, `senha`, `foto`, `tipo`, `criado_em`, `acessibilidade_ativa`, `tema`, `endereco_id`) VALUES
 (7, 'João da ONG', 'joao@exemplo.com', '(11) 2345-6789', '(11) 91234-5678', 'novaSenha123', NULL, 'ong', '2025-05-29 19:44:47', NULL, NULL, NULL),
-(20, 'OTÁVIO DOMINGUES DA SILVA', 'otaviodominguessilva@gmail.com', '8495613', '(16) 99632-0063', '$2b$10$wgfqG3NDSudDAJQQeteWyuUo0d9fEPD25OHA2FdYyRQORNCGBD1HW', '/uploads/foto_perfil/1748702524293-mr-robot.jpeg', 'ong', '2025-05-30 18:15:04', NULL, NULL, NULL);
+(20, 'OTÁVIO DOMINGUES DA SILVA', 'otaviodominguessilva@gmail.com', '8495613', '(16) 99632-0063', '$2b$10$wgfqG3NDSudDAJQQeteWyuUo0d9fEPD25OHA2FdYyRQORNCGBD1HW', '/uploads/foto_perfil/1748702524293-mr-robot.jpeg', 'ong', '2025-05-30 18:15:04', NULL, NULL, NULL),
+(22, 'Maria Souza', 'maria@ongesperanca.org', '1633334444', '16988887777', '$2b$10$i/VFPGbb4gedA4DSfWn/EeraYPbo1xsfzfOoJmHcJ5mCzxSp7lUsu', 'foto.png', 'ong', '2025-06-16 20:42:52', NULL, NULL, NULL),
+(23, 'Marlene', 'marlenepatasamigas@gmail.com', '(12) 33455-6787', '(23) 45334-5654', '$2b$10$/Q24XJ06KWU4lqvmSKFw5ueAMtQOKWBGJBTxp8D8VYsCTNbROaNIG', '', 'ong', '2025-06-16 21:04:49', NULL, NULL, NULL),
+(24, 'Ana Souza', 'ana@exemplo.com', '1633330000', '16999999999', '$2b$10$/HmPkQT6rvAoR2TkcXL4lO.jgHpS/lvdVatyOjay3hJClhoFpEMvy', 'foto.jpg', 'ong', '2025-06-17 11:19:00', NULL, NULL, NULL),
+(25, 'Ana Maria', 'anamaria@exemplo.com', '1633330000', '16999999999', '$2b$10$VeIHCfPZ5ezU.FcumDXawOcnDKXM5SS.g0wydHeZnnNptILuxEWtu', 'ana.jpg', 'ong', '2025-06-17 11:23:56', NULL, NULL, NULL),
+(31, 'Mariana', 'marlenepatasamias@gmail.com', '(12) 33455-6787', '(23) 45334-5654', '$2b$10$gIh9HuXEow8ujwS0pODCGuEh3dn5uOMffGISNwJmmV8/ShUcJ4v9S', '', 'ong', '2025-06-17 12:02:57', NULL, NULL, NULL);
 
 --
 -- Índices para tabelas despejadas
@@ -436,7 +448,7 @@ ALTER TABLE `uf`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- Restrições para tabelas despejadas
