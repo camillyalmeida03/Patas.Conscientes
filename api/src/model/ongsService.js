@@ -122,7 +122,6 @@ const AtualizarNomeOng = async (request, response) => {
   }
 };
 
-
 const AtualizarCnpj = async (request, response) => {
   try {
     const id = request.params.id;

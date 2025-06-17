@@ -1,0 +1,26 @@
+### Lista cidades
+GET http://localhost:4501/cidades
+
+### Encontra cidade pelo ID
+GET http://localhost:4501/cidades/6
+
+### Adicionar cidade
+POST http://localhost:4501/cidades
+Content-Type: application/json
+
+{
+  "nome": "Alagoinha",
+  "uf_id": 25
+}
+
+### Deleta cidade pelo ID
+DELETE http://localhost:4501/cidades/5
+
+### Altera cidade pelo ID
+PUT http://localhost:4501/cidades/6
+Content-Type: application/json
+
+{
+  "nome": "Araraquara",
+  "uf_id": 25
+}
