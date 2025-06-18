@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 17/06/2025 às 14:06
+-- Tempo de geração: 18/06/2025 às 16:50
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -41,10 +41,22 @@ CREATE TABLE `adotante` (
 --
 
 CREATE TABLE `bairros` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(100) NOT NULL,
-  `cidade_id` int(11) NOT NULL
+  `id_bairro` int(11) NOT NULL,
+  `bairro` varchar(100) DEFAULT NULL,
+  `id_cidade_fk` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `bairros`
+--
+
+INSERT INTO `bairros` (`id_bairro`, `bairro`, `id_cidade_fk`) VALUES
+(1, 'Novo Mundo', 1),
+(2, 'Nova Cidade', 1),
+(5, 'Paulista', 1),
+(13, 'Bairro alto', 2),
+(14, 'Laranjeiras', 2),
+(15, 'Centro', 6);
 
 -- --------------------------------------------------------
 
@@ -53,10 +65,19 @@ CREATE TABLE `bairros` (
 --
 
 CREATE TABLE `cidades` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(100) NOT NULL,
-  `uf_id` int(11) NOT NULL
+  `id_cidade` int(11) NOT NULL,
+  `cidade` varchar(100) NOT NULL,
+  `id_uf_fk` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `cidades`
+--
+
+INSERT INTO `cidades` (`id_cidade`, `cidade`, `id_uf_fk`) VALUES
+(1, 'São Paulo', 25),
+(2, 'Matão', 25),
+(6, 'Araraquara', 25);
 
 -- --------------------------------------------------------
 
@@ -65,10 +86,10 @@ CREATE TABLE `cidades` (
 --
 
 CREATE TABLE `enderecos` (
-  `id` int(11) NOT NULL,
-  `id_cidade` int(11) NOT NULL,
-  `id_bairro` int(11) NOT NULL,
-  `id_rua` int(11) NOT NULL,
+  `id_endereco` int(11) NOT NULL,
+  `id_cidade_fk` int(11) NOT NULL,
+  `id_bairro_fk` int(11) NOT NULL,
+  `id_rua_fk` int(11) NOT NULL,
   `numero` varchar(10) NOT NULL,
   `cep` varchar(9) NOT NULL,
   `complemento` varchar(50) DEFAULT NULL
@@ -109,8 +130,8 @@ INSERT INTO `ongs` (`usuario_id`, `nome_ong`, `cnpj`, `banner`, `descricao`) VAL
 (22, 'ONG Esperança', '12.345.678/0001-90', NULL, NULL),
 (23, 'ONG Patas amigas', '12.345.678/9023-43', NULL, NULL),
 (24, 'Ajuda Animal', '12.345.678/0001-90', NULL, NULL),
-(25, 'Patas Unidas', '12.345.678/0001-90', NULL, NULL),
-(31, 'ONG Patas amigas', '11.111.111/1111-11', NULL, NULL);
+(31, 'ONG Patas amigas', '11.111.111/1111-11', NULL, NULL),
+(32, 'ONG Patinhas', '11.111.111/1111-11', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -176,10 +197,18 @@ CREATE TABLE `racas_pets` (
 --
 
 CREATE TABLE `ruas` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(100) NOT NULL,
-  `bairro_id` int(11) NOT NULL
+  `id_rua` int(11) NOT NULL,
+  `rua` varchar(100) NOT NULL,
+  `id_bairro_fk` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `ruas`
+--
+
+INSERT INTO `ruas` (`id_rua`, `rua`, `id_bairro_fk`) VALUES
+(1, 'Avenida Sete de Setembro', 13),
+(2, 'Avenida Siqueira Campos', 13);
 
 -- --------------------------------------------------------
 
@@ -208,8 +237,8 @@ INSERT INTO `sexos_pets` (`id`, `nome`) VALUES
 --
 
 CREATE TABLE `uf` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(50) NOT NULL,
+  `id_uf` int(11) NOT NULL,
+  `estado` varchar(50) NOT NULL,
   `sigla` char(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -217,7 +246,7 @@ CREATE TABLE `uf` (
 -- Despejando dados para a tabela `uf`
 --
 
-INSERT INTO `uf` (`id`, `nome`, `sigla`) VALUES
+INSERT INTO `uf` (`id_uf`, `estado`, `sigla`) VALUES
 (1, 'Acre', 'AC'),
 (2, 'Alagoas', 'AL'),
 (3, 'Amapá', 'AP'),
@@ -278,7 +307,8 @@ INSERT INTO `usuarios` (`id`, `nome`, `email`, `telefone`, `celular`, `senha`, `
 (23, 'Marlene', 'marlenepatasamigas@gmail.com', '(12) 33455-6787', '(23) 45334-5654', '$2b$10$/Q24XJ06KWU4lqvmSKFw5ueAMtQOKWBGJBTxp8D8VYsCTNbROaNIG', '', 'ong', '2025-06-16 21:04:49', NULL, NULL, NULL),
 (24, 'Ana Souza', 'ana@exemplo.com', '1633330000', '16999999999', '$2b$10$/HmPkQT6rvAoR2TkcXL4lO.jgHpS/lvdVatyOjay3hJClhoFpEMvy', 'foto.jpg', 'ong', '2025-06-17 11:19:00', NULL, NULL, NULL),
 (25, 'Ana Maria', 'anamaria@exemplo.com', '1633330000', '16999999999', '$2b$10$VeIHCfPZ5ezU.FcumDXawOcnDKXM5SS.g0wydHeZnnNptILuxEWtu', 'ana.jpg', 'ong', '2025-06-17 11:23:56', NULL, NULL, NULL),
-(31, 'Mariana', 'marlenepatasamias@gmail.com', '(12) 33455-6787', '(23) 45334-5654', '$2b$10$gIh9HuXEow8ujwS0pODCGuEh3dn5uOMffGISNwJmmV8/ShUcJ4v9S', '', 'ong', '2025-06-17 12:02:57', NULL, NULL, NULL);
+(31, 'Mariana', 'marlenepatasamias@gmail.com', '(12) 33455-6787', '(23) 45334-5654', '$2b$10$gIh9HuXEow8ujwS0pODCGuEh3dn5uOMffGISNwJmmV8/ShUcJ4v9S', '', 'ong', '2025-06-17 12:02:57', NULL, NULL, NULL),
+(32, 'Mariana', 'miguinho@gmail.com', '(12) 34567-8910', '(23) 45334-5654', '$2b$10$1XqCC0pqOrBxnjlauZwYCeCqwou0M7jn5z1N6Hbt/s811AR6Mpq6C', '', 'ong', '2025-06-17 14:02:18', NULL, NULL, NULL);
 
 --
 -- Índices para tabelas despejadas
@@ -294,24 +324,24 @@ ALTER TABLE `adotante`
 -- Índices de tabela `bairros`
 --
 ALTER TABLE `bairros`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `cidade_id` (`cidade_id`);
+  ADD PRIMARY KEY (`id_bairro`),
+  ADD KEY `cidade_id` (`id_cidade_fk`);
 
 --
 -- Índices de tabela `cidades`
 --
 ALTER TABLE `cidades`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `uf_id` (`uf_id`);
+  ADD PRIMARY KEY (`id_cidade`),
+  ADD KEY `uf_id` (`id_uf_fk`);
 
 --
 -- Índices de tabela `enderecos`
 --
 ALTER TABLE `enderecos`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_enderecos_bairro` (`id_bairro`),
-  ADD KEY `fk_enderecos_cidade` (`id_cidade`),
-  ADD KEY `fk_enderecos_rua` (`id_rua`);
+  ADD PRIMARY KEY (`id_endereco`),
+  ADD KEY `fk_enderecos_bairro` (`id_bairro_fk`),
+  ADD KEY `fk_enderecos_cidade` (`id_cidade_fk`),
+  ADD KEY `fk_enderecos_rua` (`id_rua_fk`);
 
 --
 -- Índices de tabela `especies_pets`
@@ -355,8 +385,8 @@ ALTER TABLE `racas_pets`
 -- Índices de tabela `ruas`
 --
 ALTER TABLE `ruas`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `bairro_id` (`bairro_id`);
+  ADD PRIMARY KEY (`id_rua`),
+  ADD KEY `bairro_id` (`id_bairro_fk`);
 
 --
 -- Índices de tabela `sexos_pets`
@@ -369,7 +399,7 @@ ALTER TABLE `sexos_pets`
 -- Índices de tabela `uf`
 --
 ALTER TABLE `uf`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id_uf`),
   ADD UNIQUE KEY `sigla` (`sigla`);
 
 --
@@ -388,19 +418,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `bairros`
 --
 ALTER TABLE `bairros`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_bairro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de tabela `cidades`
 --
 ALTER TABLE `cidades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_cidade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `enderecos`
 --
 ALTER TABLE `enderecos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_endereco` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `especies_pets`
@@ -430,7 +460,7 @@ ALTER TABLE `racas_pets`
 -- AUTO_INCREMENT de tabela `ruas`
 --
 ALTER TABLE `ruas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_rua` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `sexos_pets`
@@ -442,13 +472,13 @@ ALTER TABLE `sexos_pets`
 -- AUTO_INCREMENT de tabela `uf`
 --
 ALTER TABLE `uf`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_uf` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- Restrições para tabelas despejadas
@@ -464,21 +494,21 @@ ALTER TABLE `adotante`
 -- Restrições para tabelas `bairros`
 --
 ALTER TABLE `bairros`
-  ADD CONSTRAINT `bairros_ibfk_1` FOREIGN KEY (`cidade_id`) REFERENCES `cidades` (`id`);
+  ADD CONSTRAINT `bairros_ibfk_1` FOREIGN KEY (`id_cidade_fk`) REFERENCES `cidades` (`id_cidade`);
 
 --
 -- Restrições para tabelas `cidades`
 --
 ALTER TABLE `cidades`
-  ADD CONSTRAINT `cidades_ibfk_1` FOREIGN KEY (`uf_id`) REFERENCES `uf` (`id`);
+  ADD CONSTRAINT `cidades_ibfk_1` FOREIGN KEY (`id_uf_fk`) REFERENCES `uf` (`id_uf`);
 
 --
 -- Restrições para tabelas `enderecos`
 --
 ALTER TABLE `enderecos`
-  ADD CONSTRAINT `enderecos_ibfk_1` FOREIGN KEY (`id_cidade`) REFERENCES `cidades` (`id`),
-  ADD CONSTRAINT `enderecos_ibfk_2` FOREIGN KEY (`id_bairro`) REFERENCES `bairros` (`id`),
-  ADD CONSTRAINT `enderecos_ibfk_3` FOREIGN KEY (`id_rua`) REFERENCES `ruas` (`id`);
+  ADD CONSTRAINT `enderecos_ibfk_1` FOREIGN KEY (`id_cidade_fk`) REFERENCES `cidades` (`id_cidade`),
+  ADD CONSTRAINT `enderecos_ibfk_2` FOREIGN KEY (`id_bairro_fk`) REFERENCES `bairros` (`id_bairro`),
+  ADD CONSTRAINT `enderecos_ibfk_3` FOREIGN KEY (`id_rua_fk`) REFERENCES `ruas` (`id_rua`);
 
 --
 -- Restrições para tabelas `ongs`
@@ -505,13 +535,13 @@ ALTER TABLE `racas_pets`
 -- Restrições para tabelas `ruas`
 --
 ALTER TABLE `ruas`
-  ADD CONSTRAINT `ruas_ibfk_1` FOREIGN KEY (`bairro_id`) REFERENCES `bairros` (`id`);
+  ADD CONSTRAINT `ruas_ibfk_1` FOREIGN KEY (`id_bairro_fk`) REFERENCES `bairros` (`id_bairro`);
 
 --
 -- Restrições para tabelas `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD CONSTRAINT `fk_endereco_usuario` FOREIGN KEY (`endereco_id`) REFERENCES `enderecos` (`id`);
+  ADD CONSTRAINT `fk_endereco_usuario` FOREIGN KEY (`endereco_id`) REFERENCES `enderecos` (`id_endereco`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
