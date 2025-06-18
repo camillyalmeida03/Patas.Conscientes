@@ -2,25 +2,26 @@
 GET http://localhost:4501/bairros
 
 ### Encontra bairro pelo ID
-GET http://localhost:4501/bairros/3
+GET http://localhost:4501/bairros/18
 
 ### Adicionar bairro
 POST http://localhost:4501/bairros
 Content-Type: application/json
 
 {
-  "nome": "Jardim",
-  "cidade_id": 1
+  "bairro": "Teste",
+  "id_cidade_fk": 2
 }
 
 ### Deleta bairro pelo ID
-DELETE http://localhost:4501/bairros/3
+DELETE http://localhost:4501/bairros/20
+
 
 ### Altera bairro pelo ID
-PUT http://localhost:4501/bairros/5
+PUT http://localhost:4501/bairros/18
 Content-Type: application/json
 
 {
-  "nome": "Jardim",
-  "cidade_id": 3
+  "bairro": "Bairro alto",
+  "id_cidade_fk": 1
 }

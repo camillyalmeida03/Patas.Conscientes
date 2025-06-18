@@ -2,25 +2,25 @@
 GET http://localhost:4501/cidades
 
 ### Encontra cidade pelo ID
-GET http://localhost:4501/cidades/6
+GET http://localhost:4501/cidades/8
 
 ### Adicionar cidade
 POST http://localhost:4501/cidades
 Content-Type: application/json
 
 {
-  "nome": "Alagoinha",
-  "uf_id": 25
+  "cidade": "Taquaritinga",
+  "id_uf_fk": 25
 }
 
 ### Deleta cidade pelo ID
-DELETE http://localhost:4501/cidades/5
+DELETE http://localhost:4501/cidades/8
 
 ### Altera cidade pelo ID
-PUT http://localhost:4501/cidades/6
+PUT http://localhost:4501/cidades/8
 Content-Type: application/json
 
 {
-  "nome": "Araraquara",
-  "uf_id": 25
+  "cidade": "Alagoinha",
+  "id_uf_fk": 25
 }

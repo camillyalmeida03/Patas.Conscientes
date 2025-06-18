@@ -5,11 +5,11 @@ const { banco } = require("./database");
 const GetAll = async (request, response) => {
   try {
     const querySelect =
-      "SELECT cidades.id, cidades.nome, cidades.uf_id, uf.nome, uf.sigla FROM cidades INNER JOIN uf ON (cidades.uf_id = uf.id)";
+      "SELECT cidades.id_cidade, cidades.cidade, cidades.id_uf_fk, cidades.cidade, uf.sigla FROM cidades INNER JOIN uf ON (cidades.id_uf_fk = uf.id_uf) ";
 
-    const queryOrderBy = "ORDER BY cidades.nome";
+    const queryOrderBy = "ORDER BY cidades.cidade";
 
-    querytext = querySelect + queryOrderBy;
+    const querytext = querySelect + queryOrderBy;
 
     const data = await banco.query(querytext);
 
@@ -26,11 +26,11 @@ const GetById = async (request, response) => {
     const id = request.params.id;
 
     const querySelect =
-      "SELECT cidades.id, cidades.nome, cidades.uf_id, uf.nome, uf.sigla FROM cidades INNER JOIN uf ON (cidades.uf_id = uf.id) ";
+      "SELECT cidades.id_cidade, cidades.cidade, cidades.id_uf_fk, cidades.cidade, uf.sigla FROM cidades INNER JOIN uf ON (cidades.id_uf_fk = uf.id_uf) ";
 
-    const queryWhere = "WHERE cidades.id = ? ";
+    const queryWhere = "WHERE cidades.id_cidade = ? ";
 
-    const queryOrderBy = "ORDER BY cidades.nome";
+    const queryOrderBy = "ORDER BY cidades.cidade";
 
     querytext = querySelect + queryWhere + queryOrderBy;
 
@@ -50,9 +50,9 @@ const Erase = async (request, response) => {
 
     const queryDeleteFrom = "DELETE FROM cidades ";
 
-    const queryWhere = "WHERE id=?";
+    const queryWhere = "WHERE id_cidade=?";
 
-    queryText = queryDeleteFrom + queryWhere;
+    const queryText = queryDeleteFrom + queryWhere;
 
     const data = await banco.query(queryText, [id]);
 
@@ -66,37 +66,37 @@ const Erase = async (request, response) => {
 
 const Create = async (request, response) => {
   try {
-    const { nome, uf_id } = request.body;
+    const { cidade, id_uf_fk } = request.body;
 
     const queryInsert = "INSERT INTO cidades ";
-    const queryParams = "(nome, uf_id) ";
+    const queryParams = "(cidade, id_uf_fk) ";
     const queryValues = "VALUES (?, ?)";
      
     const queryText = queryInsert + queryParams + queryValues;
 
-    const data = await banco.query(queryText, [nome, uf_id]);
+    const data = await banco.query(queryText, [cidade, id_uf_fk]);
 
     response.status(201).send(data[0]);
   } catch (error) {
     console.log("Erro ao conectar ao banco de dados: ", error.message);
-    response.status(500).send({ message: "Falha ao cadastrar ao cidade!" });
+    response.status(500).send({ message: "Falha ao cadastrar cidade!" });
   }
 };
 
 const Update = async (request, response) => {
   try {
     const id = request.params.id;
-    const { nome, uf_id } = request.body;
+    const { cidade, id_uf_fk } = request.body;
 
     const queryUpdate = "UPDATE cidades ";
 
-    const querySet = "SET nome=?, uf_id=? ";
+    const querySet = "SET cidade=?, id_uf_fk=? ";
 
-    const queryWhere = "WHERE id=?";
+    const queryWhere = "WHERE id_cidade=?";
 
     const queryText = queryUpdate + querySet + queryWhere;
 
-    const data = await banco.query(queryText, [nome, uf_id, id]);
+    const data = await banco.query(queryText, [cidade, id_uf_fk, id]);
 
     response.status(201).send(data[0]);
   } catch (error) {

@@ -1,0 +1,26 @@
+### Lista ruas
+GET http://localhost:4501/ruas
+
+### Encontra rua pelo ID
+GET http://localhost:4501/ruas/3
+
+### Adicionar rua
+POST http://localhost:4501/ruas
+Content-Type: application/json
+
+{
+  "rua": "Teste",
+  "id_bairro_fk": 13
+}
+
+### Deleta rua pelo ID
+DELETE http://localhost:4501/ruas/3
+
+### Altera rua pelo ID
+PUT http://localhost:4501/ruas/3
+Content-Type: application/json
+
+{
+  "rua": "Alagoinha",
+  "id_bairro_fk": 13
+}
