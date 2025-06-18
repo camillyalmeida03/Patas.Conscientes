@@ -100,7 +100,7 @@ const Update = async (request, response) => {
 
     response.status(201).send(data[0]);
   } catch (error) {
-    console.log("Erro ao atualizar o usuário: ", error.message);
+    console.log("Erro ao atualizar a cidade: ", error.message);
     response.status(401).send({ message: "Falha ao atualizar dados da cidade!" });
   }
 };
