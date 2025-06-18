@@ -7,6 +7,7 @@ const rotasEnderecos = require("./src/routers/enderecosRouters");
 const rotasBairros = require("./src/routers/bairrosRouters");
 const rotasCidades = require("./src/routers/cidadesRouters");
 const rotasRuas = require("./src/routers/ruasRouters");
+const rotasUf = require("./src/routers/ufRouters");
 const cors = require('cors');
 const path = require('path');
 const dotenv = require("dotenv");
@@ -35,6 +36,7 @@ app.use("/enderecos", rotasEnderecos);
 app.use("/bairros", rotasBairros);
 app.use("/cidades", rotasCidades);
 app.use("/ruas", rotasRuas);
+app.use("/uf", rotasUf);
 
 
 app.listen(Port, () => {

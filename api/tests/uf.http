@@ -1,0 +1,26 @@
+### Lista ufs
+GET http://localhost:4501/uf
+
+### Encontra uf pelo ID
+GET http://localhost:4501/uf/28
+
+### Adicionar uf
+POST http://localhost:4501/uf
+Content-Type: application/json
+
+{
+  "estado": "Teste",
+  "sigla": "DS"
+}
+
+### Deleta uf pelo ID
+DELETE http://localhost:4501/uf/28
+
+### Altera uf pelo ID
+PUT http://localhost:4501/uf/28
+Content-Type: application/json
+
+{
+  "estado": "Alagoinha",
+  "sigla": "sk"
+}
