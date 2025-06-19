@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 18/06/2025 às 16:50
+-- Tempo de geração: 19/06/2025 às 16:48
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -87,6 +87,7 @@ INSERT INTO `cidades` (`id_cidade`, `cidade`, `id_uf_fk`) VALUES
 
 CREATE TABLE `enderecos` (
   `id_endereco` int(11) NOT NULL,
+  `id_uf_fk` int(11) NOT NULL,
   `id_cidade_fk` int(11) NOT NULL,
   `id_bairro_fk` int(11) NOT NULL,
   `id_rua_fk` int(11) NOT NULL,
@@ -94,6 +95,14 @@ CREATE TABLE `enderecos` (
   `cep` varchar(9) NOT NULL,
   `complemento` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `enderecos`
+--
+
+INSERT INTO `enderecos` (`id_endereco`, `id_uf_fk`, `id_cidade_fk`, `id_bairro_fk`, `id_rua_fk`, `numero`, `cep`, `complemento`) VALUES
+(1, 25, 2, 13, 1, '1647', '15997070', NULL),
+(2, 25, 2, 13, 1, '1648', '15997070', NULL);
 
 -- --------------------------------------------------------
 
@@ -131,7 +140,8 @@ INSERT INTO `ongs` (`usuario_id`, `nome_ong`, `cnpj`, `banner`, `descricao`) VAL
 (23, 'ONG Patas amigas', '12.345.678/9023-43', NULL, NULL),
 (24, 'Ajuda Animal', '12.345.678/0001-90', NULL, NULL),
 (31, 'ONG Patas amigas', '11.111.111/1111-11', NULL, NULL),
-(32, 'ONG Patinhas', '11.111.111/1111-11', NULL, NULL);
+(32, 'ONG Patinhas', '11.111.111/1111-11', NULL, NULL),
+(33, 'ONG 2', '22.222.222/2222-22', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -189,6 +199,27 @@ CREATE TABLE `racas_pets` (
   `nome` varchar(100) NOT NULL,
   `especie_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `responsaveis`
+--
+
+CREATE TABLE `responsaveis` (
+  `id_responsavel` int(11) NOT NULL,
+  `nome_responsavel` varchar(100) NOT NULL,
+  `id_ong_fk` int(11) NOT NULL,
+  `cpf_responsavel` varchar(14) NOT NULL,
+  `email_responsavel` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `responsaveis`
+--
+
+INSERT INTO `responsaveis` (`id_responsavel`, `nome_responsavel`, `id_ong_fk`, `cpf_responsavel`, `email_responsavel`) VALUES
+(1, 'Maria Fernanda', 22, '22222222222', 'mariafer@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -289,7 +320,7 @@ CREATE TABLE `usuarios` (
   `celular` varchar(20) DEFAULT NULL,
   `senha` varchar(100) NOT NULL,
   `foto` varchar(100) DEFAULT NULL,
-  `tipo` enum('adotante','ong','parceiro') NOT NULL,
+  `tipo` enum('adotante','ong','parceiro','responsavel') NOT NULL,
   `criado_em` timestamp NOT NULL DEFAULT current_timestamp(),
   `acessibilidade_ativa` enum('Ligada','Desligada') DEFAULT NULL,
   `tema` enum('Claro','Escuro') DEFAULT NULL,
@@ -308,7 +339,8 @@ INSERT INTO `usuarios` (`id`, `nome`, `email`, `telefone`, `celular`, `senha`, `
 (24, 'Ana Souza', 'ana@exemplo.com', '1633330000', '16999999999', '$2b$10$/HmPkQT6rvAoR2TkcXL4lO.jgHpS/lvdVatyOjay3hJClhoFpEMvy', 'foto.jpg', 'ong', '2025-06-17 11:19:00', NULL, NULL, NULL),
 (25, 'Ana Maria', 'anamaria@exemplo.com', '1633330000', '16999999999', '$2b$10$VeIHCfPZ5ezU.FcumDXawOcnDKXM5SS.g0wydHeZnnNptILuxEWtu', 'ana.jpg', 'ong', '2025-06-17 11:23:56', NULL, NULL, NULL),
 (31, 'Mariana', 'marlenepatasamias@gmail.com', '(12) 33455-6787', '(23) 45334-5654', '$2b$10$gIh9HuXEow8ujwS0pODCGuEh3dn5uOMffGISNwJmmV8/ShUcJ4v9S', '', 'ong', '2025-06-17 12:02:57', NULL, NULL, NULL),
-(32, 'Mariana', 'miguinho@gmail.com', '(12) 34567-8910', '(23) 45334-5654', '$2b$10$1XqCC0pqOrBxnjlauZwYCeCqwou0M7jn5z1N6Hbt/s811AR6Mpq6C', '', 'ong', '2025-06-17 14:02:18', NULL, NULL, NULL);
+(32, 'Mariana', 'miguinho@gmail.com', '(12) 34567-8910', '(23) 45334-5654', '$2b$10$1XqCC0pqOrBxnjlauZwYCeCqwou0M7jn5z1N6Hbt/s811AR6Mpq6C', '', 'ong', '2025-06-17 14:02:18', NULL, NULL, NULL),
+(33, 'Mary', 'emailong1@gmail.com', '(11) 11111-1111', '(11) 11111-1111', '$2b$10$0T0rBDww4shxKzMZtrj63eROKWfdu8Wq5FZOtAY3GnXoj72dDD0q.', '', 'ong', '2025-06-18 16:05:36', NULL, NULL, NULL);
 
 --
 -- Índices para tabelas despejadas
@@ -341,7 +373,8 @@ ALTER TABLE `enderecos`
   ADD PRIMARY KEY (`id_endereco`),
   ADD KEY `fk_enderecos_bairro` (`id_bairro_fk`),
   ADD KEY `fk_enderecos_cidade` (`id_cidade_fk`),
-  ADD KEY `fk_enderecos_rua` (`id_rua_fk`);
+  ADD KEY `fk_enderecos_rua` (`id_rua_fk`),
+  ADD KEY `id_uf_fk` (`id_uf_fk`);
 
 --
 -- Índices de tabela `especies_pets`
@@ -380,6 +413,14 @@ ALTER TABLE `racas_pets`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `nome` (`nome`,`especie_id`),
   ADD KEY `especie_id` (`especie_id`);
+
+--
+-- Índices de tabela `responsaveis`
+--
+ALTER TABLE `responsaveis`
+  ADD PRIMARY KEY (`id_responsavel`),
+  ADD UNIQUE KEY `cpf_responsavel` (`cpf_responsavel`),
+  ADD KEY `FK_ID_ONG` (`id_ong_fk`);
 
 --
 -- Índices de tabela `ruas`
@@ -430,7 +471,7 @@ ALTER TABLE `cidades`
 -- AUTO_INCREMENT de tabela `enderecos`
 --
 ALTER TABLE `enderecos`
-  MODIFY `id_endereco` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_endereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `especies_pets`
@@ -457,6 +498,12 @@ ALTER TABLE `racas_pets`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de tabela `responsaveis`
+--
+ALTER TABLE `responsaveis`
+  MODIFY `id_responsavel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de tabela `ruas`
 --
 ALTER TABLE `ruas`
@@ -478,7 +525,7 @@ ALTER TABLE `uf`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- Restrições para tabelas despejadas
@@ -508,7 +555,8 @@ ALTER TABLE `cidades`
 ALTER TABLE `enderecos`
   ADD CONSTRAINT `enderecos_ibfk_1` FOREIGN KEY (`id_cidade_fk`) REFERENCES `cidades` (`id_cidade`),
   ADD CONSTRAINT `enderecos_ibfk_2` FOREIGN KEY (`id_bairro_fk`) REFERENCES `bairros` (`id_bairro`),
-  ADD CONSTRAINT `enderecos_ibfk_3` FOREIGN KEY (`id_rua_fk`) REFERENCES `ruas` (`id_rua`);
+  ADD CONSTRAINT `enderecos_ibfk_3` FOREIGN KEY (`id_rua_fk`) REFERENCES `ruas` (`id_rua`),
+  ADD CONSTRAINT `id_uf_fk` FOREIGN KEY (`id_uf_fk`) REFERENCES `uf` (`id_uf`);
 
 --
 -- Restrições para tabelas `ongs`
@@ -530,6 +578,12 @@ ALTER TABLE `pets`
 --
 ALTER TABLE `racas_pets`
   ADD CONSTRAINT `racas_pets_ibfk_1` FOREIGN KEY (`especie_id`) REFERENCES `especies_pets` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Restrições para tabelas `responsaveis`
+--
+ALTER TABLE `responsaveis`
+  ADD CONSTRAINT `FK_ID_ONG` FOREIGN KEY (`id_ong_fk`) REFERENCES `ongs` (`usuario_id`);
 
 --
 -- Restrições para tabelas `ruas`
