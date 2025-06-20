@@ -262,92 +262,92 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-// conexão com o banco de dados
+// // conexão com o banco de dados
 
-const cadastroForm = document.getElementById('formAdotante');
-const verificacaoContainer = document.getElementById('verificacaoContainer');
-const verificarCodigoBtn = document.getElementById('verificarCodigoBtn');
-const codigoVerificacaoInput = document.getElementById('codigoVerificacao');
+// const cadastroForm = document.getElementById('formAdotante');
+// const verificacaoContainer = document.getElementById('verificacaoContainer');
+// const verificarCodigoBtn = document.getElementById('verificarCodigoBtn');
+// const codigoVerificacaoInput = document.getElementById('codigoVerificacao');
 
-let codigoGerado = null;
-let dadosTemporarios = {}; // para guardar os dados até verificar
+// let codigoGerado = null;
+// let dadosTemporarios = {}; // para guardar os dados até verificar
 
-cadastroForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
+// cadastroForm.addEventListener('submit', async (e) => {
+//   e.preventDefault();
 
-  const nome = document.getElementById('nomeAdt').value;
-  const email = document.getElementById('emailAdt').value;
-  const telefone = document.getElementById('telAdt').value;
-  const celular = document.getElementById('celAdt').value;
-  const sexo = document.getElementById('genero').value;
-  const data_nascimento = document.getElementById('dataNasc').value;
-  const cpf = document.getElementById('cpfAdt').value;
-  const senha = document.getElementById('confirmaSenhaAdt').value;
-  const tipo = "adotante"; // Tipo fixo para adotante
+//   const nome = document.getElementById('nomeAdt').value;
+//   const email = document.getElementById('emailAdt').value;
+//   const telefone = document.getElementById('telAdt').value;
+//   const celular = document.getElementById('celAdt').value;
+//   const sexo = document.getElementById('genero').value;
+//   const data_nascimento = document.getElementById('dataNasc').value;
+//   const cpf = document.getElementById('cpfAdt').value;
+//   const senha = document.getElementById('confirmaSenhaAdt').value;
+//   const tipo = "adotante"; // Tipo fixo para adotante
 
-  // Salva para depois usar na criação
-  dadosTemporarios = { nome, email, telefone, celular, sexo, data_nascimento, cpf, senha, tipo };
+//   // Salva para depois usar na criação
+//   dadosTemporarios = { nome, email, telefone, celular, sexo, data_nascimento, cpf, senha, tipo };
 
-  try {
-    const response = await fetch('http://localhost:8080/usuarios/solicitar-criacao', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nome, email, telefone, celular, sexo, data_nascimento, cpf, senha, tipo })
-    });
+//   try {
+//     const response = await fetch('http://localhost:8080/usuarios/solicitar-criacao', {
+//       method: 'POST',
+//       headers: { 'Content-Type': 'application/json' },
+//       body: JSON.stringify({ nome, email, telefone, celular, sexo, data_nascimento, cpf, senha, tipo })
+//     });
 
-    const data = await response.json();
+//     const data = await response.json();
 
-    if (!response.ok) {
-      alert('Erro ao solicitar verificação: ' + data.message);
-      return;
-    }
+//     if (!response.ok) {
+//       alert('Erro ao solicitar verificação: ' + data.message);
+//       return;
+//     }
 
-    codigoGerado = data.codigo; // salvar o código enviado
-    verificacaoContainer.style.display = 'block'; // mostra o campo de verificação
+//     codigoGerado = data.codigo; // salvar o código enviado
+//     verificacaoContainer.style.display = 'block'; // mostra o campo de verificação
 
-  } catch (err) {
-    alert("Erro: " + err.message);
-  }
-});
+//   } catch (err) {
+//     alert("Erro: " + err.message);
+//   }
+// });
 
-// Verificação do código
-verificarCodigoBtn.addEventListener('click', async () => {
-  const codigoDigitado = codigoVerificacaoInput.value;
+// // Verificação do código
+// verificarCodigoBtn.addEventListener('click', async () => {
+//   const codigoDigitado = codigoVerificacaoInput.value;
 
-  if (codigoDigitado != codigoGerado) {
-    alert("Código incorreto!");
-    return;
-  }
+//   if (codigoDigitado != codigoGerado) {
+//     alert("Código incorreto!");
+//     return;
+//   }
 
-  const formData = new FormData();
-    formData.append("nome", dadosTemporarios.nome);
-    formData.append("email", dadosTemporarios.email);
-    formData.append("telefone", dadosTemporarios.telefone);
-    formData.append("celular", dadosTemporarios.celular);
-    formData.append("sexo", dadosTemporarios.sexo);
-    formData.append("data_nascimento", dadosTemporarios.data_nascimento);
-    formData.append("cpf", dadosTemporarios.cpf);
-    formData.append("senha", dadosTemporarios.senha);
-    formData.append("tipo", dadosTemporarios.tipo);
+//   const formData = new FormData();
+//     formData.append("nome", dadosTemporarios.nome);
+//     formData.append("email", dadosTemporarios.email);
+//     formData.append("telefone", dadosTemporarios.telefone);
+//     formData.append("celular", dadosTemporarios.celular);
+//     formData.append("sexo", dadosTemporarios.sexo);
+//     formData.append("data_nascimento", dadosTemporarios.data_nascimento);
+//     formData.append("cpf", dadosTemporarios.cpf);
+//     formData.append("senha", dadosTemporarios.senha);
+//     formData.append("tipo", dadosTemporarios.tipo);
 
-  try {
-    const finalResponse = await fetch('http://localhost:8080/usuarios/criar-adotante', {
-      method: 'POST',
-      body: formData
-    });
+//   try {
+//     const finalResponse = await fetch('http://localhost:8080/usuarios/criar-adotante', {
+//       method: 'POST',
+//       body: formData
+//     });
 
-    const finalData = await finalResponse.json();
+//     const finalData = await finalResponse.json();
 
-    if (finalResponse.ok) {
-      alert("Conta criada com sucesso!");
-      cadastroForm.reset();
-      verificacaoContainer.style.display = 'none';
-      codigoVerificacaoInput.value = '';
-    //   document.getElementById('sign-up-modal').style.display = 'none'; // Esconde o formulário de cadastro
-    } else {
-      alert("Erro ao criar conta: " + finalData.message);
-    }
-  } catch (err) {
-    alert("Erro ao criar conta: " + err.message);
-  }
-});
+//     if (finalResponse.ok) {
+//       alert("Conta criada com sucesso!");
+//       cadastroForm.reset();
+//       verificacaoContainer.style.display = 'none';
+//       codigoVerificacaoInput.value = '';
+//     //   document.getElementById('sign-up-modal').style.display = 'none'; // Esconde o formulário de cadastro
+//     } else {
+//       alert("Erro ao criar conta: " + finalData.message);
+//     }
+//   } catch (err) {
+//     alert("Erro ao criar conta: " + err.message);
+//   }
+// });

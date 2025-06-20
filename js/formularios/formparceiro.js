@@ -376,83 +376,83 @@ document.getElementById('cep').addEventListener('blur', async function () {
     }
   });
 
-window.onload = () => {
-  // Verifica se os dados estão no localStorage
-  const dadosCadastro = JSON.parse(localStorage.getItem("dadosCadastro"));
+// window.onload = () => {
+//   // Verifica se os dados estão no localStorage
+//   const dadosCadastro = JSON.parse(localStorage.getItem("dadosCadastro"));
 
-  if (dadosCadastro) {
-    // Preenche os campos do formulário com os dados salvos
-    document.getElementById("nomeOng").value = dadosCadastro.nome_ong;
-    document.getElementById("emailOng").value = dadosCadastro.email;
-    document.getElementById("cnpj").value = dadosCadastro.cnpj;
-    document.getElementById("nomeResp").value = dadosCadastro.nome_responsavel;
-    document.getElementById("emailResp").value = dadosCadastro.email;
+//   if (dadosCadastro) {
+//     // Preenche os campos do formulário com os dados salvos
+//     document.getElementById("nomeOng").value = dadosCadastro.nome_ong;
+//     document.getElementById("emailOng").value = dadosCadastro.email;
+//     document.getElementById("cnpj").value = dadosCadastro.cnpj;
+//     document.getElementById("nomeResp").value = dadosCadastro.nome_responsavel;
+//     document.getElementById("emailResp").value = dadosCadastro.email;
 
-    // Caso queira preencher o CPF ou outras informações, adicione:
-    // document.getElementById("cpf").value = dadosCadastro.cpfResponsavel;
-  }
-};
+//     // Caso queira preencher o CPF ou outras informações, adicione:
+//     // document.getElementById("cpf").value = dadosCadastro.cpfResponsavel;
+//   }
+// };
 
 // Adicione a lógica de envio do formulário para enviar as informações para a próxima parte
-const formParceiro = document.getElementById("formParceiro");
-formParceiro.addEventListener("submit", (event) => {
-  event.preventDefault(); // Evita o envio do formulário padrão
+// const formParceiro = document.getElementById("formParceiro");
+// formParceiro.addEventListener("submit", (event) => {
+//   event.preventDefault(); // Evita o envio do formulário padrão
 
-  // Coleta os dados do segundo formulário
-  const nomeOng = document.getElementById("nomeOng").value;
-  const emailOng = document.getElementById("emailOng").value;
-  const cnpj = document.getElementById("cnpj").value;
-  const nomeResp = document.getElementById("nomeResp").value;
-  const cpf = document.getElementById("cpf").value;
-  const emailResp = document.getElementById("emailResp").value;
+//   // Coleta os dados do segundo formulário
+//   const nomeOng = document.getElementById("nomeOng").value;
+//   const emailOng = document.getElementById("emailOng").value;
+//   const cnpj = document.getElementById("cnpj").value;
+//   const nomeResp = document.getElementById("nomeResp").value;
+//   const cpf = document.getElementById("cpf").value;
+//   const emailResp = document.getElementById("emailResp").value;
 
-  const cep = document.getElementById("cep").value;
-  const estado = document.getElementById("estado").value;
-  const cidade = document.getElementById("cidade").value;
-  const logradouro = document.getElementById("logradouro").value;
-  const bairro = document.getElementById("bairro").value;
-  const numero = document.getElementById("nmr").value;
-  const complemento = document.getElementById("complemento").value;
+//   const cep = document.getElementById("cep").value;
+//   const estado = document.getElementById("estado").value;
+//   const cidade = document.getElementById("cidade").value;
+//   const logradouro = document.getElementById("logradouro").value;
+//   const bairro = document.getElementById("bairro").value;
+//   const numero = document.getElementById("nmr").value;
+//   const complemento = document.getElementById("complemento").value;
 
-  // Prepara os dados para o envio
-  const parceiroData = {
-    nome_ong: nomeOng,
-    email_ong: emailOng,
-    cnpj,
-    nome_responsavel: nomeResp,
-    cpf_responsavel: cpf,
-    email_responsavel: emailResp,
-    endereco: {
-      cep,
-      estado,
-      cidade,
-      logradouro,
-      bairro,
-      numero,
-      complemento,
-    },
-  };
+//   // Prepara os dados para o envio
+//   const parceiroData = {
+//     nome_ong: nomeOng,
+//     email_ong: emailOng,
+//     cnpj,
+//     nome_responsavel: nomeResp,
+//     cpf_responsavel: cpf,
+//     email_responsavel: emailResp,
+//     endereco: {
+//       cep,
+//       estado,
+//       cidade,
+//       logradouro,
+//       bairro,
+//       numero,
+//       complemento,
+//     },
+//   };
 
-  // Enviar para o backend ou fazer qualquer outra lógica de envio
-  console.log(parceiroData);
+//   // Enviar para o backend ou fazer qualquer outra lógica de envio
+//   console.log(parceiroData);
 
-  // Caso queira fazer um POST para o backend:
-  fetch("http://localhost:4501/ongs/criar-ong", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(parceiroData), // Envia os dados como JSON
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Sucesso:", data);
-      alert("Parceiro cadastrado com sucesso!");
-      // Limpa os campos ou redireciona para a próxima página
-      formParceiro.reset();
-    })
-    .catch((error) => {
-      console.error("Erro ao cadastrar parceiro:", error);
-      alert("Erro ao cadastrar parceiro. Tente novamente mais tarde.");
-    });
-});
+//   // Caso queira fazer um POST para o backend:
+//   fetch("http://localhost:4501/ongs/criar-ong", {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(parceiroData), // Envia os dados como JSON
+//   })
+//     .then((response) => response.json())
+//     .then((data) => {
+//       console.log("Sucesso:", data);
+//       alert("Parceiro cadastrado com sucesso!");
+//       // Limpa os campos ou redireciona para a próxima página
+//       formParceiro.reset();
+//     })
+//     .catch((error) => {
+//       console.error("Erro ao cadastrar parceiro:", error);
+//       alert("Erro ao cadastrar parceiro. Tente novamente mais tarde.");
+//     });
+// });
