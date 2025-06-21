@@ -1049,7 +1049,7 @@ footer .listasFooter a:hover {
 /* ----------------------------- institucional.html ----------------------------- */
 
 .caminhoInst {
-    height: 8.5rem;
+    /* height: 8.5rem; */
     display: flex;
     align-items: flex-end;
     min-width: 275px;
