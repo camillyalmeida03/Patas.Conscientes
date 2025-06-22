@@ -3,37 +3,39 @@ function atualizarContagem() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("formParceiro");
+  const formu = document.getElementById("formParceiro");
 
-  form.addEventListener("submit", function (event) {
-    event.preventDefault(); // Evita o envio do formulário inicialmente
+  if (formu) {
+    formu.addEventListener("submit", function (event) {
+      event.preventDefault(); // Evita o envio do formulário inicialmente
 
-    // Variável de controle de validade do formulário
-    let formularioValido = true;
+      // Variável de controle de validade do formulário
+      let formularioValido = true;
 
-    // Validações independentes de cada campo
-    if (!validarNomeOng()) formularioValido = false;
-    if (!validarEmailOng()) formularioValido = false;
-    if (!validarCnpj()) formularioValido = false;
-    if (!validarNomeResponsavel()) formularioValido = false;
-    if (!validarCpfResponsavel()) formularioValido = false;
-    if (!validarEmailResponsavel()) formularioValido = false;
-    if (!validarCep()) formularioValido = false;
-    if (!validarEstado()) formularioValido = false;
-    if (!validarCidade()) formularioValido = false;
-    if (!validarBairro()) formularioValido = false;
-    if (!validarNmr()) formularioValido = false;
+      // Validações independentes de cada campo
+      if (!validarNomeOng()) formularioValido = false;
+      if (!validarEmailOng()) formularioValido = false;
+      if (!validarCnpj()) formularioValido = false;
+      if (!validarNomeResponsavel()) formularioValido = false;
+      if (!validarCpfResponsavel()) formularioValido = false;
+      if (!validarEmailResponsavel()) formularioValido = false;
+      if (!validarCep()) formularioValido = false;
+      if (!validarEstado()) formularioValido = false;
+      if (!validarCidade()) formularioValido = false;
+      if (!validarBairro()) formularioValido = false;
+      if (!validarNmr()) formularioValido = false;
 
-    // Se o formulário não for válido, rola para o topo da página
-    if (!formularioValido) {
-      document
-        .getElementById("mainFormParc")
-        .scrollIntoView({ behavior: "smooth" });
-    } else {
-      // Redireciona para a próxima página caso o formulário seja válido
-      window.location.href = "formularioparceiro2.html"; // Substitua pela URL desejada
-    }
-  });
+      // Se o formulário não for válido, rola para o topo da página
+      if (!formularioValido) {
+        document
+          .getElementById("mainFormParc")
+          .scrollIntoView({ behavior: "smooth" });
+      } else {
+        // Redireciona para a próxima página caso o formulário seja válido
+        window.location.href = "formularioparceiro2.html"; // Substitua pela URL desejada
+      }
+    });
+  }
 
   // Funções de validação individuais
   function validarNomeOng() {
@@ -94,18 +96,22 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  document.getElementById("cnpj").addEventListener("input", function (e) {
-    let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
+  const cnpj = document.getElementById("cnpj");
 
-    // Aplica a máscara de CNPJ: 00.000.000/0000-00
-    if (value.length > 2) value = value.replace(/^(\d{2})(\d)/, "$1.$2");
-    if (value.length > 5)
-      value = value.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
-    if (value.length > 8) value = value.replace(/\.(\d{3})(\d)/, ".$1/$2");
-    if (value.length > 12) value = value.replace(/(\d{4})(\d)/, "$1-$2");
+  if (cnpj) {
+    cnpj.addEventListener("input", function (e) {
+      let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
 
-    e.target.value = value;
-  });
+      // Aplica a máscara de CNPJ: 00.000.000/0000-00
+      if (value.length > 2) value = value.replace(/^(\d{2})(\d)/, "$1.$2");
+      if (value.length > 5)
+        value = value.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
+      if (value.length > 8) value = value.replace(/\.(\d{3})(\d)/, ".$1/$2");
+      if (value.length > 12) value = value.replace(/(\d{4})(\d)/, "$1-$2");
+
+      e.target.value = value;
+    });
+  }
 
   function validarNomeResponsavel() {
     const nomeResponsavel = document.getElementById("nomeResp").value.trim();
@@ -150,18 +156,22 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  document.getElementById("cpf").addEventListener("input", function (e) {
-    let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
+  const cpf = document.getElementById("cpf");
 
-    // Aplica a máscara de CPF: 000.000.000-00
-    if (value.length > 3) value = value.replace(/^(\d{3})(\d)/, "$1.$2");
-    if (value.length > 6)
-      value = value.replace(/^(\d{3})\.(\d{3})(\d)/, "$1.$2.$3");
-    if (value.length > 9)
-      value = value.replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d)/, "$1.$2.$3-$4");
+  if (cpf) {
+    cpf.addEventListener("input", function (e) {
+      let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
 
-    e.target.value = value;
-  });
+      // Aplica a máscara de CPF: 000.000.000-00
+      if (value.length > 3) value = value.replace(/^(\d{3})(\d)/, "$1.$2");
+      if (value.length > 6)
+        value = value.replace(/^(\d{3})\.(\d{3})(\d)/, "$1.$2.$3");
+      if (value.length > 9)
+        value = value.replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d)/, "$1.$2.$3-$4");
+
+      e.target.value = value;
+    });
+  }
 
   function validarEmailResponsavel() {
     const emailResponsavel = document.getElementById("emailResp").value.trim();
@@ -204,15 +214,6 @@ document.addEventListener("DOMContentLoaded", function () {
       return true;
     }
   }
-
-  document.getElementById("cep").addEventListener("input", function (e) {
-    let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
-
-    // Aplica a máscara de CEP: 00000-000
-    if (value.length > 5) value = value.replace(/^(\d{5})(\d)/, "$1-$2");
-
-    e.target.value = value;
-  });
 
   function validarEstado() {
     const estado = document.getElementById("estado").value.trim();
@@ -344,9 +345,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// //API CEP
-document.getElementById('cep').addEventListener('blur', async function () {
-    const cep = this.value.replace(/\D/g, ''); // remove hífen e não números
+const cep = document.getElementById("cep");
+
+if (cep) {
+  cep.addEventListener("blur", async function () {
+    const cep = this.value.replace(/\D/g, ""); // remove hífen e não números
 
     if (cep.length !== 8) {
       document.getElementById("erroCep").textContent = "CEP inválido.";
@@ -369,12 +372,21 @@ document.getElementById('cep').addEventListener('blur', async function () {
       document.getElementById("cidade").value = data.localidade || "";
       document.getElementById("estado").value = data.uf || "";
       document.getElementById("complemento").value = data.complemento || "";
-
     } catch (error) {
       document.getElementById("erroCep").textContent = "Erro ao buscar o CEP.";
       console.error(error);
     }
   });
+
+  cep.addEventListener("input", function (e) {
+    let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
+
+    // Aplica a máscara de CEP: 00000-000
+    if (value.length > 5) value = value.replace(/^(\d{5})(\d)/, "$1-$2");
+
+    e.target.value = value;
+  });
+}
 
 // window.onload = () => {
 //   // Verifica se os dados estão no localStorage

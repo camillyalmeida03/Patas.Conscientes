@@ -45,8 +45,8 @@ if (formParceiro) {
       nome_responsavel: nomeResp,
       cpf_responsavel: cpf,
       email_responsavel: emailResp,
+      uf: estado, // 👈 agora fora do endereço!
       endereco: {
-        id_uf_fk: estado,
         id_cidade_fk: cidade,
         id_bairro_fk: bairro,
         id_rua_fk: logradouro,

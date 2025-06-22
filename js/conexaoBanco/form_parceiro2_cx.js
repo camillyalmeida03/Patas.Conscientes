@@ -1,61 +1,64 @@
 const formFinal = document.getElementById("cadastrarFormParceiro");
 
+const dadosSalvos = JSON.parse(localStorage.getItem("usuario"));
+console.log(dadosSalvos);
+
 if (formFinal) {
   console.log("formFinal encontrado");
 
-  formFinal.addEventListener("click", (e) => {
+  formFinal.addEventListener("click", async (e) => {
     e.preventDefault();
 
-    // Pega os dados do formulário
     const mensagem = document.getElementById("mensagem").value;
-    // const arquivo = document.getElementById("arquivo").files[0];'
-    const tipoCachorros = document.getElementById("cachorros").checked;
-    const tipoGatos = document.getElementById("gatos").checked;
-    // const tipoOutros = document.getElementById("outros").checked;
-    // const especificar = document.getElementById("especificar").value;
+    // const tipoCachorros = document.getElementById("cachorros").checked;
+    // const tipoGatos = document.getElementById("gatos").checked;
 
-    // Monta o objeto tipoPets com os tipos de pets selecionados
-    const tipoPets = {
-      cachorros: tipoCachorros,
-      gatos: tipoGatos,
-      // outros: tipoOutros,
-      // especificar: tipoOutros ? especificar : ""
+    // const tipoPets = {
+    //   cachorros: tipoCachorros,
+    //   gatos: tipoGatos
+    // };
+
+    if (!dadosSalvos) {
+      alert("Erro: dados do formulário não encontrados.");
+      return;
+    }
+
+    const dadosParaEnvio = {
+      ...dadosSalvos,
+      cidade: dadosSalvos.endereco.id_cidade_fk, // 👈 necessário para o backend funcionar
+      bairro: dadosSalvos.endereco.id_bairro_fk, // 👈 também pode ajudar
+      rua: dadosSalvos.endereco.id_rua_fk,
+      numero: dadosSalvos.endereco.numero,
+      cep: dadosSalvos.endereco.cep,
+      complemento: dadosSalvos.endereco.complemento,
+      mensagem,
+      // tipoPets
     };
 
-    // Pega os dados salvos no localStorage
-    const dadosSalvos = JSON.parse(localStorage.getItem("usuario"));
+    try {
+      const response = await fetch("http://localhost:4501/ongs/ongs", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dadosParaEnvio),
+      });
 
-    // Formata os dados para envio
-    const formData = new FormData();
-    formData.append("nome_ong", dadosSalvos.nome_ong);
-    formData.append("email_ong", dadosSalvos.email_ong);
-    formData.append("cnpj", dadosSalvos.cnpj);
-    formData.append("nome_responsavel", dadosSalvos.nome_responsavel);
-    formData.append("cpf", dadosSalvos.cpf_responsavel);
-    formData.append("email_responsavel", dadosSalvos.email_responsavel);
-    formData.append("endereco", JSON.stringify(dadosSalvos.endereco));
-    formData.append("mensagem", mensagem);
-    formData.append("tipoPets", JSON.stringify(tipoPets));
+      if (!response.ok) {
+        const texto = await response.text(); // pega a mensagem bruta se não for JSON
+        throw new Error(`Erro ${response.status}: ${texto}`);
+      }
 
-    // Adiciona o arquivo
-    formData.append("foto", arquivo);
+      const data = await response.json();
 
-    //   // Envia os dados para a API
-    //   fetch("/api/registrar", {
-    //     method: "POST",
-    //     body: formData,
-    //   })
-    //     .then((response) => response.json())
-    //     .then((data) => {
-    //       if (data.message) {
-    //         alert(data.message);
-    //         localStorage.removeItem("usuario"); // Limpa o localStorage após o envio
-    //         window.location.href = "ongPage.html"; // Redireciona após sucesso
-    //       }
-    //     })
-    //     .catch((error) => {
-    //       console.error("Erro ao enviar dados:", error);
-    //       alert("Erro ao enviar dados. Tente novamente.");
-    //     });
+      if (response.ok) {
+        alert(data.message || "Cadastro realizado com sucesso!");
+        localStorage.removeItem("usuario");
+        window.location.href = "ongPage.html"; // redireciona após sucesso
+      } else {
+        alert(data.message || "Erro ao cadastrar.");
+      }
+    } catch (error) {
+      console.error("Erro ao enviar dados:", error);
+      alert("Erro ao enviar dados. Tente novamente.");
+    }
   });
 }
