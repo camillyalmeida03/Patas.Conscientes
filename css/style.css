@@ -2333,7 +2333,7 @@ textarea {
     padding: 0 1rem;
 }
 
-#ongLadoFavoritos{
+#ongLadoFavoritos {
     display: none;
 }
 
@@ -2373,7 +2373,7 @@ textarea {
 .bannerPerfilOng {
     position: absolute;
     top: 0;
-    background-color: gray;
+    background-image: url(/img/user_ong/banners/Banner_misto_rosa_ONG.svg);
     width: 100%;
     z-index: 1;
     object-fit: cover;
@@ -2423,7 +2423,9 @@ textarea {
 }
 
 .ongPerfilInfo .fotoCard {
-    background-color: gray;
+    background-image: url(/img/user_ong/user/gato_user_ONG.svg);
+    background-size: 80%;
+    background-color: #f47193;
     /* position: absolute; */
     height: 12rem;
     width: 12rem;
@@ -2636,7 +2638,7 @@ textarea {
     background-color: var(--cinza34);
 }
 
-.bodyME .container label{
+.bodyME .container label {
     background-color: var(--cinza147);
 }
 
@@ -2880,7 +2882,8 @@ textarea {
     background-color: var(--cinza80);
 }
 
-.bodyME .fechar-modal svg, .bodyME .uploadButton svg{
+.bodyME .fechar-modal svg,
+.bodyME .uploadButton svg {
     fill: white;
 }
 
@@ -3478,8 +3481,8 @@ textarea {
     }
 
     #adicionarPet {
-    width: 90%;
-}
+        width: 90%;
+    }
 
 }
 

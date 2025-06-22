@@ -1,10 +1,6 @@
-// Este arquivo é responsável por criar os cards das ONGs via JS.
-
-
-// Importando dados do arquivo criarElementos.js
 import { Favoritar } from "../favoritar.js";
 import { CriarElementos } from "../criarElementos.js";
-import { ongs } from "./valoresFicOng.js";
+import { InformacoesOng } from "./informacoesOng.js";
 
 // Classe que cria os cards das ONGs
 export class CardsOngs {
@@ -19,85 +15,39 @@ export class CardsOngs {
   }
 
   gerarCard(InfoOng) {
-    this.InfoOng = InfoOng;
     const gridOng = document.querySelector(".gridOng");
+    if (!gridOng) return console.log("gridOng não encontrada");
 
-    if (gridOng) {
-      console.log("gridOng foi encontrada.");
+    const cardOng = this.criarElemento.createA(
+      "cardOng",
+      `ongPage.html?id=${InfoOng.id}`,
+      `Ir para a página de ${InfoOng.nome}`,
+      null,
+      gridOng
+    );
 
-      this.cardOng = this.criarElemento.createA(
-        "cardOng",
-        "ongPage.html?id=" + InfoOng.id,
-        "Ir para a página de " + InfoOng.nome,
-        null,
-        gridOng,
-        "Ver mais sobre " + this.InfoOng.nome
-      );
+    cardOng.addEventListener("click", () => {
+      window.location.href = `ongPage.html?id=${InfoOng.id}`;
+    });
 
-      this.cardOng.addEventListener("click", () => {
-        // Passa o ID da ONG para a URL
-        window.location.href = `ongPage.html?id=${this.InfoOng.id}`;
-      });
+    const imgFav = this.criarElemento.createElement("div", ["imgFav", "favoritado"], null, cardOng);
 
-      this.imgFav = this.criarElemento.createElement(
-        "div",
-        ["imgFav", "favoritado"],
-        null,
-        this.cardOng
-      );
+    this.criarElemento.createImg(
+      [],
+      InfoOng.foto || "/img/default-foto.jpg",
+      `Foto de ${InfoOng.nome}`,
+      "lazy",
+      imgFav
+    );
 
-      this.imgOng = this.criarElemento.createImg(
-        [],
-        this.InfoOng.foto,
-        "Foto de " + this.InfoOng.nome,
-        "lazy",
-        this.imgFav
-      );
+    const favorito = new Favoritar(InfoOng);
+    favorito.criarBotoesCards(imgFav, InfoOng.nome);
 
-      // Chama o método favoritar, adiciona botão de favoritar e sua funcionalidade
-      this.favoritar = new Favoritar(InfoOng);
-      this.botaoFavorito = this.favoritar.criarBotoesCards(
-        this.imgFav,
-        this.InfoOng.nome
-      );
-
-      this.descOng = this.criarElemento.createElement(
-        "div",
-        "descOng",
-        null,
-        this.cardOng
-      );
-
-      this.h2nome = this.criarElemento.createElement(
-        "h2",
-        [],
-        this.InfoOng.nome,
-        this.descOng
-      );
-
-      this.pDesc = this.criarElemento.createElement(
-        "p",
-        [],
-        this.InfoOng.descricao,
-        this.descOng
-      );
-
-      this.cidadeOng = this.criarElemento.createElement(
-        "p",
-        "cidadeOng",
-        this.InfoOng.cidade,
-        this.descOng
-      );
-
-      this.qntdAnimaisOng = this.criarElemento.createElement(
-        "p",
-        "qntdAnimaisOng",
-        this.InfoOng.qntdanimais,
-        this.descOng
-      );
-    } else {
-      console.log("ERROR: gridOng não encontrada");
-    }
+    const descOng = this.criarElemento.createElement("div", "descOng", null, cardOng);
+    this.criarElemento.createElement("h2", [], InfoOng.nome, descOng);
+    this.criarElemento.createElement("p", [], InfoOng.descricao || "Sem descrição.", descOng);
+    this.criarElemento.createElement("p", "cidadeOng", InfoOng.cidade, descOng);
+    this.criarElemento.createElement("p", "qntdAnimaisOng", `Animais: ${InfoOng.qntdanimais || 0}`, descOng);
   }
 
   abrirOngPage() {
@@ -105,8 +55,23 @@ export class CardsOngs {
   }
 }
 
-const cards = [];
-ongs.forEach((ong) => {
-  const card = new CardsOngs(ong);
-  cards.push(card);
-});
+// 🔽 BUSCA ONGs DO BACKEND E CRIA OS CARDS
+async function carregarOngsDoBanco() {
+  try {
+    const response = await fetch("http://localhost:4501/ongs");
+    if (!response.ok) throw new Error("Falha ao buscar ONGs");
+
+    const ongsDoBanco = await response.json();
+
+    ongsDoBanco.forEach((ong) => {
+      const ongInfo = InformacoesOng.fromAPI(ong);
+      new CardsOngs(ongInfo);
+    });
+  } catch (error) {
+    console.error("Erro ao carregar as ONGs:", error);
+    const grid = document.querySelector(".gridOng");
+    if (grid) grid.innerHTML = "<p>Erro ao carregar ONGs.</p>";
+  }
+}
+
+carregarOngsDoBanco(); // ✅ fora da função, chamado corretamente

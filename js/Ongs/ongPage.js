@@ -7,40 +7,41 @@ import { InformacoesOng } from "./informacoesOng.js";
 const urlParams = new URLSearchParams(window.location.search);
 const id = parseInt(urlParams.get("id"));
 
-// 2. Buscando a ONG correspondente
-const ongSelecionada = ongs.find((ong) => ong.id === id);
-
-if (ongSelecionada) {
-  console.log("ONG ENCONTRADA");
-
-  let titleOng = document.getElementById("titleOng");
-  titleOng.textContent = `${ongSelecionada.nome} - Patas Conscientes`
-
-  let nomeOng = document.getElementById("nomeOng");
-  nomeOng.textContent = ongSelecionada.nome;
-
-  let enderecoOng = document.getElementById("enderecoOng");
-  enderecoOng.textContent = ongSelecionada.endereco;
-
-  let petsDisponiveis = document.getElementById("petsDisponiveis");
-  petsDisponiveis.textContent = ongSelecionada.qntdanimais;
-
-  let descricaoOng = document.getElementById("descricaoOng");
-  descricaoOng.textContent = ongSelecionada.descricao;
-
-  let petsAdotarSec = document.getElementById("petsAdotarSec");
-
-  let fotoOng = document.getElementById("fotoOng");
-  fotoOng.style.backgroundImage = `url(${ongSelecionada.foto})`;
-
-  let caminhoPerfilOng = document.getElementById("caminhoPerfilOng");
-  caminhoPerfilOng.textContent = ongSelecionada.nome;
-
-  let bannerOng = document.getElementById("bannerOng");
-  bannerOng.style.backgroundImage = `url(${ongSelecionada.banner})`;
-} else {
-  document.querySelector(".adotarSec").innerHTML = "<p>ONG não encontrada.</p>";
+// 2. Função para buscar ONG do banco
+async function buscarOngPorId(id) {
+  try {
+    const response = await fetch(`http://localhost:4501/ongs/${id}`);
+    if (!response.ok) throw new Error("Erro ao buscar ONG");
+    const [ong] = await response.json(); // assume que retorna array com um único objeto
+    return ong;
+  } catch (error) {
+    console.error("Erro ao buscar ONG:", error);
+    return null;
+  }
 }
+
+// 3. Preenche os dados na tela
+async function preencherPagina() {
+  const ongSelecionada = await buscarOngPorId(id);
+
+  if (!ongSelecionada) {
+    document.querySelector(".adotarSec").innerHTML = "<p>ONG não encontrada.</p>";
+    return;
+  }
+
+  console.log("ONG encontrada:", ongSelecionada);
+
+  document.getElementById("titleOng").textContent = `${ongSelecionada.nome_ong} - Patas Conscientes`;
+  document.getElementById("nomeOng").textContent = ongSelecionada.nome_ong;
+  document.getElementById("enderecoOng").textContent = `${ongSelecionada.rua}, ${ongSelecionada.numero}, ${ongSelecionada.bairro}, ${ongSelecionada.cidade} - ${ongSelecionada.sigla}`;
+  document.getElementById("petsDisponiveis").textContent = "Carregando...";
+  document.getElementById("descricaoOng").textContent = ongSelecionada.descricao || "Sem descrição.";
+
+  // document.getElementById("fotoOng").style.backgroundImage = "url('/img/default-foto.jpg')";
+  // document.getElementById("bannerOng").style.backgroundImage = "url('/img/default-banner.jpg')";
+  document.getElementById("caminhoPerfilOng").textContent = ongSelecionada.nome_ong;
+}
+preencherPagina();
 
 class Redes {
   constructor() {
