@@ -2,39 +2,57 @@
 GET http://localhost:4501/ongs
 
 ### Encontra Ong pelo ID
-GET http://localhost:4501/ongs/32
+GET http://localhost:4501/ongs/38
 
 ### Criar nova ONG
-POST http://localhost:4501/ongs/
+POST http://localhost:4501/ongs/ongs
 Content-Type: application/json
 
 {
-  "nome_responsavel": "Ana Maria",
-  "cpf_responsavel": "12345678900",
-  "email_responsavel": "anamaria@exemplo.com",
-  "telefone": "1633330000",
-  "celular": "16999999999",
-  "senha": "senhaSegura123",
-  "nome_ong": "Patas Unidas",
-  "cnpj": "12.345.678/0001-90",
-  "descricao": "ONG dedicada ao resgate de animais em situação de risco.",
-  "uf": 25,
-  "cidade": "1",
-  "bairro":"500",
-  "rua": "1000",
-  "numero": "123",
-  "cep": "15990000",
-  "complemento": "Casa 1"
+  "senha": "NovaSenha@2025",
+  "uf": "SP",
+  "cidade": "São Paulo",
+  "bairro": "Bela Vista",
+  "rua": "Av. Paulista",
+  "numero": "1000",
+  "cep": "01310000",
+  "complemento": "Apto 101",
+  "telefone": "1133224455",
+  "celular": "1199887766",
+  "email": "contato@novacausa.org",
+  "nome_ong": "Nova Causa",
+  "cnpj": "11.222.333/0001-44",
+  "descricao": "Nossa missão é transformar a vida de animais em situação de vulnerabilidade.",
+  "nome_responsavel": "Carlos Souza",
+  "cpf_responsavel": "12345678910",
+  "email_responsavel": "carlos@novacausa.org"
 }
-
 
 ### Atualizar nome da ONG
-PUT http://localhost:4501/ongs/atualizar-nome-ong/32
+PUT http://localhost:4501/ongs/38
 Content-Type: application/json
 
 {
-  "nome_ong": "ONG Patinhas"
+  "nome_ong": "ONG Exemplo",
+  "cnpj": "12.345.678/0001-90",
+  "descricao": "Organização de apoio a animais.",
+  "telefone": "1633334455",
+  "celular": "16999998888",
+  "email": "ongexemplo@email.com",
+  "senha": "senha123",
+  "cep": "15990000",
+  "uf": "SP",
+  "cidade": "Matão",
+  "bairro": "Centro",
+  "rua": "Rua das ONGs",
+  "numero": "123",
+  "complemento": "Sala 2",
+  "nome_responsavel": "João da ONG",
+  "cpf_responsavel": "123.456.789-00",
+  "email_responsavel": "joao@email.com"
 }
 
+
 ### Deletar ONG
-DELETE http://localhost:4501/ongs/33
+DELETE http://localhost:4501/ongs/38
+Content-Type: application/json

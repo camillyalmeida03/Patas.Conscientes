@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19/06/2025 às 16:48
+-- Tempo de geração: 22/06/2025 às 20:45
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -56,7 +56,10 @@ INSERT INTO `bairros` (`id_bairro`, `bairro`, `id_cidade_fk`) VALUES
 (5, 'Paulista', 1),
 (13, 'Bairro alto', 2),
 (14, 'Laranjeiras', 2),
-(15, 'Centro', 6);
+(15, 'Centro', 6),
+(21, 'Icaraí', 9),
+(22, 'Bela Vista', 1),
+(23, 'Centro', 2);
 
 -- --------------------------------------------------------
 
@@ -77,7 +80,8 @@ CREATE TABLE `cidades` (
 INSERT INTO `cidades` (`id_cidade`, `cidade`, `id_uf_fk`) VALUES
 (1, 'São Paulo', 25),
 (2, 'Matão', 25),
-(6, 'Araraquara', 25);
+(6, 'Araraquara', 25),
+(9, 'Niterói', 19);
 
 -- --------------------------------------------------------
 
@@ -102,7 +106,8 @@ CREATE TABLE `enderecos` (
 
 INSERT INTO `enderecos` (`id_endereco`, `id_uf_fk`, `id_cidade_fk`, `id_bairro_fk`, `id_rua_fk`, `numero`, `cep`, `complemento`) VALUES
 (1, 25, 2, 13, 1, '1647', '15997070', NULL),
-(2, 25, 2, 13, 1, '1648', '15997070', NULL);
+(2, 25, 2, 13, 1, '1648', '15997070', NULL),
+(8, 19, 9, 21, 4, '456', '24360000', 'Sala 302');
 
 -- --------------------------------------------------------
 
@@ -141,7 +146,9 @@ INSERT INTO `ongs` (`usuario_id`, `nome_ong`, `cnpj`, `banner`, `descricao`) VAL
 (24, 'Ajuda Animal', '12.345.678/0001-90', NULL, NULL),
 (31, 'ONG Patas amigas', '11.111.111/1111-11', NULL, NULL),
 (32, 'ONG Patinhas', '11.111.111/1111-11', NULL, NULL),
-(33, 'ONG 2', '22.222.222/2222-22', NULL, NULL);
+(33, 'ONG 2', '22.222.222/2222-22', NULL, NULL),
+(34, 'ONG teste', '11.111.111/1111-11', NULL, NULL),
+(37, 'Amor Espeludo', '98.765.432/0001-10', NULL, 'Dedicada ao resgate e reabilitação de animais abandonados.');
 
 -- --------------------------------------------------------
 
@@ -219,7 +226,8 @@ CREATE TABLE `responsaveis` (
 --
 
 INSERT INTO `responsaveis` (`id_responsavel`, `nome_responsavel`, `id_ong_fk`, `cpf_responsavel`, `email_responsavel`) VALUES
-(1, 'Maria Fernanda', 22, '22222222222', 'mariafer@gmail.com');
+(1, 'Maria Fernanda', 22, '22222222222', 'mariafer@gmail.com'),
+(6, 'Rodrigo Lima', 37, '98765432100', 'rodrigo@amorespeludos.org');
 
 -- --------------------------------------------------------
 
@@ -239,7 +247,10 @@ CREATE TABLE `ruas` (
 
 INSERT INTO `ruas` (`id_rua`, `rua`, `id_bairro_fk`) VALUES
 (1, 'Avenida Sete de Setembro', 13),
-(2, 'Avenida Siqueira Campos', 13);
+(2, 'Avenida Siqueira Campos', 13),
+(4, 'Rua das Palmeiras', 21),
+(5, 'Av. Paulista', 22),
+(6, 'Rua das ONGs', 23);
 
 -- --------------------------------------------------------
 
@@ -318,7 +329,7 @@ CREATE TABLE `usuarios` (
   `email` varchar(255) DEFAULT NULL,
   `telefone` varchar(20) DEFAULT NULL,
   `celular` varchar(20) DEFAULT NULL,
-  `senha` varchar(100) NOT NULL,
+  `senha` varchar(200) NOT NULL,
   `foto` varchar(100) DEFAULT NULL,
   `tipo` enum('adotante','ong','parceiro','responsavel') NOT NULL,
   `criado_em` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -340,7 +351,9 @@ INSERT INTO `usuarios` (`id`, `nome`, `email`, `telefone`, `celular`, `senha`, `
 (25, 'Ana Maria', 'anamaria@exemplo.com', '1633330000', '16999999999', '$2b$10$VeIHCfPZ5ezU.FcumDXawOcnDKXM5SS.g0wydHeZnnNptILuxEWtu', 'ana.jpg', 'ong', '2025-06-17 11:23:56', NULL, NULL, NULL),
 (31, 'Mariana', 'marlenepatasamias@gmail.com', '(12) 33455-6787', '(23) 45334-5654', '$2b$10$gIh9HuXEow8ujwS0pODCGuEh3dn5uOMffGISNwJmmV8/ShUcJ4v9S', '', 'ong', '2025-06-17 12:02:57', NULL, NULL, NULL),
 (32, 'Mariana', 'miguinho@gmail.com', '(12) 34567-8910', '(23) 45334-5654', '$2b$10$1XqCC0pqOrBxnjlauZwYCeCqwou0M7jn5z1N6Hbt/s811AR6Mpq6C', '', 'ong', '2025-06-17 14:02:18', NULL, NULL, NULL),
-(33, 'Mary', 'emailong1@gmail.com', '(11) 11111-1111', '(11) 11111-1111', '$2b$10$0T0rBDww4shxKzMZtrj63eROKWfdu8Wq5FZOtAY3GnXoj72dDD0q.', '', 'ong', '2025-06-18 16:05:36', NULL, NULL, NULL);
+(33, 'Mary', 'emailong1@gmail.com', '(11) 11111-1111', '(11) 11111-1111', '$2b$10$0T0rBDww4shxKzMZtrj63eROKWfdu8Wq5FZOtAY3GnXoj72dDD0q.', '', 'ong', '2025-06-18 16:05:36', NULL, NULL, NULL),
+(34, 'Lari', 'ongteste@gmail.com', '(22) 22222-2222', '(22) 22222-2222', '$2b$10$aH0rmFeLMDWriXLoBixnNeqcbVviYq.TciR0zoXDaPAOe1adsS9ly', '', 'ong', '2025-06-19 14:52:03', NULL, NULL, NULL),
+(37, '', 'contato@amorespeludos.org', '2123456789', '21987654321', '$2b$10$qWN72Xg2ad/s0mLAuJe39OsFAFYevxL302TnBrRmDqyMaBZspnSVW', NULL, 'adotante', '2025-06-20 22:14:35', NULL, NULL, 8);
 
 --
 -- Índices para tabelas despejadas
@@ -459,19 +472,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `bairros`
 --
 ALTER TABLE `bairros`
-  MODIFY `id_bairro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_bairro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de tabela `cidades`
 --
 ALTER TABLE `cidades`
-  MODIFY `id_cidade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_cidade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `enderecos`
 --
 ALTER TABLE `enderecos`
-  MODIFY `id_endereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_endereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `especies_pets`
@@ -501,13 +514,13 @@ ALTER TABLE `racas_pets`
 -- AUTO_INCREMENT de tabela `responsaveis`
 --
 ALTER TABLE `responsaveis`
-  MODIFY `id_responsavel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_responsavel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `ruas`
 --
 ALTER TABLE `ruas`
-  MODIFY `id_rua` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_rua` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `sexos_pets`
@@ -525,7 +538,7 @@ ALTER TABLE `uf`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- Restrições para tabelas despejadas
