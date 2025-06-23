@@ -1,0 +1,13 @@
+POST http://localhost:4501/ongs/40/upload
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="foto"; filename="cat1.jpg"
+Content-Type: image/jpeg
+
+<< ../img/fotos/cat1.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="banner"; filename="banner.jpg"
+Content-Type: image/jpeg
+
+<< ../img/fotos/banner.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--

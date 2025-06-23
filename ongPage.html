@@ -195,10 +195,11 @@
                 </div>
             </div>
 
-<div id="sairouentrar">
-      <button title="Sair da conta" id="sairouentrar" class="verde buttonPerfil" onclick="irparaologin()">Entrar</button>
-    </div>
-  </div>
+            <div id="sairouentrar">
+                <button title="Sair da conta" id="sairouentrar" class="verde buttonPerfil"
+                    onclick="irparaologin()">Entrar</button>
+            </div>
+        </div>
 
         <div id="cadastrarPopup" class="contaPopup">
 
@@ -236,6 +237,12 @@
     </header>
 
     <main class="perfilOng">
+<form action="http://localhost:4501/upload" method="post" enctype="multipart/form-data">
+  <input type="file" name="foto" id="fotoPerfilOng" placeholder="adicionar imagem teste">
+  <input type="submit" value="Enviar">
+</form>
+
+
         <!-- Caminho (Migalha de pão) -->
         <div class="caminhoBanner">
             <section class="caminho">
