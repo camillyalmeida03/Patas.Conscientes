@@ -71,6 +71,9 @@ async function preencherPagina() {
     bannerEl.style.backgroundSize = "cover";
     bannerEl.style.backgroundPosition = "center";
   }
+
+  let adicionar = new AdicionarBotao();
+  adicionar.botaoAdicionar();
 }
 preencherPagina();
 
@@ -277,6 +280,3 @@ class AdicionarBotao {
 
 let redesSec = new Redes();
 redesSec.redes();
-
-let adicionar = new AdicionarBotao();
-adicionar.botaoAdicionar();

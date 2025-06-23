@@ -101,11 +101,27 @@ window.addEventListener("DOMContentLoaded", () => {
   );
 
   // Quando clicar no botão, abre o modal
-  document
-    .getElementById("abrirModalAdicionar")
-    .addEventListener("click", () => {
+  function esperarElemento(id, callback) {
+    const el = document.getElementById(id);
+    if (el) {
+      callback(el);
+    } else {
+      const observer = new MutationObserver(() => {
+        const el = document.getElementById(id);
+        if (el) {
+          observer.disconnect();
+          callback(el);
+        }
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+    }
+  }
+
+  esperarElemento("abrirModalAdicionar", (btn) => {
+    btn.addEventListener("click", () => {
       modalAdicionar.abrir();
     });
+  });
 
   const modalAdicionarFunc = new ModalPadrao(
     document.getElementById("fundoAdicionarFuncionario")
@@ -123,9 +139,7 @@ window.addEventListener("DOMContentLoaded", () => {
   );
 
   // Quando clicar no botão, abre o modal
-  document
-    .getElementById("botaoAdicionarPet")
-    .addEventListener("click", () => {
-      modalAdicionarPet.abrir();
-    });
+  document.getElementById("botaoAdicionarPet").addEventListener("click", () => {
+    modalAdicionarPet.abrir();
+  });
 });
