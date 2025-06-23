@@ -215,8 +215,6 @@
 //   }
 // };
 
-
-
 // const createOng = async (dados, res) => {
 //   const conn = await banco.getConnection();
 //   await conn.beginTransaction();
@@ -568,17 +566,26 @@ const UpdateFotoPerfil = async (req, res) => {
     const { foto, banner } = req.body; // Pode receber um ou os dois
 
     if (!foto && !banner) {
-      return res.status(400).json({ message: "Nenhum caminho de imagem fornecido." });
+      return res
+        .status(400)
+        .json({ message: "Nenhum caminho de imagem fornecido." });
     }
 
     const queries = [];
 
     if (foto) {
-      queries.push(banco.query("UPDATE usuarios SET foto = ? WHERE id = ?", [foto, id]));
+      queries.push(
+        banco.query("UPDATE usuarios SET foto = ? WHERE id = ?", [foto, id])
+      );
     }
 
     if (banner) {
-      queries.push(banco.query("UPDATE ongs SET banner = ? WHERE usuario_id = ?", [banner, id]));
+      queries.push(
+        banco.query("UPDATE ongs SET banner = ? WHERE usuario_id = ?", [
+          banner,
+          id,
+        ])
+      );
     }
 
     await Promise.all(queries);
@@ -586,10 +593,11 @@ const UpdateFotoPerfil = async (req, res) => {
     res.status(200).json({ message: "Imagem(ns) atualizada(s) com sucesso!" });
   } catch (error) {
     console.error("Erro ao atualizar imagem:", error);
-    res.status(500).json({ message: "Erro ao atualizar a imagem.", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Erro ao atualizar a imagem.", error: error.message });
   }
 };
-
 
 const Erase = async (request, response) => {
   const connection = await banco.getConnection();
@@ -738,7 +746,7 @@ const createOng = async (dados, res) => {
       )
     )[0].insertId;
 
-    await conn.query(
+    const [ongResult] = await conn.query(
       "INSERT INTO ongs (usuario_id, nome_ong, cnpj, descricao, banner) VALUES (?, ?, ?, ?, ?)",
       [
         usuario_id,
@@ -749,6 +757,8 @@ const createOng = async (dados, res) => {
       ]
     );
 
+    const novoId = usuario_id;
+
     await conn.query(
       "INSERT INTO responsaveis (id_ong_fk, nome_responsavel, cpf_responsavel, email_responsavel) VALUES (?, ?, ?, ?)",
       [
@@ -758,10 +768,12 @@ const createOng = async (dados, res) => {
         dados.email_responsavel,
       ]
     );
-
     await conn.commit();
     conn.release();
-    return res.status(201).json({ message: "Cadastro realizado com sucesso!" });
+    return res.status(201).json({
+      message: "Cadastro realizado com sucesso!",
+      id: usuario_id,
+    });
   } catch (error) {
     await conn.rollback();
     conn.release();

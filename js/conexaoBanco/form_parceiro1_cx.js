@@ -10,7 +10,6 @@ window.onload = () => {
     document.getElementById("cnpj").value = dadosCadastro.cnpj || "";
     document.getElementById("nomeResp").value =
       dadosCadastro.nome_responsavel || "";
-    document.getElementById("emailResp").value = dadosCadastro.email || "";
 
     console.log("Todos os dados foram encontrados e preenchidos");
   }

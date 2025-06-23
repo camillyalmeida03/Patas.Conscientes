@@ -9,15 +9,6 @@ if (formFinal) {
   formFinal.addEventListener("click", async (e) => {
     e.preventDefault();
 
-    const mensagem = document.getElementById("mensagem").value;
-    // const tipoCachorros = document.getElementById("cachorros").checked;
-    // const tipoGatos = document.getElementById("gatos").checked;
-
-    // const tipoPets = {
-    //   cachorros: tipoCachorros,
-    //   gatos: tipoGatos
-    // };
-
     if (!dadosSalvos) {
       alert("Erro: dados do formulário não encontrados.");
       return;
@@ -25,14 +16,13 @@ if (formFinal) {
 
     const dadosParaEnvio = {
       ...dadosSalvos,
-      cidade: dadosSalvos.endereco.id_cidade_fk, // 👈 necessário para o backend funcionar
-      bairro: dadosSalvos.endereco.id_bairro_fk, // 👈 também pode ajudar
+      cidade: dadosSalvos.endereco.id_cidade_fk,
+      bairro: dadosSalvos.endereco.id_bairro_fk,
       rua: dadosSalvos.endereco.id_rua_fk,
       numero: dadosSalvos.endereco.numero,
       cep: dadosSalvos.endereco.cep,
       complemento: dadosSalvos.endereco.complemento,
-      mensagem,
-      // tipoPets
+      descricao: document.getElementById("mensagem").value // ✅ aqui está certo agora
     };
 
     try {
@@ -43,19 +33,15 @@ if (formFinal) {
       });
 
       if (!response.ok) {
-        const texto = await response.text(); // pega a mensagem bruta se não for JSON
+        const texto = await response.text();
         throw new Error(`Erro ${response.status}: ${texto}`);
       }
 
       const data = await response.json();
 
-      if (response.ok) {
-        alert(data.message || "Cadastro realizado com sucesso!");
-        localStorage.removeItem("usuario");
-        window.location.href = "ongPage.html"; // redireciona após sucesso
-      } else {
-        alert(data.message || "Erro ao cadastrar.");
-      }
+      alert(data.message || "Cadastro realizado com sucesso!");
+      localStorage.removeItem("usuario");
+      window.location.href = `ongs.html`;
     } catch (error) {
       console.error("Erro ao enviar dados:", error);
       alert("Erro ao enviar dados. Tente novamente.");

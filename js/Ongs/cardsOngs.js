@@ -1,4 +1,4 @@
-import { Favoritar } from "../favoritar.js";
+// import { Favoritar } from "../favoritar.js";
 import { CriarElementos } from "../criarElementos.js";
 import { InformacoesOng } from "./informacoesOng.js";
 
@@ -6,7 +6,7 @@ import { InformacoesOng } from "./informacoesOng.js";
 export class CardsOngs {
   constructor(InformacoesOng = null) {
     this.criarElemento = new CriarElementos();
-    this.favoritar = new Favoritar();
+    // this.favoritar = new Favoritar();
 
     if (InformacoesOng) {
       this.InfoOng = InformacoesOng;
@@ -30,24 +30,49 @@ export class CardsOngs {
       window.location.href = `ongPage.html?id=${InfoOng.id}`;
     });
 
-    const imgFav = this.criarElemento.createElement("div", ["imgFav", "favoritado"], null, cardOng);
+    const imgFav = this.criarElemento.createElement(
+      "div",
+      ["imgFav", "favoritado"],
+      null,
+      cardOng
+    );
 
-    this.criarElemento.createImg(
+    const img = this.criarElemento.createImg(
       [],
-      InfoOng.foto || "/img/default-foto.jpg",
+      InfoOng.foto || "/img/user_ong/banners/Banner_misto_rosa_ONG.svg",
       `Foto de ${InfoOng.nome}`,
       "lazy",
       imgFav
     );
 
-    const favorito = new Favoritar(InfoOng);
-    favorito.criarBotoesCards(imgFav, InfoOng.nome);
+    // Evita imagem quebrada se o caminho não for válido
+    img.onerror = () => {
+      img.src = "/img/user_ong/banners/Banner_misto_rosa_ONG.svg";
+    };
 
-    const descOng = this.criarElemento.createElement("div", "descOng", null, cardOng);
+    // const favorito = new Favoritar(InfoOng);
+    // favorito.criarBotoesCards(imgFav, InfoOng.nome);
+
+    const descOng = this.criarElemento.createElement(
+      "div",
+      "descOng",
+      null,
+      cardOng
+    );
     this.criarElemento.createElement("h2", [], InfoOng.nome, descOng);
-    this.criarElemento.createElement("p", [], InfoOng.descricao || "Sem descrição.", descOng);
+    this.criarElemento.createElement(
+      "p",
+      [],
+      InfoOng.descricao || "Sem descrição.",
+      descOng
+    );
     this.criarElemento.createElement("p", "cidadeOng", InfoOng.cidade, descOng);
-    this.criarElemento.createElement("p", "qntdAnimaisOng", `Animais: ${InfoOng.qntdanimais || 0}`, descOng);
+    this.criarElemento.createElement(
+      "p",
+      "qntdAnimaisOng",
+      `Animais: ${InfoOng.qntdanimais || 0}`,
+      descOng
+    );
   }
 
   abrirOngPage() {
