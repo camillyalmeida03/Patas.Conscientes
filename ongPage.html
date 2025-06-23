@@ -9,6 +9,7 @@
     <!-- adicionar meta description & title com as informações da ONG -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
@@ -237,25 +238,38 @@
     </header>
 
     <main class="perfilOng">
-<form action="http://localhost:4501/upload" method="post" enctype="multipart/form-data">
-  <input type="file" name="foto" id="fotoPerfilOng" placeholder="adicionar imagem teste">
-  <input type="submit" value="Enviar">
-</form>
 
 
         <!-- Caminho (Migalha de pão) -->
         <div class="caminhoBanner">
+
             <section class="caminho">
                 <p><a href="/index.html" class="link" title="Link que direciona para a página Inicial">Início</a> | <a
                         href="" id="caminhoPerfilOng">Undefined</a>
                 </p>
             </section>
 
+
             <div class="espacoBanner">
+
+
+
                 <!-- Simula espaço que o banner ocupa para que a section de baixo não se funda ao banner -->
             </div>
 
             <section class="bannerPerfilOng" id="bannerOng">
+
+                <form class="bttEditarImg">
+                    <input type="file" name="bannerong" id="inputBannerOng" style="display: none;">
+
+                    <label for="inputBannerOng" class="custom-file-upload"> <svg xmlns="http://www.w3.org/2000/svg"
+                            height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368">
+                            <path
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm40-80h480L570-480 450-320l-90-120-120 160Zm-40 80v-560 560Z" />
+                        </svg>
+                    </label>
+                </form>
+
             </section>
         </div>
 
@@ -296,10 +310,7 @@
 
                 <form action="" method="get" id="formEmailFuncionario">
                     <h3>Adicionar funcionário</h3>
-
-
                     <input type="text" id="emailOng" class="inputCadastro" placeholder="E-mail">
-
 
                     <input type="button" value="Adicionar" class="buttonRosa" aria-label="Adicionar">
                 </form>
@@ -339,19 +350,14 @@
 
                     </div>
 
-
-
                     <input type="text" name="" id="nome" class="inputCadastro" placeholder="Nome">
-
 
                     <div class="alinharDoisInput">
                         <input type="text" id="pesoPet" class="inputCadastro" placeholder="Peso">
                         <input type="text" id="idadePet" class="inputCadastro" placeholder="Idade">
                     </div>
 
-
                     <input type="text" name="" id="especiePet" class="inputCadastro" placeholder="Espécie">
-
 
                     <div class="alinharDoisInput">
 
@@ -375,6 +381,18 @@
             <section class="ongPerfilInfo">
                 <div class="fotoCard" id="fotoOng">
                     <!-- Aqui estará a foto de perfil da ONG -->
+                    <form class="bttEditarImg">
+                        <input type="file" name="fotoperfilong" id="fotoPerfilOng" style="display: none;">
+
+                        <label for="fotoPerfilOng" class="custom-file-upload">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                                fill="#5f6368">
+                                <path
+                                    d="M480-260q75 0 127.5-52.5T660-440q0-75-52.5-127.5T480-620q-75 0-127.5 52.5T300-440q0 75 52.5 127.5T480-260Zm0-80q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29ZM160-120q-33 0-56.5-23.5T80-200v-480q0-33 23.5-56.5T160-760h126l74-80h240l74 80h126q33 0 56.5 23.5T880-680v480q0 33-23.5 56.5T800-120H160Zm0-80h640v-480H638l-73-80H395l-73 80H160v480Zm320-240Z" />
+                            </svg>
+                        </label>
+                    </form>
+
                 </div>
 
                 <div class="cardPerfilOng">
@@ -385,6 +403,8 @@
                         <div class="linha"></div>
                         <p class="petsDisponiveis" id="petsDisponiveis">Null</p>
                     </div>
+                    <button type="submit">Editar</button>
+
                 </div>
             </section>
 

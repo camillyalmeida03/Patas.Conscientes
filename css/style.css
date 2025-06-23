@@ -2623,6 +2623,47 @@ textarea {
     text-align: center;
 } */
 
+.bttEditarImg {
+  position: absolute;
+  z-index: 100;
+  bottom: 0;
+  right: 0;
+  background-color: white;
+  height: 3rem;
+  width: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* CENTRALIZA O ÍCONE HORIZONTALMENTE */
+  border-radius: 50%; /* opcional: deixa o botão redondo */
+}
+
+/* Remove seletores desnecessários e garante centralização */
+.custom-file-upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border-radius: inherit; /* herdando se for circular */
+}
+
+.custom-file-upload:hover {
+  background-color: white;
+}
+
+.bttEditarImg svg {
+  height: 2rem;
+  width: 2rem;
+  pointer-events: none; /* garante que o clique vá para o label */
+}
+
+#inputBannerOng form{
+    right: 1rem;
+    bottom: 1rem;
+}
+
 /* -------- MODO ESCURO ------------------------------------------------------------------------------------------------------- */
 
 .bodyME {
@@ -3093,6 +3134,11 @@ textarea {
     .ongPerfilInfo {
         padding: 0 2rem 0 2rem;
     }
+
+    #inputBannerOng form{
+    right: 1rem;
+    bottom: 2rem;
+}
 }
 
 /* responsividade em dispositivos até 800px de largura  */

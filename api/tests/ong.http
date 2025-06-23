@@ -2,7 +2,8 @@
 GET http://localhost:4501/ongs
 
 ### Encontra Ong pelo ID
-GET http://localhost:4501/ongs/38
+GET http://localhost:4501/ongs/40
+
 
 ### Criar nova ONG
 POST http://localhost:4501/ongs/ongs
@@ -50,6 +51,15 @@ Content-Type: application/json
     "nome_responsavel": "João da ONG",
     "cpf_responsavel": "123.456.789-00",
     "email_responsavel": "joao@email.com"
+}
+
+###
+PUT http://localhost:4501/ongs/atualizafoto/40
+Content-Type: application/json
+
+{
+  "foto": "/uploads/foto_perfil/perfil_41.png",
+  "banner": "/uploads/banner_ong/banner_41.jpg"
 }
 
 
