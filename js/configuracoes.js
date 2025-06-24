@@ -106,7 +106,7 @@ function alterartelefone() {
             return; // Para a execução se não houver ID
         }
 
-        const response = await fetch(`http://localhost:8080/usuarios/verificar-tipo/${usuario.id}`);
+        const response = await fetch(`http://localhost:4501/usuarios/verificar-tipo/${usuario.id}`);
         const data = await response.json();
 
         // Pega os elementos da página
@@ -127,7 +127,7 @@ function alterartelefone() {
               divcpfoucnpj.innerHTML = `<p id="cpfoucnpj"><span class="before">CPF/CNPJ:</span> Não definido</p>`;
               // Caso 2: O usuário é do tipo 'adotante'
             } else if (userData.tipo === 'adotante') {
-              const response = await fetch(`http://localhost:8080/usuarios/configadotante/${usuario.id}`);
+              const response = await fetch(`http://localhost:4501/usuarios/configadotante/${usuario.id}`);
               const data = await response.json();
               const userData = data[0]; // Fica mais fácil de ler
               divcpfoucnpj.innerHTML = `<p id="cpfoucnpj"><span class="before">CPF:</span> ${userData.cpf}</p>`;
@@ -135,7 +135,7 @@ function alterartelefone() {
               
               // Caso 3: O usuário é do tipo 'ong'
             } else if (userData.tipo === 'ong') {
-              const response = await fetch(`http://localhost:8080/usuarios/configong/${usuario.id}`);
+              const response = await fetch(`http://localhost:4501/usuarios/configong/${usuario.id}`);
               const data = await response.json();
               const userData = data[0]; // Fica mais fácil de ler
               divcpfoucnpj.innerHTML = `<p id="cpf/cnpj"><span class="before">cnpj:</span> ${userData.cnpj}</p>`
@@ -158,7 +158,7 @@ function alterartelefone() {
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    const response = await fetch(`http://localhost:8080/usuarios/${usuario.id}`);
+    const response = await fetch(`http://localhost:4501/usuarios/${usuario.id}`);
     const data = await response.json();
 
     if (Array.isArray(data) && data.length === 1) {
@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const telefone = document.getElementById("telefoneUsuario").value;
 
     try {
-      const response = await fetch(`http://localhost:8080/usuarios/atualizar-telefone/${usuario.id}`, {
+      const response = await fetch(`http://localhost:4501/usuarios/atualizar-telefone/${usuario.id}`, {
         method: "PUT", // Ou "POST", conforme configurado no seu backend
         headers: {
           "Content-Type": "application/json"
@@ -217,7 +217,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const email = document.getElementById("emailUsuario").value;
 
     try {
-      const response = await fetch(`http://localhost:8080/usuarios/atualizar-email/${usuario.id}`, {
+      const response = await fetch(`http://localhost:4501/usuarios/atualizar-email/${usuario.id}`, {
         method: "PUT", // Ou POST, se for o seu caso
         headers: {
           "Content-Type": "application/json"
@@ -245,7 +245,7 @@ document.getElementById("formNomeUsuario").addEventListener("submit", async func
     const nome = document.getElementById("nomeUsuario").value;
 
     try {
-      const response = await fetch(`http://localhost:8080/usuarios/atualizar-nome/${usuario.id}`, {
+      const response = await fetch(`http://localhost:4501/usuarios/atualizar-nome/${usuario.id}`, {
         method: "PUT", // Ou POST, conforme o backend
         headers: {
           "Content-Type": "application/json"
@@ -277,7 +277,7 @@ document.getElementById("formNomeUsuario").addEventListener("submit", async func
     formData.append("foto", file);
 
     try {
-      const response = await fetch(`http://localhost:8080/usuarios/atualizar-foto/${usuario.id}`, {
+      const response = await fetch(`http://localhost:4501/usuarios/atualizar-foto/${usuario.id}`, {
         method: "PUT", // ou POST, conforme seu backend
         body: formData
       });

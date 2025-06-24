@@ -3,7 +3,7 @@ const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    const response = await fetch(`http://localhost:8080/usuarios/${usuario.id}`);
+    const response = await fetch(`http://localhost:4501/usuarios/${usuario.id}`);
     const data = await response.json();
 
     if (Array.isArray(data) && data.length === 1) {

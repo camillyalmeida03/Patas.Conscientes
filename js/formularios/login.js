@@ -108,7 +108,7 @@ togglePasswordButton.addEventListener("click", function (event) {
 //   const senha = document.getElementById("senhaEntrar").value;
 
 //   try {
-//     const response = await fetch("http://localhost:8080/usuarios/login", {
+//     const response = await fetch("http://localhost:4501/usuarios/login", {
 //       method: "POST",
 //       headers: { "Content-Type": "application/json" },
 //       body: JSON.stringify({ email, senha }),
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
             loginButton.textContent = "Carregando...";
 
             try {
-                const response = await fetch("http://localhost:8080/usuarios/login", {
+                const response = await fetch("http://localhost:4501/usuarios/login", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ email, senha }),

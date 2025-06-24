@@ -251,7 +251,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //   dadosTemporarios = { nome, cnpj, nome_ong, telefone, celular, email, senha, tipo };
 
 //   try {
-//     const response = await fetch('http://localhost:8080/usuarios/solicitar-criacao', {
+//     const response = await fetch('http://localhost:4501/usuarios/solicitar-criacao', {
 //       method: 'POST',
 //       headers: { 'Content-Type': 'application/json' },
 //       body: JSON.stringify({ nome, cnpj, nome_ong, telefone, celular, email, senha, tipo })
@@ -293,7 +293,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //     formData.append("tipo", dadosTemporarios.tipo);
 
 //   try {
-//     const finalResponse = await fetch('http://localhost:8080/usuarios/criar-ong', {
+//     const finalResponse = await fetch('http://localhost:4501/usuarios/criar-ong', {
 //       method: 'POST',
 //       body: formData
 //     });

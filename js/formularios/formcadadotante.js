@@ -289,7 +289,7 @@ document.addEventListener('DOMContentLoaded', function () {
 //   dadosTemporarios = { nome, email, telefone, celular, sexo, data_nascimento, cpf, senha, tipo };
 
 //   try {
-//     const response = await fetch('http://localhost:8080/usuarios/solicitar-criacao', {
+//     const response = await fetch('http://localhost:4501/usuarios/solicitar-criacao', {
 //       method: 'POST',
 //       headers: { 'Content-Type': 'application/json' },
 //       body: JSON.stringify({ nome, email, telefone, celular, sexo, data_nascimento, cpf, senha, tipo })
@@ -331,7 +331,7 @@ document.addEventListener('DOMContentLoaded', function () {
 //     formData.append("tipo", dadosTemporarios.tipo);
 
 //   try {
-//     const finalResponse = await fetch('http://localhost:8080/usuarios/criar-adotante', {
+//     const finalResponse = await fetch('http://localhost:4501/usuarios/criar-adotante', {
 //       method: 'POST',
 //       body: formData
 //     });

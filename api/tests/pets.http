@@ -1,0 +1,47 @@
+### Lista pets
+
+GET http://localhost:4501/pets
+
+### Encontra pet pelo ID
+
+GET http://localhost:4501/pets/8
+
+### Adicionar pet
+POST http://localhost:4501/pets
+Content-Type: application/json
+
+{
+  "id_especie_fk": 1,
+  "raca": "Dálmata",
+  "nome_pet": "Bolt",
+  "id_sexo_fk": 2,
+  "id_porte_fk": 3,
+  "peso": 25,
+  "idade": 4,
+  "sobre_pet": "Muito brincalhão",
+  "foto": null,
+  "id_ong_fk": 37
+}
+
+
+### Deleta pet pelo ID
+DELETE http://localhost:4501/pets/5
+
+###
+PUT http://localhost:4501/pets/6
+Content-Type: application/json
+
+{
+  "id_especie_fk": 1,
+  "nome_pet": "Frajola",
+  "id_raca_fk": 2,
+  "id_sexo_fk": 1,
+  "id_porte_fk": 2,
+  "peso": 4.8,
+  "idade": "3 anos",
+  "sobre_pet": "Adora dormir e miar muito.",
+  "foto": "uploads/frajola.jpg",
+  "id_ong_fk": 37
+}
+
+

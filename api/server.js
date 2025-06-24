@@ -11,10 +11,11 @@ const rotasBairros = require("./src/routers/bairrosRouters");
 const rotasCidades = require("./src/routers/cidadesRouters");
 const rotasRuas = require("./src/routers/ruasRouters");
 const rotasUf = require("./src/routers/ufRouters");
-const rotasEspecies = require("./src/routers/especiesRouters")
+const rotasEspecies = require("./src/routers/especiesRouters");
 const rotasRacas = require("./src/routers/racasRouters");
 const rotasSexopets = require("./src/routers/sexopetsRouters");
 const rotasPortes = require("./src/routers/portesRouters");
+const rotasPets = require("./src/routers/petsRouters");
 const cors = require("cors");
 const path = require("path");
 const fileupload = require("express-fileupload");
@@ -50,10 +51,11 @@ app.use("/bairros", rotasBairros);
 app.use("/cidades", rotasCidades);
 app.use("/ruas", rotasRuas);
 app.use("/uf", rotasUf);
-app.use("/especies", rotasEspecies)
-app.use("/racas", rotasRacas)
+app.use("/especies", rotasEspecies);
+app.use("/racas", rotasRacas);
 app.use("/sexopets", rotasSexopets);
 app.use("/portes", rotasPortes);
+app.use("/pets", rotasPets);
 
 // Caminhos para a pasta uploads e suas subpastas
 const uploadsFotoPerfilPath = path.join(
@@ -147,28 +149,42 @@ app.post("/uploadbannerong/:usuarioId", async (req, res) => {
   });
 });
 
-// app.post('/uploadfotopet', (req, res) => {
-//   console.log(req.files);  // Verifica o arquivo recebido
+app.post("/uploadfotopet/:id", async (req, res) => {
+  const id = req.params.id;
 
-//   if (!req.files || !req.files.foto) {
-//     return res.status(400).send('Nenhum arquivo foi enviado.');
-//   }
+  if (!req.files || !req.files.fotopet) {
+    return res.status(400).send("Nenhum arquivo foi enviado.");
+  }
 
-//   const foto = req.files.foto;
-//   // Caminho completo para salvar o arquivo na subpasta foto_perfil
-//   const uploadPath = path.join(uploadsFotoPerfilPath, foto.name);
+  const foto = req.files.fotopet;
+  const nomeArquivo = `pet_${id}_${Date.now()}_${foto.name}`;
+  const uploadPath = path.join(uploadsFotoPet, nomeArquivo);
+  const caminhoRelativo = `/uploads/foto_pet/${nomeArquivo}`;
 
-//   console.log('Caminho do arquivo:', uploadPath);  // Verifica o caminho no console
+  foto.mv(uploadPath, async (err) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
 
-//   foto.mv(uploadPath, (err) => {
-//     if (err) {
-//       console.error('Erro ao mover o arquivo:', err);
-//       return res.status(500).send(err);
-//     }
+    try {
+      await banco.query(
+        `UPDATE pets SET foto = ? WHERE id_pet = ?`,
+        [caminhoRelativo, id]
+      );
 
-//     res.send('Arquivo enviado com sucesso!');
-//   });
-// });
+      res.status(200).send({
+        message: "Foto do pet enviada com sucesso!",
+        caminho: caminhoRelativo,
+      });
+    } catch (erro) {
+      console.error("Erro ao salvar caminho no banco:", erro);
+      res.status(500).send({
+        message: "Erro ao salvar caminho no banco.",
+        erro,
+      });
+    }
+  });
+});
 
 const Port = process.env.APP_PORT;
 

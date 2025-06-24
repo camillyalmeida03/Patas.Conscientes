@@ -2,23 +2,66 @@
 import { ongs } from "./valoresFicOng.js";
 import { CriarElementos } from "../criarElementos.js";
 import { InformacoesOng } from "./informacoesOng.js";
+import { InformacoesPet } from "../Pets/informacoesPets.js";
+import { CardsPets } from "../Pets/cardsPet.js"; // ajuste esse caminho
 
-// 1. Pegando o ID da URL
+// 1. Pega ID da URL
 const urlParams = new URLSearchParams(window.location.search);
 const id = parseInt(urlParams.get("id"));
 
-// 2. Função para buscar ONG do banco
+// 2. Busca ONG pelo ID
 async function buscarOngPorId(id) {
   try {
-    const response = await fetch(`http://localhost:4501/ongs/${id}`);
-    if (!response.ok) throw new Error("Erro ao buscar ONG");
-    const [ong] = await response.json(); // assume que retorna array com um único objeto
+    const res = await fetch(`http://localhost:4501/ongs/${id}`);
+    if (!res.ok) throw new Error("Erro ao buscar ONG");
+    const [ong] = await res.json();
     return ong;
   } catch (error) {
     console.error("Erro ao buscar ONG:", error);
     return null;
   }
 }
+
+// 3. Carrega pets da ONG
+async function carregarPetsDaOng(id, nomeOng) {
+  try {
+    const res = await fetch("http://localhost:4501/pets");
+    const pets = await res.json();
+    const petsDaOng = pets.filter(pet => parseInt(pet.id_ong_fk) === id);
+
+    const container = document.querySelector(".adotarSec");
+    container.innerHTML = ""; // limpa
+
+    petsDaOng.forEach(pet => {
+      const petInfo = new InformacoesPet(
+        pet.id_pet,
+        pet.id_ong_fk,
+        pet.foto || "img/fotos/default.jpg",
+        pet.nome_pet,
+        pet.id_sexo_fk,
+        pet.peso,
+        pet.idade,
+        pet.id_especie_fk === 1 ? "Cachorro" : "Gato",
+        pet.id_porte_fk === 1 ? "Miniatura" :
+        pet.id_porte_fk === 2 ? "Pequeno" :
+        pet.id_porte_fk === 3 ? "Médio" :
+        pet.id_porte_fk === 4 ? "Grande" : "Gigante",
+        pet.raca,
+        pet.sobre_pet,
+        nomeOng,
+        "#"
+      );
+
+      const card = new CardsPets(petInfo).card;
+      container.appendChild(card);
+    });
+
+    document.getElementById("petsDisponiveis").textContent = `${petsDaOng.length} pets disponíveis`;
+  } catch (err) {
+    console.error("Erro ao carregar pets:", err);
+  }
+}
+
 
 // 3. Preenche os dados na tela
 async function preencherPagina() {
@@ -72,10 +115,50 @@ async function preencherPagina() {
     bannerEl.style.backgroundPosition = "center";
   }
 
+  await carregarPetsDaOng(id);
+
+
   let adicionar = new AdicionarBotao();
   adicionar.botaoAdicionar();
 }
 preencherPagina();
+
+// async function carregarPetsDaOng(id) {
+//   try {
+//     const res = await fetch("http://localhost:4501/pets");
+//     const pets = await res.json();
+
+//     const petsDaOng = pets.filter(pet => pet.id_ong_fk === id);
+//     const container = document.querySelector(".adotarSec");
+
+//     petsDaOng.forEach(pet => {
+//       const petInfo = new InformacoesPet(
+//         pet.id_pet,
+//         pet.id_ong_fk,
+//         pet.foto || "img/fotos/default.jpg", // imagem fallback
+//         pet.nome_pet,
+//         pet.id_sexo_fk,
+//         pet.peso,
+//         pet.idade,
+//         pet.id_especie_fk === 1 ? "Cachorro" : "Gato",
+//         pet.id_porte_fk === 1 ? "Miniatura" : pet.id_porte_fk === 2 ? "Pequeno" : pet.id_porte_fk === 3 ? "Médio" : pet.id_porte_fk === 4 ? "Grande" : "Gigante",
+//         pet.raca,
+//         pet.sobre_pet,
+//         "ONG atual", // ou ongSelecionada.nome_ong
+//         "#" // ou link para a ONG
+//       );
+
+//       const card = new CardsPets(petInfo).card;
+//       container.appendChild(card);
+//     });
+
+//     document.getElementById("petsDisponiveis").textContent = `${petsDaOng.length} pets disponíveis`;
+//   } catch (err) {
+//     console.error("Erro ao carregar pets:", err);
+//   }
+// }
+
+
 
 // document.getElementById('inputBannerOng').addEventListener('change', async function () {
 //   const formData = new FormData();
@@ -278,5 +361,4 @@ class AdicionarBotao {
   }
 }
 
-let redesSec = new Redes();
-redesSec.redes();
+

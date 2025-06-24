@@ -2180,7 +2180,6 @@ ol {
     background-color: var(--cinza_input);
     width: 100%;
     resize: none;
-    min-width: 10rem;
     font-size: 16px;
     /* align-items: center; */
 }
