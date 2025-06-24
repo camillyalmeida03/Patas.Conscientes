@@ -3,18 +3,22 @@
 // Importando dados do arquivo criarElementos.js
 import { CriarElementos } from "../criarElementos.js";
 import { Favoritar } from "../favoritar.js";
+import { InformacoesPets } from "./informacoesPets.js";
 
 // Classe responsável por gerar os cards e os modais de cada pet
-class CardsPets {
-  constructor(InformacoesPet = null) {
-    this.criarElemento = new CriarElementos();
+export class CardsPets {
+constructor(InformacoesPet = null) {
+  this.criarElemento = new CriarElementos();
+  this.InformacoesPet = new InformacoesPets();
 
-    if (InformacoesPet) {
-      this.InfoPet = InformacoesPet;
-      this.card = this.gerarCard(InformacoesPet);
-    }
-    this.informacoesExibidas = false;
+  if (InformacoesPet) {
+    this.InfoPet = InformacoesPet;
+    this.modalPet(this.InfoPet); // cria o modal no construtor
+    this.card = this.gerarCard(this.InfoPet); // cria o card
   }
+
+  this.informacoesExibidas = false;
+}
 
   // Método responsável por criar o modal de cada pet
   modalPet(InfoPet) {
@@ -327,18 +331,23 @@ class CardsPets {
   }
 
   //Método responsável por mostrar o modal de cada pet
-  mostrarFundoDaAba() {
-    if (window.innerWidth > 650) {
-      // Só exibe se a largura for maior que 650px
-      this.fundoAba.style.display = "flex";
-      document.body.style.overflow = "hidden";
-    } else {
-      this.fundoAba.style.display = "none";
-      document.body.style.overflow = "auto";
-    }
-
-    this.verificarResize();
+mostrarFundoDaAba() {
+  if (!this.fundoAba) {
+    console.warn("⚠️ fundoAba não foi criado ainda.");
+    return;
   }
+
+  if (window.innerWidth > 650) {
+    this.fundoAba.style.display = "flex";
+    document.body.style.overflow = "hidden";
+  } else {
+    this.fundoAba.style.display = "none";
+    document.body.style.overflow = "auto";
+  }
+
+  this.verificarResize();
+}
+
 
   //Método responsável por verificar se é mobile ou desktop
   verificarResize() {
@@ -691,7 +700,7 @@ class CardsPets {
   //Método responsável por gerar um card para cada pet
   gerarCard(InfoPet) {
     this.InfoPet = InfoPet;
-    const adotarSec = document.querySelector(".adotarSec"); // Identifica o elemento pai de tudo que já existe no html
+    const adotarSec = document.querySelector(".adotarSec");
 
     if (adotarSec) {
       this.adotarSec = adotarSec;
@@ -704,6 +713,7 @@ class CardsPets {
       );
 
       this.cardsAnimais.id = `pet-${this.InfoPet.id}`;
+      this.card = this.cardsAnimais;
 
       this.adotarMiniCard = this.criarElemento.createElement(
         "div",
@@ -759,6 +769,9 @@ class CardsPets {
       this.condicaoSexoPet(this.InfoPet);
 
       this.mostrarCardNormal();
+
+      this.card = this.cardsAnimais;
+
     }
   }
 
@@ -811,38 +824,38 @@ class CardsPets {
 const id = new URLSearchParams(window.location.search).get("id");
 const adotarSec = document.querySelector(".adotarSec");
 
-fetch("http://localhost:4501/pets")
-  .then((res) => res.json())
-  .then((pets) => {
-    const petsDaOng = pets.filter((pet) => pet.id_ong_fk === parseInt(id));
-    petsDaOng.forEach((pet) => {
-      const infoPet = new InformacoesPet(
-        pet.id_pet,
-        pet.id_ong_fk,
-        pet.foto || "img/default-pet.jpg",
-        pet.nome_pet,
-        pet.id_sexo_fk,
-        pet.peso,
-        pet.idade,
-        pet.especie,
-        pet.porte_pet,
-        pet.raca,
-        pet.sobre_pet,
-        pet.nome_ong,
-        `ongPage.html?id=${pet.id_ong_fk}`
-      );
+// fetch("http://localhost:4501/pets")
+//   .then((res) => res.json())
+//   .then((pets) => {
+//     const petsDaOng = pets.filter((pet) => pet.id_ong_fk === parseInt(id));
+//     petsDaOng.forEach((pet) => {
+//       const infoPet = new InformacoesPets(
+//         pet.id_pet,
+//         pet.id_ong_fk,
+//         pet.foto || "img/default-pet.jpg",
+//         pet.nome_pet,
+//         pet.id_sexo_fk,
+//         pet.peso,
+//         pet.idade,
+//         pet.especie,
+//         pet.porte_pet,
+//         pet.raca,
+//         pet.sobre_pet,
+//         pet.nome_ong,
+//         `ongPage.html?id=${pet.id_ong_fk}`
+//       );
 
-      const card = new CardsPets(infoPet);
-      card.modalPet(infoPet);
-      card.gerarCard(infoPet);
-    });
-  });
+//       const card = new CardsPets(infoPet);
+//       card.modalPet(infoPet);
+//       card.gerarCard(infoPet);
+//     });
+//   });
 
 window.addEventListener("load", paginacarregada); //A página espera o JS carregar antes de executar ele
 
 function paginacarregada() {
   //Array que guarda os cards
-  const cards = [];
+  // const cards = [];
 
   // //Aqui é definido o que cada pet recebe de configuração assim que "nasce"
   // pets.forEach((pet) => {
@@ -885,9 +898,6 @@ function paginacarregada() {
   //       card.esconderFundoDaAba();
   //     });
   //   }
-
-  //   // Salva o card no array para o resize usar depois
-  //   cards.push(card);
   // });
 
   // ✅ Agora, só UM resize, fora do forEach
@@ -905,5 +915,3 @@ function paginacarregada() {
     }
   });
 }
-
-export { CardsPets };

@@ -2,7 +2,7 @@
 import { ongs } from "./valoresFicOng.js";
 import { CriarElementos } from "../criarElementos.js";
 import { InformacoesOng } from "./informacoesOng.js";
-import { InformacoesPet } from "../Pets/informacoesPets.js";
+import { InformacoesPets } from "../Pets/informacoesPets.js";
 import { CardsPets } from "../Pets/cardsPet.js"; // ajuste esse caminho
 
 // 1. Pega ID da URL
@@ -24,44 +24,127 @@ async function buscarOngPorId(id) {
 
 // 3. Carrega pets da ONG
 async function carregarPetsDaOng(id, nomeOng) {
+  console.log("ID da ONG:", id);
+  console.log("Nome da ONG:", nomeOng);
+
   try {
     const res = await fetch("http://localhost:4501/pets");
     const pets = await res.json();
-    const petsDaOng = pets.filter(pet => parseInt(pet.id_ong_fk) === id);
+
+    // TEMPORÁRIO: filtra por nome da ONG
+    const petsDaOng = pets.filter((pet) => pet.nome_ong === nomeOng);
+
+    console.log("Pets da ONG:", petsDaOng); // agora deve aparecer!
 
     const container = document.querySelector(".adotarSec");
-    container.innerHTML = ""; // limpa
+    container.innerHTML = "";
 
-    petsDaOng.forEach(pet => {
-      const petInfo = new InformacoesPet(
+    const cards = [];
+
+    petsDaOng.forEach((pet) => {
+      const especie = pet.especie || "Não informado";
+      const porte = pet.porte_pet || "Não informado";
+
+      const petInfo = new InformacoesPets(
         pet.id_pet,
-        pet.id_ong_fk,
+        pet.id_ong_fk ?? null,
         pet.foto || "img/fotos/default.jpg",
         pet.nome_pet,
-        pet.id_sexo_fk,
+        pet.sexo_pet,
         pet.peso,
         pet.idade,
-        pet.id_especie_fk === 1 ? "Cachorro" : "Gato",
-        pet.id_porte_fk === 1 ? "Miniatura" :
-        pet.id_porte_fk === 2 ? "Pequeno" :
-        pet.id_porte_fk === 3 ? "Médio" :
-        pet.id_porte_fk === 4 ? "Grande" : "Gigante",
+        especie,
+        porte,
         pet.raca,
         pet.sobre_pet,
-        nomeOng,
+        pet.nome_ong,
         "#"
       );
 
-      const card = new CardsPets(petInfo).card;
+      const cardObj = new CardsPets(petInfo);
+      const card = cardObj.card;
+
+      if (!card) {
+        console.warn("Card não gerado para pet:", petInfo.nome);
+        return;
+      }
+
       container.appendChild(card);
+
+      // Agora adiciona os eventos interativos
+      // cardObj.modalPet(pet);
+
+      setTimeout(() => {
+        if (cardObj.verMais) {
+          cardObj.verMais.addEventListener("click", () => {
+            if (!cardObj.fundoAba) {
+              cardObj.modalPet(pet); // garante que o modal esteja criado
+            }
+
+            if (window.innerWidth <= 650) {
+              if (!cardObj.informacoesExibidas) {
+                cardObj.limparCardNormal();
+                cardObj.mostrarMaisInformacoesPetCard();
+              }
+            } else {
+              cardObj.mostrarFundoDaAba();
+            }
+          });
+        }
+
+        if (cardObj.verMenos) {
+          cardObj.verMenos.addEventListener("click", () => {
+            cardObj.limparCardMaisInfo();
+            cardObj.limparCardNormal();
+            cardObj.mostrarCardNormal();
+          });
+        }
+      }, 0);
+
+      if (cardObj.fecharAba) {
+        cardObj.fecharAba.addEventListener("click", () => {
+          cardObj.esconderFundoDaAba();
+        });
+      }
+
+      cards.unshift(cardObj); // acumula os cards para usar no resize
     });
 
-    document.getElementById("petsDisponiveis").textContent = `${petsDaOng.length} pets disponíveis`;
+    // Fora do forEach: listener para resize
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 650) {
+        cards.forEach((cardObj) => {
+          if (cardObj.informacoesExibidas) {
+            cardObj.limparCardMaisInfo();
+            cardObj.limparCardNormal();
+            cardObj.mostrarCardNormal();
+          }
+          cardObj.esconderFundoDaAba();
+        });
+      }
+    });
+
+    // Fora do forEach: listener para resize
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 650) {
+        cards.forEach((cardObj) => {
+          if (cardObj.informacoesExibidas) {
+            cardObj.limparCardMaisInfo();
+            cardObj.limparCardNormal();
+            cardObj.mostrarCardNormal();
+          }
+          cardObj.esconderFundoDaAba();
+        });
+      }
+    });
+
+    document.getElementById(
+      "petsDisponiveis"
+    ).textContent = `${petsDaOng.length} pets disponíveis`;
   } catch (err) {
     console.error("Erro ao carregar pets:", err);
   }
 }
-
 
 // 3. Preenche os dados na tela
 async function preencherPagina() {
@@ -115,8 +198,7 @@ async function preencherPagina() {
     bannerEl.style.backgroundPosition = "center";
   }
 
-  await carregarPetsDaOng(id);
-
+  await carregarPetsDaOng(id, ongSelecionada.nome_ong);
 
   let adicionar = new AdicionarBotao();
   adicionar.botaoAdicionar();
@@ -157,8 +239,6 @@ preencherPagina();
 //     console.error("Erro ao carregar pets:", err);
 //   }
 // }
-
-
 
 // document.getElementById('inputBannerOng').addEventListener('change', async function () {
 //   const formData = new FormData();
@@ -360,5 +440,3 @@ class AdicionarBotao {
     this.botaoAdd.id = "abrirModalAdicionar";
   }
 }
-
-

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 24/06/2025 às 02:52
+-- Tempo de geração: 24/06/2025 às 15:05
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -161,7 +161,7 @@ INSERT INTO `ongs` (`usuario_id`, `nome_ong`, `cnpj`, `banner`, `descricao`) VAL
 (33, 'ONG 2', '22.222.222/2222-22', NULL, NULL),
 (34, 'ONG teste', '11.111.111/1111-11', NULL, NULL),
 (37, 'Amor Espeludo', '98.765.432/0001-10', '/uploads/banner_ong/banner_37_1750709622121_ong2.jpg', 'Dedicada ao resgate e reabilitação de animais abandonados.'),
-(51, 'ong demonstração', '11.111.133/3333-33', '/uploads/banner_ong/banner_51_1750713380316_dog1.jpg', 'aaaaaaaaa');
+(51, 'ong demonstração', '11.111.133/3333-33', '/uploads/banner_ong/banner_51_1750760906096_ong1.jpg', 'aaaaaaaaa');
 
 -- --------------------------------------------------------
 
@@ -170,21 +170,35 @@ INSERT INTO `ongs` (`usuario_id`, `nome_ong`, `cnpj`, `banner`, `descricao`) VAL
 --
 
 CREATE TABLE `pets` (
-  `id` int(11) NOT NULL,
+  `id_pet` int(11) NOT NULL,
   `nome_pet` varchar(250) NOT NULL,
-  `sexo` enum('Macho','Fêmea','Não informado') DEFAULT 'Não informado',
-  `ong_responsavel` int(11) NOT NULL,
-  `especie_id` int(11) NOT NULL,
+  `id_sexo_fk` int(11) NOT NULL,
+  `id_responsavel_fk` int(11) NOT NULL,
+  `id_ong_fk` int(11) NOT NULL,
+  `id_especie_fk` int(11) NOT NULL,
   `peso` decimal(5,2) UNSIGNED DEFAULT NULL,
   `idade` int(11) DEFAULT NULL,
-  `raca_id` int(11) DEFAULT NULL,
-  `porte_id` int(11) DEFAULT NULL,
-  `vacinado` tinyint(1) NOT NULL DEFAULT 0,
-  `sobre_pet` varchar(1000) NOT NULL,
+  `id_raca_fk` int(11) DEFAULT NULL,
+  `id_porte_fk` int(11) DEFAULT NULL,
+  `vacinado` tinyint(1) DEFAULT 0,
+  `sobre_pet` varchar(200) NOT NULL,
   `foto` varchar(255) DEFAULT NULL,
   `data_postagem` timestamp NOT NULL DEFAULT current_timestamp(),
   `status_adocao` enum('disponivel','adotado','pendente') DEFAULT 'disponivel'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `pets`
+--
+
+INSERT INTO `pets` (`id_pet`, `nome_pet`, `id_sexo_fk`, `id_responsavel_fk`, `id_ong_fk`, `id_especie_fk`, `peso`, `idade`, `id_raca_fk`, `id_porte_fk`, `vacinado`, `sobre_pet`, `foto`, `data_postagem`, `status_adocao`) VALUES
+(6, 'Frajola', 1, 6, 37, 1, 4.80, 3, 2, 2, 0, 'Adora dormir e miar muito.', 'uploads/frajola.jpg', '2025-06-24 01:58:01', 'disponivel'),
+(8, 'Bolt', 2, 6, 37, 1, 25.00, 4, NULL, 3, 0, 'Muito brincalhão', NULL, '2025-06-24 11:19:12', 'disponivel'),
+(9, 'Bolt', 2, 6, 37, 1, 25.00, 4, 5, 3, 0, 'Muito brincalhão', NULL, '2025-06-24 11:19:54', 'disponivel'),
+(10, 'Bolt', 2, 6, 37, 1, 25.00, 4, 5, 3, 0, 'Muito brincalhão', NULL, '2025-06-24 11:30:13', 'disponivel'),
+(11, 'aaaaaaa', 1, 15, 51, 1, 2.50, 2, 1, 1, 0, 'aaaaaaaaa', NULL, '2025-06-24 11:31:42', 'disponivel'),
+(12, 'teste', 1, 15, 51, 1, 2.00, 2, 1, 1, 0, 'aaaaaa', '/uploads/foto_pet/pet_12_1750765240726_dog2.jpg', '2025-06-24 11:40:40', 'disponivel'),
+(13, 'Teste', 2, 15, 51, 2, 2.00, 2, 4, 4, 0, 'aaaaaaa', NULL, '2025-06-24 12:32:34', 'disponivel');
 
 -- --------------------------------------------------------
 
@@ -225,6 +239,7 @@ CREATE TABLE `racas_pets` (
 --
 
 INSERT INTO `racas_pets` (`id_raca_pet`, `raca`, `id_especie_fk`) VALUES
+(5, 'Dálmata', 1),
 (1, 'Sem raça', 1),
 (2, 'Sem raça', 2),
 (4, 'Siamês', 2);
@@ -380,7 +395,7 @@ INSERT INTO `usuarios` (`id`, `nome`, `email`, `telefone`, `celular`, `senha`, `
 (33, 'Mary', 'emailong1@gmail.com', '(11) 11111-1111', '(11) 11111-1111', '$2b$10$0T0rBDww4shxKzMZtrj63eROKWfdu8Wq5FZOtAY3GnXoj72dDD0q.', '', 'ong', '2025-06-18 16:05:36', NULL, NULL, NULL),
 (34, 'Lari', 'ongteste@gmail.com', '(22) 22222-2222', '(22) 22222-2222', '$2b$10$aH0rmFeLMDWriXLoBixnNeqcbVviYq.TciR0zoXDaPAOe1adsS9ly', '', 'ong', '2025-06-19 14:52:03', NULL, NULL, NULL),
 (37, '', 'contato@amorespeludos.org', '2123456789', '21987654321', '$2b$10$qWN72Xg2ad/s0mLAuJe39OsFAFYevxL302TnBrRmDqyMaBZspnSVW', '/uploads/foto_perfil/perfil_37_1750709605579_cat2.jpg', 'adotante', '2025-06-20 22:14:35', NULL, NULL, 8),
-(51, '', 'demonstracao@gmail.com', '(11) 11111-1111', '(11) 11111-1111', '$2b$10$AD5uc0vSMp1tHXNAD0yKiudc5hSxpA1cf9jBDsnzulNBrk3.jhsWG', '/uploads/foto_perfil/perfil_51_1750713374567_back_login.jpg', 'adotante', '2025-06-23 21:15:39', NULL, NULL, 22);
+(51, '', 'demonstracao@gmail.com', '(11) 11111-1111', '(11) 11111-1111', '$2b$10$AD5uc0vSMp1tHXNAD0yKiudc5hSxpA1cf9jBDsnzulNBrk3.jhsWG', '/uploads/foto_perfil/perfil_51_1750760896564_ong1.jpg', 'adotante', '2025-06-23 21:15:39', NULL, NULL, 22);
 
 --
 -- Índices para tabelas despejadas
@@ -433,11 +448,13 @@ ALTER TABLE `ongs`
 -- Índices de tabela `pets`
 --
 ALTER TABLE `pets`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `especie_id` (`especie_id`),
-  ADD KEY `raca_id` (`raca_id`),
-  ADD KEY `porte_id` (`porte_id`),
-  ADD KEY `fk_pets_ong_responsavel` (`ong_responsavel`);
+  ADD PRIMARY KEY (`id_pet`),
+  ADD KEY `especie_id` (`id_especie_fk`),
+  ADD KEY `raca_id` (`id_raca_fk`),
+  ADD KEY `porte_id` (`id_porte_fk`),
+  ADD KEY `fk_pets_ong_responsavel` (`id_responsavel_fk`),
+  ADD KEY `FK_SEXO_PET` (`id_sexo_fk`),
+  ADD KEY `FK_ONG_PETS` (`id_ong_fk`);
 
 --
 -- Índices de tabela `portes_pets`
@@ -523,7 +540,7 @@ ALTER TABLE `especies_pets`
 -- AUTO_INCREMENT de tabela `pets`
 --
 ALTER TABLE `pets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de tabela `portes_pets`
@@ -535,7 +552,7 @@ ALTER TABLE `portes_pets`
 -- AUTO_INCREMENT de tabela `racas_pets`
 --
 ALTER TABLE `racas_pets`
-  MODIFY `id_raca_pet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_raca_pet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `responsaveis`
@@ -608,10 +625,12 @@ ALTER TABLE `ongs`
 -- Restrições para tabelas `pets`
 --
 ALTER TABLE `pets`
-  ADD CONSTRAINT `fk_pets_ong_responsavel` FOREIGN KEY (`ong_responsavel`) REFERENCES `ongs` (`usuario_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `pets_ibfk_1` FOREIGN KEY (`especie_id`) REFERENCES `especies_pets` (`id_especie_pet`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `pets_ibfk_2` FOREIGN KEY (`raca_id`) REFERENCES `racas_pets` (`id_raca_pet`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `pets_ibfk_3` FOREIGN KEY (`porte_id`) REFERENCES `portes_pets` (`id_porte_pet`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_ONG_PETS` FOREIGN KEY (`id_ong_fk`) REFERENCES `ongs` (`usuario_id`),
+  ADD CONSTRAINT `FK_SEXO_PET` FOREIGN KEY (`id_sexo_fk`) REFERENCES `sexos_pets` (`id_sexo_pet`),
+  ADD CONSTRAINT `fk_pets_responsavel` FOREIGN KEY (`id_responsavel_fk`) REFERENCES `responsaveis` (`id_responsavel`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pets_ibfk_1` FOREIGN KEY (`id_especie_fk`) REFERENCES `especies_pets` (`id_especie_pet`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `pets_ibfk_2` FOREIGN KEY (`id_raca_fk`) REFERENCES `racas_pets` (`id_raca_pet`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `pets_ibfk_3` FOREIGN KEY (`id_porte_fk`) REFERENCES `portes_pets` (`id_porte_pet`) ON UPDATE CASCADE;
 
 --
 -- Restrições para tabelas `racas_pets`

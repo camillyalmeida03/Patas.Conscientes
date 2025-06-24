@@ -1,5 +1,4 @@
 ### Lista pets
-
 GET http://localhost:4501/pets
 
 ### Encontra pet pelo ID

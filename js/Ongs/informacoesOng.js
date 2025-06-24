@@ -12,7 +12,7 @@ export class InformacoesOng {
     this.qntdanimais = qntdanimais;
   }
 
-  // 🆕 Método que monta a classe a partir dos dados da API
+  //  monta a classe a partir dos dados da API
   static fromAPI(data) {
     const enderecoFormatado = `${data.rua}, ${data.numero}, ${data.bairro}, ${data.cidade} - ${data.sigla}`;
 

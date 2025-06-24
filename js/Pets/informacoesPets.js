@@ -1,6 +1,6 @@
 // Este arquivo é responsável por puxar as informações fictícias (por enquanto) dos Pets.
 
-export class InformacoesPet {
+export class InformacoesPets {
   constructor(
     id,
     idOng,
@@ -30,4 +30,25 @@ export class InformacoesPet {
     this.ongNome = ongNome;
     this.ongLink = ongLink;
   }
+
+    // Método que monta a classe a partir dos dados da API
+    static fromAPI(data) {
+
+    return new InformacoesPets(
+        data.id_pet,
+        data.id_ong_fk,
+        data.foto || "",
+        data.nome_pet,
+        data.id_sexo_fk,
+        data.peso,
+        data.idade,
+        data.especie,
+        data.porte_pet,
+        data.raca,
+        data.sobre_pet,
+        data.nome_ong
+    );
+  }
 }
+
+
