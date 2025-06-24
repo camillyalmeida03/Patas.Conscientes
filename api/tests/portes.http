@@ -1,0 +1,24 @@
+### Lista portes
+GET http://localhost:4501/portes
+
+### Encontra porte pelo ID
+GET http://localhost:4501/portes/6
+
+### Adicionar porte
+POST http://localhost:4501/portes
+Content-Type: application/json
+
+{
+  "porte_pet": "Siamês"
+}
+
+### Deleta porte pelo ID
+DELETE http://localhost:4501/portes/6
+
+### Altera porte pelo ID
+PUT http://localhost:4501/portes/6
+Content-Type: application/json
+
+{
+  "porte_pet": "oi"
+}

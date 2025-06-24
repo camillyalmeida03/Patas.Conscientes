@@ -1,0 +1,26 @@
+### Lista raças
+GET http://localhost:4501/racas
+
+### Encontra raça pelo ID
+GET http://localhost:4501/racas/3
+
+### Adicionar raça
+POST http://localhost:4501/racas
+Content-Type: application/json
+
+{
+  "raca": "Siamês",
+  "id_especie_fk": 2
+}
+
+### Deleta raça pelo ID
+DELETE http://localhost:4501/racas/3
+
+### Altera raça pelo ID
+PUT http://localhost:4501/racas/3
+Content-Type: application/json
+
+{
+  "raca": "Siamês",
+  "id_especie_fk": 2
+}

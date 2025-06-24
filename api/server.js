@@ -11,6 +11,10 @@ const rotasBairros = require("./src/routers/bairrosRouters");
 const rotasCidades = require("./src/routers/cidadesRouters");
 const rotasRuas = require("./src/routers/ruasRouters");
 const rotasUf = require("./src/routers/ufRouters");
+const rotasEspecies = require("./src/routers/especiesRouters")
+const rotasRacas = require("./src/routers/racasRouters");
+const rotasSexopets = require("./src/routers/sexopetsRouters");
+const rotasPortes = require("./src/routers/portesRouters");
 const cors = require("cors");
 const path = require("path");
 const fileupload = require("express-fileupload");
@@ -46,6 +50,10 @@ app.use("/bairros", rotasBairros);
 app.use("/cidades", rotasCidades);
 app.use("/ruas", rotasRuas);
 app.use("/uf", rotasUf);
+app.use("/especies", rotasEspecies)
+app.use("/racas", rotasRacas)
+app.use("/sexopets", rotasSexopets);
+app.use("/portes", rotasPortes);
 
 // Caminhos para a pasta uploads e suas subpastas
 const uploadsFotoPerfilPath = path.join(
