@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 24/06/2025 às 15:05
+-- Tempo de geração: 25/06/2025 às 03:40
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -61,7 +61,8 @@ INSERT INTO `bairros` (`id_bairro`, `bairro`, `id_cidade_fk`) VALUES
 (22, 'Bela Vista', 1),
 (23, 'Centro', 2),
 (24, 'Jardim Novo Mundo', 2),
-(25, 'Copacabana', 10);
+(25, 'Copacabana', 10),
+(26, 'Novo Horizonte', 11);
 
 -- --------------------------------------------------------
 
@@ -84,7 +85,8 @@ INSERT INTO `cidades` (`id_cidade`, `cidade`, `id_uf_fk`) VALUES
 (2, 'Matão', 25),
 (6, 'Araraquara', 25),
 (9, 'Niterói', 19),
-(10, 'Rio de Janeiro', 19);
+(10, 'Rio de Janeiro', 19),
+(11, 'Ji-Paraná', 22);
 
 -- --------------------------------------------------------
 
@@ -111,7 +113,7 @@ INSERT INTO `enderecos` (`id_endereco`, `id_uf_fk`, `id_cidade_fk`, `id_bairro_f
 (1, 25, 2, 13, 1, '1647', '15997070', NULL),
 (2, 25, 2, 13, 1, '1648', '15997070', NULL),
 (8, 19, 9, 21, 4, '456', '24360000', 'Sala 302'),
-(22, 25, 1, 22, 10, '456', '01310-000', 'até 610 - lado par');
+(23, 22, 11, 26, 11, '610', '76907-228', '');
 
 -- --------------------------------------------------------
 
@@ -161,7 +163,7 @@ INSERT INTO `ongs` (`usuario_id`, `nome_ong`, `cnpj`, `banner`, `descricao`) VAL
 (33, 'ONG 2', '22.222.222/2222-22', NULL, NULL),
 (34, 'ONG teste', '11.111.111/1111-11', NULL, NULL),
 (37, 'Amor Espeludo', '98.765.432/0001-10', '/uploads/banner_ong/banner_37_1750709622121_ong2.jpg', 'Dedicada ao resgate e reabilitação de animais abandonados.'),
-(51, 'ong demonstração', '11.111.133/3333-33', '/uploads/banner_ong/banner_51_1750760906096_ong1.jpg', 'aaaaaaaaa');
+(52, 'ONG Amigos Caninos', '11.111.111/1111-13', '/uploads/banner_ong/banner_52_1750814643795_pexels-ingewallu-177809.jpg', 'Esta ONG é destinada a adoção responsável de cães e gatos.');
 
 -- --------------------------------------------------------
 
@@ -192,13 +194,10 @@ CREATE TABLE `pets` (
 --
 
 INSERT INTO `pets` (`id_pet`, `nome_pet`, `id_sexo_fk`, `id_responsavel_fk`, `id_ong_fk`, `id_especie_fk`, `peso`, `idade`, `id_raca_fk`, `id_porte_fk`, `vacinado`, `sobre_pet`, `foto`, `data_postagem`, `status_adocao`) VALUES
-(6, 'Frajola', 1, 6, 37, 1, 4.80, 3, 2, 2, 0, 'Adora dormir e miar muito.', 'uploads/frajola.jpg', '2025-06-24 01:58:01', 'disponivel'),
 (8, 'Bolt', 2, 6, 37, 1, 25.00, 4, NULL, 3, 0, 'Muito brincalhão', NULL, '2025-06-24 11:19:12', 'disponivel'),
-(9, 'Bolt', 2, 6, 37, 1, 25.00, 4, 5, 3, 0, 'Muito brincalhão', NULL, '2025-06-24 11:19:54', 'disponivel'),
-(10, 'Bolt', 2, 6, 37, 1, 25.00, 4, 5, 3, 0, 'Muito brincalhão', NULL, '2025-06-24 11:30:13', 'disponivel'),
-(11, 'aaaaaaa', 1, 15, 51, 1, 2.50, 2, 1, 1, 0, 'aaaaaaaaa', NULL, '2025-06-24 11:31:42', 'disponivel'),
-(12, 'teste', 1, 15, 51, 1, 2.00, 2, 1, 1, 0, 'aaaaaa', '/uploads/foto_pet/pet_12_1750765240726_dog2.jpg', '2025-06-24 11:40:40', 'disponivel'),
-(13, 'Teste', 2, 15, 51, 2, 2.00, 2, 4, 4, 0, 'aaaaaaa', NULL, '2025-06-24 12:32:34', 'disponivel');
+(15, 'Senhorita', 2, 16, 52, 2, 3.00, 5, 2, 3, 0, 'Carinhosa.', '/uploads/foto_pet/pet_15_1750814686505_pexels-ingewallu-177809.jpg', '2025-06-25 01:24:46', 'disponivel'),
+(16, 'Bolt', 1, 16, 52, 1, 15.00, 2, 6, 4, 0, 'Ativo e guloso.', '/uploads/foto_pet/pet_16_1750814767732_pexels-pixabay-220938.jpg', '2025-06-25 01:26:07', 'disponivel'),
+(17, 'Tutu', 1, 16, 52, 2, 2.00, 1, 2, 2, 0, 'Filhote felpudo.', '/uploads/foto_pet/pet_17_1750815009192_pexels-lina-1741205.jpg', '2025-06-25 01:30:09', 'disponivel');
 
 -- --------------------------------------------------------
 
@@ -239,6 +238,7 @@ CREATE TABLE `racas_pets` (
 --
 
 INSERT INTO `racas_pets` (`id_raca_pet`, `raca`, `id_especie_fk`) VALUES
+(6, 'Border Collie', 1),
 (5, 'Dálmata', 1),
 (1, 'Sem raça', 1),
 (2, 'Sem raça', 2),
@@ -265,7 +265,7 @@ CREATE TABLE `responsaveis` (
 INSERT INTO `responsaveis` (`id_responsavel`, `nome_responsavel`, `id_ong_fk`, `cpf_responsavel`, `email_responsavel`) VALUES
 (1, 'Maria Fernanda', 22, '22222222222', 'mariafer@gmail.com'),
 (6, 'Rodrigo Lima', 37, '98765432100', 'rodrigo@amorespeludos.org'),
-(15, 'resp', 51, '111.111.112-22', 'aaa@gmail.com');
+(16, 'Luís Mário', 52, '111.111.111-15', 'emaildoluismario@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -291,7 +291,8 @@ INSERT INTO `ruas` (`id_rua`, `rua`, `id_bairro_fk`) VALUES
 (6, 'Rua das ONGs', 23),
 (7, 'Avenida Dario Geraldo', 24),
 (8, 'Rua Barata Ribeiro', 25),
-(10, 'Avenida Paulista', 22);
+(10, 'Avenida Paulista', 22),
+(11, 'Rua Acerola', 26);
 
 -- --------------------------------------------------------
 
@@ -395,7 +396,7 @@ INSERT INTO `usuarios` (`id`, `nome`, `email`, `telefone`, `celular`, `senha`, `
 (33, 'Mary', 'emailong1@gmail.com', '(11) 11111-1111', '(11) 11111-1111', '$2b$10$0T0rBDww4shxKzMZtrj63eROKWfdu8Wq5FZOtAY3GnXoj72dDD0q.', '', 'ong', '2025-06-18 16:05:36', NULL, NULL, NULL),
 (34, 'Lari', 'ongteste@gmail.com', '(22) 22222-2222', '(22) 22222-2222', '$2b$10$aH0rmFeLMDWriXLoBixnNeqcbVviYq.TciR0zoXDaPAOe1adsS9ly', '', 'ong', '2025-06-19 14:52:03', NULL, NULL, NULL),
 (37, '', 'contato@amorespeludos.org', '2123456789', '21987654321', '$2b$10$qWN72Xg2ad/s0mLAuJe39OsFAFYevxL302TnBrRmDqyMaBZspnSVW', '/uploads/foto_perfil/perfil_37_1750709605579_cat2.jpg', 'adotante', '2025-06-20 22:14:35', NULL, NULL, 8),
-(51, '', 'demonstracao@gmail.com', '(11) 11111-1111', '(11) 11111-1111', '$2b$10$AD5uc0vSMp1tHXNAD0yKiudc5hSxpA1cf9jBDsnzulNBrk3.jhsWG', '/uploads/foto_perfil/perfil_51_1750760896564_ong1.jpg', 'adotante', '2025-06-23 21:15:39', NULL, NULL, 22);
+(52, '', 'ongamigoscaninos@gmail.com', '(11) 11111-1111', '(11) 11111-1111', '$2b$10$7rgPuY5mv3nAOLpdXXXmauvMf7nwjxCNnbQtHuYY17urJLbifahge', '/uploads/foto_perfil/perfil_52_1750814631479_pexels-ingewallu-177809.jpg', 'adotante', '2025-06-25 01:22:16', NULL, NULL, 23);
 
 --
 -- Índices para tabelas despejadas
@@ -516,19 +517,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `bairros`
 --
 ALTER TABLE `bairros`
-  MODIFY `id_bairro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_bairro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de tabela `cidades`
 --
 ALTER TABLE `cidades`
-  MODIFY `id_cidade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_cidade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de tabela `enderecos`
 --
 ALTER TABLE `enderecos`
-  MODIFY `id_endereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_endereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de tabela `especies_pets`
@@ -540,7 +541,7 @@ ALTER TABLE `especies_pets`
 -- AUTO_INCREMENT de tabela `pets`
 --
 ALTER TABLE `pets`
-  MODIFY `id_pet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_pet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de tabela `portes_pets`
@@ -552,19 +553,19 @@ ALTER TABLE `portes_pets`
 -- AUTO_INCREMENT de tabela `racas_pets`
 --
 ALTER TABLE `racas_pets`
-  MODIFY `id_raca_pet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_raca_pet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `responsaveis`
 --
 ALTER TABLE `responsaveis`
-  MODIFY `id_responsavel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_responsavel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `ruas`
 --
 ALTER TABLE `ruas`
-  MODIFY `id_rua` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_rua` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de tabela `sexos_pets`
@@ -582,7 +583,7 @@ ALTER TABLE `uf`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- Restrições para tabelas despejadas

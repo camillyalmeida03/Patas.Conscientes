@@ -2658,11 +2658,14 @@ textarea {
   pointer-events: none; /* garante que o clique vá para o label */
 }
 
-#inputBannerOng form{
+.bannerPerfilOng .bttEditarImg{
     right: 1rem;
     bottom: 1rem;
 }
 
+.h1NomeOng{
+    text-align: center;
+}
 /* -------- MODO ESCURO ------------------------------------------------------------------------------------------------------- */
 
 .bodyME {
@@ -3134,7 +3137,7 @@ textarea {
         padding: 0 2rem 0 2rem;
     }
 
-    #inputBannerOng form{
+.bannerPerfilOng .bttEditarImg{
     right: 1rem;
     bottom: 2rem;
 }

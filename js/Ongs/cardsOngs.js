@@ -67,12 +67,13 @@ export class CardsOngs {
       descOng
     );
     this.criarElemento.createElement("p", "cidadeOng", InfoOng.cidade, descOng);
-    this.criarElemento.createElement(
-      "p",
-      "qntdAnimaisOng",
-      `Animais: ${InfoOng.qntdanimais || 0}`,
-      descOng
-    );
+    // this.criarElemento.createElement(
+    //   "p",
+    //   "qntdAnimaisOng",
+    //   `Animais: ${InfoOng.qntdanimais || 0}`,
+    //   descOng
+    // );
+
   }
 
   abrirOngPage() {
