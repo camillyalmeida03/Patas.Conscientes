@@ -64,5 +64,5 @@ Content-Type: application/json
 
 
 ### Deletar ONG
-DELETE http://localhost:4501/ongs/50
+DELETE http://localhost:4501/ongs/51
 Content-Type: application/json

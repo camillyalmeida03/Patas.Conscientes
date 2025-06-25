@@ -24,7 +24,8 @@ Content-Type: application/json
 
 
 ### Deleta pet pelo ID
-DELETE http://localhost:4501/pets/5
+DELETE http://localhost:4501/pets/10
+
 
 ###
 PUT http://localhost:4501/pets/6
