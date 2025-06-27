@@ -75,22 +75,22 @@ function paginacarregada(){
   }
   );
 
- // Seleciona o botão e o campo de senha
-const togglePasswordButton = document.getElementById("togglePassword");
-const passwordField = document.getElementById("senhaEntrar");
-const eyeIcon = document.getElementById("olho");
+//  // Seleciona o botão e o campo de senha
+// const togglePasswordButton = document.getElementById("togglePassword");
+// const passwordField = document.getElementById("senhaEntrar");
+// const eyeIcon = document.getElementById("olho");
 
-togglePasswordButton.addEventListener("click", function (event) {
-  event.preventDefault(); // Evita o envio do formulário ao clicar no botão
+// togglePasswordButton.addEventListener("click", function (event) {
+//   event.preventDefault(); // Evita o envio do formulário ao clicar no botão
   
-  // Alterna o tipo de campo entre "password" e "text"
-  const isPassword = passwordField.getAttribute("type") === "password";
-  passwordField.setAttribute("type", isPassword ? "text" : "password");
+//   // Alterna o tipo de campo entre "password" e "text"
+//   const isPassword = passwordField.getAttribute("type") === "password";
+//   passwordField.setAttribute("type", isPassword ? "text" : "password");
   
-  // Alterna a imagem do olho entre aberto e fechado
-  eyeIcon.setAttribute("src", isPassword ? "img/icons/olhofechado.svg" : "img/icons/olhoaberto.svg");
-  eyeIcon.setAttribute("alt", isPassword ? "Esconder senha" : "Mostrar senha");
-});
+//   // Alterna a imagem do olho entre aberto e fechado
+//   eyeIcon.setAttribute("src", isPassword ? "img/icons/olhofechado.svg" : "img/icons/olhoaberto.svg");
+//   eyeIcon.setAttribute("alt", isPassword ? "Esconder senha" : "Mostrar senha");
+// });
 
 // conexão com o banco de dados
 // function alterarBotao() {
