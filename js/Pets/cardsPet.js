@@ -823,84 +823,9 @@ export class CardsPets {
   }
 }
 
-const id = new URLSearchParams(window.location.search).get("id");
-const adotarSec = document.querySelector(".adotarSec");
-
-// fetch("http://localhost:4501/pets")
-//   .then((res) => res.json())
-//   .then((pets) => {
-//     const petsDaOng = pets.filter((pet) => pet.id_ong_fk === parseInt(id));
-//     petsDaOng.forEach((pet) => {
-//       const infoPet = new InformacoesPets(
-//         pet.id_pet,
-//         pet.id_ong_fk,
-//         pet.foto || "img/default-pet.jpg",
-//         pet.nome_pet,
-//         pet.id_sexo_fk,
-//         pet.peso,
-//         pet.idade,
-//         pet.especie,
-//         pet.porte_pet,
-//         pet.raca,
-//         pet.sobre_pet,
-//         pet.nome_ong,
-//         `ongPage.html?id=${pet.id_ong_fk}`
-//       );
-
-//       const card = new CardsPets(infoPet);
-//       card.modalPet(infoPet);
-//       card.gerarCard(infoPet);
-//     });
-//   });
-
 window.addEventListener("load", paginacarregada); //A página espera o JS carregar antes de executar ele
 
 function paginacarregada() {
-  //Array que guarda os cards
-  // const cards = [];
-
-  // //Aqui é definido o que cada pet recebe de configuração assim que "nasce"
-  // pets.forEach((pet) => {
-  //   //É criada uma nova instância de CardsPets (Classe que tem todas as configurações de cada card)
-  //   const card = new CardsPets();
-
-  //   //Chamando métodos que geram o card e seu modal
-  //   card.modalPet(pet);
-  //   card.gerarCard(pet);
-
-  //   //Executa cada código que têm aqui dentro assim que o JS terminar de criar todo o html
-  //   setTimeout(() => {
-  //     if (card.verMais) {
-  //       card.verMais.addEventListener("click", () => {
-  //         if (window.innerWidth <= 650) {
-  //           // Se for celular: expande o card
-  //           if (!card.informacoesExibidas) {
-  //             card.limparCardNormal();
-  //             card.mostrarMaisInformacoesPetCard();
-  //           }
-  //         } else {
-  //           // Se for desktop: mostra o modal
-  //           card.mostrarFundoDaAba();
-  //         }
-  //       });
-  //     }
-
-  //     if (card.verMenos) {
-  //       card.verMenos.addEventListener("click", () => {
-  //         // Clicou em ver menos → volta ao card normal
-  //         card.limparCardMaisInfo();
-  //         card.limparCardNormal();
-  //         card.mostrarCardNormal();
-  //       });
-  //     }
-  //   }, 0);
-
-  //   if (card.fecharAba) {
-  //     card.fecharAba.addEventListener("click", () => {
-  //       card.esconderFundoDaAba();
-  //     });
-  //   }
-  // });
 
   // ✅ Agora, só UM resize, fora do forEach
   window.addEventListener("resize", () => {
