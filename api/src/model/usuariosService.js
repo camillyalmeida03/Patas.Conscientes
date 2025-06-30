@@ -401,13 +401,13 @@ const Login = async (request, response) => {
     const sistema = `${ua.os.name} ${ua.os.version}`;                 
 
     // 4) Envia o email de notificação de login – só chamamos UMA vez, passando todos os dados
-    await enviarEmailLogin(
-      email,
-      usuario.nome,
-      ip,
-      navegador,
-      sistema
-    );
+    // await enviarEmailLogin(
+    //   email,
+    //   usuario.nome,
+    //   ip,
+    //   navegador,
+    //   sistema
+    // );
 
     // 5) Responde o login bem-sucedido (sem retornar a senha)
     delete usuario.senha;
