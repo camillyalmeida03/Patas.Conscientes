@@ -160,6 +160,7 @@ app.post("/uploadbannerong/:usuarioId", async (req, res) => {
         .status(500)
         .send({ message: "Erro ao salvar caminho no banco.", erro });
     }   
+    }
   });
 });
 
