@@ -10,7 +10,7 @@ if (formFinal) {
     e.preventDefault();
 
     if (!dadosSalvos) {
-      alert("Erro: dados do formulário não encontrados.");
+      document.getElementById("mensagemcriacaodeconta").textContent = "Erro: dados do formulário não encontrados.";
       return;
     }
 
@@ -39,12 +39,12 @@ if (formFinal) {
 
       const data = await response.json();
 
-      alert(data.message || "Cadastro realizado com sucesso!");
+      document.getElementById("mensagemcriacaodeconta").textContent = data.message || "Cadastro realizado com sucesso!";
       localStorage.removeItem("usuario");
       window.location.href = `ongs.html`;
     } catch (error) {
       console.error("Erro ao enviar dados:", error);
-      alert("Erro ao enviar dados. Tente novamente.");
+      document.getElementById("mensagemcriacaodeconta").textContent = "Erro ao enviar dados. Tente novamente.";
     }
   });
 }

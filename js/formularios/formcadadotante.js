@@ -298,13 +298,16 @@ async function criarContaAdotante() {
     const data = await response.json();
 
     if (response.ok) {
-      alert("Conta criada com sucesso!");
+      // Se a conta foi criada com sucesso, exibe uma mensagem de sucesso
+      document.getElementById("mensagemcriacaodeconta").innerText = "Conta criada com sucesso!";
+      document.getElementById("mensagemcriacaodeconta").style.color = "green";
       document.getElementById("formAdotante").reset();
       document.getElementById("verificacaoContainer").style.display = "none";
     } else {
-      alert("Erro ao criar conta: " + data.message);
+      document.getElementById("mensagemcriacaodeconta").innerText = "Erro ao criar conta: " + data.message;
+      document.getElementById("mensagemcriacaodeconta").style.color = "red";
     }
   } catch (err) {
-    alert("Erro ao criar conta: " + err.message);
+    document.getElementById("mensagemcriacaodeconta").innerText = "Erro ao criar conta: " + err.message;
   }
 }

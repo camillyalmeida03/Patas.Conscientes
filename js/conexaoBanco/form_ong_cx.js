@@ -27,7 +27,8 @@ if (formOng) {
       !senha ||
       !confirmarSenha
     ) {
-      alert("Por favor, preencha todos os campos.");
+      // Exibe mensagem de erro
+      document.getElementById("mensagemcriacaodeconta").innerText = "Por favor, preencha todos os campos.";
       return;
     }
 
