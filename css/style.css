@@ -2044,7 +2044,18 @@ ol {
     width: 90%;
     outline: none;
     background-color: transparent;
+
 }
+
+.passwordContainer input:-webkit-autofill,
+.passwordContainer input:-webkit-autofill:focus,
+.passwordContainer input:-webkit-autofill:hover,
+.passwordContainer input:-webkit-autofill:active {
+  transition: background-color 9999s ease-in-out 0s;
+  -webkit-text-fill-color: #000 !important;
+  box-shadow: 0 0 0 1000px transparent inset !important;
+}
+
 
 .loginCard form>input[type="text"]::-webkit-input-placeholder,
 .loginCard form>input[type="password"]::-webkit-input-placeholder,
