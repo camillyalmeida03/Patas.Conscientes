@@ -1,0 +1,25 @@
+{
+  "name": "patas.conscientes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/camillyalmeida03/Patas.Conscientes.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/camillyalmeida03/Patas.Conscientes/issues"
+  },
+  "homepage": "https://github.com/camillyalmeida03/Patas.Conscientes#readme",
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.3"
+  }
+}
