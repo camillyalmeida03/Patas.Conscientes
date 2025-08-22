@@ -5,12 +5,8 @@ const dotenv = require('dotenv');
 // Conexão com o banco
 const {checkConnection } = require("./models/database");
 
-// const rotasCidades = require("./routers/cidadesRouters");
-// const rotasContatos = require("./routers/contatosRouters");
-// const rotasUsuarios = require("./routers/usuariosRouters");
-// const rotasEstados = require("./routers/estadosRouters");
-// const rotasAuth =  require('./routers/authRouters');
-// const rotasviacep = require('./routers/viacepRouter');
+// Rotas das API's das tabelas
+const rotasSexo = require("./routers/sexoRouters");
 
 dotenv.config();
 
@@ -29,9 +25,10 @@ app.use(express.json());
         console.error("Falha na conexão com o banco de dados!");
     }
 })();
+
 app.get("/", (request, response) => {
     response.send({"message": "Servidor rodando !"});
-})
+});
 
 // app.use("/cidades", rotasCidades);
 // app.use("/contatos", rotasContatos);
@@ -40,6 +37,8 @@ app.get("/", (request, response) => {
 // app.use("/auth", rotasAuth);
 // app.use("/viacep", rotasviacep);
 
+app.use("/sexos", rotasSexo);
+
 app.listen(Port, () => {
     console.log(`servidor rodando na porta: ${Port}`)
-})
+});
