@@ -1,8 +1,9 @@
-// Controller responsável por receber requisições HTTP e chamar o service da tabela cidades para executar o CRUD.
 
-const model = require("../models/cidadesServices");
+// Controller responsável por receber requisições HTTP e chamar o service da tabela bairros para executar o CRUD.
 
-const cidadesController = {
+const model = require("../models/bairrosServices");
+
+const bairrosController = {
     GetAll: async (request, response) => {
         try {
             const data = await model.GetAll(); // chama service sem passar response
@@ -26,8 +27,8 @@ const cidadesController = {
 
     Post: async (request, response) => {
         try {
-            const { cidade, fk_idestado } = request.body;
-            const data = await model.Post(cidade, fk_idestado); // chama service sem passar response
+            const { bairro, fk_idcidade } = request.body;
+            const data = await model.Post(bairro, fk_idcidade); // chama service sem passar response
             response.status(201).json(data);
         } catch (error) {
             console.error("Erro ao conectar ao banco de dados:", error.message);
@@ -37,10 +38,10 @@ const cidadesController = {
 
     Put: async (request, response) => {
         try {
-            const { cidade, fk_idestado } = request.body;
+            const { bairro, fk_idcidade } = request.body;
             const { id } = request.params;
 
-            const data = await model.Put(id, cidade, fk_idestado); // chama service sem passar response
+            const data = await model.Put(id, bairro, fk_idcidade); // chama service sem passar response
             response.status(200).json(data);
         } catch (error) {
             console.error("Erro ao conectar ao banco de dados:", error.message);
@@ -60,4 +61,4 @@ const cidadesController = {
     }
 }
 
-module.exports = cidadesController;
+module.exports = bairrosController;

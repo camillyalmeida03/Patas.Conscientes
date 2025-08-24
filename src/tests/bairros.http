@@ -1,0 +1,28 @@
+#Testes da tabela bairros
+
+### Listar dados
+GET http://localhost:3600/bairros
+
+### Mostrar campo por id
+GET http://localhost:3600/bairros/2
+
+### Inserir novo dado
+POST http://localhost:3600/bairros
+Content-Type: application/json
+
+{
+    "bairro": "Teste",
+    "fk_idcidade": 1
+}
+
+### Inserir um dado com base no id
+PUT http://localhost:3600/bairros/2
+Content-Type: application/json
+
+{
+    "bairro": "Testinho",
+    "fk_idcidade": 1
+}
+
+### Excluir um dado com base no id
+DELETE http://localhost:3600/bairros/2
