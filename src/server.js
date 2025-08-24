@@ -8,6 +8,7 @@ const {checkConnection } = require("./models/database");
 // Pegando os dados para as rotas das API's das tabelas
 const rotasSexo = require("./routers/sexoRouters");
 const rotasEstados = require("./routers/estadosRouters");
+const rotasCidades = require("./routers/cidadesRouters");
 
 dotenv.config();
 
@@ -35,6 +36,8 @@ app.get("/", (request, response) => {
 // Usando as rotas puxadas anteriormente
 app.use("/sexos", rotasSexo);
 app.use("/estados", rotasEstados);
+app.use("/cidades", rotasCidades);
+
 
 // Informando a porta usada
 app.listen(Port, () => {
