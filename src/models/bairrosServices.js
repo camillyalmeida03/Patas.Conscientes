@@ -1,4 +1,3 @@
-
 // Este arquivo implementa o CRUD da tabela bairros, fornecendo funções assíncronas para listar, buscar por id, inserir, atualizar e excluir registros no banco de dados. 
 
 const { banco } = require("./database"); // Chamando o banco
