@@ -1,0 +1,38 @@
+#Testes da tabela enderecos
+
+### Listar dados
+GET http://localhost:3600/enderecos
+
+### Mostrar campo por id
+GET http://localhost:3600/enderecos/3
+
+### Inserir novo dado
+POST http://localhost:3600/enderecos
+Content-Type: application/json
+
+{
+    "fk_idcidade": 1,
+    "fk_idbairro": 1,
+    "fk_idrua": 1,
+    "fk_idestado": 1,
+    "numero": "teste",
+    "cep": "teste",
+    "complemento": "testinho"
+}
+
+### Inserir um dado com base no id
+PUT http://localhost:3600/enderecos/3
+Content-Type: application/json
+
+{
+    "fk_idcidade": 1,
+    "fk_idbairro": 1,
+    "fk_idrua": 1,
+    "fk_idestado": 1,
+    "numero": "teste",
+    "cep": "teste",
+    "complemento": "teste"
+}
+
+### Excluir um dado com base no id
+DELETE http://localhost:3600/enderecos/3
