@@ -16,11 +16,11 @@ Content-Type: application/json
 }
 
 ### Inserir um dado com base no id
-PUT http://localhost:3600/ruas/2
+PUT http://localhost:3600/ruas/1
 Content-Type: application/json
 
 {
-    "rua": "Teste",
+    "rua": "Dário Geraldo",
     "fk_idbairro": 1
 }
 

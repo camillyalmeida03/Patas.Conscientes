@@ -19,29 +19,29 @@ const GetById = async (id) => {
   return rows; // Retorna só os dados
 };
 
-const Post = async (tipo) => {
-  const querySelect = 'INSERT INTO ruas(rua, fk_idbairro)';
+const Post = async (tipo, descricao) => {
+  const querySelect = 'INSERT INTO tipos_usuario(tipo, descricao)';
   const queryValues = ' VALUES (?, ?)';
 
   querytext = querySelect + queryValues;
 
-  const [result] = await banco.query(querytext, [rua, fk_idbairro]); //Manda a queryText pro banco
-  return { id: result.insertId, rua, fk_idbairro }; // Retorna o novo registro criado
+  const [result] = await banco.query(querytext, [tipo, descricao]); //Manda a queryText pro banco
+  return { id: result.insertId, tipo, descricao }; // Retorna o novo registro criado
 };
 
-const Put = async (id, rua, fk_idbairro) => {
-  const querySelect = 'UPDATE ruas SET rua = ?, fk_idbairro = ?';
-  const queryWhere = ' WHERE idrua = ?';
+const Put = async (id, tipo, descricao) => {
+  const querySelect = 'UPDATE tipos_usuario SET tipo = ?, descricao = ?';
+  const queryWhere = ' WHERE idtipo = ?';
 
   querytext = querySelect + queryWhere;
 
-  const [result] = await banco.query(querytext, [rua, fk_idbairro, id]); //Manda a queryText pro banco
-  return { id, rua, fk_idbairro, linhasAfetadas: result.affectedRows }; // Retorna o registro alterado
+  const [result] = await banco.query(querytext, [tipo, descricao, id]); //Manda a queryText pro banco
+  return { id, tipo, descricao, linhasAfetadas: result.affectedRows }; // Retorna o registro alterado
 };
 
 const Erase = async (id) => {
-  const querySelect = 'DELETE FROM ruas';
-  const queryWhere = ' WHERE idrua = ?';
+  const querySelect = 'DELETE FROM tipos_usuario';
+  const queryWhere = ' WHERE idtipo = ?';
 
   querytext = querySelect + queryWhere;
 

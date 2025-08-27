@@ -11,8 +11,8 @@ POST http://localhost:3600/estados
 Content-Type: application/json
 
 {
-    "sigla": "AB",
-    "estado": "AB test"
+    "sigla": "ab",
+    "estado": "São Paulo"
 }
 
 ### Inserir um dado com base no id

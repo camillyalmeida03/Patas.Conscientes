@@ -21,7 +21,7 @@ Content-Type: application/json
 }
 
 ### Inserir um dado com base no id
-PUT http://localhost:3600/enderecos/3
+PUT http://localhost:3600/enderecos/1
 Content-Type: application/json
 
 {
@@ -29,9 +29,9 @@ Content-Type: application/json
     "fk_idbairro": 1,
     "fk_idrua": 1,
     "fk_idestado": 1,
-    "numero": "teste",
-    "cep": "teste",
-    "complemento": "teste"
+    "numero": "192",
+    "cep": "15997-422",
+    "complemento": "Casa"
 }
 
 ### Excluir um dado com base no id

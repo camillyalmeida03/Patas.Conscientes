@@ -1,0 +1,28 @@
+#Testes da tabela tipos_usuario
+
+### Listar dados
+GET http://localhost:3600/tiposusuario
+
+### Mostrar campo por id
+GET http://localhost:3600/tiposusuario/2
+
+### Inserir novo dado
+POST http://localhost:3600/tiposusuario
+Content-Type: application/json
+
+{
+    "tipo": "adfsadd",
+    "descricao": "Possui acesso ao código-fonte, manutenção do sistema, criação e edição de funcionalidades, gerenciamento de banco de dados e APIs, com restrição a dados sensíveis e aprovações administrativas."
+}
+
+### Inserir um dado com base no id
+PUT http://localhost:3600/tiposusuario/1
+Content-Type: application/json
+
+{
+    "tipo": "Desenvolvedor",
+    "descricao": "Possui acesso ao código-fonte, manutenção do sistema, criação e edição de funcionalidades, gerenciamento de banco de dados e APIs, com restrição a dados sensíveis e aprovações administrativas."
+}
+
+### Excluir um dado com base no id
+DELETE http://localhost:3600/tiposusuario/2

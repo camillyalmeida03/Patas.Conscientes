@@ -11,15 +11,15 @@ POST http://localhost:3600/sexos
 Content-Type: application/json
 
 {
-    "sexo": "Teste"
+    "sexo": "Prefiro não dizer"
 }
 
 ### Inserir um dado com base no id
-PUT http://localhost:3600/sexos/4
+PUT http://localhost:3600/sexos/1
 Content-Type: application/json
 
 {
-    "sexo": "Testinho"
+    "sexo": "Feminino"
 }
 
 ### Excluir um dado com base no id
