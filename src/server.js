@@ -14,7 +14,7 @@ const rotasRuas = require("./routers/ruasRouters");
 const rotasEnderecos = require("./routers/enderecosRouters");
 const rotasTiposUsuario = require("./routers/tipos_usuarioRouters");
 const rotasUsuarios = require("./routers/usuariosRouters");
-
+const rotasOngs = require("./routers/ongsRouters");
 
 dotenv.config();
 
@@ -48,6 +48,7 @@ app.use("/ruas", rotasRuas);
 app.use("/enderecos", rotasEnderecos);
 app.use("/tiposusuario", rotasTiposUsuario);
 app.use("/usuarios", rotasUsuarios);
+app.use("/ongs", rotasOngs);
 
 // Informando a porta usada
 app.listen(Port, () => {
