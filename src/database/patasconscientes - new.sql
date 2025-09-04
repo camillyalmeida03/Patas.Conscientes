@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 20/08/2025 às 16:28
+-- Tempo de geração: 04/09/2025 às 15:23
 -- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.0.30
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,6 +33,13 @@ CREATE TABLE `bairros` (
   `fk_idcidade` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Despejando dados para a tabela `bairros`
+--
+
+INSERT INTO `bairros` (`idbairro`, `bairro`, `fk_idcidade`) VALUES
+(1, 'Novo Mundo', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -44,6 +51,13 @@ CREATE TABLE `cidades` (
   `cidade` varchar(100) NOT NULL,
   `fk_idestado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Despejando dados para a tabela `cidades`
+--
+
+INSERT INTO `cidades` (`idcidade`, `cidade`, `fk_idestado`) VALUES
+(1, 'Matão', 1);
 
 -- --------------------------------------------------------
 
@@ -61,6 +75,13 @@ CREATE TABLE `enderecos` (
   `cep` varchar(9) NOT NULL,
   `complemento` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Despejando dados para a tabela `enderecos`
+--
+
+INSERT INTO `enderecos` (`idendereco`, `fk_idcidade`, `fk_idbairro`, `fk_idrua`, `fk_idestado`, `numero`, `cep`, `complemento`) VALUES
+(1, 1, 1, 1, 1, '192', '15997-422', 'Casa');
 
 -- --------------------------------------------------------
 
@@ -85,6 +106,13 @@ CREATE TABLE `estados` (
   `estado` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Despejando dados para a tabela `estados`
+--
+
+INSERT INTO `estados` (`idestado`, `sigla`, `estado`) VALUES
+(1, 'SP', 'São Paulo');
+
 -- --------------------------------------------------------
 
 --
@@ -97,6 +125,14 @@ CREATE TABLE `funcionarios` (
   `fk_idong` int(11) NOT NULL,
   `fk_idresponsavel` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Despejando dados para a tabela `funcionarios`
+--
+
+INSERT INTO `funcionarios` (`idfuncionario`, `fk_idusuario`, `fk_idong`, `fk_idresponsavel`) VALUES
+(1, 1, 1, 1),
+(2, 1, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -118,8 +154,17 @@ CREATE TABLE `ongs` (
   `email` varchar(250) NOT NULL,
   `senha` varchar(250) NOT NULL,
   `data_criacao` datetime NOT NULL DEFAULT current_timestamp(),
-  `data_att` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `data_att` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `fk_idtipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Despejando dados para a tabela `ongs`
+--
+
+INSERT INTO `ongs` (`idong`, `nome`, `cnpj`, `telefone`, `descricao`, `foto`, `banner`, `fk_idendereco`, `comp_estatuto`, `comp_cnpj`, `email`, `senha`, `data_criacao`, `data_att`, `fk_idtipo`) VALUES
+(1, 'Ong teste 1', '1111111', '1111111', 'Descrição.', 'teste foto.', 'teste banner.', 1, 'Comprovante teste.', 'Comprovante teste.', 'ongteste1@gmail.com', '12345', '2025-09-02 08:47:47', '2025-09-02 08:59:18', 4),
+(3, 'Ong teste 2', '222222222', '22222222', 'Descrição teste ong teste 2.', NULL, NULL, 1, 'Comprovante teste.', 'Comprovante teste.', 'ongteste2@gmail.com', '12345', '2025-09-04 08:18:12', '2025-09-04 08:18:12', 4);
 
 -- --------------------------------------------------------
 
@@ -208,6 +253,13 @@ CREATE TABLE `redessociais` (
   `link` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Despejando dados para a tabela `redessociais`
+--
+
+INSERT INTO `redessociais` (`idredesocial`, `fk_idong`, `plataforma`, `link`) VALUES
+(1, 1, 'Facebook', 'linkficticio');
+
 -- --------------------------------------------------------
 
 --
@@ -219,6 +271,13 @@ CREATE TABLE `responsaveis` (
   `fk_idusuario` int(11) NOT NULL,
   `fk_idong` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Despejando dados para a tabela `responsaveis`
+--
+
+INSERT INTO `responsaveis` (`idresponsavel`, `fk_idusuario`, `fk_idong`) VALUES
+(1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -232,6 +291,13 @@ CREATE TABLE `ruas` (
   `fk_idbairro` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Despejando dados para a tabela `ruas`
+--
+
+INSERT INTO `ruas` (`idrua`, `rua`, `fk_idbairro`) VALUES
+(1, 'Dário Geraldo', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -242,6 +308,15 @@ CREATE TABLE `sexo` (
   `idsexo` int(11) NOT NULL,
   `sexo` varchar(17) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Despejando dados para a tabela `sexo`
+--
+
+INSERT INTO `sexo` (`idsexo`, `sexo`) VALUES
+(1, 'Feminino'),
+(2, 'Masculino'),
+(3, 'Prefiro não dizer');
 
 -- --------------------------------------------------------
 
@@ -254,6 +329,15 @@ CREATE TABLE `sexospet` (
   `sexopet` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Despejando dados para a tabela `sexospet`
+--
+
+INSERT INTO `sexospet` (`idsexopet`, `sexopet`) VALUES
+(1, 'Indefinido'),
+(2, 'Fêmea'),
+(4, 'Macho');
+
 -- --------------------------------------------------------
 
 --
@@ -264,6 +348,14 @@ CREATE TABLE `status` (
   `idstatus` int(11) NOT NULL,
   `status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Despejando dados para a tabela `status`
+--
+
+INSERT INTO `status` (`idstatus`, `status`) VALUES
+(1, 'Disponível'),
+(3, 'Reservado');
 
 -- --------------------------------------------------------
 
@@ -276,6 +368,15 @@ CREATE TABLE `tipos_usuario` (
   `tipo` varchar(100) NOT NULL,
   `descricao` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Despejando dados para a tabela `tipos_usuario`
+--
+
+INSERT INTO `tipos_usuario` (`idtipo`, `tipo`, `descricao`) VALUES
+(1, 'Desenvolvedor', 'Possui acesso ao código-fonte, manutenção do sistema, criação e edição de funcionalidades, gerenciamento de banco de dados e APIs, com restrição a dados sensíveis e aprovações administrativas.'),
+(3, 'Padrão', 'Um usuário padrão pode criar e gerenciar seu perfil, visualizar animais disponíveis para adoção, conhecer as ONGs cadastradas e demonstrar interesse em adotar, mas não tem permissão para cadastrar ou editar informações de animais ou organizações.'),
+(4, 'ONG', 'ONG pode cadastrar e gerenciar os animais disponíveis para adoção, atualizar suas informações de perfil (como endereço, contato e missão da organização), responder às manifestações de interesse dos usuários e divulgar conteúdos sobre seus projetos. Diferente do usuário comum, a ONG tem papel ativo n');
 
 -- --------------------------------------------------------
 
@@ -298,6 +399,13 @@ CREATE TABLE `usuarios` (
   `fk_idendereco` int(11) NOT NULL,
   `fk_idtipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Despejando dados para a tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`idusuario`, `nome`, `email`, `telefone`, `fk_idsexo`, `data_nasc`, `cpf`, `senha`, `data_criacao`, `data_att`, `foto`, `fk_idendereco`, `fk_idtipo`) VALUES
+(1, 'Maria Fernanda Silva', 'mfsfernandasilva794@gmail.com', '(16)99393-6344', 1, '2006-05-29', '111.111.111-11', 'testinhosenhona', '2025-08-27 09:00:59', '2025-08-27 09:03:53', 'sem foto', 1, 1);
 
 --
 -- Índices para tabelas despejadas
@@ -355,7 +463,8 @@ ALTER TABLE `ongs`
   ADD PRIMARY KEY (`idong`),
   ADD UNIQUE KEY `cnpj` (`cnpj`),
   ADD UNIQUE KEY `email` (`email`),
-  ADD KEY `FK_ENDERECO_ONG` (`fk_idendereco`);
+  ADD KEY `FK_ENDERECO_ONG` (`fk_idendereco`),
+  ADD KEY `FK_TIPO_ONGS` (`fk_idtipo`);
 
 --
 -- Índices de tabela `ongsfavoritadas`
@@ -465,19 +574,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `bairros`
 --
 ALTER TABLE `bairros`
-  MODIFY `idbairro` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idbairro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `cidades`
 --
 ALTER TABLE `cidades`
-  MODIFY `idcidade` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idcidade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `enderecos`
 --
 ALTER TABLE `enderecos`
-  MODIFY `idendereco` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idendereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `especiespet`
@@ -489,19 +598,19 @@ ALTER TABLE `especiespet`
 -- AUTO_INCREMENT de tabela `estados`
 --
 ALTER TABLE `estados`
-  MODIFY `idestado` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idestado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `funcionarios`
 --
 ALTER TABLE `funcionarios`
-  MODIFY `idfuncionario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idfuncionario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `ongs`
 --
 ALTER TABLE `ongs`
-  MODIFY `idong` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idong` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `ongsfavoritadas`
@@ -537,49 +646,49 @@ ALTER TABLE `racaspet`
 -- AUTO_INCREMENT de tabela `redessociais`
 --
 ALTER TABLE `redessociais`
-  MODIFY `idredesocial` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idredesocial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `responsaveis`
 --
 ALTER TABLE `responsaveis`
-  MODIFY `idresponsavel` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idresponsavel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `ruas`
 --
 ALTER TABLE `ruas`
-  MODIFY `idrua` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idrua` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `sexo`
 --
 ALTER TABLE `sexo`
-  MODIFY `idsexo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idsexo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `sexospet`
 --
 ALTER TABLE `sexospet`
-  MODIFY `idsexopet` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idsexopet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `status`
 --
 ALTER TABLE `status`
-  MODIFY `idstatus` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idstatus` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `tipos_usuario`
 --
 ALTER TABLE `tipos_usuario`
-  MODIFY `idtipo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idtipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restrições para tabelas despejadas
@@ -618,7 +727,8 @@ ALTER TABLE `funcionarios`
 -- Restrições para tabelas `ongs`
 --
 ALTER TABLE `ongs`
-  ADD CONSTRAINT `FK_ENDERECO_ONG` FOREIGN KEY (`fk_idendereco`) REFERENCES `enderecos` (`idendereco`);
+  ADD CONSTRAINT `FK_ENDERECO_ONG` FOREIGN KEY (`fk_idendereco`) REFERENCES `enderecos` (`idendereco`),
+  ADD CONSTRAINT `FK_TIPO_ONGS` FOREIGN KEY (`fk_idtipo`) REFERENCES `tipos_usuario` (`idtipo`);
 
 --
 -- Restrições para tabelas `ongsfavoritadas`
