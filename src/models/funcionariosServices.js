@@ -30,7 +30,7 @@ const GetById = async (id) => {
 
 const Post = async (fk_idusuario, fk_idong, fk_idresponsavel) => {
     const querySelect = 'INSERT INTO funcionarios(fk_idusuario, fk_idong, fk_idresponsavel) ';
-    const queryValues = ' VALUES (?, ?)';
+    const queryValues = ' VALUES (?, ?, ?)';
 
     querytext = querySelect + queryValues;
 
@@ -39,7 +39,7 @@ const Post = async (fk_idusuario, fk_idong, fk_idresponsavel) => {
 };
 
 const Put = async (id, fk_idusuario, fk_idong, fk_idresponsavel) => {
-    const querySelect = 'UPDATE funcionarios SET fk_idusuario = ?, fk_idong = ?, fk_idresponsavel =?';
+    const querySelect = 'UPDATE funcionarios SET fk_idusuario = ?, fk_idong = ?, fk_idresponsavel = ?';
     const queryWhere = ' WHERE idfuncionario = ?';
 
     querytext = querySelect + queryWhere;
