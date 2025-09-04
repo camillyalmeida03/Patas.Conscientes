@@ -17,6 +17,7 @@ const rotasUsuarios = require("./routers/usuariosRouters");
 const rotasOngs = require("./routers/ongsRouters");
 const rotasResponsaveis = require("./routers/responsaveisRouters");
 const rotasFuncionarios = require("./routers/funcionariosRouters");
+const rotasRedesSociais = require("./routers/redessociaisRouters");
 
 dotenv.config();
 
@@ -53,6 +54,7 @@ app.use("/usuarios", rotasUsuarios);
 app.use("/ongs", rotasOngs);
 app.use("/responsaveis", rotasResponsaveis);
 app.use("/funcionarios", rotasFuncionarios);
+app.use("/redessociais", rotasRedesSociais);
 
 
 // Informando a porta usada
