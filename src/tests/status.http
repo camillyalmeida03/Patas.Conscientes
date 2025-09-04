@@ -1,0 +1,26 @@
+#Testes da tabela status
+
+### Listar dados
+GET http://localhost:3600/status
+
+### Mostrar campo por id
+GET http://localhost:3600/status/4
+
+### Inserir novo dado
+POST http://localhost:3600/status
+Content-Type: application/json
+
+{
+    "status": "sfsfrf"
+}
+
+### Inserir um dado com base no id
+PUT http://localhost:3600/status/3
+Content-Type: application/json
+
+{
+    "status": "Reservado"
+}
+
+### Excluir um dado com base no id
+DELETE http://localhost:3600/status/2
