@@ -1,0 +1,50 @@
+#Testes da tabela pets
+
+### Listar dados
+GET http://localhost:3600/pets
+
+### Mostrar campo por id
+GET http://localhost:3600/pets/2
+
+### Inserir novo dado
+POST http://localhost:3600/pets
+Content-Type: application/json
+
+{
+
+    "nome": "cachorra", 
+    "fk_idsexopet": 1,
+    "fk_idespecie": 1, 
+    "fk_idraca": 1, 
+    "fk_idporte": 1, 
+    "fk_idresponsavel": 1, 
+    "fk_idong": 1, 
+    "peso": 2, 
+    "idade": 2, 
+    "descricao": "fofa", 
+    "fotos": "fototeste2", 
+    "fk_idstatus": 3
+
+}
+
+### Inserir um dado com base no id
+PUT http://localhost:3600/pets/2
+Content-Type: application/json
+
+{
+    "nome": "cachorra", 
+    "fk_idsexopet": 2,
+    "fk_idespecie": 2, 
+    "fk_idraca": 1, 
+    "fk_idporte": 1, 
+    "fk_idresponsavel": 1, 
+    "fk_idong": 1, 
+    "peso": 2, 
+    "idade": 2, 
+    "descricao": "Lindo", 
+    "fotos": "fototeste1", 
+    "fk_idstatus": 1
+}
+
+### Excluir um dado com base no id
+DELETE http://localhost:3600/pets/2
