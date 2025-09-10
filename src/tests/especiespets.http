@@ -1,0 +1,26 @@
+#Testes da tabela especiespet
+
+### Listar dados
+GET http://localhost:3600/especiespets
+
+### Mostrar campo por id
+GET http://localhost:3600/especiespets/2
+
+### Inserir novo dado
+POST http://localhost:3600/especiespets
+Content-Type: application/json
+
+{
+    "especie": "fef"
+}
+
+### Inserir um dado com base no id
+PUT http://localhost:3600/especiespets/2
+Content-Type: application/json
+
+{
+    "especie": "Cachorro"
+}
+
+### Excluir um dado com base no id
+DELETE http://localhost:3600/especiespets/3
