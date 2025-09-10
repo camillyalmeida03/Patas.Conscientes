@@ -1,0 +1,28 @@
+#Testes da tabela racaspet
+
+### Listar dados
+GET http://localhost:3600/racaspets
+
+### Mostrar campo por id
+GET http://localhost:3600/racaspets/2
+
+### Inserir novo dado
+POST http://localhost:3600/racaspets
+Content-Type: application/json
+
+{
+    "raca": "fefaef",
+    "fk_idespeciepet": 1
+}
+
+### Inserir um dado com base no id
+PUT http://localhost:3600/racaspets/3
+Content-Type: application/json
+
+{
+    "raca": "adned",
+    "fk_idespeciepet": 1
+}
+
+### Excluir um dado com base no id
+DELETE http://localhost:3600/racaspets/3
