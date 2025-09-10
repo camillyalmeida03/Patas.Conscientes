@@ -25,7 +25,7 @@ const rotasRacasPet = require("./routers/racaspetsRouters");
 const rotasPortesPet = require("./routers/portespetsRouters");
 const rotasPet = require("./routers/petsRouters");
 const rotasPetsFavoritados = require("./routers/petsfavoritadosRouters");
-
+const rotasOngsFavoritadas = require("./routers/ongsfavoritadasRouters");
 
 dotenv.config();
 
@@ -70,6 +70,7 @@ app.use("/racaspets", rotasRacasPet);
 app.use("/portespets", rotasPortesPet);
 app.use("/pets", rotasPet);
 app.use("/petsfavoritados", rotasPetsFavoritados);
+app.use("/ongsfavoritadas", rotasOngsFavoritadas);
 
 // Informando a porta usada
 app.listen(Port, () => {
