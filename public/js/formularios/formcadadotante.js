@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("formAdotante");
+  const form = document.getElementById("formUsuario");
 
   form.addEventListener("submit", function (event) {
     event.preventDefault(); // Evita o envio do formulário inicialmente
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!validarNomeAdotante()) formularioValido = false;
     if (!validarEmail()) formularioValido = false;
     if (!validarTel()) formularioValido = false;
-    if (!validarCel()) formularioValido = false;
+    // if (!validarCel()) formularioValido = false;
     if (!validarCpf()) formularioValido = false;
     if (!validarSenhas()) formularioValido = false;
     if (!validarGenero()) formularioValido = false;
@@ -61,20 +61,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Funções de validação individuais
   function validarNomeAdotante() {
-    const nomeOng = document.getElementById("nomeAdt").value.trim();
-    const erroNomeOng = document.getElementById("erroNomeAdt");
+    const nomeUsuario = document.getElementById("nomeAdt").value.trim();
+    const erroNomeUsuario = document.getElementById("erroNomeAdt");
     const regexNome = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]+$/;
 
-    if (nomeOng === "") {
-      erroNomeOng.innerHTML = "O campo Nome da ONG é obrigatório.";
-      erroNomeOng.style.display = "block";
+    if (nomeUsuario === "") {
+      erroNomeUsuario.innerHTML = "O campo Nome é obrigatório.";
+      erroNomeUsuario.style.display = "block";
       return false;
-    } else if (!regexNome.test(nomeOng) || nomeOng.length <= 3) {
-      erroNomeOng.innerHTML = "Por favor, insira um nome válido.";
-      erroNomeOng.style.display = "block";
+    } else if (!regexNome.test(nomeUsuario) || nomeUsuario.length <= 3) {
+      erroNomeUsuario.innerHTML = "Por favor, insira um nome válido.";
+      erroNomeUsuario.style.display = "block";
       return false;
     } else {
-      erroNomeOng.style.display = "none";
+      erroNomeUsuario.style.display = "none";
       return true;
     }
   }
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (emailAdt === "") {
-      erroEmail.innerHTML = "O campo E-mail do Responsável é obrigatório.";
+      erroEmail.innerHTML = "O campo E-mail é obrigatório.";
       erroEmail.style.display = "block";
       return false;
     } else if (!regexEmail.test(emailAdt)) {
@@ -97,46 +97,33 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // function validarTel() {
-  //     const telefone = document.getElementById('telAdt').value.trim();
-  //     const erroTelefone = document.getElementById('erroTelAdt');
+function validarTel() {
+  const telefone = document.getElementById("telAdt");
+  const erroTelefone = document.getElementById("erroTelAdt");
+  let valorTelefone = telefone.value.trim();
 
-  //     // Expressão regular para validar um número de telefone no formato (XX) XXXXX-XXXX
-  //     const regexTelefone = /^\(\d{2}\)\s\d{5}-\d{4}$/;
+  // Remover formatação para validar apenas números
+  const telefoneSemFormatacao = valorTelefone.replace(/[^\d]/g, "");
 
-  //     if (telefone === '') {
-  //         erroTelefone.innerHTML = 'O campo Telefone é obrigatório.';
-  //         erroTelefone.style.display = 'block';
-  //         return false;
-  //     } else if (!regexTelefone.test(telefone)) {
-  //         erroTelefone.innerHTML = 'Por favor, insira um telefone válido (formato: (XX) XXXXX-XXXX).';
-  //         erroTelefone.style.display = 'block';
-  //         return false;
-  //     } else {
-  //         erroTelefone.style.display = 'none';
-  //         return true;
-  //         }
-  // }
-  function validarTel() {
-    const telefone = document.getElementById("telAdt");
-    const erroTelefone = document.getElementById("erroTelAdt");
-    let valorTelefone = telefone.value.trim();
-
-    // Remover formatação para validar apenas números
-    const telefoneSemFormatacao = valorTelefone.replace(/[^\d]/g, "");
-
-    // Validação: Verificar se contém exatamente 11 dígitos
-    if (telefoneSemFormatacao.length !== 11) {
-      erroTelefone.innerHTML =
-        "Por favor, insira um telefone válido com 11 dígitos.";
-      erroTelefone.style.display = "block";
-      return false;
-    }
-
-    // Caso seja válido, limpar mensagem de erro
-    erroTelefone.style.display = "none";
-    return true;
+  // Validação: Campo vazio
+  if (telefoneSemFormatacao === "") {
+    erroTelefone.innerHTML = "O campo Telefone/Celular é obrigatório.";
+    erroTelefone.style.display = "block";
+    return false;
   }
+
+  // Validação: Deve conter exatamente 11 dígitos
+  if (telefoneSemFormatacao.length !== 11) {
+    erroTelefone.innerHTML =
+      "Por favor, insira um telefone válido com 11 dígitos.";
+    erroTelefone.style.display = "block";
+    return false;
+  }
+
+  // Caso seja válido, limpar mensagem de erro
+  erroTelefone.style.display = "none";
+  return true;
+}
 
   document.getElementById("telAdt").addEventListener("input", function (e) {
     let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
@@ -148,37 +135,37 @@ document.addEventListener("DOMContentLoaded", function () {
     e.target.value = value;
   });
 
-  function validarCel() {
-    const cel = document.getElementById("celAdt").value.trim();
-    const erroCel = document.getElementById("erroCelAdt");
+  // function validarCel() {
+  //   const cel = document.getElementById("celAdt").value.trim();
+  //   const erroCel = document.getElementById("erroCelAdt");
 
-    // Expressão regular para validar um número de telefone no formato (XX) XXXXX-XXXX
-    const regexCel = /^\(\d{2}\)\s\d{5}-\d{4}$/;
+  //   // Expressão regular para validar um número de telefone no formato (XX) XXXXX-XXXX
+  //   const regexCel = /^\(\d{2}\)\s\d{5}-\d{4}$/;
 
-    if (cel === "") {
-      erroCel.innerHTML = "O campo Celular é obrigatório.";
-      erroCel.style.display = "block";
-      return false;
-    } else if (!regexCel.test(cel)) {
-      erroCel.innerHTML =
-        "Por favor, insira um celular válido (formato: (XX) XXXXX-XXXX).";
-      erroCel.style.display = "block";
-      return false;
-    } else {
-      erroCel.style.display = "none";
-      return true;
-    }
-  }
+  //   if (cel === "") {
+  //     erroCel.innerHTML = "O campo Celular é obrigatório.";
+  //     erroCel.style.display = "block";
+  //     return false;
+  //   } else if (!regexCel.test(cel)) {
+  //     erroCel.innerHTML =
+  //       "Por favor, insira um celular válido (formato: (XX) XXXXX-XXXX).";
+  //     erroCel.style.display = "block";
+  //     return false;
+  //   } else {
+  //     erroCel.style.display = "none";
+  //     return true;
+  //   }
+  // }
 
-  document.getElementById("celAdt").addEventListener("input", function (e) {
-    let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
+  // document.getElementById("celAdt").addEventListener("input", function (e) {
+  //   let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
 
-    // Aplica a máscara de celular: (XX) 9XXXX-XXXX
-    if (value.length > 2) value = value.replace(/^(\d{2})(\d)/, "($1) $2");
-    if (value.length > 7) value = value.replace(/(\d{5})(\d)/, "$1-$2");
+  //   // Aplica a máscara de celular: (XX) 9XXXX-XXXX
+  //   if (value.length > 2) value = value.replace(/^(\d{2})(\d)/, "($1) $2");
+  //   if (value.length > 7) value = value.replace(/(\d{5})(\d)/, "$1-$2");
 
-    e.target.value = value;
-  });
+  //   e.target.value = value;
+  // });
 
   function validarCpf() {
     const cpfAdt = document.getElementById("cpfAdt").value.trim();
@@ -191,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return false;
     } else if (!regexCpf.test(cpfAdt)) {
       erroCpfAdt.innerHTML =
-        "Por favor, insira um CPF válido (formato: XXX.XXX.XXX-XX).";
+        "Por favor, insira um CPF válido.";
       erroCpfAdt.style.display = "block";
       return false;
     } else {
@@ -257,7 +244,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // // conexão com o banco de dados
 
-const cadastroForm = document.getElementById("formAdotante");
+const cadastroForm = document.getElementById("formUsuario");
 const verificacaoContainer = document.getElementById("verificacaoContainer");
 // Removido: const verificarCodigoBtn = document.getElementById('verificarCodigoBtn');
 // Removido: const codigoVerificacaoInput = document.getElementById('codigoVerificacao');
@@ -301,7 +288,7 @@ async function criarContaAdotante() {
       // Se a conta foi criada com sucesso, exibe uma mensagem de sucesso
       document.getElementById("mensagemcriacaodeconta").innerText = "Conta criada com sucesso!";
       document.getElementById("mensagemcriacaodeconta").style.color = "green";
-      document.getElementById("formAdotante").reset();
+      document.getElementById("formUsuario").reset();
       document.getElementById("verificacaoContainer").style.display = "none";
     } else {
       document.getElementById("mensagemcriacaodeconta").innerText = "Erro ao criar conta: " + data.message;

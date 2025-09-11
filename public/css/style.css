@@ -49,6 +49,10 @@ a {
     color: black;
 }
 
+.cinzah3{
+    color: var(--cinza_h3) !important;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -2133,7 +2137,7 @@ ol {
     display: flex;
     flex-direction: column;
     width: 50%;
-    gap: 1rem;
+    gap: 0.3rem;
 }
 
 .alinharErro p,
@@ -2172,7 +2176,7 @@ ol {
 
 .formCadastro>div {
     display: flex;
-    gap: 1rem;
+    gap: 0.3rem;
     width: 100%;
 }
 
@@ -2187,7 +2191,7 @@ ol {
     display: flex;
     border-radius: 1.5rem;
     border: none;
-    color: var(--cinza_h3);
+    color: black;
     background-color: var(--cinza_input);
     width: 100%;
     resize: none;
