@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 04/09/2025 às 15:23
+-- Tempo de geração: 11/09/2025 às 03:39
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -94,6 +94,14 @@ CREATE TABLE `especiespet` (
   `especie` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Despejando dados para a tabela `especiespet`
+--
+
+INSERT INTO `especiespet` (`idespeciepet`, `especie`) VALUES
+(1, 'Gato'),
+(2, 'Cachorro');
+
 -- --------------------------------------------------------
 
 --
@@ -179,6 +187,13 @@ CREATE TABLE `ongsfavoritadas` (
   `data_favoritada` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Despejando dados para a tabela `ongsfavoritadas`
+--
+
+INSERT INTO `ongsfavoritadas` (`idongfavoritada`, `fk_idusuario`, `fk_idong`, `data_favoritada`) VALUES
+(1, 1, 1, '2025-09-09 23:46:44');
+
 -- --------------------------------------------------------
 
 --
@@ -196,13 +211,20 @@ CREATE TABLE `pets` (
   `fk_idong` int(11) NOT NULL,
   `peso` decimal(5,2) UNSIGNED NOT NULL,
   `idade` int(11) NOT NULL,
-  `vacinado` tinyint(1) NOT NULL,
+  `vacinado` tinyint(1) DEFAULT NULL,
   `descricao` varchar(200) DEFAULT NULL,
   `fotos` text NOT NULL,
   `data_post` datetime NOT NULL DEFAULT current_timestamp(),
   `data_att` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `fk_idstatus` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Despejando dados para a tabela `pets`
+--
+
+INSERT INTO `pets` (`idpet`, `nome`, `fk_idsexopet`, `fk_idespecie`, `fk_idraca`, `fk_idporte`, `fk_idresponsavel`, `fk_idong`, `peso`, `idade`, `vacinado`, `descricao`, `fotos`, `data_post`, `data_att`, `fk_idstatus`) VALUES
+(1, 'Gatuno', 2, 1, 1, 1, 1, 1, 2.00, 2, NULL, 'Lindo', 'fototeste1', '2025-09-09 23:01:55', '2025-09-09 23:02:34', 1);
 
 -- --------------------------------------------------------
 
@@ -217,6 +239,13 @@ CREATE TABLE `petsfavoritados` (
   `data_favoritado` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Despejando dados para a tabela `petsfavoritados`
+--
+
+INSERT INTO `petsfavoritados` (`idpetfavoritado`, `fk_idusuario`, `fk_idpet`, `data_favoritado`) VALUES
+(1, 1, 1, '2025-09-09 23:29:34');
+
 -- --------------------------------------------------------
 
 --
@@ -227,6 +256,14 @@ CREATE TABLE `portespet` (
   `idportepet` int(11) NOT NULL,
   `porte` varchar(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Despejando dados para a tabela `portespet`
+--
+
+INSERT INTO `portespet` (`idportepet`, `porte`) VALUES
+(1, 'Pequeno'),
+(2, 'Grande');
 
 -- --------------------------------------------------------
 
@@ -239,6 +276,14 @@ CREATE TABLE `racaspet` (
   `raca` varchar(100) NOT NULL,
   `fk_idespeciepet` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Despejando dados para a tabela `racaspet`
+--
+
+INSERT INTO `racaspet` (`idracapet`, `raca`, `fk_idespeciepet`) VALUES
+(1, 'Persa', 1),
+(2, 'Sem-raça', 1);
 
 -- --------------------------------------------------------
 
@@ -405,7 +450,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`idusuario`, `nome`, `email`, `telefone`, `fk_idsexo`, `data_nasc`, `cpf`, `senha`, `data_criacao`, `data_att`, `foto`, `fk_idendereco`, `fk_idtipo`) VALUES
-(1, 'Maria Fernanda Silva', 'mfsfernandasilva794@gmail.com', '(16)99393-6344', 1, '2006-05-29', '111.111.111-11', 'testinhosenhona', '2025-08-27 09:00:59', '2025-08-27 09:03:53', 'sem foto', 1, 1);
+(1, 'Maria Fernanda Silva', 'mfsfernandasilva794@gmail.com', '(16)99393-6344', 1, '2006-05-29', '111.111.111-11', 'testinhosenhona', '2025-08-27 09:00:59', '2025-08-27 09:03:53', 'sem foto', 1, 1),
+(6, 'Maria Fernanda da Silva', 'mfsferandaslva794@gmail.com', '(16)99393-6341', 1, '0000-00-00', '111.111.110-11', 'testinhosenha', '2025-09-09 23:31:41', '2025-09-09 23:31:41', 'testinhofoto', 1, 1);
 
 --
 -- Índices para tabelas despejadas
@@ -592,7 +638,7 @@ ALTER TABLE `enderecos`
 -- AUTO_INCREMENT de tabela `especiespet`
 --
 ALTER TABLE `especiespet`
-  MODIFY `idespeciepet` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idespeciepet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `estados`
@@ -616,31 +662,31 @@ ALTER TABLE `ongs`
 -- AUTO_INCREMENT de tabela `ongsfavoritadas`
 --
 ALTER TABLE `ongsfavoritadas`
-  MODIFY `idongfavoritada` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idongfavoritada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `pets`
 --
 ALTER TABLE `pets`
-  MODIFY `idpet` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idpet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `petsfavoritados`
 --
 ALTER TABLE `petsfavoritados`
-  MODIFY `idpetfavoritado` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idpetfavoritado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `portespet`
 --
 ALTER TABLE `portespet`
-  MODIFY `idportepet` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idportepet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `racaspet`
 --
 ALTER TABLE `racaspet`
-  MODIFY `idracapet` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idracapet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `redessociais`
@@ -688,7 +734,7 @@ ALTER TABLE `tipos_usuario`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restrições para tabelas despejadas
