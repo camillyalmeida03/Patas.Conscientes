@@ -421,39 +421,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    if (inputCep) {
-        inputCep.addEventListener("blur", async function () {
-            const cep = this.value.replace(/\D/g, ""); // remove hífen e não números
-
-            if (cep.length !== 8) {
-                erroCep.textContent = "CEP inválido.";
-                return;
-            }
-
-            try {
-                const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-                const data = await response.json();
-
-                if (data.erro) {
-                    erroCep.textContent = "CEP não encontrado.";
-                    return;
-                }
-
-                erroCep.textContent = "";
-
-                document.getElementById("estado").value = data.uf || "";
-                document.getElementById("cidade").value = data.localidade || "";
-                // document.getElementById("logradouro").value = data.logradouro || "";
-                // document.getElementById("bairro").value = data.bairro || "";
-                // document.getElementById("complemento").value = data.complemento || "";
-
-            } catch (error) {
-                erroCep.textContent = "Erro ao buscar o CEP.";
-                console.error(error);
-            }
-        });
-    }
-
     inputCep.addEventListener("input", function (e) {
         let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
 
@@ -509,6 +476,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Validação do Bairro
     function validarBairro() {
+
         // Dados bairro
         const inputBairro = document.getElementById("bairro");
         const bairro = inputBairro.value.trim();
@@ -584,11 +552,45 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
+    
+    if (inputCep) {
+        inputCep.addEventListener("blur", async function () {
+            const cep = this.value.replace(/\D/g, ""); // remove hífen e não números
+
+            if (cep.length !== 8) {
+                erroCep.textContent = "CEP inválido.";
+                return;
+            }
+
+            try {
+                const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+                const data = await response.json();
+
+                if (data.erro) {
+                    erroCep.textContent = "CEP não encontrado.";
+                    return;
+                }
+
+                erroCep.textContent = "";
+
+                document.getElementById("estado").value = data.uf || "";
+                document.getElementById("cidade").value = data.localidade || "";
+                document.getElementById("rua").value = data.logradouro || "";
+                document.getElementById("bairro").value = data.bairro || "";
+                document.getElementById("complemento").value = data.complemento || "";
+
+            } catch (error) {
+                erroCep.textContent = "Erro ao buscar o CEP.";
+                console.error(error);
+            }
+        });
+    }
+
 });
 
 // // conexão com o banco de dados
 
-const cadastroForm = document.getElementById("formUsuario");
+const cadastroForm = document.getElementById("cadastroUsuario");
 const verificacaoContainer = document.getElementById("verificacaoContainer");
 // Removido: const verificarCodigoBtn = document.getElementById('verificarCodigoBtn');
 // Removido: const codigoVerificacaoInput = document.getElementById('codigoVerificacao');
@@ -632,7 +634,7 @@ async function criarContaAdotante() {
             // Se a conta foi criada com sucesso, exibe uma mensagem de sucesso
             document.getElementById("mensagemcriacaodeconta").innerText = "Conta criada com sucesso!";
             document.getElementById("mensagemcriacaodeconta").style.color = "green";
-            document.getElementById("formUsuario").reset();
+            document.getElementById("cadastroUsuario").reset();
             document.getElementById("verificacaoContainer").style.display = "none";
         } else {
             document.getElementById("mensagemcriacaodeconta").innerText = "Erro ao criar conta: " + data.message;

@@ -13,7 +13,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
     rel="stylesheet">
-  <title>Cadastro de Adotante - Patas Conscientes</title>
+  <title>Cadastro de Usuário - Patas Conscientes</title>
 </head>
 
 <body>
@@ -247,33 +247,33 @@
       <div>
 
         <!-- Formulário para usuário comum -->
-        <form action="" id="formUsuario" class="formulario formCadastro">
+        <form id="cadastroUsuario" class="formulario formCadastro">
 
           <h2>Informações do Usuário</h2>
 
           <!-- Campo de nome de usuário -->
           <div class="alinharErro">
-            <input type="text" id="nomeUsuarioAdt" class="inputCadastro" placeholder="Nome*">
+            <input name="nome" type="text" id="nomeUsuarioAdt" class="inputCadastro" placeholder="Nome*">
             <p id="erroNomeUsuarioAdt" class="error-message"></p>
           </div>
 
           <!-- Campo de email de usuário -->
           <div class="alinharErro">
-            <input type="email" id="emailUsuarioAdt" class="inputCadastro" placeholder="E-mail*">
+            <input name="email" type="email" id="emailUsuarioAdt" class="inputCadastro" placeholder="E-mail*">
             <p id="erroEmailUsuarioAdt" class="error-message"></p>
           </div>
 
           <div>
             <!-- Campo de telefone/celular do usuário -->
             <div class="alinharErro">
-              <input type="tel" id="telcelUsuarioAdt" class="inputCadastro tel" placeholder="Telefone ou Celular*"
+              <input name="telefone" type="tel" id="telcelUsuarioAdt" class="inputCadastro tel" placeholder="Telefone ou Celular*"
                 maxlength="15">
               <p id="erroTelCelUsuarioAdt" class="error-message"></p>
             </div>
 
             <!-- Campo de cpf do usuário -->
             <div class="alinharErro">
-              <input type="text" id="cpfUsuarioAdt" class="inputCadastro cpf" placeholder="CPF*" maxlength="14">
+              <input name="cpf" type="text" id="cpfUsuarioAdt" class="inputCadastro cpf" placeholder="CPF*" maxlength="14">
               <p id="erroCpfUsuarioAdt" class="error-message"></p>
             </div>
           </div>
@@ -281,11 +281,11 @@
           <div>
             <!-- Campo de definição de gênero do usuário -->
             <div class="alinharErro">
-              <select name="sexo" id="genero" class="inputCadastro" aria-labelledby="label-genero">
+              <select name="fk_idsexo" id="genero" class="inputCadastro" aria-labelledby="label-genero">
                 <option value="" disabled hidden selected class="cinzah3">Selecione seu gênero:*</option>
-                <option value="feminino">Feminino</option>
-                <option value="masculino">Masculino</option>
-                <option value="naoInformar">Prefiro não dizer</option>
+                <option value="1">Feminino</option>
+                <option value="2">Masculino</option>
+                <option value="3">Prefiro não dizer</option>
               </select>
 
               <p id="erroGenero" class="error-message"></p>
@@ -293,7 +293,7 @@
 
             <!-- Campo de data de nascimento do usuário -->
             <div class="alinharErro">
-              <input type="date" id="dataNasc" class="inputCadastro" placeholder="Data de Nascimento">
+              <input name="data_nasc" type="date" id="dataNasc" class="inputCadastro" placeholder="Data de Nascimento">
               <p id="erroDataNasc" class="error-message"></p>
             </div>
           </div>
@@ -301,7 +301,7 @@
           <div>
             <!-- Campo de senha do usuário -->
             <div class="alinharErro">
-              <input type="password" id="senhaUsuarioAdt" placeholder="Senha*" class="inputCadastro">
+              <input name="senha" type="password" id="senhaUsuarioAdt" placeholder="Senha*" class="inputCadastro">
               <p id="erroSenhaUsuarioAdt" class="error-message"></p>
             </div>
 
@@ -560,6 +560,7 @@
   <script src="/public/js/formularios/formcadadotante.js" defer></script>
   <script src="/public/js/tema.js" defer></script>
   <script src="/public/js/carregar_pagina.js"></script>
+  <script src="/public/js/conexaoBanco/cadastro_usuarios_cx.js"></script>
   <script src="/public/js/formularios/validacaoFormularios.js"></script>
 
 
