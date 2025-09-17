@@ -15,7 +15,15 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!validarGenero()) formularioValido = false;
         if (!validarDataNasc()) formularioValido = false;
         if (!validarSenhas()) formularioValido = false;
- 
+
+        // Validações de endereço
+        if (!validarCep()) formularioValido = false;
+        if (!validarEstado()) formularioValido = false;
+        if (!validarCidade()) formularioValido = false;
+        if (!validarBairro()) formularioValido = false;
+        if (!validarRua()) formularioValido = false;
+        if (!validarNmr()) formularioValido = false;
+
 
         // Se o formulário não for válido, rola para o topo da página
         if (!formularioValido) {
@@ -381,6 +389,201 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
     }
+
+
+    // Validando endereços
+
+    // Validação do CEP + Preenchimento de formulário automático
+    const inputCep = document.getElementById("cep");
+    const erroCep = document.getElementById("erroCep");
+
+    function validarCep() {
+
+        // Dados do input de CEP
+        const cep = inputCep.value.trim();
+
+        const regexCep = /^\d{5}-\d{3}$/;
+
+        if (inputCep) {
+            if (cep === "") {
+                erroCep.innerHTML = "O campo CEP é obrigatório.";
+                erroCep.style.display = "block";
+                return false;
+            } else if (!regexCep.test(cep)) {
+                erroCep.innerHTML =
+                    "Por favor, insira um CEP válido (formato: XXXXX-XXX).";
+                erroCep.style.display = "block";
+                return false;
+            } else {
+                erroCep.style.display = "none";
+                return true;
+            }
+        }
+    }
+
+    if (inputCep) {
+        inputCep.addEventListener("blur", async function () {
+            const cep = this.value.replace(/\D/g, ""); // remove hífen e não números
+
+            if (cep.length !== 8) {
+                erroCep.textContent = "CEP inválido.";
+                return;
+            }
+
+            try {
+                const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+                const data = await response.json();
+
+                if (data.erro) {
+                    erroCep.textContent = "CEP não encontrado.";
+                    return;
+                }
+
+                erroCep.textContent = "";
+
+                document.getElementById("estado").value = data.uf || "";
+                document.getElementById("cidade").value = data.localidade || "";
+                // document.getElementById("logradouro").value = data.logradouro || "";
+                // document.getElementById("bairro").value = data.bairro || "";
+                // document.getElementById("complemento").value = data.complemento || "";
+
+            } catch (error) {
+                erroCep.textContent = "Erro ao buscar o CEP.";
+                console.error(error);
+            }
+        });
+    }
+
+    inputCep.addEventListener("input", function (e) {
+        let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
+
+        // Aplica a máscara de CEP: 00000-000
+        if (value.length > 5) value = value.replace(/^(\d{5})(\d)/, "$1-$2");
+
+        e.target.value = value;
+    })
+
+    // Validação do estado
+    function validarEstado() {
+        const selectEstado = document.getElementById("estado");
+        const estado = selectEstado.value.trim();
+        const erroEstado = document.getElementById("erroEstado");
+
+        if (selectEstado) {
+            if (estado === "") {
+                erroEstado.innerHTML = "O campo Estado é obrigatório.";
+                erroEstado.style.display = "block";
+                return false;
+            }
+
+            erroEstado.style.display = "none";
+            return true;
+        }
+
+    }
+
+    // Validação da Cidade
+    function validarCidade() {
+
+        // Dados do input Cidade
+        const inputCidade = document.getElementById("cidade");
+        const cidade = inputCidade.value.trim();
+        const erroCidade = document.getElementById("erroCidade");
+        const regexCidade = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]+$/;
+
+        if (inputCidade) {
+            if (cidade === "") {
+                erroCidade.innerHTML = "O campo Cidade é obrigatório.";
+                erroCidade.style.display = "block";
+                return false;
+            } else if (!regexCidade.test(cidade)) {
+                erroCidade.innerHTML = "Por favor, insira uma Cidade válida";
+                erroCidade.style.display = "block";
+                return false;
+            } else {
+                erroCidade.style.display = "none";
+                return true;
+            }
+        }
+    }
+
+    // Validação do Bairro
+    function validarBairro() {
+        // Dados bairro
+        const inputBairro = document.getElementById("bairro");
+        const bairro = inputBairro.value.trim();
+        const erroBairro = document.getElementById("erroBairro");
+
+        const regexBairro = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]+$/;
+
+        if (inputBairro) {
+            if (bairro === "") {
+                erroBairro.innerHTML = "O campo Cidade é obrigatório.";
+                erroBairro.style.display = "block";
+                return false;
+            } else if (!regexBairro.test(bairro)) {
+                erroBairro.innerHTML = "Por favor, insira um Bairro válido";
+                erroBairro.style.display = "block";
+                return false;
+            } else {
+                erroBairro.style.display = "none";
+                return true;
+            }
+        }
+    }
+
+    // Validação da rua
+    function validarRua() {
+        // Dados bairro
+        const inputRua = document.getElementById("rua");
+        const rua = inputRua.value.trim();
+        const erroRua = document.getElementById("erroRua");
+
+        const regexRua = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]+$/;
+
+        if (inputRua) {
+            if (rua === "") {
+                erroRua.innerHTML = "O campo Rua é obrigatório.";
+                erroRua.style.display = "block";
+                return false;
+            } else if (!regexRua.test(rua)) {
+                erroRua.innerHTML = "Por favor, insira uma rua válida";
+                erroRua.style.display = "block";
+                return false;
+            } else {
+                erroRua.style.display = "none";
+                return true;
+            }
+        }
+    }
+
+    // Validação número da casa
+    function validarNmr() {
+
+        // Dados do input 
+        const inputNmr = document.getElementById("nmr");
+        const nmr = inputNmr.value.trim()
+        const erroNmr = document.getElementById("erroNmr");
+
+        const regexNmr = /^[0-9]+[a-zA-Z0-9/-]*$/;
+
+        if (inputNmr) {
+            if (nmr === "") {
+                erroNmr.innerHTML = "O campo Número é obrigatório.";
+                erroNmr.style.display = "block";
+                return false;
+            } else if (!regexNmr.test(nmr)) {
+                erroNmr.innerHTML = "Por favor, insira um Número válido";
+                erroNmr.style.display = "block";
+                return false;
+            } else {
+                erroNmr.style.display = "none";
+                return true;
+            }
+        }
+
+    }
+
 });
 
 // // conexão com o banco de dados

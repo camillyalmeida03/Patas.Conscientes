@@ -266,7 +266,8 @@
           <div>
             <!-- Campo de telefone/celular do usuário -->
             <div class="alinharErro">
-              <input type="tel" id="telcelUsuarioAdt" class="inputCadastro tel" placeholder="Telefone ou Celular*" maxlength="15">
+              <input type="tel" id="telcelUsuarioAdt" class="inputCadastro tel" placeholder="Telefone ou Celular*"
+                maxlength="15">
               <p id="erroTelCelUsuarioAdt" class="error-message"></p>
             </div>
 
@@ -306,7 +307,8 @@
 
             <!-- Campo de confirmação de senha do usuário -->
             <div class="alinharErro">
-              <input type="password" id="confirmaSenhaUsuarioAdt" placeholder="Confirme sua senha*" class="inputCadastro">
+              <input type="password" id="confirmaSenhaUsuarioAdt" placeholder="Confirme sua senha*"
+                class="inputCadastro">
               <p id="erroConfirSenhaUsuarioAdt" class="error-message"></p>
             </div>
           </div>
@@ -314,8 +316,10 @@
           <h2>Informações de Endereço</h2>
 
           <!-- Campo de CEP do usuário -->
-          <input type="text" id="cep" class="inputCadastro cep" placeholder="CEP*" maxlength="9">
-          <p id="erroCep" class="error-message"></p>
+          <div class="alinharErro">
+            <input type="text" id="cep" class="inputCadastro cep" placeholder="CEP*" maxlength="9">
+            <p id="erroCep" class="error-message"></p>
+          </div>
 
           <div>
 
@@ -363,7 +367,11 @@
           </div>
 
           <!-- Campo de rua do usuário -->
-          <input type="text" id="logradouro" class="inputCadastro" placeholder="Rua*">
+          <div class="alinharErro">
+            <input type="text" id="rua" class="inputCadastro" placeholder="Rua*">
+            <p id="erroRua" class="error-message"></p>
+          </div>
+
 
           <div>
             <!-- Campo de Bairro do usuário -->
