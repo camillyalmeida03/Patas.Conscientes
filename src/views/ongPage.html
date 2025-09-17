@@ -19,8 +19,8 @@
 
 <body class="ongPage">
     <header>
-        <a href="/index.html" title="Link que direciona para a página Inicial"><img src="/public/img/icons/logobranca.svg"
-                alt="Logo do site Patas Conscientes" class="logobranca"></a>
+        <a href="/index.html" title="Link que direciona para a página Inicial"><img
+                src="/public/img/icons/logobranca.svg" alt="Logo do site Patas Conscientes" class="logobranca"></a>
 
         <nav>
             <div class="linksNav">
@@ -127,7 +127,7 @@
 
                 <div class="linha"></div>
 
-                        <!-- <a href="favoritos.html" title="Link que direciona para a página de favoritos do site">Favoritos</a> -->
+                <!-- <a href="favoritos.html" title="Link que direciona para a página de favoritos do site">Favoritos</a> -->
 
                 <div class="linha"></div>
 
@@ -239,7 +239,6 @@
 
     <main class="perfilOng">
 
-
         <!-- Caminho (Migalha de pão) -->
         <div class="caminhoBanner">
 
@@ -346,7 +345,11 @@
 
                     </div>
 
-                    <input type="text" name="nome_pet" id="nome" class="inputCadastro" placeholder="Nome">
+                    <!-- Campo nome do pet -->
+                    <div class="alinharErro">
+                        <input type="text" name="nome_pet" id="nomePet" class="inputCadastro" placeholder="Nome">
+                        <p id="erroNomePetAdt" class="error-message"></p>
+                    </div>
 
                     <div class="alinharDoisInput">
                         <input type="text" id="pesoPet" name="peso" class="inputCadastro" placeholder="Peso">
@@ -508,7 +511,8 @@
             </svg>
         </button>
 
-        <img src="/public/img/icons/fatectq_logo.svg" alt="Logo da Fatec Taquaritinga" title="Logo da Fatec Taquaritinga">
+        <img src="/public/img/icons/fatectq_logo.svg" alt="Logo da Fatec Taquaritinga"
+            title="Logo da Fatec Taquaritinga">
     </div>
 
     <!-- Ícone da Barra de Acessibilidade -->
@@ -617,6 +621,8 @@
 <script type="module" src="/public/js/Pets/formpet.js"></script>
 <script src="/public/js/carregar_pagina.js"></script>
 <script src="/public/js/formularios/formparceiro.js"></script>
+<script src="/public/js/formularios/validacaoFormularios.js"></script>
+
 
 
 </html>
