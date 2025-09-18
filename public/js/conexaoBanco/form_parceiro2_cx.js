@@ -13,6 +13,7 @@ if (formFinal) {
       document.getElementById("mensagemcriacaodeconta").textContent = "Erro: dados do formulário não encontrados.";
       return;
     }
+    
 
     const dadosParaEnvio = {
       ...dadosSalvos,

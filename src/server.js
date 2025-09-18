@@ -1,4 +1,5 @@
 // Importanto extensões
+const path = require("path");
 const express = require('express');
 const dotenv = require('dotenv');
 
@@ -35,6 +36,7 @@ const Port = process.env.APP_PORT || 3000;
 const app = express();
 
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "..")));
 
 // Retorno quanto ao funcionamento da conexão com o banco
 (async () => {
