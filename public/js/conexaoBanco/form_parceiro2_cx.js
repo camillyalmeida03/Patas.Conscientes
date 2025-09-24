@@ -14,7 +14,6 @@ if (formFinal) {
       return;
     }
     
-
     const dadosParaEnvio = {
       ...dadosSalvos,
       cidade: dadosSalvos.endereco.id_cidade_fk,
@@ -23,7 +22,7 @@ if (formFinal) {
       numero: dadosSalvos.endereco.numero,
       cep: dadosSalvos.endereco.cep,
       complemento: dadosSalvos.endereco.complemento,
-      descricao: document.getElementById("mensagem").value // ✅ aqui está certo agora
+      descricao: document.getElementById("mensagem").value
     };
 
     try {
