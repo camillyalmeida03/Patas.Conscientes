@@ -2,7 +2,7 @@
 
 document.addEventListener("DOMContentLoaded", function () {
     // Seleciona o formulário de cadastro do usuário
-    const formUsuario = document.getElementById("formUsuario");
+    const formUsuario = document.getElementById("cadastroUsuario");
 
     // Se o formulário existir
     if (formUsuario) {
@@ -19,19 +19,56 @@ document.addEventListener("DOMContentLoaded", function () {
             const dataNasc = document.getElementById("dataNasc").value;
             const senha = document.getElementById("senhaUsuarioAdt").value.trim();
 
-            const cep = document.getElementById("cep").value.trim();
-            const estado = document.getElementById("estado").value;
-            const cidade = document.getElementById("cidade").value.trim();
-            const rua = document.getElementById("rua").value.trim();
-            const bairro = document.getElementById("bairro").value.trim();
-            const nmr = document.getElementById("nmr").value.trim();
-            const complemento = document.getElementById("complemento").value.trim();
-
             const form = e.target;
             const endpointUsuario = 'http://localhost:3600/usuarios';
 
+
+
+            const contentTypeJson = { "Content-Type": "application/json" };
+
+            const dadosUsuario = {
+                nome: nome,
+                email: email,
+                telefone: telefone,
+                fk_idsexo: genero,
+                data_nasc: dataNasc,
+                cpf: cpf,
+                senha: senha
+            }
+
+            try {
+                const feedback = document.getElementById("mensagemcriacaodeconta");
+
+                const responseUsuario = await fetch(endpointUsuario, {
+                    method: "POST",
+                    headers: contentTypeJson,
+                    body: JSON.stringify
+                        ({
+                            ...dadosUsuario,
+                            fk_idendereco: novoEndereco.id_endereco
+                        })
+                })
+
+                if (!responseUsuario.ok) {
+                    const texto = await responseUsuario.text();
+                    throw new Error(`Erro ${responseUsuario.status}: ${texto}`)
+                }
+
+                const data = await responseUsuario.json();
+
+                if (feedback) {
+                    feedback.textContent = data.message || "Cadastro realizado com sucesso!";
+                }
+
+            } catch (error) {
+                console.error("Erro ao enviar dados:", error);
+
+                if (feedback) {
+                    feedback.textContent = "Erro ao enviar dados. Tente novamente.";
+                }
+
+            }
         })
     }
-
 
 })
