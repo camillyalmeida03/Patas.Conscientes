@@ -2,6 +2,10 @@
 const path = require("path");
 const express = require('express');
 const dotenv = require('dotenv');
+const cors = require('cors');
+
+// Permite qualquer origem
+
 
 // Conexão com o banco
 const {checkConnection } = require("./models/database");
@@ -34,6 +38,8 @@ dotenv.config();
 const Port = process.env.APP_PORT || 3000;
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "..")));

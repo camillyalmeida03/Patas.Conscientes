@@ -11,7 +11,7 @@ POST http://localhost:3600/bairros
 Content-Type: application/json
 
 {
-    "bairro": "Teste",
+    "bairro": "Nova Cidade",
     "fk_idcidade": 1
 }
 
