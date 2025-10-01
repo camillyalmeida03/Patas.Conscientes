@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let formularioValido = true;
 
         // Validações independentes de cada campo
+
         if (!validarNome()) formularioValido = false;
         if (!validarEmail()) formularioValido = false;
         if (!validarTelCel()) formularioValido = false;
@@ -584,59 +585,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-// // conexão com o banco de dados
 
 const cadastroForm = document.getElementById("cadastroUsuario");
 const verificacaoContainer = document.getElementById("verificacaoContainer");
 // Removido: const verificarCodigoBtn = document.getElementById('verificarCodigoBtn');
 // Removido: const codigoVerificacaoInput = document.getElementById('codigoVerificacao');
-
-let dadosTemporarios = {}; // para guardar os dados até enviar
-
-// async function criarContaAdotante() {
-//     const nome = document.getElementById("nomeUsuarioAdt").value;
-//     const email = document.getElementById("emailUsuario").value;
-//     const telefone = document.getElementById("telAdt").value;
-//     const celular = document.getElementById("celAdt").value;
-//     const sexo = document.getElementById("genero").value;
-//     const data_nascimento = document.getElementById("dataNasc").value;
-//     const cpf = document.getElementById("cpfAdt").value;
-//     const senha = document.getElementById("confirmaSenhaAdt").value;
-//     const tipo = "adotante";
-
-//     const formData = new FormData();
-//     formData.append("nome", nome);
-//     formData.append("email", email);
-//     formData.append("telefone", telefone);
-//     formData.append("celular", celular);
-//     formData.append("sexo", sexo);
-//     formData.append("data_nascimento", data_nascimento);
-//     formData.append("cpf", cpf);
-//     formData.append("senha", senha);
-//     formData.append("tipo", tipo);
-
-//     try {
-//         const response = await fetch(
-//             "http://localhost:4501/usuarios/criar-adotante",
-//             {
-//                 method: "POST",
-//                 body: formData,
-//             }
-//         );
-
-//         const data = await response.json();
-
-//         if (response.ok) {
-//             // Se a conta foi criada com sucesso, exibe uma mensagem de sucesso
-//             document.getElementById("mensagemcriacaodeconta").innerText = "Conta criada com sucesso!";
-//             document.getElementById("mensagemcriacaodeconta").style.color = "green";
-//             document.getElementById("cadastroUsuario").reset();
-//             document.getElementById("verificacaoContainer").style.display = "none";
-//         } else {
-//             document.getElementById("mensagemcriacaodeconta").innerText = "Erro ao criar conta: " + data.message;
-//             document.getElementById("mensagemcriacaodeconta").style.color = "red";
-//         }
-//     } catch (err) {
-//         document.getElementById("mensagemcriacaodeconta").innerText = "Erro ao criar conta: " + err.message;
-//     }
-// }

@@ -29,14 +29,36 @@ const GetById = async (id) => {
 };
 
 const Post = async (nome, email, telefone, fk_idsexo, data_nasc, cpf, senha, foto, fk_idendereco, fk_idtipo) => {
-    const querySelect = 'INSERT INTO usuarios(nome, email, telefone, fk_idsexo, data_nasc, cpf, senha, foto, fk_idendereco, fk_idtipo) ';
-    const queryValues = ' VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    try {
+        const querySelect = 'INSERT INTO usuarios(nome, email, telefone, fk_idsexo, data_nasc, cpf, senha, foto, fk_idendereco, fk_idtipo) ';
+        const queryValues = ' VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+        const querytext = querySelect + queryValues;
 
-    querytext = querySelect + queryValues;
+        const [result] = await banco.query(querytext, [
+            nome, email, telefone, fk_idsexo, data_nasc, cpf, senha, foto, fk_idendereco, fk_idtipo
+        ]);
 
-    const [result] = await banco.query(querytext, [nome, email, telefone, fk_idsexo, data_nasc, cpf, senha, foto, fk_idendereco, fk_idtipo]); //Manda a queryText pro banco
-    return { id: result.insertId, nome, email, telefone, fk_idsexo, data_nasc, cpf, senha, foto, fk_idendereco, fk_idtipo }; // Retorna o novo registro criado
+        return {
+            success: true,
+            message: "Usuário cadastrado com sucesso!",
+            data: { id: result.insertId, nome, email, telefone, fk_idsexo, data_nasc, cpf, senha, foto, fk_idendereco, fk_idtipo }
+        };
+    } catch (error) {
+        if (error.code === "ER_DUP_ENTRY") {
+            if (error.sqlMessage.includes("cpf")) {
+                return { success: false, message: "CPF já cadastrado." };
+            }
+            if (error.sqlMessage.includes("email")) {
+                return { success: false, message: "E-mail já cadastrado." };
+            }
+            return { success: false, message: "Usuário já cadastrado." };
+        }
+
+        console.error(error); 
+        return { success: false, message: "Erro interno ao cadastrar usuário." };
+    }
 };
+
 
 const Put = async (id, nome, telefone, fk_idsexo, senha, foto, fk_idendereco, fk_idtipo) => {
     const querySelect = 'UPDATE usuarios SET nome = ?, telefone = ?, fk_idsexo = ?, senha = ?, foto = ?, fk_idendereco = ?, fk_idtipo = ?';

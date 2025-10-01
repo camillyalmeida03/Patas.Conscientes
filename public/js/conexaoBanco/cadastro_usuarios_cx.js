@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 })
             }).then(res => res.json());
 
-            console.log("Endereço salvo:", novoEndereco);
+            // console.log("Endereço salvo:", novoEndereco);
 
             // ------------------- DADOS DO USUÁRIO -------------------
             const nome = document.getElementById("nomeUsuarioAdt").value.trim();
@@ -88,8 +88,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 cpf,
                 senha,
                 fk_idendereco: novoEndereco.id,
-                fk_idtipo: 1, // tipo padrão
-                foto: null   // ou string vazia
+                fk_idtipo: 3,
+                foto: null
             };
 
             const responseUsuario = await fetch(endpointUsuario, {
@@ -98,13 +98,32 @@ document.addEventListener("DOMContentLoaded", function () {
                 body: JSON.stringify(dadosUsuario)
             });
 
-            if (!responseUsuario.ok) {
-                const texto = await responseUsuario.text();
-                throw new Error(`Erro ${responseUsuario.status}: ${texto}`);
+            const data = await responseUsuario.json();
+
+            if (!responseUsuario.ok || data.success === false) {
+                if (feedback) {
+                    feedback.textContent = data.message || "Erro ao enviar dados.";
+                    feedback.style.color = "red";   // Erro em vermelho
+                    feedback.style.display = "block";
+                }
+                return;
             }
 
-            const data = await responseUsuario.json();
-            if (feedback) feedback.textContent = data.message || "Cadastro realizado com sucesso!";
+            if (feedback) {
+                feedback.textContent = ""
+                feedback.style.color = "green";   // Sucesso em verde
+                feedback.style.display = "block";
+            }
+
+            if (data.success) {
+                formUsuario.reset();
+                feedback.textContent = "Cadastro realizado com sucesso!";
+                feedback.style.color = "green";
+
+                setTimeout(() => {
+                    window.location.href = "/index.html"; // redireciona após 2 segundos
+                }, 2000);
+            }
 
         } catch (error) {
             console.error("Erro ao enviar dados:", error);
