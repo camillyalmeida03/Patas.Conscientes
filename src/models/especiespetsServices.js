@@ -20,14 +20,26 @@ const GetById = async (id) => {
 };
 
 const Post = async (especie) => {
-  const querySelect = 'INSERT INTO especiespet(especie)';
-  const queryValues = ' VALUES (?)';
+  // 1 - Verifica se a espécie já existe
+  const queryCheck = "SELECT idespeciepet FROM especiespet WHERE especie = ?";
+  const [rows] = await banco.query(queryCheck, [especie]);
 
-  querytext = querySelect + queryValues;
+  if (rows.length > 0) {
+    // Já existe → retorna o registro existente
+    return {
+      message: "Espécie já cadastrada!",
+      id: rows[0].idespeciepet,
+      especie
+    };
+  }
 
-  const [result] = await banco.query(querytext, [especie]); //Manda a queryText pro banco
-  return { id: result.insertId, especie }; // Retorna o novo registro criado
+  // 2 - Se não existe → insere normalmente
+  const queryInsert = "INSERT INTO especiespet(especie) VALUES (?)";
+  const [result] = await banco.query(queryInsert, [especie]);
+
+  return { id: result.insertId, especie };
 };
+
 
 const Put = async (id, especie) => {
   const querySelect = 'UPDATE especiespet SET especie = ?';

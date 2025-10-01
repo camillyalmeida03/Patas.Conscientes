@@ -20,14 +20,25 @@ const GetById = async (id) => {
 };
 
 const Post = async (porte) => {
-  const querySelect = 'INSERT INTO portespet(porte)';
-  const queryValues = ' VALUES (?)';
+  // 1 - Verifica se já existe um porte com esse nome
+  const queryCheck = 'SELECT idportepet FROM portespet WHERE porte = ?';
+  const [rows] = await banco.query(queryCheck, [porte]);
 
-  querytext = querySelect + queryValues;
+  if (rows.length > 0) {
+    return {
+      message: "Este porte já está cadastrado!",
+      id: rows[0].idportepet,
+      porte
+    };
+  }
 
-  const [result] = await banco.query(querytext, [porte]); //Manda a queryText pro banco
-  return { id: result.insertId, porte }; // Retorna o novo registro criado
+  // 2 - Se não existe → insere
+  const queryInsert = 'INSERT INTO portespet(porte) VALUES (?)';
+  const [result] = await banco.query(queryInsert, [porte]);
+
+  return { id: result.insertId, porte };
 };
+
 
 const Put = async (id, porte) => {
   const querySelect = 'UPDATE portespet SET porte = ?';

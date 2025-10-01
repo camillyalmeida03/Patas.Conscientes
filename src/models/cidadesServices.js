@@ -20,14 +20,27 @@ const GetById = async (id) => {
 };
 
 const Post = async (cidade, fk_idestado) => {
-  const querySelect = 'INSERT INTO cidades(cidade, fk_idestado)';
-  const queryValues = ' VALUES (?, ?)';
+  // 1 - Verifica se a cidade já existe nesse estado
+  const queryCheck = "SELECT idcidade FROM cidades WHERE cidade = ? AND fk_idestado = ?";
+  const [rows] = await banco.query(queryCheck, [cidade, fk_idestado]);
 
-  querytext = querySelect + queryValues;
+  if (rows.length > 0) {
+    // já existe → retorna o existente
+    return {
+      message: "Cidade já cadastrada!",
+      id: rows[0].idcidade,
+      cidade,
+      fk_idestado
+    };
+  }
 
-  const [result] = await banco.query(querytext, [cidade, fk_idestado]); //Manda a queryText pro banco
-  return { id: result.insertId, cidade, fk_idestado }; // Retorna o novo registro criado
+  // 2 - Se não existe → insere normalmente
+  const queryInsert = "INSERT INTO cidades(cidade, fk_idestado) VALUES (?, ?)";
+  const [result] = await banco.query(queryInsert, [cidade, fk_idestado]);
+
+  return { id: result.insertId, cidade, fk_idestado };
 };
+
 
 const Put = async (id, cidade, fk_idestado) => {
   const querySelect = 'UPDATE cidades SET cidade = ?, fk_idestado = ?';

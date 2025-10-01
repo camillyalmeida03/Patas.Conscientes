@@ -29,14 +29,26 @@ const GetById = async (id) => {
 };
 
 const Post = async (raca, fk_idespeciepet) => {
-    const querySelect = 'INSERT INTO racaspet(raca, fk_idespeciepet) ';
-    const queryValues = ' VALUES (?, ?)';
+    // 1 - Verifica se já existe essa raça para a espécie informada
+    const queryCheck = 'SELECT idracapet FROM racaspet WHERE raca = ? AND fk_idespeciepet = ?';
+    const [rows] = await banco.query(queryCheck, [raca, fk_idespeciepet]);
 
-    querytext = querySelect + queryValues;
+    if (rows.length > 0) {
+        return {
+            message: "Esta raça já está cadastrada para essa espécie!",
+            id: rows[0].idracapet,
+            raca,
+            fk_idespeciepet
+        };
+    }
 
-    const [result] = await banco.query(querytext, [raca, fk_idespeciepet]); //Manda a queryText pro banco
-    return { id: result.insertId, raca, fk_idespeciepet }; // Retorna o novo registro criado
+    // 2 - Se não existe → insere
+    const queryInsert = 'INSERT INTO racaspet(raca, fk_idespeciepet) VALUES (?, ?)';
+    const [result] = await banco.query(queryInsert, [raca, fk_idespeciepet]);
+
+    return { id: result.insertId, raca, fk_idespeciepet };
 };
+
 
 const Put = async (id, raca, fk_idespeciepet) => {
     const querySelect = 'UPDATE racaspet SET raca = ?, fk_idespeciepet = ?';

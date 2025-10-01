@@ -29,13 +29,24 @@ const GetById = async (id) => {
 };
 
 const Post = async (fk_idusuario, fk_idpet) => {
-    const querySelect = 'INSERT INTO petsfavoritados(fk_idusuario, fk_idpet) ';
-    const queryValues = ' VALUES (?, ?)';
+    // 1 - Verifica se já existe esse par (usuário + pet) favoritado
+    const queryCheck = 'SELECT idpetfavoritado FROM petsfavoritados WHERE fk_idusuario = ? AND fk_idpet = ?';
+    const [rows] = await banco.query(queryCheck, [fk_idusuario, fk_idpet]);
 
-    querytext = querySelect + queryValues;
+    if (rows.length > 0) {
+        return {
+            message: "Este pet já foi favoritado por este usuário!",
+            id: rows[0].idpetfavoritado,
+            fk_idusuario,
+            fk_idpet
+        };
+    }
 
-    const [result] = await banco.query(querytext, [fk_idusuario, fk_idpet]); //Manda a queryText pro banco
-    return { id: result.insertId, fk_idusuario, fk_idpet }; // Retorna o novo registro criado
+    // 2 - Se não existe → insere
+    const queryInsert = 'INSERT INTO petsfavoritados(fk_idusuario, fk_idpet) VALUES (?, ?)';
+    const [result] = await banco.query(queryInsert, [fk_idusuario, fk_idpet]);
+
+    return { id: result.insertId, fk_idusuario, fk_idpet };
 };
 
 const Put = async (id, fk_idusuario, fk_idpet) => {

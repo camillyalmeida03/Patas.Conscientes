@@ -20,14 +20,26 @@ const GetById = async (id) => {
 };
 
 const Post = async (sigla, estado) => {
-  const querySelect = 'INSERT INTO estados(sigla, estado)';
-  const queryValues = ' VALUES (?, ?)';
+  // 1 - Verifica se já existe a sigla ou o nome do estado
+  const queryCheck = "SELECT idestado FROM estados WHERE sigla = ? OR estado = ?";
+  const [rows] = await banco.query(queryCheck, [sigla, estado]);
 
-  querytext = querySelect + queryValues;
+  if (rows.length > 0) {
+    return {
+      message: "Estado ou sigla já cadastrado!",
+      id: rows[0].idestado,
+      sigla,
+      estado
+    };
+  }
 
-  const [result] = await banco.query(querytext, [sigla, estado]); //Manda a queryText pro banco
-  return { id: result.insertId, sigla, estado }; // Retorna o novo registro criado
+  // 2 - Se não existe → insere normalmente
+  const queryInsert = "INSERT INTO estados(sigla, estado) VALUES (?, ?)";
+  const [result] = await banco.query(queryInsert, [sigla, estado]);
+
+  return { id: result.insertId, sigla, estado };
 };
+
 
 const Put = async (id, sigla, estado) => {
   const querySelect = 'UPDATE estados SET sigla = ?, estado = ?';

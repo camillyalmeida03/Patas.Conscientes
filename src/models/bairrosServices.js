@@ -20,14 +20,27 @@ const GetById = async (id) => {
 };
 
 const Post = async (bairro, fk_idcidade) => {
-  const querySelect = 'INSERT INTO bairros(bairro, fk_idcidade)';
-  const queryValues = ' VALUES (?, ?)';
+  // 1 - Verifica se já existe esse bairro na mesma cidade
+  const queryCheck = 'SELECT idbairro FROM bairros WHERE bairro = ? AND fk_idcidade = ?';
+  const [rows] = await banco.query(queryCheck, [bairro, fk_idcidade]);
 
-  querytext = querySelect + queryValues;
+  if (rows.length > 0) {
+    // já existe → retorna o existente em vez de criar outro
+    return { 
+      message: "Bairro já cadastrado!", 
+      id: rows[0].idbairro, 
+      bairro, 
+      fk_idcidade 
+    };
+  }
 
-  const [result] = await banco.query(querytext, [bairro, fk_idcidade]); //Manda a queryText pro banco
-  return { id: result.insertId, bairro, fk_idcidade }; // Retorna o novo registro criado
+  // 2 - Se não existe → insere normalmente
+  const queryInsert = 'INSERT INTO bairros(bairro, fk_idcidade) VALUES (?, ?)';
+  const [result] = await banco.query(queryInsert, [bairro, fk_idcidade]);
+
+  return { id: result.insertId, bairro, fk_idcidade };
 };
+
 
 const Put = async (id, bairro, fk_idcidade) => {
   const querySelect = 'UPDATE bairros SET bairro = ?, fk_idcidade = ?';

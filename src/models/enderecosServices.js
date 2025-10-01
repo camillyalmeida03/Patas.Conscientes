@@ -29,14 +29,45 @@ const GetById = async (id) => {
 };
 
 const Post = async (fk_idcidade, fk_idbairro, fk_idrua, fk_idestado, numero, cep, complemento) => {
-    const querySelect = 'INSERT INTO enderecos(fk_idcidade, fk_idbairro, fk_idrua, fk_idestado, numero, cep, complemento) ';
-    const queryValues = ' VALUES (?, ?, ?, ?, ?, ?, ?)';
+  // 1 - Verifica se já existe o mesmo endereço
+  const queryCheck = `
+    SELECT idendereco 
+    FROM enderecos 
+    WHERE fk_idcidade = ? 
+      AND fk_idbairro = ? 
+      AND fk_idrua = ? 
+      AND fk_idestado = ? 
+      AND numero = ? 
+      AND cep = ? 
+      AND complemento = ?
+  `;
 
-    querytext = querySelect + queryValues;
+  const [rows] = await banco.query(queryCheck, [
+    fk_idcidade, fk_idbairro, fk_idrua, fk_idestado, numero, cep, complemento
+  ]);
 
-    const [result] = await banco.query(querytext, [fk_idcidade, fk_idbairro, fk_idrua, fk_idestado, numero, cep, complemento]); //Manda a queryText pro banco
-    return { id: result.insertId, fk_idcidade, fk_idbairro, fk_idrua, fk_idestado, numero, cep, complemento }; // Retorna o novo registro criado
+  if (rows.length > 0) {
+    // já existe → retorna o existente
+    return {
+      message: "Endereço já cadastrado!",
+      id: rows[0].idendereco,
+      fk_idcidade, fk_idbairro, fk_idrua, fk_idestado, numero, cep, complemento
+    };
+  }
+
+  // 2 - Se não existe → insere normalmente
+  const queryInsert = `
+    INSERT INTO enderecos(fk_idcidade, fk_idbairro, fk_idrua, fk_idestado, numero, cep, complemento) 
+    VALUES (?, ?, ?, ?, ?, ?, ?)
+  `;
+
+  const [result] = await banco.query(queryInsert, [
+    fk_idcidade, fk_idbairro, fk_idrua, fk_idestado, numero, cep, complemento
+  ]);
+
+  return { id: result.insertId, fk_idcidade, fk_idbairro, fk_idrua, fk_idestado, numero, cep, complemento };
 };
+
 
 const Put = async (id, fk_idcidade, fk_idbairro, fk_idrua, fk_idestado, numero, cep, complemento) => {
     const querySelect = 'UPDATE enderecos SET fk_idcidade = ?, fk_idbairro = ?, fk_idrua = ?, fk_idestado = ?, numero = ?, cep = ?, complemento = ?';
