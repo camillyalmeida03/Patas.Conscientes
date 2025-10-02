@@ -2696,7 +2696,7 @@ textarea {
     position: fixed;
     align-items: center;
     justify-content: space-between;
-    top: 10rem;
+    top: 7rem;
     right: 2rem;
     z-index: 10000;
     padding: 1.2rem;
@@ -2726,7 +2726,7 @@ textarea {
 
 .feedbackSucess .iconeFeedback{
     background-color: var(--contornoVerde);
-    background-image: url(/Patas.Conscientes/public/img/icons/feedback-sucess.png);
+    background-image: url(/public/img/icons/feedback-sucess.png);
 }
 
 .feedbackError{
@@ -2737,7 +2737,7 @@ textarea {
 
 .feedbackError .iconeFeedback{
     background-color: var(--contornoVermelho);
-    background-image: url(/Patas.Conscientes/public/img/icons/feedback-error.png);
+    background-image: url(/public/img/icons/feedback-error.png);
 }
 
 /* -------- MODO ESCURO ------------------------------------------------------------------------------------------------------- */
