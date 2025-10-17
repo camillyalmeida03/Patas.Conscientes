@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector(".formulario");
-
+    
     form.addEventListener("submit", function (event) {
         event.preventDefault(); // Evita o envio do formulário inicialmente
+
 
         // Variável de controle de validade do formulário
         let formularioValido = true;
@@ -54,8 +55,9 @@ document.addEventListener("DOMContentLoaded", function () {
             const nomeUsuario = inputNomeUsuario.value.trim();
 
             if (nomeUsuario === "") {
-                erroNomeUsuario.innerHTML = mensagemNomeObrigatorio;
+                erroNomeUsuario.innerHTML = mensagemNomeInvalido
                 erroNomeUsuario.style.display = "block";
+                // aplicarErro(inputNomeUsuario, mensagemNomeObrigatorio)
                 return false;
             } else if (!regexNome.test(nomeUsuario) || nomeUsuario.length <= 3) {
                 erroNomeUsuario.innerHTML = mensagemNomeInvalido
@@ -549,7 +551,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-    
+
     if (inputCep) {
         inputCep.addEventListener("blur", async function () {
             const cep = this.value.replace(/\D/g, ""); // remove hífen e não números

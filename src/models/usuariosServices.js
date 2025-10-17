@@ -54,19 +54,20 @@ const Post = async (nome, email, telefone, fk_idsexo, data_nasc, cpf, senha, fot
             return { success: false, message: "Usuário já cadastrado." };
         }
 
-        console.error(error); 
+        console.error(error);
         return { success: false, message: "Erro interno ao cadastrar usuário." };
     }
 };
 
 
 const Put = async (id, nome, telefone, fk_idsexo, senha, foto, fk_idendereco, fk_idtipo) => {
-    const querySelect = 'UPDATE usuarios SET nome = ?, telefone = ?, fk_idsexo = ?, senha = ?, foto = ?, fk_idendereco = ?, fk_idtipo = ?';
-    const queryWhere = ' WHERE idusuario = ?';
-
-    querytext = querySelect + queryWhere;
-
-    const [result] = await banco.query(querytext, [nome, telefone, fk_idsexo, senha, foto, fk_idendereco, fk_idtipo, id]); //Manda a queryText pro banco
+    const queryUpdate = `
+    UPDATE usuarios 
+    SET nome = ?, telefone = ?, fk_idsexo = ?, senha = ?, foto = ?, fk_idendereco = ?, fk_idtipo = ?
+    WHERE idusuario = ?
+`;
+    const [result] = await banco.query(queryUpdate, [nome, telefone, fk_idsexo, senha, foto, fk_idendereco, fk_idtipo, id]);
+    //Manda a queryText pro banco
     return { id, nome, telefone, fk_idsexo, senha, foto, fk_idendereco, fk_idtipo, linhasAfetadas: result.affectedRows }; // Retorna o registro alterado
 };
 
@@ -74,7 +75,7 @@ const Erase = async (id) => {
     const querySelect = 'DELETE FROM usuarios';
     const queryWhere = ' WHERE idusuario = ?';
 
-    querytext = querySelect + queryWhere;
+    const querytext = querySelect + queryWhere;
 
     const [rows] = await banco.query(querytext, [id]); //Manda a queryText pro banco
     return rows; // Retorna só os dados
