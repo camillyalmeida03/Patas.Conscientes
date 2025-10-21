@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector(".formulario");
-    
+
     form.addEventListener("submit", function (event) {
         event.preventDefault(); // Evita o envio do formulário inicialmente
 
@@ -584,6 +584,53 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
+
+    // --- Validação em tempo real ---
+    const camposValidaveis = [
+        { id: "nomeUsuarioAdt", func: validarNome },
+        { id: "emailUsuarioAdt", func: validarEmail },
+        { id: "telcelUsuarioAdt", func: validarTelCel },
+        { id: "cpfUsuarioAdt", func: validarCpf },
+        { id: "genero", func: validarGenero },
+        { id: "dataNasc", func: validarDataNasc },
+        { id: "senhaUsuarioAdt", func: validarSenhas },
+        { id: "confirmaSenhaUsuarioAdt", func: validarSenhas },
+        { id: "cep", func: validarCep },
+        { id: "estado", func: validarEstado },
+        { id: "cidade", func: validarCidade },
+        { id: "bairro", func: validarBairro },
+        { id: "rua", func: validarRua },
+        { id: "nmr", func: validarNmr },
+    ];
+
+    // Adiciona ouvintes a cada campo existente
+    camposValidaveis.forEach(campo => {
+        const input = document.getElementById(campo.id);
+        if (input) {
+            // Verifica enquanto digita
+            input.addEventListener("input", campo.func);
+
+            // Verifica ao sair do campo
+            input.addEventListener("blur", campo.func);
+
+            // Verifica ao trocar seleção (para selects)
+            input.addEventListener("change", campo.func);
+        }
+    });
+
+    window.validarNome = validarNome;
+    window.validarEmail = validarEmail;
+    window.validarTelCel = validarTelCel;
+    window.validarCpf = validarCpf;
+    window.validarGenero = validarGenero;
+    window.validarDataNasc = validarDataNasc;
+    window.validarSenhas = validarSenhas;
+    window.validarCep = validarCep;
+    window.validarEstado = validarEstado;
+    window.validarCidade = validarCidade;
+    window.validarBairro = validarBairro;
+    window.validarRua = validarRua;
+    window.validarNmr = validarNmr;
 
 });
 

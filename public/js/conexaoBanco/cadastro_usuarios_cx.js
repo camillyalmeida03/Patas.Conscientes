@@ -1,14 +1,35 @@
+import { MensagemFeedback } from "../formularios/mensagemFeedback.js"; // ajuste o caminho conforme sua estrutura
+
 document.addEventListener("DOMContentLoaded", function () {
     const formUsuario = document.getElementById("cadastroUsuario");
-    const feedback = document.getElementById("mensagemcriacaodeconta");
+    const feedbackPai = document.getElementById("mensagemcriacaodeconta");
 
     if (!formUsuario) return;
 
     formUsuario.addEventListener("submit", async (e) => {
         e.preventDefault();
 
+        const camposValidos =
+            validarNome() &&
+            validarEmail() &&
+            validarTelCel() &&
+            validarCpf() &&
+            validarGenero() &&
+            validarDataNasc() &&
+            validarSenhas() &&
+            validarCep() &&
+            validarEstado() &&
+            validarCidade() &&
+            validarBairro() &&
+            validarRua() &&
+            validarNmr();
+
+        if (!camposValidos) {
+            new MensagemFeedback("Por favor, corrija os erros antes de enviar o formulário.", feedbackPai).feedbackError();
+            return;
+        }
+
         try {
-            // ------------------- DADOS DO ENDEREÇO -------------------
             const cep = document.getElementById("cep").value.trim();
             const estado = document.getElementById("estado").value;
             const cidade = document.getElementById("cidade").value.trim();
@@ -22,38 +43,34 @@ document.addEventListener("DOMContentLoaded", function () {
             const endpointBairro = "http://localhost:3600/bairros";
             const endpointRua = "http://localhost:3600/ruas";
             const endpointEndereco = "http://localhost:3600/enderecos";
-            const endpointUsuario = 'http://localhost:3600/usuarios';
+            const endpointUsuario = "http://localhost:3600/usuarios";
             const contentTypeJson = { "Content-Type": "application/json" };
 
-            // POST estado
+            // ------------------- CRIAÇÕES EM CADEIA -------------------
             const idEstado = (await fetch(endpointEstado, {
                 method: "POST",
                 headers: contentTypeJson,
                 body: JSON.stringify({ sigla: estado })
             }).then(res => res.json())).id;
 
-            // POST cidade
             const idCidade = (await fetch(endpointCidade, {
                 method: "POST",
                 headers: contentTypeJson,
                 body: JSON.stringify({ fk_idestado: idEstado, cidade })
             }).then(res => res.json())).id;
 
-            // POST bairro
             const idBairro = (await fetch(endpointBairro, {
                 method: "POST",
                 headers: contentTypeJson,
                 body: JSON.stringify({ fk_idcidade: idCidade, bairro })
             }).then(res => res.json())).id;
 
-            // POST rua
             const idRua = (await fetch(endpointRua, {
                 method: "POST",
                 headers: contentTypeJson,
                 body: JSON.stringify({ fk_idbairro: idBairro, rua })
             }).then(res => res.json())).id;
 
-            // POST endereço completo
             const novoEndereco = await fetch(endpointEndereco, {
                 method: "POST",
                 headers: contentTypeJson,
@@ -68,9 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 })
             }).then(res => res.json());
 
-            // console.log("Endereço salvo:", novoEndereco);
-
-            // ------------------- DADOS DO USUÁRIO -------------------
+            // ------------------- USUÁRIO -------------------
             const nome = document.getElementById("nomeUsuarioAdt").value.trim();
             const email = document.getElementById("emailUsuarioAdt").value.trim();
             const telefone = document.getElementById("telcelUsuarioAdt").value.trim();
@@ -101,33 +116,21 @@ document.addEventListener("DOMContentLoaded", function () {
             const data = await responseUsuario.json();
 
             if (!responseUsuario.ok || data.success === false) {
-                if (feedback) {
-                    feedback.textContent = data.message || "Erro ao enviar dados.";
-                    feedback.style.color = "red";   // Erro em vermelho
-                    feedback.style.display = "block";
-                }
+                new MensagemFeedback(data.message || "Erro ao enviar dados.", feedbackPai).feedbackError();
                 return;
             }
 
-            if (feedback) {
-                feedback.textContent = ""
-                feedback.style.color = "green";   // Sucesso em verde
-                feedback.style.display = "block";
-            }
-
             if (data.success) {
+                new MensagemFeedback("Cadastro realizado com sucesso!", feedbackPai).feedbackSucess();
                 formUsuario.reset();
-                feedback.textContent = "Cadastro realizado com sucesso!";
-                feedback.style.color = "green";
-
                 setTimeout(() => {
-                    window.location.href = "/index.html"; // redireciona após 2 segundos
+                    window.location.href = "/index.html";
                 }, 2000);
             }
 
         } catch (error) {
             console.error("Erro ao enviar dados:", error);
-            if (feedback) feedback.textContent = "Erro ao enviar dados. Tente novamente.";
+            new MensagemFeedback("Erro ao enviar dados. Tente novamente.", feedbackPai).feedbackError();
         }
     });
 });
