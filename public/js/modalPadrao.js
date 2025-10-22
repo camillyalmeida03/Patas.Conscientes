@@ -1,6 +1,6 @@
 // Este arquivo é responsável por definir o comportamento padrão de todos os modais.
 
-class ModalPadrao {
+export default class ModalPadrao {
   static pilha = [];
 
   constructor(fundoModal) {

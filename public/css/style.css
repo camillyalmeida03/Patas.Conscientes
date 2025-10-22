@@ -551,9 +551,13 @@ button {
     box-shadow: 3px 3px 5px var(--cinza158);
 }
 
-#suaconta {
-    display: none;
+.contaPopup.ativo {
+  display: flex;
 }
+
+/* #suaconta {
+    display: none;
+} */
 
 .contaPopup #email {
     font-size: 13px;
