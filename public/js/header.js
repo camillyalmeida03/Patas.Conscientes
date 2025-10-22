@@ -149,7 +149,7 @@ export class ContaPopup {
         // bloco do usuário
         const usuarioPerfil = this.criar.createElement("div", [], "", contaPopup, "usuarioPerfil");
         const altFotoUsuario = this.criar.createElement("div", [], "", usuarioPerfil, "altFotoUsuario");
-        this.criar.createElement("div", [], "", altFotoUsuario, "fotoUsuario");
+        this.criar.createElement("div", ["fotoDefaultUsuario"], "", altFotoUsuario, "fotoUsuario");
 
         const infoUsuario = this.criar.createElement("div", [], "", usuarioPerfil);
 
@@ -181,8 +181,14 @@ export class ContaPopup {
                 this.criar.createA([], "painelOng.html", "Painel administrativo da ONG", "Painel da ONG", configPopup);
             }
 
+            // linha divisória
+            this.criar.createElement("div", ["linha"], "", contaPopup);
+
+            // === BLOCO FINAL (Tema + Botões) ===
+            const configFinal = this.criar.createElement("div", ["configFinal"], "", contaPopup);
+
             // tema
-            const tema = this.criar.createElement("div", ["tema"], "", configPopup);
+            const tema = this.criar.createElement("div", ["tema"], "", configFinal);
             this.criar.createElement("p", [], "Tema", tema);
 
             const label = this.criar.createElement("label", ["ui-switch"], "", tema);
@@ -194,27 +200,66 @@ export class ContaPopup {
 
             const slid = this.criar.createElement("div", ["slid"], "", label);
             this.criar.createElement("div", ["circle"], "", slid);
-        }
 
-        // botão de ação final
-        const sairouentrar = this.criar.createElement("div", [], "", contaPopup, "sairouentrar");
-        const botao = this.criar.createButton(
-            ["verde", "buttonPerfil"],
-            this.tipo === "naoLogado" ? "Entrar" : "Sair",
-            sairouentrar,
-            this.tipo === "naoLogado" ? "Entrar na conta" : "Sair da conta"
-        );
+            // botão de ação final
+            const sairouentrar = this.criar.createElement("div", ["botoesLogin"], "", configFinal, "sairouentrar");
 
-        botao.id = "sairouentrar";
-        botao.addEventListener("click", () => {
-            if (this.tipo === "naoLogado") {
-                window.location.href = "/login.html";
-            } else {
+            // botão SAIR
+            const botaoSair = this.criar.createButton(
+                ["verde", "buttonPerfil"],
+                "Sair",
+                sairouentrar,
+                "Sair da conta"
+            );
+            botaoSair.id = "botaoSair";
+            botaoSair.addEventListener("click", () => {
                 localStorage.removeItem("usuario");
                 localStorage.removeItem("ong");
                 window.location.reload();
-            }
-        });
+            });
+        } else {
+            // === BLOCO FINAL PARA NÃO LOGADO ===
+            const configFinal = this.criar.createElement("div", ["configFinal"], "", contaPopup);
+
+            // tema
+            const tema = this.criar.createElement("div", ["tema"], "", configFinal);
+            this.criar.createElement("p", [], "Tema", tema);
+
+            const label = this.criar.createElement("label", ["ui-switch"], "", tema);
+            label.setAttribute("aria-label", "Alternar tema");
+
+            const input = this.criar.createElement("input", [], "", label);
+            input.type = "checkbox";
+            input.classList.add("definirTema");
+
+            const slid = this.criar.createElement("div", ["slid"], "", label);
+            this.criar.createElement("div", ["circle"], "", slid);
+
+            // botão ENTRAR e CRIAR CONTA
+            const sairouentrar = this.criar.createElement("div", ["botoesLogin"], "", configFinal, "sairouentrar");
+
+            const botaoEntrar = this.criar.createButton(
+                ["verde", "buttonPerfil"],
+                "Entrar",
+                sairouentrar,
+                "Entrar na conta"
+            );
+            botaoEntrar.id = "botaoEntrar";
+            botaoEntrar.addEventListener("click", () => {
+                window.location.href = "../views/login.html";
+            });
+
+            const botaoCriar = this.criar.createButton(
+                ["branco", "buttonPerfil"],
+                "Criar conta",
+                sairouentrar,
+                "Criar uma nova conta"
+            );
+            botaoCriar.id = "botaoCriar";
+            botaoCriar.addEventListener("click", () => {
+                window.location.href = "../views/cadastroadotante.html";
+            });
+        }
 
         this.popup = contaPopup;
 
@@ -224,6 +269,13 @@ export class ContaPopup {
                 this.popup.style.display = "none";
             }
         });
+
+        // reinicializa controle de tema (checkboxes recém-criados)
+        if (window.tema instanceof ModoEscuroEClaro) {
+            tema.sincronizarCheckboxes();
+        } else {
+            window.tema = new ModoEscuroEClaro();
+        }
 
         return contaPopup;
     }
@@ -245,13 +297,11 @@ export class ContaPopup {
         }
     }
 
-
-
-
     fecharPopup() {
         this.popup.classList.remove("ativo");
     }
 }
+
 
 // ativa popup no header
 document.addEventListener("DOMContentLoaded", () => {

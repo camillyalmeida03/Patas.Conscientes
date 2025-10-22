@@ -57,7 +57,7 @@ a {
     color: black;
 }
 
-.cinzah3{
+.cinzah3 {
     color: var(--cinza_h3) !important;
 }
 
@@ -549,10 +549,11 @@ button {
     flex-direction: column;
     gap: 1rem;
     box-shadow: 3px 3px 5px var(--cinza158);
+    width: 30rem;
 }
 
 .contaPopup.ativo {
-  display: flex;
+    display: flex;
 }
 
 /* #suaconta {
@@ -595,6 +596,29 @@ button {
     flex-direction: column;
     gap: 1rem;
 }
+
+.configFinal{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+.configFinal .tema{
+    justify-content: flex-end;
+    gap: 1rem;
+    width: fit-content;
+}
+
+.botoesLogin{
+    display: flex;
+    gap: 1rem;
+}
+
+.botoesLogin{
+    width: fit-content;
+}
+
+
 
 .tema {
     display: flex;
@@ -1933,18 +1957,23 @@ ol {
     justify-content: space-between;
 }
 
+
+
 #fotoUsuario,
 #fotoUsuarioconfig {
     height: 10rem;
     width: 10rem;
-    background-image: url(/public/img/fotos/perfil1.jpg);
+    background-image: url(/public/img/user_ong/user/cachorro-icon.svg);
     border-radius: 50%;
-    background-color: var(--cinza215);
+    background-color: var(--rosa);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     pointer-events: none;
+}
 
+.fotoDefaultUsuario{
+    background-size: 6rem !important;
 }
 
 .buttonPerfil {
@@ -2067,9 +2096,9 @@ ol {
 .passwordContainer input:-webkit-autofill:focus,
 .passwordContainer input:-webkit-autofill:hover,
 .passwordContainer input:-webkit-autofill:active {
-  transition: background-color 9999s ease-in-out 0s;
-  -webkit-text-fill-color: #000 !important;
-  box-shadow: 0 0 0 1000px transparent inset !important;
+    transition: background-color 9999s ease-in-out 0s;
+    -webkit-text-fill-color: #000 !important;
+    box-shadow: 0 0 0 1000px transparent inset !important;
 }
 
 
@@ -2650,52 +2679,56 @@ textarea {
 } */
 
 .bttEditarImg {
-  position: absolute;
-  z-index: 100;
-  bottom: 0;
-  right: 0;
-  background-color: white;
-  height: 3rem;
-  width: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center; /* CENTRALIZA O ÍCONE HORIZONTALMENTE */
-  border-radius: 50%; /* opcional: deixa o botão redondo */
+    position: absolute;
+    z-index: 100;
+    bottom: 0;
+    right: 0;
+    background-color: white;
+    height: 3rem;
+    width: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* CENTRALIZA O ÍCONE HORIZONTALMENTE */
+    border-radius: 50%;
+    /* opcional: deixa o botão redondo */
 }
 
 /* Remove seletores desnecessários e garante centralização */
 .custom-file-upload {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  border-radius: inherit; /* herdando se for circular */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border-radius: inherit;
+    /* herdando se for circular */
 }
 
 .custom-file-upload:hover {
-  background-color: white;
+    background-color: white;
 }
 
 .bttEditarImg svg {
-  height: 2rem;
-  width: 2rem;
-  pointer-events: none; /* garante que o clique vá para o label */
+    height: 2rem;
+    width: 2rem;
+    pointer-events: none;
+    /* garante que o clique vá para o label */
 }
 
-.bannerPerfilOng .bttEditarImg{
+.bannerPerfilOng .bttEditarImg {
     right: 1rem;
     bottom: 1rem;
 }
 
-.h1NomeOng{
+.h1NomeOng {
     text-align: center;
 }
 
 /* Mensagem de feedback - Estilização */
-.feedback{
+.feedback {
     display: flex;
     position: fixed;
     align-items: center;
@@ -2708,10 +2741,10 @@ textarea {
     font-weight: 700;
     min-width: 15rem;
     max-width: 15rem;
-    box-shadow: 3px 3px 3px rgba(100, 100, 100,0.3);
+    box-shadow: 3px 3px 3px rgba(100, 100, 100, 0.3);
 }
 
-.iconeFeedback{
+.iconeFeedback {
     border-radius: 50%;
     padding: 0.3rem;
     display: flex;
@@ -2722,24 +2755,24 @@ textarea {
     background-size: cover;
 }
 
-.feedbackSucess{
+.feedbackSucess {
     background-color: var(--fundoVerde);
     border: 3px var(--verdeFeedback) solid;
     color: var(--verdeFeedback);
 }
 
-.feedbackSucess .iconeFeedback{
+.feedbackSucess .iconeFeedback {
     background-color: var(--contornoVerde);
     background-image: url(/public/img/icons/feedback-sucess.png);
 }
 
-.feedbackError{
+.feedbackError {
     background-color: var(--fundoVermelho);
     border: 3px var(--vermelhoFeedback) solid;
     color: var(--vermelhoFeedback);
 }
 
-.feedbackError .iconeFeedback{
+.feedbackError .iconeFeedback {
     background-color: var(--contornoVermelho);
     background-image: url(/public/img/icons/feedback-error.png);
 }
@@ -3215,10 +3248,10 @@ textarea {
         padding: 0 2rem 0 2rem;
     }
 
-.bannerPerfilOng .bttEditarImg{
-    right: 1rem;
-    bottom: 2rem;
-}
+    .bannerPerfilOng .bttEditarImg {
+        right: 1rem;
+        bottom: 2rem;
+    }
 }
 
 /* responsividade em dispositivos até 800px de largura  */
