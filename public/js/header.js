@@ -244,6 +244,7 @@ export class ContaPopup {
                 sairouentrar,
                 "Entrar na conta"
             );
+
             botaoEntrar.id = "botaoEntrar";
             botaoEntrar.addEventListener("click", () => {
                 window.location.href = "../views/login.html";
@@ -259,6 +260,18 @@ export class ContaPopup {
             botaoCriar.addEventListener("click", () => {
                 window.location.href = "../views/cadastroadotante.html";
             });
+
+            if (document.title === "Início - Patas Conscientes") {
+                botaoEntrar.addEventListener("click", () => {
+                    window.location.href = "src/views/login.html";
+                });
+            }
+
+            if (document.title === "Início - Patas Conscientes") {
+                botaoCriar.addEventListener("click", () => {
+                    window.location.href = "src/views/cadastroadotante.html";
+                });
+            }
         }
 
         this.popup = contaPopup;
