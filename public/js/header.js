@@ -176,9 +176,9 @@ export class ContaPopup {
 
             // link "Minha conta" (ou "Painel ONG")
             if (this.tipo === "usuario") {
-                this.criar.createA([], "configuracoes.html", "Configurações da minha conta", "Minha conta", configPopup);
+                this.criar.createA([], "../src/views/configuracoes.html", "Configurações da minha conta", "Minha conta", configPopup);
             } else if (this.tipo === "ong") {
-                this.criar.createA([], "painelOng.html", "Painel administrativo da ONG", "Painel da ONG", configPopup);
+                this.criar.createA([], "../src/views/configuracoes.html", "Painel administrativo da ONG", "Painel da ONG", configPopup);
             }
 
             // linha divisória
@@ -206,7 +206,7 @@ export class ContaPopup {
 
             // botão SAIR
             const botaoSair = this.criar.createButton(
-                ["verde", "buttonPerfil"],
+                ["vermelho", "buttonPerfil"],
                 "Sair",
                 sairouentrar,
                 "Sair da conta"
@@ -315,12 +315,11 @@ export class ContaPopup {
     }
 }
 
-
 // ativa popup no header
 document.addEventListener("DOMContentLoaded", () => {
     const abrirConfigPerfil = document.getElementById("abrirConfigPerfil");
 
-    let tipo = "naoLogado";
+    let tipo = "ong";
     if (localStorage.getItem("usuario")) tipo = "usuario";
     else if (localStorage.getItem("ong")) tipo = "ong";
 
@@ -334,7 +333,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-
 window.addEventListener("resize", () => {
     const contaPopup = document.getElementById("suaconta"); // garante que sempre pegue o elemento atual
 
@@ -342,5 +340,4 @@ window.addEventListener("resize", () => {
         contaPopup.style.display = "none";
     }
 });
-
 
