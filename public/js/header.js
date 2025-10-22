@@ -1,3 +1,5 @@
+import { CriarElementos } from "./criarElementos.js";
+
 document.addEventListener('DOMContentLoaded', function () {
     const institucional = document.getElementById('institucional');
     const caixaInst = document.querySelector('.caixaInst');
@@ -125,25 +127,21 @@ let svgPerfil = document.getElementById('svgPerfil');
 //     console.error("Botão 'abrirConfigPerfil' não encontrado. Verifique o ID no HTML.");
 // }
 
-import { CriarElementos } from "./criarElementos.js";
-
 export class ContaPopup {
     constructor(tipo = "naoLogado") {
         this.tipo = tipo; // 'naoLogado', 'usuario', 'ong'
         this.criar = new CriarElementos();
         this.popup = null;
+        this.listenerAtivo = false;
     }
 
     criarPopupConta(parent = document.querySelector("header")) {
-
-        // se já existir, só alterna
-        if (this.popup) {
-            this.popup.classList.toggle("ativo");
-            return;
-        }
+        // se já existir, retorna para não duplicar
+        if (this.popup) return this.popup;
 
         // container principal
         const contaPopup = this.criar.createElement("div", ["contaPopup"], "", parent, "suaconta");
+        contaPopup.style.display = "flex";
 
         // título principal
         this.criar.createElement("h5", ["titConfig"], "Conta", contaPopup);
@@ -164,7 +162,7 @@ export class ContaPopup {
             this.criar.createElement("p", [], "contato@ongesperanca.org", infoUsuario, "emaildouser");
         } else {
             this.criar.createElement("p", [], "Bem-vindo!", infoUsuario, "nomeUsuario");
-            this.criar.createElement("p", [], "Acesse sua conta para continuar", infoUsuario, "emaildouser");
+            this.criar.createElement("p", [], "Acesse sua conta ou crie uma para continuar", infoUsuario, "emaildouser");
         }
 
         // linha divisória
@@ -221,25 +219,39 @@ export class ContaPopup {
         this.popup = contaPopup;
 
         // fecha ao clicar fora
-        document.addEventListener("click", (e) => {
-            const svgPerfil = document.getElementById("svgPerfil");
-            if (this.popup && !this.popup.contains(e.target) && e.target !== svgPerfil) {
-                this.popup.classList.remove("ativo");
+        window.addEventListener("click", (e) => {
+            if (this.popup && !this.popup.contains(e.target) && e.target.id !== "abrirConfigPerfil") {
+                this.popup.style.display = "none";
             }
         });
 
         return contaPopup;
     }
 
-    togglePopup() {
+    abrirPopup() {
         const header = document.querySelector("header");
-        if (!this.popup) this.criarPopupConta(header);
-        this.popup.classList.toggle("ativo");
+
+        // se não existe, cria e mostra
+        if (!this.popup) {
+            this.criarPopupConta(header);
+            return;
+        }
+
+        // se já existe, alterna o display
+        if (this.popup.style.display === "flex") {
+            this.popup.style.display = "none";
+        } else {
+            this.popup.style.display = "flex";
+        }
     }
 
-}
 
-import ModalPadrao from "./modalPadrao.js"
+
+
+    fecharPopup() {
+        this.popup.classList.remove("ativo");
+    }
+}
 
 // ativa popup no header
 document.addEventListener("DOMContentLoaded", () => {
@@ -247,34 +259,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let tipo = "naoLogado";
     if (localStorage.getItem("usuario")) tipo = "usuario";
-    if (localStorage.getItem("ong")) tipo = "ong";
+    else if (localStorage.getItem("ong")) tipo = "ong";
 
     const conta = new ContaPopup(tipo);
-    let modalConta = null;
 
     if (abrirConfigPerfil) {
         abrirConfigPerfil.addEventListener("click", (e) => {
-            e.stopPropagation();
-
-            // cria popup dentro de um fundo modal, se ainda não existir
-            if (!modalConta) {
-                const fundo = document.createElement("div");
-                fundo.id = "fundoConta";
-                fundo.classList.add("fundoModal", "escondido");
-
-                const modal = document.createElement("div");
-                modal.classList.add("modal");
-                fundo.appendChild(modal);
-
-                document.body.appendChild(fundo);
-
-                conta.criarPopupConta(modal);
-
-                modalConta = new ModalPadrao(fundo);
-            }
-
-            modalConta.abrir();
+            e.stopPropagation(); // pra não fechar no mesmo clique
+            conta.abrirPopup();
         });
     }
 });
+
+
+window.addEventListener("resize", () => {
+    const contaPopup = document.getElementById("suaconta"); // garante que sempre pegue o elemento atual
+
+    if (window.innerWidth > 950 && contaPopup) {
+        contaPopup.style.display = "none";
+    }
+});
+
 
