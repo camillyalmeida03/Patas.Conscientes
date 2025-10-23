@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 new MensagemFeedback("Cadastro realizado com sucesso!", feedbackPai).feedbackSucess();
                 formUsuario.reset();
                 setTimeout(() => {
-                    window.location.href = "/index.html";
+                    window.location.href = "/src/views/configuracoes.html";
                 }, 2000);
             }
 

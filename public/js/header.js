@@ -319,7 +319,7 @@ export class ContaPopup {
 document.addEventListener("DOMContentLoaded", () => {
     const abrirConfigPerfil = document.getElementById("abrirConfigPerfil");
 
-    let tipo = "ong";
+    let tipo = "naoLogado";
     if (localStorage.getItem("usuario")) tipo = "usuario";
     else if (localStorage.getItem("ong")) tipo = "ong";
 
