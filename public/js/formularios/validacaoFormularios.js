@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!validarGenero()) formularioValido = false;
         if (!validarDataNasc()) formularioValido = false;
         if (!validarSenhas()) formularioValido = false;
+        if (!validarSenhaLogin()) formularioValido = false;
 
         // Validações de endereço
         if (!validarCep()) formularioValido = false;
@@ -230,7 +231,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const inputCpfUsuarioAdt = document.getElementById("cpfUsuarioAdt");
 
     function validarCpf() {
-        if(!inputCpfUsuarioAdt) return true;
+        if (!inputCpfUsuarioAdt) return true;
 
         // Mensagens de retorno
         const mensagemCpfObrigatorio = "O campo CPF é obrigatório."
@@ -281,7 +282,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const mensagemGeneroObrigatorio = "Por favor, selecione seu gênero."
 
         const genero = document.getElementById("genero");
-        if(!genero) return true;
+        if (!genero) return true;
         const erroGenero = document.getElementById("erroGenero");
         const valorGenero = genero.value;
 
@@ -305,7 +306,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const dataNasc = document.getElementById("dataNasc");
         const erroDataNasc = document.getElementById("erroDataNasc");
 
-        if(!dataNasc) return true;
+        if (!dataNasc) return true;
         const valorDataNasc = dataNasc.value;
 
         if (dataNasc) {
@@ -341,11 +342,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Validação das senhas do usuário / ONG
+    const mensagemSenhaObrigatoria = "O campo senha é obrigatório."
+
     function validarSenhas() {
 
         // Mensagens de retorno
         const mensagemSenhaInvalida = "A senha deve ter no mínimo 8 caracteres, incluindo uma letra maiúscula, uma minúscula, um número e um caractere especial."
-        const mensagemSenhaObrigatoria = "O campo senha é obrigatório."
         const mensagemConfirmacaoSenha = "O campo de confirmação de senha é obrigatório."
         const mensagemSenhasDivergem = "As senhas não coincidem."
 
@@ -353,8 +355,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const inputSenhaUsuario = document.getElementById("senhaUsuarioAdt");
         const inputCnfSenhaUsuario = document.getElementById("confirmaSenhaUsuarioAdt");
 
+        // Se nenhum dos campos de senha existe na página atual, não valida
+        if (!inputSenhaUsuario || !inputCnfSenhaUsuario) return true;
+
         const senhaUsuario = inputSenhaUsuario.value.trim();
-        if(!inputCnfSenhaUsuario) return true;
         const cnfSenhaUsuario = inputCnfSenhaUsuario.value.trim();
         const erroSenhaUsuario = document.getElementById("erroSenhaUsuarioAdt");
         const erroCnfSenhaUsuario = document.getElementById("erroConfirSenhaUsuarioAdt");
@@ -395,6 +399,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
+    // Validação do campo de senha do Login de usuários
+    function validarSenhaLogin() {
+        const inputSenhaLoginUsuario = document.getElementById("senhaLoginUsuario");
+        const erroSenhaLoginUsuario = document.getElementById("erroLoginUsuario");
+
+        // Se o campo não existir na página, não faz nada
+        if (!inputSenhaLoginUsuario || !erroSenhaLoginUsuario) return true;
+
+        const senhaLoginUsuario = inputSenhaLoginUsuario.value.trim();
+        const mensagemSenhaObrigatoria = "O campo senha é obrigatório.";
+
+        let valido = true;
+
+        // Verifica se a senha está vazia
+        if (senhaLoginUsuario === "") {
+            erroSenhaLoginUsuario.innerHTML = mensagemSenhaObrigatoria;
+            erroSenhaLoginUsuario.style.display = "block";
+            valido = false;
+        } else {
+            erroSenhaLoginUsuario.style.display = "none";
+        }
+
+        return valido;
+    }
 
     // Validando endereços
 
@@ -403,7 +431,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const erroCep = document.getElementById("erroCep");
 
     function validarCep() {
-        if(!inputCep) return true;
+        if (!inputCep) return true;
 
         // Dados do input de CEP
         const cep = inputCep.value.trim();
@@ -443,7 +471,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Validação do estado
     function validarEstado() {
         const selectEstado = document.getElementById("estado");
-        if(!selectEstado) return true;
+        if (!selectEstado) return true;
         const estado = selectEstado.value.trim();
         const erroEstado = document.getElementById("erroEstado");
 
@@ -465,7 +493,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Dados do input Cidade
         const inputCidade = document.getElementById("cidade");
-        if(!inputCidade) return true;
+        if (!inputCidade) return true;
         const cidade = inputCidade.value.trim();
         const erroCidade = document.getElementById("erroCidade");
         const regexCidade = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]+$/;
@@ -491,7 +519,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Dados bairro
         const inputBairro = document.getElementById("bairro");
-        if(!inputBairro) return true;
+        if (!inputBairro) return true;
         const bairro = inputBairro.value.trim();
         const erroBairro = document.getElementById("erroBairro");
 
@@ -517,7 +545,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function validarRua() {
         // Dados bairro
         const inputRua = document.getElementById("rua");
-        if(!inputRua) return true;
+        if (!inputRua) return true;
         const rua = inputRua.value.trim();
         const erroRua = document.getElementById("erroRua");
 
@@ -610,6 +638,7 @@ document.addEventListener("DOMContentLoaded", function () {
         { id: "genero", func: validarGenero },
         { id: "dataNasc", func: validarDataNasc },
         { id: "senhaUsuarioAdt", func: validarSenhas },
+        { id: "senhaLoginUsuario", func: validarSenhaLogin },
         { id: "confirmaSenhaUsuarioAdt", func: validarSenhas },
         { id: "cep", func: validarCep },
         { id: "estado", func: validarEstado },
@@ -641,6 +670,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.validarGenero = validarGenero;
     window.validarDataNasc = validarDataNasc;
     window.validarSenhas = validarSenhas;
+    window.validarSenhaLogin = validarSenhaLogin;
     window.validarCep = validarCep;
     window.validarEstado = validarEstado;
     window.validarCidade = validarCidade;
@@ -653,5 +683,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const cadastroForm = document.getElementById("cadastroUsuario");
 const verificacaoContainer = document.getElementById("verificacaoContainer");
+
+
 // Removido: const verificarCodigoBtn = document.getElementById('verificarCodigoBtn');
 // Removido: const codigoVerificacaoInput = document.getElementById('codigoVerificacao');

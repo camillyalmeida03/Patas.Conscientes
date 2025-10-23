@@ -8,6 +8,7 @@ function paginacarregada(){
     let acssEntrar = document.getElementById("acssEntrar");
 
     acssCadastrar.addEventListener("click", function(){
+        console.log("clique efetuado")
         event.preventDefault();
         entrarCard.style.display = 'none';
         cadastroCard.style.display = 'flex';
@@ -18,9 +19,6 @@ function paginacarregada(){
         entrarCard.style.display = 'flex';
         cadastroCard.style.display = 'none';
     })
-
-
-
 }
 
 // Validação do formulário
