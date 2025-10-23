@@ -1,4 +1,4 @@
-import { MensagemFeedback } from "../formularios/mensagemFeedback.js"; // ajuste o caminho conforme sua estrutura
+import { MensagemFeedback } from "../formularios/mensagemFeedback.js"; 
 
 document.addEventListener("DOMContentLoaded", function () {
     const formUsuario = document.getElementById("cadastroUsuario");

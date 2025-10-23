@@ -27,13 +27,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!validarRua()) formularioValido = false;
         if (!validarNmr()) formularioValido = false;
 
-
-        // Se o formulário não for válido, rola para o topo da página
-        if (!formularioValido) {
-            document
-                .getElementById("MainFormCadAdotante")
-                .scrollIntoView({ behavior: "smooth" });
-        }
     });
 
     // A partir de agora, teremos as funções de validação individuais
