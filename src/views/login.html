@@ -171,19 +171,19 @@
       <div class="loginCard" id="entrarCard">
         <h2 class="azul">Entrar</h2>
 
-        <form action="" id="formEntrar">
+        <form action="" id="formEntrar" class="formulario">
 
           <div class="passwordContainer">
-            <input type="text" id="email2" class="inputLogin" placeholder="Digite seu E-mail" autocomplete>
+            <input type="text" id="emailUsuarioAdt" name="email" class="inputLogin" placeholder="Digite seu E-mail" autocomplete>
           </div>
-          <p id="erro1"></p>
+          <p id="erroEmailUsuarioAdt" class="error-message"></p>
 
           <!-- Campo de senha com ícone de olho -->
           <div class="passwordContainer">
-            <input type="password" id="senhaEntrar" placeholder="Digite sua senha" autocomplete>
+            <input type="password" id="senhaUsuarioAdt" name="senha" placeholder="Digite sua senha" autocomplete>
             <span id="togglePassword" class="eye-icon"><img id="olho" src="/public/img/icons/olhofechado.svg" title="Mostrar/Ocultar senha" alt=""></span>
           </div>
-          <p id="erro2"></p>
+          <p id="erroSenhaUsuarioAdt" class="error-message"></p>
 
           <button type="button" title="Recuperar senha" class="linkFalso" aria-label="Recuperar senha">Esqueceu sua senha?</button>
 
@@ -283,7 +283,9 @@
     </svg>
   </div>
 
-  <script  src="/public/js/formularios/login.js" defer></script>
+  <!-- <script src="/public/js/formularios/login.js" defer></script> -->
+  <script type="module" src="/public/js/formularios/validacaoFormularios.js"></script>
+  <script type="module" src="/public/js/conexaoBanco/login_usuario.js"></script>
   <script type="module" src="/public/js/header.js" defer></script>
   <script src="/public/js/barraacessibilidade.js" defer></script>
   <script src="/public/js/tema.js" defer></script>

@@ -170,14 +170,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const inputTelCelUsuario = document.getElementById("telcelUsuarioAdt");
 
     function validarTelCel() {
-
+        const inputTelCelUsuario = document.getElementById("telcelUsuarioAdt");
+        if (!inputTelCelUsuario) return true;
         // Mensagens de retorno
         const mensagemTelCelObrigatório = "O campo Telefone/Celular é obrigatório."
         const mensagemTelCelInvalido = "Por favor, insira um telefone fixo com 10 dígitos ou celular com 11 dígitos."
 
         // Dados de telefone/celular usuário
         const erroTelCelUsuario = document.getElementById("erroTelCelUsuarioAdt");
-        const telCelUsuario = inputTelCelUsuario.value.trim()
+        const telCelUsuario = inputTelCelUsuario.value.trim();
 
         // Remover formatação para validar apenas números
         const telefoneSemFormatacao = telCelUsuario.replace(/[^\d]/g, "");
@@ -229,6 +230,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const inputCpfUsuarioAdt = document.getElementById("cpfUsuarioAdt");
 
     function validarCpf() {
+        if(!inputCpfUsuarioAdt) return true;
 
         // Mensagens de retorno
         const mensagemCpfObrigatorio = "O campo CPF é obrigatório."
@@ -279,6 +281,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const mensagemGeneroObrigatorio = "Por favor, selecione seu gênero."
 
         const genero = document.getElementById("genero");
+        if(!genero) return true;
         const erroGenero = document.getElementById("erroGenero");
         const valorGenero = genero.value;
 
@@ -301,6 +304,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const dataNasc = document.getElementById("dataNasc");
         const erroDataNasc = document.getElementById("erroDataNasc");
+
+        if(!dataNasc) return true;
         const valorDataNasc = dataNasc.value;
 
         if (dataNasc) {
@@ -349,6 +354,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const inputCnfSenhaUsuario = document.getElementById("confirmaSenhaUsuarioAdt");
 
         const senhaUsuario = inputSenhaUsuario.value.trim();
+        if(!inputCnfSenhaUsuario) return true;
         const cnfSenhaUsuario = inputCnfSenhaUsuario.value.trim();
         const erroSenhaUsuario = document.getElementById("erroSenhaUsuarioAdt");
         const erroCnfSenhaUsuario = document.getElementById("erroConfirSenhaUsuarioAdt");
@@ -397,6 +403,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const erroCep = document.getElementById("erroCep");
 
     function validarCep() {
+        if(!inputCep) return true;
 
         // Dados do input de CEP
         const cep = inputCep.value.trim();
@@ -420,18 +427,23 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    inputCep.addEventListener("input", function (e) {
-        let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
+    if (inputCep) {
+        inputCep.addEventListener("input", function (e) {
+            let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
 
-        // Aplica a máscara de CEP: 00000-000
-        if (value.length > 5) value = value.replace(/^(\d{5})(\d)/, "$1-$2");
+            // Aplica a máscara de CEP: 00000-000
+            if (value.length > 5) value = value.replace(/^(\d{5})(\d)/, "$1-$2");
 
-        e.target.value = value;
-    })
+            e.target.value = value;
+        })
+
+    }
+
 
     // Validação do estado
     function validarEstado() {
         const selectEstado = document.getElementById("estado");
+        if(!selectEstado) return true;
         const estado = selectEstado.value.trim();
         const erroEstado = document.getElementById("erroEstado");
 
@@ -453,6 +465,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Dados do input Cidade
         const inputCidade = document.getElementById("cidade");
+        if(!inputCidade) return true;
         const cidade = inputCidade.value.trim();
         const erroCidade = document.getElementById("erroCidade");
         const regexCidade = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]+$/;
@@ -478,6 +491,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Dados bairro
         const inputBairro = document.getElementById("bairro");
+        if(!inputBairro) return true;
         const bairro = inputBairro.value.trim();
         const erroBairro = document.getElementById("erroBairro");
 
@@ -503,6 +517,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function validarRua() {
         // Dados bairro
         const inputRua = document.getElementById("rua");
+        if(!inputRua) return true;
         const rua = inputRua.value.trim();
         const erroRua = document.getElementById("erroRua");
 
@@ -529,6 +544,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Dados do input 
         const inputNmr = document.getElementById("nmr");
+        if (!inputNmr) return true;
         const nmr = inputNmr.value.trim()
         const erroNmr = document.getElementById("erroNmr");
 

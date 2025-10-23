@@ -75,80 +75,6 @@ function paginacarregada(){
   }
   );
 
-//  // Seleciona o botão e o campo de senha
-// const togglePasswordButton = document.getElementById("togglePassword");
-// const passwordField = document.getElementById("senhaEntrar");
-// const eyeIcon = document.getElementById("olho");
-
-// togglePasswordButton.addEventListener("click", function (event) {
-//   event.preventDefault(); // Evita o envio do formulário ao clicar no botão
-  
-//   // Alterna o tipo de campo entre "password" e "text"
-//   const isPassword = passwordField.getAttribute("type") === "password";
-//   passwordField.setAttribute("type", isPassword ? "text" : "password");
-  
-//   // Alterna a imagem do olho entre aberto e fechado
-//   eyeIcon.setAttribute("src", isPassword ? "/public/img/icons/olhofechado.svg" : "/public/img/icons/olhoaberto.svg");
-//   eyeIcon.setAttribute("alt", isPassword ? "Esconder senha" : "Mostrar senha");
-// });
-
-// const togglePassword = document.getElementById("togglePassword");
-// const senhaInput = document.getElementById("senhaEntrar");
-// const olhoIcon = document.getElementById("olho");
-
-// if (togglePassword && senhaInput && olhoIcon) {
-//     togglePassword.addEventListener("click", function () {
-//         const isPassword = senhaInput.getAttribute("type") === "password";
-//         senhaInput.setAttribute("type", isPassword ? "text" : "password");
-//         olhoIcon.src = isPassword ? "/public/img/icons/olhoaberto.svg" : "/public/img/icons/olhofechado.svg";
-//         olhoIcon.title = isPassword ? "Ocultar senha" : "Mostrar senha";
-//     });
-// }
-
-// conexão com o banco de dados
-// function alterarBotao() {
-//   let botao = document.getElementById("botaoentrarlogin");
-//   botao.disabled = true; // Desabilita o botão para evitar múltiplos cliques
-//   botao.textContent = "Carregando..."; // Altera o texto do botão
-// }
-
-
-// const loginForm = document.getElementById("formEntrar");
-// loginForm.addEventListener("submit", async (e) => {
-//   e.preventDefault();
-
-//   const email = document.getElementById("email2").value;
-//   const senha = document.getElementById("senhaEntrar").value;
-
-//   try {
-//     const response = await fetch("http://localhost:4501/usuarios/login", {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({ email, senha }),
-//     });
-
-//     const data = await response.json();
-
-//     if (response.ok && data.usuario) {
-//       // Escolha só os dados que você quer salvar
-//       const usuarioSeguro = {
-//         id: data.usuario.id,
-//         nome: data.usuario.nome,
-//         foto: data.usuario.foto,
-//         tema: data.usuario.tema,
-//         acessibilidade_ativa: data.usuario.acessibilidade_ativa,
-//       };
-
-//       localStorage.setItem("usuarioLogado", JSON.stringify(usuarioSeguro));
-//       window.location.href = "/index.html";
-//     } else {
-//       alert("Email ou senha inválidos.");
-//     }
-//   } catch (err) {
-//     alert("Erro na requisição: " + err.message);
-//   }
-// });
-
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById("formEntrar");
     const loginButton = document.getElementById("botaoentrarlogin");
@@ -158,29 +84,29 @@ document.addEventListener('DOMContentLoaded', () => {
         loginForm.addEventListener("submit", async (e) => {
             e.preventDefault();
 
-            const emailInput = document.getElementById("email2");
-            const senhaInput = document.getElementById("senhaEntrar");
-            const erro1 = document.getElementById("erro1");
-            const erro2 = document.getElementById("erro2");
+            // const emailInput = document.getElementById("email2");
+            // const senhaInput = document.getElementById("senhaEntrar");
+            // const erro1 = document.getElementById("erro1");
+            // const erro2 = document.getElementById("erro2");
 
-            // Limpa mensagens de erro anteriores
-            if (erro1) erro1.textContent = "";
-            if (erro2) erro2.textContent = "";
+            // // Limpa mensagens de erro anteriores
+            // if (erro1) erro1.textContent = "";
+            // if (erro2) erro2.textContent = "";
 
-            const email = emailInput.value;
-            const senha = senhaInput.value;
+            // const email = emailInput.value;
+            // const senha = senhaInput.value;
 
-            // Validação básica no frontend (opcional, mas recomendada)
-            if (!email) {
-                if (erro1) erro1.textContent = "Por favor, digite seu e-mail.";
-                emailInput.focus();
-                return;
-            }
-            if (!senha) {
-                if (erro2) erro2.textContent = "Por favor, digite sua senha.";
-                senhaInput.focus();
-                return;
-            }
+            // // Validação básica no frontend (opcional, mas recomendada)
+            // if (!email) {
+            //     if (erro1) erro1.textContent = "Por favor, digite seu e-mail.";
+            //     emailInput.focus();
+            //     return;
+            // }
+            // if (!senha) {
+            //     if (erro2) erro2.textContent = "Por favor, digite sua senha.";
+            //     senhaInput.focus();
+            //     return;
+            // }
 
             // Desabilita o botão e mostra "Carregando..."
             loginButton.disabled = true;
