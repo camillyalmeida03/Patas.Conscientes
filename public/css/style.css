@@ -12,7 +12,7 @@
     --cinza230: rgba(230, 230, 230, 0.767);
     --cinza215: rgb(215, 215, 215);
     --cinza201: rgb(201, 201, 201);
-    --cinza158: rgb(158, 158, 158);
+    --cinza158: #9e9e9e;
     --cinza80: rgb(80, 80, 80);
     --cinza: rgb(107, 107, 107);
     --cinza_input: #DFDBDB;
@@ -599,24 +599,24 @@ button {
     gap: 1rem;
 }
 
-.configFinal{
+.configFinal {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
 }
 
-.configFinal .tema{
+.configFinal .tema {
     justify-content: flex-end;
     gap: 1rem;
     width: fit-content;
 }
 
-.botoesLogin{
+.botoesLogin {
     display: flex;
     gap: 1rem;
 }
 
-.botoesLogin{
+.botoesLogin {
     width: fit-content;
 }
 
@@ -1876,6 +1876,48 @@ ol {
     color: var(--cinza_h3);
 }
 
+.editarPerfil {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+}
+
+.alterarDadosDiv label {
+    display: inline-flex;
+    width: 8rem;
+}
+
+.alterarDadosDiv input,
+.alterarDadosDiv select,
+#botaoSalvarAlteracoes {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    border: 1px grey solid;
+}
+
+#botaoSalvarAlteracoes {
+    background-color: grey;
+    color: white;
+    font-weight: 600;
+}
+
+#enderecoUsuarioConfig {
+    text-align: left;
+}
+
+#enderecoUsuarioConfig,
+#botaoSalvarAlteracoes {
+    margin-top: 1rem !important;
+}
+
+.alterarDadosDiv {
+    width: 100%;
+    padding: 0.5rem 0;
+}
+
 .buttonConfig {
     width: 100%;
     height: 2.5rem;
@@ -1945,14 +1987,6 @@ ol {
     align-items: center;
 }
 
-#altFotoUsuario {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-}
-
 #nomePerfil {
     display: flex;
     width: 100%;
@@ -1974,7 +2008,7 @@ ol {
     pointer-events: none;
 }
 
-.fotoDefaultUsuario{
+.fotoDefaultUsuario {
     background-size: 6rem !important;
 }
 
@@ -3335,7 +3369,7 @@ textarea {
     }
 
     .mainAside .asideRow {
-        gap: 2rem;
+        gap: 0.5rem;
         justify-content: center;
     }
 
@@ -3349,7 +3383,7 @@ textarea {
         box-shadow: 3px 3px 5px var(--cinza158);
         position: absolute;
         top: 3rem;
-        left: 0.5rem;
+        right: 0.5rem;
         width: 10rem;
         background-color: rgb(236, 236, 236);
     }
@@ -3362,22 +3396,6 @@ textarea {
         flex-direction: column;
         margin-top: 2rem;
         gap: 3rem;
-    }
-
-    #altFoto {
-        display: none;
-    }
-
-    #altFotoIcon {
-        height: 2rem;
-        width: 2rem;
-        position: relative;
-        left: 3.5rem;
-        bottom: 1rem;
-    }
-
-    #altFotoIcon svg path {
-        fill: var(--cinza158);
     }
 
     .titConfig {
@@ -3568,9 +3586,6 @@ textarea {
         width: 100%;
     }
 
-    .abrirOpcoes {
-        left: -5rem;
-    }
 }
 
 /* responsividade em dispositivos até 500px de largura  */
@@ -3643,6 +3658,35 @@ textarea {
 
     #adicionarPet {
         width: 90%;
+    }
+
+    .asideRow {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        gap: 0.5rem !important;
+        width: 100%;
+    }
+
+    .asideRow button {
+        width: 100%;
+    }
+
+    .conjuntoOpcoesTema {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #temasSeta {
+        justify-content: center;
+    }
+
+    .abrirOpcoes {
+        position: absolute;
+        top: 3rem;
+        right: 0 !important;
     }
 
 }

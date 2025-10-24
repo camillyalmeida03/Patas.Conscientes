@@ -68,7 +68,8 @@
 
       <div id="topoMenu">
 
-        <a href="/index.html"><img id="logoMenu" src="/public/img/icons/logopreta.svg" alt="Logo do Patas Conscientes"></a>
+        <a href="/index.html"><img id="logoMenu" src="/public/img/icons/logopreta.svg"
+            alt="Logo do Patas Conscientes"></a>
 
         <button title="Fechar menu" id="fecharMenu"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
             viewBox="0 -960 960 960" width="24px">
@@ -174,7 +175,12 @@
   <main class="mainAside">
     <aside class="asideRow">
 
-      <button type="button" title="Acessar configurações da minha conta" id="configConta"
+      <button type="button" title="Acessar configurações da minha conta" id="configConta" class="buttonConfig">Editar
+        perfil</button>
+
+      <div class="linha"></div>
+
+      <button type="button" title="Acessar configurações da sua conta" id="infoConta"
         class="buttonConfig">Conta</button>
 
       <div class="linha"></div>
@@ -184,140 +190,249 @@
 
       <div class="linha"></div>
 
-       <div class="conjuntoOpcoesTema"> <button onclick="abrir()" title="abrir opções de tema" class="buttonConfig" id="temasSeta">
+      <div class="conjuntoOpcoesTema"> <button onclick="abrir()" title="abrir opções de tema" class="buttonConfig"
+          id="temasSeta">
           Temas
 
-          <svg version="1.1" id="setaConfig" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-            x="0px" y="0px" viewBox="0 0 28 48" xml:space="preserve">
+          <svg version="1.1" id="setaConfig" xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 28 48" xml:space="preserve">
             <polyline class="st0" points="4,4 24,24 4,44 " />
           </svg>
 
         </button>
 
-      <div class="abrirOpcoes" id="menu">
-        <button class="temas">Seguir o tema padrão</button>
-        <button class="temas" id="modoClaroConfig">Claro</button>
-        <button class="temas" id="modoEscuroConfig">Escuro</button>
+        <div class="abrirOpcoes" id="menu">
+          <button class="temas">Seguir o tema padrão</button>
+          <button class="temas" id="modoClaroConfig">Claro</button>
+          <button class="temas" id="modoEscuroConfig">Escuro</button>
+        </div>
       </div>
-    </div>
     </aside>
 
     <div class="linhaRow"></div>
 
-    <section id="ladoConfig" class="configConta">
+    <!-- Seção de edição de perfil -->
+    <section id="editarPerfil" class="configConta">
+      <h2 class="titConfig">Editar perfil</h2>
+
+      <!-- Editar foto de usuário -->
+      <form action="" class="formulario editarPerfil" >
+        <div id="usuarioPerfil">
+          <div id="altFotoUsuario">
+            <div id="fotoUsuarioconfig"></div>
+
+            <label for="fotoPerfil" title="Selecione uma foto de perfil" class="negrito" id="altFotoIcon">
+              <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#5f6368">
+                <path
+                  d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" />
+              </svg> -->
+            </label>
+            <input type="file" accept="image/*" style="display: none;">
+          </div>
+        </div>
+
+        <!-- Nome do usuário -->
+        <div id="" class="alterarDadosDiv">
+          <label id="nomeUsuarioconfig" class="before">Nome:</label>
+          <input type="text" name="nome" placeholder="O nome do usuário ficará aqui" class="inputConfig">
+          <!-- <button title="Alterar nome de usuário" class="buttonPerfil" id="altNomeUsu" onclick="alterarnoomeuser()">Alterar nome</button> -->
+        </div>
+
+        <!-- Gênero do usuário -->
+        <div class="alterarDadosDiv" id="generoPerfil">
+          <label for="" id="generoUsuarioConfig" class="before">Gênero:</label>
+          <select name="fk_idsexo" id="genero" aria-labelledby="label-genero">
+            <option value="" disabled hidden selected class="cinzah3">Selecione:*</option>
+            <option value="1">Feminino</option>
+            <option value="2">Masculino</option>
+            <option value="3">Prefiro não dizer</option>
+          </select>
+        </div>
+
+        <!-- Endereço do usuário -->
+        <div class="" id="enderecoPerfil">
+          <h2 id="enderecoUsuarioConfig" class="titConfig">Informações de endereço</h2>
+
+          <!-- Campo de CEP do usuário -->
+          <div class="alterarDadosDiv">
+            <label for="" class="before">CEP: </label>
+            <input type="text" id="cep" class="cep" placeholder="O CEP do usuário ficará aqui" maxlength="9">
+
+            <p id="erroCep" class="error-message"></p>
+          </div>
+
+          <!-- Campo de estado do usuário -->
+          <div class="alterarDadosDiv">
+            <label for="" class="before">Estado:</label>
+            <select id="estado" class="" name="estado" aria-label="Selecione seu estado">
+              <option value="" disabled selected class="cinzah3">Selecione seu estado:*</option>
+              <option value="AC">AC</option>
+              <option value="AL">AL</option>
+              <option value="AP">AP</option>
+              <option value="AM">AM</option>
+              <option value="BA">BA</option>
+              <option value="CE">CE</option>
+              <option value="DF">DF</option>
+              <option value="ES">ES</option>
+              <option value="GO">GO</option>
+              <option value="MA">MA</option>
+              <option value="MT">MT</option>
+              <option value="MS">MS</option>
+              <option value="MG">MG</option>
+              <option value="PA">PA</option>
+              <option value="PB">PB</option>
+              <option value="PR">PR</option>
+              <option value="PE">PE</option>
+              <option value="PI">PI</option>
+              <option value="RJ">RJ</option>
+              <option value="RN">RN</option>
+              <option value="RS">RS</option>
+              <option value="RO">RO</option>
+              <option value="RR">RR</option>
+              <option value="SC">SC</option>
+              <option value="SP">SP</option>
+              <option value="SE">SE</option>
+              <option value="TO">TO</option>
+            </select>
+
+            <p id="erroEstado" class="error-message"></p>
+          </div>
+
+          <!-- Campo de cidade do usuário -->
+          <div class="alterarDadosDiv">
+            <label for="" class="before">Cidade:</label>
+            <input type="text" id="cidade" class="" placeholder="A cidade do usuário ficará aqui">
+            <p id="erroCidade" class="error-message"></p>
+          </div>
+
+          <!-- Campo de rua do usuário -->
+          <div class="alterarDadosDiv">
+            <label for="" class="before">Rua: </label>
+            <input type="text" id="rua" class="" placeholder="A rua do usuário ficará aqui">
+            <p id="erroRua" class="error-message"></p>
+          </div>
+
+          <div>
+            <!-- Campo de Bairro do usuário -->
+            <div class="alterarDadosDiv">
+              <label for="" class="before">Bairro: </label>
+              <input type="text" id="bairro" class="" placeholder="o bairro do usuário ficará aqui">
+              <p id="erroBairro" class="error-message"></p>
+            </div>
+
+            <!-- Campo de número da casa do usuário -->
+            <div class="alterarDadosDiv">
+              <label for="" class="before">Número: </label>
+              <input type="text" id="nmr" class="" placeholder="O número da casa ficará aqui">
+              <p id="erroNmr" class="error-message"></p>
+            </div>
+          </div>
+
+          <!-- Campo de complemento do usuário -->
+          <div class="alterarDadosDiv">
+            <label for="" class="before">Complemento:</label>
+            <input type="text" id="complemento" class="" placeholder="Complemento">
+          </div>
+        </div>
+
+        <!-- Botão de confirmar cadastro do usuário -->
+        <input title="Confirmar cadastro" type="submit" id="botaoSalvarAlteracoes" class="" value="Salvar edições">
+
+        <!-- Mensagem de feedback -->
+        <p id="mensagemcriacaodeconta"></p>
+
+      </form>
+    </section>
+
+    <section id="ladoConfig" class="configConta" style="display: none;">
       <h2 class="titConfig">Configurações da Conta</h2>
 
       <div id="usuarioPerfil">
         <div id="altFotoUsuario">
           <div id="fotoUsuarioconfig"></div>
-          <form action="" id="formFotoUsuario" class="formalterardados" >
+          <form action="" id="formFotoUsuario" class="formalterardados">
             <label for="fotoPerfil" title="Selecione uma foto de perfil" class="negrito">Alterar foto</label>
-            <input type="file" id="fotoPerfil" accept="image/*" style="display: none;" >
+            <input type="file" id="fotoPerfil" accept="image/*" style="display: none;">
           </form>
-          <!-- <button title="Alterar foto de perfil" class="buttonPerfil" id="altFoto">Alterar foto</button> -->
-          <button title="Alterar foto de perfil" id="altFotoIcon"><svg xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 -960 960 960" fill="#5f6368">
-              <path
-                d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" />
-            </svg></button>
+
         </div>
-
-        <div id="nomePerfil">
-          <p id="nomeUsuarioconfig">Margarete Da Rosa Silva</p>
-          <button title="Alterar nome de usuário" class="buttonPerfil" id="altNomeUsu" onclick="alterarnoomeuser()">Alterar nome</button>
-        </div>
-
-        <div class="alterardados" style="display: none;" id="formNomeUsuario">
-          <form action="" id="formNomeUsuario" class="formalterardados">
-            <label for="nomeUsuario" class="negrito">Nome de usuário</label>
-            <input type="text" id="nomeUsuario" name="nomeUsuario" class="inputdados" placeholder="Digite seu nome de usuário"
-              required>
-            <button type="submit" class="buttonPerfil" title="Salvar alterações no nome de usuário">Salvar</button>
-          </form>
-        </div>
-
-
-
       </div>
 
       <div id="emailSenhaTel">
 
-        <div id="cpfConta">
-          <p id="cpf/cnpj"><span class="before">CPF:</span> 000.000.000-00</p>
-        </div>
-
-        <div class="alterardados" style="display: none;">
-          <form action="" id="formcpfUsuario" class="formalterardados">
-            <label for="cpfUsuario" class="negrito">Cpf do usuário</label>
-            <input type="text" id="cpfUsuario" name="cpfUsuario" class="inputdados" placeholder="Digite seu cpf"
-              required>
-            <button type="submit" class="buttonPerfil" title="Salvar alterações no cpf">Salvar</button>
-          </form>
-        </div>
+        <form action="">
 
 
-        <div id="dataNascimento">
-          <p id="dataNasc"><span class="before">Data de nascimento:</span> 01/01/2001</p>
-        </div>
+          <div id="emailPerfil" class="alterarDadosDiv">
+            <label id="emailuserconfig" class="before">E-mail:</label>
+            <input type="email" name="email"  placeholder="O e-mail do usuário ficará aqui">
+            <!-- <button class="buttonPerfil" title="Alterar seu e-mail" onclick="alteraremail()">Alterar e-mail</button> -->
+          </div>
 
-        <div class="alterardados" style="display: none;">
-          <form action="" id="formdataUsuario" class="formalterardados">
-            <label for="dataUsuario" class="negrito">Data de nascimento</label>
-            <input type="date" id="dataUsuario" name="dataUsuario" class="inputdados"
-              placeholder="Digite sua data de nascimento" required>
-            <button type="submit" class="buttonPerfil" title="Salvar alterações na data de nascimento">Salvar</button>
-          </form>
-        </div>
+          <div id="telefonePerfil" class="alterarDadosDiv">
+            <label id="telefoneconfig" class="before">Telefone:</label>
+            <input type="tel" name="telefone"  placeholder="o telefone/celular do usuário ficará aqui">
+            <!-- <button class="buttonPerfil" title="Alterar seu telefone" onclick="alterartelefone()">Alterar telefone</button> -->
+          </div>
 
-        <div id="emailPerfil">
-          <p id="emailuserconfig"><span class="before">E-mail:</span> margaretedarosasilva@gmail.com</p>
-          <button class="buttonPerfil" title="Alterar seu e-mail" onclick="alteraremail()">Alterar e-mail</button>
-        </div>
+          <!-- <div class="alterardados" style="display: none;" id="formTelefoneUsuario">
+            <form action="" id="formTelefoneUsuario" class="formalterardados">
+              <label for="telefoneUsuario" class="negrito">Telefone do usuário</label>
+              <input type="tel" id="telefoneUsuario" name="telefoneUsuario" class="inputdados"
+                placeholder="Digite seu telefone" required>
+              <button type="submit" class="buttonPerfil" title="Salvar alterações no telefone">Salvar</button>
+            </form>
+          </div> -->
 
-        <div class="alterardados" style="display: none;" id="formEmailUsuario">
-          <form action="" id="formEmailUsuario" class="formalterardados">
-            <label for="emailUsuario" class="negrito">E-mail do usuário</label>
-            <input type="email" id="emailUsuario" name="emailUsuario" class="inputdados"
-              placeholder="Digite seu e-mail" required>
-            <button type="submit" class="buttonPerfil" title="Salvar alterações no e-mail">Salvar</button>
-          </form>
+          <div id="cpfConta">
+            <p id="cpf/cnpj"><span class="before">CPF:</span> 000.000.000-00</p>
+          </div>
+
+          <div class="alterardados" style="display: none;">
+            <form action="" id="formcpfUsuario" class="formalterardados">
+              <label for="cpfUsuario" class="negrito">Cpf do usuário</label>
+              <input type="text" id="cpfUsuario" name="cpfUsuario" class="inputdados" placeholder="Digite seu cpf"
+                required>
+              <button type="submit" class="buttonPerfil" title="Salvar alterações no cpf">Salvar</button>
+            </form>
           </div>
 
 
+          <div id="dataNascimento">
+            <p id="dataNasc"><span class="before">Data de nascimento:</span> 01/01/2001</p>
+          </div>
 
-        <div id="senhaPerfil" >
-          <p id="senha"><span class="before">Senha:</span> ******</p>
-          <button class="buttonPerfil" title="Alterar sua senha" onclick="alterarsenha()">Alterar senha</button>
-        </div>
+          <div class="alterardados" style="display: none;">
+            <form action="" id="formdataUsuario" class="formalterardados">
+              <label for="dataUsuario" class="negrito">Data de nascimento</label>
+              <input type="date" id="dataUsuario" name="dataUsuario" class="inputdados"
+                placeholder="Digite sua data de nascimento" required>
+              <button type="submit" class="buttonPerfil" title="Salvar alterações na data de nascimento">Salvar</button>
+            </form>
+          </div>
 
-        <div class="alterardados" style="display: none;" id="formSenhaUsuario">
-          <form action="" id="formSenhaUsuario" class="formalterardados">
-            <label for="senhaUsuario" class="negrito">Senha do usuário</label>
-            <input type="password" id="senhaUsuario" name="senhaUsuario" class="inputdados"
-              placeholder="Digite sua senha" required>
-            <button type="submit" class="buttonPerfil" title="Salvar alterações na senha">Salvar</button>
-          </form>
-        </div>
+          <div id="senhaPerfil">
+            <p id="senha"><span class="before">Senha:</span> ******</p>
+            <button class="buttonPerfil" title="Alterar sua senha" onclick="alterarsenha()">Alterar senha</button>
+          </div>
 
-        <div id="telefonePerfil">
-          <p id="telefoneconfig"><span class="before">Telefone:</span> (16) 9999-9999</p>
-          <button class="buttonPerfil" title="Alterar seu telefone" onclick="alterartelefone()">Alterar telefone</button>
-        </div>
-
-        <div class="alterardados" style="display: none;" id="formTelefoneUsuario">
-          <form action="" id="formTelefoneUsuario" class="formalterardados">
-            <label for="telefoneUsuario" class="negrito">Telefone do usuário</label>
-            <input type="tel" id="telefoneUsuario" name="telefoneUsuario" class="inputdados"
-              placeholder="Digite seu telefone" required>
-            <button type="submit" class="buttonPerfil" title="Salvar alterações no telefone">Salvar</button>
-          </form>
-        </div>
+          <div class="alterardados" style="display: none;" id="formSenhaUsuario">
+            <form action="" id="formSenhaUsuario" class="formalterardados">
+              <label for="senhaUsuario" class="negrito">Senha do usuário</label>
+              <input type="password" id="senhaUsuario" name="senhaUsuario" class="inputdados"
+                placeholder="Digite sua senha" required>
+              <button type="submit" class="buttonPerfil" title="Salvar alterações na senha">Salvar</button>
+            </form>
+          </div>
+        </form>
       </div>
       <!--  -->
 
       <form action="" id="formExcluirConta" class="formalterardados">
         <button id="excluirconta" class="vermelho buttonPerfil" title="Excluir sua conta">Excluir conta</button>
       </form>
+
+
 
 
     </section>
@@ -480,7 +595,7 @@
           </a>
           <div>
             <a href="cadastroadotante.html"
-            title="Link que direciona para a página de criar conta como adotante do site">Criar conta</a>
+              title="Link que direciona para a página de criar conta como adotante do site">Criar conta</a>
             <a href="cadastroong.html" title="Link que direciona para a página de criar conta como ONG do site">Criar
               conta de ONG</a>
           </div>
