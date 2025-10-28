@@ -212,20 +212,20 @@
     <div class="linhaRow"></div>
 
     <!-- Seção de edição de perfil -->
-    <section id="editarPerfil" class="configConta">
+    <section id="editarPerfil" class="configConta" style="display: none;">
       <h2 class="titConfig">Editar perfil</h2>
 
       <!-- Editar foto de usuário -->
-      <form action="" class="formulario editarPerfil" >
+      <form action="" class="formulario editarPerfil">
         <div id="usuarioPerfil">
           <div id="altFotoUsuario">
             <div id="fotoUsuarioconfig"></div>
 
             <label for="fotoPerfil" title="Selecione uma foto de perfil" class="negrito" id="altFotoIcon">
-              <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#5f6368">
+              <svg class="" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#5f6368">
                 <path
-                  d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" />
-              </svg> -->
+                  d="M480-260q75 0 127.5-52.5T660-440q0-75-52.5-127.5T480-620q-75 0-127.5 52.5T300-440q0 75 52.5 127.5T480-260Zm0-80q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29ZM160-120q-33 0-56.5-23.5T80-200v-480q0-33 23.5-56.5T160-760h126l74-80h240l74 80h126q33 0 56.5 23.5T880-680v480q0 33-23.5 56.5T800-120H160Zm0-80h640v-480H638l-73-80H395l-73 80H160v480Zm320-240Z" />
+              </svg>
             </label>
             <input type="file" accept="image/*" style="display: none;">
           </div>
@@ -241,7 +241,7 @@
         <!-- Gênero do usuário -->
         <div class="alterarDadosDiv" id="generoPerfil">
           <label for="" id="generoUsuarioConfig" class="before">Gênero:</label>
-          <select name="fk_idsexo" id="genero" aria-labelledby="label-genero">
+          <select name="fk_idsexo" id="genero" aria-labelledby="label-genero" class="inputConfig">
             <option value="" disabled hidden selected class="cinzah3">Selecione:*</option>
             <option value="1">Feminino</option>
             <option value="2">Masculino</option>
@@ -256,7 +256,8 @@
           <!-- Campo de CEP do usuário -->
           <div class="alterarDadosDiv">
             <label for="" class="before">CEP: </label>
-            <input type="text" id="cep" class="cep" placeholder="O CEP do usuário ficará aqui" maxlength="9">
+            <input type="text" id="cep" class="cep inputConfig" placeholder="O CEP do usuário ficará aqui"
+              maxlength="9">
 
             <p id="erroCep" class="error-message"></p>
           </div>
@@ -264,7 +265,7 @@
           <!-- Campo de estado do usuário -->
           <div class="alterarDadosDiv">
             <label for="" class="before">Estado:</label>
-            <select id="estado" class="" name="estado" aria-label="Selecione seu estado">
+            <select id="estado" name="estado" aria-label="Selecione seu estado" class="inputConfig">
               <option value="" disabled selected class="cinzah3">Selecione seu estado:*</option>
               <option value="AC">AC</option>
               <option value="AL">AL</option>
@@ -301,14 +302,14 @@
           <!-- Campo de cidade do usuário -->
           <div class="alterarDadosDiv">
             <label for="" class="before">Cidade:</label>
-            <input type="text" id="cidade" class="" placeholder="A cidade do usuário ficará aqui">
+            <input type="text" id="cidade" placeholder="A cidade do usuário ficará aqui" class="inputConfig">
             <p id="erroCidade" class="error-message"></p>
           </div>
 
           <!-- Campo de rua do usuário -->
           <div class="alterarDadosDiv">
             <label for="" class="before">Rua: </label>
-            <input type="text" id="rua" class="" placeholder="A rua do usuário ficará aqui">
+            <input type="text" id="rua" class="inputConfig" placeholder="A rua do usuário ficará aqui">
             <p id="erroRua" class="error-message"></p>
           </div>
 
@@ -316,14 +317,14 @@
             <!-- Campo de Bairro do usuário -->
             <div class="alterarDadosDiv">
               <label for="" class="before">Bairro: </label>
-              <input type="text" id="bairro" class="" placeholder="o bairro do usuário ficará aqui">
+              <input type="text" id="bairro" class="inputConfig" placeholder="o bairro do usuário ficará aqui">
               <p id="erroBairro" class="error-message"></p>
             </div>
 
             <!-- Campo de número da casa do usuário -->
             <div class="alterarDadosDiv">
               <label for="" class="before">Número: </label>
-              <input type="text" id="nmr" class="" placeholder="O número da casa ficará aqui">
+              <input type="text" id="nmr" class="inputConfig" placeholder="O número da casa ficará aqui">
               <p id="erroNmr" class="error-message"></p>
             </div>
           </div>
@@ -331,7 +332,7 @@
           <!-- Campo de complemento do usuário -->
           <div class="alterarDadosDiv">
             <label for="" class="before">Complemento:</label>
-            <input type="text" id="complemento" class="" placeholder="Complemento">
+            <input type="text" id="complemento" class="inputConfig" placeholder="Complemento">
           </div>
         </div>
 
@@ -344,96 +345,23 @@
       </form>
     </section>
 
-    <section id="ladoConfig" class="configConta" style="display: none;">
-      <h2 class="titConfig">Configurações da Conta</h2>
+    <!-- Seção de edição de dados da conta -->
+    <section id="ladoConfig" class="configConta">
+      <h2 class="titConfig">Editar conta</h2>
 
-      <div id="usuarioPerfil">
-        <div id="altFotoUsuario">
-          <div id="fotoUsuarioconfig"></div>
-          <form action="" id="formFotoUsuario" class="formalterardados">
-            <label for="fotoPerfil" title="Selecione uma foto de perfil" class="negrito">Alterar foto</label>
-            <input type="file" id="fotoPerfil" accept="image/*" style="display: none;">
-          </form>
-
-        </div>
+      <div class="aviso">
+        <p>Aviso: Todos os dados aqui precisam de verificação para serem alterados.</p>
       </div>
 
-      <div id="emailSenhaTel">
-
-        <form action="">
-
-
-          <div id="emailPerfil" class="alterarDadosDiv">
-            <label id="emailuserconfig" class="before">E-mail:</label>
-            <input type="email" name="email"  placeholder="O e-mail do usuário ficará aqui">
-            <!-- <button class="buttonPerfil" title="Alterar seu e-mail" onclick="alteraremail()">Alterar e-mail</button> -->
-          </div>
-
-          <div id="telefonePerfil" class="alterarDadosDiv">
-            <label id="telefoneconfig" class="before">Telefone:</label>
-            <input type="tel" name="telefone"  placeholder="o telefone/celular do usuário ficará aqui">
-            <!-- <button class="buttonPerfil" title="Alterar seu telefone" onclick="alterartelefone()">Alterar telefone</button> -->
-          </div>
-
-          <!-- <div class="alterardados" style="display: none;" id="formTelefoneUsuario">
-            <form action="" id="formTelefoneUsuario" class="formalterardados">
-              <label for="telefoneUsuario" class="negrito">Telefone do usuário</label>
-              <input type="tel" id="telefoneUsuario" name="telefoneUsuario" class="inputdados"
-                placeholder="Digite seu telefone" required>
-              <button type="submit" class="buttonPerfil" title="Salvar alterações no telefone">Salvar</button>
-            </form>
-          </div> -->
-
-          <div id="cpfConta">
-            <p id="cpf/cnpj"><span class="before">CPF:</span> 000.000.000-00</p>
-          </div>
-
-          <div class="alterardados" style="display: none;">
-            <form action="" id="formcpfUsuario" class="formalterardados">
-              <label for="cpfUsuario" class="negrito">Cpf do usuário</label>
-              <input type="text" id="cpfUsuario" name="cpfUsuario" class="inputdados" placeholder="Digite seu cpf"
-                required>
-              <button type="submit" class="buttonPerfil" title="Salvar alterações no cpf">Salvar</button>
-            </form>
-          </div>
-
-
-          <div id="dataNascimento">
-            <p id="dataNasc"><span class="before">Data de nascimento:</span> 01/01/2001</p>
-          </div>
-
-          <div class="alterardados" style="display: none;">
-            <form action="" id="formdataUsuario" class="formalterardados">
-              <label for="dataUsuario" class="negrito">Data de nascimento</label>
-              <input type="date" id="dataUsuario" name="dataUsuario" class="inputdados"
-                placeholder="Digite sua data de nascimento" required>
-              <button type="submit" class="buttonPerfil" title="Salvar alterações na data de nascimento">Salvar</button>
-            </form>
-          </div>
-
-          <div id="senhaPerfil">
-            <p id="senha"><span class="before">Senha:</span> ******</p>
-            <button class="buttonPerfil" title="Alterar sua senha" onclick="alterarsenha()">Alterar senha</button>
-          </div>
-
-          <div class="alterardados" style="display: none;" id="formSenhaUsuario">
-            <form action="" id="formSenhaUsuario" class="formalterardados">
-              <label for="senhaUsuario" class="negrito">Senha do usuário</label>
-              <input type="password" id="senhaUsuario" name="senhaUsuario" class="inputdados"
-                placeholder="Digite sua senha" required>
-              <button type="submit" class="buttonPerfil" title="Salvar alterações na senha">Salvar</button>
-            </form>
-          </div>
-        </form>
+      <!-- Direcionamento para verificação de cada campo específico -->
+      <div class="altCampos">
+        <a href="#">Alterar E-mail</a>
+        <a href="">Alterar senha</a>
+        <a href="">Alterar telefone</a>
+        <a href="">Alterar CPF</a>
       </div>
-      <!--  -->
 
-      <form action="" id="formExcluirConta" class="formalterardados">
-        <button id="excluirconta" class="vermelho buttonPerfil" title="Excluir sua conta">Excluir conta</button>
-      </form>
-
-
-
+      <button id="excluirconta" class="vermelho buttonPerfil" title="Excluir sua conta">Excluir conta</button>
 
     </section>
 
