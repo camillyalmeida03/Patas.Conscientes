@@ -175,21 +175,28 @@
   <main class="mainAside">
     <aside class="asideRow">
 
-      <button type="button" title="Acessar configurações da minha conta" id="configConta" class="buttonConfig">Editar
+      <!-- Botão que altera para edição de perfil -->
+      <button type="button" title="Editar meu perfil" id="perfilEdicao" class="buttonConfig">Editar
         perfil</button>
 
+        <!-- Linha divisória -->
       <div class="linha"></div>
 
-      <button type="button" title="Acessar configurações da sua conta" id="infoConta"
+      <!-- Botão que altera para configurações da conta -->
+      <button type="button" title="Acessar configurações da sua conta" id="configConta"
         class="buttonConfig">Conta</button>
 
+        <!-- Linha divisória -->
       <div class="linha"></div>
 
+        <!-- Botão que altera para políticas do site -->
       <button type="button" title="Acessar Políticas do site" id="politicasConta" class="buttonConfig">Políticas do
         site</button>
 
+        <!-- Linha divisória -->
       <div class="linha"></div>
 
+      <!-- Mudar Tema -->
       <div class="conjuntoOpcoesTema"> <button onclick="abrir()" title="abrir opções de tema" class="buttonConfig"
           id="temasSeta">
           Temas
@@ -212,7 +219,7 @@
     <div class="linhaRow"></div>
 
     <!-- Seção de edição de perfil -->
-    <section id="editarPerfil" class="configConta" style="display: none;">
+    <section id="editarPerfil" class="configConta">
       <h2 class="titConfig">Editar perfil</h2>
 
       <!-- Editar foto de usuário -->
@@ -234,13 +241,13 @@
         <!-- Nome do usuário -->
         <div id="" class="alterarDadosDiv">
           <label id="nomeUsuarioconfig" class="before">Nome:</label>
-          <input type="text" name="nome" placeholder="O nome do usuário ficará aqui" class="inputConfig">
+          <input type="text" name="nome" placeholder="O nome do usuário ficará aqui" id="nome" class="inputConfig">
           <!-- <button title="Alterar nome de usuário" class="buttonPerfil" id="altNomeUsu" onclick="alterarnoomeuser()">Alterar nome</button> -->
         </div>
 
         <!-- Gênero do usuário -->
         <div class="alterarDadosDiv" id="generoPerfil">
-          <label for="" id="generoUsuarioConfig" class="before">Gênero:</label>
+          <label for="" id="genero" class="before">Gênero:</label>
           <select name="fk_idsexo" id="genero" aria-labelledby="label-genero" class="inputConfig">
             <option value="" disabled hidden selected class="cinzah3">Selecione:*</option>
             <option value="1">Feminino</option>

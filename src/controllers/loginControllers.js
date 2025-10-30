@@ -10,43 +10,71 @@ const loginController = {
     try {
       const { email, senha } = req.body;
 
-      // Verifica se o e-mail foi informado
       if (!email || !senha) {
         return res.status(400).json({ message: "E-mail e senha são obrigatórios." });
       }
 
-      // Busca o usuário no banco
-      const [rows] = await banco.query("SELECT * FROM usuarios WHERE email = ?", [email]);
+      // JOIN ajustado conforme a estrutura do banco
+      const [rows] = await banco.query(`
+        SELECT 
+          u.idusuario, u.nome, u.email, u.telefone, u.data_nasc, u.cpf, u.senha, 
+          u.data_criacao, u.data_att, u.foto, s.sexo, tu.descricao AS tipo,
+          r.rua, e.numero, e.cep,
+          b.bairro, c.cidade, es.sigla
+        FROM usuarios u
+        INNER JOIN sexo s ON s.idsexo = u.fk_idsexo
+        INNER JOIN enderecos e ON e.idendereco = u.fk_idendereco
+        INNER JOIN ruas r ON r.idrua = e.fk_idrua
+        INNER JOIN bairros b ON b.idbairro = e.fk_idbairro
+        INNER JOIN cidades c ON c.idcidade = e.fk_idcidade
+        INNER JOIN estados es ON es.idestado = e.fk_idestado
+        INNER JOIN tipos_usuario tu ON tu.idtipo = u.fk_idtipo
+        WHERE u.email = ?;
+      `, [email]);
 
       if (rows.length === 0) {
         return res.status(401).json({ message: "Usuário não encontrado." });
       }
 
       const usuario = rows[0];
-
-      // Compara a senha enviada com a senha armazenada (hash)
       const senhaValida = await bcrypt.compare(senha, usuario.senha);
 
       if (!senhaValida) {
         return res.status(401).json({ message: "Senha incorreta." });
       }
 
-      // Gera o token JWT
       const token = jwt.sign(
-        { id: usuario.idusuario, email: usuario.email, tipo: usuario.fk_idtipo },
+        { id: usuario.idusuario, email: usuario.email, tipo: usuario.tipo },
         process.env.JWT_SECRET,
-        { expiresIn: process.env.JWT_EXPIRES_IN }
+        { expiresIn: process.env.JWT_EXPIRES_IN || "1d" }
       );
+
+      const usuarioFormatado = {
+        id: usuario.idusuario,
+        nome: usuario.nome,
+        email: usuario.email,
+        telefone: usuario.telefone,
+        sexo: usuario.sexo,
+        data_nasc: usuario.data_nasc,
+        cpf: usuario.cpf,
+        foto: usuario.foto,
+        tipo: usuario.tipo,
+        endereco: {
+          rua: usuario.rua,
+          numero: usuario.numero,
+          bairro: usuario.bairro,
+          cidade: usuario.cidade,
+          estado: usuario.estado,
+          cep: usuario.cep
+        },
+        data_criacao: usuario.data_criacao,
+        data_att: usuario.data_att
+      };
 
       return res.status(200).json({
         message: "Login realizado com sucesso!",
         token,
-        usuario: {
-          id: usuario.idusuario,
-          nome: usuario.nome,
-          email: usuario.email,
-          tipo: usuario.fk_idtipo,
-        },
+        usuario: usuarioFormatado
       });
 
     } catch (error) {

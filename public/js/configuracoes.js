@@ -5,36 +5,47 @@ class AsideConfig {
   constructor() {
     this.ladoConfig = document.getElementById("ladoConfig");
     this.ladoPoliticas = document.getElementById("ladoPoliticas");
+    this.editarPerfil = document.getElementById("editarPerfil")
 
     this.configConta = document.getElementById("configConta");
     this.politicasConta = document.getElementById("politicasConta");
+    this.perfilEdicao = document.getElementById("perfilEdicao");
   }
 
   acessarPoliticas() {
     this.ladoPoliticas.style.display = "flex";
     this.ladoConfig.style.display = "none";
+    this.editarPerfil.style.display = "none"
   }
 
   acessarConfig() {
     this.ladoPoliticas.style.display = "none";
+    this.ladoConfig.style.display = "flex";
+    this.editarPerfil.style.display = "none"
+  }
 
-    this.ladoConfig.style.display = "block";
+  acessarEdicao() {
+    this.ladoPoliticas.style.display = "none";
+    this.ladoConfig.style.display = "none";
+    this.editarPerfil.style.display = "block"
   }
 }
 
+// Eventos de clique nos botões do Aside
 document.addEventListener("DOMContentLoaded", () => {
   const configConta = document.getElementById("configConta");
   const politicasConta = document.getElementById("politicasConta");
+  const perfilEdicao = document.getElementById("perfilEdicao");
 
   const newAsideConfig = new AsideConfig();
 
   configConta?.addEventListener("click", () => newAsideConfig.acessarConfig());
-  politicasConta?.addEventListener("click", () =>
-    newAsideConfig.acessarPoliticas()
-  );
+  politicasConta?.addEventListener("click", () => newAsideConfig.acessarPoliticas());
+  perfilEdicao?.addEventListener("click", () => newAsideConfig.acessarEdicao());
+
 });
 
-//Seta de abrir leque de opções na aba tema
+// Seta de abrir leque de opções na aba tema
 function abrir() {
   let menu = document.getElementById("menu");
   let seta = document.getElementById("setaConfig");
@@ -52,375 +63,416 @@ function abrir() {
   }
 }
 
-function alterarnoomeuser() {
-  const form = document.getElementById("formNomeUsuario");
+document.addEventListener("DOMContentLoaded", () => {
+  const usuario = JSON.parse(localStorage.getItem("usuario"));
+  const token = localStorage.getItem("token");
 
-  if (form.style.display === "none" || form.style.display === "") {
-    form.style.display = "block";
-  } else {
-    form.style.display = "none";
+  if (!usuario || !token) {
+    console.error("Usuário não autenticado.");
+    window.location.href = "/src/views/login.html";
+    return;
   }
-}
 
-function alteraremail() {
-  const form = document.getElementById("formEmailUsuario");
+  const id = usuario.id;
+  console.log("ID do usuário:", id);
 
-  if (form.style.display === "none" || form.style.display === "") {
-    form.style.display = "block";
-  } else {
-    form.style.display = "none";
-  }
-}
+  // Garante que o objeto endereco exista
+  const endereco = usuario.endereco || {};
 
-function alterarsenha() {
-  const form = document.getElementById("formSenhaUsuario");
+  document.getElementById("nome").value = usuario.nome || "";
+  document.getElementById("cep").value = endereco.cep || "CEP não encontrado";
+  document.getElementById("cidade").value = endereco.cidade || "";
+  document.getElementById("rua").value = endereco.rua || "";
+  document.getElementById("bairro").value = endereco.bairro || "";
+  document.getElementById("nmr").value = endereco.numero || "";
+  document.getElementById("estado").value = endereco.estado || "";
 
-  if (form.style.display === "none" || form.style.display === "") {
-    form.style.display = "block";
-  } else {
-    form.style.display = "none";
-  }
-}
 
-function alterartelefone() {
-  const form = document.getElementById("formTelefoneUsuario");
+  // document.getElementById("cidade").value = end.cidade;
 
-  if (form.style.display === "none" || form.style.display === "") {
-    form.style.display = "block";
-  } else {
-    form.style.display = "none";
-  }
-}
+  // document.getElementById("tipoUsuario").textContent =
+  //   usuario.tipo === 1 ? "Administrador" : "Usuário Comum";
 
-// conexão com o banco para carregar dados do usuario
 
-//virificar tipo de usuario logado
-
-document.addEventListener("DOMContentLoaded", async () => {
-  try {
-    if (typeof usuario === "undefined" || !usuario.id) {
-      console.error("Variável 'usuario' ou 'usuario.id' não encontrada.");
-      return; // Para a execução se não houver ID
-    }
-
-    const response = await fetch(
-      `http://localhost:4501/usuarios/verificar-tipo/${usuario.id}`
-    );
-    const data = await response.json();
-
-    // Pega os elementos da página
-    const divcpfoucnpj = document.getElementById("cpfConta");
-    const divnomeoudata = document.getElementById("dataNascimento");
-
-    // --- LÓGICA CORRIGIDA ---
-
-    // Primeiro, verifica se a API retornou dados válidos
-    if (data && data.length > 0) {
-      const userData = data[0]; // Fica mais fácil de ler
-
-      // Caso 1: O usuário ainda NÃO escolheu um tipo
-      if (userData.tipo === null) {
-        divcpfoucnpj.innerHTML = `<p id="cpfoucnpj"><span class="before">CPF/CNPJ:</span> Não definido</p>`;
-        // Caso 2: O usuário é do tipo 'adotante'
-      } else if (userData.tipo === "adotante") {
-        const response = await fetch(
-          `http://localhost:4501/usuarios/configadotante/${usuario.id}`
-        );
-        const data = await response.json();
-        const userData = data[0]; // Fica mais fácil de ler
-        divcpfoucnpj.innerHTML = `<p id="cpfoucnpj"><span class="before">CPF:</span> ${userData.cpf}</p>`;
-        divnomeoudata.innerHTML = `<p id="dataNasc"><span class="before">Data de nascimento:</span> ${userData.data_nascimento}</p>`;
-
-        // Caso 3: O usuário é do tipo 'ong'
-      } else if (userData.tipo === "ong") {
-        const response = await fetch(
-          `http://localhost:4501/usuarios/configong/${usuario.id}`
-        );
-        const data = await response.json();
-        const userData = data[0]; // Fica mais fácil de ler
-        divcpfoucnpj.innerHTML = `<p id="cpf/cnpj"><span class="before">cnpj:</span> ${userData.cnpj}</p>`;
-        divnomeoudata.innerHTML = `<p id="dataNasc"><span class="before">Nome da ong:</span>${userData.nome_ong}</p>`;
-      }
-    } else {
-      console.error("Nenhum dado de usuário foi retornado pela API.");
-      // Você pode querer mostrar uma mensagem de erro para o usuário aqui
-    }
-  } catch (err) {
-    console.error("Erro ao buscar ou processar dados do usuário:", err);
-  }
 });
 
-// fim do verificar tipo de usuario logado
-
-document.addEventListener("DOMContentLoaded", async () => {
-  try {
-    const response = await fetch(
-      `http://localhost:4501/usuarios/${usuario.id}`
-    );
-    const data = await response.json();
-
-    if (Array.isArray(data) && data.length === 1) {
-      document.getElementById("nomeUsuarioconfig").innerHTML = data[0].nome;
-      document.getElementById(
-        "emailuserconfig"
-      ).innerHTML = `<span class="before">E-mail:</span> ${data[0].email}`;
-      document.getElementById(
-        "telefoneconfig"
-      ).innerHTML = `<span class="before">Telefone:</span> ${data[0].telefone}`;
-      document.getElementById(
-        "fotoUsuarioconfig"
-      ).style.backgroundImage = `url('${data[0].foto}')`;
-    } else {
-      console.log("Usuário não encontrado ou dados inválidos.");
-    }
-  } catch (error) {
-    console.log("Erro ao buscar dados do usuário:", error);
-    // alert("Você não está logado", error);
-  }
-});
-
-// atualizar telefone do usuario
-
-document
-  .getElementById("formTelefoneUsuario")
-  .addEventListener("submit", async function (e) {
-    e.preventDefault(); // Evita o envio tradicional do formulário
-
-    const telefone = document.getElementById("telefoneUsuario").value;
-
-    try {
-      const response = await fetch(
-        `http://localhost:4501/usuarios/atualizar-telefone/${usuario.id}`,
-        {
-          method: "PUT", // Ou "POST", conforme configurado no seu backend
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ telefone }),
-        }
-      );
-
-      if (response.ok) {
-        // alert("Telefone atualizado com sucesso!");
-      const feedback = document.createElement("img");
-      feedback.src = "/public/img/feedback/filtro_limpo.svg";
-      feedback.style.position = "fixed";
-      feedback.style.top = "5rem";
-      feedback.style.right = "2rem";
-      feedback.style.zIndex = "4000";
-      feedback.style.height = "6rem";
-      document.body.appendChild(feedback);
-          setTimeout(() => {
-        feedback.remove();
-    }, 3000);
-        // Você pode atualizar a interface aqui se quiser
-      } else {
-        const errorData = await response.json();
-        // alert(
-        //   "Erro ao atualizar o telefone: " +
-        //     (errorData.message || response.statusText)
-        // );
-      const feedback = document.createElement("img");
-      feedback.src = "/public/img/feedback/filtro_limpo.svg";
-      feedback.style.position = "fixed";
-      feedback.style.top = "5rem";
-      feedback.style.right = "2rem";
-      feedback.style.zIndex = "4000";
-      feedback.style.height = "6rem";
-      document.body.appendChild(feedback);
-          setTimeout(() => {
-        feedback.remove();
-    }, 3000);
-      }
-    } catch (error) {
-      console.error("Erro na requisição: " + error.message);
-    }
+  // Botão de sair
+  const botaoSair = document.getElementById("sair");
+  botaoSair.addEventListener("click", () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("usuario");
+    window.location.href = "/src/views/login.html";
   });
 
-// atualizar email do usuario
+// function alterarnoomeuser() {
+//   const form = document.getElementById("formNomeUsuario");
 
-// Substitua pelo ID real do usuário (pode ser armazenado em uma variável global ou vindo do backend via template)
+//   if (form.style.display === "none" || form.style.display === "") {
+//     form.style.display = "block";
+//   } else {
+//     form.style.display = "none";
+//   }
+// }
 
-document
-  .getElementById("formEmailUsuario")
-  .addEventListener("submit", async function (e) {
-    e.preventDefault();
+// function alteraremail() {
+//   const form = document.getElementById("formEmailUsuario");
 
-    const email = document.getElementById("emailUsuario").value;
+//   if (form.style.display === "none" || form.style.display === "") {
+//     form.style.display = "block";
+//   } else {
+//     form.style.display = "none";
+//   }
+// }
 
-    try {
-      const response = await fetch(
-        `http://localhost:4501/usuarios/atualizar-email/${usuario.id}`,
-        {
-          method: "PUT", // Ou POST, se for o seu caso
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email }),
-        }
-      );
+// function alterarsenha() {
+//   const form = document.getElementById("formSenhaUsuario");
 
-      if (response.ok) {
-        // alert("E-mail atualizado com sucesso!");
-        const feedback = document.createElement("img");
-        feedback.src = "/public/img/feedback/filtro_limpo.svg";
-        feedback.style.position = "fixed";
-        feedback.style.top = "5rem";
-        feedback.style.right = "2rem";
-        feedback.style.zIndex = "4000";
-        feedback.style.height = "6rem";
-        document.body.appendChild(feedback);
-        setTimeout(() => {
-          feedback.remove();
-        }, 3000);
-      } else {
-        const errorData = await response.json();
-        // alert(
-        //   "Erro ao atualizar o e-mail: " +
-        //     (errorData.message || response.statusText)
-        // );
-                const feedback = document.createElement("img");
-      feedback.src = "/public/img/feedback/filtro_limpo.svg";
-      feedback.style.position = "fixed";
-      feedback.style.top = "5rem";
-      feedback.style.right = "2rem";
-      feedback.style.zIndex = "4000";
-      feedback.style.height = "6rem";
-      document.body.appendChild(feedback);
-          setTimeout(() => {
-        feedback.remove();
-    }, 3000);
-      }
-    } catch (error) {
-      console.error("Erro na requisição: " + error.message);
-    }
-  });
+//   if (form.style.display === "none" || form.style.display === "") {
+//     form.style.display = "block";
+//   } else {
+//     form.style.display = "none";
+//   }
+// }
 
-// atualizar nome do usuario
+// function alterartelefone() {
+//   const form = document.getElementById("formTelefoneUsuario");
 
-document
-  .getElementById("formNomeUsuario")
-  .addEventListener("submit", async function (e) {
-    e.preventDefault();
+//   if (form.style.display === "none" || form.style.display === "") {
+//     form.style.display = "block";
+//   } else {
+//     form.style.display = "none";
+//   }
+// }
 
-    const nome = document.getElementById("nomeUsuario").value;
+// // conexão com o banco para carregar dados do usuario
 
-    try {
-      const response = await fetch(
-        `http://localhost:4501/usuarios/atualizar-nome/${usuario.id}`,
-        {
-          method: "PUT", // Ou POST, conforme o backend
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ nome }),
-        }
-      );
+// //virificar tipo de usuario logado
 
-      if (response.ok) {
-        // alert("Nome de usuário atualizado com sucesso!");
-      const feedback = document.createElement("img");
-      feedback.src = "/public/img/feedback/filtro_limpo.svg";
-      feedback.style.position = "fixed";
-      feedback.style.top = "5rem";
-      feedback.style.right = "2rem";
-      feedback.style.zIndex = "4000";
-      feedback.style.height = "6rem";
-      document.body.appendChild(feedback);
-          setTimeout(() => {
-        feedback.remove();
-    }, 3000);
-      } else {
-        const errorData = await response.json();
-        // alert(
-        //   "Erro ao atualizar o nome: " +
-        //     (errorData.message || response.statusText)
-        // );
-                const feedback = document.createElement("img");
-      feedback.src = "/public/img/feedback/filtro_limpo.svg";
-      feedback.style.position = "fixed";
-      feedback.style.top = "5rem";
-      feedback.style.right = "2rem";
-      feedback.style.zIndex = "4000";
-      feedback.style.height = "6rem";
-      document.body.appendChild(feedback);
-          setTimeout(() => {
-        feedback.remove();
-    }, 3000);
-      }
-    } catch (error) {
-      console.error("Erro na requisição: " + error.message);
-    }
-  });
+// document.addEventListener("DOMContentLoaded", async () => {
+//   try {
+//     if (typeof usuario === "undefined" || !usuario.id) {
+//       console.error("Variável 'usuario' ou 'usuario.id' não encontrada.");
+//       return; // Para a execução se não houver ID
+//     }
 
-// atualizar foto do usuario
+//     const response = await fetch(
+//       `http://localhost:4501/usuarios/verificar-tipo/${usuario.id}`
+//     );
+//     const data = await response.json();
 
-const inputFoto = document.getElementById("fotoPerfil");
+//     // Pega os elementos da página
+//     const divcpfoucnpj = document.getElementById("cpfConta");
+//     const divnomeoudata = document.getElementById("dataNascimento");
 
-inputFoto.addEventListener("change", async function () {
-  const file = inputFoto.files[0];
-  if (!file) return;
+//     // --- LÓGICA CORRIGIDA ---
 
-  const formData = new FormData();
-  formData.append("foto", file);
+//     // Primeiro, verifica se a API retornou dados válidos
+//     if (data && data.length > 0) {
+//       const userData = data[0]; // Fica mais fácil de ler
 
-  try {
-    const response = await fetch(
-      `http://localhost:4501/usuarios/atualizar-foto/${usuario.id}`,
-      {
-        method: "PUT", // ou POST, conforme seu backend
-        body: formData,
-      }
-    );
+//       // Caso 1: O usuário ainda NÃO escolheu um tipo
+//       if (userData.tipo === null) {
+//         divcpfoucnpj.innerHTML = `<p id="cpfoucnpj"><span class="before">CPF/CNPJ:</span> Não definido</p>`;
+//         // Caso 2: O usuário é do tipo 'adotante'
+//       } else if (userData.tipo === "adotante") {
+//         const response = await fetch(
+//           `http://localhost:4501/usuarios/configadotante/${usuario.id}`
+//         );
+//         const data = await response.json();
+//         const userData = data[0]; // Fica mais fácil de ler
+//         divcpfoucnpj.innerHTML = `<p id="cpfoucnpj"><span class="before">CPF:</span> ${userData.cpf}</p>`;
+//         divnomeoudata.innerHTML = `<p id="dataNasc"><span class="before">Data de nascimento:</span> ${userData.data_nascimento}</p>`;
 
-    if (response.ok) {
-      // alert("Foto de perfil atualizada com sucesso!");
-      const feedback = document.createElement("img");
-      feedback.src = "/public/img/feedback/filtro_limpo.svg";
-      feedback.style.position = "fixed";
-      feedback.style.top = "5rem";
-      feedback.style.right = "2rem";
-      feedback.style.zIndex = "4000";
-      feedback.style.height = "6rem";
-      document.body.appendChild(feedback);
-          setTimeout(() => {
-        feedback.remove();
-    }, 3000);
-      // Atualizar imagem exibida (opcional)
-    } else {
-      const errorData = await response.json();
-      // alert(
-      //   "Erro ao atualizar a foto: " +
-      //     (errorData.message || response.statusText)
-      // );
-      const feedback = document.createElement("img");
-      feedback.src = "/public/img/feedback/filtro_limpo.svg";
-      feedback.style.position = "fixed";
-      feedback.style.top = "5rem";
-      feedback.style.right = "2rem";
-      feedback.style.zIndex = "4000";
-      feedback.style.height = "6rem";
-      document.body.appendChild(feedback);
-          setTimeout(() => {
-        feedback.remove();
-    }, 3000);
-    }
-  } catch (error) {
-    console.error("Erro na requisição: " + error.message);
-  }
-});
+//         // Caso 3: O usuário é do tipo 'ong'
+//       } else if (userData.tipo === "ong") {
+//         const response = await fetch(
+//           `http://localhost:4501/usuarios/configong/${usuario.id}`
+//         );
+//         const data = await response.json();
+//         const userData = data[0]; // Fica mais fácil de ler
+//         divcpfoucnpj.innerHTML = `<p id="cpf/cnpj"><span class="before">cnpj:</span> ${userData.cnpj}</p>`;
+//         divnomeoudata.innerHTML = `<p id="dataNasc"><span class="before">Nome da ong:</span>${userData.nome_ong}</p>`;
+//       }
+//     } else {
+//       console.error("Nenhum dado de usuário foi retornado pela API.");
+//       // Você pode querer mostrar uma mensagem de erro para o usuário aqui
+//     }
+//   } catch (err) {
+//     console.error("Erro ao buscar ou processar dados do usuário:", err);
+//   }
+// });
+
+// // fim do verificar tipo de usuario logado
+
+// document.addEventListener("DOMContentLoaded", async () => {
+//   try {
+//     const response = await fetch(
+//       `http://localhost:4501/usuarios/${usuario.id}`
+//     );
+//     const data = await response.json();
+
+//     if (Array.isArray(data) && data.length === 1) {
+//       document.getElementById("nomeUsuarioconfig").innerHTML = data[0].nome;
+//       document.getElementById(
+//         "emailuserconfig"
+//       ).innerHTML = `<span class="before">E-mail:</span> ${data[0].email}`;
+//       document.getElementById(
+//         "telefoneconfig"
+//       ).innerHTML = `<span class="before">Telefone:</span> ${data[0].telefone}`;
+//       document.getElementById(
+//         "fotoUsuarioconfig"
+//       ).style.backgroundImage = `url('${data[0].foto}')`;
+//     } else {
+//       console.log("Usuário não encontrado ou dados inválidos.");
+//     }
+//   } catch (error) {
+//     console.log("Erro ao buscar dados do usuário:", error);
+//     // alert("Você não está logado", error);
+//   }
+// });
+
+// // atualizar telefone do usuario
+
+// document
+//   .getElementById("formTelefoneUsuario")
+//   .addEventListener("submit", async function (e) {
+//     e.preventDefault(); // Evita o envio tradicional do formulário
+
+//     const telefone = document.getElementById("telefoneUsuario").value;
+
+//     try {
+//       const response = await fetch(
+//         `http://localhost:4501/usuarios/atualizar-telefone/${usuario.id}`,
+//         {
+//           method: "PUT", // Ou "POST", conforme configurado no seu backend
+//           headers: {
+//             "Content-Type": "application/json",
+//           },
+//           body: JSON.stringify({ telefone }),
+//         }
+//       );
+
+//       if (response.ok) {
+//         // alert("Telefone atualizado com sucesso!");
+//         const feedback = document.createElement("img");
+//         feedback.src = "/public/img/feedback/filtro_limpo.svg";
+//         feedback.style.position = "fixed";
+//         feedback.style.top = "5rem";
+//         feedback.style.right = "2rem";
+//         feedback.style.zIndex = "4000";
+//         feedback.style.height = "6rem";
+//         document.body.appendChild(feedback);
+//         setTimeout(() => {
+//           feedback.remove();
+//         }, 3000);
+//         // Você pode atualizar a interface aqui se quiser
+//       } else {
+//         const errorData = await response.json();
+//         // alert(
+//         //   "Erro ao atualizar o telefone: " +
+//         //     (errorData.message || response.statusText)
+//         // );
+//         const feedback = document.createElement("img");
+//         feedback.src = "/public/img/feedback/filtro_limpo.svg";
+//         feedback.style.position = "fixed";
+//         feedback.style.top = "5rem";
+//         feedback.style.right = "2rem";
+//         feedback.style.zIndex = "4000";
+//         feedback.style.height = "6rem";
+//         document.body.appendChild(feedback);
+//         setTimeout(() => {
+//           feedback.remove();
+//         }, 3000);
+//       }
+//     } catch (error) {
+//       console.error("Erro na requisição: " + error.message);
+//     }
+//   });
+
+// // atualizar email do usuario
+
+// // Substitua pelo ID real do usuário (pode ser armazenado em uma variável global ou vindo do backend via template)
+
+// document
+//   .getElementById("formEmailUsuario")
+//   .addEventListener("submit", async function (e) {
+//     e.preventDefault();
+
+//     const email = document.getElementById("emailUsuario").value;
+
+//     try {
+//       const response = await fetch(
+//         `http://localhost:4501/usuarios/atualizar-email/${usuario.id}`,
+//         {
+//           method: "PUT", // Ou POST, se for o seu caso
+//           headers: {
+//             "Content-Type": "application/json",
+//           },
+//           body: JSON.stringify({ email }),
+//         }
+//       );
+
+//       if (response.ok) {
+//         // alert("E-mail atualizado com sucesso!");
+//         const feedback = document.createElement("img");
+//         feedback.src = "/public/img/feedback/filtro_limpo.svg";
+//         feedback.style.position = "fixed";
+//         feedback.style.top = "5rem";
+//         feedback.style.right = "2rem";
+//         feedback.style.zIndex = "4000";
+//         feedback.style.height = "6rem";
+//         document.body.appendChild(feedback);
+//         setTimeout(() => {
+//           feedback.remove();
+//         }, 3000);
+//       } else {
+//         const errorData = await response.json();
+//         // alert(
+//         //   "Erro ao atualizar o e-mail: " +
+//         //     (errorData.message || response.statusText)
+//         // );
+//         const feedback = document.createElement("img");
+//         feedback.src = "/public/img/feedback/filtro_limpo.svg";
+//         feedback.style.position = "fixed";
+//         feedback.style.top = "5rem";
+//         feedback.style.right = "2rem";
+//         feedback.style.zIndex = "4000";
+//         feedback.style.height = "6rem";
+//         document.body.appendChild(feedback);
+//         setTimeout(() => {
+//           feedback.remove();
+//         }, 3000);
+//       }
+//     } catch (error) {
+//       console.error("Erro na requisição: " + error.message);
+//     }
+//   });
+
+// // atualizar nome do usuario
+
+// document
+//   .getElementById("formNomeUsuario")
+//   .addEventListener("submit", async function (e) {
+//     e.preventDefault();
+
+//     const nome = document.getElementById("nomeUsuario").value;
+
+//     try {
+//       const response = await fetch(
+//         `http://localhost:4501/usuarios/atualizar-nome/${usuario.id}`,
+//         {
+//           method: "PUT", // Ou POST, conforme o backend
+//           headers: {
+//             "Content-Type": "application/json",
+//           },
+//           body: JSON.stringify({ nome }),
+//         }
+//       );
+
+//       if (response.ok) {
+//         // alert("Nome de usuário atualizado com sucesso!");
+//         const feedback = document.createElement("img");
+//         feedback.src = "/public/img/feedback/filtro_limpo.svg";
+//         feedback.style.position = "fixed";
+//         feedback.style.top = "5rem";
+//         feedback.style.right = "2rem";
+//         feedback.style.zIndex = "4000";
+//         feedback.style.height = "6rem";
+//         document.body.appendChild(feedback);
+//         setTimeout(() => {
+//           feedback.remove();
+//         }, 3000);
+//       } else {
+//         const errorData = await response.json();
+//         // alert(
+//         //   "Erro ao atualizar o nome: " +
+//         //     (errorData.message || response.statusText)
+//         // );
+//         const feedback = document.createElement("img");
+//         feedback.src = "/public/img/feedback/filtro_limpo.svg";
+//         feedback.style.position = "fixed";
+//         feedback.style.top = "5rem";
+//         feedback.style.right = "2rem";
+//         feedback.style.zIndex = "4000";
+//         feedback.style.height = "6rem";
+//         document.body.appendChild(feedback);
+//         setTimeout(() => {
+//           feedback.remove();
+//         }, 3000);
+//       }
+//     } catch (error) {
+//       console.error("Erro na requisição: " + error.message);
+//     }
+//   });
+
+// // atualizar foto do usuario
+
+// const inputFoto = document.getElementById("fotoPerfil");
+
+// inputFoto.addEventListener("change", async function () {
+//   const file = inputFoto.files[0];
+//   if (!file) return;
+
+//   const formData = new FormData();
+//   formData.append("foto", file);
+
+//   try {
+//     const response = await fetch(
+//       `http://localhost:4501/usuarios/atualizar-foto/${usuario.id}`,
+//       {
+//         method: "PUT", // ou POST, conforme seu backend
+//         body: formData,
+//       }
+//     );
+
+//     if (response.ok) {
+//       // alert("Foto de perfil atualizada com sucesso!");
+//       const feedback = document.createElement("img");
+//       feedback.src = "/public/img/feedback/filtro_limpo.svg";
+//       feedback.style.position = "fixed";
+//       feedback.style.top = "5rem";
+//       feedback.style.right = "2rem";
+//       feedback.style.zIndex = "4000";
+//       feedback.style.height = "6rem";
+//       document.body.appendChild(feedback);
+//       setTimeout(() => {
+//         feedback.remove();
+//       }, 3000);
+//       // Atualizar imagem exibida (opcional)
+//     } else {
+//       const errorData = await response.json();
+//       // alert(
+//       //   "Erro ao atualizar a foto: " +
+//       //     (errorData.message || response.statusText)
+//       // );
+//       const feedback = document.createElement("img");
+//       feedback.src = "/public/img/feedback/filtro_limpo.svg";
+//       feedback.style.position = "fixed";
+//       feedback.style.top = "5rem";
+//       feedback.style.right = "2rem";
+//       feedback.style.zIndex = "4000";
+//       feedback.style.height = "6rem";
+//       document.body.appendChild(feedback);
+//       setTimeout(() => {
+//         feedback.remove();
+//       }, 3000);
+//     }
+//   } catch (error) {
+//     console.error("Erro na requisição: " + error.message);
+//   }
+// });
 
 
-function oteste() {
-        const feedback = document.createElement("img");
-      feedback.src = "/public/img/feedback/filtro_limpo.svg";
-      feedback.style.position = "fixed";
-      feedback.style.top = "5rem";
-      feedback.style.right = "2rem";
-      feedback.style.zIndex = "4000";
-      feedback.style.height = "6rem";
-      document.body.appendChild(feedback);
-          setTimeout(() => {
-        feedback.remove();
-    }, 3000);
-}
+// function oteste() {
+//   const feedback = document.createElement("img");
+//   feedback.src = "/public/img/feedback/filtro_limpo.svg";
+//   feedback.style.position = "fixed";
+//   feedback.style.top = "5rem";
+//   feedback.style.right = "2rem";
+//   feedback.style.zIndex = "4000";
+//   feedback.style.height = "6rem";
+//   document.body.appendChild(feedback);
+//   setTimeout(() => {
+//     feedback.remove();
+//   }, 3000);
+// }

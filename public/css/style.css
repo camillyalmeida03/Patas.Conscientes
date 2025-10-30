@@ -1875,6 +1875,8 @@ ol {
     color: var(--cinza_h3);
 }
 
+
+
 .editarPerfil {
     display: flex;
     flex-direction: column;
@@ -1917,7 +1919,7 @@ ol {
 }
 
 #ladoConfig{
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: 1.2rem;
 }
