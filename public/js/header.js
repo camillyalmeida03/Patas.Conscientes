@@ -369,7 +369,7 @@ function criar_header(){
       </div>
 
       <div class="caixaInst">
-        <p><a href="institucional.html#topico1"
+        <p><a href="../src/views/institucional.html#topico1"
             title="Link que direciona para a página Institucional do site diretamente no tópico 'Sobre nós'">Sobre
             nós</a></p>
         <p><a href="institucional.html#topico2"
