@@ -33,19 +33,19 @@ const loginController = {
       `, [email]);
 
 
-      const sexo = await banco.query(`
-        SELECT s.idsexo, s.sexo, u.nome 
-        FROM sexo s 
-        INNER JOIN usuarios u 
-        ON u.fk_idsexo = s.idsexo
-        WHERE u.email = ?`);
+      // const sexo = await banco.query(`
+      //   SELECT s.idsexo, s.sexo, u.nome 
+      //   FROM sexo s 
+      //   INNER JOIN usuarios u 
+      //   ON u.fk_idsexo = s.idsexo
+      //   WHERE u.email = ?`);
 
-      const estado = await banco.query(`
-        SELECT e.idestado, e.sigla, u.nome 
-        FROM estados e
-        INNER JOIN usuarios u
-        ON u.fk_idsexo = e.idestado
-        `)
+      // const estado = await banco.query(`
+      //   SELECT e.idestado, e.sigla, u.nome 
+      //   FROM estados e
+      //   INNER JOIN usuarios u
+      //   ON u.fk_idsexo = e.idestado
+      //   `)
 
       if (rows.length === 0) {
         return res.status(401).json({ message: "Usuário não encontrado." });
