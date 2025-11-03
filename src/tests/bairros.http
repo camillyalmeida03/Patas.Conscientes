@@ -1,13 +1,13 @@
 #Testes da tabela bairros
 
 ### Listar dados
-GET http://localhost:3600/bairros
+GET http://localhost:4167/bairros
 
 ### Mostrar campo por id
-GET http://localhost:3600/bairros/2
+GET http://localhost:4167/bairros/2
 
 ### Inserir novo dado
-POST http://localhost:3600/bairros
+POST http://localhost:4167/bairros
 Content-Type: application/json
 
 {
@@ -16,7 +16,7 @@ Content-Type: application/json
 }
 
 ### Inserir um dado com base no id
-PUT http://localhost:3600/bairros/1
+PUT http://localhost:4167/bairros/1
 Content-Type: application/json
 
 {
@@ -25,4 +25,4 @@ Content-Type: application/json
 }
 
 ### Excluir um dado com base no id
-DELETE http://localhost:3600/bairros/2
+DELETE http://localhost:4167/bairros/2

@@ -1,13 +1,13 @@
 #Testes da tabela usuarios
 
 ### Listar dados
-GET http://localhost:3600/usuarios
+GET http://localhost:4167/usuarios
 
 ### Mostrar campo por id
-GET http://localhost:3600/usuarios/3
+GET http://localhost:4167/usuarios/3
 
 ### Inserir novo dado
-POST http://localhost:3600/usuarios
+POST http://localhost:4167/usuarios
 Content-Type: application/json
 
 {
@@ -24,7 +24,7 @@ Content-Type: application/json
 }
 
 ### Inserir um dado com base no id
-PUT http://localhost:3600/usuarios/1
+PUT http://localhost:4167/usuarios/1
 Content-Type: application/json
 
 {
@@ -38,4 +38,4 @@ Content-Type: application/json
 }
 
 ### Excluir um dado com base no id
-DELETE http://localhost:3600/usuarios/5
+DELETE http://localhost:4167/usuarios/5

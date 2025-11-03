@@ -40,7 +40,7 @@ if (formEntrar) {
             const email = document.getElementById("emailUsuarioAdt").value.trim();
             const senha = document.getElementById("senhaLoginUsuario").value.trim();
 
-            const responseLogin = await fetch("http://localhost:3600/login", {
+            const responseLogin = await fetch("http://localhost:4167/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, senha }),

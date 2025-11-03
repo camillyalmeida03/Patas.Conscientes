@@ -38,12 +38,12 @@ document.addEventListener("DOMContentLoaded", function () {
             const nmr = document.getElementById("nmr").value.trim();
             const complemento = document.getElementById("complemento").value.trim();
 
-            const endpointEstado = "http://localhost:3600/estados";
-            const endpointCidade = "http://localhost:3600/cidades";
-            const endpointBairro = "http://localhost:3600/bairros";
-            const endpointRua = "http://localhost:3600/ruas";
-            const endpointEndereco = "http://localhost:3600/enderecos";
-            const endpointUsuario = "http://localhost:3600/usuarios";
+            const endpointEstado = "http://localhost:4167/estados";
+            const endpointCidade = "http://localhost:4167/cidades";
+            const endpointBairro = "http://localhost:4167/bairros";
+            const endpointRua = "http://localhost:4167/ruas";
+            const endpointEndereco = "http://localhost:4167/enderecos";
+            const endpointUsuario = "http://localhost:4167/usuarios";
             const contentTypeJson = { "Content-Type": "application/json" };
 
             // ------------------- CRIAÇÕES EM CADEIA -------------------

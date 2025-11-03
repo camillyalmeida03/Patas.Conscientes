@@ -41,7 +41,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const mensagemNomeInvalido = "Por favor, insira um nome válido." // Mensagem indicando que o campo não foi preenchido de forma válida
 
         // Dados de nome de usuário 
-        const inputNomeUsuario = document.getElementById("nomeUsuarioAdt")
+        const inputNomeUsuario = document.getElementById("nomeUsuarioAdt");
+        const inputNomeUsuariConfig = document.querySelector("#nome");
         const erroNomeUsuario = document.getElementById("erroNomeUsuarioAdt");
 
         // Validação do nome do usuário

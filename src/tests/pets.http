@@ -1,13 +1,13 @@
 #Testes da tabela pets
 
 ### Listar dados
-GET http://localhost:3600/pets
+GET http://localhost:4167/pets
 
 ### Mostrar campo por id
-GET http://localhost:3600/pets/2
+GET http://localhost:4167/pets/2
 
 ### Inserir novo dado
-POST http://localhost:3600/pets
+POST http://localhost:4167/pets
 Content-Type: application/json
 
 {
@@ -28,7 +28,7 @@ Content-Type: application/json
 }
 
 ### Inserir um dado com base no id
-PUT http://localhost:3600/pets/2
+PUT http://localhost:4167/pets/2
 Content-Type: application/json
 
 {
@@ -47,4 +47,4 @@ Content-Type: application/json
 }
 
 ### Excluir um dado com base no id
-DELETE http://localhost:3600/pets/2
+DELETE http://localhost:4167/pets/2
