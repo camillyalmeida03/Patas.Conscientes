@@ -1,5 +1,7 @@
 //Este arquivo é responsável por trazer as funcionalidades da página de configurações.
 
+import { MensagemFeedback } from "./formularios/mensagemFeedback.js";
+
 // Funcionalidade do aside
 class AsideConfig {
   constructor() {
@@ -63,6 +65,10 @@ function abrir() {
   }
 }
 
+const mensagemFeedback = document.querySelector("#mensagemFeedback");
+// const feedback = new MensagemFeedback;
+let feedback = null;
+
 // Verificação de alterações
 class VerificaAlt {
   constructor() {
@@ -77,10 +83,19 @@ class VerificaAlt {
             botao.classList.add("")
           } else {
             botao.classList.add("botaoSalvarHabilitado")
+            feedback = new MensagemFeedback("Alguns dados foram alterados. Salve antes de sair.", mensagemFeedback).feedbackAlert();
+            if(feedback !== null){
+              
+            }
           }
         } else {
           console.log("voltou as origens")
           botao.classList.remove("botaoSalvarHabilitado")
+
+          if(feedback){
+            feedback.fechar()
+            feedback = null;
+          }
         }
       }
     })

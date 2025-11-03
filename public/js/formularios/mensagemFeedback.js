@@ -67,4 +67,34 @@ export class MensagemFeedback {
             this.divPai.remove();
         }, 3000);
     }
+
+    feedbackAlert() {
+        this.divPai = this.criar.createElement(
+            "div",
+            ["feedback", "feedbackAlert"],
+            null,
+            this.pai,
+            "feedback"
+        );
+
+        this.pFeedback = this.criar.createElement(
+            "p",
+            null,
+            this.mensagem,
+            this.divPai,
+            null
+        );
+
+        this.iconeFeedback = this.criar.createElement(
+            "div",
+            "iconeFeedback",
+            null,
+            this.divPai,
+            null
+        );
+    }
+
+    fechar(){
+        this.divPai.remove();
+    }
 }

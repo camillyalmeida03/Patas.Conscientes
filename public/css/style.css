@@ -1,6 +1,8 @@
 :root {
     --azul_claro: #0E457D;
     --azul_maisclaro: #2269AA;
+    --azul_fundo: #c1d4e6;
+    --azul_contorno: #5d7c99;
     --azul_escuro: #003B4A;
     --azul_opaco: #2268aa82;
 
@@ -2847,6 +2849,8 @@ textarea {
     height: 1.5rem;
     width: 1.5rem;
     background-size: cover;
+    min-height: 1.5rem;
+    min-width: 1.5rem;
 }
 
 .feedbackSucess {
@@ -2858,6 +2862,17 @@ textarea {
 .feedbackSucess .iconeFeedback {
     background-color: var(--contornoVerde);
     background-image: url(/public/img/icons/feedback-sucess.png);
+}
+
+.feedbackAlert {
+    background-color: var(--azul_fundo);
+    border: 3px var(--azul_claro) solid;
+    color: var(--azul_claro);
+}
+
+.feedbackAlert .iconeFeedback{
+    background-color: var(--azul_contorno);
+    background-image: url(/public/img/icons/alter_icon.svg);
 }
 
 .feedbackError {
