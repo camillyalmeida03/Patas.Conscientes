@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!validarNmr()) formularioValido = false;
 
     });
-
     // A partir de agora, teremos as funções de validação individuais
 
     // Validação dos nomes de usuário / Ongs / Pets

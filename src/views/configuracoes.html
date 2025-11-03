@@ -17,9 +17,9 @@
 </head>
 
 <body>
-<header id="headerIndex">
-  <script src="public/js/header.js"></script>
-</header>
+  <header id="headerIndex">
+    <script type="module" src="public/js/header.js"></script>
+  </header>
 
   <section class="caminho">
     <p><a href="/index.html" class="link" title="Link que direciona para a página Inicial">Início</a> | Configurações
@@ -35,21 +35,21 @@
       <button type="button" title="Editar meu perfil" id="perfilEdicao" class="buttonConfig">Editar
         perfil</button>
 
-        <!-- Linha divisória -->
+      <!-- Linha divisória -->
       <div class="linha"></div>
 
       <!-- Botão que altera para configurações da conta -->
       <button type="button" title="Acessar configurações da sua conta" id="configConta"
         class="buttonConfig">Conta</button>
 
-        <!-- Linha divisória -->
+      <!-- Linha divisória -->
       <div class="linha"></div>
 
-        <!-- Botão que altera para políticas do site -->
+      <!-- Botão que altera para políticas do site -->
       <button type="button" title="Acessar Políticas do site" id="politicasConta" class="buttonConfig">Políticas do
         site</button>
 
-        <!-- Linha divisória -->
+      <!-- Linha divisória -->
       <div class="linha"></div>
 
       <!-- Mudar Tema -->
@@ -97,7 +97,9 @@
         <!-- Nome do usuário -->
         <div id="" class="alterarDadosDiv">
           <label id="nomeUsuarioconfig" class="before">Nome:</label>
-          <input type="text" name="nome" placeholder="O nome do usuário ficará aqui" id="nome" class="inputConfig">
+          <input type="text" name="nome" placeholder="O nome do usuário ficará aqui" id="nomeUsuarioAdt"
+            class="inputConfig">
+          <p id="erroNomeUsuarioAdt" class="error-message"></p>
           <!-- <button title="Alterar nome de usuário" class="buttonPerfil" id="altNomeUsu" onclick="alterarnoomeuser()">Alterar nome</button> -->
         </div>
 
@@ -110,6 +112,8 @@
             <option value="2">Masculino</option>
             <option value="3">Prefiro não dizer</option>
           </select>
+          <p id="erroGenero" class="error-message"></p>
+
         </div>
 
         <!-- Endereço do usuário -->
@@ -330,9 +334,9 @@
     </svg>
   </div>
 
-<footer id="footer">
-  <script src="/public/js/footer.js"></script>
-</footer>
+  <footer id="footer">
+    <script src="/public/js/footer.js"></script>
+  </footer>
 
   <script type="module" src="/public/js/header.js" defer></script>
   <script src="/public/js/barraacessibilidade.js" defer></script>

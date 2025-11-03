@@ -63,6 +63,30 @@ function abrir() {
   }
 }
 
+// Verificação de alterações
+class VerificaAlt {
+  constructor() {
+  }
+
+  verificacao(input, valorOriginal, botao) {
+    input.addEventListener("input", () => {
+      if (botao) {
+        if (input.value !== valorOriginal) {
+          console.log("mudou campo")
+          if (botao.classList.contains("botaoSalvarHabilitado")) {
+            botao.classList.add("")
+          } else {
+            botao.classList.add("botaoSalvarHabilitado")
+          }
+        } else {
+          console.log("voltou as origens")
+          botao.classList.remove("botaoSalvarHabilitado")
+        }
+      }
+    })
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const usuario = JSON.parse(localStorage.getItem("usuario"));
   const token = localStorage.getItem("token");
@@ -79,14 +103,51 @@ document.addEventListener("DOMContentLoaded", () => {
   // Garante que o objeto endereco exista
   const endereco = usuario.endereco || {};
 
-  document.getElementById("nome").value = usuario.nome || "";
-  document.getElementById("cep").value = endereco.cep || "CEP não encontrado";
-  document.getElementById("cidade").value = endereco.cidade || "";
-  document.getElementById("rua").value = endereco.rua || "";
-  document.getElementById("bairro").value = endereco.bairro || "";
-  document.getElementById("nmr").value = endereco.numero || "";
-  document.getElementById("estado").value = endereco.estado || "";
+  // Verificações de alteração
+  const botaoSalvarAlt = document.querySelector("#botaoSalvarAlteracoes");
+  const verificacao = new VerificaAlt;
 
+  // Verificação nome
+  let nome = document.getElementById("nomeUsuarioAdt");
+  nome.value = usuario.nome || "";
+  let nomeOriginal = nome.value;
+  verificacao.verificacao(nome, nomeOriginal, botaoSalvarAlt);
+
+  // Verificação cep
+  let cep = document.getElementById("cep");
+  cep.value = endereco.cep || "";
+  let cepOriginal = cep.value;
+  verificacao.verificacao(cep, cepOriginal, botaoSalvarAlt)
+
+  // Verificação cidade
+  let cidade = document.getElementById("cidade");
+  cidade.value = endereco.cidade || "";
+  let cidadeOriginal = cidade.value;
+  verificacao.verificacao(cidade, cidadeOriginal, botaoSalvarAlt)
+
+  // Verificação rua
+  let rua = document.getElementById("rua");
+  rua.value = endereco.rua || "";
+  let ruaOriginal = rua.value;
+  verificacao.verificacao(rua, ruaOriginal, botaoSalvarAlt);
+
+  // Verificação bairro
+  let bairro = document.getElementById("bairro");
+  bairro.value = endereco.bairro || "";
+  let bairroOriginal = bairro.value;
+  verificacao.verificacao(bairro, bairroOriginal, botaoSalvarAlt);
+
+  // Verificação número
+  let nmr = document.getElementById("nmr");
+  nmr.value = endereco.numero || "";
+  let nmrOriginal = nmr.value;
+  verificacao.verificacao(nmr, nmrOriginal, botaoSalvarAlt);
+
+  // Verificação estado
+  let estado = document.getElementById("estado");
+  estado.value = endereco.estado || "";
+  let estadoOriginal = estado.value;
+  verificacao.verificacao(estado, estadoOriginal, botaoSalvarAlt)
 
   // document.getElementById("cidade").value = end.cidade;
 
@@ -96,13 +157,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-  // Botão de sair
-  const botaoSair = document.getElementById("sair");
+const botaoSair = document.getElementById("sair");
+
+// Botão de sair
+if (botaoSair) {
   botaoSair.addEventListener("click", () => {
     localStorage.removeItem("token");
     localStorage.removeItem("usuario");
     window.location.href = "/src/views/login.html";
-  });
+  })
+
+};
 
 // function alterarnoomeuser() {
 //   const form = document.getElementById("formNomeUsuario");

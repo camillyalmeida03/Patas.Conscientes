@@ -1875,17 +1875,25 @@ ol {
     color: var(--cinza_h3);
 }
 
-
-
 .editarPerfil {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
+.editarPerfil .error-message{
+    margin-left: 0;
+}
+
 .alterarDadosDiv label {
     display: inline-flex;
     width: 8rem;
+}
+
+.botaoSalvarHabilitado{
+    background-color: var(--rosa) !important;
+    border: none !important;
+    cursor: pointer;
 }
 
 .alterarDadosDiv input,
