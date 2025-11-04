@@ -1,4 +1,4 @@
-import { MensagemFeedback } from "../formularios/mensagemFeedback.js"; 
+import { MensagemFeedback } from "../../public/js/formularios/mensagemFeedback.js"; 
 
 document.addEventListener("DOMContentLoaded", function () {
     const formUsuario = document.getElementById("cadastroUsuario");
@@ -38,12 +38,12 @@ document.addEventListener("DOMContentLoaded", function () {
             const nmr = document.getElementById("nmr").value.trim();
             const complemento = document.getElementById("complemento").value.trim();
 
-            const endpointEstado = "http://localhost:4167/estados";
-            const endpointCidade = "http://localhost:4167/cidades";
-            const endpointBairro = "http://localhost:4167/bairros";
-            const endpointRua = "http://localhost:4167/ruas";
-            const endpointEndereco = "http://localhost:4167/enderecos";
-            const endpointUsuario = "http://localhost:4167/usuarios";
+            const endpointEstado = "http://localhost:6789/estados";
+            const endpointCidade = "http://localhost:6789/cidades";
+            const endpointBairro = "http://localhost:6789/bairros";
+            const endpointRua = "http://localhost:6789/ruas";
+            const endpointEndereco = "http://localhost:6789/enderecos";
+            const endpointUsuario = "http://localhost:6789/usuarios";
             const contentTypeJson = { "Content-Type": "application/json" };
 
             // ------------------- CRIAÇÕES EM CADEIA -------------------

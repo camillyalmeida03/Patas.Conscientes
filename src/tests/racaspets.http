@@ -1,13 +1,13 @@
 #Testes da tabela racaspet
 
 ### Listar dados
-GET http://localhost:4167/racaspets
+GET http://localhost:6789/racaspets
 
 ### Mostrar campo por id
-GET http://localhost:4167/racaspets/2
+GET http://localhost:6789/racaspets/2
 
 ### Inserir novo dado
-POST http://localhost:4167/racaspets
+POST http://localhost:6789/racaspets
 Content-Type: application/json
 
 {
@@ -16,7 +16,7 @@ Content-Type: application/json
 }
 
 ### Inserir um dado com base no id
-PUT http://localhost:4167/racaspets/3
+PUT http://localhost:6789/racaspets/3
 Content-Type: application/json
 
 {
@@ -25,4 +25,4 @@ Content-Type: application/json
 }
 
 ### Excluir um dado com base no id
-DELETE http://localhost:4167/racaspets/3
+DELETE http://localhost:6789/racaspets/3

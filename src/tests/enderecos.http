@@ -1,13 +1,13 @@
 #Testes da tabela enderecos
 
 ### Listar dados
-GET http://localhost:4167/enderecos
+GET http://localhost:6789/enderecos
 
 ### Mostrar campo por id
-GET http://localhost:4167/enderecos/3
+GET http://localhost:6789/enderecos/3
 
 ### Inserir novo dado
-POST http://localhost:4167/enderecos
+POST http://localhost:6789/enderecos
 Content-Type: application/json
 
 {
@@ -21,7 +21,7 @@ Content-Type: application/json
 }
 
 ### Inserir um dado com base no id
-PUT http://localhost:4167/enderecos/1
+PUT http://localhost:6789/enderecos/1
 Content-Type: application/json
 
 {
@@ -35,4 +35,4 @@ Content-Type: application/json
 }
 
 ### Excluir um dado com base no id
-DELETE http://localhost:4167/enderecos/3
+DELETE http://localhost:6789/enderecos/3

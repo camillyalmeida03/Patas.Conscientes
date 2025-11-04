@@ -1,13 +1,13 @@
 #Testes da tabela estados
 
 ### Listar dados
-GET http://localhost:4167/estados
+GET http://localhost:6789/estados
 
 ### Mostrar campo por id
-GET http://localhost:4167/estados/1
+GET http://localhost:6789/estados/1
 
 ### Inserir novo dado
-POST http://localhost:4167/estados
+POST http://localhost:6789/estados
 Content-Type: application/json
 
 {
@@ -16,7 +16,7 @@ Content-Type: application/json
 }
 
 ### Inserir um dado com base no id
-PUT http://localhost:4167/estados/2
+PUT http://localhost:6789/estados/2
 Content-Type: application/json
 
 {
@@ -25,4 +25,4 @@ Content-Type: application/json
 }
 
 ### Excluir um dado com base no id
-DELETE http://localhost:4167/estados/2
+DELETE http://localhost:6789/estados/2

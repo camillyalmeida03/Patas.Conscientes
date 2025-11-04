@@ -1,6 +1,6 @@
 // Este documento é responsável por controlar o login 
 
-import { MensagemFeedback } from "../formularios/mensagemFeedback.js";
+import { MensagemFeedback } from "../../public/js/formularios/mensagemFeedback.js";
 
 let entrarCard = document.getElementById("entrarCard");
 let cadastroCard = document.getElementById("cadastroCard");
@@ -40,7 +40,7 @@ if (formEntrar) {
             const email = document.getElementById("emailUsuarioAdt").value.trim();
             const senha = document.getElementById("senhaLoginUsuario").value.trim();
 
-            const responseLogin = await fetch("http://localhost:4167/login", {
+            const responseLogin = await fetch("http://localhost:6789/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, senha }),
