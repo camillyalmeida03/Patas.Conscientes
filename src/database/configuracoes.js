@@ -149,7 +149,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (valorEstado) {
       estadoSelect.value = valorEstado;
-      // console.log("✅ Estado preenchido com:", valorEstado);
     } else {
       console.warn("⚠️ Nenhum estado encontrado no objeto usuário:", estado);
     }
@@ -185,54 +184,47 @@ document.addEventListener("DOMContentLoaded", () => {
 const botaoSair = document.getElementById("sair");
 
 // Função para enviar os dados para o backend
-async function enviarAlteracoes() {
-  const usuarioId = usuario.id; // ID do usuário logado
-  const token = localStorage.getItem("token");
+// async function enviarAlteracoes() {
+//   const usuarioId = usuario.id; // ID do usuário logado
+//   const token = localStorage.getItem("token");
 
-  const dados = {
-    nome: nome.value,
-    fk_idsexo: generoSelect.value,
-    cep: cep.value,
-    estado: estadoSelect.value,
-    cidade: cidade.value,
-    rua: rua.value,
-    bairro: bairro.value,
-    numero: nmr.value,
-    complemento: document.getElementById("complemento")?.value || null
-  };
+//   const dados = {
+//     nome: nome.value,
+//     fk_idsexo: generoSelect.value,
+//     cep: cep.value,
+//     estado: estadoSelect.value,
+//     cidade: cidade.value,
+//     rua: rua.value,
+//     bairro: bairro.value,
+//     numero: nmr.value,
+//     complemento: document.getElementById("complemento")?.value || null
+//   };
 
-  try {
-    const resposta = await fetch("/rota/alterar-usuario", { // ajuste para a rota correta
-      method: "PUT", // ou PATCH, dependendo do backend
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
-      },
-      body: JSON.stringify(dados)
-    });
+//   try {
+//     const resposta = await fetch("/rota/alterar-usuario", { // ajuste para a rota correta
+//       method: "PUT", // ou PATCH, dependendo do backend
+//       headers: {
+//         "Content-Type": "application/json",
+//         "Authorization": `Bearer ${token}`
+//       },
+//       body: JSON.stringify(dados)
+//     });
 
-    const resultado = await resposta.json();
+//     const resultado = await resposta.json();
 
-    if (resposta.ok) {
-      // Atualiza o localStorage com os novos dados
-      localStorage.setItem("usuario", JSON.stringify(resultado.usuario));
-      alert("Usuário atualizado com sucesso!");
-    } else {
-      alert("Erro ao atualizar: " + resultado.message);
-    }
-  } catch (erro) {
-    console.error("Erro na requisição:", erro);
-    alert("Erro na atualização do usuário.");
-  }
-}
+//     if (resposta.ok) {
+//       // Atualiza o localStorage com os novos dados
+//       localStorage.setItem("usuario", JSON.stringify(resultado.usuario));
+//       alert("Usuário atualizado com sucesso!");
+//     } else {
+//       alert("Erro ao atualizar: " + resultado.message);
+//     }
+//   } catch (erro) {
+//     console.error("Erro na requisição:", erro);
+//     alert("Erro na atualização do usuário.");
+//   }
+// }
 
-// Ativa o envio ao clicar no botão
-if (botaoSalvarAlt) {
-  botaoSalvarAlt.addEventListener("click", (e) => {
-    e.preventDefault();
-    enviarAlteracoes();
-  });
-}
 
 // Botão de sair
 if (botaoSair) {
