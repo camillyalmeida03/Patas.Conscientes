@@ -18,7 +18,7 @@
 
 <body>
   <header id="headerIndex">
-    <script type="module" src="public/js/header.js"></script>
+    <script type="module" src="/public/js/header.js"></script>
   </header>
 
   <section class="caminho">
@@ -105,13 +105,14 @@
 
         <!-- Gênero do usuário -->
         <div class="alterarDadosDiv" id="generoPerfil">
-          <label for="" id="genero" class="before">Gênero:</label>
+          <label for="genero" class="before">Gênero:</label>
           <select name="fk_idsexo" id="genero" aria-labelledby="label-genero" class="inputConfig">
             <option value="" disabled hidden selected class="cinzah3">Selecione:*</option>
             <option value="1">Feminino</option>
             <option value="2">Masculino</option>
             <option value="3">Prefiro não dizer</option>
           </select>
+
           <p id="erroGenero" class="error-message"></p>
 
         </div>

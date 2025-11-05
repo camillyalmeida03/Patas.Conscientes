@@ -7,3 +7,19 @@ Content-Type: application/json
   "email": "testeemial@email.com",
   "senha": "Teste1234."
 }
+
+###
+PUT http://localhost:6789/usuarios/7
+Content-Type: application/json
+
+{
+  "nome": "Maria Teste",
+  "fk_idsexo": "1",
+  "cep": "12345000",
+  "estado": "SP",
+  "cidade": "São Paulo",
+  "rua": "Rua Exemplo",
+  "bairro": "Bairro Exemplo",
+  "numero": "100",
+  "complemento": "Apto 101"
+}
