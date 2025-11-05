@@ -102,7 +102,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Garante que usuario e endereco existam (você já tinha isso)
   const usuario = JSON.parse(localStorage.getItem("usuario"));
   const token = localStorage.getItem("token");
-  console.log(JSON.parse(localStorage.getItem("usuario")));
 
   if (!usuario || !token) {
     // console.error("Usuário não autenticado.");
@@ -139,22 +138,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const estadoSelect = document.getElementById("estado");
 
   if (estadoSelect) {
-    // tenta pegar o estado de dentro do endereco OU fora dele
-    const estado = usuario.endereco?.estado || usuario.estado;
-
-    const valorEstado =
-      typeof estado === "object" ? estado.sigla?.toUpperCase() :
-        typeof estado === "string" ? estado.toUpperCase() :
-          usuario.estado_sigla?.toUpperCase() || "";
+    // A sigla do estado agora está em usuario.estado.sigla
+    const valorEstado = usuario?.estado?.sigla?.toUpperCase() || "";
 
     if (valorEstado) {
       estadoSelect.value = valorEstado;
     } else {
-      console.warn("⚠️ Nenhum estado encontrado no objeto usuário:", estado);
+      console.warn("⚠️ Nenhum estado encontrado no objeto usuário:", usuario.estado);
     }
 
+    // Atualiza validação visual ou lógica do campo
     verificacao.verificacao(estadoSelect, estadoSelect.value, botaoSalvarAlt);
   }
+
   // Cidade
   const cidade = document.getElementById("cidade");
   cidade.value = endereco.cidade || "";
@@ -182,49 +178,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 const botaoSair = document.getElementById("sair");
-
-// Função para enviar os dados para o backend
-// async function enviarAlteracoes() {
-//   const usuarioId = usuario.id; // ID do usuário logado
-//   const token = localStorage.getItem("token");
-
-//   const dados = {
-//     nome: nome.value,
-//     fk_idsexo: generoSelect.value,
-//     cep: cep.value,
-//     estado: estadoSelect.value,
-//     cidade: cidade.value,
-//     rua: rua.value,
-//     bairro: bairro.value,
-//     numero: nmr.value,
-//     complemento: document.getElementById("complemento")?.value || null
-//   };
-
-//   try {
-//     const resposta = await fetch("/rota/alterar-usuario", { // ajuste para a rota correta
-//       method: "PUT", // ou PATCH, dependendo do backend
-//       headers: {
-//         "Content-Type": "application/json",
-//         "Authorization": `Bearer ${token}`
-//       },
-//       body: JSON.stringify(dados)
-//     });
-
-//     const resultado = await resposta.json();
-
-//     if (resposta.ok) {
-//       // Atualiza o localStorage com os novos dados
-//       localStorage.setItem("usuario", JSON.stringify(resultado.usuario));
-//       alert("Usuário atualizado com sucesso!");
-//     } else {
-//       alert("Erro ao atualizar: " + resultado.message);
-//     }
-//   } catch (erro) {
-//     console.error("Erro na requisição:", erro);
-//     alert("Erro na atualização do usuário.");
-//   }
-// }
-
 
 // Botão de sair
 if (botaoSair) {
