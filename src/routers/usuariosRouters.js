@@ -9,5 +9,7 @@ router.get("/:id", usuariosController.GetById);
 router.post("/", usuariosController.Post);
 router.put("/:id", usuariosController.Put);
 router.delete("/:id", usuariosController.Erase);
+router.put("/usuario/endereco/:id", usuariosController.PutEndereco);
+
 
 module.exports = router;

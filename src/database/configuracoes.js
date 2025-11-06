@@ -177,6 +177,93 @@ document.addEventListener("DOMContentLoaded", () => {
   verificacao.verificacao(nmr, nmr.value, botaoSalvarAlt);
 });
 
+// --- ENVIO DAS ALTERAÇÕES DO USUÁRIO ---
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector(".editarPerfil");
+  const usuario = JSON.parse(localStorage.getItem("usuario"));
+  const token = localStorage.getItem("token");
+  const botaoSalvar = document.getElementById("botaoSalvarAlteracoes");
+  const msg = document.getElementById("mensagemFeedback");
+
+  if (!form) return;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // se o botão não estiver habilitado, não envia
+    if (!botaoSalvar.classList.contains("botaoSalvarHabilitado")) {
+      msg.style.color = "red";
+      msg.textContent = "Nenhuma alteração foi feita.";
+      return;
+    }
+
+    // pega os valores dos inputs
+    const dados = {
+      nome: document.getElementById("nomeUsuarioAdt").value,
+      fk_idsexo: document.getElementById("genero").value,
+      estado: document.getElementById("estado").value,
+      cidade: document.getElementById("cidade").value,
+      bairro: document.getElementById("bairro").value,
+      rua: document.getElementById("rua").value,
+      numero: document.getElementById("nmr").value,
+      cep: document.getElementById("cep").value,
+      complemento: document.getElementById("complemento")?.value || ""
+    };
+
+    try {
+      const idUsuario = usuario.id || usuario.idusuario;
+      const resp = await fetch(`http://localhost:6789/usuarios/usuario/endereco/${usuario.id}`, {
+
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(dados)
+      });
+
+
+      const result = await resp.json();
+
+      if (resp.ok) {
+        msg.style.color = "green";
+        msg.textContent = result.message;
+
+        // Atualiza localStorage pra manter sincronizado
+        const novoUsuario = { ...usuario };
+
+        novoUsuario.nome = dados.nome;
+        novoUsuario.sexo.id = dados.fk_idsexo;
+        novoUsuario.estado.sigla = dados.estado;
+
+        novoUsuario.endereco = {
+          rua: dados.rua,
+          numero: dados.numero,
+          bairro: dados.bairro,
+          cidade: dados.cidade,
+          cep: dados.cep,
+          complemento: dados.complemento
+        };
+
+        localStorage.setItem("usuario", JSON.stringify(novoUsuario));
+
+        // desabilita o botão de novo
+        botaoSalvar.classList.remove("botaoSalvarHabilitado");
+
+      } else {
+        msg.style.color = "red";
+        msg.textContent = result.message || "Erro ao atualizar.";
+      }
+
+    } catch (err) {
+      msg.style.color = "red";
+      msg.textContent = "Erro de conexão com o servidor.";
+      console.error(err);
+    }
+  });
+});
+
+
 const botaoSair = document.getElementById("sair");
 
 // Botão de sair

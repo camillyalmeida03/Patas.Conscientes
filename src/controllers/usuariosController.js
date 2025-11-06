@@ -62,6 +62,36 @@ const usuariosController = {
         }
     },
 
+    PutEndereco: async (request, response) => {
+    try {
+        const { id } = request.params;
+        const dados = request.body;
+
+        const resultado = await model.PutEndereco(
+            id,
+            dados.nome,
+            dados.fk_idsexo,
+            dados.estado,
+            dados.cidade,
+            dados.bairro,
+            dados.rua,
+            dados.numero,
+            dados.cep,
+            dados.complemento
+        );
+
+        if (!resultado.success) {
+            return response.status(400).json({ message: resultado.message });
+        }
+
+        return response.status(200).json({ message: resultado.message });
+
+    } catch (error) {
+        console.error("Erro ao atualizar endereço:", error.message);
+        response.status(500).json({ message: "Erro interno ao atualizar endereço!" });
+    }
+},
+
     Erase: async (request, response) => {
         try {
             const { id } = request.params;
