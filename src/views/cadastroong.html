@@ -17,70 +17,154 @@
 </head>
 
 <body>
-<header id="headerIndex">
-  <script src="public/js/header.js"></script>
-</header>
+  <header id="headerIndex">
+    <script type="module" src="public/js/header.js"></script>
+  </header>
 
   <section class="caminho">
     <p><a href="/index.html" class="link" title="Link que direciona para a página Inicial">Início</a> | Cadastro de
       ONG</p>
   </section>
 
-  <h1 class="azul centro">Cadastro ong</h1>
+  <h1 class="azul centro">Cadastro de ONG</h1>
 
   <main id="MainFormCadOng" class="mainForms">
 
     <div class="fundoBranco">
 
-      <form action="" id="formOng" class="formCadastro">
+      <form action="" id="formOng" class="formCadastro formulario">
         <h2>Cadastrar</h2>
+
+        <!-- Campo de nome da ONG -->
         <div class="alinharErro">
-          <input type="text" name="" id="nomeOng" class="inputCadastro" placeholder="Nome da ONG">
-          <p id="erroNome" class="error-message"></p>
+          <input type="text" name="" id="nomeOng" class="inputCadastro" placeholder="Nome da ONG*">
+          <p id="erroNomeOng" class="error-message"></p>
         </div>
 
+        <!-- Campo de telefone/celular da ONG -->
         <div class="alinharErro">
-          <input type="text" id="cnpj" class="inputCadastro cnpj" placeholder="CNPJ" maxlength="18">
+          <input name="telefone" type="tel" id="telcelUsuarioAdt" class="inputCadastro tel"
+            placeholder="Telefone ou Celular*" maxlength="15">
+          <p id="erroTelCelUsuarioAdt" class="error-message"></p>
+        </div>
+
+
+
+        <div>
+          <!-- Campo de data de inauguração da ONG -->
+          <div class="alinharErro">
+            <input name="data" type="date" id="dataCriacao" class="inputCadastro"
+              placeholder="Data de inauguração da ONG*">
+            <p id="erroDataCriacao" class="error-message"></p>
+          </div>
+
+        <!-- Campo de CNPJ da ONG -->
+        <div class="alinharErro">
+          <input type="text" id="cnpj" class="inputCadastro cnpj" placeholder="CNPJ*" maxlength="18">
           <p id="erroCnpj" class="error-message"></p>
         </div>
+    </div>
 
-        <div class="alinharErro">
-          <input type="text" id="nomeResp" class="inputCadastro" placeholder="Nome do responsável">
-          <p id="erroNomeResponsavel" class="error-message"></p>
-        </div>
+    <!-- Campo de e-mail da ONG -->
+    <div class="alinharErro">
+      <input type="email" id="emailOng" class="inputCadastro" placeholder="E-mail">
+      <p id="erroEmailOng" class="error-message"></p>
+    </div>
 
-        <div>
-          <div class="alinharErro">
-            <input type="tel" id="tel" class="inputCadastro tel" placeholder="Telefone" maxlength="15">
-            <p id="erroTelefone" class="error-message"></p>
-          </div>
-          <div class="alinharErro">
-            <input type="tel" id="cel" class="inputCadastro cel" placeholder="Celular" maxlength="15">
-            <p id="erroCel" class="error-message"></p>
-          </div>
-        </div>
+    <div>
+      <!-- Campo de senha da ONG -->
+      <div class="alinharErro">
+        <input id="senhaUsuarioAdt" type="password" class="inputCadastro" placeholder="Senha">
+        <p id="erroSenhaUsuarioAdt" class="error-message"></p>
+      </div>
 
-        <div class="alinharErro">
-          <input type="email" id="emailCad" class="inputCadastro" placeholder="E-mail">
-          <p id="erroEmail" class="error-message"></p>
-        </div>
+      <!-- Campo de donfirmação de senha da ONG -->
+      <div class="alinharErro">
+        <input id="confirmaSenhaUsuarioAdt" type="password" class="inputCadastro" placeholder="Confirme sua senha">
+        <p id="erroConfirSenhaUsuarioAdt" class="error-message"></p>
+      </div>
+    </div>
 
-        <div>
-          <div class="alinharErro">
-            <input id="senha" type="password" class="inputCadastro" placeholder="Senha">
-            <p id="erroSenha" class="error-message"></p>
-          </div>
+    <h2>Informações de Endereço</h2>
 
-          <div class="alinharErro">
-            <input id="confirmarSenha" type="password" class="inputCadastro" placeholder="Confirme sua senha">
-            <p id="erroSenha2" class="error-message"></p>
-          </div>
-        </div>
+    <!-- Campo de CEP do ong -->
+    <div class="alinharErro">
+      <input type="text" id="cep" class="inputCadastro cep" placeholder="CEP*" maxlength="9">
+      <p id="erroCep" class="error-message"></p>
+    </div>
 
-        <button type="submit" title="Confirmar cadastro" class="buttonRosaForm">Confirmar</button>
+    <div>
 
-        <p id="mensagemcriacaodeconta"></p>
-      </form>
+      <!-- Campo de estado do ong -->
+      <div class="alinharErro">
+        <select id="estado" class="inputCadastro" name="estado" aria-label="Selecione seu estado">
+          <option value="" disabled selected class="cinzah3">Selecione seu estado:*</option>
+          <option value="AC">AC</option>
+          <option value="AL">AL</option>
+          <option value="AP">AP</option>
+          <option value="AM">AM</option>
+          <option value="BA">BA</option>
+          <option value="CE">CE</option>
+          <option value="DF">DF</option>
+          <option value="ES">ES</option>
+          <option value="GO">GO</option>
+          <option value="MA">MA</option>
+          <option value="MT">MT</option>
+          <option value="MS">MS</option>
+          <option value="MG">MG</option>
+          <option value="PA">PA</option>
+          <option value="PB">PB</option>
+          <option value="PR">PR</option>
+          <option value="PE">PE</option>
+          <option value="PI">PI</option>
+          <option value="RJ">RJ</option>
+          <option value="RN">RN</option>
+          <option value="RS">RS</option>
+          <option value="RO">RO</option>
+          <option value="RR">RR</option>
+          <option value="SC">SC</option>
+          <option value="SP">SP</option>
+          <option value="SE">SE</option>
+          <option value="TO">TO</option>
+        </select>
+
+        <p id="erroEstado" class="error-message"></p>
+      </div>
+
+      <!-- Campo de cidade do ong -->
+      <div class="alinharErro">
+        <input type="text" id="cidade" class="inputCadastro" placeholder="Cidade*">
+        <p id="erroCidade" class="error-message"></p>
+      </div>
+    </div>
+
+    <!-- Campo de rua do ong -->
+    <div class="alinharErro">
+      <input type="text" id="rua" class="inputCadastro" placeholder="Rua*">
+      <p id="erroRua" class="error-message"></p>
+    </div>
+
+    <div>
+      <!-- Campo de Bairro do ong -->
+      <div class="alinharErro">
+        <input type="text" id="bairro" class="inputCadastro" placeholder="Bairro*">
+        <p id="erroBairro" class="error-message"></p>
+      </div>
+
+      <!-- Campo de número da casa do ong -->
+      <div class="alinharErro">
+        <input type="text" id="nmr" class="inputCadastro" placeholder="Número*">
+        <p id="erroNmr" class="error-message"></p>
+      </div>
+    </div>
+
+    <!-- Campo de complemento do ong -->
+    <input type="text" id="complemento" class="inputCadastro" placeholder="Complemento">
+
+    <button type="submit" title="Confirmar cadastro" class="buttonRosaForm">Confirmar</button>
+
+    <p id="mensagemcriacaodeconta"></p>
+    </form>
     </div>
 
     <div id="verificacaoContainer" style=" display: none; margin-top: 1rem;">
@@ -160,17 +244,17 @@
     </svg>
   </div>
 
-<footer id="footer">
-  <script src="/public/js/footer.js"></script>
-</footer>
+  <footer id="footer">
+    <script src="/public/js/footer.js"></script>
+  </footer>
 
   <script type="module" src="/public/js/header.js" defer></script>
   <script src="/public/js/barraacessibilidade.js" defer></script>
-  <!-- <script src="/public/js/formulario.js" defer></script> -->
+  <script type="module" src="/public/js/formularios/validacaoFormularios.js"></script>
   <script src="/public/js/formularios/formcadong.js" defer></script>
   <script src="/public/js/tema.js" defer></script>
   <script src="/public/js/carregar_pagina.js"></script>
-  <script src="/public/js/conexaoBanco/form_ong_cx.js"></script>
+  <!-- <script src="/public/js/conexaoBanco/form_ong_cx.js"></script> -->
 
 
 </body>

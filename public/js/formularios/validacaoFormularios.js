@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
     form.addEventListener("submit", function (event) {
         event.preventDefault(); // Evita o envio do formulário inicialmente
 
-
         // Variável de controle de validade do formulário
         let formularioValido = true;
 
@@ -14,8 +13,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!validarEmail()) formularioValido = false;
         if (!validarTelCel()) formularioValido = false;
         if (!validarCpf()) formularioValido = false;
+        if (!validarCnpj()) formularioValido = false;
         if (!validarGenero()) formularioValido = false;
         if (!validarDataNasc()) formularioValido = false;
+        if(!validarData()) formularioValido = false;
         if (!validarSenhas()) formularioValido = false;
         if (!validarSenhaLogin()) formularioValido = false;
 
@@ -32,79 +33,41 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Validação dos nomes de usuário / Ongs / Pets
     function validarNome() {
-
         const regexNome = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]+$/;
+        const mensagemNomeObrigatorio = "O campo Nome é obrigatório.";
+        const mensagemNomeInvalido = "Por favor, insira um nome válido.";
 
-        // Mensagens de retorno
-        const mensagemNomeObrigatorio = "O campo Nome é obrigatório." // Mensagem indicando que o campo é obrigatório
-        const mensagemNomeInvalido = "Por favor, insira um nome válido." // Mensagem indicando que o campo não foi preenchido de forma válida
+        // Lista de campos a validar
+        const campos = [
+            { input: "#nomeUsuarioAdt", erro: "#erroNomeUsuarioAdt", minLength: 3 },
+            { input: "#nomeOng", erro: "#erroNomeOng", minLength: 3 }
+        ];
+        ;
 
-        // Dados de nome de usuário 
-        const inputNomeUsuario = document.getElementById("nomeUsuarioAdt");
-        const inputNomeUsuariConfig = document.querySelector("#nome");
-        const erroNomeUsuario = document.getElementById("erroNomeUsuarioAdt");
+        let tudoValido = true; // Flag geral
 
-        // Validação do nome do usuário
-        if (inputNomeUsuario) {
-            const nomeUsuario = inputNomeUsuario.value.trim();
+        campos.forEach(campo => {
+            const inputEl = document.querySelector(campo.input);
+            const erroEl = document.querySelector(campo.erro);
 
-            if (nomeUsuario === "") {
-                erroNomeUsuario.innerHTML = mensagemNomeInvalido
-                erroNomeUsuario.style.display = "block";
-                // aplicarErro(inputNomeUsuario, mensagemNomeObrigatorio)
-                return false;
-            } else if (!regexNome.test(nomeUsuario) || nomeUsuario.length <= 3) {
-                erroNomeUsuario.innerHTML = mensagemNomeInvalido
-                erroNomeUsuario.style.display = "block";
-                return false;
+            if (!inputEl || !erroEl) return; // ignora se não existir no DOM
+
+            const valor = inputEl.value.trim();
+
+            if (valor === "") {
+                erroEl.innerHTML = mensagemNomeObrigatorio;
+                erroEl.style.display = "block";
+                tudoValido = false;
+            } else if (!regexNome.test(valor) || valor.length < campo.minLength) {
+                erroEl.innerHTML = mensagemNomeInvalido;
+                erroEl.style.display = "block";
+                tudoValido = false;
             } else {
-                erroNomeUsuario.style.display = "none";
-                return true;
+                erroEl.style.display = "none";
             }
-        }
+        });
 
-        // Dados de nome de ong
-        const inputNomeOng = document.getElementById("nomeOng");
-        const erroNomeOng = document.getElementById("erroNome");
-
-        if (inputNomeOng) {
-            const nomeOng = inputNomeOng.value.trim()
-
-            if (nomeOng === "") {
-                erroNomeOng.innerHTML = mensagemNomeObrigatorio;
-                erroNomeOng.style.display = "block";
-                return false;
-            } else if (!regexNome.test(nomeOng) || nomeOng.length <= 3) {
-                erroNomeOng.innerHTML = mensagemNomeInvalido;
-                erroNomeOng.style.display = "block";
-                return false;
-            } else {
-                erroNomeOng.style.display = "none";
-                return true;
-            }
-        }
-
-        // Dados de nome de ong
-        const inputNomePet = document.getElementById("nomePet");
-        const erroNomePet = document.getElementById("erroNomePetAdt");
-
-        if (inputNomePet) {
-            const nomePet = inputNomePet.value.trim()
-
-            if (nomePet === "") {
-                erroNomePet.innerHTML = mensagemNomeObrigatorio;
-                erroNomePet.style.display = "block";
-                return false;
-            } else if (!regexNome.test(nomePet) || nomePet.length <= 1) {
-                erroNomePet.innerHTML = mensagemNomeInvalido;
-                erroNomePet.style.display = "block";
-                return false;
-            } else {
-                erroNomePet.style.display = "none";
-                return true;
-            }
-        }
-
+        return tudoValido;
     }
 
     // Validação de e-mail usuários / ONGs
@@ -252,6 +215,39 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    const inputCnpjOng = document.querySelector("#cnpj")
+
+    function validarCnpj() {
+        if (!inputCnpjOng) return true;
+
+        // Mensagens de retorno
+        const mensagemCnpjObrigatorio = "O campo CNPJ é obrigatório.";
+        const mensagemCnpjInvalido = "Por favor, insira um CNPJ válido.";
+
+        // Pegando dados do doc HTML
+        const cnpjOng = inputCnpjOng.value.trim();
+        const errocnpjOng = document.getElementById("erroCnpj");
+
+        // Regex para CNPJ no formato 00.000.000/0000-00
+        const regexCnpj = /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/;
+
+        if (inputCnpjOng) {
+            if (cnpjOng === "") {
+                errocnpjOng.innerHTML = mensagemCnpjObrigatorio;
+                errocnpjOng.style.display = "block";
+                return false;
+            } else if (!regexCnpj.test(cnpjOng)) {
+                errocnpjOng.innerHTML = mensagemCnpjInvalido;
+                errocnpjOng.style.display = "block";
+                return false;
+            } else {
+                errocnpjOng.style.display = "none";
+                return true;
+            }
+        }
+    }
+
+
     if (inputCpfUsuarioAdt) {
         inputCpfUsuarioAdt.addEventListener("input", function (e) {
             let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
@@ -334,6 +330,41 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // Validação de data (não pode ser futura)
+    function validarData() {
+
+        // Mensagens de retorno
+        const mensagemDataObrigatoria = "Por favor, selecione uma data.";
+        const mensagemDataFutura = "A data não pode ser maior que o dia atual.";
+
+        const inputData = document.getElementById("dataCriacao"); // id do input
+        const erroData = document.getElementById("erroDataCriacao"); // id do elemento de erro
+
+        if (!inputData) return true;
+        const valorData = inputData.value;
+
+        if (valorData === "") {
+            erroData.innerHTML = mensagemDataObrigatoria;
+            erroData.style.display = "block";
+            return false;
+        } else {
+            const hoje = new Date();
+            const dataSelecionada = new Date(valorData);
+
+            // Remove hora, minuto, segundo e ms para comparar só datas
+            hoje.setHours(0, 0, 0, 0);
+            dataSelecionada.setHours(0, 0, 0, 0);
+
+            if (dataSelecionada > hoje) {
+                erroData.innerHTML = mensagemDataFutura;
+                erroData.style.display = "block";
+                return false;
+            }
+
+            erroData.style.display = "none";
+            return true;
+        }
+    }
     // Validação das senhas do usuário / ONG
     const mensagemSenhaObrigatoria = "O campo senha é obrigatório."
 
@@ -625,11 +656,15 @@ document.addEventListener("DOMContentLoaded", function () {
     // --- Validação em tempo real ---
     const camposValidaveis = [
         { id: "nomeUsuarioAdt", func: validarNome },
+        { id: "nomeOng", func: validarNome },
+        { id: "emailOng", func: validarEmail },
         { id: "emailUsuarioAdt", func: validarEmail },
         { id: "telcelUsuarioAdt", func: validarTelCel },
         { id: "cpfUsuarioAdt", func: validarCpf },
+        { id: "cnpj", func: validarCnpj },
         { id: "genero", func: validarGenero },
         { id: "dataNasc", func: validarDataNasc },
+        { id: "dataCriacao", func: validarData },
         { id: "senhaUsuarioAdt", func: validarSenhas },
         { id: "senhaLoginUsuario", func: validarSenhaLogin },
         { id: "confirmaSenhaUsuarioAdt", func: validarSenhas },
