@@ -33,8 +33,9 @@ const usuariosController = {
 
             const saltRounds = 10;
             const senhaHash = await bcrypt.hash(senha, saltRounds);
+            const cpfHash = await bcrypt.hash(cpf, saltRounds);
 
-            const data = await model.Post(nome, email, telefone, fk_idsexo, data_nasc, cpf, senhaHash, foto, fk_idendereco, fk_idtipo); // chama service sem passar response
+            const data = await model.Post(nome, email, telefone, fk_idsexo, data_nasc, cpfHash, senhaHash, foto, fk_idendereco, fk_idtipo); // chama service sem passar response
             response.status(201).json(data);
         } catch (error) {
             console.error("Erro ao conectar ao banco de dados:", error.message);

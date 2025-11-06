@@ -12,11 +12,11 @@ Content-Type: application/json
 
 {
     "nome": "Maria Fernanda da Silva",
-    "email": "mfsferandaslva794@gmail.com",
-    "telefone": "(16)99393-6341",
+    "email": "mfsferandaslva@gmail.com",
+    "telefone": "(16)99393-9341",
     "fk_idsexo": 1,
     "data_nasc": "29/05/2006",
-    "cpf": "111.111.110-11",
+    "cpf": "111.111.140-11",
     "senha": "testinhosenha",
     "foto": "testinhofoto",
     "fk_idendereco": 1,
