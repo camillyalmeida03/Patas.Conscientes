@@ -46,7 +46,6 @@ if (formEntrar) {
                 body: JSON.stringify({ email, senha }),
             });
 
-
             const data = await responseLogin.json();
 
             if (!responseLogin.ok || data.success === false) {

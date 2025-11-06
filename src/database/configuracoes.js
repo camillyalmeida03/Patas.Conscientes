@@ -1,5 +1,7 @@
 //Este arquivo é responsável por trazer as funcionalidades da página de configurações.
 
+import { MensagemFeedback } from "../../public/js/formularios/mensagemFeedback.js";
+
 // Funcionalidade do aside
 class AsideConfig {
   constructor() {
@@ -97,7 +99,6 @@ class VerificaAlt {
   }
 }
 
-
 document.addEventListener("DOMContentLoaded", () => {
   // Garante que usuario e endereco existam (você já tinha isso)
   const usuario = JSON.parse(localStorage.getItem("usuario"));
@@ -132,6 +133,8 @@ document.addEventListener("DOMContentLoaded", () => {
             sexo === "Prefiro não dizer" ? "3" : "";
 
     generoSelect.value = valorGenero;
+
+    verificacao.verificacao(generoSelect, generoSelect.value, botaoSalvarAlt);
   }
 
   // Estado
@@ -177,7 +180,6 @@ document.addEventListener("DOMContentLoaded", () => {
   verificacao.verificacao(nmr, nmr.value, botaoSalvarAlt);
 });
 
-// --- ENVIO DAS ALTERAÇÕES DO USUÁRIO ---
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector(".editarPerfil");
   const usuario = JSON.parse(localStorage.getItem("usuario"));
@@ -192,8 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // se o botão não estiver habilitado, não envia
     if (!botaoSalvar.classList.contains("botaoSalvarHabilitado")) {
-      msg.style.color = "red";
-      msg.textContent = "Nenhuma alteração foi feita.";
+      new MensagemFeedback(result.message || "Nenhuma atualização feita.", msg).feedbackError();
       return;
     }
 
@@ -226,8 +227,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const result = await resp.json();
 
       if (resp.ok) {
-        msg.style.color = "green";
-        msg.textContent = result.message;
+        new MensagemFeedback(result.message || "Sucesso ao atualizar dados", msg).feedbackSucess();
 
         // Atualiza localStorage pra manter sincronizado
         const novoUsuario = { ...usuario };
@@ -251,13 +251,11 @@ document.addEventListener("DOMContentLoaded", () => {
         botaoSalvar.classList.remove("botaoSalvarHabilitado");
 
       } else {
-        msg.style.color = "red";
-        msg.textContent = result.message || "Erro ao atualizar.";
+        new MensagemFeedback(result.message || "Erro ao atualizar dados.", msg).feedbackError();
       }
 
     } catch (err) {
-      msg.style.color = "red";
-      msg.textContent = "Erro de conexão com o servidor.";
+      new MensagemFeedback(result.message || "Erro de conexão com servidor.", msg).feedbackError();
       console.error(err);
     }
   });
