@@ -1,4 +1,10 @@
+function atualizarContagem() {
+    contagem.innerHTML = mensagem.value.length;
+}
+
 document.addEventListener("DOMContentLoaded", function () {
+
+
     const form = document.querySelector(".formulario");
 
     form.addEventListener("submit", function (event) {
@@ -16,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!validarCnpj()) formularioValido = false;
         if (!validarGenero()) formularioValido = false;
         if (!validarDataNasc()) formularioValido = false;
-        if(!validarData()) formularioValido = false;
+        if (!validarData()) formularioValido = false;
         if (!validarSenhas()) formularioValido = false;
         if (!validarSenhaLogin()) formularioValido = false;
 
@@ -695,6 +701,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.validarEmail = validarEmail;
     window.validarTelCel = validarTelCel;
     window.validarCpf = validarCpf;
+    window.validarCnpj = validarCnpj;
     window.validarGenero = validarGenero;
     window.validarDataNasc = validarDataNasc;
     window.validarSenhas = validarSenhas;

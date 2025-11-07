@@ -23,13 +23,29 @@ let botaoOngLadoFavoritos = document.getElementById("botaoOngLadoFavoritos");
 
 let trocaLadoFavoritos = new TrocaLado();
 
-trocaLadoFavoritos.trocarGrid(
-  ongLadoFavoritos,
-  petsLadoFavoritos,
-  botaoPetLadoFavoritos
-);
-trocaLadoFavoritos.trocarGrid(
-  petsLadoFavoritos,
-  ongLadoFavoritos,
-  botaoOngLadoFavoritos
-);
+if (botaoOngLadoFavoritos) {
+  trocaLadoFavoritos.trocarGrid(
+    ongLadoFavoritos,
+    petsLadoFavoritos,
+    botaoPetLadoFavoritos
+  );
+  trocaLadoFavoritos.trocarGrid(
+    petsLadoFavoritos,
+    ongLadoFavoritos,
+    botaoOngLadoFavoritos
+  );
+}
+
+// Trocar lados da página de cadastro de ONG
+let formCadOng = document.querySelector("#formCadOng");
+let formDocs = document.querySelector("#formDocs");
+let continuarCadOng = document.querySelector("#continuarCadOng");
+
+let trocaLado = new TrocaLado();
+
+trocaLado.trocar(
+  formCadOng,
+  formDocs,
+  continuarCadOng
+)
+
