@@ -170,71 +170,69 @@
           <!-- Botão para mostrar próxima etapa -->
           <button type="button" title="Ir para a próxima etapa do cadastro" id="continuarCadOng"
             class="buttonRosaForm">Continuar</button>
-
-          <p id="mensagemcriacaodeconta"></p>
-
         </div>
 
         <div class="blocosCad" id="formDocs">
 
-        <!-- Campo de envio do comprovante do estatuto da ONG -->
-        <div class="alinharErro">
-          <div class="inputCadastro inputArquivo">
-            <p>Comprovante do Estatuto da ONG</p>
-            <div class="container">
-              <!-- <label for="arquivo1">Escolher arquivo</label> -->
-              <input class="arquivo" id="estatutoOng" type="file">
-            </div>
-            <!-- <button title="Escolher arquivo do dispositivo" class="uploadButton"><svg
+          <!-- Campo de envio do comprovante do estatuto da ONG -->
+          <div class="alinharErro">
+            <div class="inputCadastro inputArquivo">
+              <p>Comprovante do Estatuto da ONG</p>
+              <div class="container">
+                <!-- <label for="arquivo1">Escolher arquivo</label> -->
+                <input class="arquivo" id="estatutoOng" type="file">
+              </div>
+              <!-- <button title="Escolher arquivo do dispositivo" class="uploadButton"><svg
                   xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#5f6368">
                   <path
                     d="M440-200h80v-167l64 64 56-57-160-160-160 160 57 56 63-63v167ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z" />
                 </svg></button> -->
+            </div>
+
+            <p class="error-message" id="erroCompEst"></p>
           </div>
 
-          <p class="error-message" id="erroCompEst"></p>
-        </div>
-
-        <!-- Campo de envio do comprovante do cnpj da ONG -->
-        <div class="alinharErro">
-          <div class="inputCadastro inputArquivo">
-            <p>Comprovante de CNPJ</p>
-            <div class="container">
-              <!-- <label for="arquivo2">Escolher arquivo</label> -->
-              <input class="arquivo" id="compCnpj" type="file">
-            </div>
-            <!-- <button title="Escolher arquivo do dispositivo" class="uploadButton"><svg
+          <!-- Campo de envio do comprovante do cnpj da ONG -->
+          <div class="alinharErro">
+            <div class="inputCadastro inputArquivo">
+              <p>Comprovante de CNPJ</p>
+              <div class="container">
+                <!-- <label for="arquivo2">Escolher arquivo</label> -->
+                <input class="arquivo" id="compCnpj" type="file">
+              </div>
+              <!-- <button title="Escolher arquivo do dispositivo" class="uploadButton"><svg
                   xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#5f6368">
                   <path
                     d="M440-200h80v-167l64 64 56-57-160-160-160 160 57 56 63-63v167ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z" />
                 </svg></button> -->
+            </div>
+
+            <p class="error-message" id="erroCompCnpj"></p>
           </div>
 
-          <p class="error-message" id="erroCompCnpj"></p>
+          <!-- Campo de descrição da ONG -->
+          <div class="alinharErro">
+            <textarea name="descricao" id="mensagem" placeholder="Descrição da ONG" class="inputCadastro al"
+              maxlength="200" oninput="atualizarContagem();"></textarea>
+
+            <p id="contarCaracteres"><span id="contagem">0</span>/200</p>
+
+            <p class="error-message" id="erroDesc"></p>
+          </div>
+
+          <p id="mensagemcriacaodeconta"></p>
+
+          <!-- Botão para enviar formulário -->
+          <button type="submit" title="Confirmar cadastro" class="buttonRosaForm">Confirmar</button>
         </div>
 
-        <!-- Campo de descrição da ONG -->
-        <div class="alinharErro">
-          <textarea name="descricao" id="mensagem" placeholder="Descrição da ONG" class="inputCadastro al"
-            maxlength="200" oninput="atualizarContagem();"></textarea>
+      </form>
 
-          <p id="contarCaracteres"><span id="contagem">0</span>/200</p>
-
-          <p class="error-message" id="erroDesc"></p>
-        </div>
-
-        <!-- Botão para enviar formulário -->
-        <button type="submit" title="Confirmar cadastro" class="buttonRosaForm">Confirmar</button>
-    </div>
-
-    </form>
-    </div>
-
-    <div id="verificacaoContainer" style=" display: none; margin-top: 1rem;">
-      <label for="codigoVerificacao">Digite o código enviado ao seu Email:</label>
-      <input type="text" id="codigoVerificacao" placeholder="Ex: 123456">
-      <button type="button" id="verificarCodigoBtn">Verificar Código</button>
-    </div>
+      <div id="verificacaoContainer" style=" display: none; margin-top: 1rem;">
+        <label for="codigoVerificacao">Digite o código enviado ao seu Email:</label>
+        <input type="text" id="codigoVerificacao" placeholder="Ex: 123456">
+        <button type="button" id="verificarCodigoBtn">Verificar Código</button>
+      </div>
   </main>
 
   <div class="accessibility-bar" id="accessibilityBar">
@@ -318,6 +316,7 @@
   <script src="/public/js/formularios/formcadong.js" defer></script>
   <script src="/public/js/tema.js" defer></script>
   <script src="/public/js/carregar_pagina.js"></script>
+  <script type="module" src="/src/database/cadastro_ongs.js"></script>
   <!-- <script src="/public/js/conexaoBanco/form_ong_cx.js"></script> -->
 
 

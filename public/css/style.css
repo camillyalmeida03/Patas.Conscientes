@@ -2356,6 +2356,10 @@ ol {
     color: white;
 }
 
+#cadastroUsuario{
+    width: 100%;
+}
+
 .inputCadastro {
     padding: 0.9rem 1.5rem;
     display: flex;

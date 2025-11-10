@@ -3,6 +3,8 @@
 
 const model = require("../models/ongsServices");
 
+const bcrypt = require("bcrypt");
+
 const ongsController = {
     GetAll: async (request, response) => {
         try {
@@ -28,8 +30,12 @@ const ongsController = {
     Post: async (request, response) => {
         try {
             const { nome, cnpj, telefone, descricao, fk_idendereco, comp_estatuto, comp_cnpj, email, senha, fk_idtipo } = request.body;
-            
-            const data = await model.Post(nome, cnpj, telefone, descricao, fk_idendereco, comp_estatuto, comp_cnpj, email, senha, fk_idtipo); // chama service sem passar response
+
+            const saltRounds = 10;
+            const senhaHash = await bcrypt.hash(senha, saltRounds);
+            const cnpjHash = await bcrypt.hash(cnpj, saltRounds);
+
+            const data = await model.Post(nome, cnpjHash, telefone, descricao, fk_idendereco, comp_estatuto, comp_cnpj, email, senhaHash, fk_idtipo); // chama service sem passar response
             response.status(201).json(data);
         } catch (error) {
             console.error("Erro ao conectar ao banco de dados:", error.message);
@@ -42,7 +48,10 @@ const ongsController = {
             const { nome, telefone, descricao, fk_idendereco, email, senha, foto, banner } = request.body;
             const { id } = request.params;
 
-            const data = await model.Put(id, nome, telefone, descricao, fk_idendereco, email, senha, foto, banner); // chama service sem passar response
+            const saltRounds = 10;
+            const senhaHash = await bcrypt.hash(senha, saltRounds);
+
+            const data = await model.Put(id, nome, telefone, descricao, fk_idendereco, email, senhaHash, foto, banner); // chama service sem passar response
             response.status(200).json(data);
         } catch (error) {
             console.error("Erro ao conectar ao banco de dados:", error.message);

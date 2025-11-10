@@ -1,12 +1,12 @@
 import { MensagemFeedback } from "../../public/js/formularios/mensagemFeedback.js"; 
 
 document.addEventListener("DOMContentLoaded", function () {
-    const formUsuario = document.getElementById("formOng");
+    const formOng = document.getElementById("formOng");
     const feedbackPai = document.getElementById("mensagemcriacaodeconta");
 
-    if (!formUsuario) return;
+    if (!formOng) return;
 
-    formUsuario.addEventListener("submit", async (e) => {
+    formOng.addEventListener("submit", async (e) => {
         e.preventDefault();
 
         const camposValidos =
@@ -14,8 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
             validarEmail() &&
             validarTelCel() &&
             validarCnpj () &&
-            validarData() &&
+            // validarData() &&
             validarSenhas() &&
+            validarDescricao() &&
             validarCep() &&
             validarEstado() &&
             validarCidade() &&
@@ -42,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const endpointBairro = "http://localhost:6789/bairros";
             const endpointRua = "http://localhost:6789/ruas";
             const endpointEndereco = "http://localhost:6789/enderecos";
-            const endpointUsuario = "http://localhost:6789/usuarios";
+            const endpointOng = "http://localhost:6789/ongs";
             const contentTypeJson = { "Content-Type": "application/json" };
 
             // ------------------- CRIAÇÕES EM CADEIA -------------------
@@ -85,45 +86,45 @@ document.addEventListener("DOMContentLoaded", function () {
             }).then(res => res.json());
 
             // ------------------- USUÁRIO -------------------
-            const nome = document.getElementById("nomeUsuarioAdt").value.trim();
-            const email = document.getElementById("emailUsuarioAdt").value.trim();
+            const nome = document.getElementById("nomeOng").value.trim();
+            const email = document.getElementById("emailOng").value.trim();
             const telefone = document.getElementById("telcelUsuarioAdt").value.trim();
-            const cpf = document.getElementById("cpfUsuarioAdt").value.trim();
-            const genero = document.getElementById("genero").value;
-            const dataNasc = document.getElementById("dataNasc").value;
+            const cnpj = document.getElementById("cnpj").value.trim();
+            const dataC = document.getElementById("dataCriacao").value;
             const senha = document.getElementById("senhaUsuarioAdt").value.trim();
+            const descricao = document.getElementById("mensagem").value;
 
-            const dadosUsuario = {
+            const dadosOng = {
                 nome,
                 email,
                 telefone,
-                fk_idsexo: genero,
-                data_nasc: dataNasc,
-                cpf,
+                data_criacao: dataC,
+                cnpj,
                 senha,
                 fk_idendereco: novoEndereco.id,
                 fk_idtipo: 3,
-                foto: null
+                foto: null,
+                descricao
             };
 
-            const responseUsuario = await fetch(endpointUsuario, {
+            const responseOng = await fetch(endpointOng, {
                 method: "POST",
                 headers: contentTypeJson,
-                body: JSON.stringify(dadosUsuario)
+                body: JSON.stringify(dadosOng)
             });
 
-            const data = await responseUsuario.json();
+            const data = await responseOng.json();
 
-            if (!responseUsuario.ok || data.success === false) {
+            if (!responseOng.ok || data.success === false) {
                 new MensagemFeedback(data.message || "Erro ao enviar dados.", feedbackPai).feedbackError();
                 return;
             }
 
             if (data.success) {
                 new MensagemFeedback("Cadastro realizado com sucesso!", feedbackPai).feedbackSucess();
-                formUsuario.reset();
+                formOng.reset();
                 setTimeout(() => {
-                    window.location.href = "/src/views/configuracoes.html";
+                    window.location.href = "/src/views/ongPage.html";
                 }, 2000);
             }
 
