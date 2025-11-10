@@ -33,16 +33,16 @@
     <div class="fundoBranco">
 
       <form action="" id="formOng" class="formCadastro formulario">
-        <div class="blocosCad" id="formCadOng">
-          <div class="etapasCad">
-            <h2>Cadastro - Etapa 1</h2>
+        <div class="etapasCad">
+          <h2>Cadastro - Etapa 1</h2>
 
-            <div class="bolinhasEtapas" title="Etapas do formulário">
-              <div class="bolinha">1</div>
-              <div class="bolinha">2</div>
-            </div>
+          <div class="bolinhasEtapas" title="Etapas do formulário">
+            <button type="button" id="bttEtapa1" class="bolinha">1</button>
+            <button type="button" id="bttEtapa2" class="bolinha">2</button>
           </div>
+        </div>
 
+        <div class="blocosCad" id="formCadOng">
           <!-- Campo de nome da ONG -->
           <div class="alinharErro">
             <input type="text" name="" id="nomeOng" class="inputCadastro" placeholder="Nome da ONG*">
@@ -175,70 +175,59 @@
 
         </div>
 
-        <!-- Etapa 2 do formulário -->
-        <div class="blocoCad" id="formDocs">
-          <div class="etapasCad">
-            <h2>Cadastro - Etapa 2</h2>
+        <div class="blocosCad" id="formDocs">
 
-            <div class="bolinhasEtapas" title="Etapas do formulário">
-              <div class="bolinha">1</div>
-              <div class="bolinha">2</div>
+        <!-- Campo de envio do comprovante do estatuto da ONG -->
+        <div class="alinharErro">
+          <div class="inputCadastro inputArquivo">
+            <p>Comprovante do Estatuto da ONG</p>
+            <div class="container">
+              <!-- <label for="arquivo1">Escolher arquivo</label> -->
+              <input class="arquivo" id="estatutoOng" type="file">
             </div>
-          </div>
-
-          <!-- Campo de envio do comprovante do estatuto da ONG -->
-          <div class="alinharErro">
-            <div class="inputCadastro inputArquivo">
-              <p>Comprovante do Estatuto da ONG</p>
-              <div class="container">
-                <!-- <label for="arquivo1">Escolher arquivo</label> -->
-                <input class="arquivo" id="estatutoOng" type="file">
-              </div>
-              <!-- <button title="Escolher arquivo do dispositivo" class="uploadButton"><svg
+            <!-- <button title="Escolher arquivo do dispositivo" class="uploadButton"><svg
                   xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#5f6368">
                   <path
                     d="M440-200h80v-167l64 64 56-57-160-160-160 160 57 56 63-63v167ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z" />
                 </svg></button> -->
-            </div>
-
-            <p class="error-message" id="erroCompEst"></p>
           </div>
 
-
-          <!-- Campo de envio do comprovante do cnpj da ONG -->
-          <div class="alinharErro">
-            <div class="inputCadastro inputArquivo">
-              <p>Comprovante de CNPJ</p>
-              <div class="container">
-                <!-- <label for="arquivo2">Escolher arquivo</label> -->
-                <input class="arquivo" id="compCnpj" type="file">
-              </div>
-              <!-- <button title="Escolher arquivo do dispositivo" class="uploadButton"><svg
-                  xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#5f6368">
-                  <path
-                    d="M440-200h80v-167l64 64 56-57-160-160-160 160 57 56 63-63v167ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z" />
-                </svg></button> -->
-            </div>
-
-            <p class="error-message" id="erroCompCnpj"></p>
-          </div>
-
-          <!-- Campo de descrição da ONG -->
-          <div class="alinharErro">
-            <textarea name="descricao" id="mensagem" placeholder="Descrição da ONG" class="inputCadastro al"
-              maxlength="200" oninput="atualizarContagem();"></textarea>
-
-            <p id="contarCaracteres"><span id="contagem">0</span>/200</p>
-
-
-            <p class="error-message" id="erroDesc"></p>
-          </div>
-
-          <!-- Botão para enviar formulário -->
-          <button type="button" title="Confirmar cadastro" class="buttonRosaForm">Confirmar</button>
+          <p class="error-message" id="erroCompEst"></p>
         </div>
 
-      </form>
+        <!-- Campo de envio do comprovante do cnpj da ONG -->
+        <div class="alinharErro">
+          <div class="inputCadastro inputArquivo">
+            <p>Comprovante de CNPJ</p>
+            <div class="container">
+              <!-- <label for="arquivo2">Escolher arquivo</label> -->
+              <input class="arquivo" id="compCnpj" type="file">
+            </div>
+            <!-- <button title="Escolher arquivo do dispositivo" class="uploadButton"><svg
+                  xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#5f6368">
+                  <path
+                    d="M440-200h80v-167l64 64 56-57-160-160-160 160 57 56 63-63v167ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z" />
+                </svg></button> -->
+          </div>
+
+          <p class="error-message" id="erroCompCnpj"></p>
+        </div>
+
+        <!-- Campo de descrição da ONG -->
+        <div class="alinharErro">
+          <textarea name="descricao" id="mensagem" placeholder="Descrição da ONG" class="inputCadastro al"
+            maxlength="200" oninput="atualizarContagem();"></textarea>
+
+          <p id="contarCaracteres"><span id="contagem">0</span>/200</p>
+
+          <p class="error-message" id="erroDesc"></p>
+        </div>
+
+        <!-- Botão para enviar formulário -->
+        <button type="submit" title="Confirmar cadastro" class="buttonRosaForm">Confirmar</button>
+    </div>
+
+    </form>
     </div>
 
     <div id="verificacaoContainer" style=" display: none; margin-top: 1rem;">

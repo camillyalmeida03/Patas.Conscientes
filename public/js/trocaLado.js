@@ -41,11 +41,31 @@ let formCadOng = document.querySelector("#formCadOng");
 let formDocs = document.querySelector("#formDocs");
 let continuarCadOng = document.querySelector("#continuarCadOng");
 
+let bttEtapa1 = document.querySelector("#bttEtapa1");
+let bttEtapa2 = document.querySelector("#bttEtapa2")
+
 let trocaLado = new TrocaLado();
 
-trocaLado.trocar(
-  formCadOng,
-  formDocs,
-  continuarCadOng
-)
+if (formCadOng && formDocs) {
+  trocaLado.trocar(
+    formCadOng,
+    formDocs,
+    continuarCadOng
+  )
+
+  trocaLado.trocar(
+    formCadOng,
+    formDocs,
+    bttEtapa2
+  )
+
+  trocaLado.trocar(
+    formDocs,
+    formCadOng,
+    bttEtapa1
+  )
+}
+
+
+
 

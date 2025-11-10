@@ -2280,29 +2280,7 @@ ol {
     margin-left: 1rem;
 }
 
-.etapasCad {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.bolinhasEtapas {
-    display: flex;
-    gap: 1rem;
-}
-
-.bolinha {
-    height: 1.5rem;
-    width: 1.5rem;
-    background-color: var(--cinza147);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-}
-
-#formDocs{
+#formDocs {
     display: none;
 }
 
@@ -2345,6 +2323,37 @@ ol {
     display: flex;
     gap: 1rem;
     width: 100%;
+}
+
+.etapasCad {
+    display: flex;
+    justify-content: space-between !important;
+    flex-direction: row !important;
+    width: 100%;
+    align-items: center !important;
+}
+
+.etapasCad h2 {
+    width: fit-content;
+}
+
+.bolinhasEtapas {
+    display: flex;
+    gap: 1rem;
+    width: fit-content !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.bolinha {
+    height: 1.5rem;
+    width: 1.5rem;
+    background-color: var(--rosa);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
 }
 
 .inputCadastro {
@@ -2413,7 +2422,7 @@ ol {
     gap: 1rem;
 }
 
-.inputArquivo p{
+.inputArquivo p {
     margin: 0;
 }
 
@@ -2423,7 +2432,7 @@ ol {
     font-weight: 600;
 }
 
-.arquivo input{
+.arquivo input {
     border: none;
 }
 
@@ -3669,7 +3678,8 @@ textarea {
     }
 
     .etapasCad {
-        flex-direction: row !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
     }
 
     .bolinhasEtapas {
@@ -3863,62 +3873,62 @@ textarea {
     }
 }
 
-    @media screen and (max-width: 375px) {
+@media screen and (max-width: 375px) {
 
-        .search-bar input::placeholder {
-            color: transparent;
-        }
-
-        .quadro {
-            width: 15rem;
-            height: 24rem;
-        }
-
-        .mainAside .asideRow {
-            gap: 0;
-        }
-
+    .search-bar input::placeholder {
+        color: transparent;
     }
 
-    @media screen and (max-width: 330px) {
-
-        #adicionarFav {
-            left: 75%;
-        }
-
-        h1 {
-            font-size: calc(32px - 40%);
-        }
-
+    .quadro {
+        width: 15rem;
+        height: 24rem;
     }
 
-    /* responsividade em dispositivos até 400px de largura  */
-    @media screen and (max-width: 400px) {
-        .linksNav {
-            display: none;
-        }
-
-        .imglinksHeader {
-            display: none;
-        }
-
-        #hamburguer {
-            display: flex;
-        }
-
-        .btnsNav {
-            display: none;
-        }
-
-        .linksFooter {
-            flex-wrap: wrap;
-        }
-
-        .ongPerfilInfo {
-            top: -2rem;
-        }
-
-        .perfilOng .adotarSec {
-            padding: 0 1rem 2rem 1rem;
-        }
+    .mainAside .asideRow {
+        gap: 0;
     }
+
+}
+
+@media screen and (max-width: 330px) {
+
+    #adicionarFav {
+        left: 75%;
+    }
+
+    h1 {
+        font-size: calc(32px - 40%);
+    }
+
+}
+
+/* responsividade em dispositivos até 400px de largura  */
+@media screen and (max-width: 400px) {
+    .linksNav {
+        display: none;
+    }
+
+    .imglinksHeader {
+        display: none;
+    }
+
+    #hamburguer {
+        display: flex;
+    }
+
+    .btnsNav {
+        display: none;
+    }
+
+    .linksFooter {
+        flex-wrap: wrap;
+    }
+
+    .ongPerfilInfo {
+        top: -2rem;
+    }
+
+    .perfilOng .adotarSec {
+        padding: 0 1rem 2rem 1rem;
+    }
+}
