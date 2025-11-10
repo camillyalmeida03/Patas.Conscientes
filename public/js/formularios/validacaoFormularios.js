@@ -1,10 +1,11 @@
+const mensagem = document.getElementById("mensagem");
+const contagem = document.getElementById("contagem");
+
 function atualizarContagem() {
     contagem.innerHTML = mensagem.value.length;
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-
-
     const form = document.querySelector(".formulario");
 
     form.addEventListener("submit", function (event) {
@@ -25,6 +26,9 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!validarData()) formularioValido = false;
         if (!validarSenhas()) formularioValido = false;
         if (!validarSenhaLogin()) formularioValido = false;
+        if (!validarArquivos()) formularioValido = false;
+        if (!validarDescricao()) formularioValido = false;
+
 
         // Validações de endereço
         if (!validarCep()) formularioValido = false;
@@ -335,7 +339,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     }
-
     // Validação de data (não pode ser futura)
     function validarData() {
 
@@ -625,7 +628,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-
     if (inputCep) {
         inputCep.addEventListener("blur", async function () {
             const cep = this.value.replace(/\D/g, ""); // remove hífen e não números
@@ -659,6 +661,84 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // Validação dos arquivos (PDF ou imagens) e descrição da ONG
+    function validarArquivos() {
+
+        // Extensões aceitas
+        const extensoesValidas = ["pdf", "png", "jpg", "jpeg"];
+
+        // Mensagens de erro
+        const msgArquivoObrigatorio = "Por favor, envie um arquivo.";
+        const msgArquivoInvalido = "Apenas arquivos PDF ou imagem (PNG, JPG, JPEG) são permitidos.";
+
+
+
+        let tudoValido = true;
+
+        // Lista de campos de arquivo
+        const arquivos = [
+            { input: "#estatutoOng", erro: "#erroCompEst" },
+            { input: "#compCnpj", erro: "#erroCompCnpj" }
+        ];
+
+        arquivos.forEach(campo => {
+            const inputEl = document.querySelector(campo.input);
+            const erroEl = document.querySelector(campo.erro);
+
+            if (!inputEl || !erroEl) return;
+
+            const arquivo = inputEl.files[0];
+
+            if (!arquivo) {
+                erroEl.innerHTML = msgArquivoObrigatorio;
+                erroEl.style.display = "block";
+                tudoValido = false;
+            } else {
+                const extensao = arquivo.name.split(".").pop().toLowerCase();
+
+                if (!extensoesValidas.includes(extensao)) {
+                    erroEl.innerHTML = msgArquivoInvalido;
+                    erroEl.style.display = "block";
+                    tudoValido = false;
+                } else {
+                    erroEl.style.display = "none";
+                }
+            }
+        });
+
+        return tudoValido;
+    }
+
+    // Validação da descrição
+    function validarDescricao() {
+
+        let tudoValido = true;
+
+        const msgDescricaoObrigatoria = "A descrição é obrigatória.";
+        const msgDescricaoMinima = "A descrição deve ter ao menos 10 caracteres.";
+
+        const descricao = document.querySelector("#mensagem");
+        const erroDesc = document.querySelector("#erroDesc");
+
+        if (descricao && erroDesc) {
+            const texto = descricao.value.trim();
+
+            if (texto === "") {
+                erroDesc.innerHTML = msgDescricaoObrigatoria;
+                erroDesc.style.display = "block";
+                tudoValido = false;
+            } else if (texto.length < 10) {
+                erroDesc.innerHTML = msgDescricaoMinima;
+                erroDesc.style.display = "block";
+                tudoValido = false;
+            } else {
+                erroDesc.style.display = "none";
+            }
+        }
+
+        return tudoValido;
+    }
+
     // --- Validação em tempo real ---
     const camposValidaveis = [
         { id: "nomeUsuarioAdt", func: validarNome },
@@ -680,6 +760,9 @@ document.addEventListener("DOMContentLoaded", function () {
         { id: "bairro", func: validarBairro },
         { id: "rua", func: validarRua },
         { id: "nmr", func: validarNmr },
+        { id: "estatutoOng", func: validarArquivos },
+        { id: "compCnpj", func: validarArquivos },
+        { id: "mensagem", func: validarDescricao }
     ];
 
     // Adiciona ouvintes a cada campo existente
@@ -704,6 +787,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.validarCnpj = validarCnpj;
     window.validarGenero = validarGenero;
     window.validarDataNasc = validarDataNasc;
+    window.validarData = validarData;
     window.validarSenhas = validarSenhas;
     window.validarSenhaLogin = validarSenhaLogin;
     window.validarCep = validarCep;
@@ -712,6 +796,8 @@ document.addEventListener("DOMContentLoaded", function () {
     window.validarBairro = validarBairro;
     window.validarRua = validarRua;
     window.validarNmr = validarNmr;
+    window.validarArquivos = validarArquivos;
+    window.validarDescricao = validarDescricao;
 
 });
 

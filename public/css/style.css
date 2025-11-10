@@ -2409,6 +2409,12 @@ ol {
 .inputArquivo {
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.inputArquivo p{
+    margin: 0;
 }
 
 .inputArquivo>button,
@@ -2417,8 +2423,8 @@ ol {
     font-weight: 600;
 }
 
-.arquivo {
-    display: none;
+.arquivo input{
+    border: none;
 }
 
 .container {
