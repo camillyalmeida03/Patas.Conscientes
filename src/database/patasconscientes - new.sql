@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 11/09/2025 às 03:39
+-- Tempo de geração: 10/11/2025 às 15:33
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -38,7 +38,9 @@ CREATE TABLE `bairros` (
 --
 
 INSERT INTO `bairros` (`idbairro`, `bairro`, `fk_idcidade`) VALUES
-(1, 'Novo Mundo', 1);
+(1, 'Novo Mundo', 1),
+(2, 'Jardim Novo Mundo', 1),
+(3, 'Jardim Novo Mundo', 2);
 
 -- --------------------------------------------------------
 
@@ -57,7 +59,8 @@ CREATE TABLE `cidades` (
 --
 
 INSERT INTO `cidades` (`idcidade`, `cidade`, `fk_idestado`) VALUES
-(1, 'Matão', 1);
+(1, 'Araraquara', 1),
+(2, 'Matão', 1);
 
 -- --------------------------------------------------------
 
@@ -81,7 +84,9 @@ CREATE TABLE `enderecos` (
 --
 
 INSERT INTO `enderecos` (`idendereco`, `fk_idcidade`, `fk_idbairro`, `fk_idrua`, `fk_idestado`, `numero`, `cep`, `complemento`) VALUES
-(1, 1, 1, 1, 1, '192', '15997-422', 'Casa');
+(1, 1, 1, 1, 1, '192', '15997-422', 'Casa'),
+(2, 1, 2, 2, 1, '1098', '15997-422', ''),
+(3, 2, 3, 3, 1, '1098', '15997-422', '(Tico Geraldo)');
 
 -- --------------------------------------------------------
 
@@ -157,22 +162,24 @@ CREATE TABLE `ongs` (
   `foto` text DEFAULT NULL,
   `banner` text DEFAULT NULL,
   `fk_idendereco` int(11) NOT NULL,
-  `comp_estatuto` text NOT NULL,
-  `comp_cnpj` text NOT NULL,
+  `comp_estatuto` text DEFAULT NULL,
+  `comp_cnpj` text DEFAULT NULL,
   `email` varchar(250) NOT NULL,
   `senha` varchar(250) NOT NULL,
   `data_criacao` datetime NOT NULL DEFAULT current_timestamp(),
   `data_att` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `fk_idtipo` int(11) NOT NULL
+  `fk_idtipo` int(11) NOT NULL,
+  `fk_idresponsavel` int(11) NOT NULL,
+  `fk_idfuncionarios` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Despejando dados para a tabela `ongs`
 --
 
-INSERT INTO `ongs` (`idong`, `nome`, `cnpj`, `telefone`, `descricao`, `foto`, `banner`, `fk_idendereco`, `comp_estatuto`, `comp_cnpj`, `email`, `senha`, `data_criacao`, `data_att`, `fk_idtipo`) VALUES
-(1, 'Ong teste 1', '1111111', '1111111', 'Descrição.', 'teste foto.', 'teste banner.', 1, 'Comprovante teste.', 'Comprovante teste.', 'ongteste1@gmail.com', '12345', '2025-09-02 08:47:47', '2025-09-02 08:59:18', 4),
-(3, 'Ong teste 2', '222222222', '22222222', 'Descrição teste ong teste 2.', NULL, NULL, 1, 'Comprovante teste.', 'Comprovante teste.', 'ongteste2@gmail.com', '12345', '2025-09-04 08:18:12', '2025-09-04 08:18:12', 4);
+INSERT INTO `ongs` (`idong`, `nome`, `cnpj`, `telefone`, `descricao`, `foto`, `banner`, `fk_idendereco`, `comp_estatuto`, `comp_cnpj`, `email`, `senha`, `data_criacao`, `data_att`, `fk_idtipo`, `fk_idresponsavel`, `fk_idfuncionarios`) VALUES
+(1, 'Ong teste 1', '1111111', '1111111', 'Descrição.', 'teste foto.', 'teste banner.', 1, 'Comprovante teste.', 'Comprovante teste.', 'ongteste1@gmail.com', '12345', '2025-09-02 08:47:47', '2025-09-02 08:59:18', 4, 0, 0),
+(3, 'Ong teste 2', '222222222', '22222222', 'Descrição teste ong teste 2.', NULL, NULL, 1, 'Comprovante teste.', 'Comprovante teste.', 'ongteste2@gmail.com', '12345', '2025-09-04 08:18:12', '2025-09-04 08:18:12', 4, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -341,7 +348,9 @@ CREATE TABLE `ruas` (
 --
 
 INSERT INTO `ruas` (`idrua`, `rua`, `fk_idbairro`) VALUES
-(1, 'Dário Geraldo', 1);
+(1, 'Dário Geraldo', 1),
+(2, 'Avenida Dario Geraldo', 2),
+(3, 'Avenida Dario Geraldo', 3);
 
 -- --------------------------------------------------------
 
@@ -451,7 +460,9 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`idusuario`, `nome`, `email`, `telefone`, `fk_idsexo`, `data_nasc`, `cpf`, `senha`, `data_criacao`, `data_att`, `foto`, `fk_idendereco`, `fk_idtipo`) VALUES
 (1, 'Maria Fernanda Silva', 'mfsfernandasilva794@gmail.com', '(16)99393-6344', 1, '2006-05-29', '111.111.111-11', 'testinhosenhona', '2025-08-27 09:00:59', '2025-08-27 09:03:53', 'sem foto', 1, 1),
-(6, 'Maria Fernanda da Silva', 'mfsferandaslva794@gmail.com', '(16)99393-6341', 1, '0000-00-00', '111.111.110-11', 'testinhosenha', '2025-09-09 23:31:41', '2025-09-09 23:31:41', 'testinhofoto', 1, 1);
+(6, 'Maria Fernanda da Silva', 'mfsferandaslva794@gmail.com', '(16)99393-6341', 1, '0000-00-00', '111.111.110-11', 'testinhosenha', '2025-09-09 23:31:41', '2025-09-09 23:31:41', 'testinhofoto', 1, 1),
+(7, 'Teste Fer', 'testeemial@email.com', '(11) 11111-1111', 3, '1992-06-17', '555.555.555-55', '$2b$10$txiN2SJZyPnkuSLvYpWzUONyvh5tApyJKzxAhMdYjgll9IQU4R7w6', '2025-11-04 12:15:03', '2025-11-06 08:59:45', NULL, 2, 3),
+(8, 'Maria Fernanda da Silva', 'mfsferandaslva@gmail.com', '(16)99393-9341', 1, '0000-00-00', '$2b$10$MEauDkk', '$2b$10$KX9R/qiasYHUC8ywAGD0aerZUmjm2RbmhRvPfXKNJx5WwZsIDYvcq', '2025-11-06 09:35:41', '2025-11-06 09:35:41', 'testinhofoto', 1, 1);
 
 --
 -- Índices para tabelas despejadas
@@ -620,19 +631,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `bairros`
 --
 ALTER TABLE `bairros`
-  MODIFY `idbairro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idbairro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `cidades`
 --
 ALTER TABLE `cidades`
-  MODIFY `idcidade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idcidade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `enderecos`
 --
 ALTER TABLE `enderecos`
-  MODIFY `idendereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idendereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `especiespet`
@@ -704,7 +715,7 @@ ALTER TABLE `responsaveis`
 -- AUTO_INCREMENT de tabela `ruas`
 --
 ALTER TABLE `ruas`
-  MODIFY `idrua` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idrua` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `sexo`
@@ -734,7 +745,7 @@ ALTER TABLE `tipos_usuario`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restrições para tabelas despejadas
