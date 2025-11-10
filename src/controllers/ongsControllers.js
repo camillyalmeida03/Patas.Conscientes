@@ -2,7 +2,7 @@
 // Controller responsável por receber requisições HTTP e chamar o service da tabela ongs para executar o CRUD.
 
 const model = require("../models/ongsServices");
-
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 const ongsController = {

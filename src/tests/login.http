@@ -8,3 +8,11 @@ Content-Type: application/json
   "senha": "Teste1234."
 }
 
+###
+POST http://localhost:6789/login/ong
+Content-Type: application/json
+
+{
+  "email": "testeong12@email.com",
+  "senha": "Teste1234."
+}

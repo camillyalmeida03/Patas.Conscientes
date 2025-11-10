@@ -30,4 +30,38 @@ const Login = async (email) => {
     return rows; // Retorna só os dados
 };
 
-module.exports = { Login }
+const LoginOng = async (email) => {
+    const querySelect = `SELECT 
+                            o.idong, o.nome, o.cnpj, o.telefone, o.descricao, 
+                            o.foto, o.banner, o.email, o.senha, 
+                            o.comp_estatuto, o.comp_cnpj,
+                            o.data_criacao, o.data_att,
+
+                            e.idendereco, e.numero, e.cep, e.complemento,
+
+                            r.rua,
+                            b.bairro,
+                            c.cidade,
+
+                            es.idestado,
+                            es.sigla AS estado_sigla,
+                            tu.tipo AS tipo_usuario
+                        FROM ongs o `;
+
+    const queryInnerJoin = `INNER JOIN enderecos e ON e.idendereco = o.fk_idendereco
+                            INNER JOIN ruas r ON r.idrua = e.fk_idrua
+                            INNER JOIN bairros b ON b.idbairro = e.fk_idbairro
+                            INNER JOIN cidades c ON c.idcidade = e.fk_idcidade
+                            INNER JOIN estados es ON es.idestado = e.fk_idestado
+                            INNER JOIN tipos_usuario tu ON tu.idtipo = o.fk_idtipo `;
+
+    const queryWhere = `WHERE o.email = ?`;
+
+    const querytext = querySelect + queryInnerJoin + queryWhere;
+
+    const [rows] = await banco.query(querytext, [email]);
+    return rows;
+};
+
+
+module.exports = { Login, LoginOng }
