@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 })
             }).then(res => res.json());
 
-            // ------------------- USUÁRIO -------------------
+            // ------------------- Ong -------------------
             const nome = document.getElementById("nomeOng").value.trim();
             const email = document.getElementById("emailOng").value.trim();
             const telefone = document.getElementById("telcelUsuarioAdt").value.trim();
@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 cnpj,
                 senha,
                 fk_idendereco: novoEndereco.id,
-                fk_idtipo: 3,
+                fk_idtipo: 4,
                 foto: null,
                 descricao,
                 comp_estatuto: null,
@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            if (data.success) {
+            if (responseOng.ok) {
                 new MensagemFeedback("Cadastro realizado com sucesso!", feedbackPai).feedbackSucess();
 
                 setTimeout(() => {
