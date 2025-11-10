@@ -1,4 +1,4 @@
-import { MensagemFeedback } from "../../public/js/formularios/mensagemFeedback.js"; 
+import { MensagemFeedback } from "../../public/js/formularios/mensagemFeedback.js";
 
 document.addEventListener("DOMContentLoaded", function () {
     const formOng = document.getElementById("formOng");
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
             validarNome() &&
             validarEmail() &&
             validarTelCel() &&
-            validarCnpj () &&
+            validarCnpj() &&
             // validarData() &&
             validarSenhas() &&
             validarDescricao() &&
@@ -90,7 +90,6 @@ document.addEventListener("DOMContentLoaded", function () {
             const email = document.getElementById("emailOng").value.trim();
             const telefone = document.getElementById("telcelUsuarioAdt").value.trim();
             const cnpj = document.getElementById("cnpj").value.trim();
-            const dataC = document.getElementById("dataCriacao").value;
             const senha = document.getElementById("senhaUsuarioAdt").value.trim();
             const descricao = document.getElementById("mensagem").value;
 
@@ -98,13 +97,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 nome,
                 email,
                 telefone,
-                data_criacao: dataC,
                 cnpj,
                 senha,
                 fk_idendereco: novoEndereco.id,
                 fk_idtipo: 3,
                 foto: null,
-                descricao
+                descricao,
+                comp_estatuto: null,
+                comp_cnpj: null
             };
 
             const responseOng = await fetch(endpointOng, {
@@ -122,9 +122,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (data.success) {
                 new MensagemFeedback("Cadastro realizado com sucesso!", feedbackPai).feedbackSucess();
-                formOng.reset();
+
                 setTimeout(() => {
                     window.location.href = "/src/views/ongPage.html";
+                    formOng.reset();
                 }, 2000);
             }
 
