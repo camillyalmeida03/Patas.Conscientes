@@ -225,7 +225,22 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    const inputCnpjOng = document.querySelector("#cnpj")
+    if (inputCpfUsuarioAdt) {
+        inputCpfUsuarioAdt.addEventListener("input", function (e) {
+            let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
+
+            // Aplica a máscara
+            if (value.length > 3) value = value.replace(/^(\d{3})(\d)/, "$1.$2");
+            if (value.length > 6)
+                value = value.replace(/^(\d{3})\.(\d{3})(\d)/, "$1.$2.$3");
+            if (value.length > 9)
+                value = value.replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d)/, "$1.$2.$3-$4");
+
+            e.target.value = value;
+        });
+    }
+
+    const inputCnpjOng = document.querySelector("#cnpj");
 
     function validarCnpj() {
         if (!inputCnpjOng) return true;
@@ -257,22 +272,23 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-
-    if (inputCpfUsuarioAdt) {
-        inputCpfUsuarioAdt.addEventListener("input", function (e) {
+    if (inputCnpjOng) {
+        inputCnpjOng.addEventListener("input", function (e) {
             let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
 
             // Aplica a máscara
-            if (value.length > 3) value = value.replace(/^(\d{3})(\d)/, "$1.$2");
+            if (value.length > 2) value = value.replace(/^(\d{2})(\d)/, "$1.$2");
             if (value.length > 6)
-                value = value.replace(/^(\d{3})\.(\d{3})(\d)/, "$1.$2.$3");
-            if (value.length > 9)
-                value = value.replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d)/, "$1.$2.$3-$4");
+                value = value.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
+            if (value.length > 10)
+                value = value.replace(/\.(\d{3})(\d)/, ".$1/$2");
+            if (value.length > 15)
+                value = value.replace(/(\d{4})(\d)/, "$1-$2")
 
             e.target.value = value;
         });
-
     }
+
 
     // Validação gênero do usuário
     function validarGenero() {

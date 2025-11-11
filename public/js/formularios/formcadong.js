@@ -6,7 +6,6 @@ let bttEtapa2 = document.querySelector("#bttEtapa2");
 if (formCadOng && formDocs) {
     // console.log("oiii")
     const displayDocs = window.getComputedStyle(formDocs).display;
-    console.log(displayDocs)
 
     if (displayDocs === "flex") {
         bttEtapa2.classList.add("bolinhaAtiva");

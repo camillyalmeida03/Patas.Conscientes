@@ -104,11 +104,6 @@ if (isUsuario) {
   tipo = "ong";
 }
 
-// Debug opcional
-console.log("isUsuario:", isUsuario);
-console.log("isOng:", isOng);
-console.log("tipo:", tipo);
-
 export class ContaPopup {
   constructor(tipo = "naoLogado") {
     this.tipo = tipo; // 'naoLogado', 'usuario', 'ong'
