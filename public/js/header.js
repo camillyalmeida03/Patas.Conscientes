@@ -155,9 +155,26 @@ export class ContaPopup {
 
       // link "Minha conta" (ou "Painel ONG")
       if (this.tipo === "usuario") {
-        this.criar.createA([], "../src/views/configuracoes.html", "Configurações da minha conta", "Minha conta", configPopup);
+        // Link principal da conta
+        this.criar.createA([], "./configuracoes.html", "Configurações da minha conta", "Minha conta", configPopup);
+
+        // Verificação adicional — se for um usuário responsável por ONG
+        if (usuario && usuario.responsavelOng === true) {
+          // Linha divisória extra
+          this.criar.createElement("div", ["linha"], "", configPopup);
+
+          // Link para trocar para ONG
+          this.criar.createA(
+            [],
+            "./configuracoes.html",
+            "Trocar para o perfil da ONG vinculada",
+            "Trocar para ONG",
+            configPopup
+          );
+        }
+
       } else if (this.tipo === "ong") {
-        this.criar.createA([], "../src/views/configuracoes.html", "Painel administrativo da ONG", "Painel da ONG", configPopup);
+        this.criar.createA([], "./configuracoes.html", "Painel administrativo da ONG", "Painel da ONG", configPopup);
       }
 
       // linha divisória
@@ -268,7 +285,6 @@ export class ContaPopup {
     } else {
       window.tema = new ModoEscuroEClaro();
     }
-
     return contaPopup;
   }
 
@@ -609,6 +625,5 @@ function criar_header() {
   }
 
 }
-
 
 criar_header()

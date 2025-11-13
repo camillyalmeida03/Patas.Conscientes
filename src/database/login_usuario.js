@@ -54,6 +54,9 @@ if (formEntrar) {
             }
 
             if (responseLogin.ok) {
+                // Quando o login é feito com sucesso:
+                localStorage.setItem("token", data.token);
+
                 new MensagemFeedback("Login realizado com sucesso!", feedbackPai).feedbackSucess();
                 formEntrar.reset();
                 setTimeout(() => {

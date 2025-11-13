@@ -93,6 +93,8 @@ document.addEventListener("DOMContentLoaded", function () {
             const senha = document.getElementById("senhaUsuarioAdt").value.trim();
             const descricao = document.getElementById("mensagem").value;
 
+            const token = localStorage.getItem("token");
+
             const dadosOng = {
                 nome,
                 email,
@@ -107,11 +109,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 comp_cnpj: null
             };
 
-            const responseOng = await fetch(endpointOng, {
-                method: "POST",
-                headers: contentTypeJson,
-                body: JSON.stringify(dadosOng)
-            });
+            const responseOng = await fetch(endpointOng,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: JSON.stringify(dadosOng)
+                });
 
             const data = await responseOng.json();
 
@@ -124,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 new MensagemFeedback("Cadastro realizado com sucesso!", feedbackPai).feedbackSucess();
 
                 setTimeout(() => {
-                    window.location.href = "/src/views/login.html";
+                    window.location.href = "/src/views/ongsPage.html";
                     formOng.reset();
                 }, 2000);
             }
