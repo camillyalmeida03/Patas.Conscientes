@@ -2,7 +2,6 @@
 
 export default class ModalPadrao {
   static pilha = [];
-
   constructor(fundoModal) {
     this.fundoModal = fundoModal;
     this.modal = fundoModal.querySelector(".modal");

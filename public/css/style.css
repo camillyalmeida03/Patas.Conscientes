@@ -2260,6 +2260,7 @@ ol {
     flex-direction: column;
     align-items: center;
     gap: 2rem;
+    position: relative;
 }
 
 .fundoBranco>div {
@@ -2323,6 +2324,10 @@ ol {
     display: flex;
     gap: 1rem;
     width: 100%;
+}
+
+form .aviso{
+    padding: 1rem;
 }
 
 .etapasCad {
@@ -2734,6 +2739,7 @@ textarea {
     align-items: center;
     /* Centraliza verticalmente */
     justify-content: center;
+    
 }
 
 .caixaEscolha {
@@ -2749,6 +2755,7 @@ textarea {
     flex-direction: column;
     align-items: flex-end;
     min-width: 275px;
+    margin: 2rem;
 }
 
 .modal form {
@@ -2766,6 +2773,44 @@ textarea {
     width: 100%;
 }
 
+#modalCadOng{
+    position: fixed;
+}
+
+#modalCadOng > div{
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    gap: 1rem;
+    text-align: center;
+}
+
+#modalCadOng h2{
+    margin-bottom: 2rem;
+    color: var(--azul_claro);
+}
+
+#modalCadOng div a{
+    font-weight: 700;
+    color: var(--rosa);
+    font-size: 20px;
+    text-decoration: underline;
+}
+
+.redireciona{
+    display: flex;
+    margin-top: 1rem;
+    gap: 0.5rem;
+    flex-direction: column;
+}
+
+.redireciona p{
+    color: var(--cinza80);
+    font-size: 1rem;
+}
+
 .alinharDoisInput {
     display: flex;
     width: 100%;
@@ -2779,10 +2824,6 @@ textarea {
 
 #adicionarFuncionario {
     width: 25%;
-}
-
-.escondido {
-    display: none;
 }
 
 .modal h3 {
@@ -2932,6 +2973,15 @@ textarea {
     background-color: var(--contornoVermelho);
     background-image: url(/public/img/icons/feedback-error.png);
 }
+
+.escondido {
+    display: none !important;
+}
+
+.no-scroll {
+  overflow: hidden !important;
+}
+
 
 /* -------- MODO ESCURO ------------------------------------------------------------------------------------------------------- */
 

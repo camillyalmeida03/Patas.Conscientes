@@ -33,6 +33,15 @@
     <div class="fundoBranco">
 
       <form action="" id="formOng" class="formCadastro formulario">
+
+        <div class="aviso">
+          <h3>Aviso importante</h3>
+          <p id="avisoP1">Você já possui uma conta de usuário.
+            Ao <span class="negrito">cadastrar uma ONG, esta conta será usada como responsável por ela</span>.
+            Todas as ações e informações da ONG ficarão vinculadas ao seu perfil.</p>
+          <p id="avisoP2">Se deseja continuar, siga para o cadastro da ONG abaixo.</p>
+
+        </div>
         <div class="etapasCad">
           <h2>Cadastro - Etapa 1</h2>
 
@@ -56,12 +65,12 @@
             <p id="erroTelCelUsuarioAdt" class="error-message"></p>
           </div>
 
-            <!-- Campo de CNPJ da ONG -->
-            <div class="alinharErro">
-              <input type="text" id="cnpj" class="inputCadastro cnpj" placeholder="CNPJ*" maxlength="18">
-              <p id="erroCnpj" class="error-message"></p>
-            </div>
-          
+          <!-- Campo de CNPJ da ONG -->
+          <div class="alinharErro">
+            <input type="text" id="cnpj" class="inputCadastro cnpj" placeholder="CNPJ*" maxlength="18">
+            <p id="erroCnpj" class="error-message"></p>
+          </div>
+
           <!-- Campo de e-mail da ONG -->
           <div class="alinharErro">
             <input type="email" id="emailOng" class="inputCadastro" placeholder="E-mail">
@@ -173,11 +182,6 @@
                 <!-- <label for="arquivo1">Escolher arquivo</label> -->
                 <input class="arquivo" id="estatutoOng" type="file">
               </div>
-              <!-- <button title="Escolher arquivo do dispositivo" class="uploadButton"><svg
-                  xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#5f6368">
-                  <path
-                    d="M440-200h80v-167l64 64 56-57-160-160-160 160 57 56 63-63v167ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z" />
-                </svg></button> -->
             </div>
 
             <p class="error-message" id="erroCompEst"></p>
@@ -191,11 +195,6 @@
                 <!-- <label for="arquivo2">Escolher arquivo</label> -->
                 <input class="arquivo" id="compCnpj" type="file">
               </div>
-              <!-- <button title="Escolher arquivo do dispositivo" class="uploadButton"><svg
-                  xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#5f6368">
-                  <path
-                    d="M440-200h80v-167l64 64 56-57-160-160-160 160 57 56 63-63v167ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z" />
-                </svg></button> -->
             </div>
 
             <p class="error-message" id="erroCompCnpj"></p>
@@ -224,6 +223,49 @@
         <input type="text" id="codigoVerificacao" placeholder="Ex: 123456">
         <button type="button" id="verificarCodigoBtn">Verificar Código</button>
       </div>
+
+      <!-- Modal que pede para se cadastrar como usuário antes -->
+      <div class="fundoModal escondido" id="modalCadOng">
+        <div class="modal">
+          <h2>Passo inicial para cadastrar sua ONG</h2>
+
+          <p>Para <span class="negrito">criar uma conta de ONG</span>, é necessário primeiro <span class="negrito">ter
+              uma conta de usuário comum</span>.
+          </p>
+          <p>Essa conta será usada como <span class="negrito">responsável pela ONG</span>.</p>
+
+          <div class="redireciona">
+            <p>Se você já possui uma conta</p>
+            <a href="/src/views/login.html">Entre aqui</a>
+            <p>se não</p>
+            <a href="/src/views/cadastroadotante.html">Cadastre-se</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Modal de aviso para ongs -->
+      <div class="fundoModal escondido" id="modalCadOngPOngs">
+        <div class="modal">
+          <h2>Você já possui uma conta de ONG</h2>
+
+          <p>
+            O sistema identificou que sua conta atual já está cadastrada como uma
+            <span class="negrito">ONG parceira</span>.
+          </p>
+          <p>
+            Cada conta pode representar apenas <span class="negrito">uma única ONG</span>.
+            Se desejar atualizar informações ou gerenciar sua ONG, acesse o
+            <span class="negrito">Painel da ONG</span>.
+          </p>
+
+          <div class="redireciona">
+            <a href="/src/views/configuracoes.html">Ir para o Painel da ONG</a>
+            <a href="/index.html" class="voltar">Voltar para a página inicial</a>
+          </div>
+        </div>
+      </div>
+
   </main>
 
   <div class="accessibility-bar" id="accessibilityBar">
@@ -304,7 +346,7 @@
   <script src="/public/js/barraacessibilidade.js" defer></script>
   <script type="module" src="/public/js/trocaLado.js"></script>
   <script type="module" src="/public/js/formularios/validacaoFormularios.js"></script>
-  <script src="/public/js/formularios/formcadong.js" defer></script>
+  <script type="module" src="/public/js/formularios/formcadong.js" defer></script>
   <script src="/public/js/tema.js" defer></script>
   <script src="/public/js/carregar_pagina.js"></script>
   <script type="module" src="/src/database/cadastro_ongs.js"></script>

@@ -98,6 +98,8 @@ const isOng = !!ong;         // true se existir ong
 // Tipo de login
 let tipo = "naoLogado";
 
+export { tipo };
+
 if (isUsuario) {
   tipo = "usuario";
 } else if (isOng) {
