@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 new MensagemFeedback("Cadastro realizado com sucesso!", feedbackPai).feedbackSucess();
 
                 setTimeout(() => {
-                    window.location.href = "/src/views/ongsPage.html";
+                    window.location.href = "/src/views/ongPage.html";
                     formOng.reset();
                 }, 2000);
             }

@@ -1,5 +1,4 @@
 //Este arquivo é responsável por trazer as funcionalidades da página de configurações.
-
 import { MensagemFeedback } from "../../public/js/formularios/mensagemFeedback.js";
 
 // Funcionalidade do aside
@@ -52,10 +51,8 @@ function abrir() {
   let menu = document.getElementById("menu");
   let seta = document.getElementById("setaConfig");
 
-  if (menu.style.display === "none" || menu.style.display === "") {
-    menu.style.display = "flex";
-  } else {
-    menu.style.display = "none";
+  if(menu){
+    menu.classList.toggle(".ativo")
   }
 
   if (seta.style.transform === "rotate(0deg)" || seta.style.transform === "") {
@@ -64,6 +61,8 @@ function abrir() {
     seta.style.transform = "rotate(0deg)";
   }
 }
+
+abrir()
 
 // Verificação de alterações
 class VerificaAlt {
@@ -260,7 +259,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-
 
 const botaoSair = document.getElementById("sair");
 

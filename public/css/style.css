@@ -556,9 +556,14 @@ button {
     width: 30rem;
 }
 
+.ativo{
+    display: flex;
+}
+
 .contaPopup.ativo {
     display: flex;
 }
+
 
 /* #suaconta {
     display: none;
