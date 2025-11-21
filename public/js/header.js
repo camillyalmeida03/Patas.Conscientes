@@ -1,8 +1,8 @@
 import { CriarElementos } from "./criarElementos.js";
 
-document.addEventListener('DOMContentLoaded', function () {
-  const institucional = document.getElementById('institucional');
-  const caixaInst = document.querySelector('.caixaInst');
+document.addEventListener("DOMContentLoaded", function () {
+  const institucional = document.getElementById("institucional");
+  const caixaInst = document.querySelector(".caixaInst");
   const setinha = document.getElementById("setinha");
   const instA = document.getElementById("instA");
 
@@ -10,55 +10,56 @@ document.addEventListener('DOMContentLoaded', function () {
   const ulMenu = document.getElementById("ulMenu");
 
   function mostrarulMenu() {
-    if (ulMenu.style.display === 'none') {
-      ulMenu.style.display = 'flex';
-      setaInst.style.transform = 'rotate(90deg)';
-      setaInst.style.fill = '#0E457D';
-      setaInst.style.backgroundColor = 'rgb(201, 201, 201)';
+    if (ulMenu.style.display === "none") {
+      ulMenu.style.display = "flex";
+      setaInst.style.transform = "rotate(90deg)";
+      setaInst.style.fill = "#0E457D";
+      setaInst.style.backgroundColor = "rgb(201, 201, 201)";
     } else {
-      ulMenu.style.display = 'none';
-      setaInst.style.transform = 'rotate(0deg)';
-      setaInst.style.fill = ''; // Resetando a cor de preenchimento
-      setaInst.style.backgroundColor = ''; // Resetando a cor de fundo
+      ulMenu.style.display = "none";
+      setaInst.style.transform = "rotate(0deg)";
+      setaInst.style.fill = ""; // Resetando a cor de preenchimento
+      setaInst.style.backgroundColor = ""; // Resetando a cor de fundo
     }
   }
 
-  setaInst.addEventListener('click', mostrarulMenu);
+  setaInst.addEventListener("click", mostrarulMenu);
 
   let mouseOverCaixa = false;
 
   // Função para mostrar a caixa e alterar estilos
   function mostrarCaixa() {
-    caixaInst.style.display = 'flex'; // Mostra a caixa
-    instA.style.color = '#FE4E77';
-    setinha.style.transform = 'rotate(90deg)';
-    setinha.style.fill = '#FE4E77';
+    caixaInst.style.display = "flex"; // Mostra a caixa
+    instA.style.color = "#FE4E77";
+    setinha.style.transform = "rotate(90deg)";
+    setinha.style.fill = "#FE4E77";
     mouseOverCaixa = true; // Indica que o mouse está sobre a caixa ou institucional
   }
 
   // Função para esconder a caixa se o mouse não estiver em institucional ou caixaInst
   function esconderCaixa() {
-    if (!mouseOverCaixa) { // Somente esconde se o mouse não estiver em nenhum dos dois
-      caixaInst.style.display = 'none';
-      instA.style.color = 'white';
-      setinha.style.transform = 'rotate(0deg)';
-      setinha.style.fill = 'white';
+    if (!mouseOverCaixa) {
+      // Somente esconde se o mouse não estiver em nenhum dos dois
+      caixaInst.style.display = "none";
+      instA.style.color = "white";
+      setinha.style.transform = "rotate(0deg)";
+      setinha.style.fill = "white";
     }
   }
 
   // Eventos para mostrar e esconder a caixa
-  institucional.addEventListener('mouseenter', mostrarCaixa);
-  institucional.addEventListener('mouseleave', () => {
+  institucional.addEventListener("mouseenter", mostrarCaixa);
+  institucional.addEventListener("mouseleave", () => {
     mouseOverCaixa = false; // Indica que o mouse saiu de institucional
     esconderCaixa();
   });
 
-  caixaInst.addEventListener('mouseenter', () => {
+  caixaInst.addEventListener("mouseenter", () => {
     mouseOverCaixa = true; // Indica que o mouse entrou em caixaInst
     mostrarCaixa();
   });
 
-  caixaInst.addEventListener('mouseleave', () => {
+  caixaInst.addEventListener("mouseleave", () => {
     mouseOverCaixa = false; // Indica que o mouse saiu de caixaInst
     esconderCaixa();
   });
@@ -72,39 +73,36 @@ document.addEventListener('DOMContentLoaded', function () {
   fecharMenu.addEventListener("click", interagirmenu);
 
   function interagirmenu() {
-
     if (expandirMenu.style.right == "-100%" || expandirMenu.style.right == "") {
       expandirMenu.style.right = "0";
+    } else if (expandirMenu.style.right == "0px") {
+      expandirMenu.style.right = "-100%";
     }
-    else
-      if (expandirMenu.style.right == "0px") {
-        expandirMenu.style.right = "-100%";
-      }
   }
 });
 
 // Pegando dados do localStorage
 const usuarioData = localStorage.getItem("usuario");
 const ongData = localStorage.getItem("ong");
-
+console.log(ongData)
 // Convertendo para objeto (ou null)
 const usuario = usuarioData ? JSON.parse(usuarioData) : null;
 const ong = ongData ? JSON.parse(ongData) : null;
 
 // Flags booleanas
 const isUsuario = !!usuario; // true se existir usuário
-const isOng = !!ong;         // true se existir ong
+const isOng = !!ong; // true se existir ong
 
 // Tipo de login
 let tipo = "naoLogado";
-
-export { tipo };
 
 if (isUsuario) {
   tipo = "usuario";
 } else if (isOng) {
   tipo = "ong";
 }
+
+export { tipo };
 
 export class ContaPopup {
   constructor(tipo = "naoLogado") {
@@ -119,29 +117,90 @@ export class ContaPopup {
     if (this.popup) return this.popup;
 
     // container principal
-    const contaPopup = this.criar.createElement("div", ["contaPopup"], "", parent, "suaconta");
+    const contaPopup = this.criar.createElement(
+      "div",
+      ["contaPopup"],
+      "",
+      parent,
+      "suaconta"
+    );
     contaPopup.style.display = "flex";
 
     // título principal
     this.criar.createElement("h5", ["titConfig"], "Conta", contaPopup);
 
     // bloco do usuário
-    const usuarioPerfil = this.criar.createElement("div", [], "", contaPopup, "usuarioPerfil");
-    const altFotoUsuario = this.criar.createElement("div", [], "", usuarioPerfil, "altFotoUsuario");
-    this.criar.createElement("div", ["fotoDefaultUsuario"], "", altFotoUsuario, "fotoUsuario");
+    const usuarioPerfil = this.criar.createElement(
+      "div",
+      [],
+      "",
+      contaPopup,
+      "usuarioPerfil"
+    );
+    const altFotoUsuario = this.criar.createElement(
+      "div",
+      [],
+      "",
+      usuarioPerfil,
+      "altFotoUsuario"
+    );
+    this.criar.createElement(
+      "div",
+      ["fotoDefaultUsuario"],
+      "",
+      altFotoUsuario,
+      "fotoUsuario"
+    );
 
     const infoUsuario = this.criar.createElement("div", [], "", usuarioPerfil);
 
     // nome e e-mail dinâmicos
     if (this.tipo === "usuario") {
-      this.criar.createElement("p", [], usuario.nome, infoUsuario, "nomeUsuario");
-      this.criar.createElement("p", [], usuario.email, infoUsuario, "emaildouser");
+      this.criar.createElement(
+        "p",
+        [],
+        usuario.nome,
+        infoUsuario,
+        "nomeUsuario"
+      );
+      this.criar.createElement(
+        "p",
+        [],
+        usuario.email,
+        infoUsuario,
+        "emaildouser"
+      );
     } else if (this.tipo === "ong") {
-      this.criar.createElement("p", [], "ONG Esperança Animal", infoUsuario, "nomeUsuario");
-      this.criar.createElement("p", [], "contato@ongesperanca.org", infoUsuario, "emaildouser");
+      this.criar.createElement(
+        "p",
+        [],
+        ong.nome, // nome REAL da ONG
+        infoUsuario,
+        "nomeUsuario"
+      );
+
+      this.criar.createElement(
+        "p",
+        [],
+        ong.email, // email REAL da ONG
+        infoUsuario,
+        "emaildouser"
+      );
     } else {
-      this.criar.createElement("p", [], "Bem-vindo!", infoUsuario, "nomeUsuario");
-      this.criar.createElement("p", [], "Acesse sua conta ou crie uma para continuar", infoUsuario, "emaildouser");
+      this.criar.createElement(
+        "p",
+        [],
+        "Bem-vindo!",
+        infoUsuario,
+        "nomeUsuario"
+      );
+      this.criar.createElement(
+        "p",
+        [],
+        "Acesse sua conta ou crie uma para continuar",
+        infoUsuario,
+        "emaildouser"
+      );
     }
 
     // linha divisória
@@ -149,39 +208,65 @@ export class ContaPopup {
 
     // configurações (só aparecem se estiver logado)
     if (this.tipo !== "naoLogado") {
-      this.criar.createElement("h5", ["titConfig"], "Configurações", contaPopup);
+      this.criar.createElement(
+        "h5",
+        ["titConfig"],
+        "Configurações",
+        contaPopup
+      );
 
-      const configPopup = this.criar.createElement("div", [], "", contaPopup, "configPopup");
+      const configPopup = this.criar.createElement(
+        "div",
+        [],
+        "",
+        contaPopup,
+        "configPopup"
+      );
 
       // link "Minha conta" (ou "Painel ONG")
       if (this.tipo === "usuario") {
         // Link principal da conta
-        this.criar.createA([], "./configuracoes.html", "Configurações da minha conta", "Minha conta", configPopup);
+        this.criar.createA(
+          [],
+          "./configuracoes.html",
+          "Configurações da minha conta",
+          "Minha conta",
+          configPopup
+        );
 
         // Verificação adicional — se for um usuário responsável por ONG
         if (usuario && usuario.responsavelOng === true) {
-          // Linha divisória extra
           this.criar.createElement("div", ["linha"], "", configPopup);
 
           // Link para trocar para ONG
           this.criar.createA(
             [],
-            "./configuracoes.html",
-            "Trocar para o perfil da ONG vinculada",
-            "Trocar para ONG",
+            `./ong.html?id=${ong.id}`, // ou a página que você quiser
+            "Painel administrativo da ONG",
+            "Painel da ONG",
             configPopup
           );
         }
-
       } else if (this.tipo === "ong") {
-        this.criar.createA([], "./configuracoes.html", "Painel administrativo da ONG", "Painel da ONG", configPopup);
+        this.criar.createA(
+          [],
+          "./configuracoes.html",
+          "Painel administrativo da ONG",
+          "Painel da ONG",
+          configPopup
+        );
       }
 
       // linha divisória
       this.criar.createElement("div", ["linha"], "", contaPopup);
 
       // === BLOCO FINAL (Tema + Botões) ===
-      const configFinal = this.criar.createElement("div", ["configFinal"], "", contaPopup);
+      const configFinal = this.criar.createElement(
+        "div",
+        ["configFinal"],
+        "",
+        contaPopup
+      );
 
       // tema
       const tema = this.criar.createElement("div", ["tema"], "", configFinal);
@@ -198,7 +283,13 @@ export class ContaPopup {
       this.criar.createElement("div", ["circle"], "", slid);
 
       // botão de ação final
-      const sairouentrar = this.criar.createElement("div", ["botoesLogin"], "", configFinal, "sairouentrar");
+      const sairouentrar = this.criar.createElement(
+        "div",
+        ["botoesLogin"],
+        "",
+        configFinal,
+        "sairouentrar"
+      );
 
       // botão SAIR
       const botaoSair = this.criar.createButton(
@@ -215,7 +306,12 @@ export class ContaPopup {
       });
     } else {
       // === BLOCO FINAL PARA NÃO LOGADO ===
-      const configFinal = this.criar.createElement("div", ["configFinal"], "", contaPopup);
+      const configFinal = this.criar.createElement(
+        "div",
+        ["configFinal"],
+        "",
+        contaPopup
+      );
 
       // tema
       const tema = this.criar.createElement("div", ["tema"], "", configFinal);
@@ -232,7 +328,13 @@ export class ContaPopup {
       this.criar.createElement("div", ["circle"], "", slid);
 
       // botão ENTRAR e CRIAR CONTA
-      const sairouentrar = this.criar.createElement("div", ["botoesLogin"], "", configFinal, "sairouentrar");
+      const sairouentrar = this.criar.createElement(
+        "div",
+        ["botoesLogin"],
+        "",
+        configFinal,
+        "sairouentrar"
+      );
 
       const botaoEntrar = this.criar.createButton(
         ["verde", "buttonPerfil"],
@@ -274,7 +376,11 @@ export class ContaPopup {
 
     // fecha ao clicar fora
     window.addEventListener("click", (e) => {
-      if (this.popup && !this.popup.contains(e.target) && e.target.id !== "abrirConfigPerfil") {
+      if (
+        this.popup &&
+        !this.popup.contains(e.target) &&
+        e.target.id !== "abrirConfigPerfil"
+      ) {
         this.popup.style.display = "none";
       }
     });
@@ -623,7 +729,6 @@ function criar_header() {
             </svg></a></button>
         </div>    `;
   }
-
 }
 
-criar_header()
+criar_header();

@@ -1,4 +1,4 @@
-// Este documento é responsável por controlar o login 
+// Este documento é responsável por controlar o login
 
 import { MensagemFeedback } from "../../public/js/formularios/mensagemFeedback.js";
 
@@ -8,76 +8,93 @@ let acssCadastrar = document.getElementById("acssCadastrar");
 let acssEntrar = document.getElementById("acssEntrar");
 
 acssCadastrar.addEventListener("click", function () {
-    console.log("clique efetuado")
-    event.preventDefault();
-    entrarCard.style.display = 'none';
-    cadastroCard.style.display = 'flex';
-})
+  console.log("clique efetuado");
+  event.preventDefault();
+  entrarCard.style.display = "none";
+  cadastroCard.style.display = "flex";
+});
 
 acssEntrar.addEventListener("click", function () {
-    event.preventDefault();
-    entrarCard.style.display = 'flex';
-    cadastroCard.style.display = 'none';
-})
+  event.preventDefault();
+  entrarCard.style.display = "flex";
+  cadastroCard.style.display = "none";
+});
 
 const formEntrar = document.getElementById("formEntrar");
 const feedbackPai = document.getElementById("mensagemcriacaodeconta");
 
 if (formEntrar) {
-    formEntrar.addEventListener("submit", async (e) => {
-        e.preventDefault();
+  formEntrar.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-        const camposValidos =
-            validarEmail() &&
-            validarSenhas();
+    const camposValidos = validarEmail() && validarSenhas();
 
-        if (!camposValidos) {
-            new MensagemFeedback("Email ou senha inválidos.", feedbackPai).feedbackError();
-            return;
-        }
+    if (!camposValidos) {
+      new MensagemFeedback(
+        "Email ou senha inválidos.",
+        feedbackPai
+      ).feedbackError();
+      return;
+    }
 
-        try {
-            const email = document.getElementById("emailUsuarioAdt").value.trim();
-            const senha = document.getElementById("senhaLoginUsuario").value.trim();
+    try {
+      const email = document.getElementById("emailUsuarioAdt").value.trim();
+      const senha = document.getElementById("senhaLoginUsuario").value.trim();
 
-            const responseLogin = await fetch("http://localhost:6789/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, senha }),
-            });
+      const responseLogin = await fetch("http://localhost:6789/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, senha }),
+      });
 
-            const data = await responseLogin.json();
+      const data = await responseLogin.json();
 
-            if (!responseLogin.ok || data.success === false) {
-                new MensagemFeedback(data.message || "Erro ao enviar dados.", feedbackPai).feedbackError();
-                return;
-            }
+      if (!responseLogin.ok || data.success === false) {
+        new MensagemFeedback(
+          data.message || "Erro ao enviar dados.",
+          feedbackPai
+        ).feedbackError();
+        return;
+      }
 
-            if (responseLogin.ok) {
-                // Quando o login é feito com sucesso:
-                localStorage.setItem("token", data.token);
+if (responseLogin.ok) {
 
-                new MensagemFeedback("Login realizado com sucesso!", feedbackPai).feedbackSucess();
-                formEntrar.reset();
-                setTimeout(() => {
-                    window.location.href = "/src/views/configuracoes.html";
-                }, 2000);
+  // Salva tudo ANTES de qualquer redirecionamento
+  localStorage.setItem("token", data.token);
+  localStorage.setItem("usuario", JSON.stringify(data.usuario));
 
-                // Salva o token e dados do usuário no navegador
-                localStorage.setItem("token", data.token);
-                localStorage.setItem("usuario", JSON.stringify(data.usuario));
-                return;
-            }
-            // F
+  if (data.ong) {
+    localStorage.setItem("ong", JSON.stringify(data.ong));
+  } else {
+    localStorage.removeItem("ong");
+  }
 
-            // // Salva o token e dados do usuário no navegador
-            // localStorage.setItem("token", data.token);
-            // localStorage.setItem("usuario", JSON.stringify(data.usuario));
+  // Feedback e redirecionamento
+  new MensagemFeedback(
+    "Login realizado com sucesso!",
+    feedbackPai
+  ).feedbackSucess();
 
-        } catch (error) {
-            console.error("Erro ao enviar dados:", error);
-            new MensagemFeedback("Erro ao enviar dados. Tente novamente.", feedbackPai).feedbackError();
-        }
-    })
+  formEntrar.reset();
+
+  setTimeout(() => {
+    window.location.href = "/src/views/configuracoes.html";
+  }, 2000);
+
+  return;
 }
 
+      // F
+
+      // // Salva o token e dados do usuário no navegador
+      // localStorage.setItem("token", data.token);
+      // localStorage.setItem("usuario", JSON.stringify(data.usuario));
+    } catch (error) {
+      console.error("Erro ao enviar dados:", error);
+      new MensagemFeedback(
+        "Erro ao enviar dados. Tente novamente.",
+        feedbackPai
+      ).feedbackError();
+    }
+  });
+}
