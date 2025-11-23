@@ -1,15 +1,14 @@
-
 // Controller responsável por receber requisições HTTP e chamar o service da tabela ongs para executar o CRUD.
 
 const model = require("../models/ongsServices");
-const responsaveisModel = require("../models/loginResponsaveisServices");
+const responsaveisModel = require("../models/loginResponsaveisServices"); // Já estava importado, agora vamos usar
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 const ongsController = {
     GetAll: async (request, response) => {
         try {
-            const data = await model.GetAll(); // chama service sem passar response
+            const data = await model.GetAll();
             response.status(200).json(data);
         } catch (error) {
             console.error("Erro ao conectar ao banco de dados:", error.message);
@@ -31,26 +30,33 @@ const ongsController = {
     Post: async (req, res) => {
         try {
             const { nome, cnpj, telefone, descricao, fk_idendereco, comp_estatuto, comp_cnpj, email, senha, fk_idtipo } = req.body;
-            const idUsuarioLogado = req.usuario?.id; // vem do middleware de autenticação
+            
+            const idUsuarioLogado = req.usuario?.id; 
 
             if (!idUsuarioLogado) {
-                return res.status(401).json({ message: "Usuário não autenticado." });
+                return res.status(401).json({ message: "Usuário não autenticado. Faça login novamente." });
             }
 
             const saltRounds = 10;
             const senhaHash = await bcrypt.hash(senha, saltRounds);
             const cnpjHash = await bcrypt.hash(cnpj, saltRounds);
 
-            // Cria a ONG
             const ong = await model.Post(
                 nome, cnpjHash, telefone, descricao, fk_idendereco,
                 comp_estatuto, comp_cnpj, email, senhaHash, fk_idtipo
             );
 
+            const responsavelCriado = await responsaveisModel.Post(idUsuarioLogado, ong.id);
+
+            if (responsavelCriado && responsavelCriado.idresponsavel) {
+                await model.atualizarResponsavel(ong.id, responsavelCriado.idresponsavel);
+            }
+
             return res.status(201).json({
-                message: "ONG e responsável criados com sucesso.",
+                message: "ONG criada e vinculada ao responsável com sucesso!",
                 id: ong.id, 
-                id_usuario_responsavel: idUsuarioLogado 
+                id_usuario_responsavel: idUsuarioLogado,
+                id_vinculo_responsavel: responsavelCriado.idresponsavel
             });
 
         } catch (error) {
@@ -62,28 +68,22 @@ const ongsController = {
     Put: async (request, response) => {
         try {
             const { id } = request.params;
-            const { nome, fk_idresponsavel } = request.body; // pegue o que precisa
+            const { nome, telefone, descricao, fk_idendereco, email, senha, foto, banner, fk_idresponsavel } = request.body; 
 
-            // Verificação explícita: Se o body tem a chave fk_idresponsavel (mesmo que null), 
-            // assumimos que é uma tentativa de vínculo.
             if (request.body.hasOwnProperty('fk_idresponsavel')) {
-
                 if (!fk_idresponsavel) {
-                    return response.status(400).json({ message: "ID do responsável inválido ou nulo recebido pelo servidor." });
+                    return response.status(400).json({ message: "ID do responsável inválido." });
                 }
-
                 const data = await model.atualizarResponsavel(id, fk_idresponsavel);
                 return response.status(200).json(data);
             }
 
-            // ... resto do código (atualização normal de perfil) ...
             let senhaHash = null;
             if (senha) {
                 const saltRounds = 10;
                 senhaHash = await bcrypt.hash(senha, saltRounds);
             }
 
-            // Chama o put normal (obs: certifique-se que o model.Put aceita senhaHash null se for o caso, ou mantenha a lógica antiga para updates completos)
             const data = await model.Put(id, nome, telefone, descricao, fk_idendereco, email, senhaHash, foto, banner);
             response.status(200).json(data);
         } catch (error) {
@@ -100,7 +100,7 @@ const ongsController = {
                 return res.status(400).json({ message: "idOng e fk_idresponsavel são obrigatórios" });
             }
 
-            const resultado = await ongsService.Put(idOng, { fk_idresponsavel });
+            const resultado = await model.atualizarResponsavel(idOng, fk_idresponsavel);
 
             res.status(200).json({
                 message: "Responsável da ONG atualizado com sucesso!",
