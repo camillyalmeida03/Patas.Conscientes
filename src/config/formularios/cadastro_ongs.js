@@ -1,4 +1,4 @@
-import { MensagemFeedback } from "../../public/js/formularios/mensagemFeedback.js";
+import { MensagemFeedback } from "../../../public/js/formularios/mensagemFeedback.js";
 
 document.addEventListener("DOMContentLoaded", function () {
     const formOng = document.getElementById("formOng");
@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
             validarEmail() &&
             validarTelCel() &&
             validarCnpj() &&
-            // validarData() &&
             validarSenhas() &&
             validarDescricao() &&
             validarCep() &&
@@ -30,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         try {
+            // --- CAPTURA DADOS ENDEREÇO ---
             const cep = document.getElementById("cep").value.trim();
             const estado = document.getElementById("estado").value;
             const cidade = document.getElementById("cidade").value.trim();
@@ -44,9 +44,11 @@ document.addEventListener("DOMContentLoaded", function () {
             const endpointRua = "http://localhost:6789/ruas";
             const endpointEndereco = "http://localhost:6789/enderecos";
             const endpointOng = "http://localhost:6789/ongs";
+            const endpointResponsavel = "http://localhost:6789/responsaveis";
+
             const contentTypeJson = { "Content-Type": "application/json" };
 
-            // ------------------- CRIAÇÕES EM CADEIA -------------------
+            // --- CRIAÇÃO EM CADEIA DO ENDEREÇO ---
             const idEstado = (await fetch(endpointEstado, {
                 method: "POST",
                 headers: contentTypeJson,
@@ -85,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 })
             }).then(res => res.json());
 
-            // ------------------- Ong -------------------
+            // ------------------- 2️⃣ Criar ONG -------------------
             const nome = document.getElementById("nomeOng").value.trim();
             const email = document.getElementById("emailOng").value.trim();
             const telefone = document.getElementById("telcelUsuarioAdt").value.trim();
@@ -109,31 +111,74 @@ document.addEventListener("DOMContentLoaded", function () {
                 comp_cnpj: null
             };
 
-            const responseOng = await fetch(endpointOng,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`
-                    },
-                    body: JSON.stringify(dadosOng)
-                });
+            // Criar a ONG
+            const responseOng = await fetch(endpointOng, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify(dadosOng)
+            });
 
-            const data = await responseOng.json();
+            const dataOng = await responseOng.json();
 
-            if (!responseOng.ok || data.success === false) {
-                new MensagemFeedback(data.message || "Erro ao enviar dados.", feedbackPai).feedbackError();
+            if (!responseOng.ok) {
+                new MensagemFeedback(dataOng.message || "Erro ao criar ONG.", feedbackPai).feedbackError();
                 return;
             }
 
-            if (responseOng.ok) {
-                new MensagemFeedback("Cadastro realizado com sucesso!", feedbackPai).feedbackSucess();
+            const idOng = dataOng.id;
 
-                setTimeout(() => {
-                    window.location.href = "/src/views/ongPage.html";
-                    formOng.reset();
-                }, 2000);
-            }
+            // // ------------------- Criar responsável -------------------
+            // const usuario = JSON.parse(localStorage.getItem("usuario"));
+
+            // const responseResp = await fetch("http://localhost:6789/responsaveis", {
+            //     method: "POST",
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //         "Authorization": `Bearer ${token}`
+            //     },
+            //     body: JSON.stringify({
+            //         fk_idusuario: usuario.id, 
+            //         fk_idong: idOng
+            //     })
+            // });
+
+            // const responsavelCriado = await responseResp.json();
+
+            // console.log("RETORNO DO RESPONSÁVEL:", responsavelCriado); 
+
+            // const idResponsavel = responsavelCriado.id || responsavelCriado.insertId || (responsavelCriado.data && responsavelCriado.data.id);
+
+            // if (!idResponsavel) {
+            //     throw new Error("Não foi possível obter o ID do responsável criado.");
+            // }
+
+            // // ------------------- Atualizar ONG com fk_idresponsavel -------------------
+            // const responseUpdateOng = await fetch(`${endpointOng}/${idOng}`, {
+            //     method: "PUT",
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //         "Authorization": `Bearer ${token}`
+            //     },
+            //     body: JSON.stringify({ fk_idresponsavel: idResponsavel })
+            // });
+
+            // const dataUpdateOng = await responseUpdateOng.json();
+            // if (!responseUpdateOng.ok) {
+            //     new MensagemFeedback(dataUpdateOng.message || "Erro ao atualizar ONG com responsável.", feedbackPai).feedbackError();
+            //     return;
+            // }
+
+
+            // Feedback de sucesso
+            new MensagemFeedback("Cadastro realizado com sucesso!", feedbackPai).feedbackSucess();
+            setTimeout(() => {
+                window.location.href = `/src/views/ongPage.html?id=${idOng}`;
+                formOng.reset();
+            }, 2000);
+
 
         } catch (error) {
             console.error("Erro ao enviar dados:", error);

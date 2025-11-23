@@ -234,15 +234,14 @@ export class ContaPopup {
           configPopup
         );
 
-        // Verificação adicional — se for um usuário responsável por ONG
-        if (usuario && usuario.responsavelOng === true) {
+        if (usuario && usuario.responsavelOng === true && ong) {
           this.criar.createElement("div", ["linha"], "", configPopup);
 
-          // Link para trocar para ONG
+          // Link para a página da ONG (que servirá como painel administrativo se ele for o dono)
           this.criar.createA(
             [],
-            `./ong.html?id=${ong.id}`, // ou a página que você quiser
-            "Painel administrativo da ONG",
+            `./ong.html?id=${ong.id}`, // Usa o ID da ONG vinculada ao usuário
+            "Acessar página de administração da ONG",
             "Painel da ONG",
             configPopup
           );

@@ -1,4 +1,4 @@
-import { MensagemFeedback } from "../../public/js/formularios/mensagemFeedback.js"; 
+import { MensagemFeedback } from "../../../public/js/formularios/mensagemFeedback.js"; 
 
 document.addEventListener("DOMContentLoaded", function () {
     const formUsuario = document.getElementById("cadastroUsuario");

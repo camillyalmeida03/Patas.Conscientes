@@ -1,6 +1,6 @@
 // Este documento é responsável por controlar o login
 
-import { MensagemFeedback } from "../../public/js/formularios/mensagemFeedback.js";
+import { MensagemFeedback } from "../../../public/js/formularios/mensagemFeedback.js";
 
 let entrarCard = document.getElementById("entrarCard");
 let cadastroCard = document.getElementById("cadastroCard");
@@ -83,12 +83,6 @@ if (responseLogin.ok) {
 
   return;
 }
-
-      // F
-
-      // // Salva o token e dados do usuário no navegador
-      // localStorage.setItem("token", data.token);
-      // localStorage.setItem("usuario", JSON.stringify(data.usuario));
     } catch (error) {
       console.error("Erro ao enviar dados:", error);
       new MensagemFeedback(

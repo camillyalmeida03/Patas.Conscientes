@@ -8,37 +8,40 @@ function atualizarContagem() {
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector(".formulario");
 
-    form.addEventListener("submit", function (event) {
-        event.preventDefault(); // Evita o envio do formulário inicialmente
+    if (form) {
+        form.addEventListener("submit", function (event) {
+            event.preventDefault(); // Evita o envio do formulário inicialmente
 
-        // Variável de controle de validade do formulário
-        let formularioValido = true;
+            // Variável de controle de validade do formulário
+            let formularioValido = true;
 
-        // Validações independentes de cada campo
+            // Validações independentes de cada campo
 
-        if (!validarNome()) formularioValido = false;
-        if (!validarEmail()) formularioValido = false;
-        if (!validarTelCel()) formularioValido = false;
-        if (!validarCpf()) formularioValido = false;
-        if (!validarCnpj()) formularioValido = false;
-        if (!validarGenero()) formularioValido = false;
-        if (!validarDataNasc()) formularioValido = false;
-        if (!validarData()) formularioValido = false;
-        if (!validarSenhas()) formularioValido = false;
-        if (!validarSenhaLogin()) formularioValido = false;
-        if (!validarArquivos()) formularioValido = false;
-        if (!validarDescricao()) formularioValido = false;
+            if (!validarNome()) formularioValido = false;
+            if (!validarEmail()) formularioValido = false;
+            if (!validarTelCel()) formularioValido = false;
+            if (!validarCpf()) formularioValido = false;
+            if (!validarCnpj()) formularioValido = false;
+            if (!validarGenero()) formularioValido = false;
+            if (!validarDataNasc()) formularioValido = false;
+            if (!validarData()) formularioValido = false;
+            if (!validarSenhas()) formularioValido = false;
+            if (!validarSenhaLogin()) formularioValido = false;
+            if (!validarArquivos()) formularioValido = false;
+            if (!validarDescricao()) formularioValido = false;
 
 
-        // Validações de endereço
-        if (!validarCep()) formularioValido = false;
-        if (!validarEstado()) formularioValido = false;
-        if (!validarCidade()) formularioValido = false;
-        if (!validarBairro()) formularioValido = false;
-        if (!validarRua()) formularioValido = false;
-        if (!validarNmr()) formularioValido = false;
+            // Validações de endereço
+            if (!validarCep()) formularioValido = false;
+            if (!validarEstado()) formularioValido = false;
+            if (!validarCidade()) formularioValido = false;
+            if (!validarBairro()) formularioValido = false;
+            if (!validarRua()) formularioValido = false;
+            if (!validarNmr()) formularioValido = false;
 
-    });
+        });
+    }
+
     // A partir de agora, teremos as funções de validação individuais
 
     // Validação dos nomes de usuário / Ongs / Pets

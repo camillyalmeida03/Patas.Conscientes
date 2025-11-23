@@ -1,6 +1,6 @@
 // Este arquivo é responsável por receber os valores fictícios das ONGs enquanto não há banco de dados.
 
-import { InformacoesOng } from "./informacoesOng.js";
+import { InformacoesOng } from "../../../src/config/informacoesOng.js";
 
 export const ongs = [
   new InformacoesOng(

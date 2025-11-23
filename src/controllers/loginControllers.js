@@ -91,6 +91,7 @@ const loginController = {
         tipo: usuario.tipo,
         data_criacao: usuario.data_criacao,
         data_att: usuario.data_att,
+        responsavelOng: !!ong
       };
 
       return res.status(200).json({

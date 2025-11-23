@@ -54,7 +54,7 @@
         <div class="blocosCad" id="formCadOng">
           <!-- Campo de nome da ONG -->
           <div class="alinharErro">
-            <input type="text" name="" id="nomeOng" class="inputCadastro" placeholder="Nome da ONG*">
+            <input type="text" name="nome" id="nomeOng" class="inputCadastro" placeholder="Nome da ONG*">
             <p id="erroNomeOng" class="error-message"></p>
           </div>
 
@@ -67,26 +67,26 @@
 
           <!-- Campo de CNPJ da ONG -->
           <div class="alinharErro">
-            <input type="text" id="cnpj" class="inputCadastro cnpj" placeholder="CNPJ*" maxlength="18">
+            <input type="text" name="cnpj" id="cnpj" class="inputCadastro cnpj" placeholder="CNPJ*" maxlength="18">
             <p id="erroCnpj" class="error-message"></p>
           </div>
 
           <!-- Campo de e-mail da ONG -->
           <div class="alinharErro">
-            <input type="email" id="emailOng" class="inputCadastro" placeholder="E-mail">
+            <input type="email" name="email" id="emailOng" class="inputCadastro" placeholder="E-mail">
             <p id="erroEmailOng" class="error-message"></p>
           </div>
 
           <div>
             <!-- Campo de senha da ONG -->
             <div class="alinharErro">
-              <input id="senhaUsuarioAdt" type="password" class="inputCadastro" placeholder="Senha">
+              <input id="senhaUsuarioAdt" name="senha" type="password" class="inputCadastro" placeholder="Senha">
               <p id="erroSenhaUsuarioAdt" class="error-message"></p>
             </div>
 
             <!-- Campo de de confirmação de senha da ONG -->
             <div class="alinharErro">
-              <input id="confirmaSenhaUsuarioAdt" type="password" class="inputCadastro"
+              <input id="confirmaSenhaUsuarioAdt" name="senha" type="password" class="inputCadastro"
                 placeholder="Confirme sua senha">
               <p id="erroConfirSenhaUsuarioAdt" class="error-message"></p>
             </div>
@@ -96,7 +96,7 @@
 
           <!-- Campo de CEP do ong -->
           <div class="alinharErro">
-            <input type="text" id="cep" class="inputCadastro cep" placeholder="CEP*" maxlength="9">
+            <input type="text" id="cep" name="cep" class="inputCadastro cep" placeholder="CEP*" maxlength="9">
             <p id="erroCep" class="error-message"></p>
           </div>
 
@@ -139,33 +139,33 @@
 
             <!-- Campo de cidade do ong -->
             <div class="alinharErro">
-              <input type="text" id="cidade" class="inputCadastro" placeholder="Cidade*">
+              <input type="text" id="cidade" name="cidade" class="inputCadastro" placeholder="Cidade*">
               <p id="erroCidade" class="error-message"></p>
             </div>
           </div>
 
           <!-- Campo de rua do ong -->
           <div class="alinharErro">
-            <input type="text" id="rua" class="inputCadastro" placeholder="Rua*">
+            <input type="text" id="rua" name="rua" class="inputCadastro" placeholder="Rua*">
             <p id="erroRua" class="error-message"></p>
           </div>
 
           <div>
             <!-- Campo de Bairro do ong -->
             <div class="alinharErro">
-              <input type="text" id="bairro" class="inputCadastro" placeholder="Bairro*">
+              <input type="text" name="bairro" id="bairro" class="inputCadastro" placeholder="Bairro*">
               <p id="erroBairro" class="error-message"></p>
             </div>
 
             <!-- Campo de número da casa do ong -->
             <div class="alinharErro">
-              <input type="text" id="nmr" class="inputCadastro" placeholder="Número*">
+              <input type="text" name="numero" id="nmr" class="inputCadastro" placeholder="Número*">
               <p id="erroNmr" class="error-message"></p>
             </div>
           </div>
 
           <!-- Campo de complemento do ong -->
-          <input type="text" id="complemento" class="inputCadastro" placeholder="Complemento">
+          <input type="text" name="complemento" id="complemento" class="inputCadastro" placeholder="Complemento">
 
           <!-- Botão para mostrar próxima etapa -->
           <button type="button" title="Ir para a próxima etapa do cadastro" id="continuarCadOng"
@@ -349,7 +349,7 @@
   <script type="module" src="/public/js/formularios/formcadong.js" defer></script>
   <script src="/public/js/tema.js" defer></script>
   <script src="/public/js/carregar_pagina.js"></script>
-  <script type="module" src="/src/database/cadastro_ongs.js"></script>
+  <script type="module" src="/src/config/formularios/cadastro_ongs.js"></script>
   <!-- <script src="/public/js/conexaoBanco/form_ong_cx.js"></script> -->
 
 

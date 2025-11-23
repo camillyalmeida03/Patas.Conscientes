@@ -58,4 +58,13 @@ const Erase = async (id) => {
     return rows; // Retorna só os dados
 };
 
-module.exports = { GetAll, GetById, Post, Put, Erase };
+// No final do arquivo ongsServices.js, ANTES do module.exports:
+
+const atualizarResponsavel = async (id, fk_idresponsavel) => {
+    // Atualiza APENAS a chave estrangeira
+    const queryText = 'UPDATE ongs SET fk_idresponsavel = ? WHERE idong = ?';
+    const [result] = await banco.query(queryText, [fk_idresponsavel, id]);
+    return { id, fk_idresponsavel, linhasAfetadas: result.affectedRows };
+};
+
+module.exports = { GetAll, GetById, Post, Put, Erase, atualizarResponsavel };
