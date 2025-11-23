@@ -234,13 +234,18 @@ export class ContaPopup {
           configPopup
         );
 
-        if (usuario && usuario.responsavelOng === true && ong) {
+        // Verificamos apenas se existe o objeto 'ong' e se ele tem um ID válido
+        if (ong && (ong.id || ong.idong)) {
+
+          // Armazena o ID correto numa variável auxiliar
+          const idDaOng = ong.id || ong.idong;
+
           this.criar.createElement("div", ["linha"], "", configPopup);
 
-          // Link para a página da ONG (que servirá como painel administrativo se ele for o dono)
+          // Link para a página da ONG
           this.criar.createA(
             [],
-            `./ong.html?id=${ong.id}`, // Usa o ID da ONG vinculada ao usuário
+            `./ongPage.html?id=${idDaOng}`, // Usa a variável auxiliar
             "Acessar página de administração da ONG",
             "Painel da ONG",
             configPopup
@@ -460,9 +465,8 @@ function criar_header() {
 
       <div class="btnsNav">
         <a href="adotar.html" title="Link que direciona para a página de adoção do site">Adote-me</a>
-        <a href="parceiro.html"
-          title="Link que direciona para a página de cadastro para se tornar parceiro do site do site">Torne-se
-          parceiro</a>
+        <a href="cadastroong.html"
+          title="Link que direciona para a página de cadastro de ONGs">Cadastrar ONG</a>
       </div>
 
       <div class="caixaInst">
@@ -542,9 +546,8 @@ function criar_header() {
 
         <div class="linha"></div>
 
-        <a href="parceiro.html"
-          title="Link que direciona para a página de cadastro para se tornar parceiro do site do site">Torne-se
-          parceiro</a>
+        <a href="cadastroong.html"
+          title="Link que direciona para a página de cadastro de ONGs">Cadastrar ONG</a>
 
         <div class="linha"></div>
 
@@ -604,9 +607,8 @@ function criar_header() {
     
           <div class="btnsNav">
             <a href="/src/views/adotar.html" title="Link que direciona para a página de adoção do site">Adote-me</a>
-            <a href="/src/views/parceiro.html"
-              title="Link que direciona para a página de cadastro para se tornar parceiro do site do site">Torne-se
-              parceiro</a>
+        <a href="/src/views/cadastroong.html"
+          title="Link que direciona para a página de cadastro de ONGs">Cadastrar ONG</a>
           </div>
     
           <div class="caixaInst">
@@ -686,9 +688,8 @@ function criar_header() {
     
             <div class="linha"></div>
     
-            <a href="/src/views/parceiro.html"
-              title="Link que direciona para a página de cadastro para se tornar parceiro do site do site">Torne-se
-              parceiro</a>
+        <a href="/src/views/cadastroong.html"
+          title="Link que direciona para a página de cadastro de ONGs">Cadastrar ONG</a>
     
             <div class="linha"></div>
     
