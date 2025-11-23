@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
     formOng.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        // --- VALIDAÇÕES ---
         const camposValidos =
             validarNome() &&
             validarEmail() &&
@@ -30,7 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         try {
-            // --- 1️⃣ CAPTURA DADOS DO ENDEREÇO ---
             const cep = document.getElementById("cep").value.trim();
             const estado = document.getElementById("estado").value;
             const cidade = document.getElementById("cidade").value.trim();
@@ -48,7 +46,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const contentTypeJson = { "Content-Type": "application/json" };
 
-            // --- CRIAÇÃO EM CADEIA DO ENDEREÇO ---
             const idEstado = (await fetch(endpointEstado, {
                 method: "POST",
                 headers: contentTypeJson,
@@ -87,7 +84,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 })
             }).then(res => res.json());
 
-            // --- 2️⃣ CRIAR ONG ---
             const nome = document.getElementById("nomeOng").value.trim();
             const email = document.getElementById("emailOng").value.trim();
             const telefone = document.getElementById("telcelUsuarioAdt").value.trim();
@@ -131,35 +127,26 @@ document.addEventListener("DOMContentLoaded", function () {
                 new MensagemFeedback(dataOng.message || "Erro ao criar ONG.", feedbackPai).feedbackError();
                 return;
             }
-
-            // --- 3️⃣ ATUALIZAÇÃO IMEDIATA DO LOCALSTORAGE (O PULO DO GATO) ---
-            // Como acabamos de criar, vamos buscar os dados dessa ONG nova para salvar no navegador
-            // assim o Header atualiza sem precisar deslogar.
             
             const idNovaOng = dataOng.id;
 
-            // Busca os dados completos da nova ONG
             const responseNovaOng = await fetch(`${endpointOng}/${idNovaOng}`);
             const dadosCompletosOng = await responseNovaOng.json();
 
             if (dadosCompletosOng && dadosCompletosOng.length > 0) {
-                const ongBanco = dadosCompletosOng[0]; // O endpoint getById retorna um array
+                const ongBanco = dadosCompletosOng[0]; 
                 
-                // Formata igual ao Login
                 const ongParaSalvar = {
                     id: ongBanco.idong,
                     nome: ongBanco.nome,
                     email: ongBanco.email,
                     telefone: ongBanco.telefone,
                     descricao: ongBanco.descricao,
-                    // Garante que o ID do vínculo está presente (se o backend já tiver criado)
                     id_responsavel: dataOng.id_vinculo_responsavel || null 
                 };
 
-                // Atualiza o localStorage da ONG
                 localStorage.setItem("ong", JSON.stringify(ongParaSalvar));
 
-                // Atualiza também o usuário para dizer que ele agora é responsável
                 let usuarioSalvo = JSON.parse(localStorage.getItem("usuario"));
                 if (usuarioSalvo) {
                     usuarioSalvo.responsavelOng = true;
@@ -167,13 +154,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             }
 
-            // Feedback e Redirecionamento
             new MensagemFeedback("ONG cadastrada com sucesso!", feedbackPai).feedbackSucess();
             
             setTimeout(() => {
-                // Redireciona para a página da nova ONG
                 window.location.href = `/src/views/ongPage.html?id=${idNovaOng}`;
-                // Reseta form (opcional pois vai mudar de página)
                 formOng.reset();
             }, 2000);
 
