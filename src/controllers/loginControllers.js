@@ -1,5 +1,3 @@
-// Controller responsável por receber requisições HTTP e chamar o service de Login para executa-lo.
-
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
@@ -13,12 +11,9 @@ const loginController = {
       const { email, senha } = req.body;
 
       if (!email || !senha) {
-        return res
-          .status(400)
-          .json({ message: "E-mail e senha são obrigatórios." });
+        return res.status(400).json({ message: "E-mail e senha são obrigatórios." });
       }
 
-      // Busca usuário + ONG ao mesmo tempo
       const { usuario, ong } = await LoginUnificado(email);
 
       if (!usuario) {
@@ -36,6 +31,7 @@ const loginController = {
       if (ong) {
         ongFormatada = {
           id: ong.idong,
+          id_responsavel: ong.idresponsavel,
           nome: ong.nome,
           email: ong.email,
           telefone: ong.telefone,
@@ -56,13 +52,13 @@ const loginController = {
         };
       }
 
-      // token contém info das duas contas se existir ONG
       const token = jwt.sign(
         {
           id: usuario.idusuario,
           email: usuario.email,
           tipo: usuario.tipo,
           ong: ongFormatada ? ongFormatada.id : null,
+          id_responsavel: ongFormatada ? ongFormatada.id_responsavel : null
         },
         process.env.JWT_SECRET,
         { expiresIn: process.env.JWT_EXPIRES_IN || "1d" }
@@ -91,14 +87,14 @@ const loginController = {
         tipo: usuario.tipo,
         data_criacao: usuario.data_criacao,
         data_att: usuario.data_att,
-        responsavelOng: !!ong
+        responsavelOng: !!ong 
       };
 
       return res.status(200).json({
         message: "Login realizado com sucesso!",
         token,
         usuario: usuarioFormatado,
-        ong: ongFormatada, // <– SE EXISTIR A ONG, VAI JUNTO
+        ong: ongFormatada, 
       });
     } catch (error) {
       console.error("Erro no login:", error);

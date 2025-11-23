@@ -70,19 +70,21 @@ const BuscarOngDoUsuario = async (idusuario) => {
       o.foto, o.banner, o.email, o.senha, 
       o.comp_estatuto, o.comp_cnpj,
       o.data_criacao, o.data_att,
+      
+      -- Dados do Vínculo
+      resp.idresponsavel,
 
+      -- Endereço
       e.idendereco, e.numero, e.cep, e.complemento,
-
       r.rua,
       b.bairro,
       c.cidade,
-
       es.idestado,
       es.sigla AS estado_sigla,
       tu.tipo AS tipo_usuario
 
     FROM responsaveis resp
-    JOIN ongs o ON o.idong = resp.fk_idong
+    INNER JOIN ongs o ON o.idong = resp.fk_idong
     INNER JOIN enderecos e ON e.idendereco = o.fk_idendereco
     INNER JOIN ruas r ON r.idrua = e.fk_idrua
     INNER JOIN bairros b ON b.idbairro = e.fk_idbairro
@@ -97,24 +99,20 @@ const BuscarOngDoUsuario = async (idusuario) => {
   return rows.length > 0 ? rows[0] : null;
 };
 
-
 const LoginUnificado = async (email) => {
   const usuarioRows = await Login(email);
 
-  // Se for usuário
   if (usuarioRows.length > 0) {
     const usuario = usuarioRows[0];
 
-    // Buscar ONG vinculada ao usuário
     const ongVinculada = await BuscarOngDoUsuario(usuario.idusuario);
 
     return {
       usuario,
-      ong: ongVinculada,
+      ong: ongVinculada, 
     };
   }
 
-  // Se não for usuário, pode ser ONG
   const ongRows = await LoginOng(email);
 
   return {
@@ -124,4 +122,5 @@ const LoginUnificado = async (email) => {
 };
 
 
-module.exports = { Login, LoginOng, LoginUnificado };
+
+module.exports = { Login, LoginOng, LoginUnificado, BuscarOngDoUsuario };
