@@ -56,6 +56,50 @@
     transition: background-color 0.5s ease, color 0.5 ease, border-color 0.5 ease;
 }
 
+.bttEstatisticas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    margin: 15px auto;
+    width: 90%;
+    transition: background-color 0.3s ease;
+}
+
+.bttEstatisticas svg {
+    fill: black;
+    transition: transform 0.3s ease;
+    transform: rotate(0deg);
+}
+
+.bttEstatisticas.aberto svg {
+    transform: rotate(90deg);
+}
+
+.divEstatisticas {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+    height: 17rem;
+}
+
+.divEstatisticas.aberto {
+    max-height: 17rem;
+    padding: 15px;
+}
+
+#graficoDadosOng {
+    max-width: 15rem;
+    max-height: 15rem;
+    margin: 0 auto;
+    display: block;
+}
+
 a {
     text-decoration: none;
     color: black;
@@ -556,7 +600,7 @@ button {
     width: 30rem;
 }
 
-.ativo{
+.ativo {
     display: flex;
 }
 
@@ -2111,7 +2155,7 @@ ol {
 }
 
 .escondido-responsavel {
-    display: none !important; 
+    display: none !important;
 }
 
 #nomePerfil .buttonPerfil,
@@ -2335,7 +2379,7 @@ ol {
     width: 100%;
 }
 
-form .aviso{
+form .aviso {
     padding: 1rem;
 }
 
@@ -2370,7 +2414,7 @@ form .aviso{
     color: white;
 }
 
-#cadastroUsuario{
+#cadastroUsuario {
     width: 100%;
 }
 
@@ -2748,7 +2792,7 @@ textarea {
     align-items: center;
     /* Centraliza verticalmente */
     justify-content: center;
-    
+
 }
 
 .caixaEscolha {
@@ -2782,11 +2826,11 @@ textarea {
     width: 100%;
 }
 
-#modalCadOng{
+#modalCadOng {
     position: fixed;
 }
 
-#modalCadOng > div{
+#modalCadOng>div {
     height: 80vh;
     display: flex;
     align-items: center;
@@ -2796,26 +2840,26 @@ textarea {
     text-align: center;
 }
 
-#modalCadOng h2{
+#modalCadOng h2 {
     margin-bottom: 2rem;
     color: var(--azul_claro);
 }
 
-#modalCadOng div a{
+#modalCadOng div a {
     font-weight: 700;
     color: var(--rosa);
     font-size: 20px;
     text-decoration: underline;
 }
 
-.redireciona{
+.redireciona {
     display: flex;
     margin-top: 1rem;
     gap: 0.5rem;
     flex-direction: column;
 }
 
-.redireciona p{
+.redireciona p {
     color: var(--cinza80);
     font-size: 1rem;
 }
@@ -2988,7 +3032,7 @@ textarea {
 }
 
 .no-scroll {
-  overflow: hidden !important;
+    overflow: hidden !important;
 }
 
 

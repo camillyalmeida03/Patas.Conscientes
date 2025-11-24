@@ -3,15 +3,15 @@
 import { CriarElementos } from "../../../public/js/criarElementos.js";
 
 class Redes {
-  constructor(ong) { 
+  constructor(ong) {
     this.criarElemento = new CriarElementos();
-    this.ongSelecionada = ong; 
+    this.ongSelecionada = ong;
   }
 
   redes() {
     this.infoCardOngPerfil = document.querySelector(".infoCardOngPerfil");
-    
-    const temRede = Object.values(this.ongSelecionada.redes || {}).some((url) => url); 
+
+    const temRede = Object.values(this.ongSelecionada.redes || {}).some((url) => url);
 
     if (temRede) {
       Object.entries(this.ongSelecionada.redes).forEach(([tipo, url]) => {
@@ -72,10 +72,10 @@ async function buscarOngPorId(id) {
   try {
     const res = await fetch(`http://localhost:6789/ongs/${id}`);
     if (!res.ok) throw new Error("Erro ao buscar ONG");
-    
+
     const dados = await res.json();
-    
-    return Array.isArray(dados) ? dados[0] : dados; 
+
+    return Array.isArray(dados) ? dados[0] : dados;
   } catch (error) {
     console.error("Erro ao buscar ONG:", error);
     return null;
@@ -83,10 +83,10 @@ async function buscarOngPorId(id) {
 }
 
 async function preencherPagina() {
-  
+
   if (!idUrl) {
-      console.log("Nenhum ID fornecido na URL");
-      return;
+    console.log("Nenhum ID fornecido na URL");
+    return;
   }
 
   const ong = await buscarOngPorId(idUrl);
@@ -97,23 +97,23 @@ async function preencherPagina() {
   }
 
   const usuarioLogado = JSON.parse(localStorage.getItem('usuario'));
-  const ongSalva = JSON.parse(localStorage.getItem('ong')); 
-  
-  const idResponsavelOng = ong.fk_idresponsavel; 
+  const ongSalva = JSON.parse(localStorage.getItem('ong'));
 
-  const isResponsavel = usuarioLogado && 
-                        usuarioLogado.idusuario === idResponsavelOng;
+  const idResponsavelOng = ong.fk_idresponsavel;
 
-  const redesOng = new Redes(ong); 
+  const isResponsavel = usuarioLogado &&
+    usuarioLogado.idusuario === idResponsavelOng;
+
+  const redesOng = new Redes(ong);
   redesOng.redes();
-  
+
   const botaoAdd = new AdicionarBotao(isResponsavel);
   botaoAdd.botaoAdicionar();
-  
+
   controlarBotoesDeUpload(isResponsavel);
 
   const enderecoCompleto = `${ong.rua || ""}, ${ong.numero || ""} - ${ong.bairro || ""}, ${ong.cidade || ""} - ${ong.sigla || ""}`;
-  
+
   document.getElementById("titleOng").textContent = `${ong.nome} - Patas Conscientes`;
   document.getElementById("nomeOng").textContent = ong.nome;
   document.getElementById("enderecoOng").textContent = enderecoCompleto;
@@ -124,35 +124,95 @@ async function preencherPagina() {
   const bannerUrl = ong.banner || "/public/img/user_ong/banners/Banner_misto_rosa_ONG.svg";
 
   const fotoEl = document.getElementById("fotoOng");
-  if(fotoEl) {
-      fotoEl.style.backgroundImage = `url('${fotoUrl}')`;
-      fotoEl.style.backgroundSize = "cover";
-      fotoEl.style.backgroundPosition = "center";
+  if (fotoEl) {
+    fotoEl.style.backgroundImage = `url('${fotoUrl}')`;
+    fotoEl.style.backgroundSize = "cover";
+    fotoEl.style.backgroundPosition = "center";
   }
 
   const bannerEl = document.getElementById("bannerOng");
-  if(bannerEl) {
-      bannerEl.style.backgroundImage = `url('${bannerUrl}')`;
-      bannerEl.style.backgroundSize = "cover";
-      bannerEl.style.backgroundPosition = "center";
+  if (bannerEl) {
+    bannerEl.style.backgroundImage = `url('${bannerUrl}')`;
+    bannerEl.style.backgroundSize = "cover";
+    bannerEl.style.backgroundPosition = "center";
   }
 
   // carregarPetsDaOng(idUrl, ong.nome);
 }
 
 function controlarBotoesDeUpload(isResponsavel) {
-    const elementosUpload = document.querySelectorAll(".uploadButton, .inputArquivo");
+  const elementosUpload = document.querySelectorAll(".uploadButton, .inputArquivo");
 
-    elementosUpload.forEach(el => {
-        if (isResponsavel) {
-            el.classList.remove("escondido-responsavel");
-        } else {
-            el.classList.add("escondido-responsavel");
-        }
-    });
+  elementosUpload.forEach(el => {
+    if (isResponsavel) {
+      el.classList.remove("escondido-responsavel");
+    } else {
+      el.classList.add("escondido-responsavel");
+    }
+  });
 }
 
-document.addEventListener("DOMContentLoaded", preencherPagina);
+document.addEventListener('DOMContentLoaded', function () {
+  const toggleButton = document.getElementById('toggleEstatisticas');
+  const statisticsDiv = document.getElementById('divEstatisticas');
+
+  const data = {
+    labels: [
+      'Red',
+      'Blue',
+      'Yellow',
+      'Green',
+    ],
+    datasets: [{
+      label: 'My First Dataset',
+      data: [20, 50, 100, 90],
+      backgroundColor: [
+        'rgb(255, 99, 132)',
+        'rgb(54, 162, 235)',
+        'rgb(255, 205, 86)',
+        'rgb(200, 205, 70)'
+      ],
+      hoverOffset: 4
+    }]
+  };
+
+  // Configuração do seu gráfico
+  const config = {
+    type: 'pie',
+    data: data,
+    options: {
+      responsive: false,
+      maintainAspectRatio: false, // Ignora a proporção original do canvas
+    }
+  };
+
+  let chartInstance = null;
+
+  if (toggleButton && statisticsDiv) {
+    toggleButton.addEventListener('click', function () {
+      statisticsDiv.classList.toggle('aberto');
+
+      toggleButton.classList.toggle('aberto');
+
+      const isExpanded = toggleButton.classList.contains('aberto');
+      toggleButton.setAttribute('aria-expanded', isExpanded);
+
+      if (isExpanded) {
+        const ctx = document.getElementById('graficoDadosOng');
+
+        if (chartInstance) {
+          chartInstance.destroy();
+        }
+
+        chartInstance = new Chart(ctx, config);
+
+      } else if (chartInstance) {
+        chartInstance.destroy();
+        chartInstance = null;
+      }
+    });
+  }
+});
 
 // document.addEventListener("DOMContentLoaded", () => {
 //     const botaoAdicionar = document.getElementById("abrirModalAdicionar"); 
@@ -197,9 +257,9 @@ document.addEventListener("DOMContentLoaded", preencherPagina);
 //     try {
 //         const res = await fetch("http://localhost:6789/pets"); 
 //         if(!res.ok) return;
-        
+
 //         const todosPets = await res.json();
-        
+
 //         const petsDaOng = todosPets.filter(p => p.fk_idong === idOng || p.id_ong_fk === idOng);
 
 //         const container = document.querySelector(".adotarSec");

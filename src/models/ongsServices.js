@@ -16,7 +16,7 @@ const GetAll = async () => {
 };
 
 const GetById = async (id) => {
-    const querySelect = 'SELECT o.idong, o.nome, o.cnpj, o.telefone, o.descricao, o.foto, o.banner, e.idendereco, r.rua, e.numero, r.rua, e.numero, b.bairro, c.cidade, es.sigla, e.cep, e.complemento, o.comp_estatuto, o.comp_cnpj, o.email, o.senha, o.data_criacao, o.data_att, tu.tipo FROM ongs o ';
+    const querySelect = 'SELECT o.idong, o.fk_idresponsavel, o.nome, o.cnpj, o.telefone, o.descricao, o.foto, o.banner, e.idendereco, r.rua, e.numero, r.rua, e.numero, b.bairro, c.cidade, es.sigla, e.cep, e.complemento, o.comp_estatuto, o.comp_cnpj, o.email, o.senha, o.data_criacao, o.data_att, tu.tipo FROM ongs o ';
 
     const queryInnerJoin = 'INNER JOIN enderecos e ON e.idendereco = o.fk_idendereco INNER JOIN estados es ON es.idestado = e.fk_idestado INNER JOIN cidades c ON c.idcidade = e.fk_idcidade INNER JOIN bairros b ON b.idbairro = e.fk_idbairro INNER JOIN ruas r ON r.idrua = e.fk_idrua INNER JOIN tipos_usuario tu ON tu.idtipo = o.fk_idtipo '
 
@@ -24,8 +24,8 @@ const GetById = async (id) => {
 
     const querytext = querySelect + queryInnerJoin + queryWhere;
 
-    const [rows] = await banco.query(querytext, [id]); //Manda a queryText pro banco
-    return rows; // Retorna só os dados
+    const [rows] = await banco.query(querytext, [id]); 
+    return rows; 
 };
 
 const Post = async (nome, cnpj, telefone, descricao, fk_idendereco, comp_estatuto, comp_cnpj, email, senha, fk_idtipo) => {

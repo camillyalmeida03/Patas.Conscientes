@@ -18,9 +18,9 @@
 </head>
 
 <body class="ongPage">
-<header id="headerIndex">
-    <script type="module" src="/src/config/header.js"></script>
-</header>
+    <header id="headerIndex">
+        <script type="module" src="/src/config/header.js"></script>
+    </header>
     <main class="perfilOng">
 
         <!-- Caminho (Migalha de pão) -->
@@ -68,11 +68,11 @@
 
                     <button aria-label="Adicionar animal" title="Adicionar animal" class="buttonRosa"
                         id="botaoAdicionarPet">Pet</button> -->
-                    <!-- <button aria-label="Adicionar funcionário" title="Adicionar funcionário" class="buttonRosa"
+        <!-- <button aria-label="Adicionar funcionário" title="Adicionar funcionário" class="buttonRosa"
                         id="botaoAdicionarFuncionario">Funcionário</button> -->
-                <!-- </div> -->
+        <!-- </div> -->
 
-            <!-- </div> -->
+        <!-- </div> -->
         <!-- </div> -->
 
         <!-- Modal de adicionar Funcionario -->
@@ -209,6 +209,21 @@
                         <div class="linha"></div>
                         <p class="petsDisponiveis" id="petsDisponiveis">Null</p>
                     </div>
+
+                    <button class="bttEstatisticas" id="toggleEstatisticas" aria-expanded="false"
+                        aria-controls="divEstatisticas">
+                        Estatísticas
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                            fill="#FFFFFF">
+                            <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
+                        </svg>
+                    </button>
+
+                    <div class="divEstatisticas" id="divEstatisticas">
+                        <canvas id="graficoDadosOng"></canvas>
+                    </div>
+
+                    <div class="bttAdicionar"></div>
                 </div>
             </section>
 
@@ -302,10 +317,10 @@
         </svg>
     </div>
 
-<footer id="footer">
-  <script src="/public/js/footer.js"></script>
-</footer>
-
+    <footer id="footer">
+        <script src="/public/js/footer.js"></script>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 
 <script src="/public/js/barraacessibilidade.js" defer></script>
