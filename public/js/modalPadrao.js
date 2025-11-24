@@ -1,6 +1,5 @@
 // Este arquivo é responsável por definir o comportamento padrão de todos os modais.
-
-export default class ModalPadrao {
+export class ModalPadrao {
   static pilha = [];
   constructor(fundoModal) {
     this.fundoModal = fundoModal;
@@ -122,16 +121,16 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  const modalAdicionarFunc = new ModalPadrao(
-    document.getElementById("fundoAdicionarFuncionario")
-  );
+  // const modalAdicionarFunc = new ModalPadrao(
+  //   document.getElementById("fundoAdicionarFuncionario")
+  // );
 
   // Quando clicar no botão, abre o modal
-  document
-    .getElementById("botaoAdicionarFuncionario")
-    .addEventListener("click", () => {
-      modalAdicionarFunc.abrir();
-    });
+  // document
+  //   .getElementById("botaoAdicionarFuncionario")
+  //   .addEventListener("click", () => {
+  //     modalAdicionarFunc.abrir();
+  //   });
 
   const modalAdicionarPet = new ModalPadrao(
     document.getElementById("fundoAdicionarPet")

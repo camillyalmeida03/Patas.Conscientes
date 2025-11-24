@@ -1,7 +1,7 @@
 //Este arquivo JS é responsável por gerar os cards de cada pet.
 
 // Importando dados do arquivo criarElementos.js
-import { CriarElementos } from "../criarElementos.js";
+import { CriarElementos } from "../../../public/js/criarElementos.js";
 // import { Favoritar } from "../favoritar.js";
 import { InformacoesPets } from "./informacoesPets.js";
 

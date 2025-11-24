@@ -18,7 +18,7 @@ export class InformacoesOng {
 
     return new InformacoesOng(
       data.idong, 
-      data.foto || "/public/img/user_ong/banners/Banner_misto_rosa_ONG.svg", 
+      data.foto || "/public/img/user_ong/user/gato_user_ONG.svg", 
       data.banner || "/public/img/user_ong/banners/Banner_misto_rosa_ONG.svg",
       data.nome, 
       enderecoFormatado,
