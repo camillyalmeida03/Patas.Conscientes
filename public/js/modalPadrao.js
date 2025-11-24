@@ -94,11 +94,15 @@ export class ModalPadrao {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  const modalAdicionar = new ModalPadrao(
-    document.getElementById("fundoAdicionarModal")
+  
+  // const modalAdicionar = new ModalPadrao(
+  //   document.getElementById("fundoAdicionarModal")
+  // );
+
+  const modalAdicionarPet = new ModalPadrao(
+    document.getElementById("fundoAdicionarPet")
   );
 
-  // Quando clicar no botão, abre o modal
   function esperarElemento(id, callback) {
     const el = document.getElementById(id);
     if (el) {
@@ -117,27 +121,24 @@ window.addEventListener("DOMContentLoaded", () => {
 
   esperarElemento("abrirModalAdicionar", (btn) => {
     btn.addEventListener("click", () => {
-      modalAdicionar.abrir();
+      modalAdicionarPet.abrir(); 
     });
   });
 
-  // const modalAdicionarFunc = new ModalPadrao(
-  //   document.getElementById("fundoAdicionarFuncionario")
-  // );
-
-  // Quando clicar no botão, abre o modal
-  // document
-  //   .getElementById("botaoAdicionarFuncionario")
-  //   .addEventListener("click", () => {
-  //     modalAdicionarFunc.abrir();
-  //   });
-
-  const modalAdicionarPet = new ModalPadrao(
-    document.getElementById("fundoAdicionarPet")
+  /*
+  const modalAdicionarFunc = new ModalPadrao(
+    document.getElementById("fundoAdicionarFuncionario")
   );
 
-  // Quando clicar no botão, abre o modal
+    .getElementById("botaoAdicionarFuncionario")
+    .addEventListener("click", () => {
+      modalAdicionarFunc.abrir();
+    });
+  */
+
+  /*
   document.getElementById("botaoAdicionarPet").addEventListener("click", () => {
     modalAdicionarPet.abrir();
   });
+  */
 });

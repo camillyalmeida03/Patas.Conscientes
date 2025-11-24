@@ -42,36 +42,25 @@ class Redes {
 }
 
 class AdicionarBotao {
-  constructor() {
+  constructor(isResponsavel) {
     this.criarElemento = new CriarElementos();
+    this.isResponsavel = isResponsavel;
   }
 
   botaoAdicionar() {
-    this.infoCardOngPerfil = document.querySelector(".infoCardOngPerfil");
+    // SÓ CRIA O BOTÃO SE A PESSOA FOR RESPONSÁVEL
+    if (!this.isResponsavel) {
+    }
 
-    this.adicionarBttOngAdm = this.criarElemento.createElement(
-      "div",
-      "adicionarBttOngAdm",
-      null,
-      this.infoCardOngPerfil,
-      null
-    );
+    this.bttAdicionar = document.querySelector(".bttAdicionar");
 
-    this.linha = this.criarElemento.createElement(
-      "div",
-      "linha",
-      null,
-      this.adicionarBttOngAdm,
-      null
-    );
-
-    this.botaoAdd = this.criarElemento.createButton(
+    this.botaoAdd = this.criarElemento.createElement(
+      "button",
       "buttonRosa",
       "Adicionar",
-      this.adicionarBttOngAdm,
-      "Adicionar..."
+      this.bttAdicionar,
+      null
     );
-
     this.botaoAdd.id = "abrirModalAdicionar";
   }
 }
@@ -94,6 +83,7 @@ async function buscarOngPorId(id) {
 }
 
 async function preencherPagina() {
+  
   if (!idUrl) {
       console.log("Nenhum ID fornecido na URL");
       return;
@@ -105,6 +95,22 @@ async function preencherPagina() {
     document.getElementById("nomeOng").textContent = "ONG não encontrada";
     return;
   }
+
+  const usuarioLogado = JSON.parse(localStorage.getItem('usuario'));
+  const ongSalva = JSON.parse(localStorage.getItem('ong')); 
+  
+  const idResponsavelOng = ong.fk_idresponsavel; 
+
+  const isResponsavel = usuarioLogado && 
+                        usuarioLogado.idusuario === idResponsavelOng;
+
+  const redesOng = new Redes(ong); 
+  redesOng.redes();
+  
+  const botaoAdd = new AdicionarBotao(isResponsavel);
+  botaoAdd.botaoAdicionar();
+  
+  controlarBotoesDeUpload(isResponsavel);
 
   const enderecoCompleto = `${ong.rua || ""}, ${ong.numero || ""} - ${ong.bairro || ""}, ${ong.cidade || ""} - ${ong.sigla || ""}`;
   
@@ -131,16 +137,22 @@ async function preencherPagina() {
       bannerEl.style.backgroundPosition = "center";
   }
 
-  const redesOng = new Redes(ong); 
-  redesOng.redes();
-  
-  // 2. Instancia e chama o Botão Adicionar
-  const botaoAdd = new AdicionarBotao();
-  botaoAdd.botaoAdicionar();
-
-
   // carregarPetsDaOng(idUrl, ong.nome);
 }
+
+function controlarBotoesDeUpload(isResponsavel) {
+    const elementosUpload = document.querySelectorAll(".uploadButton, .inputArquivo");
+
+    elementosUpload.forEach(el => {
+        if (isResponsavel) {
+            el.classList.remove("escondido-responsavel");
+        } else {
+            el.classList.add("escondido-responsavel");
+        }
+    });
+}
+
+document.addEventListener("DOMContentLoaded", preencherPagina);
 
 // document.addEventListener("DOMContentLoaded", () => {
 //     const botaoAdicionar = document.getElementById("abrirModalAdicionar"); 

@@ -2110,6 +2110,10 @@ ol {
     align-items: center;
 }
 
+.escondido-responsavel {
+    display: none !important; 
+}
+
 #nomePerfil .buttonPerfil,
 #emailPerfil .buttonPerfil,
 #senhaPerfil .buttonPerfil,
