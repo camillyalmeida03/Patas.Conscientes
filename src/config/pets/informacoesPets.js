@@ -29,12 +29,20 @@ export class InformacoesPets {
     this.ongLink = ongLink;
   }
 
-  // Método estático para converter os dados do Banco (API) para o objeto do Site
-  static fromAPI(data) {
+static fromAPI(data) {
+    // Se data.fotos já for uma URL completa, usa ela. 
+    // Se for só nome de arquivo, concatena com o caminho da sua pasta de uploads
+    let caminhoFoto = data.fotos;
+    
+    // Exemplo: Se o banco traz só "foto1.jpg", adicione o caminho da pasta
+    if (data.fotos && !data.fotos.includes("/")) {
+        caminhoFoto = `http://localhost:6789/uploads/${data.fotos}`; // Ajuste conforme sua rota de imagens estáticas
+    }
+
     return new InformacoesPets(
         data.idpet,            
         data.fk_idong,         
-        data.fotos || "/public/img/fotos/cat1.jpg",      
+        caminhoFoto || "/public/img/fotos/padrao.jpg", // Foto padrão se vier null    
         data.nome,            
         data.sexopet,         
         data.peso,            
@@ -44,7 +52,7 @@ export class InformacoesPets {
         data.raca,            
         data.descricao,        
         data.nome_ong,         
-        "ongs.html"            
+        `ongPage.html?id=${data.fk_idong}` // Link dinâmico para a ONG correta           
     );
-  }
+}
 }

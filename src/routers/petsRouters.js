@@ -9,5 +9,6 @@ router.get("/:id", petsController.GetById);
 router.post("/", petsController.Post);
 router.put("/:id", petsController.Put);
 router.delete("/:id", petsController.Erase);
+router.post('/pornome', petsController.PostPeloNomeDaRaca);
 
 module.exports = router;

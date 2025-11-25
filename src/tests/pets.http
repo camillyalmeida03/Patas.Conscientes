@@ -6,6 +6,7 @@ GET http://localhost:6789/pets
 ### Mostrar campo por id
 GET http://localhost:6789/pets/2
 
+
 ### Inserir novo dado
 POST http://localhost:6789/pets
 Content-Type: application/json
@@ -17,14 +18,31 @@ Content-Type: application/json
     "fk_idespecie": 1, 
     "fk_idraca": 1, 
     "fk_idporte": 1, 
-    "fk_idresponsavel": 1, 
-    "fk_idong": 1, 
+    "fk_idong": 31, 
     "peso": 2, 
     "idade": 2, 
     "descricao": "fofa", 
     "fotos": "fototeste2", 
-    "fk_idstatus": 3
+    "fk_idstatus": 1
 
+}
+
+### Inserir novo dado raça em texto
+POST http://localhost:6789/pets/pornome
+Content-Type: application/json
+
+{
+    "nome": "cachorrinha", 
+    "fk_idsexopet": 1,
+    "fk_idespecie": 1, 
+    "nomeRaca": "Siames", 
+    "fk_idporte": 1, 
+    "fk_idong": 31, 
+    "peso": 2, 
+    "idade": 2, 
+    "descricao": "fofa", 
+    "fotos": "fototeste2", 
+    "fk_idstatus": 1
 }
 
 ### Inserir um dado com base no id
@@ -37,7 +55,6 @@ Content-Type: application/json
     "fk_idespecie": 2, 
     "fk_idraca": 1, 
     "fk_idporte": 1, 
-    "fk_idresponsavel": 1, 
     "fk_idong": 1, 
     "peso": 2, 
     "idade": 2, 

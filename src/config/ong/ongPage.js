@@ -110,7 +110,7 @@ async function preencherPagina() {
   const botaoAdd = new AdicionarBotao(isResponsavel);
   botaoAdd.botaoAdicionar();
 
-  controlarBotoesDeUpload(isResponsavel);
+  // controlarBotoesDeUpload(isResponsavel);
 
   const enderecoCompleto = `${ong.rua || ""}, ${ong.numero || ""} - ${ong.bairro || ""}, ${ong.cidade || ""} - ${ong.sigla || ""}`;
 
@@ -140,17 +140,17 @@ async function preencherPagina() {
   // carregarPetsDaOng(idUrl, ong.nome);
 }
 
-function controlarBotoesDeUpload(isResponsavel) {
-  const elementosUpload = document.querySelectorAll(".uploadButton, .inputArquivo");
+// function controlarBotoesDeUpload(isResponsavel) {
+//   const elementosUpload = document.querySelectorAll(".uploadButton, .inputArquivo");
 
-  elementosUpload.forEach(el => {
-    if (isResponsavel) {
-      el.classList.remove("escondido-responsavel");
-    } else {
-      el.classList.add("escondido-responsavel");
-    }
-  });
-}
+//   elementosUpload.forEach(el => {
+//     if (isResponsavel) {
+//       el.classList.remove("escondido-responsavel");
+//     } else {
+//       el.classList.add("escondido-responsavel");
+//     }
+//   });
+// }
 
 document.addEventListener('DOMContentLoaded', function () {
   const toggleButton = document.getElementById('toggleEstatisticas');
@@ -158,19 +158,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const data = {
     labels: [
-      'Red',
-      'Blue',
-      'Yellow',
-      'Green',
+      'Cachorro',
+      'Gato'
     ],
     datasets: [{
       label: 'My First Dataset',
-      data: [20, 50, 100, 90],
+      data: [34, 74],
       backgroundColor: [
-        'rgb(255, 99, 132)',
         'rgb(54, 162, 235)',
-        'rgb(255, 205, 86)',
-        'rgb(200, 205, 70)'
+        'rgb(255, 99, 132)'
       ],
       hoverOffset: 4
     }]

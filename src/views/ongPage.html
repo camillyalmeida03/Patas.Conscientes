@@ -97,39 +97,21 @@
             </div>
         </div> -->
 
-        <!-- Modal de adicionar Pet -->
         <div class="fundoModal escondido" id="fundoAdicionarPet">
             <div class="modal" id="adicionarPet">
                 <button aria-label="Fechar" title="Fechar" class="fechar-modal">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                        fill="#5f6368">
-                        <path
-                            d="m287-216-69-71 192-193-192-195 69-71 194 195 192-195 69 71-192 195 192 193-69 71-192-195-194 195Z" />
-                    </svg>
                 </button>
 
-                <form action="" method="post" id="formInfoPet">
+                <form id="formInfoPet">
                     <h3>Dados do animal</h3>
 
                     <div class="inputCadastro inputArquivo">
                         <p>Foto do animal</p>
-
                         <div class="container">
-                            <input type="file" name="fotopet" id="fotopetatt" placeholder="foto do pet">
-
+                            <input type="file" name="fotopet" id="fotopetatt">
                         </div>
-
-                        <button type="button" aria-label="Escolher" title="Escolher arquivo do dispositivo"
-                            class="uploadButton"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
-                                fill="#5f6368">
-                                <path
-                                    d="M440-200h80v-167l64 64 56-57-160-160-160 160 57 56 63-63v167ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z" />
-                            </svg>
-                        </button>
-
                     </div>
 
-                    <!-- Campo nome do pet -->
                     <div class="alinharErro">
                         <input type="text" name="nome_pet" id="nomePet" class="inputCadastro" placeholder="Nome">
                         <p id="erroNomePetAdt" class="error-message"></p>
@@ -141,19 +123,15 @@
                     </div>
 
                     <div class="alinharDoisInput">
-
                         <select name="especie" id="especiePet" class="inputCadastro" aria-label="Espécie">
                             <option value="0">Espécie</option>
                             <option value="1">Cachorro</option>
                             <option value="2">Gato</option>
                         </select>
-
-
                         <input type="text" id="racaPet" name="raca" class="inputCadastro" placeholder="Raça">
                     </div>
 
                     <div class="alinharDoisInput">
-
                         <select name="porte" id="portePet" class="inputCadastro" aria-label="Porte">
                             <option value="0">Porte</option>
                             <option value="1">Miniatura</option>
@@ -168,9 +146,7 @@
                             <option value="1">Macho</option>
                             <option value="2">Fêmea</option>
                             <option value="3">Não informado</option>
-
                         </select>
-
                     </div>
 
                     <textarea name="sobre" id="mensagem" placeholder="Descrição" class="inputCadastro" maxlength="200"
@@ -178,7 +154,6 @@
                     <p id="contarCaracteres"><span id="contagem">0</span>/200</p>
 
                     <input type="submit" value="Adicionar" class="buttonRosa" aria-label="Adicionar">
-
                 </form>
             </div>
         </div>
@@ -325,11 +300,12 @@
 
 <script src="/public/js/barraacessibilidade.js" defer></script>
 <script src="/public/js/tema.js" defer></script>
-<!-- <script type="module" src="/public/js/Pets/cardsPet.js"></script> -->
 <script type="module" src="/src/config/ong/ongPage.js"></script>
 <script type="module" src="/public/js/modalPadrao.js"></script>
-<!-- <script type="module" src="/public/js/Pets/formpet.js"></script> -->
-<!-- <script src="/public/js/carregar_pagina.js"></script> -->
+
+<script src="/src/config/pets/formpet.js" defer></script> 
+<script type="module" src="/public/js/Pets/listarPets.js"></script>
+
 <script src="/public/js/formularios/formparceiro.js"></script>
 <script src="/public/js/formularios/validacaoFormularios.js"></script>
 

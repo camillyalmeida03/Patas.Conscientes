@@ -1,33 +1,42 @@
-// formpet.js
 document.addEventListener("DOMContentLoaded", () => {
-  const idOng = new URLSearchParams(window.location.search).get("id");
+  // 1. Tenta pegar o ID da URL atual
+  const params = new URLSearchParams(window.location.search);
+  // Se não tiver ID na URL, assume 1 (ou trate o erro redirecionando)
+  const idOng = params.get("id") || 1; 
+
+  console.log("Script formpet.js carregado. ID da ONG:", idOng);
+
   const formPet = document.getElementById("formInfoPet");
 
   if (formPet) {
     formPet.addEventListener("submit", async (e) => {
-      e.preventDefault();
+      e.preventDefault(); 
+      console.log("Submit interceptado pelo JS");
 
       const form = e.target;
 
+      // Validação básica
+      if (!form.nome_pet.value || !form.raca.value) {
+        alert("Preencha o nome e a raça!");
+        return;
+      }
+
       const body = {
         nome: form.nome_pet.value,
-        fk_idespecie: form.especie.value, 
-        fk_idraca: form.raca.value,       
-        fk_idsexopet: form.sexo.value,    
-        fk_idporte: form.porte.value,     
-        peso: form.peso.value,
-        idade: form.idade.value,
+        fk_idespecie: parseInt(form.especie.value), 
+        nomeRaca: form.raca.value, 
+        fk_idsexopet: parseInt(form.sexo.value),    
+        fk_idporte: parseInt(form.porte.value),     
+        peso: parseFloat(form.peso.value) || 0,
+        idade: parseInt(form.idade.value) || 0,
         descricao: form.sobre.value,      
-        fk_idong: parseInt(idOng) || 1,  
-        
-
-        fk_idresponsavel: 1, 
+        fk_idong: parseInt(idOng), // Usa o ID capturado no início
+        fotos: "padrao.jpg", 
         fk_idstatus: 1 
       };
 
       try {
-
-        const res = await fetch("http://localhost:6789/pets", {
+        const res = await fetch("http://localhost:6789/pets/pornome", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body),
@@ -35,39 +44,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!res.ok) {
           const erro = await res.json();
-          return alert("Erro ao salvar pet: " + (erro.message || JSON.stringify(erro)));
+          throw new Error(erro.message || "Erro ao criar pet");
         }
 
         const dataRes = await res.json();
+        const id_pet = dataRes.id || dataRes.insertId; 
 
-        const id_pet = dataRes.id_pet || dataRes.id; 
-
+        // Upload da foto
         const inputFoto = document.getElementById("fotopetatt");
-        
         if (inputFoto && inputFoto.files && inputFoto.files[0]) {
           const arquivoFoto = inputFoto.files[0];
           const formData = new FormData();
           formData.append("fotopet", arquivoFoto);
 
-          const upload = await fetch(
-            `http://localhost:6789/uploadfotopet/${id_pet}`,
-            {
+          await fetch(`http://localhost:6789/uploadfotopet/${id_pet}`, {
               method: "POST",
               body: formData,
-            }
-          );
-
-          if (!upload.ok) {
-            const erroFoto = await upload.json();
-            alert("Pet salvo, mas a foto falhou: " + erroFoto.message);
-          }
+          });
         }
 
         alert("Pet cadastrado com sucesso!");
+
+        // 3. Força o reload mantendo o ID da ONG na URL
+        // Isso garante que você volte para ongPage.html?id=31 e não perca a navegação
+        window.location.href = `ongPage.html?id=${idOng}`;
+
       } catch (err) {
         console.error(err);
-        alert("Erro inesperado: " + err.message);
+        alert("Erro: " + err.message);
       }
     });
+  } else {
+      console.error("Formulário formInfoPet não encontrado no HTML");
   }
 });
