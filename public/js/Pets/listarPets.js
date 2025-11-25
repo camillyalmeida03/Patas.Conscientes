@@ -6,24 +6,59 @@ async function carregarPets() {
     const params = new URLSearchParams(window.location.search);
     const idOngUrl = params.get("id");
 
-    const res = await fetch("http://localhost:6789/pets");
+    console.log("--- DEBUG INICIAL ---");
+    console.log("ID procurado (URL):", idOngUrl);
+
+    const res = await fetch("http://localhost:6789/pets"); 
     
     if (!res.ok) throw new Error("Erro na resposta da API");
     
     const todosOsPets = await res.json(); 
 
+    // === ÁREA DE DIAGNÓSTICO ===
+    // Isso vai mostrar no console EXATAMENTE o que o banco está mandando
+    if (todosOsPets.length > 0) {
+        console.log("--- VERIFICANDO DADOS DOS PETS ---");
+        todosOsPets.forEach((pet, index) => {
+            // Tenta achar o ID da ONG em várias propriedades comuns
+            const idEncontrado = pet.fk_idong || pet.id_ong || pet.ong_id || "NÃO ACHEI";
+            
+            console.log(`Pet #${index} (${pet.nome}): ID da ONG no banco = ${idEncontrado}`);
+            
+            // Se aparecer "NÃO ACHEI", liste todas as chaves para descobrirmos o nome certo
+            if (idEncontrado === "NÃO ACHEI") {
+                console.log("⚠️ Chaves disponíveis neste pet:", Object.keys(pet));
+            }
+        });
+    }
+    // ===========================
+
     const petsFiltrados = idOngUrl 
-      ? todosOsPets.filter(pet => pet.fk_idong == idOngUrl)
+      ? todosOsPets.filter(pet => {
+          // Normaliza os IDs para comparação segura (texto vs número)
+          // Tenta pegar o ID da propriedade fk_idong (padrão do seu informacoesPets.js)
+          const idDoBanco = pet.fk_idong; 
+          return String(idDoBanco) === String(idOngUrl);
+      })
       : todosOsPets;
 
-    // 4. Seleciona o container (Verifique se sua ongPage tem essa div!)
+    console.log(`Resultado do filtro: ${petsFiltrados.length} pets encontrados.`);
+
     const container = document.querySelector(".adotarSec");
     
     if (container) {
-        container.innerHTML = ""; // Limpa antes de adicionar
+        container.innerHTML = "";
 
         if (petsFiltrados.length === 0) {
-            container.innerHTML = "<p>Nenhum pet encontrado para esta ONG.</p>";
+            const msg = idOngUrl 
+                ? "Nenhum pet encontrado vinculado a esta ONG (ID " + idOngUrl + ")." 
+                : "Nenhum pet disponível.";
+            
+            const aviso = document.createElement("p");
+            aviso.textContent = msg;
+            aviso.style.textAlign = "center";
+            aviso.style.padding = "20px";
+            container.appendChild(aviso);
             return;
         }
 
@@ -31,29 +66,24 @@ async function carregarPets() {
             // Cria o objeto de informações
             const petInfo = InformacoesPets.fromAPI(dadoBanco);
 
-            // Ajuste robusto para o sexo (aceita tanto string quanto número do banco)
-            // Se vier 1 ou 2 do banco, mantém. Se vier String, converte.
-            if (dadoBanco.sexopet === 'Feminino') petInfo.sexo = 1;
-            else if (dadoBanco.sexopet === 'Masculino') petInfo.sexo = 2;
-            else if (typeof dadoBanco.sexopet === 'number') petInfo.sexo = dadoBanco.sexopet;
-            else petInfo.sexo = 3;
+            // Ajuste robusto para o sexo
+            if (dadoBanco.sexopet === 'Feminino' || dadoBanco.sexopet === '1') {
+                petInfo.sexo = 1; 
+            } else if (dadoBanco.sexopet === 'Masculino' || dadoBanco.sexopet === '2') {
+                petInfo.sexo = 2;
+            } else {
+                petInfo.sexo = typeof dadoBanco.sexopet === 'number' ? dadoBanco.sexopet : 3;
+            }
 
-            // Instancia o Card
             const cardObj = new CardsPets(petInfo);
-            
-            // Adiciona ao HTML
             if (cardObj.card) {
                 container.appendChild(cardObj.card);
             }
         });
-    } else {
-        console.warn("Container '.adotarSec' não encontrado nesta página.");
     }
-
   } catch (err) {
     console.error("Erro ao carregar pets:", err);
   }
 }
 
-// Executa ao carregar a página
 document.addEventListener("DOMContentLoaded", carregarPets);
