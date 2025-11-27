@@ -7,6 +7,7 @@
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
+SET SESSION sql_require_primary_key = 0; -- O comando mágico para o Aiven aceitar
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
