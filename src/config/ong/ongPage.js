@@ -79,7 +79,7 @@ const idUrl = parseInt(urlParams.get("id"));
 
 async function buscarOngPorId(id) {
   try {
-    const res = await fetch(`https://api-patas-conscientes.onrender.com/ongs/${id}`);
+    const res = await fetch(`http://localhost:6789/ongs/${id}`);
     if (!res.ok) throw new Error("Erro ao buscar ONG");
     const dados = await res.json();
     return Array.isArray(dados) ? dados[0] : dados;
@@ -110,7 +110,7 @@ function controlarBotoesDeUpload(isResponsavel, idOng) {
 
       try {
         document.body.style.cursor = "wait";
-        const res = await fetch(`https://api-patas-conscientes.onrender.com/ongs/banner/${idOng}`, {
+        const res = await fetch(`http://localhost:6789/ongs/banner/${idOng}`, {
           method: "PATCH",
           body: formData,
         });
@@ -146,7 +146,7 @@ function controlarBotoesDeUpload(isResponsavel, idOng) {
 
       try {
         document.body.style.cursor = "wait";
-        const res = await fetch(`https://api-patas-conscientes.onrender.com/ongs/foto/${idOng}`, {
+        const res = await fetch(`http://localhost:6789/ongs/foto/${idOng}`, {
           method: "PATCH",
           body: formData,
         });
@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (isExpanded) {
         if (!idUrl) return;
         try {
-          const response = await fetch("https://api-patas-conscientes.onrender.com/pets");
+          const response = await fetch("http://localhost:6789/pets");
           if (!response.ok) throw new Error("Erro ao buscar pets");
           const todosPets = await response.json();
 

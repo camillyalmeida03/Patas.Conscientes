@@ -66,7 +66,7 @@ async function carregarOngsDoBanco() {
   if (gridOng) gridOng.innerHTML = ""; 
 
   try {
-    const response = await fetch("https://api-patas-conscientes.onrender.com/ongs"); 
+    const response = await fetch("http://localhost:6789/ongs"); 
     
     if (!response.ok) throw new Error("Falha ao buscar ONGs: " + response.statusText);
 

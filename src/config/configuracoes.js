@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       const idUsuario = usuario.id || usuario.idusuario;
-      const resp = await fetch(`https://api-patas-conscientes.onrender.com/usuarios/usuario/endereco/${usuario.id}`, {
+      const resp = await fetch(`http://localhost:6789/usuarios/usuario/endereco/${usuario.id}`, {
 
         method: "PUT",
         headers: {
