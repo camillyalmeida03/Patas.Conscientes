@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
 const formData = new FormData();
-      // Adiciona os campos de texto manualmente no FormData
       formData.append("nome", form.nome_pet.value);
       formData.append("fk_idespecie", parseInt(form.especie.value));
       formData.append("nomeRaca", form.raca.value);
@@ -31,7 +30,6 @@ const formData = new FormData();
       formData.append("fk_idong", parseInt(idOng));
       formData.append("fk_idstatus", 1);
 
-      // Adiciona o arquivo se existir
       const inputFoto = document.getElementById("fotopetatt");
       if (inputFoto && inputFoto.files[0]) {
           formData.append("fotopet", inputFoto.files[0]);
@@ -40,7 +38,7 @@ const formData = new FormData();
       try {
         const res = await fetch("http://localhost:6789/pets/pornome", {
           method: "POST",
-          body: formData, // Envia o FormData direto, não JSON
+          body: formData, 
         });
 
         if (!res.ok) {

@@ -3035,41 +3035,36 @@ textarea {
     background-color: white;
     height: 3rem;
     width: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* CENTRALIZA O ÍCONE HORIZONTALMENTE */
     border-radius: 50%;
-    /* opcional: deixa o botão redondo */
-}
-
-/* Remove seletores desnecessários e garante centralização */
-.custom-file-upload {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 100%;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
     cursor: pointer;
-    transition: background-color 0.2s;
-    border-radius: inherit;
-    /* herdando se for circular */
-}
-
-.custom-file-upload:hover {
-    background-color: white;
-}
-
-.bttEditarImg svg {
-    height: 2rem;
-    width: 2rem;
-    pointer-events: none;
-    /* garante que o clique vá para o label */
+    overflow: hidden;
 }
 
 .bannerPerfilOng .bttEditarImg {
-    right: 1rem;
     bottom: 1rem;
+    right: 1rem;
+}
+
+.custom-file-upload {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.bttEditarImg svg {
+    fill: #5f6368;
+    pointer-events: none;
+}
+
+.bttEditarImg:hover {
+    background-color: #f0f0f0;
 }
 
 .h1NomeOng {
@@ -3080,7 +3075,6 @@ textarea {
     height: 10rem;
 }
 
-/* Mensagem de feedback - Estilização */
 .feedback {
     display: flex;
     position: fixed;
@@ -3425,7 +3419,7 @@ textarea {
 
 .bodyME .bttEstatisticas {
     color: white;
-    background-color: var(--cinza100); 
+    background-color: var(--cinza100);
 }
 
 .bodyME .bttEstatisticas svg {

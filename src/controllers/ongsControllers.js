@@ -92,6 +92,44 @@ const ongsController = {
         }
     },
 
+    AtualizarFoto: async (req, res) => {
+        try {
+            const { id } = req.params;
+            
+            if (!req.file) {
+                return res.status(400).json({ message: "Nenhum arquivo de imagem enviado." });
+            }
+
+            const caminhoFoto = req.file.path; // Link do Cloudinary
+
+            await model.UpdateFoto(id, caminhoFoto);
+
+            res.status(200).json({ message: "Foto de perfil atualizada!", path: caminhoFoto });
+        } catch (error) {
+            console.error("Erro ao atualizar foto:", error);
+            res.status(500).json({ message: "Erro interno ao atualizar foto." });
+        }
+    },
+
+    AtualizarBanner: async (req, res) => {
+        try {
+            const { id } = req.params;
+
+            if (!req.file) {
+                return res.status(400).json({ message: "Nenhum arquivo de banner enviado." });
+            }
+
+            const caminhoBanner = req.file.path; // Link do Cloudinary
+
+            await model.UpdateBanner(id, caminhoBanner);
+
+            res.status(200).json({ message: "Banner atualizado!", path: caminhoBanner });
+        } catch (error) {
+            console.error("Erro ao atualizar banner:", error);
+            res.status(500).json({ message: "Erro interno ao atualizar banner." });
+        }
+    },
+
     AtualizarResponsavel: async (req, res) => {
         try {
             const { idOng, fk_idresponsavel } = req.body;

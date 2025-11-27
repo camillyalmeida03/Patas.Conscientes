@@ -32,13 +32,10 @@ export class InformacoesPets {
   static fromAPI(data) {
     let caminhoFoto = data.fotos;
 
-    // Se não tem foto, ou se o que tem lá não parece um link nem arquivo
     if (!caminhoFoto || caminhoFoto.length < 5) {
-      caminhoFoto = "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg"; // Imagem genérica provisória
+      caminhoFoto = "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg"; 
     }
-    // Se não começa com HTTP (não é link do Cloudinary), tenta carregar local
     else if (!caminhoFoto.startsWith("http")) {
-      // Correção para não tentar carregar "Teste" como arquivo
       if (!caminhoFoto.includes(".")) {
         caminhoFoto = "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg";
       } else {

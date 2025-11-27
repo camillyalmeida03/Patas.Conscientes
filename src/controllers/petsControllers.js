@@ -53,10 +53,8 @@ const petsController = {
                 fk_idong, peso, idade, descricao, fk_idstatus
             } = request.body;
 
-            // Pega a URL da imagem do Cloudinary ou define padrão
-            let fotoUrl = request.file ? request.file.path : "padrao.jpg";
+            let fotoUrl = request.file ? request.file.path : null;
 
-            // Validação básica
             if (!nomeRaca) {
                 console.log("Erro: nomeRaca está faltando");
                 return response.status(400).json({ message: "O campo 'nomeRaca' é obrigatório." });
