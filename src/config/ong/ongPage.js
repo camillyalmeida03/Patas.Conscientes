@@ -50,6 +50,7 @@ class AdicionarBotao {
   botaoAdicionar() {
     // SÓ CRIA O BOTÃO SE A PESSOA FOR RESPONSÁVEL
     if (!this.isResponsavel) {
+        // Lógica opcional se não for responsável
     }
 
     this.bttAdicionar = document.querySelector(".bttAdicionar");
@@ -97,7 +98,7 @@ async function preencherPagina() {
   }
 
   const usuarioLogado = JSON.parse(localStorage.getItem('usuario'));
-  const ongSalva = JSON.parse(localStorage.getItem('ong'));
+  // const ongSalva = JSON.parse(localStorage.getItem('ong')); // Não está sendo usado
 
   const idResponsavelOng = ong.fk_idresponsavel;
 
@@ -140,145 +141,113 @@ async function preencherPagina() {
   // carregarPetsDaOng(idUrl, ong.nome);
 }
 
-// function controlarBotoesDeUpload(isResponsavel) {
-//   const elementosUpload = document.querySelectorAll(".uploadButton, .inputArquivo");
+// CÓDIGOS COMENTADOS ANTERIORES MANTIDOS AQUI CASO PRECISE
+// function controlarBotoesDeUpload(isResponsavel) { ... }
+// document.addEventListener("DOMContentLoaded", () => { ... Lógica dos modais ... });
+// async function carregarPetsDaOng(idOng, nomeOng) { ... }
 
-//   elementosUpload.forEach(el => {
-//     if (isResponsavel) {
-//       el.classList.remove("escondido-responsavel");
-//     } else {
-//       el.classList.add("escondido-responsavel");
-//     }
-//   });
-// }
 
+// --- BLOCO PRINCIPAL E ÚNICO DE INICIALIZAÇÃO ---
 document.addEventListener('DOMContentLoaded', function () {
+  // 1. Preenche as informações da ONG
+  preencherPagina();
+
+  // 2. Configura o botão de estatísticas
   const toggleButton = document.getElementById('toggleEstatisticas');
   const statisticsDiv = document.getElementById('divEstatisticas');
-
-  const data = {
-    labels: [
-      'Cachorro',
-      'Gato'
-    ],
-    datasets: [{
-      label: 'My First Dataset',
-      data: [34, 74],
-      backgroundColor: [
-        'rgb(54, 162, 235)',
-        'rgb(255, 99, 132)'
-      ],
-      hoverOffset: 4
-    }]
-  };
-
-  // Configuração do seu gráfico
-  const config = {
-    type: 'pie',
-    data: data,
-    options: {
-      responsive: false,
-      maintainAspectRatio: false, // Ignora a proporção original do canvas
-    }
-  };
-
+  
+  // Variável para armazenar a instância do gráfico
   let chartInstance = null;
 
   if (toggleButton && statisticsDiv) {
-    toggleButton.addEventListener('click', function () {
+    toggleButton.addEventListener('click', async function () {
       statisticsDiv.classList.toggle('aberto');
-
       toggleButton.classList.toggle('aberto');
 
       const isExpanded = toggleButton.classList.contains('aberto');
       toggleButton.setAttribute('aria-expanded', isExpanded);
 
       if (isExpanded) {
-        const ctx = document.getElementById('graficoDadosOng');
+        // --- LÓGICA DE BUSCA DE DADOS ---
+        const urlParams = new URLSearchParams(window.location.search);
+        const idUrl = parseInt(urlParams.get("id"));
 
-        if (chartInstance) {
-          chartInstance.destroy();
+        if (!idUrl) return;
+
+        try {
+          // A. Busca todos os pets
+          const response = await fetch("http://localhost:6789/pets");
+          if (!response.ok) throw new Error("Erro ao buscar pets");
+          
+          const todosPets = await response.json();
+
+          // B. Filtra: Pets desta ONG E que estão Disponíveis
+          const petsDaOng = todosPets.filter(pet => {
+            // Verifica o ID da ONG (testa as duas possibilidades de nome da coluna)
+            const pertenceOng = (pet.fk_idong === idUrl || pet.id_ong_fk === idUrl);
+            // Verifica status (case-insensitive para segurança)
+            const disponivel = pet.status && pet.status.toLowerCase() === 'disponível'; 
+            return pertenceOng && disponivel;
+          });
+
+          // C. Conta por espécie
+          const qtdCachorros = petsDaOng.filter(p => p.especie && p.especie.toLowerCase() === 'cachorro').length;
+          const qtdGatos = petsDaOng.filter(p => p.especie && p.especie.toLowerCase() === 'gato').length;
+          
+          console.log(`Estatísticas: ${qtdCachorros} cães, ${qtdGatos} gatos.`);
+
+          // D. Configura o Gráfico com os dados reais
+          const ctx = document.getElementById('graficoDadosOng');
+
+          // Se já existir um gráfico, destrói antes de criar o novo
+          if (chartInstance) {
+            chartInstance.destroy();
+          }
+
+          const data = {
+            labels: ['Cachorro', 'Gato'],
+            datasets: [{
+              label: 'Pets Disponíveis',
+              data: [qtdCachorros, qtdGatos],
+              backgroundColor: [
+                'rgb(54, 162, 235)', // Azul
+                'rgb(255, 99, 132)'  // Rosa
+              ],
+              hoverOffset: 4
+            }]
+          };
+
+          const config = {
+            type: 'pie',
+            data: data,
+            options: {
+              responsive: false,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                    position: 'bottom'
+                },
+                title: {
+                    display: true,
+                    text: `Total: ${qtdCachorros + qtdGatos} pets disponíveis`
+                }
+              }
+            }
+          };
+
+          chartInstance = new Chart(ctx, config);
+
+        } catch (error) {
+          console.error("Erro ao carregar estatísticas:", error);
         }
 
-        chartInstance = new Chart(ctx, config);
-
-      } else if (chartInstance) {
-        chartInstance.destroy();
-        chartInstance = null;
+      } else {
+        // Se fechar a div, destrói o gráfico
+        if (chartInstance) {
+          chartInstance.destroy();
+          chartInstance = null;
+        }
       }
     });
   }
 });
-
-// document.addEventListener("DOMContentLoaded", () => {
-//     const botaoAdicionar = document.getElementById("abrirModalAdicionar"); 
-//     const botaoAdicionarPet = document.getElementById("botaoAdicionarPet");
-//     const fecharModais = document.querySelectorAll(".fechar-modal");
-
-//     const modalEscolha = document.getElementById("fundoAdicionarModal");
-//     const modalAdicionarPet = document.getElementById("fundoAdicionarPet");
-
-//     if (botaoAdicionar) {
-//         botaoAdicionar.addEventListener("click", () => {
-//             if (modalEscolha) {
-//                 modalEscolha.classList.remove("escondido");
-//             }
-//         });
-//     }
-
-//     fecharModais.forEach(btn => {
-//         btn.addEventListener("click", () => {
-//             if (modalEscolha) {
-//                 modalEscolha.classList.add("escondido");
-//             }
-//             if (modalAdicionarPet) {
-//                 modalAdicionarPet.classList.add("escondido");
-//             }
-//         });
-//     });
-
-//     if (botaoAdicionarPet) {
-//         botaoAdicionarPet.addEventListener("click", () => {
-//             if (modalEscolha) {
-//                 modalEscolha.classList.add("escondido");
-//             }
-//             if (modalAdicionarPet) {
-//                 modalAdicionarPet.classList.remove("escondido"); 
-//             }
-//         });
-//     }
-// });
-
-// async function carregarPetsDaOng(idOng, nomeOng) {
-//     try {
-//         const res = await fetch("http://localhost:6789/pets"); 
-//         if(!res.ok) return;
-
-//         const todosPets = await res.json();
-
-//         const petsDaOng = todosPets.filter(p => p.fk_idong === idOng || p.id_ong_fk === idOng);
-
-//         const container = document.querySelector(".adotarSec");
-//         if(container) container.innerHTML = "";
-
-//         if(petsDaOng.length === 0) {
-//             document.getElementById("petsDisponiveis").textContent = "Nenhum pet disponível no momento";
-//             return;
-//         }
-
-//         document.getElementById("petsDisponiveis").textContent = `${petsDaOng.length} pets disponíveis`;
-
-//         petsDaOng.forEach(pet => {
-//              // Se tiver a classe CardsPets importada corretamente:
-//              /* const petObj = new InformacoesPets(...);
-//              const card = new CardsPets(petObj).card;
-//              container.appendChild(card);
-//              */
-//         });
-
-//     } catch (e) {
-//         console.error("Erro ao carregar pets:", e);
-//     }
-// }
-
-document.addEventListener("DOMContentLoaded", preencherPagina);

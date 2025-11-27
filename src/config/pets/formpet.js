@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         idade: parseInt(form.idade.value) || 0,
         descricao: form.sobre.value,      
         fk_idong: parseInt(idOng), // Usa o ID capturado no início
-        fotos: "padrao.jpg", 
+        fotos: null, 
         fk_idstatus: 1 
       };
 

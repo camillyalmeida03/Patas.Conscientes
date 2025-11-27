@@ -42,7 +42,7 @@ static fromAPI(data) {
     return new InformacoesPets(
         data.idpet,            
         data.fk_idong,         
-        caminhoFoto || "/public/img/fotos/padrao.jpg", // Foto padrão se vier null    
+        caminhoFoto || null, // Foto padrão se vier null    
         data.nome,            
         data.sexopet,         
         data.peso,            
