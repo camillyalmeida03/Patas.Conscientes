@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 23/11/2025 às 21:56
+-- Tempo de geração: 27/11/2025 às 19:35
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -39,7 +39,8 @@ CREATE TABLE `bairros` (
 
 INSERT INTO `bairros` (`idbairro`, `bairro`, `fk_idcidade`) VALUES
 (2, 'Jardim Novo Mundo', 2),
-(3, 'Nova Cidade', 2);
+(3, 'Nova Cidade', 2),
+(4, 'Cidade Jardim', 3);
 
 -- --------------------------------------------------------
 
@@ -58,7 +59,8 @@ CREATE TABLE `cidades` (
 --
 
 INSERT INTO `cidades` (`idcidade`, `cidade`, `fk_idestado`) VALUES
-(2, 'Matão', 26);
+(2, 'Matão', 26),
+(3, 'Goiânia', 10);
 
 -- --------------------------------------------------------
 
@@ -83,7 +85,8 @@ CREATE TABLE `enderecos` (
 
 INSERT INTO `enderecos` (`idendereco`, `fk_idcidade`, `fk_idbairro`, `fk_idrua`, `fk_idestado`, `numero`, `cep`, `complemento`) VALUES
 (2, 2, 2, 2, 26, '1098', '15997-422', '(Tico Geraldo)'),
-(3, 2, 3, 3, 26, '1098', '15991-504', '');
+(3, 2, 3, 3, 26, '1098', '15991-504', ''),
+(4, 3, 4, 4, 10, '1098', '74425-020', '');
 
 -- --------------------------------------------------------
 
@@ -95,6 +98,14 @@ CREATE TABLE `especiespet` (
   `idespeciepet` int(11) NOT NULL,
   `especie` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Despejando dados para a tabela `especiespet`
+--
+
+INSERT INTO `especiespet` (`idespeciepet`, `especie`) VALUES
+(1, 'Cachorro'),
+(2, 'Gato');
 
 -- --------------------------------------------------------
 
@@ -206,13 +217,13 @@ CREATE TABLE `pets` (
   `fk_idespecie` int(11) NOT NULL,
   `fk_idraca` int(11) NOT NULL,
   `fk_idporte` int(11) NOT NULL,
-  `fk_idresponsavel` int(11) NOT NULL,
+  `fk_idresponsavel` int(11) DEFAULT NULL,
   `fk_idong` int(11) NOT NULL,
   `peso` decimal(5,2) UNSIGNED NOT NULL,
   `idade` int(11) NOT NULL,
   `vacinado` tinyint(1) DEFAULT NULL,
   `descricao` varchar(200) DEFAULT NULL,
-  `fotos` text NOT NULL,
+  `fotos` text DEFAULT NULL,
   `data_post` datetime NOT NULL DEFAULT current_timestamp(),
   `data_att` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `fk_idstatus` int(11) NOT NULL
@@ -242,6 +253,17 @@ CREATE TABLE `portespet` (
   `porte` varchar(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Despejando dados para a tabela `portespet`
+--
+
+INSERT INTO `portespet` (`idportepet`, `porte`) VALUES
+(1, 'Miniatu'),
+(2, 'Pequeno'),
+(3, 'Médio'),
+(4, 'Grande'),
+(5, 'Gigante');
+
 -- --------------------------------------------------------
 
 --
@@ -253,6 +275,14 @@ CREATE TABLE `racaspet` (
   `raca` varchar(100) NOT NULL,
   `fk_idespeciepet` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Despejando dados para a tabela `racaspet`
+--
+
+INSERT INTO `racaspet` (`idracapet`, `raca`, `fk_idespeciepet`) VALUES
+(1, 'Sem raça', 1),
+(3, 'Siamês', 2);
 
 -- --------------------------------------------------------
 
@@ -297,7 +327,8 @@ CREATE TABLE `ruas` (
 
 INSERT INTO `ruas` (`idrua`, `rua`, `fk_idbairro`) VALUES
 (2, 'Avenida Dario Geraldo', 2),
-(3, 'Avenida Oneida Travassos Dourado', 3);
+(3, 'Avenida Oneida Travassos Dourado', 3),
+(4, 'Rua da Saúde', 4);
 
 -- --------------------------------------------------------
 
@@ -330,6 +361,15 @@ CREATE TABLE `sexospet` (
   `sexopet` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Despejando dados para a tabela `sexospet`
+--
+
+INSERT INTO `sexospet` (`idsexopet`, `sexopet`) VALUES
+(1, 'Macho'),
+(2, 'Fêmea'),
+(3, 'Não informado');
+
 -- --------------------------------------------------------
 
 --
@@ -340,6 +380,13 @@ CREATE TABLE `status` (
   `idstatus` int(11) NOT NULL,
   `status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Despejando dados para a tabela `status`
+--
+
+INSERT INTO `status` (`idstatus`, `status`) VALUES
+(1, 'Disponível');
 
 -- --------------------------------------------------------
 
@@ -554,25 +601,25 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `bairros`
 --
 ALTER TABLE `bairros`
-  MODIFY `idbairro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idbairro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `cidades`
 --
 ALTER TABLE `cidades`
-  MODIFY `idcidade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idcidade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `enderecos`
 --
 ALTER TABLE `enderecos`
-  MODIFY `idendereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idendereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `especiespet`
 --
 ALTER TABLE `especiespet`
-  MODIFY `idespeciepet` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idespeciepet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `estados`
@@ -590,7 +637,7 @@ ALTER TABLE `funcionarios`
 -- AUTO_INCREMENT de tabela `ongs`
 --
 ALTER TABLE `ongs`
-  MODIFY `idong` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `idong` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de tabela `ongsfavoritadas`
@@ -602,7 +649,7 @@ ALTER TABLE `ongsfavoritadas`
 -- AUTO_INCREMENT de tabela `pets`
 --
 ALTER TABLE `pets`
-  MODIFY `idpet` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idpet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de tabela `petsfavoritados`
@@ -614,13 +661,13 @@ ALTER TABLE `petsfavoritados`
 -- AUTO_INCREMENT de tabela `portespet`
 --
 ALTER TABLE `portespet`
-  MODIFY `idportepet` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idportepet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `racaspet`
 --
 ALTER TABLE `racaspet`
-  MODIFY `idracapet` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idracapet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `redessociais`
@@ -632,13 +679,13 @@ ALTER TABLE `redessociais`
 -- AUTO_INCREMENT de tabela `responsaveis`
 --
 ALTER TABLE `responsaveis`
-  MODIFY `idresponsavel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `idresponsavel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de tabela `ruas`
 --
 ALTER TABLE `ruas`
-  MODIFY `idrua` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idrua` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `sexo`
@@ -650,13 +697,13 @@ ALTER TABLE `sexo`
 -- AUTO_INCREMENT de tabela `sexospet`
 --
 ALTER TABLE `sexospet`
-  MODIFY `idsexopet` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idsexopet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `status`
 --
 ALTER TABLE `status`
-  MODIFY `idstatus` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idstatus` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `tipos_usuario`
@@ -668,7 +715,7 @@ ALTER TABLE `tipos_usuario`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Restrições para tabelas despejadas

@@ -1,14 +1,13 @@
-
 document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
-  const idOng = params.get("id") || 1; 
+  const idOng = params.get("id") || 1;
 
 
   const formPet = document.getElementById("formInfoPet");
 
   if (formPet) {
     formPet.addEventListener("submit", async (e) => {
-      e.preventDefault(); 
+      e.preventDefault();
 
       const form = e.target;
 
@@ -17,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-const formData = new FormData();
+      const formData = new FormData();
       formData.append("nome", form.nome_pet.value);
       formData.append("fk_idespecie", parseInt(form.especie.value));
       formData.append("nomeRaca", form.raca.value);
@@ -31,13 +30,13 @@ const formData = new FormData();
 
       const inputFoto = document.getElementById("fotopetatt");
       if (inputFoto && inputFoto.files[0]) {
-          formData.append("fotopet", inputFoto.files[0]);
+        formData.append("fotopet", inputFoto.files[0]);
       }
 
       try {
         const res = await fetch("http://localhost:6789/pets/pornome", {
           method: "POST",
-          body: formData, 
+          body: formData,
         });
 
         if (!res.ok) {
@@ -54,6 +53,6 @@ const formData = new FormData();
       }
     });
   } else {
-      console.error("Formulário formInfoPet não encontrado no HTML");
+    console.error("Formulário formInfoPet não encontrado no HTML");
   }
 });
