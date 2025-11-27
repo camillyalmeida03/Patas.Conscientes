@@ -832,7 +832,6 @@ function paginacarregada() {
     if (window.innerWidth > 650) {
       cards.forEach((card) => {
         if (card.informacoesExibidas) {
-          console.log("Redimensionou - revertendo card:", card.InfoPet.nome);
           card.limparCardMaisInfo();
           card.limparCardNormal();
           card.mostrarCardNormal();

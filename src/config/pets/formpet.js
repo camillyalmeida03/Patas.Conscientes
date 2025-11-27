@@ -1,15 +1,14 @@
+
 document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
   const idOng = params.get("id") || 1; 
 
-  console.log("Script formpet.js carregado. ID da ONG:", idOng);
 
   const formPet = document.getElementById("formInfoPet");
 
   if (formPet) {
     formPet.addEventListener("submit", async (e) => {
       e.preventDefault(); 
-      console.log("Submit interceptado pelo JS");
 
       const form = e.target;
 

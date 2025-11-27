@@ -8,7 +8,6 @@ let acssCadastrar = document.getElementById("acssCadastrar");
 let acssEntrar = document.getElementById("acssEntrar");
 
 acssCadastrar.addEventListener("click", function () {
-  console.log("clique efetuado");
   event.preventDefault();
   entrarCard.style.display = "none";
   cadastroCard.style.display = "flex";

@@ -57,7 +57,6 @@ export class ModalPadrao {
   }
 
   fechar() {
-    console.log("fechando");
     this.fundoModal.classList.add("escondido");
     document.body.style.overflow = "";
 
@@ -74,7 +73,6 @@ export class ModalPadrao {
 
   // Novo método: fecha tudo de verdade, sem restaurar nada
   fecharTudo() {
-    console.log("fechando tudo");
     this.fundoModal.classList.add("escondido");
     document.body.style.overflow = "";
 

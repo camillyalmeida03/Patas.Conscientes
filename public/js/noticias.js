@@ -111,7 +111,6 @@ async function buscarNoticias(query = '') {
                 exibirNoticias(noticiasArmazenadas.slice(0, 25));
             }
         } else {
-            console.log("Nenhuma notícia encontrada.");
             document.getElementById('news-container').innerHTML = '<p>Nenhuma notícia encontrada sobre o tema pesquisado.</p>';
         }
     } catch (erro) {

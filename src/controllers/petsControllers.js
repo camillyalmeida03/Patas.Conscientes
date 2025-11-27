@@ -44,9 +44,6 @@ const petsController = {
 
     PostPeloNomeDaRaca: async (request, response) => {
         try {
-            console.log("--- CHEGOU NO CONTROLLER ---");
-            console.log("Body recebido:", request.body);
-            console.log("Arquivo recebido:", request.file);
 
             const {
                 nome, fk_idsexopet, fk_idespecie, nomeRaca, fk_idporte,

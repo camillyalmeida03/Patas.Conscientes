@@ -8,7 +8,6 @@ function paginacarregada(){
     let acssEntrar = document.getElementById("acssEntrar");
 
     acssCadastrar.addEventListener("click", function(){
-        console.log("clique efetuado")
         event.preventDefault();
         entrarCard.style.display = 'none';
         cadastroCard.style.display = 'flex';
@@ -120,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
 
                 if (response.ok && data.usuario) {
-                    // Escolha só os dados que você quer salvar
                     const usuarioSeguro = {
                         id: data.usuario.id,
                         nome: data.usuario.nome,
@@ -131,31 +129,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     localStorage.setItem("usuarioLogado", JSON.stringify(usuarioSeguro));
                     window.location.href = "/index.html";
-                    // Não é necessário reabilitar o botão aqui, pois a página será redirecionada
                 } else {
-                    // Se a resposta não for ok ou não tiver data.usuario, trata como erro de login
                     const errorMessage = data.message || "Email ou senha inválidos.";
                     
-                    // Exibe a mensagem de erro. Você pode direcionar para erro1 ou erro2
-                    // ou um campo de erro geral.
                     if (erro2) { // Exemplo: mostrar erro genérico abaixo da senha
                         erro2.textContent = errorMessage;
                     } else {
-                        // Fallback caso erro2 não exista, use um alert (embora menos ideal)
-                        // Idealmente, você teria um local específico para erros gerais do formulário.
-                        // Removi o alert() para seguir as boas práticas.
                         console.error("Erro no login:", errorMessage);
-                        // Considere adicionar um elemento de mensagem de erro geral no seu HTML
-                        // e atualizá-lo aqui.
                     }
                     
-                    // Reabilita o botão e restaura o texto original em caso de falha no login
                     loginButton.disabled = false;
                     loginButton.textContent = originalButtonText;
                 }
             } catch (err) {
                 console.error("Erro na requisição:", err);
-                if (erro2) { // Exemplo: mostrar erro genérico abaixo da senha
+                if (erro2) { 
                     erro2.textContent = "Erro ao tentar conectar. Tente novamente.";
                 } else {
                     // Fallback

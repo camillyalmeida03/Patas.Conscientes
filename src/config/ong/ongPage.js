@@ -1,4 +1,6 @@
 import { CriarElementos } from "../../../public/js/criarElementos.js";
+// 1. IMPORTAÇÃO DA CLASSE DE MENSAGEM
+import { MensagemFeedback } from "../../../public/js/formularios/mensagemFeedback.js";
 
 class Redes {
   constructor(ong) {
@@ -87,19 +89,16 @@ async function buscarOngPorId(id) {
   }
 }
 
-// --- FUNÇÃO DE UPLOAD (Apenas Lógica) ---
+// --- FUNÇÃO DE UPLOAD COM MENSAGEM PERSONALIZADA ---
 function controlarBotoesDeUpload(isResponsavel, idOng) {
   
-  // 1. Lógica de Segurança: Se não for dono, remove os botões
   if (!isResponsavel) {
     const botoes = document.querySelectorAll('.bttEditarImg');
     botoes.forEach(btn => btn.remove());
     return;
   }
 
-  // (Removi a parte que alterava o style.position aqui)
-
-  // 2. LÓGICA DO BANNER (Upload)
+  // LÓGICA DO BANNER (Upload)
   const inputBanner = document.getElementById("inputBannerOng");
   if (inputBanner) {
     inputBanner.addEventListener("change", async (e) => {
@@ -122,17 +121,20 @@ function controlarBotoesDeUpload(isResponsavel, idOng) {
         const bannerEl = document.getElementById("bannerOng");
         if (bannerEl) bannerEl.style.backgroundImage = `url('${data.path}')`;
         
-        alert("Banner atualizado!");
+        // 2. SUBSTITUIÇÃO DO ALERT DE SUCESSO
+        new MensagemFeedback("Banner atualizado com sucesso!", document.body).feedbackSucess();
+
       } catch (err) {
         console.error(err);
-        alert("Erro ao atualizar banner.");
+        // 3. SUBSTITUIÇÃO DO ALERT DE ERRO
+        new MensagemFeedback("Erro ao atualizar banner.", document.body).feedbackError();
       } finally {
         document.body.style.cursor = "default";
       }
     });
   }
 
-  // 3. LÓGICA DA FOTO DE PERFIL (Upload)
+  // LÓGICA DA FOTO DE PERFIL (Upload)
   const inputFoto = document.getElementById("fotoPerfilOng");
   if (inputFoto) {
     inputFoto.addEventListener("change", async (e) => {
@@ -155,10 +157,13 @@ function controlarBotoesDeUpload(isResponsavel, idOng) {
         const fotoEl = document.getElementById("fotoOng");
         if (fotoEl) fotoEl.style.backgroundImage = `url('${data.path}')`;
         
-        alert("Foto atualizada!");
+        // 4. SUBSTITUIÇÃO DO ALERT DE SUCESSO
+        new MensagemFeedback("Foto de perfil atualizada com sucesso!", document.body).feedbackSucess();
+        
       } catch (err) {
         console.error(err);
-        alert("Erro ao atualizar foto.");
+        // 5. SUBSTITUIÇÃO DO ALERT DE ERRO
+        new MensagemFeedback("Erro ao atualizar foto.", document.body).feedbackError();
       } finally {
         document.body.style.cursor = "default";
       }
@@ -181,13 +186,11 @@ async function preencherPagina() {
 
   const usuarioLogado = JSON.parse(localStorage.getItem('usuario'));
   
-  // --- LÓGICA DE VERIFICAÇÃO DE DONO (Corrigida) ---
+  // LÓGICA DE VERIFICAÇÃO DE DONO
   const idUserLogado = usuarioLogado ? (usuarioLogado.idusuario || usuarioLogado.id) : null;
-  // Usa o campo novo 'id_dono' (se você atualizou o service) ou tenta o responsável direto
   const idDonoDaOng = ong.id_dono || ong.fk_idresponsavel; 
 
   const isResponsavel = idUserLogado && idDonoDaOng && (Number(idUserLogado) === Number(idDonoDaOng));
-  // -------------------------------------------------
 
   const redesOng = new Redes(ong);
   redesOng.redes();

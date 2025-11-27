@@ -88,7 +88,6 @@ const ongData = localStorage.getItem("ong");
 const usuario = usuarioData ? JSON.parse(usuarioData) : null;
 const ong = ongData ? JSON.parse(ongData) : null; 
 
-console.log("Dados da ONG (ongFormatada):", ong); 
 
 const isUsuario = !!usuario; 
 const isOng = !!ong;

@@ -15,12 +15,7 @@ const GetAll = async () => {
 };
 
 const GetById = async (id) => {
-    // ADICIONADO: resp.fk_idusuario AS id_dono
-    // Isso pega o ID real do usuário que está na tabela de responsáveis
     const querySelect = 'SELECT o.idong, resp.fk_idusuario AS id_dono, o.fk_idresponsavel, o.nome, o.cnpj, o.telefone, o.descricao, o.foto, o.banner, e.idendereco, r.rua, e.numero, r.rua, e.numero, b.bairro, c.cidade, es.sigla, e.cep, e.complemento, o.comp_estatuto, o.comp_cnpj, o.email, o.senha, o.data_criacao, o.data_att, tu.tipo FROM ongs o ';
-
-    // ADICIONADO: LEFT JOIN responsaveis resp ON resp.idresponsavel = o.fk_idresponsavel
-    // Usamos LEFT JOIN para trazer a ONG mesmo se o responsável estiver nulo por algum erro
     const queryInnerJoin = 'LEFT JOIN responsaveis resp ON resp.idresponsavel = o.fk_idresponsavel INNER JOIN enderecos e ON e.idendereco = o.fk_idendereco INNER JOIN estados es ON es.idestado = e.fk_idestado INNER JOIN cidades c ON c.idcidade = e.fk_idcidade INNER JOIN bairros b ON b.idbairro = e.fk_idbairro INNER JOIN ruas r ON r.idrua = e.fk_idrua INNER JOIN tipos_usuario tu ON tu.idtipo = o.fk_idtipo '
 
     const queryWhere = 'WHERE o.idong = ?'
@@ -35,7 +30,6 @@ const Post = async (nome, cnpj, telefone, descricao, fk_idendereco, comp_estatut
     const querySelect = 'INSERT INTO ongs(nome, cnpj, telefone, descricao, fk_idendereco, comp_estatuto, comp_cnpj, email, senha, fk_idtipo) ';
     const queryValues = ' VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
-    // CORREÇÃO: Adicionado 'const'
     const querytext = querySelect + queryValues;
 
     const [result] = await banco.query(querytext, [nome, cnpj, telefone, descricao, fk_idendereco, comp_estatuto, comp_cnpj, email, senha, fk_idtipo]);
@@ -46,7 +40,6 @@ const Put = async (id, nome, telefone, descricao, fk_idendereco, email, senha, f
     const querySelect = 'UPDATE ongs SET nome = ?, telefone = ?,descricao = ?, fk_idendereco = ?, email = ?, senha = ?, foto = ?, banner = ?';
     const queryWhere = ' WHERE idong = ?';
 
-    // CORREÇÃO: Adicionado 'const'
     const querytext = querySelect + queryWhere;
 
     const [result] = await banco.query(querytext, [nome, telefone, descricao, fk_idendereco, email, senha, foto, banner, id]);
@@ -57,7 +50,6 @@ const Erase = async (id) => {
     const querySelect = 'DELETE FROM ongs';
     const queryWhere = ' WHERE idong = ?';
 
-    // CORREÇÃO: Adicionado 'const'
     const querytext = querySelect + queryWhere;
 
     const [rows] = await banco.query(querytext, [id]);
@@ -70,7 +62,6 @@ const atualizarResponsavel = async (id, fk_idresponsavel) => {
     return { id, fk_idresponsavel, linhasAfetadas: result.affectedRows };
 };
 
-// Adicione estas funções no final do arquivo, antes do module.exports
 
 const UpdateFoto = async (id, caminhoFoto) => {
     const queryText = 'UPDATE ongs SET foto = ? WHERE idong = ?';
@@ -84,5 +75,4 @@ const UpdateBanner = async (id, caminhoBanner) => {
     return result.affectedRows;
 };
 
-// Atualize o export final para incluir as novas funções
 module.exports = { GetAll, GetById, Post, Put, Erase, atualizarResponsavel, UpdateFoto, UpdateBanner };

@@ -2942,11 +2942,11 @@ textarea {
     width: 100%;
 }
 
-#modalCadOng {
+#modalCadOng, #modalCadOngPOngs {
     position: fixed;
 }
 
-#modalCadOng>div {
+#modalCadOng>div, #modalCadOngPOngs>div {
     height: 80vh;
     display: flex;
     align-items: center;
@@ -2956,12 +2956,12 @@ textarea {
     text-align: center;
 }
 
-#modalCadOng h2 {
+#modalCadOng h2, #modalCadOngPOngs h2 {
     margin-bottom: 2rem;
     color: var(--azul_claro);
 }
 
-#modalCadOng div a {
+#modalCadOng div a, #modalCadOngPOngs div a {
     font-weight: 700;
     color: var(--rosa);
     font-size: 20px;

@@ -166,4 +166,24 @@ document.addEventListener("DOMContentLoaded", function () {
             new MensagemFeedback("Erro de conexão ao enviar dados.", feedbackPai).feedbackError();
         }
     });
+
+        const modalPrecisaLogin = document.getElementById("modalCadOng");
+    const modalJaTemOng = document.getElementById("modalCadOngPOngs");
+
+    const usuarioLogado = JSON.parse(localStorage.getItem("usuario"));
+    const token = localStorage.getItem("token");
+
+    if (!token || !usuarioLogado) {
+        if (modalPrecisaLogin) {
+            modalPrecisaLogin.classList.remove("escondido");
+        }
+        return; 
+    }
+
+    if (usuarioLogado.responsavelOng === true) {
+        if (modalJaTemOng) {
+            modalJaTemOng.classList.remove("escondido");
+        }
+        return;
+    }
 });
