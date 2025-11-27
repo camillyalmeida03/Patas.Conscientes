@@ -25,8 +25,14 @@ const petsController = {
 
     Post: async (request, response) => {
         try {
-            const { nome, fk_idsexopet, fk_idespecie, fk_idraca, fk_idporte, fk_idong, peso, idade, descricao, fotos, fk_idstatus } = request.body;
+            const { nome, fk_idsexopet, fk_idespecie, fk_idraca, fk_idporte, fk_idong, peso, idade, descricao, fk_idstatus } = request.body;
 
+            // Se o upload funcionou, o link da imagem está aqui
+            // Se não enviou foto, define como null ou uma string vazia
+            let fotos = request.file ? request.file.path : null;
+
+            // Se for null, você pode definir uma imagem padrão aqui se quiser, ou deixar o front tratar
+            if (!fotos) fotos = null;
 
             const data = await model.Post(nome, fk_idsexopet, fk_idespecie, fk_idraca, fk_idporte, fk_idong, peso, idade, descricao, fotos, fk_idstatus);
             response.status(201).json(data);
@@ -38,24 +44,34 @@ const petsController = {
 
     PostPeloNomeDaRaca: async (request, response) => {
         try {
+            console.log("--- CHEGOU NO CONTROLLER ---");
+            console.log("Body recebido:", request.body);
+            console.log("Arquivo recebido:", request.file);
+
             const {
                 nome, fk_idsexopet, fk_idespecie, nomeRaca, fk_idporte,
-                fk_idong, peso, idade, descricao, fotos, fk_idstatus
+                fk_idong, peso, idade, descricao, fk_idstatus
             } = request.body;
 
+            // Pega a URL da imagem do Cloudinary ou define padrão
+            let fotoUrl = request.file ? request.file.path : "padrao.jpg";
+
+            // Validação básica
             if (!nomeRaca) {
+                console.log("Erro: nomeRaca está faltando");
                 return response.status(400).json({ message: "O campo 'nomeRaca' é obrigatório." });
             }
 
-
             const data = await model.PostPeloNomeDaRaca(
                 nome, fk_idsexopet, fk_idespecie, nomeRaca, fk_idporte,
-                fk_idong, peso, idade, descricao, fotos, fk_idstatus
+                fk_idong, peso, idade, descricao, fotoUrl, fk_idstatus
             );
 
+            console.log("Sucesso no Model:", data);
             response.status(201).json(data);
+
         } catch (error) {
-            console.error("Erro controller:", error.message);
+            console.error("ERRO NO CONTROLLER:", error);
             response.status(500).json({ message: "Falha ao executar a ação!", details: error.message });
         }
     },
@@ -66,7 +82,7 @@ const petsController = {
     //         const { id } = request.params;
     //         // ATENÇÃO: Isso pressupõe que você tem o middleware Multer configurado nas rotas para salvar o arquivo na pasta 'public/img/fotos/'
     //         // e que o arquivo vem no campo 'fotopet'.
-            
+
     //         if (!request.file) {
     //             return response.status(400).json({ message: "Nenhum arquivo enviado." });
     //         }

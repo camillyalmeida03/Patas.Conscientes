@@ -199,5 +199,3 @@ app.post("/uploadfotopet/:id", async (req, res) => {
     }
   });
 });
-
-

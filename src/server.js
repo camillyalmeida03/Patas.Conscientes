@@ -38,6 +38,8 @@ dotenv.config();
 // Puxando a porta do arquivo .env
 const Port = process.env.APP_PORT || 3000;
 
+const upload = require('./config/multerConfig.js');
+
 const app = express();
 
 app.use(cors());

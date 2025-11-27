@@ -3307,6 +3307,19 @@ textarea {
     fill: white;
 }
 
+.bodyME .bttEstatisticas {
+    color: white;
+    background-color: var(--cinza100); 
+}
+
+.bodyME .bttEstatisticas svg {
+    fill: white;
+}
+
+.bodyME .bttEstatisticas:hover {
+    background-color: var(--cinza147);
+}
+
 @media screen and (max-width: 1650px) {
     .nomIconAdotar h2 {
         font-size: 18px;

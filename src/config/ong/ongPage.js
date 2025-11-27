@@ -50,7 +50,7 @@ class AdicionarBotao {
   botaoAdicionar() {
     // SÓ CRIA O BOTÃO SE A PESSOA FOR RESPONSÁVEL
     if (!this.isResponsavel) {
-        // Lógica opcional se não for responsável
+      // Lógica opcional se não for responsável
     }
 
     this.bttAdicionar = document.querySelector(".bttAdicionar");
@@ -141,22 +141,17 @@ async function preencherPagina() {
   // carregarPetsDaOng(idUrl, ong.nome);
 }
 
-// CÓDIGOS COMENTADOS ANTERIORES MANTIDOS AQUI CASO PRECISE
 // function controlarBotoesDeUpload(isResponsavel) { ... }
 // document.addEventListener("DOMContentLoaded", () => { ... Lógica dos modais ... });
 // async function carregarPetsDaOng(idOng, nomeOng) { ... }
 
 
-// --- BLOCO PRINCIPAL E ÚNICO DE INICIALIZAÇÃO ---
 document.addEventListener('DOMContentLoaded', function () {
-  // 1. Preenche as informações da ONG
   preencherPagina();
 
-  // 2. Configura o botão de estatísticas
   const toggleButton = document.getElementById('toggleEstatisticas');
   const statisticsDiv = document.getElementById('divEstatisticas');
-  
-  // Variável para armazenar a instância do gráfico
+
   let chartInstance = null;
 
   if (toggleButton && statisticsDiv) {
@@ -168,38 +163,31 @@ document.addEventListener('DOMContentLoaded', function () {
       toggleButton.setAttribute('aria-expanded', isExpanded);
 
       if (isExpanded) {
-        // --- LÓGICA DE BUSCA DE DADOS ---
         const urlParams = new URLSearchParams(window.location.search);
         const idUrl = parseInt(urlParams.get("id"));
 
         if (!idUrl) return;
 
         try {
-          // A. Busca todos os pets
           const response = await fetch("http://localhost:6789/pets");
           if (!response.ok) throw new Error("Erro ao buscar pets");
-          
+
           const todosPets = await response.json();
 
-          // B. Filtra: Pets desta ONG E que estão Disponíveis
           const petsDaOng = todosPets.filter(pet => {
-            // Verifica o ID da ONG (testa as duas possibilidades de nome da coluna)
             const pertenceOng = (pet.fk_idong === idUrl || pet.id_ong_fk === idUrl);
-            // Verifica status (case-insensitive para segurança)
-            const disponivel = pet.status && pet.status.toLowerCase() === 'disponível'; 
+            const disponivel = pet.status && pet.status.toLowerCase() === 'disponível';
             return pertenceOng && disponivel;
           });
 
-          // C. Conta por espécie
           const qtdCachorros = petsDaOng.filter(p => p.especie && p.especie.toLowerCase() === 'cachorro').length;
           const qtdGatos = petsDaOng.filter(p => p.especie && p.especie.toLowerCase() === 'gato').length;
-          
-          console.log(`Estatísticas: ${qtdCachorros} cães, ${qtdGatos} gatos.`);
 
-          // D. Configura o Gráfico com os dados reais
+          const isDarkMode = document.body.classList.contains('bodyME');
+          const corTexto = isDarkMode ? '#ffffff' : '#555555';
+
           const ctx = document.getElementById('graficoDadosOng');
 
-          // Se já existir um gráfico, destrói antes de criar o novo
           if (chartInstance) {
             chartInstance.destroy();
           }
@@ -210,9 +198,10 @@ document.addEventListener('DOMContentLoaded', function () {
               label: 'Pets Disponíveis',
               data: [qtdCachorros, qtdGatos],
               backgroundColor: [
-                'rgb(54, 162, 235)', // Azul
-                'rgb(255, 99, 132)'  // Rosa
+                'rgb(54, 162, 235)',
+                'rgb(255, 99, 132)'
               ],
+              borderWidth: 1, // <--- Mude este valor (ex: 1 ou 0 para sem borda)
               hoverOffset: 4
             }]
           };
@@ -225,11 +214,21 @@ document.addEventListener('DOMContentLoaded', function () {
               maintainAspectRatio: false,
               plugins: {
                 legend: {
-                    position: 'bottom'
+                  position: 'bottom',
+                  labels: {
+                    color: corTexto,
+                    font: {
+                      size: 14
+                    }
+                  }
                 },
                 title: {
-                    display: true,
-                    text: `Total: ${qtdCachorros + qtdGatos} pets disponíveis`
+                  display: true,
+                  text: `Total: ${qtdCachorros + qtdGatos} pets disponíveis`,
+                  color: corTexto,
+                  font: {
+                    size: 16
+                  }
                 }
               }
             }
@@ -242,7 +241,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
       } else {
-        // Se fechar a div, destrói o gráfico
         if (chartInstance) {
           chartInstance.destroy();
           chartInstance = null;

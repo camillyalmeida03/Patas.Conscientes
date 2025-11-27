@@ -18,7 +18,7 @@ export class InformacoesPets {
     this.idOng = idOng;
     this.foto = foto;
     this.nome = nome;
-    this.sexo = sexo; 
+    this.sexo = sexo;
     this.peso = peso;
     this.idade = idade;
     this.especie = especie;
@@ -29,30 +29,37 @@ export class InformacoesPets {
     this.ongLink = ongLink;
   }
 
-static fromAPI(data) {
-    // Se data.fotos já for uma URL completa, usa ela. 
-    // Se for só nome de arquivo, concatena com o caminho da sua pasta de uploads
+  static fromAPI(data) {
     let caminhoFoto = data.fotos;
-    
-    // Exemplo: Se o banco traz só "foto1.jpg", adicione o caminho da pasta
-    if (data.fotos && !data.fotos.includes("/")) {
-        caminhoFoto = `http://localhost:6789/uploads/${data.fotos}`; // Ajuste conforme sua rota de imagens estáticas
+
+    // Se não tem foto, ou se o que tem lá não parece um link nem arquivo
+    if (!caminhoFoto || caminhoFoto.length < 5) {
+      caminhoFoto = "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg"; // Imagem genérica provisória
+    }
+    // Se não começa com HTTP (não é link do Cloudinary), tenta carregar local
+    else if (!caminhoFoto.startsWith("http")) {
+      // Correção para não tentar carregar "Teste" como arquivo
+      if (!caminhoFoto.includes(".")) {
+        caminhoFoto = "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg";
+      } else {
+        caminhoFoto = `/public/img/fotos/${caminhoFoto}`;
+      }
     }
 
     return new InformacoesPets(
-        data.idpet,            
-        data.fk_idong,         
-        caminhoFoto || null, // Foto padrão se vier null    
-        data.nome,            
-        data.sexopet,         
-        data.peso,            
-        data.idade,            
-        data.especie,          
-        data.porte,           
-        data.raca,            
-        data.descricao,        
-        data.nome_ong,         
-        `ongPage.html?id=${data.fk_idong}` // Link dinâmico para a ONG correta           
+      data.idpet,
+      data.fk_idong,
+      caminhoFoto,
+      data.nome,
+      data.sexopet,
+      data.peso,
+      data.idade,
+      data.especie,
+      data.porte,
+      data.raca,
+      data.descricao,
+      data.nome_ong,
+      `ongPage.html?id=${data.fk_idong}`
     );
-}
+  }
 }
