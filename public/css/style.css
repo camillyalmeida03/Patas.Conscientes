@@ -2597,6 +2597,122 @@ textarea {
     color: white;
 }
 
+/* ----------------------------- planos.html ----------------------------- */
+
+
+.mainPlanos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.fundoBrancoplanos {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    background-color: white;
+    border-radius: 1rem;
+    padding: 30px;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    min-width: calc(275px + 2rem);
+}
+
+.containerplano {
+    background-color: #F5F5F5;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+    height: 30rem;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.containerplano:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.03);
+}
+
+.precoPlano {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.detalhesPlano1 {
+    margin-top: 20px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.detalhesPlano2 {
+    margin-top: 20px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.listaPlanos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+}
+
+.iconcertinho {
+    padding-left: 25px;
+    background-image: url('/public/img/icons/certinho.svg');
+    background-repeat: no-repeat;
+    background-position: 0 50%;
+    background-size: 18px;
+}
+
+.iconX {
+    padding-left: 25px;
+    background-image: url('/public/img/icons/icone X.svg');
+    background-repeat: no-repeat;
+    background-position: 0 50%;
+    background-size: 18px;
+}
+
+.botaoassinarplano1 {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #e97cb1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.botaoassinarplano1:hover {
+    background-color: #ed5ca2;
+}
+
+.botaoassinarplano2 {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #60a8f0;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.botaoassinarplano2:hover {
+    background-color: #2f81d2;
+}
+
 /* ----------------------------- ongPage.html ----------------------------- */
 
 .perfilOng {
@@ -3678,6 +3794,10 @@ textarea {
 
     .container label {
         display: none;
+    }
+
+    .fundoBrancoplanos {
+        flex-direction: column;
     }
 }
 
