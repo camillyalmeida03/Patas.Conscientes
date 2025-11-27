@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       try {
-        const res = await fetch("http://localhost:6789/pets/pornome", {
+        const res = await fetch("https://api-patas-conscientes.onrender.com/pets/pornome", {
           method: "POST",
           body: formData,
         });

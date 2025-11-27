@@ -6,7 +6,7 @@ async function carregarPets() {
     const params = new URLSearchParams(window.location.search);
     const idOngUrl = params.get("id");
 
-    const res = await fetch("http://localhost:6789/pets"); 
+    const res = await fetch("https://api-patas-conscientes.onrender.com/pets"); 
     
     if (!res.ok) throw new Error("Erro na resposta da API");
     

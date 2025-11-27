@@ -4,7 +4,7 @@ import { CardsPets } from "./cardsPet.js";
 
 async function carregarTodosOsPets() {
   try {
-    const res = await fetch("http://localhost:6789/pets"); 
+    const res = await fetch("https://api-patas-conscientes.onrender.com/pets"); 
     
     if (!res.ok) throw new Error("Erro na resposta da API");
     

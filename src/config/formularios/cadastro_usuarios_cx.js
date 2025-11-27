@@ -38,12 +38,12 @@ document.addEventListener("DOMContentLoaded", function () {
             const nmr = document.getElementById("nmr").value.trim();
             const complemento = document.getElementById("complemento").value.trim();
 
-            const endpointEstado = "http://localhost:6789/estados";
-            const endpointCidade = "http://localhost:6789/cidades";
-            const endpointBairro = "http://localhost:6789/bairros";
-            const endpointRua = "http://localhost:6789/ruas";
-            const endpointEndereco = "http://localhost:6789/enderecos";
-            const endpointUsuario = "http://localhost:6789/usuarios";
+            const endpointEstado = "https://api-patas-conscientes.onrender.com/estados";
+            const endpointCidade = "https://api-patas-conscientes.onrender.com/cidades";
+            const endpointBairro = "https://api-patas-conscientes.onrender.com/bairros";
+            const endpointRua = "https://api-patas-conscientes.onrender.com/ruas";
+            const endpointEndereco = "https://api-patas-conscientes.onrender.com/enderecos";
+            const endpointUsuario = "https://api-patas-conscientes.onrender.com/usuarios";
             const contentTypeJson = { "Content-Type": "application/json" };
 
             // ------------------- CRIAÇÕES EM CADEIA -------------------
