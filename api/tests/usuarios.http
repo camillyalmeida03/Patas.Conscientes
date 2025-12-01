@@ -1,3 +1,0 @@
-### Encontrando usuario por ID
-GET http://localhost:4501/usuarios/25
-
