@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+
 // Seta de abrir leque de opções na aba tema
 function abrir() {
   let menu = document.getElementById("menu");

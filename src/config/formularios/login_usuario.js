@@ -40,7 +40,7 @@ if (formEntrar) {
       const email = document.getElementById("emailUsuarioAdt").value.trim();
       const senha = document.getElementById("senhaLoginUsuario").value.trim();
 
-      const responseLogin = await fetch("https://api-patas-conscientes.onrender.com/login", {
+      const responseLogin = await fetch("http://localhost:6789/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, senha }),
