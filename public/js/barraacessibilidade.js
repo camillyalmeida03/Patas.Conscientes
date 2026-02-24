@@ -5,28 +5,63 @@ function paginacarregada() {
   const icon = document.getElementById("accessibilityIcon");
   const bar = document.getElementById("accessibilityBar");
 
-  icon.addEventListener("click", () => {
+  icon.addEventListener("click", (event) => {
+    event.stopPropagation();
     bar.classList.toggle("show");
   });
 
+  // Impede que clique dentro da barra feche ela
+  bar.addEventListener("click", (event) => {
+    event.stopPropagation();
+  });
+
+  // Fecha ao clicar fora
+  document.addEventListener("click", () => {
+    bar.classList.remove("show");
+  });
+
+  // Função para salvar o estado do vlibras entre as páginas
   const ativaVlibras = document.getElementById("vlibraS");
   const botVlibras = document.getElementById("botaoVlibras");
   const acessLibras = document.getElementById("acessLibras");
   const pluginLibras = document.getElementById("pluginLibras");
 
-  botVlibras.addEventListener("click", function () {
-    if (ativaVlibras.style.display === "none") {
-      ativaVlibras.style.display = "flex";
-      acessLibras.style.display = "flex";
-      pluginLibras.style.display = "flex"; // Mostra a DIV
+  // Função para ativar
+  function ativarVlibras() {
+    ativaVlibras.style.display = "flex";
+    acessLibras.style.display = "flex";
+    pluginLibras.style.display = "flex";
 
-      pathbtAcss.classList.add("pathbtAcssClick");
+    localStorage.setItem("vlibrasStatus", "ativo");
+  }
+
+  // Função para desativar
+  function desativarVlibras() {
+    ativaVlibras.style.display = "none";
+    acessLibras.style.display = "none";
+    pluginLibras.style.display = "none";
+
+    localStorage.setItem("vlibrasStatus", "inativo");
+  }
+
+  // Evento do botão
+  botVlibras.addEventListener("click", function () {
+    if (ativaVlibras.style.display === "none" || ativaVlibras.style.display === "") {
+      ativarVlibras();
     } else {
-      ativaVlibras.style.display = "none";
-      acessLibras.style.display = "none";
-      pluginLibras.style.display = "none"; // Esconde a DIV
+      desativarVlibras();
     }
   });
+
+  //  Quando a página carregar, verificar estado salvo
+    const statusSalvo = localStorage.getItem("vlibrasStatus");
+
+    if (statusSalvo === "ativo") {
+      ativarVlibras();
+    } else {
+      desativarVlibras();
+    }
+  
 
   let fontSize = 16;
   // Função para aumentar o zoom

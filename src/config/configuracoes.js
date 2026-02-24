@@ -1,4 +1,4 @@
-//Este arquivo é responsável por trazer as funcionalidades da página de configurações.
+ //Este arquivo é responsável por trazer as funcionalidades da página de configurações.
 import { MensagemFeedback } from "../../public/js/formularios/mensagemFeedback.js";
 
 // Funcionalidade do aside

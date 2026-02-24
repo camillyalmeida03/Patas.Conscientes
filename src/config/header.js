@@ -221,7 +221,7 @@ export class ContaPopup {
       if (this.tipo === "usuario") {
         this.criar.createA(
           [],
-          "./configuracoes.html",
+          "/src/views/configuracoes.html",
           "Configurações da minha conta",
           "Minha conta",
           configPopup
