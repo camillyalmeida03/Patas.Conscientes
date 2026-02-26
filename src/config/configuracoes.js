@@ -47,23 +47,30 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// Seta de abrir leque de opções na aba tema
 function abrir() {
-  let menu = document.getElementById("menu");
-  let seta = document.getElementById("setaConfig");
+  const menu = document.getElementById("menu");
+  const seta = document.getElementById("setaConfig");
 
-  if(menu){
-    menu.classList.toggle(".ativo")
+  if (menu) {
+    menu.classList.toggle("ativo");
   }
 
-  if (seta.style.transform === "rotate(0deg)" || seta.style.transform === "") {
-    seta.style.transform = "rotate(90deg)";
-  } else {
-    seta.style.transform = "rotate(0deg)";
+  if (seta) {
+    if (seta.style.transform === "rotate(90deg)") {
+      seta.style.transform = "rotate(0deg)";
+    } else {
+      seta.style.transform = "rotate(90deg)";
+    }
   }
 }
 
-abrir()
+document.addEventListener("DOMContentLoaded", function () {
+  const botao = document.getElementById("temasSeta");
+
+  if (botao) {
+    botao.addEventListener("click", abrir);
+  }
+});
 
 // Verificação de alterações
 class VerificaAlt {
