@@ -52,6 +52,7 @@ function abrir() {
   const seta = document.getElementById("setaConfig");
 
   if (menu) {
+    console.log(menu)
     menu.classList.toggle("ativo");
   }
 

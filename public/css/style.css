@@ -601,7 +601,7 @@ button {
 }
 
 .ativo {
-    display: flex;
+    display: flex !important;
 }
 
 .contaPopup.ativo {
