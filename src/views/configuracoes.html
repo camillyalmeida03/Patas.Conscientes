@@ -18,7 +18,7 @@
 
 <body>
   <header id="headerIndex">
-      <script type="module" src="/src/config/header.js"></script>
+    <script type="module" src="/src/config/header.js"></script>
   </header>
 
   <section class="caminho">
@@ -45,6 +45,13 @@
       <!-- Linha divisória -->
       <div class="linha"></div>
 
+      <!-- Botão que altera para configurações de acessibilidade -->
+      <button type="button" title="Ativar/Desativar barra de acessibilidade" id="toggleBttBA"
+        class="buttonConfig">Acessibilidade</button>
+
+      <!-- Linha divisória -->
+      <div class="linha"></div>
+
       <!-- Botão que altera para políticas do site -->
       <button type="button" title="Acessar Políticas do site" id="politicasConta" class="buttonConfig">Políticas do
         site</button>
@@ -53,8 +60,7 @@
       <div class="linha"></div>
 
       <!-- Mudar Tema -->
-      <div class="conjuntoOpcoesTema"> <button title="abrir opções de tema" class="buttonConfig"
-          id="temasSeta">
+      <div class="conjuntoOpcoesTema"> <button title="abrir opções de tema" class="buttonConfig" id="temasSeta">
           Temas
 
           <svg version="1.1" id="setaConfig" xmlns="http://www.w3.org/2000/svg"
@@ -70,6 +76,8 @@
           <button class="temas" id="modoEscuroConfig">Escuro</button>
         </div>
       </div>
+
+
     </aside>
 
     <div class="linhaRow"></div>
@@ -233,6 +241,13 @@
 
     </section>
 
+    <section id="ladoAcess" class="configConta">
+      <h2>Configurações de acessibilidade</h2>
+
+      <button type="button"></button>
+    </section>
+
+    <!-- Seção de políticas do site -->
     <section id="ladoPoliticas" class="politicasdoSite">
       <h2 class="titConfig">Políticas do site</h2>
       <p>Bem-vindo ao Patas Conscientes! Nosso compromisso é promover a adoção responsável e o bem-estar animal. Para
