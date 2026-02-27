@@ -68,7 +68,6 @@ const Post = async (fk_idcidade, fk_idbairro, fk_idrua, fk_idestado, numero, cep
   return { id: result.insertId, fk_idcidade, fk_idbairro, fk_idrua, fk_idestado, numero, cep, complemento };
 };
 
-
 const Put = async (id, fk_idcidade, fk_idbairro, fk_idrua, fk_idestado, numero, cep, complemento) => {
     const querySelect = 'UPDATE enderecos SET fk_idcidade = ?, fk_idbairro = ?, fk_idrua = ?, fk_idestado = ?, numero = ?, cep = ?, complemento = ?';
     const queryWhere = ' WHERE idendereco = ?';

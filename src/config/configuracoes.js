@@ -113,7 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const token = localStorage.getItem("token");
 
   if (!usuario || !token) {
-    // console.error("Usuário não autenticado.");
     window.location.href = "/src/views/login.html";
     return;
   }
@@ -186,6 +185,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const nmr = document.getElementById("nmr");
   nmr.value = endereco.numero || "";
   verificacao.verificacao(nmr, nmr.value, botaoSalvarAlt);
+
+  // Complemento
+  const comp = document.getElementById("complemento");
+  comp.value = endereco.complemento || "";
+  verificacao.verificacao(comp, comp.value, botaoSalvarAlt);
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -201,7 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     sessionStorage.removeItem("feedbackSucesso");
   }
-  
+
   const form = document.querySelector(".editarPerfil");
   const usuario = JSON.parse(localStorage.getItem("usuario"));
   const token = localStorage.getItem("token");
@@ -248,7 +252,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const result = await resp.json();
 
       if (resp.ok) {
-
 
         // Atualiza localStorage pra manter sincronizado
         const novoUsuario = { ...usuario };
