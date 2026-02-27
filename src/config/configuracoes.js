@@ -1,4 +1,4 @@
- //Este arquivo é responsável por trazer as funcionalidades da página de configurações.
+//Este arquivo é responsável por trazer as funcionalidades da página de configurações.
 import { MensagemFeedback } from "../../public/js/formularios/mensagemFeedback.js";
 
 // Funcionalidade do aside
@@ -47,12 +47,12 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+// Função de abrir caixinha de menu - troca de tema
 function abrir() {
   const menu = document.getElementById("menu");
   const seta = document.getElementById("setaConfig");
 
   if (menu) {
-    console.log(menu)
     menu.classList.toggle("ativo");
   }
 
@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (valorEstado) {
       estadoSelect.value = valorEstado;
     } else {
-      console.warn("⚠️ Nenhum estado encontrado no objeto usuário:", usuario.estado);
+      console.warn("Nenhum estado encontrado no objeto usuário:", usuario.estado);
     }
 
     // Atualiza validação visual ou lógica do campo
@@ -189,6 +189,19 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+
+  const mensagemSalva = sessionStorage.getItem("feedbackSucesso");
+
+  if (mensagemSalva) {
+    const msg = document.getElementById("mensagemFeedback");
+
+    if (msg) {
+      new MensagemFeedback(mensagemSalva, msg).feedbackSucess();
+    }
+
+    sessionStorage.removeItem("feedbackSucesso");
+  }
+  
   const form = document.querySelector(".editarPerfil");
   const usuario = JSON.parse(localStorage.getItem("usuario"));
   const token = localStorage.getItem("token");
@@ -235,7 +248,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const result = await resp.json();
 
       if (resp.ok) {
-        new MensagemFeedback(result.message || "Sucesso ao atualizar dados", msg).feedbackSucess();
+
 
         // Atualiza localStorage pra manter sincronizado
         const novoUsuario = { ...usuario };
@@ -255,8 +268,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
         localStorage.setItem("usuario", JSON.stringify(novoUsuario));
 
+
+
         // desabilita o botão de novo
         botaoSalvar.classList.remove("botaoSalvarHabilitado");
+
+        // salva feedback temporário
+        sessionStorage.setItem(
+          "feedbackSucesso",
+          result.message || "Sucesso ao atualizar dados"
+        );
+
+        window.location.reload();
 
       } else {
         new MensagemFeedback(result.message || "Erro ao atualizar dados.", msg).feedbackError();
