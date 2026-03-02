@@ -46,7 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-
 // Função de abrir caixinha de menu - troca de tema
 function abrir() {
   const menu = document.getElementById("menu");
@@ -108,7 +107,7 @@ class VerificaAlt {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Garante que usuario e endereco existam (você já tinha isso)
+  // Garante que usuario e endereco existam
   const usuario = JSON.parse(localStorage.getItem("usuario"));
   const token = localStorage.getItem("token");
 
@@ -270,8 +269,6 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         localStorage.setItem("usuario", JSON.stringify(novoUsuario));
-
-
 
         // desabilita o botão de novo
         botaoSalvar.classList.remove("botaoSalvarHabilitado");
