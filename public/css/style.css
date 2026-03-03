@@ -2021,14 +2021,13 @@ ol {
     background-color: var(--cinza215);
 }
 
-.conjuntoOpcoesTema {
-    position: relative;
-}
+
 
 #temasSeta {
     display: flex;
     align-items: center;
     position: relative;
+    font-size: 16px;
 }
 
 #setaConfig {
@@ -2174,13 +2173,14 @@ ol {
     font-weight: bold;
 }
 
-.bttAcess {
+.bttAcess,  #ladoAcess .tema {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1rem !important;
+    justify-content: flex-start;
 }
 
-.bttAcess .switch {
+.bttAcess .switch, #ladoAcess .tema .switch {
   position: relative;
   height: 1.5rem;
   width: 3rem;
@@ -2192,11 +2192,11 @@ ol {
   transition: all .3s ease;
 }
 
-.bttAcess .switch:checked {
+.bttAcess .switch:checked, #ladoAcess .tema .switch:checked {
   background-color: var(--rosa);
 }
 
-.bttAcess .switch::before {
+.bttAcess .switch::before, #ladoAcess .tema .switch::before {
   position: absolute;
   content: "";
   left: calc(1.5rem - 1.6rem);
@@ -2211,7 +2211,7 @@ ol {
   transition: all .3s ease;
 }
 
-.bttAcess .switch:checked:before {
+.bttAcess .switch:checked:before, #ladoAcess .tema .switch:checked:before {
   transform: translateX(100%);
   border-color: var(--rosa);
 }
@@ -4088,12 +4088,12 @@ textarea {
         width: 100%;
     }
 
-    .conjuntoOpcoesTema {
+    /* .conjuntoOpcoesTema {
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-    }
+    } */
 
     #temasSeta {
         justify-content: center;
