@@ -530,10 +530,6 @@ function criar_header() {
 
         <div class="linha"></div>
 
-        <!-- <a href="favoritos.html" title="Link que direciona para a página de favoritos do site">Favoritos</a> -->
-
-        <div class="linha"></div>
-
         <a href="configuracoes.html" title="Abrir configurações de perfil">Configurações</a>
 
         <div class="linha"></div>
@@ -669,10 +665,6 @@ function criar_header() {
     
         <a href="/src/views/cadastroong.html"
           title="Link que direciona para a página de cadastro de ONGs">Cadastrar ONG</a>
-    
-            <div class="linha"></div>
-    
-            <!-- <a href="/src/views/favoritos.html" title="Link que direciona para a página de favoritos do site">Favoritos</a> -->
     
             <div class="linha"></div>
     

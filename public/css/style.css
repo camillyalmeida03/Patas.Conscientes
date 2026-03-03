@@ -1927,9 +1927,13 @@ ol {
 }
 
 .editarPerfil {
-    display: none;
+    display: flex;
     flex-direction: column;
     width: 100%;
+}
+
+#ladoAcess {
+    display: none;
 }
 
 .editarPerfil .error-message {
@@ -2173,7 +2177,6 @@ ol {
 .negrito {
     font-weight: bold;
 }
-
 
 
 /* ----------------------------- login.html ----------------------------- */
