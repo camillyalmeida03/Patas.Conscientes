@@ -1932,10 +1932,6 @@ ol {
     width: 100%;
 }
 
-#ladoAcess {
-    display: none;
-}
-
 .editarPerfil .error-message {
     margin-left: 0;
 }
@@ -1981,7 +1977,7 @@ ol {
     padding: 0.5rem 0;
 }
 
-#ladoConfig {
+#ladoConfig, #ladoAcess {
     display: none;
     flex-direction: column;
     gap: 1.2rem;
@@ -2178,6 +2174,47 @@ ol {
     font-weight: bold;
 }
 
+.bttAcess {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.bttAcess .switch {
+  position: relative;
+  height: 1.5rem;
+  width: 3rem;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 9999px;
+  background-color: var(--cinza158);
+  transition: all .3s ease;
+}
+
+.bttAcess .switch:checked {
+  background-color: var(--rosa);
+}
+
+.bttAcess .switch::before {
+  position: absolute;
+  content: "";
+  left: calc(1.5rem - 1.6rem);
+  top: calc(1.5rem - 1.6rem);
+  display: block;
+  height: 1.6rem;
+  width: 1.6rem;
+  cursor: pointer;
+  border: 1px solid var(--cinza100);
+  border-radius: 9999px;
+  background-color: white;
+  transition: all .3s ease;
+}
+
+.bttAcess .switch:checked:before {
+  transform: translateX(100%);
+  border-color: var(--rosa);
+}
 
 /* ----------------------------- login.html ----------------------------- */
 
