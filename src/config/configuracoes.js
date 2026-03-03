@@ -4,45 +4,40 @@ import { MensagemFeedback } from "../../public/js/formularios/mensagemFeedback.j
 // Funcionalidade do aside
 class AsideConfig {
   constructor() {
-    this.ladoConfig = document.getElementById("ladoConfig");
-    this.ladoPoliticas = document.getElementById("ladoPoliticas");
-    this.editarPerfil = document.getElementById("editarPerfil")
-
-    this.configConta = document.getElementById("configConta");
-    this.politicasConta = document.getElementById("politicasConta");
-    this.perfilEdicao = document.getElementById("perfilEdicao");
+    this.secoes = {
+      config: document.getElementById("ladoConfig"),
+      politicas: document.getElementById("ladoPoliticas"),
+      acess: document.getElementById("ladoAcess"),
+      edicao: document.getElementById("editarPerfil"),
+    };
   }
 
-  acessarPoliticas() {
-    this.ladoPoliticas.style.display = "flex";
-    this.ladoConfig.style.display = "none";
-    this.editarPerfil.style.display = "none"
-  }
+  mostrar(secao) {
+    Object.values(this.secoes).forEach(el => {
+      if (el) el.style.display = "none";
+    });
 
-  acessarConfig() {
-    this.ladoPoliticas.style.display = "none";
-    this.ladoConfig.style.display = "flex";
-    this.editarPerfil.style.display = "none"
-  }
-
-  acessarEdicao() {
-    this.ladoPoliticas.style.display = "none";
-    this.ladoConfig.style.display = "none";
-    this.editarPerfil.style.display = "block"
+    if (this.secoes[secao]) {
+      this.secoes[secao].style.display =
+        secao === "edicao" ? "block" : "flex";
+    }
   }
 }
 
-// Eventos de clique nos botões do Aside
 document.addEventListener("DOMContentLoaded", () => {
-  const configConta = document.getElementById("configConta");
-  const politicasConta = document.getElementById("politicasConta");
-  const perfilEdicao = document.getElementById("perfilEdicao");
+  const aside = new AsideConfig();
 
-  const newAsideConfig = new AsideConfig();
+  document.getElementById("configConta")
+    ?.addEventListener("click", () => aside.mostrar("config"));
 
-  configConta?.addEventListener("click", () => newAsideConfig.acessarConfig());
-  politicasConta?.addEventListener("click", () => newAsideConfig.acessarPoliticas());
-  perfilEdicao?.addEventListener("click", () => newAsideConfig.acessarEdicao());
+  document.getElementById("politicasConta")
+    ?.addEventListener("click", () => aside.mostrar("politicas"));
+
+  document.getElementById("buttonAcess")
+    ?.addEventListener("click", () => aside.mostrar("acess"));
+
+  document.getElementById("perfilEdicao")
+    ?.addEventListener("click", () => aside.mostrar("edicao"));
 
 });
 
