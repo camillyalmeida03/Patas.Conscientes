@@ -29,9 +29,18 @@ class ModoEscuroEClaro {
     document.body.classList.add("bodyME");
 
     const logo = document.getElementById("logoMenu");
+    const labelTema = document.querySelector(".labelTema");
 
     if (logo) {
       logo.src = "/public/img/icons/logobranca.svg";
+    }
+
+    if (labelTema) {
+      const label = labelTema.querySelector("label");
+
+      if (label) {
+        label.textContent = "Ativar Modo Claro";
+      }
     }
   }
 
@@ -39,9 +48,19 @@ class ModoEscuroEClaro {
     document.body.classList.remove("bodyME");
 
     const logo = document.getElementById("logoMenu");
+    const labelTema = document.querySelector(".labelTema");
+
 
     if (logo) {
       logo.src = "/public/img/icons/logopreta.svg";
+    }
+
+    if (labelTema) {
+      const label = labelTema.querySelector("label");
+
+      if (label) {
+        label.textContent = "Ativar Modo Escuro";
+      }
     }
   }
 
@@ -110,21 +129,23 @@ class ModoEscuroEClaro {
     window.addEventListener("storage", () => this.sincronizarCheckboxes());
   }
 
-  observarDOM() {
-    const observer = new MutationObserver(() => this.sincronizarCheckboxes());
+  // observarDOM() {
+  //   const observer = new MutationObserver(() => this.sincronizarCheckboxes());
 
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-    });
-  }
+  //   observer.observe(document.body, {
+  //     childList: true,
+  //     subtree: true,
+  //   });
+  // }
 
   inicializar() {
     this.sincronizarCheckboxes();
     this.aplicarEventos();
-    this.observarDOM();
+    // this.observarDOM();
   }
 }
 
 // Cria uma instância da classe e ativa tudo automaticamente
-const tema = new ModoEscuroEClaro();
+document.addEventListener("DOMContentLoaded", () => {
+  const tema = new ModoEscuroEClaro();
+});
