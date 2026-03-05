@@ -61,7 +61,7 @@ class AdicionarBotao {
     this.botaoAdd = this.criarElemento.createElement(
       "button",
       "buttonRosa",
-      "Adicionar",
+      "Adicionar PET",
       this.bttAdicionar,
       null
     );
@@ -89,7 +89,7 @@ async function buscarOngPorId(id) {
   }
 }
 
-// --- FUNÇÃO DE UPLOAD COM MENSAGEM PERSONALIZADA ---
+// upload
 function controlarBotoesDeUpload(isResponsavel, idOng) {
   
   if (!isResponsavel) {
@@ -98,7 +98,7 @@ function controlarBotoesDeUpload(isResponsavel, idOng) {
     return;
   }
 
-  // LÓGICA DO BANNER (Upload)
+  // Upload Banner
   const inputBanner = document.getElementById("inputBannerOng");
   if (inputBanner) {
     inputBanner.addEventListener("change", async (e) => {
@@ -121,12 +121,11 @@ function controlarBotoesDeUpload(isResponsavel, idOng) {
         const bannerEl = document.getElementById("bannerOng");
         if (bannerEl) bannerEl.style.backgroundImage = `url('${data.path}')`;
         
-        // 2. SUBSTITUIÇÃO DO ALERT DE SUCESSO
         new MensagemFeedback("Banner atualizado com sucesso!", document.body).feedbackSucess();
 
       } catch (err) {
         console.error(err);
-        // 3. SUBSTITUIÇÃO DO ALERT DE ERRO
+        
         new MensagemFeedback("Erro ao atualizar banner.", document.body).feedbackError();
       } finally {
         document.body.style.cursor = "default";
@@ -134,7 +133,6 @@ function controlarBotoesDeUpload(isResponsavel, idOng) {
     });
   }
 
-  // LÓGICA DA FOTO DE PERFIL (Upload)
   const inputFoto = document.getElementById("fotoPerfilOng");
   if (inputFoto) {
     inputFoto.addEventListener("change", async (e) => {
@@ -157,12 +155,10 @@ function controlarBotoesDeUpload(isResponsavel, idOng) {
         const fotoEl = document.getElementById("fotoOng");
         if (fotoEl) fotoEl.style.backgroundImage = `url('${data.path}')`;
         
-        // 4. SUBSTITUIÇÃO DO ALERT DE SUCESSO
         new MensagemFeedback("Foto de perfil atualizada com sucesso!", document.body).feedbackSucess();
         
       } catch (err) {
         console.error(err);
-        // 5. SUBSTITUIÇÃO DO ALERT DE ERRO
         new MensagemFeedback("Erro ao atualizar foto.", document.body).feedbackError();
       } finally {
         document.body.style.cursor = "default";
@@ -186,7 +182,6 @@ async function preencherPagina() {
 
   const usuarioLogado = JSON.parse(localStorage.getItem('usuario'));
   
-  // LÓGICA DE VERIFICAÇÃO DE DONO
   const idUserLogado = usuarioLogado ? (usuarioLogado.idusuario || usuarioLogado.id) : null;
   const idDonoDaOng = ong.id_dono || ong.fk_idresponsavel; 
 

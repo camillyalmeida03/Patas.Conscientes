@@ -35,13 +35,11 @@ async function carregarPets() {
 
         if (petsFiltrados.length === 0) {
             const msg = idOngUrl 
-                ? "Nenhum pet encontrado vinculado a esta ONG (ID " + idOngUrl + ")." 
+                ? "Nenhum pet encontrado vinculado a esta ONG ainda." 
                 : "Nenhum pet disponível.";
             
             const aviso = document.createElement("p");
             aviso.textContent = msg;
-            aviso.style.textAlign = "center";
-            aviso.style.padding = "20px";
             container.appendChild(aviso);
             return;
         }

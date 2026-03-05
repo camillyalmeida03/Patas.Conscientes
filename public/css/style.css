@@ -1452,6 +1452,10 @@ footer .listasFooter a:hover {
     padding-left: 2%;
 }
 
+.adotarSec>p {
+    margin-left: 2rem;
+}
+
 .adotarMiniCard {
     display: flex;
     flex-direction: column;
@@ -3195,6 +3199,14 @@ textarea {
     overflow: hidden !important;
 }
 
+.bttAdicionar {
+    width: 100%;
+}
+
+.bttAdicionar>button {
+    width: 100% !important;
+}
+
 
 /* -------- MODO ESCURO ------------------------------------------------------------------------------------------------------- */
 
@@ -3691,6 +3703,10 @@ textarea {
         right: 1rem;
         bottom: 2rem;
     }
+
+    .adotarSec>p {
+        margin-left: 0;
+    }
 }
 
 /* responsividade em dispositivos até 800px de largura  */
@@ -3980,7 +3996,7 @@ textarea {
         width: 100%;
     }
 
-    #ladoAcess .bttAcess{
+    #ladoAcess .bttAcess {
         flex-direction: column;
         justify-content: center;
         text-align: center;
