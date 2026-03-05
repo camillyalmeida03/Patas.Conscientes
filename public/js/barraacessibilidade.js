@@ -2,7 +2,41 @@ window.addEventListener("load", paginacarregada); //a página espera o javascrip
 
 function paginacarregada() {
   // Função para mostrar/ocultar a barra de acessibilidade
-  const icon = document.getElementById("accessibilityIcon");
+const checkboxBarra = document.querySelector(".bttAcess input");
+const icon = document.getElementById("accessibilityIcon");
+
+const estadoSalvo = localStorage.getItem("barraAcessibilidade");
+
+// controla visibilidade do ícone em qualquer página
+if (icon) {
+  if (estadoSalvo === "inativa") {
+    icon.style.display = "none";
+  } else {
+    icon.style.display = "flex";
+  }
+}
+
+// só adiciona evento se o checkbox existir (página de config)
+if (checkboxBarra) {
+
+  if (estadoSalvo === "inativa") {
+    checkboxBarra.checked = false;
+  } else {
+    checkboxBarra.checked = true;
+  }
+
+  checkboxBarra.addEventListener("change", () => {
+    if (checkboxBarra.checked) {
+      localStorage.setItem("barraAcessibilidade", "ativa");
+      if (icon) icon.style.display = "flex";
+    } else {
+      localStorage.setItem("barraAcessibilidade", "inativa");
+      if (icon) icon.style.display = "none";
+    }
+  });
+
+}
+
   const bar = document.getElementById("accessibilityBar");
 
   icon.addEventListener("click", (event) => {
@@ -54,14 +88,14 @@ function paginacarregada() {
   });
 
   //  Quando a página carregar, verificar estado salvo
-    const statusSalvo = localStorage.getItem("vlibrasStatus");
+  const statusSalvo = localStorage.getItem("vlibrasStatus");
 
-    if (statusSalvo === "ativo") {
-      ativarVlibras();
-    } else {
-      desativarVlibras();
-    }
-  
+  if (statusSalvo === "ativo") {
+    ativarVlibras();
+  } else {
+    desativarVlibras();
+  }
+
 
   let fontSize = 16;
   // Função para aumentar o zoom
@@ -95,6 +129,8 @@ function paginacarregada() {
       document.getElementById("audioDesc").title = "Ativar Áudio Descrição"; // Atualiza o título do botão de volta
     }
   };
+
+
 
   // Adiciona o evento de clique ao botão
   document.getElementById("audioDesc").addEventListener("click", toggleReading);
