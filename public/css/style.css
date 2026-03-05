@@ -1977,7 +1977,8 @@ ol {
     padding: 0.5rem 0;
 }
 
-#ladoConfig, #ladoAcess {
+#ladoConfig,
+#ladoAcess {
     display: none;
     flex-direction: column;
     gap: 1.2rem;
@@ -2173,47 +2174,52 @@ ol {
     font-weight: bold;
 }
 
-.bttAcess,  #ladoAcess .tema {
+.bttAcess,
+#ladoAcess .tema {
     display: flex;
     align-items: center;
     gap: 1rem !important;
     justify-content: flex-start;
 }
 
-.bttAcess .switch, #ladoAcess .tema .switch {
-  position: relative;
-  height: 1.5rem;
-  width: 3rem;
-  cursor: pointer;
-  appearance: none;
-  -webkit-appearance: none;
-  border-radius: 9999px;
-  background-color: var(--cinza158);
-  transition: all .3s ease;
+.bttAcess .switch,
+#ladoAcess .tema .switch {
+    position: relative;
+    height: 1.5rem;
+    width: 3rem;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    border-radius: 9999px;
+    background-color: var(--cinza158);
+    transition: all .3s ease;
 }
 
-.bttAcess .switch:checked, #ladoAcess .tema .switch:checked {
-  background-color: var(--rosa);
+.bttAcess .switch:checked,
+#ladoAcess .tema .switch:checked {
+    background-color: var(--rosa);
 }
 
-.bttAcess .switch::before, #ladoAcess .tema .switch::before {
-  position: absolute;
-  content: "";
-  left: calc(1.5rem - 1.6rem);
-  top: calc(1.5rem - 1.6rem);
-  display: block;
-  height: 1.6rem;
-  width: 1.6rem;
-  cursor: pointer;
-  border: 1px solid var(--cinza100);
-  border-radius: 9999px;
-  background-color: white;
-  transition: all .3s ease;
+.bttAcess .switch::before,
+#ladoAcess .tema .switch::before {
+    position: absolute;
+    content: "";
+    left: calc(1.5rem - 1.6rem);
+    top: calc(1.5rem - 1.6rem);
+    display: block;
+    height: 1.6rem;
+    width: 1.6rem;
+    cursor: pointer;
+    border: 1px solid var(--cinza100);
+    border-radius: 9999px;
+    background-color: white;
+    transition: all .3s ease;
 }
 
-.bttAcess .switch:checked:before, #ladoAcess .tema .switch:checked:before {
-  transform: translateX(100%);
-  border-color: var(--rosa);
+.bttAcess .switch:checked:before,
+#ladoAcess .tema .switch:checked:before {
+    transform: translateX(100%);
+    border-color: var(--rosa);
 }
 
 /* ----------------------------- login.html ----------------------------- */
@@ -2982,11 +2988,13 @@ textarea {
     width: 100%;
 }
 
-#modalCadOng, #modalCadOngPOngs {
+#modalCadOng,
+#modalCadOngPOngs {
     position: fixed;
 }
 
-#modalCadOng>div, #modalCadOngPOngs>div {
+#modalCadOng>div,
+#modalCadOngPOngs>div {
     height: 80vh;
     display: flex;
     align-items: center;
@@ -2996,12 +3004,14 @@ textarea {
     text-align: center;
 }
 
-#modalCadOng h2, #modalCadOngPOngs h2 {
+#modalCadOng h2,
+#modalCadOngPOngs h2 {
     margin-bottom: 2rem;
     color: var(--azul_claro);
 }
 
-#modalCadOng div a, #modalCadOngPOngs div a {
+#modalCadOng div a,
+#modalCadOngPOngs div a {
     font-weight: 700;
     color: var(--rosa);
     font-size: 20px;
@@ -3968,6 +3978,12 @@ textarea {
 
     #formOng {
         width: 100%;
+    }
+
+    #ladoAcess .bttAcess{
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
     }
 }
 
