@@ -43,6 +43,25 @@ const usuariosController = {
         }
     },
 
+    AtualizarFoto: async (req, res) => {
+        try {
+            const { id } = req.params;
+
+            if (!req.file) {
+                return res.status(400).json({ message: "Nenhum arquivo de imagem enviado." });
+            }
+
+            const caminhoFoto = req.file.path; // Link do Cloudinary
+
+            await model.UpdateFoto(id, caminhoFoto);
+
+            res.status(200).json({ message: "Foto de perfil atualizada!", path: caminhoFoto });
+        } catch (error) {
+            console.error("Erro ao atualizar foto:", error);
+            res.status(500).json({ message: "Erro interno ao atualizar foto." });
+        }
+    },
+
     Put: async (request, response) => {
         try {
             const { nome, telefone, fk_idsexo, senha, foto, fk_idendereco, fk_idtipo } = request.body;
@@ -64,34 +83,34 @@ const usuariosController = {
     },
 
     PutEndereco: async (request, response) => {
-    try {
-        const { id } = request.params;
-        const dados = request.body;
+        try {
+            const { id } = request.params;
+            const dados = request.body;
 
-        const resultado = await model.PutEndereco(
-            id,
-            dados.nome,
-            dados.fk_idsexo,
-            dados.estado,
-            dados.cidade,
-            dados.bairro,
-            dados.rua,
-            dados.numero,
-            dados.cep,
-            dados.complemento
-        );
+            const resultado = await model.PutEndereco(
+                id,
+                dados.nome,
+                dados.fk_idsexo,
+                dados.estado,
+                dados.cidade,
+                dados.bairro,
+                dados.rua,
+                dados.numero,
+                dados.cep,
+                dados.complemento
+            );
 
-        if (!resultado.success) {
-            return response.status(400).json({ message: resultado.message });
+            if (!resultado.success) {
+                return response.status(400).json({ message: resultado.message });
+            }
+
+            return response.status(200).json({ message: resultado.message });
+
+        } catch (error) {
+            console.error("Erro ao atualizar endereço:", error.message);
+            response.status(500).json({ message: "Erro interno ao atualizar endereço!" });
         }
-
-        return response.status(200).json({ message: resultado.message });
-
-    } catch (error) {
-        console.error("Erro ao atualizar endereço:", error.message);
-        response.status(500).json({ message: "Erro interno ao atualizar endereço!" });
-    }
-},
+    },
 
     Erase: async (request, response) => {
         try {

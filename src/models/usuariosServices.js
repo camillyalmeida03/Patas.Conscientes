@@ -1,5 +1,6 @@
 // Este arquivo implementa o CRUD da tabela usuarios, fornecendo funções assíncronas para listar, buscar por id, inserir, atualizar e excluir registros no banco de dados. 
 
+const { AtualizarFoto } = require("../controllers/ongsControllers");
 const { banco } = require("./database"); // Chamando o banco
 
 const GetAll = async () => {
@@ -59,6 +60,11 @@ const Post = async (nome, email, telefone, fk_idsexo, data_nasc, cpf, senha, fot
     }
 };
 
+const UpdateFoto = async (id, caminhoFoto) => {
+    const queryText = 'UPDATE usuarios SET foto = ? WHERE idusuario = ?';
+    const [result] = await banco.query(queryText, [caminhoFoto, id]);
+    return result.affectedRows;
+};
 
 const Put = async (id, nome, telefone, fk_idsexo, senha, foto, fk_idendereco, fk_idtipo) => {
     const queryUpdate = `
@@ -228,6 +234,7 @@ module.exports = {
     GetAll,
     GetById,
     Post,
+    UpdateFoto,
     Put,
     Erase,
     PutEndereco 

@@ -111,6 +111,8 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
+  botaoUploadFoto(usuario.id)
+
   const endereco = usuario.endereco || {};
   if (!endereco.estado) endereco.estado = {};
   const botaoSalvarAlt = document.querySelector("#botaoSalvarAlteracoes");
@@ -286,6 +288,44 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+// Upload da foto de perfil do usuário
+function botaoUploadFoto(idUsuario) {
+
+  const inputFoto = document.getElementById("fotoPerfilUsuario");
+
+  if (inputFoto) {
+    inputFoto.addEventListener("change", async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const formData = new FormData();
+      formData.append("foto", file);
+
+      try {
+        document.body.style.cursor = "wait";
+        const res = await fetch(`http://localhost:6789/usuarios/foto/${idUsuario}`, {
+          method: "PATCH",
+          body: formData,
+        });
+
+        if (!res.ok) throw new Error("Erro no upload");
+        const data = await res.json();
+
+        const fotoEl = document.getElementById("fotoUsuarioconfig");
+        if (fotoEl) fotoEl.style.backgroundImage = `url('${data.path}')`;
+
+        new MensagemFeedback("Foto de perfil atualizada com sucesso!", document.body).feedbackSucess();
+
+      } catch (err) {
+        console.error(err);
+        new MensagemFeedback("Erro ao atualizar foto.", document.body).feedbackError();
+      } finally {
+        document.body.style.cursor = "default";
+      }
+    });
+  }
+}
 
 const botaoSair = document.getElementById("sair");
 

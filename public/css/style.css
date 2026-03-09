@@ -966,6 +966,10 @@ button {
     background-repeat: no-repeat;
 }
 
+.bttEditarFotoUsuario .fotoCard{
+    position: relative !important;
+}
+
 #fotoFeed1 {
     background-image: url(/public/img/fotos/perfil1.jpg);
 }
@@ -2113,9 +2117,7 @@ ol {
     position: relative;
 }
 
-#fotoUsuarioconfig {
-    background-size: 8rem !important;
-}
+
 
 #altFotoIcon {
     display: flex;
@@ -3081,7 +3083,7 @@ textarea {
     text-align: center;
 } */
 
-.bttEditarImg {
+.bttEditarImg, .bttEditarFotoUsuario {
     position: absolute;
     z-index: 100;
     bottom: 0;
