@@ -86,10 +86,10 @@ const usuarioData = localStorage.getItem("usuario");
 const ongData = localStorage.getItem("ong");
 
 const usuario = usuarioData ? JSON.parse(usuarioData) : null;
-const ong = ongData ? JSON.parse(ongData) : null; 
+const ong = ongData ? JSON.parse(ongData) : null;
 
 
-const isUsuario = !!usuario; 
+const isUsuario = !!usuario;
 const isOng = !!ong;
 let tipo = "naoLogado";
 
@@ -123,8 +123,8 @@ export class ContaPopup {
     );
     contaPopup.style.display = "flex";
 
-    // título principal
-    this.criar.createElement("h5", ["titConfig"], "Conta", contaPopup);
+   // título principal 
+   this.criar.createElement("h5", ["titConfig"], "Conta", contaPopup);
 
     // bloco do usuário
     const usuarioPerfil = this.criar.createElement(
@@ -186,14 +186,14 @@ export class ContaPopup {
     } else {
       this.criar.createElement(
         "p",
-        [],
+        ["headerbemvindo"],
         "Bem-vindo!",
         infoUsuario,
         "nomeUsuario"
       );
       this.criar.createElement(
         "p",
-        [],
+        ["headeracesseoucrie"],
         "Acesse sua conta ou crie uma para continuar",
         infoUsuario,
         "emaildouser"
@@ -220,7 +220,7 @@ export class ContaPopup {
 
       if (this.tipo === "usuario") {
         this.criar.createA(
-          [],
+          ["minhacontatradutor"],
           "/src/views/configuracoes.html",
           "Configurações da minha conta",
           "Minha conta",
@@ -230,7 +230,7 @@ export class ContaPopup {
           const idDaOng = ong.id || ong.idong;
 
           this.criar.createA(
-            [],
+            ["headerpainelong"],
             `./ongPage.html?id=${idDaOng}`,
             "Acessar página de administração da ONG",
             "Painel da ONG",
@@ -239,7 +239,7 @@ export class ContaPopup {
         }
       } else if (this.tipo === "ong") {
         this.criar.createA(
-          [],
+          ["headerpainelong"],
           "./configuracoes.html",
           "Painel administrativo da ONG",
           "Painel da ONG",
@@ -249,7 +249,7 @@ export class ContaPopup {
 
       this.criar.createElement("div", ["linha"], "", contaPopup);
 
-     
+
       const configFinal = this.criar.createElement(
         "div",
         ["configFinal"],
@@ -259,7 +259,7 @@ export class ContaPopup {
 
       // tema
       const tema = this.criar.createElement("div", ["tema"], "", configFinal);
-      this.criar.createElement("p", [], "Tema", tema);
+      this.criar.createElement("p", ["headertema"], "Tema", tema);
 
       const label = this.criar.createElement("label", ["ui-switch"], "", tema);
       label.setAttribute("aria-label", "Alternar tema");
@@ -280,7 +280,7 @@ export class ContaPopup {
       );
 
       const botaoSair = this.criar.createButton(
-        ["vermelho", "buttonPerfil"],
+        ["vermelho", "buttonPerfil", "headersair"],
         "Sair",
         sairouentrar,
         "Sair da conta"
@@ -299,9 +299,9 @@ export class ContaPopup {
         contaPopup
       );
 
-      
-      const tema = this.criar.createElement("div", ["tema"], "", configFinal);
-      this.criar.createElement("p", [], "Tema", tema);
+
+      const tema = this.criar.createElement("div", ["tema", "headertema"], "", configFinal);
+      this.criar.createElement("p", ["headertema"], "Tema", tema);
 
       const label = this.criar.createElement("label", ["ui-switch"], "", tema);
       label.setAttribute("aria-label", "Alternar tema");
@@ -322,7 +322,7 @@ export class ContaPopup {
       );
 
       const botaoEntrar = this.criar.createButton(
-        ["verde", "buttonPerfil"],
+        ["verde", "buttonPerfil", "entrartradutor"],
         "Entrar",
         sairouentrar,
         "Entrar na conta"
@@ -334,7 +334,7 @@ export class ContaPopup {
       });
 
       const botaoCriar = this.criar.createButton(
-        ["branco", "buttonPerfil"],
+        ["branco", "buttonPerfil", "headercriarconta"],
         "Criar conta",
         sairouentrar,
         "Criar uma nova conta"
@@ -405,9 +405,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const conta = new ContaPopup(tipo);
 
+  // 👇 cria o popup já no carregamento da página
+  conta.criarPopupConta();
+
+  // 👇 deixa escondido
+  conta.popup.style.display = "none";
+
   if (abrirConfigPerfil) {
     abrirConfigPerfil.addEventListener("click", (e) => {
-      e.stopPropagation(); // pra não fechar no mesmo clique
+      e.stopPropagation();
       conta.abrirPopup();
     });
   }
@@ -432,33 +438,33 @@ function criar_header() {
     <nav>
       <div class="linksNav">
         <div id="institucional">
-          <a href="institucional.html" title="Link que direciona para a página Institucional do site"
+          <a class="instu" href="institucional.html" title="Link que direciona para a página Institucional do site"
             id="instA">Institucional</a>
           <svg id="setinha" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#ffff">
             <path d="m485.91-480-184-184L376-738.09 634.09-480 376-221.91 301.91-296l184-184Z" />
           </svg>
         </div>
-        <a href="ongs.html" title="Link que direciona para a página de ONG's parceiras do site">ONG's</a>
-        <a href="noticias.html" title="Link que direciona para a página de Notícias do site">Notícias</a>
+        <a class="ongstradutor" href="ongs.html" title="Link que direciona para a página de ONG's parceiras do site">ONG's</a>
+        <a class="noticia" href="noticias.html" title="Link que direciona para a página de Notícias do site">Notícias</a>
       </div>
 
       <div class="btnsNav">
-        <a href="adotar.html" title="Link que direciona para a página de adoção do site">Adote-me</a>
-        <a href="cadastroong.html"
+        <a class="adotemetradu" href="adotar.html" title="Link que direciona para a página de adoção do site">Adote-me</a>
+        <a class="headercadastrarong" href="cadastroong.html"
           title="Link que direciona para a página de cadastro de ONGs">Cadastrar ONG</a>
       </div>
 
       <div class="caixaInst">
-        <p><a href="institucional.html#topico1"
+        <p><a class= "sobretradutor" href="institucional.html#topico1"
             title="Link que direciona para a página Institucional do site diretamente no tópico 'Sobre nós'">Sobre
             nós</a></p>
-        <p><a href="institucional.html#topico2"
+        <p><a class="comoadotartradutor" href="institucional.html#topico2"
             title="Link que direciona para a página Institucional do site diretamente no tópico 'Como posso adotar?'">Como
             posso adotar</a></p>
-        <p><a href="institucional.html#topico3"
+        <p><a class="comoajudartradutor"  href="institucional.html#topico3"
             title="Link que direciona para a página Institucional do site diretamente no tópico 'Como posso ajudar?'">Como
             posso ajudar</a></p>
-        <p><a href="institucional.html#topico4"
+        <p><a class="integrantestradutor"href="institucional.html#topico4"
             title="Link que direciona para a página Institucional do site diretamente no tópico 'Integrantes'">Integrantes</a>
         </p>
       </div>
