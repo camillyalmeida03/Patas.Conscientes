@@ -7,6 +7,7 @@ function traduzir() {
             headerongstradutor: "ONG's",
             headernoticia: "Notícias",
             headeradoteme: "Adote-me",
+            headercadastrarong: "Cadastrar ONG",
             headertorneceumparceiro: "Torne-se um parceiro",
             headersobre: "Sobre",
             headercomoadotar: "Como posso adotar?",
@@ -17,8 +18,13 @@ function traduzir() {
             headertema: "Tema",
             headerconta: "Conta",
             headerminhaconta: "Minha conta",
+            headerpainelong: "Painel da ONG",
             headerentrar: "Entrar",
+            headersair: "Sair",
+            headerbemvindo: "Bem-vindo!",
+            headeracesseoucrie: "Acesse sua conta ou crie uma para continuar", 
             headerentrarouCadastrar: "Entrar ou Cadastrar",
+            headercriarconta:"Criar conta",
             mainconhecaopatas: "Conheça o Patas Conscientes",
             mainsitededicado: `Site dedicado a <strong>adoção</strong> de pets provindos de ONG's e abrigos da região de <strong>Araraquara -
           SP</strong>. Temos o comprimisso de reforçar está aliança de cuidado e amor entre nós, amantes de pets e
@@ -78,6 +84,7 @@ function traduzir() {
             headerongstradutor: "ONG's",
             headernoticia: "News",
             headeradoteme: "Adopt me",
+            headercadastrarong: "Register ONG",
             headertorneceumparceiro: "Become a partner",
             headersobre: "About",
             headercomoadotar: "How can I to adopt?",
@@ -88,8 +95,13 @@ function traduzir() {
             headertema: "Theme",
             headerconta: "Account",
             headerminhaconta: "My account",
+            headerpainelong: "NGO panel",
             headerentrar: "Login",
+            headersair: "Exit",
+            headerbemvindo: "Welcome!", 
+            headeracesseoucrie: "Access your account or create one to continue",
             headerentrarouCadastrar: "Login or Register",
+            headercriarconta:"Create account",
             mainconhecaopatas: "Meet the Conscious Paws",
             mainsitededicado: `Dedicated site for <strong>pet adoption</strong> from NGO's and shelters in the <strong>Araraquara - SP</strong> region. We are committed to strengthening this alliance of care and love between us, pet lovers, and our beloved animals!`,
             mainquerfazerparte: "Want to be part of it? Understand how it works:",
@@ -145,6 +157,7 @@ function traduzirClasse(classe, texto) {
     traduzirClasse("ongstradutor", idioma[idiomaselect].headerongstradutor);
     traduzirClasse("noticia", idioma[idiomaselect].headernoticia);
     traduzirClasse("adotemetradu", idioma[idiomaselect].headeradoteme);
+    traduzirClasse("headercadastrarong", idioma[idiomaselect].headercadastrarong);
     traduzirClasse("parceirotradutor", idioma[idiomaselect].headertorneceumparceiro);
     traduzirClasse("sobretradutor", idioma[idiomaselect].headersobre);
     traduzirClasse("comoadotartradutor", idioma[idiomaselect].headercomoadotar);
@@ -152,11 +165,16 @@ function traduzirClasse(classe, texto) {
     traduzirClasse("integrantestradutor", idioma[idiomaselect].headerintegrantes);
     traduzirClasse("favoritostradutor", idioma[idiomaselect].headerfavoritos);
     traduzirClasse("configtradutor", idioma[idiomaselect].headerconfiguracoes);
-    traduzirClasse("tematradutor", idioma[idiomaselect].headertema);
-    traduzirClasse("contatradutor", idioma[idiomaselect].headerconta);
+    traduzirClasse("headertema", idioma[idiomaselect].headertema);
+    traduzirClasse("titConfig", idioma[idiomaselect].headerconta);
     traduzirClasse("minhacontatradutor", idioma[idiomaselect].headerminhaconta);
+    traduzirClasse("headerpainelong", idioma[idiomaselect].headerpainelong);
+    traduzirClasse("headersair", idioma[idiomaselect].headersair);
+    traduzirClasse("headerbemvindo", idioma[idiomaselect].headerbemvindo);
+    traduzirClasse("headeracesseoucrie", idioma[idiomaselect].headeracesseoucrie);
     traduzirClasse("entrartradutor", idioma[idiomaselect].headerentrar);
     traduzirClasse("entraroucadastrartradutor", idioma[idiomaselect].headerentrarouCadastrar);
+    traduzirClasse("headercriarconta", idioma[idiomaselect].headercriarconta);
     traduzirClasse("conhecatradutor", idioma[idiomaselect].mainconhecaopatas);
     traduzirClasse("sitededicadotradutor", idioma[idiomaselect].mainsitededicado);
     traduzirClasse("querfazerpartetradutor", idioma[idiomaselect].mainquerfazerparte);
@@ -207,3 +225,6 @@ function trocaridioma(lang) {
 }
 
 window.addEventListener('DOMContentLoaded', traduzir);
+
+
+
