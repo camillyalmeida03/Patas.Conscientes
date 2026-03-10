@@ -881,10 +881,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-
 const cadastroForm = document.getElementById("cadastroUsuario");
 const verificacaoContainer = document.getElementById("verificacaoContainer");
-
 
 // Removido: const verificarCodigoBtn = document.getElementById('verificarCodigoBtn');
 // Removido: const codigoVerificacaoInput = document.getElementById('codigoVerificacao');

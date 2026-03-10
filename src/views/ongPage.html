@@ -7,7 +7,7 @@
     <meta name="description"
         content="Conheça o Patas Conscientes, uma iniciativa dedicada à adoção de pets de ONG's e abrigos de Araraquara - SP. Junte-se a nós para ajudar animais a encontrarem lares cheios de amor e cuidado. Saiba como contribuir para essa causa e veja o que estão dizendo sobre nossa missão!">
 
-        <link rel="icon" href="/public/img/icons/favicon.svg">
+    <link rel="icon" href="/public/img/icons/favicon.svg">
     <link rel="stylesheet" href="/public/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -97,29 +97,89 @@
             </div>
         </div> -->
 
+        <!-- Modal do formulário de cadastro de pet -->
         <div class="fundoModal escondido" id="fundoAdicionarPet">
+
+            <!-- Div do modal -->
             <div class="modal" id="adicionarPet">
+
+                <!-- Botão de fechar do modal -->
                 <button aria-label="Fechar" title="Fechar" class="fechar-modal">
+
+                    <!-- SVG fechar modal -->
+                    <svg height="24px" viewBox="0 -960 960 960" width="24px">
+                        <path
+                            d="m287-216-69-71 192-193-192-195 69-71 194 195 192-195 69 71-192 195 192 193-69 71-192-195-194 195Z" />
+                    </svg>
+
                 </button>
 
+                <!-- Formulário de cadastro de pet -->
                 <form id="formInfoPet">
-                    <h3>Dados do animal</h3>
 
+                    <!-- Título -->
+                    <h3>Cadastrar pet</h3>
+
+                    <!-- Campo de foto do pet -->
                     <div class="inputCadastro inputArquivo">
-                        <p>Foto do animal</p>
+
+                        <!-- Label do input -->
+                        <label>Foto do pet *</label>
+
+                        <!-- div que abriga o input -->
                         <div class="container">
-                            <input type="file" name="fotopet" id="fotopetatt">
+
+                            <!-- Input de arquivo -->
+                            <input type="file" name="fotopet" id="fotopetatt" accept=".jpg,.jpeg,.png,.webp">
+
+                            <!-- Label do botão -->
+                            <label for="fotopetatt" class="botaoUpload">
+                                Selecionar foto do pet
+                            </label>
+
+                            <!-- Span informando arquivo selecionado -->
+                            <span id="nomeArquivo">Nenhum arquivo selecionado</span>
                         </div>
                     </div>
 
                     <div class="alinharErro">
-                        <input type="text" name="nome_pet" id="nomePet" class="inputCadastro" placeholder="Nome">
+                        <input type="text" name="nome_pet" id="nomePet" class="inputCadastro" placeholder="Nome*">
                         <p id="erroNomePetAdt" class="error-message"></p>
                     </div>
 
                     <div class="alinharDoisInput">
-                        <input type="text" id="pesoPet" name="peso" class="inputCadastro" placeholder="Peso">
-                        <input type="text" id="idadePet" name="idade" class="inputCadastro" placeholder="Idade">
+                        <div class="divInputCadastro">
+                            <input type="text" id="pesoPet" class="inputCadastro" name="peso" placeholder="Peso em kg*">
+                            <span class="tooltip">
+                                <svg viewBox="0 -960 960 960">
+                                    <path
+                                        d="M423.5-703.5Q400-727 400-760t23.5-56.5Q447-840 480-840t56.5 23.5Q560-793 560-760t-23.5 56.5Q513-680 480-680t-56.5-23.5ZM420-120v-480h120v480H420Z" />
+                                </svg>
+
+                                <span class="tooltip-text">Digite apenas números. <br> Informe o peso do pet em kg. <br> Exemplo: 0,8 para pets com menos de 1 kg.</span>
+                            </span>
+
+                        </div>
+
+                        <div class="divInputCadastro" id="idadePetSel">
+                            <input type="text" id="idadePet" name="idade" class="inputCadastro"
+                                placeholder="Idade*">
+
+                            <span class="tooltip">
+                                <svg viewBox="0 -960 960 960">
+                                    <path
+                                        d="M423.5-703.5Q400-727 400-760t23.5-56.5Q447-840 480-840t56.5 23.5Q560-793 560-760t-23.5 56.5Q513-680 480-680t-56.5-23.5ZM420-120v-480h120v480H420Z" />
+                                </svg>
+
+                                <span class="tooltip-text">Digite apenas números. <br> Use anos ou meses para pets menores. <br> Exemplo: 2 (anos) ou 6 (meses).</span>
+                            </span>
+
+                        <select name="">
+                                <option value="1">Anos</option>
+                                <option value="2">Meses</option>
+                            </select>
+
+                        </div>
                     </div>
 
                     <div class="alinharDoisInput">
@@ -153,12 +213,12 @@
                         oninput="atualizarContagem();"></textarea>
                     <p id="contarCaracteres"><span id="contagem">0</span>/200</p>
 
-                    <input type="submit" value="Adicionar" class="buttonRosa" aria-label="Adicionar">
+                    <input type="submit" value="Adicionar" id="bttAddPet" class="buttonRosa" aria-label="Adicionar">
                 </form>
             </div>
         </div>
 
-        
+
         <div class="divPetOngPerfil">
             <section class="ongPerfilInfo">
                 <div class="fotoCard" id="fotoOng">

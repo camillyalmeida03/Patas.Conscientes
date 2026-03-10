@@ -1,7 +1,40 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+
+  const inputFoto = document.getElementById("fotopetatt");
+  const nomeArquivo = document.getElementById("nomeArquivo");
+
+  if (inputFoto) {
+    inputFoto.addEventListener("change", () => {
+
+      if (inputFoto.files.length > 0) {
+        nomeArquivo.textContent = inputFoto.files[0].name;
+      } else {
+        nomeArquivo.textContent = "Nenhum arquivo selecionado";
+      }
+
+    });
+  }
+
+  inputFoto.addEventListener("change", () => {
+
+    const arquivo = inputFoto.files[0];
+
+    if (!arquivo) return;
+
+    if (!arquivo.type.startsWith("image/")) {
+      alert("Selecione apenas imagens!");
+      inputFoto.value = "";
+      nomeArquivo.textContent = "Nenhum arquivo selecionado";
+      return;
+    }
+
+    nomeArquivo.textContent = arquivo.name;
+
+  });
+
   const params = new URLSearchParams(window.location.search);
   const idOng = params.get("id") || 1;
-
 
   const formPet = document.getElementById("formInfoPet");
 
@@ -29,6 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
       formData.append("fk_idstatus", 1);
 
       const inputFoto = document.getElementById("fotopetatt");
+
       if (inputFoto && inputFoto.files[0]) {
         formData.append("fotopet", inputFoto.files[0]);
       }
