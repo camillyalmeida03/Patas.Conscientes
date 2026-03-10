@@ -300,8 +300,8 @@ export class ContaPopup {
       );
 
 
-      const tema = this.criar.createElement("div", ["tema", "headertema"], "", configFinal);
-      this.criar.createElement("p", ["headertema"], "Tema", tema);
+      const tema = this.criar.createElement("div", ["tema"], "", configFinal);
+      this.criar.createElement("p", [], "Tema", tema);
 
       const label = this.criar.createElement("label", ["ui-switch"], "", tema);
       label.setAttribute("aria-label", "Alternar tema");
