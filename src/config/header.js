@@ -123,8 +123,8 @@ export class ContaPopup {
     );
     contaPopup.style.display = "flex";
 
-   // título principal 
-   this.criar.createElement("h5", ["titConfig"], "Conta", contaPopup);
+    // título principal 
+    this.criar.createElement("h5", ["titConfig"], "Conta", contaPopup);
 
     // bloco do usuário
     const usuarioPerfil = this.criar.createElement(
@@ -301,7 +301,7 @@ export class ContaPopup {
 
 
       const tema = this.criar.createElement("div", ["tema"], "", configFinal);
-      this.criar.createElement("p", [], "Tema", tema);
+      this.criar.createElement("p", ["headertema"], "Tema", tema);
 
       const label = this.criar.createElement("label", ["ui-switch"], "", tema);
       label.setAttribute("aria-label", "Alternar tema");
@@ -502,7 +502,7 @@ function criar_header() {
         </div>
 
         <ul id="ulMenu">
-          <li><a href="institucional.html#topico1"
+          <li><a class="sobretradutor" href="institucional.html#topico1"
               title="Link que direciona para a página Institucional do site diretamente no tópico 'Sobre nós'">Sobre
               nós</a></li>
           <li><a href="institucional.html#topico2"
@@ -576,33 +576,33 @@ function criar_header() {
         <nav>
           <div class="linksNav">
             <div id="institucional">
-              <a href="/src/views/institucional.html" title="Link que direciona para a página Institucional do site"
+              <a class="instu" href="/src/views/institucional.html" title="Link que direciona para a página Institucional do site"
                 id="instA">Institucional</a>
               <svg id="setinha" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#ffff">
                 <path d="m485.91-480-184-184L376-738.09 634.09-480 376-221.91 301.91-296l184-184Z" />
               </svg>
             </div>
-            <a href="/src/views/ongs.html" title="Link que direciona para a página de ONG's parceiras do site">ONG's</a>
-            <a href="/src/views/noticias.html" title="Link que direciona para a página de Notícias do site">Notícias</a>
+            <a class="ongstradutor" href="/src/views/ongs.html" title="Link que direciona para a página de ONG's parceiras do site">ONG's</a>
+            <a  class="noticia" href="/src/views/noticias.html" title="Link que direciona para a página de Notícias do site">Notícias</a>
           </div>
     
           <div class="btnsNav">
-            <a href="/src/views/adotar.html" title="Link que direciona para a página de adoção do site">Adote-me</a>
-        <a href="/src/views/cadastroong.html"
+            <a class="adotemetradu" href="/src/views/adotar.html" title="Link que direciona para a página de adoção do site">Adote-me</a>
+        <a class="headercadastrarong" href="/src/views/cadastroong.html"
           title="Link que direciona para a página de cadastro de ONGs">Cadastrar ONG</a>
           </div>
     
           <div class="caixaInst">
-            <p><a href="/src/views/institucional.html#topico1"
+            <p><a class= "sobretradutor" href="/src/views/institucional.html#topico1"
                 title="Link que direciona para a página Institucional do site diretamente no tópico 'Sobre nós'">Sobre
                 nós</a></p>
-            <p><a href="/src/views/institucional.html#topico2"
+            <p><a class="comoadotartradutor" href="/src/views/institucional.html#topico2"
                 title="Link que direciona para a página Institucional do site diretamente no tópico 'Como posso adotar?'">Como
                 posso adotar</a></p>
-            <p><a href="/src/views/institucional.html#topico3"
+            <p><a class="comoajudartradutor href="/src/views/institucional.html#topico3"
                 title="Link que direciona para a página Institucional do site diretamente no tópico 'Como posso ajudar?'">Como
                 posso ajudar</a></p>
-            <p><a href="/src/views/institucional.html#topico4"
+            <p><a class="integrantestradutor" href="/src/views/institucional.html#topico4"
                 title="Link que direciona para a página Institucional do site diretamente no tópico 'Integrantes'">Integrantes</a>
             </p>
           </div>

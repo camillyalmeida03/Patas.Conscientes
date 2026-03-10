@@ -1,5 +1,5 @@
-import { CriarElementos } from "../../../public/js/criarElementos.js"; 
-import { InformacoesOng } from "./informacoesOng.js"; 
+import { CriarElementos } from "../../../public/js/criarElementos.js";
+import { InformacoesOng } from "./informacoesOng.js";
 
 export class CardsOngs {
   constructor(InformacoesOng = null) {
@@ -7,7 +7,7 @@ export class CardsOngs {
 
     if (InformacoesOng) {
       this.InfoOng = InformacoesOng;
-      this.gerarCard(InformacoesOng); 
+      this.gerarCard(InformacoesOng);
     }
   }
 
@@ -17,7 +17,7 @@ export class CardsOngs {
 
     const cardOng = this.criarElemento.createA(
       "cardOng",
-      `ongPage.html?id=${InfoOng.id}`, 
+      `ongPage.html?id=${InfoOng.id}`,
       `Ir para a página de ${InfoOng.nome}`,
       null,
       gridOng
@@ -49,13 +49,24 @@ export class CardsOngs {
       cardOng
     );
     this.criarElemento.createElement("h2", [], InfoOng.nome, descOng);
-    
-    const textoDescricao = InfoOng.descricao.length > 80 
-        ? InfoOng.descricao.substring(0, 80) + "..." 
-        : InfoOng.descricao || "Sem descrição.";
-        
+
+    const textoDescricao = InfoOng.descricao.length > 80
+      ? InfoOng.descricao.substring(0, 80) + "..."
+      : InfoOng.descricao || "Sem descrição.";
+
     this.criarElemento.createElement("p", [], textoDescricao, descOng);
-    this.criarElemento.createElement("p", "cidadeOng", InfoOng.cidade, descOng);
+
+    const cidadeDiv = this.criarElemento.createElement("div", "cidadeDiv", null, descOng);
+    var idiomaselect = localStorage.getItem('idiomaselect');
+    if (idiomaselect === "pt") {
+
+      this.criarElemento.createElement("p", "ongscity", "Cidade: ", cidadeDiv);
+    } else {
+
+      this.criarElemento.createElement("p", "ongscity", "City: ", cidadeDiv);
+    }
+    this.criarElemento.createElement("span", "cidadeOng", InfoOng.cidade, cidadeDiv);
+
 
     return cardOng;
   }
@@ -63,22 +74,22 @@ export class CardsOngs {
 
 async function carregarOngsDoBanco() {
   const gridOng = document.querySelector(".gridOng");
-  if (gridOng) gridOng.innerHTML = ""; 
+  if (gridOng) gridOng.innerHTML = "";
 
   try {
-    const response = await fetch("http://localhost:6789/ongs"); 
-    
+    const response = await fetch("http://localhost:6789/ongs");
+
     if (!response.ok) throw new Error("Falha ao buscar ONGs: " + response.statusText);
 
     const ongsDoBanco = await response.json();
 
     if (ongsDoBanco.length === 0) {
-        if (gridOng) gridOng.innerHTML = "<p>Nenhuma ONG cadastrada.</p>";
-        return;
+      if (gridOng) gridOng.innerHTML = "<p>Nenhuma ONG cadastrada.</p>";
+      return;
     }
 
     ongsDoBanco.forEach((ong) => {
-      const ongInfo = InformacoesOng.fromAPI(ong); 
+      const ongInfo = InformacoesOng.fromAPI(ong);
       new CardsOngs(ongInfo);
     });
 

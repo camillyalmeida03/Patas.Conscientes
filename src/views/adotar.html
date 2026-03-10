@@ -27,7 +27,7 @@
     <p><a href="/index.html" class="link" title="Link que direciona para a página Inicial">Início</a> | Adote-me</p>
   </nav>
 
-  <h1 class="azul centro">Adotar</h1>
+  <h1 class="azul centro adotartittle">Adotar</h1>
 
   <main class="mainAdotar">
 
@@ -42,7 +42,7 @@
     <aside class="filtro" id="filtro">
     <div class="botFiltro">
 
-        <h2 class="h2P">Filtros</h2>
+        <h2 class="h2P adotarfilter">Filtros</h2>
 
         <button title="Fechar filtros" id="fecharFiltros" onclick="fecharFiltros()" aria-label="Fechar filtros">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#5f6368">
@@ -54,7 +54,7 @@
       </div>
 
     <button type="button" onclick="limparRadioButtons()" title="Botão para limpar todos os filtros aplicados"
-        id="limparFiltros" aria-label="Limpar todos os filtros">Limpar todos
+        id="limparFiltros" class="adotarlimpar" aria-label="Limpar todos os filtros">Limpar todos
       </button>
     </div>
 
@@ -63,7 +63,7 @@
     <!-- Filtro Cidade -->
     <form action="" id="filtrocidade">
          <div class="camadasFiltro" id="cidadeFiltro">
-           <h3>Cidade</h3>
+           <h3 class="adotarcidade">Cidade</h3>
            <div>
              <input type="radio" name="filter1" id="mt">
              <label for="mt">Matão</label>
@@ -85,7 +85,7 @@
 
     <!-- Filtro ONG's -->
     <div class="camadasFiltro" id="ongsFiltro">
-        <h3>ONG's</h3>
+        <h3 class="adotarong">ONG's</h3>
 
         <div>
           <input type="checkbox" name="ong1F" id="ong1F">
@@ -122,16 +122,16 @@
 
     <!-- Filtro Espécie -->
     <div class="camadasFiltro" id="especieFiltro">
-        <h3>Espécie</h3>
+        <h3 class="adotarespecie">Espécie</h3>
 
         <div>
           <input type="radio" name="filter2" id="cachorroF">
-          <label for="cachorroF">Cachorro</label>
+          <label class="adotardog" for="cachorroF">Cachorro</label>
         </div>
 
         <div>
           <input type="radio" name="filter2" id="gatoF">
-          <label for="gatoF">Gato</label>
+          <label class="adotarcat" for="gatoF">Gato</label>
         </div>
       </div>
 
@@ -264,6 +264,7 @@
   <script src="/public/js/tema.js" defer></script>
   <script src="/public/js/carregar_pagina.js"></script>
   <script type="module" src="/public/js/pets/listarPets.js"></script>
+  <script src="/public/js/traducao.js"></script>
 
 </body>
 

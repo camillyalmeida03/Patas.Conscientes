@@ -3,6 +3,7 @@ function traduzir() {
 
     var idioma = {
         pt: {
+            //header
             headerinstitucional: "Institucional",
             headerongstradutor: "ONG's",
             headernoticia: "Notícias",
@@ -22,9 +23,10 @@ function traduzir() {
             headerentrar: "Entrar",
             headersair: "Sair",
             headerbemvindo: "Bem-vindo!",
-            headeracesseoucrie: "Acesse sua conta ou crie uma para continuar", 
+            headeracesseoucrie: "Acesse sua conta ou crie uma para continuar",
             headerentrarouCadastrar: "Entrar ou Cadastrar",
-            headercriarconta:"Criar conta",
+            headercriarconta: "Criar conta",
+            //main e footer
             mainconhecaopatas: "Conheça o Patas Conscientes",
             mainsitededicado: `Site dedicado a <strong>adoção</strong> de pets provindos de ONG's e abrigos da região de <strong>Araraquara -
           SP</strong>. Temos o comprimisso de reforçar está aliança de cuidado e amor entre nós, amantes de pets e
@@ -76,15 +78,28 @@ function traduzir() {
       para mim! Segue o link do meu LinkedIn: <a
         href="https://www.linkedin.com/in/maria-fernanda-da-silva-92a521214/" title="Linkedin da Maria Fernanda"
         class="link">www.linkedin.com</a>"`,
-
+            //pag ongs
+            ongstittle: "Páginas das ONG's",
+            ongscity: "Cidade: ",
+            //pag noticias
+            pagnews: "Pesquise por temas do mundo pet..",
+            //pag adotar 
+            adotartittle: "Adotar",
+            adotarfilter: "Filtros",
+            adotarlimpar: "Limpar todos",
+            adotarcidade: "Cidade",
+            adotarong: "ONG's",
+            adotarespecie: "Espécie",
+            adotardog: "Cachorro",
+            adotarcat: "Gato",
 
         },
         eng: {
             headerinstitucional: "Institutional",
-            headerongstradutor: "ONG's",
+            headerongstradutor: "NGO's",
             headernoticia: "News",
             headeradoteme: "Adopt me",
-            headercadastrarong: "Register ONG",
+            headercadastrarong: "Register NGO",
             headertorneceumparceiro: "Become a partner",
             headersobre: "About",
             headercomoadotar: "How can I to adopt?",
@@ -98,10 +113,10 @@ function traduzir() {
             headerpainelong: "NGO panel",
             headerentrar: "Login",
             headersair: "Exit",
-            headerbemvindo: "Welcome!", 
+            headerbemvindo: "Welcome!",
             headeracesseoucrie: "Access your account or create one to continue",
             headerentrarouCadastrar: "Login or Register",
-            headercriarconta:"Create account",
+            headercriarconta: "Create account",
             mainconhecaopatas: "Meet the Conscious Paws",
             mainsitededicado: `Dedicated site for <strong>pet adoption</strong> from NGO's and shelters in the <strong>Araraquara - SP</strong> region. We are committed to strengthening this alliance of care and love between us, pet lovers, and our beloved animals!`,
             mainquerfazerparte: "Want to be part of it? Understand how it works:",
@@ -143,16 +158,39 @@ function traduzir() {
             mainintegrante4tradutor: "Fernanda",
             mainintegrante4bio: `"Hello! I'm 18 years old and I'm passionate about animals, so being part of this project is really special for me! Here's the link to my LinkedIn: <a
         href="https://www.linkedin.com/in/maria-fernanda-da-silva-92a521214/" title="Linkedin da Maria Fernanda"
-        class="link">www.linkedin.com</a>"`
+        class="link">www.linkedin.com</a>"`,
+            //pag ongs
+            ongstittle: "NGO Pages",
+            ongscity: "City: ",
+            //pag noticias
+            pagnews: "Search for topics from the pet world..",
+            //pag adotar
+            adotartittle: "Adopt",
+            adotarfilter: "Filters",
+            adotarlimpar: "Clear all",
+            adotarcidade: "City",
+            adotarong:  "NGO's",
+            adotarespecie: "Species",
+            adotardog: "Dog",
+            adotarcat: "Cat",
         }
     };
 
-function traduzirClasse(classe, texto) {
-    var elementos = document.getElementsByClassName(classe);
-    for (var i = 0; i < elementos.length; i++) {
-        elementos[i].innerHTML = texto;
+    function traduzirClasse(classe, texto) {
+        var elementos = document.getElementsByClassName(classe);
+        for (var i = 0; i < elementos.length; i++) {
+            elementos[i].innerHTML = texto;
+        }
     }
-}
+
+    function traduzirPlaceholder(classe, texto) {
+        var traduzirPlaceholder = document.getElementsByClassName(classe);
+        for (var i = 0; i < traduzirPlaceholder.length; i++) {
+            traduzirPlaceholder[i].placeholder =
+                idioma[idiomaselect]= texto;
+        }
+    }
+
     traduzirClasse("instu", idioma[idiomaselect].headerinstitucional);
     traduzirClasse("ongstradutor", idioma[idiomaselect].headerongstradutor);
     traduzirClasse("noticia", idioma[idiomaselect].headernoticia);
@@ -213,7 +251,21 @@ function traduzirClasse(classe, texto) {
     traduzirClasse("biobarbaratradutor", idioma[idiomaselect].mainintegrante3bio);
     traduzirClasse("nomefernandatradutor", idioma[idiomaselect].mainintegrante4tradutor);
     traduzirClasse("biofernandatradutor", idioma[idiomaselect].mainintegrante4bio);
-
+    //pag ong
+    traduzirClasse("ongstittle", idioma[idiomaselect].ongstittle);
+    traduzirClasse("ongscity", idioma[idiomaselect].ongscity);
+    //pag noticias 
+    traduzirPlaceholder("pagnews", idioma[idiomaselect].pagnews);
+    //pag adotar
+    traduzirClasse("adotartittle", idioma[idiomaselect].adotartittle);
+    traduzirClasse("adotarfilter", idioma[idiomaselect].adotarfilter);
+    traduzirClasse("adotarlimpar", idioma[idiomaselect].adotarlimpar);
+    traduzirClasse("adotarcidade", idioma[idiomaselect].adotarcidade);
+    traduzirClasse("adotarong", idioma[idiomaselect].adotarong);
+    traduzirClasse("adotarespecie", idioma[idiomaselect].adotarespecie);
+    traduzirClasse("adotardog", idioma[idiomaselect].adotardog);
+    traduzirClasse("adotarcat", idioma[idiomaselect].adotarcat);
+    
 
 
     document.getElementById('trocarlingua').value = idiomaselect;
