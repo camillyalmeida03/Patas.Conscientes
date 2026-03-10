@@ -1358,11 +1358,17 @@ footer .listasFooter a:hover {
     font-size: 20px;
 }
 
-.cidadeOng::before {
+/* .cidadeOng::before {
     content: "Cidade: ";
     font-weight: 600;
+} */
+.cidadeDiv{
+    display: flex;
 }
 
+.cidadeDiv p{
+    font-weight: 600;
+}
 .qntdAnimaisOng {
     font-weight: 600;
 }
