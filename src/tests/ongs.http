@@ -40,3 +40,6 @@ Content-Type: application/json
 
 ### Excluir um dado com base no id
 DELETE http://localhost:6789/ongs/2
+
+###
+GET http://localhost:6789/ongs/contar/34

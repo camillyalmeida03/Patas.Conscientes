@@ -10,14 +10,14 @@ class Redes {
 
   redes() {
     this.infoCardOngPerfil = document.querySelector(".infoCardOngPerfil");
-    this.divbttRedes = document.createElement('div'); 
+    this.divbttRedes = document.createElement('div');
     this.divbttRedes.className = "bttRedes";
-    
+
     const infoCard = document.querySelector(".infoCardOngPerfil");
-    if(infoCard) {
-        const linha = infoCard.querySelector(".linha");
-        if(linha) infoCard.insertBefore(this.divbttRedes, linha.nextSibling);
-        else infoCard.appendChild(this.divbttRedes);
+    if (infoCard) {
+      const linha = infoCard.querySelector(".linha");
+      if (linha) infoCard.insertBefore(this.divbttRedes, linha.nextSibling);
+      else infoCard.appendChild(this.divbttRedes);
     }
 
     const temRede = Object.values(this.ongSelecionada.redes || {}).some((url) => url);
@@ -34,12 +34,12 @@ class Redes {
           );
 
           const imgIcon = document.createElement('img');
-          imgIcon.src = `/public/img/icons/${tipo}-icon.svg`; 
+          imgIcon.src = `/public/img/icons/${tipo}-icon.svg`;
           imgIcon.alt = `Ícone do ${tipo}`;
           imgIcon.loading = "lazy";
-          
+
           this.redeA.prepend(imgIcon);
-          this.redeA.append(` ${tipo.charAt(0).toUpperCase() + tipo.slice(1)}`); 
+          this.redeA.append(` ${tipo.charAt(0).toUpperCase() + tipo.slice(1)}`);
         }
       });
     }
@@ -56,7 +56,7 @@ class AdicionarBotao {
     if (!this.isResponsavel) return;
 
     this.bttAdicionar = document.querySelector(".bttAdicionar");
-    if(!this.bttAdicionar) return;
+    if (!this.bttAdicionar) return;
 
     this.botaoAdd = this.criarElemento.createElement(
       "button",
@@ -66,16 +66,26 @@ class AdicionarBotao {
       null
     );
     this.botaoAdd.id = "abrirModalAdicionar";
-    
+
     this.botaoAdd.addEventListener("click", () => {
-        const fundoModal = document.getElementById("fundoAdicionarPet"); 
-        if(fundoModal) fundoModal.classList.remove("escondido");
+      const fundoModal = document.getElementById("fundoAdicionarPet");
+      if (fundoModal) fundoModal.classList.remove("escondido");
     });
   }
 }
 
 const urlParams = new URLSearchParams(window.location.search);
 const idUrl = parseInt(urlParams.get("id"));
+
+
+async function carregarTotalPets(idOng) {
+
+  const res = await fetch(`http://localhost:6789/ongs/contar/${idOng}`);
+  const dados = await res.json();
+
+  document.getElementById("petsDisponiveis").textContent = dados ?? 0;
+
+}
 
 async function buscarOngPorId(id) {
   try {
@@ -91,7 +101,7 @@ async function buscarOngPorId(id) {
 
 // upload
 function controlarBotoesDeUpload(isResponsavel, idOng) {
-  
+
   if (!isResponsavel) {
     const botoes = document.querySelectorAll('.bttEditarImg');
     botoes.forEach(btn => btn.remove());
@@ -120,12 +130,12 @@ function controlarBotoesDeUpload(isResponsavel, idOng) {
 
         const bannerEl = document.getElementById("bannerOng");
         if (bannerEl) bannerEl.style.backgroundImage = `url('${data.path}')`;
-        
+
         new MensagemFeedback("Banner atualizado com sucesso!", document.body).feedbackSucess();
 
       } catch (err) {
         console.error(err);
-        
+
         new MensagemFeedback("Erro ao atualizar banner.", document.body).feedbackError();
       } finally {
         document.body.style.cursor = "default";
@@ -154,9 +164,9 @@ function controlarBotoesDeUpload(isResponsavel, idOng) {
 
         const fotoEl = document.getElementById("fotoOng");
         if (fotoEl) fotoEl.style.backgroundImage = `url('${data.path}')`;
-        
+
         new MensagemFeedback("Foto de perfil atualizada com sucesso!", document.body).feedbackSucess();
-        
+
       } catch (err) {
         console.error(err);
         new MensagemFeedback("Erro ao atualizar foto.", document.body).feedbackError();
@@ -181,9 +191,9 @@ async function preencherPagina() {
   }
 
   const usuarioLogado = JSON.parse(localStorage.getItem('usuario'));
-  
+
   const idUserLogado = usuarioLogado ? (usuarioLogado.idusuario || usuarioLogado.id) : null;
-  const idDonoDaOng = ong.id_dono || ong.fk_idresponsavel; 
+  const idDonoDaOng = ong.id_dono || ong.fk_idresponsavel;
 
   const isResponsavel = idUserLogado && idDonoDaOng && (Number(idUserLogado) === Number(idDonoDaOng));
 
@@ -194,6 +204,7 @@ async function preencherPagina() {
   botaoAdd.botaoAdicionar();
 
   controlarBotoesDeUpload(isResponsavel, idUrl);
+  carregarTotalPets(idUrl);
 
   const enderecoCompleto = `${ong.rua || ""}, ${ong.numero || ""} - ${ong.bairro || ""}, ${ong.cidade || ""} - ${ong.sigla || ""}`;
 
@@ -221,8 +232,10 @@ async function preencherPagina() {
   }
 }
 
+
 document.addEventListener('DOMContentLoaded', function () {
   preencherPagina();
+
 
   const toggleButton = document.getElementById('toggleEstatisticas');
   const statisticsDiv = document.getElementById('divEstatisticas');

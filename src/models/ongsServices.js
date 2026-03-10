@@ -75,4 +75,17 @@ const UpdateBanner = async (id, caminhoBanner) => {
     return result.affectedRows;
 };
 
-module.exports = { GetAll, GetById, Post, Put, Erase, atualizarResponsavel, UpdateFoto, UpdateBanner };
+const contarPetsPorOng = async (id) => {
+
+    const querySelect = 'SELECT COUNT(*) AS total FROM pets';
+    const queryWhere = ' WHERE fk_idong = ?';
+
+    const querytext = querySelect + queryWhere;
+
+    const [result] = await banco.query(querytext, [id]);
+
+    return result[0].total;
+
+};
+
+module.exports = { GetAll, GetById, Post, Put, Erase, atualizarResponsavel, UpdateFoto, UpdateBanner, contarPetsPorOng };

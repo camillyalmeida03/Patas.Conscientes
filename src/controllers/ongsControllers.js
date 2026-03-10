@@ -30,8 +30,8 @@ const ongsController = {
     Post: async (req, res) => {
         try {
             const { nome, cnpj, telefone, descricao, fk_idendereco, comp_estatuto, comp_cnpj, email, senha, fk_idtipo } = req.body;
-            
-            const idUsuarioLogado = req.usuario?.id; 
+
+            const idUsuarioLogado = req.usuario?.id;
 
             if (!idUsuarioLogado) {
                 return res.status(401).json({ message: "Usuário não autenticado. Faça login novamente." });
@@ -54,7 +54,7 @@ const ongsController = {
 
             return res.status(201).json({
                 message: "ONG criada e vinculada ao responsável com sucesso!",
-                id: ong.id, 
+                id: ong.id,
                 id_usuario_responsavel: idUsuarioLogado,
                 id_vinculo_responsavel: responsavelCriado.idresponsavel
             });
@@ -68,7 +68,7 @@ const ongsController = {
     Put: async (request, response) => {
         try {
             const { id } = request.params;
-            const { nome, telefone, descricao, fk_idendereco, email, senha, foto, banner, fk_idresponsavel } = request.body; 
+            const { nome, telefone, descricao, fk_idendereco, email, senha, foto, banner, fk_idresponsavel } = request.body;
 
             if (request.body.hasOwnProperty('fk_idresponsavel')) {
                 if (!fk_idresponsavel) {
@@ -95,7 +95,7 @@ const ongsController = {
     AtualizarFoto: async (req, res) => {
         try {
             const { id } = req.params;
-            
+
             if (!req.file) {
                 return res.status(400).json({ message: "Nenhum arquivo de imagem enviado." });
             }
@@ -157,6 +157,24 @@ const ongsController = {
             response.status(200).json(data);
         } catch (error) {
             console.error("Erro ao conectar ao banco de dados:", error.message);
+            response.status(500).json({ message: "Falha ao executar a ação!" });
+        }
+    },
+
+    ContarPets: async (request, response) => {
+        try {
+            const { id } = request.params;
+
+            if (!id) {
+                return response.status(400).json({ message: "ID da ONG inválido." });
+            }
+
+            const data = await model.contarPetsPorOng(id);
+
+            response.status(200).json(data);
+
+        } catch (error) {
+            console.error("Erro no Controller ContarPets:", error.message);
             response.status(500).json({ message: "Falha ao executar a ação!" });
         }
     }
