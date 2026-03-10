@@ -143,27 +143,28 @@
                     </div>
 
                     <div class="alinharErro">
-                        <input type="text" name="nome_pet" id="nomePet" class="inputCadastro" placeholder="Nome*">
+                        <input type="text" name="nome_pet" id="nomePet" class="inputCadastro" placeholder="Nome *">
                         <p id="erroNomePetAdt" class="error-message"></p>
                     </div>
 
                     <div class="alinharDoisInput">
                         <div class="divInputCadastro">
-                            <input type="text" id="pesoPet" class="inputCadastro" name="peso" placeholder="Peso em kg*">
+                            <input type="text" id="pesoPet" class="inputCadastro" name="peso"
+                                placeholder="Peso em kg *">
                             <span class="tooltip">
                                 <svg viewBox="0 -960 960 960">
                                     <path
                                         d="M423.5-703.5Q400-727 400-760t23.5-56.5Q447-840 480-840t56.5 23.5Q560-793 560-760t-23.5 56.5Q513-680 480-680t-56.5-23.5ZM420-120v-480h120v480H420Z" />
                                 </svg>
 
-                                <span class="tooltip-text">Digite apenas números. <br> Informe o peso do pet em kg. <br> Exemplo: 0,8 para pets com menos de 1 kg.</span>
+                                <span class="tooltip-text">Digite apenas números. <br> Informe o peso do pet em kg. <br>
+                                    Exemplo: 0,8 para pets com menos de 1 kg.</span>
                             </span>
 
                         </div>
 
                         <div class="divInputCadastro" id="idadePetSel">
-                            <input type="text" id="idadePet" name="idade" class="inputCadastro"
-                                placeholder="Idade*">
+                            <input type="text" id="idadePet" name="idade" class="inputCadastro" placeholder="Idade *">
 
                             <span class="tooltip">
                                 <svg viewBox="0 -960 960 960">
@@ -171,12 +172,13 @@
                                         d="M423.5-703.5Q400-727 400-760t23.5-56.5Q447-840 480-840t56.5 23.5Q560-793 560-760t-23.5 56.5Q513-680 480-680t-56.5-23.5ZM420-120v-480h120v480H420Z" />
                                 </svg>
 
-                                <span class="tooltip-text">Digite apenas números. <br> Use anos ou meses para pets menores. <br> Exemplo: 2 (anos) ou 6 (meses).</span>
+                                <span class="tooltip-text">Digite apenas números. <br> Use anos ou meses para pets
+                                    menores. <br> Exemplo: 2 (anos) ou 6 (meses).</span>
                             </span>
 
-                        <select name="">
-                                <option value="1">Anos</option>
-                                <option value="2">Meses</option>
+                            <select id="tipoIdade">
+                                <option value="anos">Anos</option>
+                                <option value="meses">Meses</option>
                             </select>
 
                         </div>
@@ -184,16 +186,16 @@
 
                     <div class="alinharDoisInput">
                         <select name="especie" id="especiePet" class="inputCadastro" aria-label="Espécie">
-                            <option value="0">Espécie</option>
+                            <option value="0">Espécie *</option>
                             <option value="1">Cachorro</option>
                             <option value="2">Gato</option>
                         </select>
-                        <input type="text" id="racaPet" name="raca" class="inputCadastro" placeholder="Raça">
+                        <input type="text" id="racaPet" name="raca" class="inputCadastro" placeholder="Raça *">
                     </div>
 
                     <div class="alinharDoisInput">
                         <select name="porte" id="portePet" class="inputCadastro" aria-label="Porte">
-                            <option value="0">Porte</option>
+                            <option value="0">Porte *</option>
                             <option value="1">Miniatura</option>
                             <option value="2">Pequeno</option>
                             <option value="3">Médio</option>
@@ -202,18 +204,20 @@
                         </select>
 
                         <select name="sexo" id="sexoPet" class="inputCadastro" aria-label="Sexo">
-                            <option value="0">Sexo</option>
+                            <option value="0">Sexo *</option>
                             <option value="1">Macho</option>
                             <option value="2">Fêmea</option>
                             <option value="3">Não informado</option>
                         </select>
                     </div>
 
-                    <textarea name="sobre" id="mensagem" placeholder="Descrição" class="inputCadastro" maxlength="200"
+                    <textarea name="sobre" id="mensagem" placeholder="Descrição *" class="inputCadastro" maxlength="200"
                         oninput="atualizarContagem();"></textarea>
                     <p id="contarCaracteres"><span id="contagem">0</span>/200</p>
 
                     <input type="submit" value="Adicionar" id="bttAddPet" class="buttonRosa" aria-label="Adicionar">
+
+                    <p id="mensagemFeedback"></p>
                 </form>
             </div>
         </div>
@@ -363,7 +367,7 @@
 <script type="module" src="/src/config/ong/ongPage.js"></script>
 <script type="module" src="/public/js/modalPadrao.js"></script>
 
-<script src="/src/config/pets/formpet.js" defer></script>
+<script type="module" src="/src/config/pets/formpet.js" defer></script>
 <script type="module" src="/public/js/Pets/listarPets.js"></script>
 
 <script src="/public/js/formularios/formparceiro.js"></script>
