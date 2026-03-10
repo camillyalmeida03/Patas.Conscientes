@@ -319,45 +319,106 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Mensagens de retorno
         const mensagemDataNascObrigatoria = "Por favor, selecione sua data de nascimento.";
-        const mensagemDataNascInvalida = "Você deve ter pelo menos 18 anos.";
+        const mensagemDataNascFormato = "Digite a data no formato DD/MM/AAAA.";
+        const mensagemDataNascInvalida = "Digite uma data válida.";
+        const mensagemDataNascIdade = "Você deve ter pelo menos 18 anos.";
 
         const dataNasc = document.getElementById("dataNasc");
         const erroDataNasc = document.getElementById("erroDataNasc");
 
         if (!dataNasc) return true;
-        const valorDataNasc = dataNasc.value;
+        const valorDataNasc = dataNasc.value.trim();
+
+        // Regex formato 00/00/0000
+        const regexData = /^\d{2}\/\d{2}\/\d{4}$/;
 
         if (dataNasc) {
+
             if (valorDataNasc === "") {
                 erroDataNasc.innerHTML = mensagemDataNascObrigatoria;
                 erroDataNasc.style.display = "block";
                 return false;
-            } else {
-                // Converte a data selecionada para objeto Date
-                const hoje = new Date();
-                const nascimento = new Date(valorDataNasc);
+            }
 
-                // Calcula idade
-                let idade = hoje.getFullYear() - nascimento.getFullYear();
-                const mes = hoje.getMonth() - nascimento.getMonth();
+            else if (!regexData.test(valorDataNasc)) {
+                erroDataNasc.innerHTML = mensagemDataNascFormato;
+                erroDataNasc.style.display = "block";
+                return false;
+            }
 
-                // Ajusta caso ainda não tenha feito aniversário este ano
-                if (mes < 0 || (mes === 0 && hoje.getDate() < nascimento.getDate())) {
-                    idade--;
-                }
+            else {
 
-                if (idade < 18) {
+                const partes = valorDataNasc.split("/");
+                const dia = parseInt(partes[0]);
+                const mes = parseInt(partes[1]) - 1;
+                const ano = parseInt(partes[2]);
+
+                const nascimento = new Date(ano, mes, dia);
+
+                // verifica se a data existe
+                if (
+                    nascimento.getFullYear() !== ano ||
+                    nascimento.getMonth() !== mes ||
+                    nascimento.getDate() !== dia
+                ) {
                     erroDataNasc.innerHTML = mensagemDataNascInvalida;
                     erroDataNasc.style.display = "block";
                     return false;
                 }
 
-                // Caso seja válido
+                const hoje = new Date();
+
+                let idade = hoje.getFullYear() - nascimento.getFullYear();
+                const mesAtual = hoje.getMonth() - nascimento.getMonth();
+
+                if (mesAtual < 0 || (mesAtual === 0 && hoje.getDate() < nascimento.getDate())) {
+                    idade--;
+                }
+
+                if (idade < 18) {
+                    erroDataNasc.innerHTML = mensagemDataNascIdade;
+                    erroDataNasc.style.display = "block";
+                    return false;
+                }
+
                 erroDataNasc.style.display = "none";
                 return true;
             }
         }
     }
+
+    const inputDataNasc = document.getElementById("dataNasc");
+
+    if (inputDataNasc) {
+        inputDataNasc.addEventListener("input", function (e) {
+
+            let valor = e.target.value.replace(/\D/g, "");
+
+            if (valor.length > 8) {
+                valor = valor.slice(0, 8);
+            }
+
+            let dia = valor.slice(0, 2);
+            let mes = valor.slice(2, 4);
+            let ano = valor.slice(4, 8);
+
+            if (dia > 31) dia = 31;
+            if (mes > 12) mes = 12;
+
+            let resultado = dia;
+
+            if (mes) {
+                resultado += "/" + mes;
+            }
+
+            if (ano) {
+                resultado += "/" + ano;
+            }
+
+            e.target.value = resultado;
+        });
+    }
+
     // Validação de data (não pode ser futura)
     function validarData() {
 
