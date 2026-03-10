@@ -85,6 +85,7 @@ const loginController = {
           bairro: usuario.bairro,
           cidade: usuario.cidade,
           cep: usuario.cep,
+          complemento: usuario.complemento,
         },
         tipo: usuario.tipo,
         data_criacao: usuario.data_criacao,

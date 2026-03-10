@@ -11,7 +11,8 @@ const Login = async (email) => {
                             r.rua, e.numero, e.cep,
                             b.bairro, c.cidade,
                             es.idestado,
-                            es.sigla AS estado_sigla
+                            es.sigla AS estado_sigla,
+                            e.complemento
                         FROM usuarios u `;
 
   const queryInnerJoin = `INNER JOIN sexo s ON s.idsexo = u.fk_idsexo
