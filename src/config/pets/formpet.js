@@ -1,70 +1,96 @@
+import { MensagemFeedback } from "../../../public/js/formularios/mensagemFeedback.js";
+import {
+  validarNomePet,
+  validarEspecie,
+  validarPorte,
+  validarSexo,
+  validarPeso,
+  validarIdadePet,
+  validarDescricao
+} from "/public/js/formularios/validacaoFormularios.js";
+
 document.addEventListener("DOMContentLoaded", () => {
 
 
-  const inputFoto = document.getElementById("fotopetatt");
-  const nomeArquivo = document.getElementById("nomeArquivo");
+  const formPet = document.getElementById("formInfoPet");
+  const paiFeedback = document.body;
+  const botao = document.getElementById("bttAddPet");
 
-  if (inputFoto) {
-    inputFoto.addEventListener("change", () => {
-
-      if (inputFoto.files.length > 0) {
-        nomeArquivo.textContent = inputFoto.files[0].name;
-      } else {
-        nomeArquivo.textContent = "Nenhum arquivo selecionado";
-      }
-
-    });
+  if (botao) {
+    botao.disabled = true;
+    botao.classList.add("desabilitado");
   }
 
-  inputFoto.addEventListener("change", () => {
+  function controlarBotao() {
 
-    const arquivo = inputFoto.files[0];
+    let valido = true;
 
-    if (!arquivo) return;
+    if (!validarNomePet()) valido = false;
+    if (!validarEspecie()) valido = false;
+    if (!validarPorte()) valido = false;
+    if (!validarSexo()) valido = false;
+    if (!validarPeso()) valido = false;
+    if (!validarIdadePet()) valido = false;
+    if (!validarDescricao()) valido = false;
 
-    if (!arquivo.type.startsWith("image/")) {
-      alert("Selecione apenas imagens!");
-      inputFoto.value = "";
-      nomeArquivo.textContent = "Nenhum arquivo selecionado";
-      return;
+    if (!valido) {
+      botao.disabled = true;
+      botao.classList.add("desabilitado");
+    } else {
+      botao.disabled = false;
+      botao.classList.remove("desabilitado");
     }
 
-    nomeArquivo.textContent = arquivo.name;
+    return valido;
+  }
 
-  });
+  if (formPet) {
 
-  const params = new URLSearchParams(window.location.search);
-  const idOng = params.get("id") || 1;
+    const inputs = formPet.querySelectorAll("input, select, textarea");
 
-  const formPet = document.getElementById("formInfoPet");
+    inputs.forEach(input => {
+      input.addEventListener("input", controlarBotao);
+    });
+
+    controlarBotao();
+
+  }
 
   if (formPet) {
     formPet.addEventListener("submit", async (e) => {
       e.preventDefault();
 
       const form = e.target;
-
-      if (!form.nome_pet.value || !form.raca.value) {
-        alert("Preencha o nome e a raça!");
-        return;
-      }
-
       const formData = new FormData();
+
+      const idade = parseInt(form.idade.value || 0);
+      const tipo = form.tipoIdade.value;
+
+      let totalMeses = 0;
+
+      if (tipo === "anos") {
+        totalMeses = idade * 12;
+      } else {
+        totalMeses = idade;
+      }
       formData.append("nome", form.nome_pet.value);
       formData.append("fk_idespecie", parseInt(form.especie.value));
       formData.append("nomeRaca", form.raca.value);
       formData.append("fk_idsexopet", parseInt(form.sexo.value));
       formData.append("fk_idporte", parseInt(form.porte.value));
       formData.append("peso", parseFloat(form.peso.value) || 0);
-      formData.append("idade", parseInt(form.idade.value) || 0);
+      formData.append("idade", totalMeses); // Salva total em meses
       formData.append("descricao", form.sobre.value);
-      formData.append("fk_idong", parseInt(idOng));
       formData.append("fk_idstatus", 1);
 
       const inputFoto = document.getElementById("fotopetatt");
-
       if (inputFoto && inputFoto.files[0]) {
         formData.append("fotopet", inputFoto.files[0]);
+      }
+
+      if (!controlarBotao()) {
+        new MensagemFeedback("Preencha todos os campos corretamente", document.body).feedbackAlert();
+        return;
       }
 
       try {
@@ -73,20 +99,17 @@ document.addEventListener("DOMContentLoaded", () => {
           body: formData,
         });
 
-        if (!res.ok) {
-          const erro = await res.json();
-          throw new Error(erro.message || "Erro ao criar pet");
-        }
+        if (!res.ok) throw new Error("Falha ao salvar pet");
 
-        alert("Pet cadastrado com sucesso!");
-        window.location.href = `ongPage.html?id=${idOng}`;
+        new MensagemFeedback("Pet cadastrado com sucesso!", paiFeedback).feedbackSucess();
+
+        setTimeout(() => {
+          window.location.href = `ongPage.html?id=${new URLSearchParams(window.location.search).get("id") || 1}`;
+        }, 2500);
 
       } catch (err) {
-        console.error(err);
-        alert("Erro: " + err.message);
+        new MensagemFeedback("Erro ao cadastrar: " + err.message, paiFeedback).feedbackError();
       }
     });
-  } else {
-    console.error("Formulário formInfoPet não encontrado no HTML");
   }
 });

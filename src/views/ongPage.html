@@ -120,35 +120,42 @@
                     <!-- Título -->
                     <h3>Cadastrar pet</h3>
 
-                    <!-- Campo de foto do pet -->
-                    <div class="inputCadastro inputArquivo">
+                    <div class="alinharErro">
 
-                        <!-- Label do input -->
-                        <label>Foto do pet *</label>
+                        <!-- Campo de foto do pet -->
+                        <div class="inputCadastro inputArquivo">
 
-                        <!-- div que abriga o input -->
-                        <div class="container">
+                            <!-- Label do input -->
+                            <label>Foto do pet *</label>
 
-                            <!-- Input de arquivo -->
-                            <input type="file" name="fotopet" id="fotopetatt" accept=".jpg,.jpeg,.png,.webp">
+                            <!-- div que abriga o input -->
+                            <div class="container">
 
-                            <!-- Label do botão -->
-                            <label for="fotopetatt" class="botaoUpload">
-                                Selecionar foto do pet
-                            </label>
+                                <!-- Input de arquivo -->
+                                <input type="file" name="fotopet" id="fotopetatt" accept=".jpg,.jpeg,.png,.webp">
 
-                            <!-- Span informando arquivo selecionado -->
-                            <span id="nomeArquivo">Nenhum arquivo selecionado</span>
+                                <!-- Label do botão -->
+                                <label for="fotopetatt" class="botaoUpload">
+                                    Selecionar foto do pet
+                                </label>
+
+                                <!-- Span informando arquivo selecionado -->
+                                <span id="nomeArquivo">Nenhum arquivo selecionado</span>
+                            </div>
+
                         </div>
+
+                        <p id="erroFotoPetAdt" class="error-message">Teste</p>
+
                     </div>
 
                     <div class="alinharErro">
                         <input type="text" name="nome_pet" id="nomePet" class="inputCadastro" placeholder="Nome *">
-                        <p id="erroNomePetAdt" class="error-message"></p>
+                        <p id="erroNomePetAdt" class="error-message">Teste</p>
                     </div>
 
                     <div class="alinharDoisInput">
-                        <div class="divInputCadastro">
+                        <div class="divInputCadastro alinharErro">
                             <input type="text" id="pesoPet" class="inputCadastro" name="peso"
                                 placeholder="Peso em kg *">
                             <span class="tooltip">
@@ -161,9 +168,11 @@
                                     Exemplo: 0,8 para pets com menos de 1 kg.</span>
                             </span>
 
+                            <p id="erroPesoPetAdt" class="error-message">Teste</p>
+
                         </div>
 
-                        <div class="divInputCadastro" id="idadePetSel">
+                        <div class="divInputCadastro alinharErro" id="idadePetSel">
                             <input type="text" id="idadePet" name="idade" class="inputCadastro" placeholder="Idade *">
 
                             <span class="tooltip">
@@ -181,41 +190,73 @@
                                 <option value="meses">Meses</option>
                             </select>
 
+                            <p id="erroIdadePetAdt" class="error-message">Teste</p>
+
                         </div>
                     </div>
 
                     <div class="alinharDoisInput">
-                        <select name="especie" id="especiePet" class="inputCadastro" aria-label="Espécie">
-                            <option value="0">Espécie *</option>
-                            <option value="1">Cachorro</option>
-                            <option value="2">Gato</option>
-                        </select>
-                        <input type="text" id="racaPet" name="raca" class="inputCadastro" placeholder="Raça *">
+                        <div class="alinharErro">
+                            <select name="especie" id="especiePet" class="inputCadastro" aria-label="Espécie">
+                                <option value="0">Espécie *</option>
+                                <option value="1">Cachorro</option>
+                                <option value="2">Gato</option>
+                            </select>
+
+                            <p id="erroEspeciePetAdt" class="error-message">Teste</p>
+                        </div>
+
+                        <div class="alinharErro">
+                            <input type="text" id="racaPet" name="raca" class="inputCadastro" placeholder="Raça *">
+
+                            <p id="erroRacaPetAdt" class="error-message">Teste</p>
+                        </div>
+
                     </div>
 
                     <div class="alinharDoisInput">
-                        <select name="porte" id="portePet" class="inputCadastro" aria-label="Porte">
-                            <option value="0">Porte *</option>
-                            <option value="1">Miniatura</option>
-                            <option value="2">Pequeno</option>
-                            <option value="3">Médio</option>
-                            <option value="4">Grande</option>
-                            <option value="5">Gigante</option>
-                        </select>
+                        <div class="alinharErro">
+                            <select name="porte" id="portePet" class="inputCadastro" aria-label="Porte">
+                                <option value="0">Porte *</option>
+                                <option value="1">Miniatura</option>
+                                <option value="2">Pequeno</option>
+                                <option value="3">Médio</option>
+                                <option value="4">Grande</option>
+                                <option value="5">Gigante</option>
+                            </select>
 
-                        <select name="sexo" id="sexoPet" class="inputCadastro" aria-label="Sexo">
-                            <option value="0">Sexo *</option>
-                            <option value="1">Macho</option>
-                            <option value="2">Fêmea</option>
-                            <option value="3">Não informado</option>
-                        </select>
+                            <p id="erroPortePetAdt" class="error-message">Teste</p>
+                        </div>
+
+                        <div class="alinharErro">
+                            <select name="sexo" id="sexoPet" class="inputCadastro" aria-label="Sexo">
+                                <option value="0" aria-disabled>Sexo *</option>
+                                <option value="1">Macho</option>
+                                <option value="2">Fêmea</option>
+                                <option value="3">Não informado</option>
+                            </select>
+
+                            <p id="erroSexoPetAdt" class="error-message">Teste</p>
+                        </div>
                     </div>
 
-                    <textarea name="sobre" id="mensagem" placeholder="Descrição *" class="inputCadastro" maxlength="200"
-                        oninput="atualizarContagem();"></textarea>
-                    <p id="contarCaracteres"><span id="contagem">0</span>/200</p>
+                    <div class="alinharErro textAreaCont">
+                        <div class="textAreaCont">
+                            <div class="textoArea">
+                                <textarea name="sobre" id="mensagem" placeholder="Descrição *" class="inputCadastro"
+                                    maxlength="200" oninput="atualizarContagem();"></textarea>
+                                    <div class="fundoCont"></div>
+                            </div>
 
-                    <input type="submit" value="Adicionar" id="bttAddPet" class="buttonRosa" aria-label="Adicionar">
+                            <p id="contarCaracteres"><span id="contagem">0</span>/200</p>
+                        </div>
+
+
+                        <p id="erroDescPetAdt" class="error-message">Teste</p>
+                    </div>
+
+
+                    <input type="submit" value="Adicionar" id="bttAddPet" class="buttonRosa desabilitado" aria-label="Adicionar">
 
                     <p id="mensagemFeedback"></p>
                 </form>

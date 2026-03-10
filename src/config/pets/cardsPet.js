@@ -368,6 +368,21 @@ export class CardsPets {
     document.body.style.overflow = "auto";
   }
 
+  converterIdade(meses) {
+    const anos = Math.floor(meses / 12);
+    const restoMeses = meses % 12;
+
+    if (anos > 0 && restoMeses > 0) {
+      return `${anos} ano(s) e ${restoMeses} mês(es)`;
+    }
+
+    if (anos > 0) {
+      return `${anos} ano(s)`;
+    }
+
+    return `${restoMeses} mês(es)`;
+  }
+
   //Método responsável por expandir o card na versão mobile
   mostrarMaisInformacoesPetCard(InfoPet) {
     this.conjFavoritarCompartilhar = this.criarElemento.createElement(
@@ -469,7 +484,7 @@ export class CardsPets {
     this.idadePet = this.criarElemento.createElement(
       "p",
       [],
-      this.InfoPet.idade,
+      this.converterIdade(this.InfoPet.idade),
       this.conjTituloIdade,
       "idadePet"
     );

@@ -819,6 +819,8 @@ document.addEventListener("DOMContentLoaded", function () {
         return tudoValido;
     }
 
+    
+
     // --- Validação em tempo real ---
     const camposValidaveis = [
         { id: "nomeUsuarioAdt", func: validarNome },
