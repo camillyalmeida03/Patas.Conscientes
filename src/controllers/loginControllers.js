@@ -69,6 +69,8 @@ const loginController = {
         nome: usuario.nome,
         email: usuario.email,
         telefone: usuario.telefone,
+        foto: usuario.foto, 
+
         sexo: {
           id: usuario.idsexo,
           descricao: usuario.sexo,
@@ -87,14 +89,14 @@ const loginController = {
         tipo: usuario.tipo,
         data_criacao: usuario.data_criacao,
         data_att: usuario.data_att,
-        responsavelOng: !!ong 
+        responsavelOng: !!ong
       };
 
       return res.status(200).json({
         message: "Login realizado com sucesso!",
         token,
         usuario: usuarioFormatado,
-        ong: ongFormatada, 
+        ong: ongFormatada,
       });
     } catch (error) {
       console.error("Erro no login:", error);
