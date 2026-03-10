@@ -121,7 +121,48 @@ const usuariosController = {
             console.error("Erro ao conectar ao banco de dados:", error.message);
             response.status(500).json({ message: "Falha ao executar a ação!" });
         }
-    }
+    },
+
+    CriarCodigoVerificacao: async (request, response) => {
+        try {
+            const { email, motivo } = request.body;
+            const data = await model.CriarCodigoVerificacao(email, motivo);
+            response.status(200).json(data);
+        } catch (error) {
+            console.error("Erro ao conectar ao banco de dados:", error.message);
+            response.status(500).json({ message: "Falha ao executar a ação!" });
+        }
+    },
+
+    VerificarCodigo: async (request, response) => {
+        try {
+            const { email, codigo } = request.body;
+
+            const data = await model.VerificarCodigo(email, codigo);
+
+            response.status(200).json(data);
+
+        } catch (error) {
+            console.error("Erro ao verificar código:", error.message);
+            response.status(500).json({ message: "Falha ao executar a ação!" });
+        }
+    },
+
+    alterarSenha: async (request, response) => {
+        try {
+            const { email, novaSenha } = request.body;
+            console.log("Email recebido:", email);
+            console.log("Nova senha:", novaSenha);
+
+            const saltRounds = 10;
+            const senhaHash = await bcrypt.hash(novaSenha, saltRounds);
+            const data = await model.alterarSenha(email, senhaHash);
+            response.status(200).json(data);
+        } catch (error) {
+            console.error("Erro ao alterar senha:", error.message);
+            response.status(500).json({ message: "Falha ao executar a ação!" });
+        }
+    },
 }
 
 module.exports = usuariosController;

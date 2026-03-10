@@ -7,7 +7,7 @@
   <meta name="description"
     content="Acesse sua conta para adotar um pet, apoiar ONGs locais ou gerenciar suas informações. Faça login para continuar a contribuir com a causa animal e ajudar nossos amigos de quatro patas a encontrarem novos lares!">
 
-    <link rel="icon" href="/public/img/icons/favicon.svg">
+  <link rel="icon" href="/public/img/icons/favicon.svg">
   <link rel="stylesheet" href="/public/css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,8 +18,9 @@
 </head>
 
 <body>
-<header id="headerIndex">
-  <script type="module" src="/src/config/header.js"></script></header>
+  <header id="headerIndex">
+    <script type="module" src="/src/config/header.js"></script>
+  </header>
 
   <main id="mainLogin">
 
@@ -43,13 +44,15 @@
 
           <!-- Campo de senha com ícone de olho -->
           <div class="passwordContainer">
-            <input type="password" id="senhaLoginUsuario" name="senha" placeholder="Digite sua senha" autocomplete="current-password">
+            <input type="password" id="senhaLoginUsuario" name="senha" placeholder="Digite sua senha"
+              autocomplete="current-password">
             <span id="togglePassword" class="eye-icon"><img id="olho" src="/public/img/icons/olhofechado.svg"
                 title="Mostrar/Ocultar senha" alt=""></span>
           </div>
           <p id="erroLoginUsuario" class="error-message"></p>
 
-          <button type="button" title="Recuperar senha" class="linkFalso" aria-label="Recuperar senha">Esqueceu sua
+          <button type="button" title="Recuperar senha" class="linkFalso" aria-label="Recuperar senha"
+            id="botaorecuperarsenha">Esqueceu sua
             senha?</button>
 
           <button type="submit" id="botaoentrarlogin" title="Entrar na sua conta" class="botLogin"
@@ -151,6 +154,107 @@
         d="M480-800q-33 0-56.5-23.5T400-880q0-33 23.5-56.5T480-960q33 0 56.5 23.5T560-880q0 33-23.5 56.5T480-800ZM360-200v-480q-60-5-122-15t-118-25l20-80q78 21 166 30.5t174 9.5q86 0 174-9.5T820-800l20 80q-56 15-118 25t-122 15v480h-80v-240h-80v240h-80ZM320 0q-17 0-28.5-11.5T280-40q0-17 11.5-28.5T320-80q17 0 28.5 11.5T360-40q0 17-11.5 28.5T320 0Zm160 0q-17 0-28.5-11.5T440-40q0-17 11.5-28.5T480-80q17 0 28.5 11.5T520-40q0 17-11.5 28.5T480 0Zm160 0q-17 0-28.5-11.5T600-40q0-17 11.5-28.5T640-80q17 0 28.5 11.5T680-40q0 17-11.5 28.5T640 0Z" />
     </svg>
   </div>
+
+  <!-- Modal Recuperar Senha -->
+  <div id="modalRecuperarSenha" class="modalRecuperar">
+    <div class="modalConteudo">
+
+      <span id="fecharModalRecuperar" class="fecharModal">&times;</span>
+
+      <h2 class="azul">Recuperar senha</h2>
+
+      <div class="formRecuperar">
+
+        <input type="email" id="emailRecuperar" placeholder="Digite seu email">
+
+        <button id="enviarCodigo" class="botLogin">
+          Enviar código
+        </button>
+
+        <input type="text" id="codigoRecuperacao" placeholder="Digite o código">
+
+        <button id="confirmarCodigo" class="botLogin">
+          Confirmar código
+        </button>
+
+        <input type="password" id="novaSenha" placeholder="Digite a nova senha" style="display:none">
+
+        <button id="alterarSenha" class="botLogin" style="display:none">
+          Alterar senha
+        </button>
+
+        <p id="mensagemRecuperacao"></p>
+
+      </div>
+
+    </div>
+  </div>
+
+  <style>
+    /* MODAL RECUPERAR SENHA */
+
+    .modalRecuperar {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .modalConteudo {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      width: 350px;
+      text-align: center;
+      position: relative;
+    }
+
+    .formRecuperar input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .botLogin {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      background: #1f6feb;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+
+    .botLogin:hover {
+      background: #1857c7;
+    }
+
+    .fecharModal {
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      font-size: 25px;
+      cursor: pointer;
+    }
+
+    .azul {
+      color: #1f6feb;
+    }
+
+    #mensagemRecuperacao {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  </style>
 
   <!-- <script src="/public/js/formularios/login.js" defer></script> -->
   <script type="module" src="/public/js/formularios/validacaoFormularios.js"></script>

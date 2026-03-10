@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 27/11/2025 às 19:35
+-- Tempo de geração: 10/03/2026 às 11:48
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -40,7 +40,8 @@ CREATE TABLE `bairros` (
 INSERT INTO `bairros` (`idbairro`, `bairro`, `fk_idcidade`) VALUES
 (2, 'Jardim Novo Mundo', 2),
 (3, 'Nova Cidade', 2),
-(4, 'Cidade Jardim', 3);
+(4, 'Cidade Jardim', 3),
+(5, 'Jardim Buscardi', 2);
 
 -- --------------------------------------------------------
 
@@ -86,7 +87,8 @@ CREATE TABLE `enderecos` (
 INSERT INTO `enderecos` (`idendereco`, `fk_idcidade`, `fk_idbairro`, `fk_idrua`, `fk_idestado`, `numero`, `cep`, `complemento`) VALUES
 (2, 2, 2, 2, 26, '1098', '15997-422', '(Tico Geraldo)'),
 (3, 2, 3, 3, 26, '1098', '15991-504', ''),
-(4, 3, 4, 4, 10, '1098', '74425-020', '');
+(4, 3, 4, 4, 10, '1098', '74425-020', ''),
+(5, 2, 5, 5, 26, '873', '15991-200', 'de 2501 a 3699 - lado ímpar');
 
 -- --------------------------------------------------------
 
@@ -328,7 +330,8 @@ CREATE TABLE `ruas` (
 INSERT INTO `ruas` (`idrua`, `rua`, `fk_idbairro`) VALUES
 (2, 'Avenida Dario Geraldo', 2),
 (3, 'Avenida Oneida Travassos Dourado', 3),
-(4, 'Rua da Saúde', 4);
+(4, 'Rua da Saúde', 4),
+(5, 'Avenida Trolesi', 5);
 
 -- --------------------------------------------------------
 
@@ -428,8 +431,17 @@ CREATE TABLE `usuarios` (
   `data_att` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `foto` text DEFAULT NULL,
   `fk_idendereco` int(11) NOT NULL,
-  `fk_idtipo` int(11) NOT NULL
+  `fk_idtipo` int(11) NOT NULL,
+  `codigo_verificacao` varchar(10) DEFAULT NULL,
+  `codigo_expira` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Despejando dados para a tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`idusuario`, `nome`, `email`, `telefone`, `fk_idsexo`, `data_nasc`, `cpf`, `senha`, `data_criacao`, `data_att`, `foto`, `fk_idendereco`, `fk_idtipo`, `codigo_verificacao`, `codigo_expira`) VALUES
+(18, 'OTÁVIO DOMINGUES DA SILVA', 'otaviodominguessilva@gmail.com', '(16) 99632-0063', 2, '2000-07-15', '$2b$10$LBnJ/YY', '$2b$10$miAFDYNy5QtlHEKTNwNyyu4GkwIBFCOyvDb2HqC9R/mMQEUsU1vYS', '2026-03-09 22:25:18', '2026-03-10 07:47:59', NULL, 5, 3, '780495', '2026-03-10 07:57:59');
 
 --
 -- Índices para tabelas despejadas
@@ -601,7 +613,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `bairros`
 --
 ALTER TABLE `bairros`
-  MODIFY `idbairro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idbairro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `cidades`
@@ -613,7 +625,7 @@ ALTER TABLE `cidades`
 -- AUTO_INCREMENT de tabela `enderecos`
 --
 ALTER TABLE `enderecos`
-  MODIFY `idendereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idendereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `especiespet`
@@ -685,7 +697,7 @@ ALTER TABLE `responsaveis`
 -- AUTO_INCREMENT de tabela `ruas`
 --
 ALTER TABLE `ruas`
-  MODIFY `idrua` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idrua` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `sexo`
@@ -715,7 +727,7 @@ ALTER TABLE `tipos_usuario`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Restrições para tabelas despejadas

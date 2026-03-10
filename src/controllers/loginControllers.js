@@ -5,6 +5,10 @@ const { LoginUnificado } = require("../models/loginServices");
 
 dotenv.config();
 
+const {
+  enviaremaillogin,
+} = require("../utils/emailService");
+
 const loginController = {
   Login: async (req, res) => {
     try {
@@ -25,6 +29,9 @@ const loginController = {
       if (!senhaValida) {
         return res.status(401).json({ message: "Senha incorreta." });
       }
+
+      await enviaremaillogin(usuario.email, usuario.nome);
+
 
       let ongFormatada = null;
 
@@ -69,7 +76,7 @@ const loginController = {
         nome: usuario.nome,
         email: usuario.email,
         telefone: usuario.telefone,
-        foto: usuario.foto, 
+        foto: usuario.foto,
 
         sexo: {
           id: usuario.idsexo,

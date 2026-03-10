@@ -3,6 +3,10 @@
 const { AtualizarFoto } = require("../controllers/ongsControllers");
 const { banco } = require("./database"); // Chamando o banco
 
+const {
+    enviarEmailcomcodigo,
+} = require("../utils/emailService");
+
 const GetAll = async () => {
     const querySelect = 'SELECT u.idusuario, u.nome, u.email, u.telefone, s.sexo, u.data_nasc, u.cpf, u.senha, u.data_criacao, u.data_att, u.foto,  u.fk_idendereco, r.rua, e.numero, b.bairro, c.cidade, es.sigla FROM usuarios u ';
 
@@ -230,6 +234,76 @@ const PutEndereco = async (
     }
 };
 
+const CriarCodigoVerificacao = async (email, motivo) => {
+    try {
+        const [result] = await banco.query(
+            "SELECT * FROM usuarios WHERE email = ?",
+            [email]
+        );
+
+        if (result.length === 0) {
+            return { success: false, message: "Email não encontrado" };
+        }
+
+        // Gera um código aleatório de 6 dígitos
+        const codigo = Math.floor(100000 + Math.random() * 900000);
+
+        // Define expiração para 10 minutos a partir de agora
+        const expiraEm = new Date(Date.now() + 10 * 60 * 1000); // 10 min
+
+        // Salva o código e o tempo de expiração no banco
+        await banco.query(
+            "UPDATE usuarios SET codigo_verificacao = ?, codigo_expira = ? WHERE email = ?",
+            [codigo, expiraEm, email]
+        );
+
+        // Envia o email com o código
+        await enviarEmailcomcodigo(motivo, email, result[0].nome, codigo);
+
+        return { success: true, message: "Código de verificação criado e email enviado" };
+    } catch (err) {
+        console.error("Erro ao recuperar senha:", err.message);
+        return { success: false, message: "Erro interno" };
+    }
+};
+
+const VerificarCodigo = async (email, codigo) => {
+    try {
+        const [result] = await banco.query(
+            `SELECT * FROM usuarios 
+             WHERE email = ? 
+             AND codigo_verificacao = ? 
+             AND codigo_expira > NOW()`,
+            [email, codigo]
+        );
+
+        if (result.length === 0) {
+            return { success: false, message: "Código inválido ou expirado" };
+        }
+
+        return { success: true, message: "Código válido" };
+
+    } catch (err) {
+        console.error("Erro ao verificar código:", err.message);
+        throw new Error("Erro interno");
+    }
+};
+
+const alterarSenha = async (email, senhaHash) => {
+    try {
+        await banco.query(
+            "UPDATE usuarios SET senha = ? WHERE email = ?",
+            [senhaHash, email]
+        );
+        return { success: true, message: "Senha alterada com sucesso!" };
+    } catch (err) {
+        console.error("Erro ao alterar senha:", err.message);
+        return { success: false, message: "Erro interno ao alterar senha." };
+    }
+};
+
+
+
 module.exports = {
     GetAll,
     GetById,
@@ -237,5 +311,8 @@ module.exports = {
     UpdateFoto,
     Put,
     Erase,
-    PutEndereco 
+    PutEndereco,
+    CriarCodigoVerificacao,
+    VerificarCodigo,
+    alterarSenha,
 };

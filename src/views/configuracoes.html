@@ -73,7 +73,7 @@
       <form action="" class="formulario editarPerfil">
         <div id="usuarioPerfil">
           <div id="altFotoUsuario">
-            <div  id="fotoUsuarioconfig"></div>
+            <div id="fotoUsuarioconfig"></div>
 
             <div id="bttEditarFotoUsuario">
               <input type="file" id="fotoPerfilUsuario" style="display: none;">
@@ -224,6 +224,270 @@
       </div>
 
       <button id="excluirconta" class="vermelho buttonPerfil" title="Excluir sua conta">Excluir conta</button>
+
+      <script>
+        const btnExcluir = document.getElementById("excluirconta");
+
+        // pega usuario do localStorage
+        const usuario = JSON.parse(localStorage.getItem("usuario"));
+
+        btnExcluir.addEventListener("click", () => {
+          criarModalEmail();
+        });
+
+        function criarModalEmail() {
+
+          const modal = document.createElement("div");
+          modal.id = "modalExcluirConta";
+          modal.innerHTML = `
+        <div class="modalBox">
+            <h2>Excluir conta</h2>
+            <p>Digite seu email para receber o código de confirmação</p>
+
+            <input type="email" id="emailExcluir" placeholder="Seu email">
+
+            <div class="botoes">
+                <button id="enviarCodigo">Enviar código</button>
+                <button id="fecharModal">Cancelar</button>
+            </div>
+
+            <p id="mensagemExcluir"></p>
+        </div>
+    `;
+
+          document.body.appendChild(modal);
+
+          document.getElementById("fecharModal").onclick = () => modal.remove();
+
+          document.getElementById("enviarCodigo").onclick = enviarCodigo;
+        }
+
+        async function enviarCodigo() {
+
+          const email = document.getElementById("emailExcluir").value;
+          const msg = document.getElementById("mensagemExcluir");
+
+          try {
+
+            const resposta = await fetch("http://localhost:6789/usuarios/gerar-codigo-verificacao", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                email: email,
+                motivo: "Exclusão de conta"
+              })
+            });
+
+            const dados = await resposta.json();
+
+            if (!dados.success) {
+              msg.innerText = dados.message;
+              return;
+            }
+
+            msg.innerText = "Código enviado para seu email.";
+
+            mostrarCampoCodigo(email);
+
+          } catch (erro) {
+            msg.innerText = "Erro ao enviar código";
+            console.error(erro);
+          }
+
+        }
+
+        function mostrarCampoCodigo(email) {
+
+          const modalBox = document.querySelector(".modalBox");
+
+          modalBox.innerHTML = `
+        <h2>Confirmar exclusão</h2>
+        <p>Digite o código enviado para seu email</p>
+
+        <input type="number" id="codigoExcluir" placeholder="Código">
+
+        <div class="botoes">
+            <button id="validarCodigo">Confirmar</button>
+            <button id="cancelarExcluir">Cancelar</button>
+        </div>
+
+        <p id="mensagemExcluir"></p>
+    `;
+
+          document.getElementById("cancelarExcluir").onclick = () => {
+            document.getElementById("modalExcluirConta").remove();
+          };
+
+          document.getElementById("validarCodigo").onclick = () => validarCodigo(email);
+        }
+
+        async function validarCodigo(email) {
+
+          const codigo = document.getElementById("codigoExcluir").value;
+          const msg = document.getElementById("mensagemExcluir");
+
+          try {
+
+            const resposta = await fetch("http://localhost:6789/usuarios/verificar-codigo", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                email: email,
+                codigo: Number(codigo)
+              })
+            });
+
+            const dados = await resposta.json();
+
+            if (!dados.success) {
+              msg.innerText = dados.message;
+              return;
+            }
+
+            msg.innerText = "Código confirmado. Excluindo conta...";
+
+            excluirConta();
+
+          } catch (erro) {
+            msg.innerText = "Erro ao validar código";
+            console.error(erro);
+          }
+
+        }
+
+        async function excluirConta() {
+
+          try {
+
+            const resposta = await fetch(`http://localhost:6789/usuarios/${usuario.id}`, {
+              method: "DELETE"
+            });
+
+            if (resposta.ok) {
+
+              alert("Conta excluída com sucesso");
+
+              localStorage.removeItem("usuario");
+
+              window.location.href = "/";
+
+            } else {
+
+              alert("Erro ao excluir conta");
+
+            }
+
+          } catch (erro) {
+            console.error(erro);
+          }
+
+        }
+      </script>
+
+      <style>
+        /* fundo escuro */
+        #modalExcluirConta {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.6);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 9999;
+          font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* caixa do modal */
+        .modalBox {
+          background: white;
+          padding: 30px;
+          width: 350px;
+          border-radius: 10px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+          text-align: center;
+        }
+
+        /* titulo */
+        .modalBox h2 {
+          margin-top: 0;
+          margin-bottom: 10px;
+        }
+
+        /* texto */
+        .modalBox p {
+          color: #555;
+          font-size: 14px;
+        }
+
+        /* inputs */
+        .modalBox input {
+          width: 100%;
+          padding: 10px;
+          margin-top: 15px;
+          border-radius: 6px;
+          border: 1px solid #ccc;
+          font-size: 14px;
+          outline: none;
+        }
+
+        .modalBox input:focus {
+          border-color: #e63946;
+        }
+
+        /* area dos botoes */
+        .botoes {
+          margin-top: 20px;
+          display: flex;
+          gap: 10px;
+        }
+
+        /* botões padrão */
+        .botoes button {
+          flex: 1;
+          padding: 10px;
+          border: none;
+          border-radius: 6px;
+          cursor: pointer;
+          font-size: 14px;
+        }
+
+        /* botão confirmar */
+        #enviarCodigo,
+        #validarCodigo {
+          background: #e63946;
+          color: white;
+        }
+
+        #enviarCodigo:hover,
+        #validarCodigo:hover {
+          background: #c92c3a;
+        }
+
+        /* botão cancelar */
+        #fecharModal,
+        #cancelarExcluir {
+          background: #ddd;
+        }
+
+        #fecharModal:hover,
+        #cancelarExcluir:hover {
+          background: #cfcfcf;
+        }
+
+        /* mensagem */
+        #mensagemExcluir {
+          margin-top: 15px;
+          font-size: 13px;
+          color: #e63946;
+        }
+      </style>
 
     </section>
 

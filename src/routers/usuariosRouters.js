@@ -12,6 +12,9 @@ router.patch("/foto/:id", upload.single('foto'), usuariosController.AtualizarFot
 router.put("/:id", usuariosController.Put);
 router.delete("/:id", usuariosController.Erase);
 router.put("/usuario/endereco/:id", usuariosController.PutEndereco);
+router.post("/gerar-codigo-verificacao", usuariosController.CriarCodigoVerificacao);
+router.post("/verificar-codigo", usuariosController.VerificarCodigo);
+router.post("/alterar-senha", usuariosController.alterarSenha);
 
 
 module.exports = router;
