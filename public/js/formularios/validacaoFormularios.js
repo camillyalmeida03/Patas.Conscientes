@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!validarDescricao()) formularioValido = false;
             if (!validarPesoPet()) formularioValido = false;
             if (!validarIdadePet()) formularioValido = false;
+            if (!validarEspecie()) formularioValido = false; 
 
 
             // Validações de endereço
@@ -847,6 +848,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return true;
     }
 
+    // Validar a idade do pet
     const inputIdade = document.getElementById("idadePetInput");
 
     if (inputIdade) {
@@ -881,6 +883,28 @@ document.addEventListener("DOMContentLoaded", function () {
         return true;
     }
 
+    // Validação da espécie do pet
+    function validarEspecie() {
+        const selectEspecie = document.getElementById("especiePet");
+        if (!selectEspecie) return true;
+        const especie = selectEspecie.value.trim();
+        const erroEspecie = document.getElementById("erroEspeciePetAdt");
+
+        if (selectEspecie) {
+            console.log("campo especie aqui")
+
+           if (especie === "" || especie === "0") {
+                erroEspecie.innerHTML = "O campo Espécie é obrigatório.";
+                erroEspecie.style.display = "block";
+                return false;
+            }
+
+            erroEspecie.style.display = "none";
+            return true;
+        }
+
+    }
+
     // --- Validação em tempo real ---
     const camposValidaveis = [
         { id: "nomeUsuarioAdt", func: validarNome },
@@ -907,7 +931,9 @@ document.addEventListener("DOMContentLoaded", function () {
         { id: "compCnpj", func: validarArquivos },
         { id: "mensagem", func: validarDescricao },
         { id: "pesoPetInput", func: validarPesoPet },
-        { id: "idadePetInput", func: validarIdadePet }
+        { id: "idadePetInput", func: validarIdadePet },
+        { id: "tipoIdade", func: validarIdadePet },
+        { id: "especiePet", func: validarEspecie }
     ];
 
     // Adiciona ouvintes a cada campo existente
@@ -945,6 +971,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.validarDescricao = validarDescricao;
     window.validarPesoPet = validarPesoPet;
     window.validarIdadePet = validarIdadePet;
+    window.validarEspecie = validarEspecie;
 
 });
 

@@ -38,14 +38,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Campos do formulário de adição de pet
       const nome = document.getElementById("nomePet").value.trim();
-      const peso = document.getElementById("pesoPetInput").value.trim()
+      const peso = document.getElementById("pesoPetInput").value.trim();
+      const especie = document.getElementById("especiePet").value;
 
       const idadeMeses = converterIdadeParaMeses();
 
       const dadosPet = {
         nome,
         peso,
-        idade: idadeMeses
+        idade: idadeMeses,
+        especie
       }
 
       const responsePet = await fetch("http://localhost:6789/pets/pornome", {
