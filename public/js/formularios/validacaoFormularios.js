@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!validarIdadePet()) formularioValido = false;
             if (!validarEspecie()) formularioValido = false;
             if (!validarPorte()) formularioValido = false;
+            if (!validarSexoPet()) formularioValido = false;
 
 
             // Validações de endereço
@@ -926,6 +927,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
+    // Validação do sexo do pet
+    function validarSexoPet() {
+        const selectSexo = document.getElementById("sexoPetSel");
+        if (!selectSexo) return true;
+        const sexo = selectSexo.value.trim();
+        const erroSexo = document.getElementById("erroSexoPetAdt");
+
+        if (selectSexo) {
+
+            if (sexo === "" || sexo === "0") {
+                erroSexo.innerHTML = "O campo Sexo é obrigatório.";
+                erroSexo.style.display = "block";
+                return false;
+            }
+
+            erroSexo.style.display = "none";
+            return true;
+        }
+
+    }
+
     // --- Validação em tempo real ---
     const camposValidaveis = [
         { id: "nomeUsuarioAdt", func: validarNome },
@@ -955,7 +977,8 @@ document.addEventListener("DOMContentLoaded", function () {
         { id: "idadePetInput", func: validarIdadePet },
         { id: "tipoIdade", func: validarIdadePet },
         { id: "especiePet", func: validarEspecie },
-        { id: "portePetSel", func: validarPorte }
+        { id: "portePetSel", func: validarPorte },
+        { id: "sexoPetSel", func: validarSexoPet }
     ];
 
     // Adiciona ouvintes a cada campo existente
@@ -995,6 +1018,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.validarIdadePet = validarIdadePet;
     window.validarEspecie = validarEspecie;
     window.validarPorte = validarPorte;
+    window.validarSexoPet = validarSexoPet;
 
 });
 
