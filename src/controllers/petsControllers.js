@@ -45,54 +45,71 @@ const petsController = {
     PostPeloNomeDaRaca: async (request, response) => {
         try {
 
+
             const {
-                nome, fk_idsexopet, fk_idespecie, nomeRaca, fk_idporte,
-                fk_idong, peso, idade, descricao, fk_idstatus
+                nome,
+                sexo,
+                especie,
+                raca,
+                porte,
+                fk_idong,
+                peso,
+                idade,
+                descricao
             } = request.body;
+
+            const fk_idsexopet = sexo;
+            const fk_idespecie = especie;
+            const fk_idporte = porte;
+            const fk_idstatus = 1; // STATUS PADRÃO
 
             let fotoUrl = request.file ? request.file.path : null;
 
-            if (!nomeRaca) {
-                console.log("Erro: nomeRaca está faltando");
-                return response.status(400).json({ message: "O campo 'nomeRaca' é obrigatório." });
+            if (!raca) {
+                console.log("Erro: raca está faltando");
+                return response.status(400).json({
+                    message: "O campo 'raca' é obrigatório."
+                });
+            }
+
+            if (!fk_idespecie) {
+                console.log("Erro: especie está faltando");
+                return response.status(400).json({
+                    message: "O campo 'especie' é obrigatório."
+                });
             }
 
             const data = await model.PostPeloNomeDaRaca(
-                nome, fk_idsexopet, fk_idespecie, nomeRaca, fk_idporte,
-                fk_idong, peso, idade, descricao, fotoUrl, fk_idstatus
+                nome,
+                fk_idsexopet,
+                fk_idespecie,
+                raca,
+                fk_idporte,
+                fk_idong,
+                peso,
+                idade,
+                descricao,
+                fotoUrl,
+                fk_idstatus
             );
 
-            console.log("Sucesso no Model:", data);
-            response.status(201).json(data);
+            response.status(201).json({
+                success: true,
+                message: "Pet cadastrado com sucesso",
+                data: data
+            });
 
         } catch (error) {
+
             console.error("ERRO NO CONTROLLER:", error);
-            response.status(500).json({ message: "Falha ao executar a ação!", details: error.message });
+
+            response.status(500).json({
+                message: "Falha ao executar a ação!",
+                details: error.message
+            });
+
         }
     },
-
-    // Novo método para lidar com o upload da foto vindo do fetch secundário
-    // UploadFoto: async (request, response) => {
-    //     try {
-    //         const { id } = request.params;
-    //         // ATENÇÃO: Isso pressupõe que você tem o middleware Multer configurado nas rotas para salvar o arquivo na pasta 'public/img/fotos/'
-    //         // e que o arquivo vem no campo 'fotopet'.
-
-    //         if (!request.file) {
-    //             return response.status(400).json({ message: "Nenhum arquivo enviado." });
-    //         }
-
-    //         // Caminho relativo para salvar no banco
-    //         const caminhoFoto = `/public/img/fotos/${request.file.filename}`;
-
-    //         await model.UpdateFoto(id, caminhoFoto);
-
-    //         response.status(200).json({ message: "Foto atualizada com sucesso!", path: caminhoFoto });
-    //     } catch (error) {
-    //         console.error(error);
-    //         response.status(500).json({ message: "Erro ao salvar foto." });
-    //     }
-    // },
 
     Put: async (request, response) => {
         try {

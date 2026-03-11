@@ -29,7 +29,6 @@ const GetById = async (id) => {
 };
 
 const Post = async (raca, fk_idespeciepet) => {
-    // 1 - Verifica se já existe essa raça para a espécie informada
     const queryCheck = 'SELECT idracapet FROM racaspet WHERE raca = ? AND fk_idespeciepet = ?';
     const [rows] = await banco.query(queryCheck, [raca, fk_idespeciepet]);
 
@@ -42,7 +41,6 @@ const Post = async (raca, fk_idespeciepet) => {
         };
     }
 
-    // 2 - Se não existe → insere
     const queryInsert = 'INSERT INTO racaspet(raca, fk_idespeciepet) VALUES (?, ?)';
     const [result] = await banco.query(queryInsert, [raca, fk_idespeciepet]);
 

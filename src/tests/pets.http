@@ -37,7 +37,7 @@ Content-Type: application/json
     "fk_idespecie": 1, 
     "nomeRaca": "Siames", 
     "fk_idporte": 1, 
-    "fk_idong": 31, 
+    "fk_idong": 34, 
     "peso": 2, 
     "idade": 2, 
     "descricao": "fofa", 

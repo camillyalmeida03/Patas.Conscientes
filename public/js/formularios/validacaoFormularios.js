@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!validarEspecie()) formularioValido = false;
             if (!validarPorte()) formularioValido = false;
             if (!validarSexoPet()) formularioValido = false;
+            if (!validarFotoPet()) formularioValido = false;
 
 
             // Validações de endereço
@@ -948,6 +949,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
+    // Validação da foto do pet
+    function validarFotoPet() {
+        const inputFoto = document.getElementById("fotopetatt");
+        const erroFoto = document.getElementById("erroFotoPetAdt");
+
+        const arquivo = inputFoto.files[0];
+
+        if (!arquivo) {
+            erroFoto.textContent = "Nenhum arquivo selecionado";
+            return false;
+        }
+
+        const tiposPermitidos = ["image/jpeg", "image/png", "image/webp"];
+
+        if (!tiposPermitidos.includes(arquivo.type)) {
+            erroFoto.textContent = "Formato inválido (use JPG, PNG ou WEBP)";
+            inputFoto.value = "";
+            return false;
+        }
+
+        const tamanhoMaximo = 2 * 1024 * 1024;
+
+        if (arquivo.size > tamanhoMaximo) {
+            erroFoto.textContent = "Arquivo muito grande (máx 2MB)";
+            inputFoto.value = "";
+            return false;
+        }
+
+        erroFoto.textContent = "";
+        return true;
+    }
+
     // --- Validação em tempo real ---
     const camposValidaveis = [
         { id: "nomeUsuarioAdt", func: validarNome },
@@ -978,7 +1011,8 @@ document.addEventListener("DOMContentLoaded", function () {
         { id: "tipoIdade", func: validarIdadePet },
         { id: "especiePet", func: validarEspecie },
         { id: "portePetSel", func: validarPorte },
-        { id: "sexoPetSel", func: validarSexoPet }
+        { id: "sexoPetSel", func: validarSexoPet },
+        { id: "fotopetatt", func: validarFotoPet }
     ];
 
     // Adiciona ouvintes a cada campo existente
@@ -1019,6 +1053,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.validarEspecie = validarEspecie;
     window.validarPorte = validarPorte;
     window.validarSexoPet = validarSexoPet;
+    window.validarFotoPet = validarFotoPet;
 
 });
 
