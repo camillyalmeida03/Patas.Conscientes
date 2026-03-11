@@ -1,115 +1,78 @@
 import { MensagemFeedback } from "../../../public/js/formularios/mensagemFeedback.js";
-import {
-  validarNomePet,
-  validarEspecie,
-  validarPorte,
-  validarSexo,
-  validarPeso,
-  validarIdadePet,
-  validarDescricao
-} from "/public/js/formularios/validacaoFormularios.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 
-
   const formPet = document.getElementById("formInfoPet");
-  const paiFeedback = document.body;
-  const botao = document.getElementById("bttAddPet");
+  const feedbackPai = document.getElementById("mensagemFeedback");
+  const contentTypeJson = { "Content-Type": "application/json" };
 
-  if (botao) {
-    botao.disabled = true;
-    botao.classList.add("desabilitado");
-  }
+  function converterIdadeParaMeses() {
 
-  function controlarBotao() {
+    const idade = Number(document.getElementById("idadePetInput").value);
+    const tipo = document.getElementById("tipoIdade").value;
 
-    let valido = true;
-
-    if (!validarNomePet()) valido = false;
-    if (!validarEspecie()) valido = false;
-    if (!validarPorte()) valido = false;
-    if (!validarSexo()) valido = false;
-    if (!validarPeso()) valido = false;
-    if (!validarIdadePet()) valido = false;
-    if (!validarDescricao()) valido = false;
-
-    if (!valido) {
-      botao.disabled = true;
-      botao.classList.add("desabilitado");
-    } else {
-      botao.disabled = false;
-      botao.classList.remove("desabilitado");
+    if (tipo === "anos") {
+        return idade * 12;
     }
 
-    return valido;
-  }
+    return idade;
+}
 
-  if (formPet) {
+  if (!formPet) return;
 
-    const inputs = formPet.querySelectorAll("input, select, textarea");
+  formPet.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-    inputs.forEach(input => {
-      input.addEventListener("input", controlarBotao);
-    });
+    const inputFoto = document.getElementById("fotopetatt");
+    if (inputFoto && inputFoto.files[0]) {
+      formData.append("fotopet", inputFoto.files[0]);
+    }
 
-    controlarBotao();
+    const camposValidos = validarNome() && validarPesoPet() && validarIdadePet();
 
-  }
+    if (!camposValidos) {
+      new MensagemFeedback("Por favor, corrija os erros antes de enviar o formulário.", feedbackPai).feedbackError();
+      return;
+    }
+    try {
 
-  if (formPet) {
-    formPet.addEventListener("submit", async (e) => {
-      e.preventDefault();
+      // Campos do formulário de adição de pet
+      const nome = document.getElementById("nomePet").value.trim();
+      const peso = document.getElementById("pesoPetInput").value.trim()
 
-      const form = e.target;
-      const formData = new FormData();
+      const idadeMeses = converterIdadeParaMeses();
 
-      const idade = parseInt(form.idade.value || 0);
-      const tipo = form.tipoIdade.value;
-
-      let totalMeses = 0;
-
-      if (tipo === "anos") {
-        totalMeses = idade * 12;
-      } else {
-        totalMeses = idade;
-      }
-      formData.append("nome", form.nome_pet.value);
-      formData.append("fk_idespecie", parseInt(form.especie.value));
-      formData.append("nomeRaca", form.raca.value);
-      formData.append("fk_idsexopet", parseInt(form.sexo.value));
-      formData.append("fk_idporte", parseInt(form.porte.value));
-      formData.append("peso", parseFloat(form.peso.value) || 0);
-      formData.append("idade", totalMeses); // Salva total em meses
-      formData.append("descricao", form.sobre.value);
-      formData.append("fk_idstatus", 1);
-
-      const inputFoto = document.getElementById("fotopetatt");
-      if (inputFoto && inputFoto.files[0]) {
-        formData.append("fotopet", inputFoto.files[0]);
+      const dadosPet = {
+        nome,
+        peso,
+        idade: idadeMeses
       }
 
-      if (!controlarBotao()) {
-        new MensagemFeedback("Preencha todos os campos corretamente", document.body).feedbackAlert();
+      const responsePet = await fetch("http://localhost:6789/pets/pornome", {
+        method: "POST",
+        headers: contentTypeJson,
+        body: JSON.stringify(dadosPet)
+      });
+
+      const data = await responsePet.json();
+
+      if (!responsePet.ok || data.success === false) {
+        new MensagemFeedback(data.message || "Erro ao enviar dados.", feedbackPai).feedbackError();
         return;
       }
 
-      try {
-        const res = await fetch("http://localhost:6789/pets/pornome", {
-          method: "POST",
-          body: formData,
-        });
-
-        if (!res.ok) throw new Error("Falha ao salvar pet");
-
-        new MensagemFeedback("Pet cadastrado com sucesso!", paiFeedback).feedbackSucess();
-
+      if (data.success) {
+        new MensagemFeedback("Cadastro realizado com sucesso!", feedbackPai).feedbackSucess();
+        formPet.reset();
         setTimeout(() => {
           window.location.href = `ongPage.html?id=${new URLSearchParams(window.location.search).get("id") || 1}`;
-        }, 2500);
-
-      } catch (err) {
-        new MensagemFeedback("Erro ao cadastrar: " + err.message, paiFeedback).feedbackError();
+        }, 3000);
       }
-    });
-  }
-});
+
+    } catch (error) {
+      console.error("Erro ao enviar dados:", error);
+      new MensagemFeedback("Erro ao enviar dados. Tente novamente.", feedbackPai).feedbackError();
+    }
+  });
+}
+);

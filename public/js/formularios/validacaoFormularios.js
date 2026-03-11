@@ -29,6 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!validarSenhaLogin()) formularioValido = false;
             if (!validarArquivos()) formularioValido = false;
             if (!validarDescricao()) formularioValido = false;
+            if (!validarPesoPet()) formularioValido = false;
+            if (!validarIdadePet()) formularioValido = false;
 
 
             // Validações de endereço
@@ -53,9 +55,9 @@ document.addEventListener("DOMContentLoaded", function () {
         // Lista de campos a validar
         const campos = [
             { input: "#nomeUsuarioAdt", erro: "#erroNomeUsuarioAdt", minLength: 3 },
-            { input: "#nomeOng", erro: "#erroNomeOng", minLength: 3 }
+            { input: "#nomeOng", erro: "#erroNomeOng", minLength: 3 },
+            { input: "#nomePet", erro: "#erroNomePetAdt", minLength: 2 }
         ];
-        ;
 
         let tudoValido = true; // Flag geral
 
@@ -580,7 +582,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-
     // Validação do estado
     function validarEstado() {
         const selectEstado = document.getElementById("estado");
@@ -819,12 +820,72 @@ document.addEventListener("DOMContentLoaded", function () {
         return tudoValido;
     }
 
-    
+    // Validação do peso do pet
+    const inputPeso = document.getElementById("pesoPetInput");
+
+    inputPeso.addEventListener("input", function () {
+        this.value = this.value.replace(/[^0-9.,]/g, "");
+    });
+
+    function validarPesoPet() {
+
+        const inputPeso = document.getElementById("pesoPetInput");
+        if (!inputPeso) return true;
+
+        const pesoPet = inputPeso.value.trim();
+        const erroPesoPet = document.getElementById("erroPesoPetAdt");
+
+        const regexPesoPet = /^\d+([.,]\d+)?$/;
+
+        if (pesoPet === "") {
+            erroPesoPet.innerHTML = "O campo Peso é obrigatório.";
+            erroPesoPet.style.display = "block";
+            return false;
+        }
+
+        erroPesoPet.style.display = "none";
+        return true;
+    }
+
+    const inputIdade = document.getElementById("idadePetInput");
+
+    if (inputIdade) {
+        inputIdade.addEventListener("input", function () {
+            this.value = this.value.replace(/\D/g, "");
+        });
+    }
+
+    function validarIdadePet() {
+
+        const inputIdade = document.getElementById("idadePetInput");
+        const tipoIdade = document.getElementById("tipoIdade");
+
+        if (!inputIdade) return true;
+
+        const idade = inputIdade.value.trim();
+        const erro = document.getElementById("erroIdadePetAdt");
+
+        if (idade === "") {
+            erro.innerHTML = "O campo Idade é obrigatório.";
+            erro.style.display = "block";
+            return false;
+        }
+
+        if (tipoIdade.value === "meses" && Number(idade) > 11) {
+            erro.innerHTML = "Para mais de 11 meses, selecione 'anos'.";
+            erro.style.display = "block";
+            return false;
+        }
+
+        erro.style.display = "none";
+        return true;
+    }
 
     // --- Validação em tempo real ---
     const camposValidaveis = [
         { id: "nomeUsuarioAdt", func: validarNome },
         { id: "nomeOng", func: validarNome },
+        { id: "nomePet", func: validarNome },
         { id: "emailOng", func: validarEmail },
         { id: "emailUsuarioAdt", func: validarEmail },
         { id: "telcelUsuarioAdt", func: validarTelCel },
@@ -844,7 +905,9 @@ document.addEventListener("DOMContentLoaded", function () {
         { id: "nmr", func: validarNmr },
         { id: "estatutoOng", func: validarArquivos },
         { id: "compCnpj", func: validarArquivos },
-        { id: "mensagem", func: validarDescricao }
+        { id: "mensagem", func: validarDescricao },
+        { id: "pesoPetInput", func: validarPesoPet },
+        { id: "idadePetInput", func: validarIdadePet }
     ];
 
     // Adiciona ouvintes a cada campo existente
@@ -880,6 +943,8 @@ document.addEventListener("DOMContentLoaded", function () {
     window.validarNmr = validarNmr;
     window.validarArquivos = validarArquivos;
     window.validarDescricao = validarDescricao;
+    window.validarPesoPet = validarPesoPet;
+    window.validarIdadePet = validarIdadePet;
 
 });
 

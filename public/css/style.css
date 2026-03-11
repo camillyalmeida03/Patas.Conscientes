@@ -1710,9 +1710,9 @@ footer .listasFooter a:hover {
     width: 30%;
 }
 
-/* #pesoPet::after {
+#pesoPet::after {
     content: " kg";
-} */
+}
 
 #idadePet::after {
     content: " anos";

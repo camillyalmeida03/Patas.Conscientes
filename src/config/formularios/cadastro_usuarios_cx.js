@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const endpointUsuario = "http://localhost:6789/usuarios";
             const contentTypeJson = { "Content-Type": "application/json" };
 
+            
             // ------------------- CRIAÇÕES EM CADEIA -------------------
             const idEstado = (await fetch(endpointEstado, {
                 method: "POST",

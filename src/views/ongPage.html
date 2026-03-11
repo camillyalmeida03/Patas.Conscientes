@@ -115,7 +115,7 @@
                 </button>
 
                 <!-- Formulário de cadastro de pet -->
-                <form id="formInfoPet">
+                <form id="formInfoPet" class="formulario">
 
                     <!-- Título -->
                     <h3>Cadastrar pet</h3>
@@ -145,52 +145,77 @@
 
                         </div>
 
+                        <!-- Erros do campo de foto do pet -->
                         <p id="erroFotoPetAdt" class="error-message">Teste</p>
 
                     </div>
 
+                    <!-- Div do campo de nome  -->
                     <div class="alinharErro">
+
+                        <!-- Input do campo de nome -->
                         <input type="text" name="nome_pet" id="nomePet" class="inputCadastro" placeholder="Nome *">
-                        <p id="erroNomePetAdt" class="error-message">Teste</p>
+
+                        <!-- Erros do campo de nome -->
+                        <p id="erroNomePetAdt" class="error-message"></p>
                     </div>
 
+                    <!-- Div do campo de peso -->
                     <div class="alinharDoisInput">
+
                         <div class="divInputCadastro alinharErro">
-                            <input type="text" id="pesoPet" class="inputCadastro" name="peso"
+
+                            <!-- Input de peso do pet -->
+                            <input type="text" id="pesoPetInput" class="inputCadastro" name="peso"
                                 placeholder="Peso em kg *">
+
+                            <!-- tooltip de como responder ao campo de peso -->
                             <span class="tooltip">
+
+                                <!-- Ícone de info -->
                                 <svg viewBox="0 -960 960 960">
                                     <path
                                         d="M423.5-703.5Q400-727 400-760t23.5-56.5Q447-840 480-840t56.5 23.5Q560-793 560-760t-23.5 56.5Q513-680 480-680t-56.5-23.5ZM420-120v-480h120v480H420Z" />
                                 </svg>
 
+                                <!-- Dica dentro da tooltip -->
                                 <span class="tooltip-text">Digite apenas números. <br> Informe o peso do pet em kg. <br>
                                     Exemplo: 0,8 para pets com menos de 1 kg.</span>
                             </span>
 
-                            <p id="erroPesoPetAdt" class="error-message">Teste</p>
+                            <!-- Erro do campo de peso -->
+                            <p id="erroPesoPetAdt" class="error-message"></p>
 
                         </div>
 
+                        <!-- Div do campo de idade pet -->
                         <div class="divInputCadastro alinharErro" id="idadePetSel">
-                            <input type="text" id="idadePet" name="idade" class="inputCadastro" placeholder="Idade *">
 
+                            <!-- Input do campo de pet -->
+                            <input type="text" id="idadePetInput" name="idade" class="inputCadastro" placeholder="Idade *">
+
+                            <!-- Tooltip de como responder ao campo de idade -->
                             <span class="tooltip">
+
+                                <!-- Ícone do tooltip -->
                                 <svg viewBox="0 -960 960 960">
                                     <path
                                         d="M423.5-703.5Q400-727 400-760t23.5-56.5Q447-840 480-840t56.5 23.5Q560-793 560-760t-23.5 56.5Q513-680 480-680t-56.5-23.5ZM420-120v-480h120v480H420Z" />
                                 </svg>
 
+                                <!-- Dica da tooltip -->
                                 <span class="tooltip-text">Digite apenas números. <br> Use anos ou meses para pets
                                     menores. <br> Exemplo: 2 (anos) ou 6 (meses).</span>
                             </span>
 
+                            <!-- Select de idade em anos ou meses -->
                             <select id="tipoIdade">
                                 <option value="anos">Anos</option>
                                 <option value="meses">Meses</option>
                             </select>
 
-                            <p id="erroIdadePetAdt" class="error-message">Teste</p>
+                            <!-- Erro do campo de idade do pet -->
+                            <p id="erroIdadePetAdt" class="error-message"></p>
 
                         </div>
                     </div>
@@ -245,7 +270,7 @@
                             <div class="textoArea">
                                 <textarea name="sobre" id="mensagem" placeholder="Descrição *" class="inputCadastro"
                                     maxlength="200" oninput="atualizarContagem();"></textarea>
-                                    <div class="fundoCont"></div>
+                                <div class="fundoCont"></div>
                             </div>
 
                             <p id="contarCaracteres"><span id="contagem">0</span>/200</p>
@@ -256,7 +281,8 @@
                     </div>
 
 
-                    <input type="submit" value="Adicionar" id="bttAddPet" class="buttonRosa desabilitado" aria-label="Adicionar">
+                    <input type="submit" value="Adicionar" id="bttAddPet" class="buttonRosa desabilitado"
+                        aria-label="Adicionar">
 
                     <p id="mensagemFeedback"></p>
                 </form>
@@ -287,7 +313,7 @@
                         <div class="linha"></div>
                         <p class="endereco" id="enderecoOng">undefined</p>
                         <div class="linha"></div>
-                        <p class="petsDisponiveis" id="petsDisponiveis">Null</p>
+                        <p class="petsDisponiveis" id="petsDisponiveis">0</p>
                     </div>
 
                     <button class="bttEstatisticas" id="toggleEstatisticas" aria-expanded="false"
