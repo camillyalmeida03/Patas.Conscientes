@@ -12,11 +12,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const tipo = document.getElementById("tipoIdade").value;
 
     if (tipo === "anos") {
-        return idade * 12;
+      return idade * 12;
     }
 
     return idade;
-}
+  }
 
   if (!formPet) return;
 
@@ -40,8 +40,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const nome = document.getElementById("nomePet").value.trim();
       const peso = document.getElementById("pesoPetInput").value.trim();
       const especie = document.getElementById("especiePet").value;
+      const raca = document.getElementById("racaPetSel").value.trim();
       const porte = document.getElementById("portePetSel").value;
       const sexo = document.getElementById("sexoPetSel").value;
+      const descricao = document.getElementById("mensagem").value.trim();
 
       const idadeMeses = converterIdadeParaMeses();
 
@@ -50,8 +52,10 @@ document.addEventListener("DOMContentLoaded", () => {
         peso,
         idade: idadeMeses,
         especie,
+        raca,
         porte,
-        sexo
+        sexo,
+        descricao
       }
 
       const responsePet = await fetch("http://localhost:6789/pets/pornome", {

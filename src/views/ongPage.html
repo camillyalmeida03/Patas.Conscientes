@@ -185,14 +185,15 @@
 
                             <!-- Erro do campo de peso -->
                             <p id="erroPesoPetAdt" class="error-message"></p>
- 
+
                         </div>
 
                         <!-- Div do campo de idade pet -->
                         <div class="divInputCadastro alinharErro" id="idadePetSel">
 
                             <!-- Input do campo de pet -->
-                            <input type="text" id="idadePetInput" name="idade" class="inputCadastro" placeholder="Idade *">
+                            <input type="text" id="idadePetInput" name="idade" class="inputCadastro"
+                                placeholder="Idade *">
 
                             <!-- Tooltip de como responder ao campo de idade -->
                             <span class="tooltip">
@@ -240,7 +241,7 @@
                         <div class="alinharErro">
 
                             <!-- Input de raça do pet -->
-                            <input type="text" id="racaPet" name="raca" class="inputCadastro" placeholder="Raça *">
+                            <input type="text" id="racaPetSel" name="raca" class="inputCadastro" placeholder="Raça *">
 
                             <!-- Erro da raça do pet -->
                             <p id="erroRacaPetAdt" class="error-message"></p>
@@ -283,21 +284,25 @@
                         </div>
                     </div>
 
+                    <!-- Campo de descrição do pet -->
                     <div class="alinharErro textAreaCont">
+
                         <div class="textAreaCont">
                             <div class="textoArea">
+
+                                <!-- TextArea da descrição -->
                                 <textarea name="sobre" id="mensagem" placeholder="Descrição *" class="inputCadastro"
                                     maxlength="200" oninput="atualizarContagem();"></textarea>
                                 <div class="fundoCont"></div>
                             </div>
 
+                            <!-- Contador de caracteres -->
                             <p id="contarCaracteres"><span id="contagem">0</span>/200</p>
                         </div>
 
-
-                        <p id="erroDescPetAdt" class="error-message">Teste</p>
+                        <!-- Erro da descrição -->
+                        <p id="erroDesc" class="error-message"></p>
                     </div>
-
 
                     <input type="submit" value="Adicionar" id="bttAddPet" class="buttonRosa desabilitado"
                         aria-label="Adicionar">
