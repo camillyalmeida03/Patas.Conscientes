@@ -31,7 +31,8 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!validarDescricao()) formularioValido = false;
             if (!validarPesoPet()) formularioValido = false;
             if (!validarIdadePet()) formularioValido = false;
-            if (!validarEspecie()) formularioValido = false; 
+            if (!validarEspecie()) formularioValido = false;
+            if (!validarPorte()) formularioValido = false;
 
 
             // Validações de endereço
@@ -891,15 +892,35 @@ document.addEventListener("DOMContentLoaded", function () {
         const erroEspecie = document.getElementById("erroEspeciePetAdt");
 
         if (selectEspecie) {
-            console.log("campo especie aqui")
 
-           if (especie === "" || especie === "0") {
+            if (especie === "" || especie === "0") {
                 erroEspecie.innerHTML = "O campo Espécie é obrigatório.";
                 erroEspecie.style.display = "block";
                 return false;
             }
 
             erroEspecie.style.display = "none";
+            return true;
+        }
+
+    }
+
+    // Validação do porte do pet
+    function validarPorte() {
+        const selectPorte = document.getElementById("portePetSel");
+        if (!selectPorte) return true;
+        const porte = selectPorte.value.trim();
+        const erroPorte = document.getElementById("erroPortePetAdt");
+
+        if (selectPorte) {
+
+            if (porte === "" || porte === "0") {
+                erroPorte.innerHTML = "O campo Porte é obrigatório.";
+                erroPorte.style.display = "block";
+                return false;
+            }
+
+            erroPorte.style.display = "none";
             return true;
         }
 
@@ -933,7 +954,8 @@ document.addEventListener("DOMContentLoaded", function () {
         { id: "pesoPetInput", func: validarPesoPet },
         { id: "idadePetInput", func: validarIdadePet },
         { id: "tipoIdade", func: validarIdadePet },
-        { id: "especiePet", func: validarEspecie }
+        { id: "especiePet", func: validarEspecie },
+        { id: "portePetSel", func: validarPorte }
     ];
 
     // Adiciona ouvintes a cada campo existente
@@ -972,6 +994,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.validarPesoPet = validarPesoPet;
     window.validarIdadePet = validarIdadePet;
     window.validarEspecie = validarEspecie;
+    window.validarPorte = validarPorte;
 
 });
 

@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const nome = document.getElementById("nomePet").value.trim();
       const peso = document.getElementById("pesoPetInput").value.trim();
       const especie = document.getElementById("especiePet").value;
+      const porte = document.getElementById("portePetSel").value;
 
       const idadeMeses = converterIdadeParaMeses();
 
@@ -47,7 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
         nome,
         peso,
         idade: idadeMeses,
-        especie
+        especie,
+        porte
       }
 
       const responsePet = await fetch("http://localhost:6789/pets/pornome", {
