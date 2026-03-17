@@ -120,7 +120,9 @@ function traduzir() {
             entraremail: "Digite seu E-mail",
             entrarsenha: "Digite sua senha",
             entraresqueceu: "Esqueceu sua senha?",
-           
+            entrarconfirmar: "Confirmar",
+            entrarcadastre: "Não tem conta? Cadastre-se",
+
         },
         eng: {
             headerinstitucional: "Institutional",
@@ -197,7 +199,7 @@ function traduzir() {
             adotarfilter: "Filters",
             adotarlimpar: "Clear all",
             adotarcidade: "City",
-            adotarong:  "NGO's",
+            adotarong: "NGO's",
             adotarespecie: "Species",
             adotardog: "Dog",
             adotarcat: "Cat",
@@ -229,7 +231,9 @@ function traduzir() {
             entraremail: "Enter your E-mail",
             entrarsenha: "Enter your passaword",
             entraresqueceu: "Forgot your password?",
-        
+            entrarconfirmar: "Confirm",
+            entrarcadastre: "Don't have an account? Sign up",
+
         }
     };
 
@@ -243,8 +247,7 @@ function traduzir() {
     function traduzirPlaceholder(classe, texto) {
         var traduzirPlaceholder = document.getElementsByClassName(classe);
         for (var i = 0; i < traduzirPlaceholder.length; i++) {
-            traduzirPlaceholder[i].placeholder =
-                idioma[idiomaselect]= texto;
+            traduzirPlaceholder[i].placeholder = texto;
         }
     }
 
@@ -349,7 +352,11 @@ function traduzir() {
     traduzirPlaceholder("entraremail", idioma[idiomaselect].entraremail);
     traduzirPlaceholder("entrarsenha", idioma[idiomaselect].entrarsenha);
     traduzirClasse("entraresqueceu", idioma[idiomaselect].entraresqueceu);
+    traduzirClasse("entrarconfirmar", idioma[idiomaselect].entrarconfirmar);
+    traduzirClasse("entrarcadastre", idioma[idiomaselect].entrarcadastre);
     
+    
+
     document.getElementById('trocarlingua').value = idiomaselect;
 }
 
