@@ -1714,9 +1714,6 @@ footer .listasFooter a:hover {
     content: " kg";
 }
 
-#idadePet::after {
-    content: " anos";
-}
 
 #triploInfo div {
     margin-bottom: 0.5rem;

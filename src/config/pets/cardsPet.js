@@ -167,7 +167,7 @@ export class CardsPets {
     this.idadePet = this.criarElemento.createElement(
       "p",
       [],
-      InfoPet.idade,
+      this.converterIdade(InfoPet.idade),
       this.conjTituloIdade,
       "idadePet"
     );
@@ -370,17 +370,15 @@ export class CardsPets {
 
   converterIdade(meses) {
     const anos = Math.floor(meses / 12);
-    const restoMeses = meses % 12;
 
-    if (anos > 0 && restoMeses > 0) {
-      return `${anos} ano(s) e ${restoMeses} mês(es)`;
+    if (anos === 1) {
+      return `${anos} ano`
+    } else if (anos > 1) {
+      return `${anos} anos`;
+    } else if (anos < 1) {
+      return `${meses} meses`
     }
 
-    if (anos > 0) {
-      return `${anos} ano(s)`;
-    }
-
-    return `${restoMeses} mês(es)`;
   }
 
   //Método responsável por expandir o card na versão mobile
@@ -842,17 +840,17 @@ window.addEventListener("load", paginacarregada); //A página espera o JS carreg
 
 function paginacarregada() {
 
-  // ✅ Agora, só UM resize, fora do forEach
-  window.addEventListener("resize", () => {
-    if (window.innerWidth > 650) {
-      cards.forEach((card) => {
-        if (card.informacoesExibidas) {
-          card.limparCardMaisInfo();
-          card.limparCardNormal();
-          card.mostrarCardNormal();
-        }
-        card.esconderFundoDaAba();
-      });
-    }
-  });
+  // // ✅ Agora, só UM resize, fora do forEach
+  // window.addEventListener("resize", () => {
+  //   if (window.innerWidth > 650) {
+  //     cards.forEach((card) => {
+  //       if (card.informacoesExibidas) {
+  //         card.limparCardMaisInfo();
+  //         card.limparCardNormal();
+  //         card.mostrarCardNormal();
+  //       }
+  //       card.esconderFundoDaAba();
+  //     });
+  //   }
+  // });
 }
