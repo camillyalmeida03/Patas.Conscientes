@@ -259,21 +259,21 @@
       <!-- Modal de aviso para ongs -->
       <div class="fundoModal escondido" id="modalCadOngPOngs">
         <div class="modal">
-          <h2>Você já possui uma conta de ONG</h2>
+          <h2 class="alertaconta">Você já possui uma conta de ONG</h2>
 
-          <p>
+          <p class="alertacadong">
             O sistema identificou que sua conta atual já está cadastrada como uma
             <span class="negrito">ONG parceira</span>.
           </p>
-          <p>
+          <p class="alertaongunica">
             Cada conta pode representar apenas <span class="negrito">uma única ONG</span>.
             Se desejar atualizar informações ou gerenciar sua ONG, acesse o
             <span class="negrito">Painel da ONG</span>.
           </p>
 
           <div class="redireciona">
-            <a href="/src/views/configuracoes.html">Ir para o Painel da ONG</a>
-            <a href="/index.html" class="voltar">Voltar para a página inicial</a>
+            <a class="alertapainelong" href="/src/views/configuracoes.html">Ir para o Painel da ONG</a>
+            <a class="alertavoltar" href="/index.html" class="voltar">Voltar para a página inicial</a>
           </div>
         </div>
       </div>
@@ -362,6 +362,7 @@
   <script src="/public/js/tema.js" defer></script>
   <script src="/public/js/carregar_pagina.js"></script>
   <script type="module" src="/src/config/formularios/cadastro_ongs.js"></script>
+  <script src="/public/js/traducao.js"></script>
   <!-- <script src="/public/js/conexaoBanco/form_ong_cx.js"></script> -->
 
 

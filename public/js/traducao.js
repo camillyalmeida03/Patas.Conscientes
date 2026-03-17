@@ -109,7 +109,18 @@ function traduzir() {
             cardraca: "Raça",
             cardlocal: "Local",
             cardsobre: "Sobre",
-
+            // pag cadastrar ong - quando tem conta
+            alertaconta: "Você já possui uma conta de ONG",
+            alertacadong: `O sistema identificou que sua conta atual já está cadastrada como uma <span class="negrito">ONG parceira.</span>`,
+            alertaongunica: `Cada conta pode representar apenas <span class="negrito">uma única ONG.</span> Se desejar atualizar informações ou gerenciar sua ONG, acesse o <span class="negrito">Painel da ONG.</span>`,
+            alertapainelong: "Ir para o Painel da ONG",
+            alertavoltar: "Voltar para a página inicial",
+            // pag login 
+            entrar: "Entrar",
+            entraremail: "Digite seu E-mail",
+            entrarsenha: "Digite sua senha",
+            entraresqueceu: "Esqueceu sua senha?",
+           
         },
         eng: {
             headerinstitucional: "Institutional",
@@ -207,6 +218,18 @@ function traduzir() {
             cardraca: "Race",
             cardlocal: "Location",
             cardsobre: "About",
+            // pag cadastrar ong - quando tem conta
+            alertaconta: "Do you already have an NGO account",
+            alertcadong: `The system has identified that your current account is already registered as a <span class="negrito">partner NGO.</span>`,
+            alertaongunica: `Each account can represent only <span class="negrito">a single NGO.</span> If you wish to update information or manage your NGO, go to the <span class="negrito">NGO Dashboard.</span>`,
+            alertapainelong: "Go to the NGO Dashboard",
+            alertavoltar: "Return to the homepage",
+            // pag login 
+            entrar: "Login",
+            entraremail: "Enter your E-mail",
+            entrarsenha: "Enter your passaword",
+            entraresqueceu: "Forgot your password?",
+        
         }
     };
 
@@ -315,9 +338,17 @@ function traduzir() {
     traduzirClasse("cardraca", idioma[idiomaselect].cardraca);
     traduzirClasse("cardsobre", idioma[idiomaselect].cardsobre);
     traduzirClasse("cardlocal", idioma[idiomaselect].cardlocal);
-    
-    
-    
+    // pag cadastrar ong - quando tem conta
+    traduzirClasse("alertaconta", idioma[idiomaselect].alertaconta);
+    traduzirClasse("alertacadong", idioma[idiomaselect].alertcadong);
+    traduzirClasse("alertaongunica", idioma[idiomaselect].alertaongunica);
+    traduzirClasse("alertapainelong", idioma[idiomaselect].alertapainelong);
+    traduzirClasse("alertavoltar", idioma[idiomaselect].alertavoltar);
+    // pag login 
+    traduzirClasse("entrar", idioma[idiomaselect].entrar);
+    traduzirPlaceholder("entraremail", idioma[idiomaselect].entraremail);
+    traduzirPlaceholder("entrarsenha", idioma[idiomaselect].entrarsenha);
+    traduzirClasse("entraresqueceu", idioma[idiomaselect].entraresqueceu);
     
     document.getElementById('trocarlingua').value = idiomaselect;
 }

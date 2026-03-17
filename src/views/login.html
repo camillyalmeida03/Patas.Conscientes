@@ -31,27 +31,27 @@
 
     <div>
       <div class="loginCard" id="entrarCard">
-        <h2 class="azul">Entrar</h2>
+        <h2 class="azul entrar">Entrar</h2>
 
         <form action="" id="formEntrar" class="formulario">
 
           <!-- Campo de email de login do usuário -->
           <div class="passwordContainer">
-            <input type="text" id="emailUsuarioAdt" name="email" class="inputLogin" placeholder="Digite seu E-mail"
+            <input class="entraremail inputLogin" type="text" id="emailUsuarioAdt" name="email" placeholder="Digite seu E-mail"
               autocomplete>
           </div>
           <p id="erroEmailUsuarioAdt" class="error-message"></p>
 
           <!-- Campo de senha com ícone de olho -->
-          <div class="passwordContainer">
-            <input type="password" id="senhaLoginUsuario" name="senha" placeholder="Digite sua senha"
+          <div class="passwordContainer" >
+            <input class="entrarsenha" type="password" id="senhaLoginUsuario" name="senha" placeholder="Digite sua senha"
               autocomplete="current-password">
             <span id="togglePassword" class="eye-icon"><img id="olho" src="/public/img/icons/olhofechado.svg"
                 title="Mostrar/Ocultar senha" alt=""></span>
           </div>
           <p id="erroLoginUsuario" class="error-message"></p>
 
-          <button type="button" title="Recuperar senha" class="linkFalso" aria-label="Recuperar senha"
+          <button class="linkFalso entraresqueceu"  type="button" title="Recuperar senha" aria-label="Recuperar senha"
             id="botaorecuperarsenha">Esqueceu sua
             senha?</button>
 
@@ -261,6 +261,7 @@
   <script type="module" src="/src/config/formularios/login_usuario.js"></script>
   <script type="module" src="/public/js/header.js" defer></script>
   <script src="/public/js/barraacessibilidade.js" defer></script>
+  <script src="/public/js/traducao.js"></script>
   <script src="/public/js/tema.js" defer></script>
   <script src="/public/js/carregar_pagina.js"></script>
   <script src="/public/js/formularios/login.js"></script>
