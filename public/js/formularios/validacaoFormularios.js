@@ -956,31 +956,35 @@ document.addEventListener("DOMContentLoaded", function () {
         const inputFoto = document.getElementById("fotopetatt");
         const erroFoto = document.getElementById("erroFotoPetAdt");
 
-        const arquivo = inputFoto.files[0];
+        if (inputFoto) {
+            const arquivo = inputFoto.files[0];
 
-        if (!arquivo) {
-            erroFoto.textContent = "Nenhum arquivo selecionado";
-            return false;
+            if (!arquivo) {
+                erroFoto.textContent = "Nenhum arquivo selecionado";
+                return false;
+            }
+
+            const tiposPermitidos = ["image/jpeg", "image/png", "image/webp"];
+
+            if (!tiposPermitidos.includes(arquivo.type)) {
+                erroFoto.textContent = "Formato inválido (use JPG, PNG ou WEBP)";
+                inputFoto.value = "";
+                return false;
+            }
+
+            const tamanhoMaximo = 2 * 1024 * 1024;
+
+            if (arquivo.size > tamanhoMaximo) {
+                erroFoto.textContent = "Arquivo muito grande (máx 2MB)";
+                inputFoto.value = "";
+                return false;
+            }
+
+            erroFoto.textContent = "";
+            return true;
         }
 
-        const tiposPermitidos = ["image/jpeg", "image/png", "image/webp"];
 
-        if (!tiposPermitidos.includes(arquivo.type)) {
-            erroFoto.textContent = "Formato inválido (use JPG, PNG ou WEBP)";
-            inputFoto.value = "";
-            return false;
-        }
-
-        const tamanhoMaximo = 2 * 1024 * 1024;
-
-        if (arquivo.size > tamanhoMaximo) {
-            erroFoto.textContent = "Arquivo muito grande (máx 2MB)";
-            inputFoto.value = "";
-            return false;
-        }
-
-        erroFoto.textContent = "";
-        return true;
     }
 
     // --- Validação em tempo real ---
