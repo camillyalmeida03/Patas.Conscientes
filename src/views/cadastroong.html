@@ -7,7 +7,7 @@
   <meta name="description"
     content="Cadastre sua ONG e ajude animais a encontrarem novos lares. Ofereça pets para adoção diretamente em nossa plataforma, compartilhe informações e contribua para a causa animal. Junte-se a nós e amplifique sua missão de cuidado e amor!">
 
-    <link rel="icon" href="/public/img/icons/favicon.svg">
+  <link rel="icon" href="/public/img/icons/favicon.svg">
   <link rel="stylesheet" href="/public/css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +19,7 @@
 
 <body>
   <header id="headerIndex">
-      <script type="module" src="/src/config/header.js"></script>
+    <script type="module" src="/src/config/header.js"></script>
   </header>
 
   <section class="caminho">
@@ -201,14 +201,25 @@
             <p class="error-message" id="erroCompCnpj"></p>
           </div>
 
+
           <!-- Campo de descrição da ONG -->
-          <div class="alinharErro">
-            <textarea name="descricao" id="mensagem" placeholder="Descrição da ONG" class="inputCadastro al"
-              maxlength="200" oninput="atualizarContagem();"></textarea>
+          <div class="alinharErro textAreaCont">
 
-            <p id="contarCaracteres"><span id="contagem">0</span>/200</p>
+            <div class="textAreaCont">
+              <div class="textoArea">
 
-            <p class="error-message" id="erroDesc"></p>
+                <!-- TextArea da descrição -->
+                <textarea name="sobre" id="mensagem" placeholder="Descrição *" class="inputCadastro" maxlength="200"
+                  oninput="atualizarContagem();"></textarea>
+                <div class="fundoCont"></div>
+              </div>
+
+              <!-- Contador de caracteres -->
+              <p id="contarCaracteres"><span id="contagem">0</span>/200</p>
+            </div>
+
+            <!-- Erro da descrição -->
+            <p id="erroDesc" class="error-message"></p>
           </div>
 
           <p id="mensagemcriacaodeconta"></p>
@@ -346,7 +357,7 @@
   <script type="module" src="/src/config/header.js" defer></script>
   <script src="/public/js/barraacessibilidade.js" defer></script>
   <script type="module" src="/public/js/trocaLado.js"></script>
-  <script type="module" src="/public/js/formularios/validacaoFormularios.js"></script>
+  <script src="/public/js/formularios/validacaoFormularios.js"></script>
   <script type="module" src="/public/js/formularios/formcadong.js" defer></script>
   <script src="/public/js/tema.js" defer></script>
   <script src="/public/js/carregar_pagina.js"></script>
