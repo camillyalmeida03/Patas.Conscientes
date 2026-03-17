@@ -62,6 +62,10 @@
     cursor: not-allowed !important;
 }
 
+.bttDesabilitado{
+    background-color: grey !important;
+}
+
 .bttEstatisticas {
     display: flex;
     align-items: center;

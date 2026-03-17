@@ -1,18 +1,37 @@
 // Este arquivo é responsável por fazer a troca de lados em algumas páginas
 
 class TrocaLado {
-  trocar(ladoParaEsconder, ladoParaMostrar, botao) {
+  trocar(ladoParaEsconder, ladoParaMostrar, botao, tipo) {
     botao.addEventListener("click", () => {
       ladoParaEsconder.style.display = "none";
       ladoParaMostrar.style.display = "flex";
+
+      this.atualizarBotoes(tipo);
     });
   }
 
-  trocarGrid(ladoParaEsconder, ladoParaMostrar, botao) {
+  trocarGrid(ladoParaEsconder, ladoParaMostrar, botao, tipo) {
     botao.addEventListener("click", () => {
       ladoParaEsconder.style.display = "none";
       ladoParaMostrar.style.display = "grid";
+
+      this.atualizarBotoes(tipo); // 👈 AQUI
     });
+  }
+
+  atualizarBotoes(ativo) {
+    const btt1 = document.getElementById("bttEtapa1");
+    const btt2 = document.getElementById("bttEtapa2");
+
+    if (!btt1 || !btt2) return;
+
+    if (ativo === "cadastro") {
+      btt1.classList.remove("bttDesabilitado");
+      btt2.classList.add("bttDesabilitado");
+    } else {
+      btt1.classList.add("bttDesabilitado");
+      btt2.classList.remove("bttDesabilitado");
+    }
   }
 }
 
@@ -41,31 +60,29 @@ let formCadOng = document.querySelector("#formCadOng");
 let formDocs = document.querySelector("#formDocs");
 let continuarCadOng = document.querySelector("#continuarCadOng");
 
-let bttEtapa1 = document.querySelector("#bttEtapa1");
-let bttEtapa2 = document.querySelector("#bttEtapa2")
-
 let trocaLado = new TrocaLado();
 
 if (formCadOng && formDocs) {
   trocaLado.trocar(
     formCadOng,
     formDocs,
-    continuarCadOng
-  )
+    continuarCadOng,
+    "cadastro"
+  );
 
   trocaLado.trocar(
     formCadOng,
     formDocs,
-    bttEtapa2
-  )
+    bttEtapa2,
+    "cadastro"
+  );
 
   trocaLado.trocar(
     formDocs,
     formCadOng,
-    bttEtapa1
-  )
+    bttEtapa1,
+    "login" // ou "etapa1"
+  );
+
+  trocaLado.atualizarBotoes("login");
 }
-
-
-
-
