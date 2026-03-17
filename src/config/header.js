@@ -157,7 +157,9 @@ export class ContaPopup {
       "fotoUsuario"
     );
 
-    this.converterFoto(usuario.foto, fotoUsuario);
+    if (usuario && usuario.foto) {
+      this.converterFoto(usuario.foto, fotoUsuario);
+    }
 
     const infoUsuario = this.criar.createElement("div", [], "", usuarioPerfil);
 
@@ -295,12 +297,19 @@ export class ContaPopup {
         sairouentrar,
         "Sair da conta"
       );
-      botaoSair.id = "botaoSair";
+
       botaoSair.addEventListener("click", () => {
         localStorage.removeItem("usuario");
         localStorage.removeItem("ong");
+
+        if (this.popup) {
+          this.popup.remove();
+          this.popup = null;
+        }
+
         window.location.reload();
       });
+
     } else {
       const configFinal = this.criar.createElement(
         "div",
