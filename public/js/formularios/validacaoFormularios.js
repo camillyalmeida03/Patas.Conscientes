@@ -827,9 +827,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Validação do peso do pet
     const inputPeso = document.getElementById("pesoPetInput");
 
-    inputPeso.addEventListener("input", function () {
-        this.value = this.value.replace(/[^0-9.,]/g, "");
-    });
+    if (inputPeso) {
+        inputPeso.addEventListener("input", function () {
+            this.value = this.value.replace(/[^0-9.,]/g, "");
+        });
+    }
 
     function validarPesoPet() {
 
