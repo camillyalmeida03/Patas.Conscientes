@@ -109,6 +109,12 @@ export class ContaPopup {
     this.listenerAtivo = false;
   }
 
+  converterFoto(foto, pai) {
+    if (foto) {
+      pai.style.backgroundImage = `url(${foto})`;
+    }
+  }
+
   criarPopupConta(parent = document.querySelector("header")) {
     // se já existir, retorna para não duplicar
     if (this.popup) return this.popup;
@@ -134,6 +140,7 @@ export class ContaPopup {
       contaPopup,
       "usuarioPerfil"
     );
+
     const altFotoUsuario = this.criar.createElement(
       "div",
       [],
@@ -141,13 +148,16 @@ export class ContaPopup {
       usuarioPerfil,
       "altFotoUsuario"
     );
-    this.criar.createElement(
+
+    const fotoUsuario = this.criar.createElement(
       "div",
       ["fotoDefaultUsuario"],
-      "",
+      '',
       altFotoUsuario,
       "fotoUsuario"
     );
+
+    this.converterFoto(usuario.foto, fotoUsuario);
 
     const infoUsuario = this.criar.createElement("div", [], "", usuarioPerfil);
 

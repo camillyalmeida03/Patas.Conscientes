@@ -57,7 +57,7 @@
     transition: background-color 0.5s ease, color 0.5 ease, border-color 0.5 ease;
 }
 
-.desabilitado{
+.desabilitado {
     background-color: grey !important;
     cursor: not-allowed !important;
 }
@@ -1367,13 +1367,14 @@ footer .listasFooter a:hover {
     content: "Cidade: ";
     font-weight: 600;
 } */
-.cidadeDiv{
+.cidadeDiv {
     display: flex;
 }
 
-.cidadeDiv p{
+.cidadeDiv p {
     font-weight: 600;
 }
+
 .qntdAnimaisOng {
     font-weight: 600;
 }
@@ -1709,6 +1710,7 @@ footer .listasFooter a:hover {
 #especPorte div {
     width: 30%;
 }
+
 
 #pesoPet::after {
     content: " kg";
@@ -2105,7 +2107,7 @@ ol {
     border-radius: 50%;
     background-color: var(--rosa);
     background-position: center;
-    background-size: cover;
+    background-size: cover !important;
     background-repeat: no-repeat;
     pointer-events: none;
 }
@@ -2624,11 +2626,11 @@ textarea {
     text-align: left;
 }
 
-.textAreaCont{
+.textAreaCont {
     position: relative;
 }
 
-#contarCaracteres{
+#contarCaracteres {
     position: absolute;
     right: 0;
     bottom: 0.5rem;
@@ -3159,10 +3161,10 @@ textarea {
     border-bottom-right-radius: 0;
 }
 
-.fundoCont{
+.fundoCont {
     height: 2rem;
     background-color: var(--cinza_input);
-        border-bottom-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
     border-bottom-right-radius: 1.5rem;
 }
 
@@ -3321,11 +3323,11 @@ textarea {
     visibility: visible;
 }
 
-#idadePetSel{
+#idadePetSel {
     position: relative;
 }
 
-#idadePetSel select{
+#idadePetSel select {
     position: absolute;
     top: 0.9rem;
     right: 3.5rem;
@@ -3334,15 +3336,16 @@ textarea {
     font-size: 1rem;
 }
 
-#formInfoPet .alinharErro{
+#formInfoPet .alinharErro {
     width: 100%;
 }
 
-#bttAddPet{
+#bttAddPet {
     border: none;
     cursor: pointer;
 }
-#bttAddPet:hover{
+
+#bttAddPet:hover {
     background-color: var(--rosa_texto_escuro);
 }
 
