@@ -131,13 +131,15 @@ export class CardsPets {
     this.conjTituloPeso = this.criarElemento.createElement(
       "div",
       [],
+      // ["cardpeso" , "tituloInfoPet"],
       null,
-      this.pesoIdade
+      this.pesoIdade,
     );
 
     this.tituloPeso = this.criarElemento.createElement(
       "h3",
-      "tituloInfoPet",
+      ["cardpeso"],
+      // "tituloInfoPet",
       "Peso",
       this.conjTituloPeso
     );
@@ -159,7 +161,7 @@ export class CardsPets {
 
     this.tituloIdade = this.criarElemento.createElement(
       "h3",
-      "tituloInfoPet",
+      ["cardidade"],
       "Idade",
       this.conjTituloIdade
     );
@@ -188,7 +190,7 @@ export class CardsPets {
     );
     this.tituloEspecie = this.criarElemento.createElement(
       "h3",
-      "tituloInfoPet",
+      ["cardespecie"],
       "Espécie",
       this.conjTituloEspecie
     );
@@ -209,7 +211,7 @@ export class CardsPets {
 
     this.tituloPorte = this.criarElemento.createElement(
       "h3",
-      "tituloInfoPet",
+      ["cardporte"],
       "Porte",
       this.conjTituloPorte
     );
@@ -239,7 +241,7 @@ export class CardsPets {
 
     this.tituloRaca = this.criarElemento.createElement(
       "h3",
-      "tituloInfoPet",
+      ["cardraca"],
       "Raça",
       this.conjTituloRaca
     );
@@ -261,7 +263,7 @@ export class CardsPets {
 
     this.tituloOng = this.criarElemento.createElement(
       "h3",
-      "tituloInfoPet",
+      ["cardlocal"],
       "Local",
       this.conjTituloOng
     );
@@ -283,7 +285,7 @@ export class CardsPets {
 
     this.tituloSobre = this.criarElemento.createElement(
       "h3",
-      "tituloInfoPet",
+      ["cardsobre"],
       "Sobre",
       this.conjTituloSobre
     );
@@ -629,6 +631,10 @@ export class CardsPets {
       "Ver menos sobre " + this.InfoPet.nome
     );
 
+    this.verMenos.classList.add("verMenosTradutor");
+
+    traduzir();
+
     this.verMenos.addEventListener("click", () => {
       if (window.innerWidth <= 650) {
         this.limparCardNormal();
@@ -692,12 +698,22 @@ export class CardsPets {
       "Ver mais informações sobre " + this.InfoPet.nome
     );
 
+    this.verMais.classList.add("adotarvermais");
+    if (typeof traduzir === "function") {
+      traduzir();
+    }
+
     this.botaoAdotar = this.criarElemento.createButton(
       "buttonRosa",
       "Adotar",
       this.bttcard,
       "Adotar " + this.InfoPet.nome
     );
+
+    this.botaoAdotar.classList.add("adotar");
+    if (typeof traduzir === "function") {
+      traduzir();
+    }
 
     this.cardsAnimais.classList.remove("mostrar-mais");
     this.informacoesExibidas = false;

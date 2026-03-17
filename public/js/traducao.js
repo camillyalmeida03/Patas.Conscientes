@@ -93,6 +93,22 @@ function traduzir() {
             adotardog: "Cachorro",
             adotarcat: "Gato",
             adotarporte: "Porte",
+            adotarpequeno: "Pequeno",
+            adotarmedio: "Médio",
+            adotargrande: "Grande",
+            adotarsexo: "Sexo",
+            adotarfemea: "Fêmea",
+            adotarmacho: "Macho",
+            adotarvermais: "Ver mais",
+            adotar: "Adotar",
+            // card adotar > aparece quando clica em ver mais 
+            cardpeso: "Peso",
+            cardidade: "Idade",
+            cardespecie: "Espécie",
+            cardporte: "Porte",
+            cardraca: "Raça",
+            cardlocal: "Local",
+            cardsobre: "Sobre",
 
         },
         eng: {
@@ -175,6 +191,22 @@ function traduzir() {
             adotardog: "Dog",
             adotarcat: "Cat",
             adotarporte: "Port",
+            adotarpequeno: "Small",
+            adotarmedio: "Medium",
+            adotargrande: "Big",
+            adotarsexo: "Sex",
+            adotarfemea: "Female",
+            adotarmacho: "Male",
+            adotarvermais: "See more",
+            adotar: "To adopt",
+            // card adotar > aparece quando clica em ver mais 
+            cardpeso: "Weight",
+            cardidade: "Age",
+            cardespecie: "Specie",
+            cardporte: "Port",
+            cardraca: "Race",
+            cardlocal: "Location",
+            cardsobre: "About",
         }
     };
 
@@ -244,7 +276,6 @@ function traduzir() {
     traduzirClasse("campanhasparticipetradutor", idioma[idiomaselect].mainparticepedenossascampanhas);
     traduzirClasse("cadagestocontatradutor", idioma[idiomaselect].maincadagestocontatradutor);
     traduzirClasse("integrantetradutor", idioma[idiomaselect].mainintegrantetradutor);
-
     traduzirClasse("nomecamillytradutor", idioma[idiomaselect].mainintegrante1tradutor);
     traduzirClasse("biocamillytradutor", idioma[idiomaselect].mainintegrante1bio);
     traduzirClasse("nomelucastradutor", idioma[idiomaselect].mainintegrante2tradutor);
@@ -268,10 +299,26 @@ function traduzir() {
     traduzirClasse("adotardog", idioma[idiomaselect].adotardog);
     traduzirClasse("adotarcat", idioma[idiomaselect].adotarcat);
     traduzirClasse("adotarporte", idioma[idiomaselect].adotarporte);
+    traduzirClasse("adotarpequeno", idioma[idiomaselect].adotarpequeno);
+    traduzirClasse("adotarmedio", idioma[idiomaselect].adotarmedio);
+    traduzirClasse("adotargrande", idioma[idiomaselect].adotargrande);
+    traduzirClasse("adotarsexo", idioma[idiomaselect].adotarsexo);
+    traduzirClasse("adotarfemea", idioma[idiomaselect].adotarfemea);
+    traduzirClasse("adotarmacho", idioma[idiomaselect].adotarmacho);
+    traduzirClasse("adotarvermais", idioma[idiomaselect].adotarvermais);
+    traduzirClasse("adotar", idioma[idiomaselect].adotar);
+    // card adotar > aparece quando clica em ver mais 
+    traduzirClasse("cardpeso", idioma[idiomaselect].cardpeso);
+    traduzirClasse("cardidade", idioma[idiomaselect].cardidade);
+    traduzirClasse("cardespecie", idioma[idiomaselect].cardespecie);
+    traduzirClasse("cardporte", idioma[idiomaselect].cardporte);
+    traduzirClasse("cardraca", idioma[idiomaselect].cardraca);
+    traduzirClasse("cardsobre", idioma[idiomaselect].cardsobre);
+    traduzirClasse("cardlocal", idioma[idiomaselect].cardlocal);
     
     
-
-
+    
+    
     document.getElementById('trocarlingua').value = idiomaselect;
 }
 
