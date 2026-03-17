@@ -3431,7 +3431,10 @@ textarea {
 .bodyME .petsDisponiveis::before,
 .bodyME .redesOng,
 .bodyME .h1NomeOng,
-.bodyME .aviso {
+.bodyME .aviso,
+.bodyME label,
+.bodyME #contarCaracteres,
+.bodyME #tipoIdade {
     color: white !important;
 }
 
@@ -3587,12 +3590,21 @@ textarea {
     background-color: var(--cinza34);
 }
 
-.bodyME .inputCadastro {
+.bodyME .inputCadastro,
+.bodyME .inputArquivo .container,
+.bodyME .fundoCont {
     background-color: var(--cinza147);
 }
 
-.bodyME .inputCadastro option {
-    color: var(--cinza215);
+.bodyME .botaoUpload{
+    background-color: var(--cinza80) !important;
+    border-color: var(--cinza34) !important;
+}
+
+.bodyME .inputCadastro option,
+.bodyME option {
+    color: var(--cinza215) !important;
+    background-color: var(--cinza100);
 }
 
 .bodyME.inputCadastro::placeholder {
