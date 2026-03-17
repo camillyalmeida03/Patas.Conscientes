@@ -92,6 +92,7 @@ function traduzir() {
             adotarespecie: "Espécie",
             adotardog: "Cachorro",
             adotarcat: "Gato",
+            adotarporte: "Porte",
 
         },
         eng: {
@@ -173,6 +174,7 @@ function traduzir() {
             adotarespecie: "Species",
             adotardog: "Dog",
             adotarcat: "Cat",
+            adotarporte: "Port",
         }
     };
 
@@ -265,6 +267,8 @@ function traduzir() {
     traduzirClasse("adotarespecie", idioma[idiomaselect].adotarespecie);
     traduzirClasse("adotardog", idioma[idiomaselect].adotardog);
     traduzirClasse("adotarcat", idioma[idiomaselect].adotarcat);
+    traduzirClasse("adotarporte", idioma[idiomaselect].adotarporte);
+    
     
 
 
