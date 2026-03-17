@@ -368,6 +368,7 @@ export class CardsPets {
     document.body.style.overflow = "auto";
   }
 
+  // Método que converte os meses recebidos do bd e transforma em anos
   converterIdade(meses) {
     const anos = Math.floor(meses / 12);
 
