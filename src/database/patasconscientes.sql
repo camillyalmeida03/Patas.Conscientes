@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 10/03/2026 às 11:48
+-- Tempo de geração: 24/03/2026 às 16:25
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -41,7 +41,8 @@ INSERT INTO `bairros` (`idbairro`, `bairro`, `fk_idcidade`) VALUES
 (2, 'Jardim Novo Mundo', 2),
 (3, 'Nova Cidade', 2),
 (4, 'Cidade Jardim', 3),
-(5, 'Jardim Buscardi', 2);
+(5, 'Jardim Buscardi', 2),
+(6, 'Jardim Esperança', 2);
 
 -- --------------------------------------------------------
 
@@ -88,7 +89,8 @@ INSERT INTO `enderecos` (`idendereco`, `fk_idcidade`, `fk_idbairro`, `fk_idrua`,
 (2, 2, 2, 2, 26, '1098', '15997-422', '(Tico Geraldo)'),
 (3, 2, 3, 3, 26, '1098', '15991-504', ''),
 (4, 3, 4, 4, 10, '1098', '74425-020', ''),
-(5, 2, 5, 5, 26, '873', '15991-200', 'de 2501 a 3699 - lado ímpar');
+(5, 2, 5, 5, 26, '873', '15991-200', 'de 2501 a 3699 - lado ímpar'),
+(6, 2, 6, 6, 26, '1273', '15995-264', '');
 
 -- --------------------------------------------------------
 
@@ -193,6 +195,13 @@ CREATE TABLE `ongs` (
   `fk_idfuncionarios` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Despejando dados para a tabela `ongs`
+--
+
+INSERT INTO `ongs` (`idong`, `nome`, `cnpj`, `telefone`, `descricao`, `foto`, `banner`, `fk_idendereco`, `comp_estatuto`, `comp_cnpj`, `email`, `senha`, `data_criacao`, `data_att`, `fk_idtipo`, `fk_idresponsavel`, `fk_idfuncionarios`) VALUES
+(34, 'Ong', '$2b$10$G4jmIsN/MdG', '(31) 11111-111', 'ffdsdffddddd', NULL, NULL, 6, NULL, NULL, 'almeidacamilly356@gmail.com', '$2b$10$l3HShZUPlZl/l.4RemBkeOBr2h6Yox3pIyke5rkJDyGftQ7HECE1C', '2026-03-24 11:45:22', '2026-03-24 11:45:22', 4, 34, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -284,7 +293,32 @@ CREATE TABLE `racaspet` (
 
 INSERT INTO `racaspet` (`idracapet`, `raca`, `fk_idespeciepet`) VALUES
 (1, 'Sem raça', 1),
-(3, 'Siamês', 2);
+(3, 'Siamês', 2),
+(4, 'Sem raça definida', 1),
+(5, 'Labrador Retriever', 1),
+(6, 'Golden Retriever', 1),
+(7, 'Pastor Alemão', 1),
+(8, 'Bulldog Francês', 1),
+(9, 'Poodle', 1),
+(10, 'Rottweiler', 1),
+(11, 'Yorkshire Terrier', 1),
+(12, 'Beagle', 1),
+(13, 'Shih Tzu', 1),
+(14, 'Pinscher', 1),
+(15, 'Chihuahua', 1),
+(16, 'Border Collie', 1),
+(17, 'Dachshund (Salsicha)', 1),
+(18, 'Husky Siberiano', 1),
+(19, 'Sem raça definida', 2),
+(20, 'Siamês', 2),
+(21, 'Persa', 2),
+(22, 'Maine Coon', 2),
+(23, 'Angorá', 2),
+(24, 'Sphynx', 2),
+(25, 'Bengal', 2),
+(26, 'Ragdoll', 2),
+(27, 'British Shorthair', 2),
+(28, 'Azul Russo', 2);
 
 -- --------------------------------------------------------
 
@@ -311,6 +345,13 @@ CREATE TABLE `responsaveis` (
   `fk_idong` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Despejando dados para a tabela `responsaveis`
+--
+
+INSERT INTO `responsaveis` (`idresponsavel`, `fk_idusuario`, `fk_idong`) VALUES
+(34, 18, 34);
+
 -- --------------------------------------------------------
 
 --
@@ -331,7 +372,8 @@ INSERT INTO `ruas` (`idrua`, `rua`, `fk_idbairro`) VALUES
 (2, 'Avenida Dario Geraldo', 2),
 (3, 'Avenida Oneida Travassos Dourado', 3),
 (4, 'Rua da Saúde', 4),
-(5, 'Avenida Trolesi', 5);
+(5, 'Avenida Trolesi', 5),
+(6, 'Rua Antônio Manechini', 6);
 
 -- --------------------------------------------------------
 
@@ -441,7 +483,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`idusuario`, `nome`, `email`, `telefone`, `fk_idsexo`, `data_nasc`, `cpf`, `senha`, `data_criacao`, `data_att`, `foto`, `fk_idendereco`, `fk_idtipo`, `codigo_verificacao`, `codigo_expira`) VALUES
-(18, 'OTÁVIO DOMINGUES DA SILVA', 'otaviodominguessilva@gmail.com', '(16) 99632-0063', 2, '2000-07-15', '$2b$10$LBnJ/YY', '$2b$10$miAFDYNy5QtlHEKTNwNyyu4GkwIBFCOyvDb2HqC9R/mMQEUsU1vYS', '2026-03-09 22:25:18', '2026-03-10 07:47:59', NULL, 5, 3, '780495', '2026-03-10 07:57:59');
+(18, 'Camilly', 'almeidacamilly356@gmail.com', '(16) 99632-0063', 2, '2000-07-15', '$2b$10$LBnJ/YY', '$2b$10$zEqxzXntWG4CWMFQ1stnruu/AO5pUFqe27F6edFLxXlZIuhWui1Aa', '2026-03-09 22:25:18', '2026-03-24 11:24:43', NULL, 5, 3, '594570', '2026-03-24 11:27:52');
 
 --
 -- Índices para tabelas despejadas
@@ -613,7 +655,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `bairros`
 --
 ALTER TABLE `bairros`
-  MODIFY `idbairro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idbairro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `cidades`
@@ -625,7 +667,7 @@ ALTER TABLE `cidades`
 -- AUTO_INCREMENT de tabela `enderecos`
 --
 ALTER TABLE `enderecos`
-  MODIFY `idendereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idendereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `especiespet`
@@ -649,7 +691,7 @@ ALTER TABLE `funcionarios`
 -- AUTO_INCREMENT de tabela `ongs`
 --
 ALTER TABLE `ongs`
-  MODIFY `idong` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `idong` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de tabela `ongsfavoritadas`
@@ -679,7 +721,7 @@ ALTER TABLE `portespet`
 -- AUTO_INCREMENT de tabela `racaspet`
 --
 ALTER TABLE `racaspet`
-  MODIFY `idracapet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idracapet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de tabela `redessociais`
@@ -691,13 +733,13 @@ ALTER TABLE `redessociais`
 -- AUTO_INCREMENT de tabela `responsaveis`
 --
 ALTER TABLE `responsaveis`
-  MODIFY `idresponsavel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `idresponsavel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de tabela `ruas`
 --
 ALTER TABLE `ruas`
-  MODIFY `idrua` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idrua` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `sexo`

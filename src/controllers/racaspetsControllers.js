@@ -28,7 +28,7 @@ const racaspetController = {
     Post: async (request, response) => {
         try {
             const { raca, fk_idespeciepet } = request.body;
-            
+
             const data = await model.Post(raca, fk_idespeciepet); // chama service sem passar response
             response.status(201).json(data);
         } catch (error) {
@@ -59,7 +59,29 @@ const racaspetController = {
             console.error("Erro ao conectar ao banco de dados:", error.message);
             response.status(500).json({ message: "Falha ao executar a ação!" });
         }
-    }
+    },
+
+    racascachorro: async (request, response) => {
+        try {
+            const data = await model.racascachorro();
+            response.status(200).json(data);
+        } catch (error) {
+            console.error("Erro ao conectar ao banco de dados:", error.message);
+            response.status(500).json({ message: "Falha ao executar a ação!" });
+        }
+    },
+
+    racasgato: async (request, response) => {
+        try {
+            const data = await model.racasgato();
+            response.status(200).json(data);
+        } catch (error) {
+            console.error("Erro ao conectar ao banco de dados:", error.message);
+            response.status(500).json({ message: "Falha ao executar a ação!" });
+        }
+    },
+
+
 }
 
 module.exports = racaspetController;

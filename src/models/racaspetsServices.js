@@ -68,4 +68,28 @@ const Erase = async (id) => {
     return rows; // Retorna só os dados
 };
 
-module.exports = { GetAll, GetById, Post, Put, Erase };
+const racascachorro = async () => {
+    const querySelect = "SELECT * FROM racaspet ";
+    const queryWhere = "WHERE fk_idespeciepet = 1 ORDER BY raca";
+
+    const querytext = querySelect + queryWhere;
+
+    console.log(querytext)
+
+    const [rows] = await banco.query(querytext);
+    return rows; // Retorna só os dados
+
+};
+
+const racasgato = async () => {
+    const querySelect = "SELECT * FROM racaspet ";
+    const queryWhere = "WHERE fk_idespeciepet = 2 ORDER BY raca";
+
+    const querytext = querySelect + queryWhere;
+
+    const [rows] = await banco.query(querytext);
+    return rows; // Retorna só os dados
+
+};
+
+module.exports = { GetAll, GetById, Post, Put, Erase, racascachorro, racasgato };

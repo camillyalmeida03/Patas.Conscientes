@@ -4,19 +4,19 @@ const senhaInput = document.getElementById("senhaLoginUsuario");
 const olhoIcon = document.getElementById("olho"); // Assumindo que o ID da tag <img> é "olho"
 
 if (togglePassword && senhaInput && olhoIcon) {
-    togglePassword.addEventListener("click", function () {
-        const type = senhaInput.getAttribute("type") === "password" ? "text" : "password";
-        senhaInput.setAttribute("type", type);
+  togglePassword.addEventListener("click", function () {
+    const type = senhaInput.getAttribute("type") === "password" ? "text" : "password";
+    senhaInput.setAttribute("type", type);
 
-        // Altera o ícone do olho
-        if (type === "password") {
-            olhoIcon.src = "/public/img/icons/olhofechado.svg";
-            olhoIcon.title = "Mostrar senha";
-        } else {
-            olhoIcon.src = "/public/img/icons/olhoaberto.svg"; // Certifique-se que este ícone existe
-            olhoIcon.title = "Ocultar senha";
-        }
-    });
+    // Altera o ícone do olho
+    if (type === "password") {
+      olhoIcon.src = "/public/img/icons/olhofechado.svg";
+      olhoIcon.title = "Mostrar senha";
+    } else {
+      olhoIcon.src = "/public/img/icons/olhoaberto.svg"; // Certifique-se que este ícone existe
+      olhoIcon.title = "Ocultar senha";
+    }
+  });
 };
 
 
@@ -52,38 +52,43 @@ botaoEnviarCodigo.addEventListener("click", async () => {
 
   const email = emailInput.value;
 
-  if(!email){
-    mensagem.innerText = "Digite um email.";
+  if (!email) {
+    mensagem.innerHTML = '<span class="entrardigiteemailrecuperar" data-key="idioma">Digite um email</span>';
     mensagem.style.color = "red";
+    traduzir();
     return;
   }
 
-  try{
+  try {
 
-    const resposta = await fetch("http://localhost:6789/usuarios/gerar-codigo-verificacao",{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
+    const resposta = await fetch("http://localhost:6789/usuarios/gerar-codigo-verificacao", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
       },
-      body:JSON.stringify({
-        email:email,
-        motivo:"Recuperação de conta"
+      body: JSON.stringify({
+        email: email,
+        motivo: "Recuperação de conta"
       })
     });
 
     const dados = await resposta.json();
 
-    mensagem.innerText = dados.message;
 
-    if(dados.success){
+    if (dados.success) {
+      mensagem.innerHTML = '<span class="entrarcodverificacaocriado" data-key="idioma">Código de verificação criado e email enviado</span>';
       mensagem.style.color = "green";
-    }else{
+      traduzir();
+    } else {
+      mensagem.innerHTML = '<span class="entraremailnaoencontrado" data-key="idioma">Email não encontrado</span>';
       mensagem.style.color = "red";
+      traduzir();
     }
 
-  }catch(erro){
-    mensagem.innerText = "Erro ao enviar código.";
-    mensagem.style.color = "red";
+  }
+  catch (erro) {
+    // mensagem.innerText = "Erro ao enviar código.";
+    // mensagem.style.color = "red";
     console.error(erro);
   }
 
@@ -96,32 +101,36 @@ botaoConfirmarCodigo.addEventListener("click", async () => {
   const email = emailInput.value;
   const codigo = codigoInput.value;
 
-  if(!codigo){
-    mensagem.innerText = "Digite o código.";
+  if (!codigo) {
+    mensagem.innerHTML = '<span class="entrardigitecodrecuperar" data-key="idioma">Digite o código</span>';
     mensagem.style.color = "red";
+    traduzir();
     return;
   }
 
-  try{
+  try {
 
-    const resposta = await fetch("http://localhost:6789/usuarios/verificar-codigo",{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
+    const resposta = await fetch("http://localhost:6789/usuarios/verificar-codigo", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
       },
-      body:JSON.stringify({
-        email:email,
-        codigo:codigo
+      body: JSON.stringify({
+        email: email,
+        codigo: codigo
       })
     });
 
     const dados = await resposta.json();
 
-    mensagem.innerText = dados.message;
 
-    if(dados.success){
+    if (dados.success) {
+      // mensagem.innerText = dados.message;
+      // console.log("SUCESSO!!! entrou aqui");
 
-      mensagem.style.color = "green";
+      //     mensagem.innerHTML = '<span class="entrarcodvalido" data-key="idioma">Código válido</span>';
+      //     mensagem.style.color = "green";
+      //     traduzir();
 
       // esconder campo código
       codigoInput.style.display = "none";
@@ -131,17 +140,19 @@ botaoConfirmarCodigo.addEventListener("click", async () => {
       novaSenhaInput.style.display = "block";
       botaoAlterarSenha.style.display = "block";
 
-    }else{
-
+    } else {
+      mensagem.innerHTML = '<span class="entrarcodinvalido" data-key="idioma">Código inválido ou expirado</span>';
       mensagem.style.color = "red";
+      traduzir();
 
     }
 
-  }catch(erro){
-    mensagem.innerText = "Erro ao verificar código.";
+  } catch (erro) {
+    mensagem.innerText = "Erro ao enviar código.";
     mensagem.style.color = "red";
     console.error(erro);
   }
+
 
 });
 
@@ -152,38 +163,46 @@ botaoAlterarSenha.addEventListener("click", async () => {
   const email = emailInput.value;
   const novaSenha = novaSenhaInput.value;
 
-  if(!novaSenha){
-    mensagem.innerText = "Digite a nova senha.";
+  if (!novaSenha) {
+    mensagem.innerHTML = '<span class="entrarnovasenha" data-key="idioma">Digite a nova senha</span>';
     mensagem.style.color = "red";
+    traduzir();
     return;
   }
 
-  try{
+  try {
 
-    const resposta = await fetch("http://localhost:6789/usuarios/alterar-senha",{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
+    const resposta = await fetch("http://localhost:6789/usuarios/alterar-senha", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
       },
-      body:JSON.stringify({
-        email:email,
-        novaSenha:novaSenha
+      body: JSON.stringify({
+        email: email,
+        novaSenha: novaSenha
       })
     });
 
     const dados = await resposta.json();
 
-    mensagem.innerText = "Senha alterada com sucesso!";
+    mensagem.innerHTML = '<span class="entrarsenhaalterada" data-key="idioma">Senha alterada com sucesso!</span>';
     mensagem.style.color = "green";
+    modal.style.opacity = "10";
 
-    setTimeout(()=>{
-      modal.style.display="none";
-    },2000);
+    setTimeout(() => {
+      modal.style.display = "none";
+    }, 300); // tempo da animação
+    traduzir();
 
-  }catch(erro){
-    mensagem.innerText = "Erro ao alterar senha.";
-    mensagem.style.color = "red";
+
+
+
+  } catch (erro) {
+    // mensagem.innerText = "Erro ao alterar senha.";
+    // mensagem.style.color = "red";
     console.error(erro);
   }
 
 });
+
+

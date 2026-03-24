@@ -122,7 +122,25 @@ function traduzir() {
             entraresqueceu: "Esqueceu sua senha?",
             entrarconfirmar: "Confirmar",
             entrarcadastre: "Não tem conta? Cadastre-se",
-
+            entrarrecuperar:"Recuperar senha",
+            entrarenviarcod:"Enviar código",
+            entrardigitecod:"Digite o código",
+            entrarconfircod:"Confirmar código",
+            entrarcadastre2:"Cadastre-se",
+            entrarcadastro:"Cadastro",
+            entrarcadastroong:"Cadastro de ONG",
+            entrarcomconta:"Já tem uma conta? Entrar",
+            entraralterarsenha:"Alterar senha",
+            entrardigiteemailrecuperar:"Digite um email",
+            entrardigitecodrecuperar:"Digite o código",
+            entrarerroaoverificar:"Erro ao verificar código",
+            entrarcodvalido:"Código válido",
+            entrarcodinvalido:"Código inválido ou expirado",
+            entrarnovasenha:"Digite a nova senha",
+            entrarcodverificacaocriado:"Código de verificação criado e email enviado",
+            entraremailnaoencontrado:"Email não encontrado",
+            entrarsenhaalterada:"Senha alterada com sucesso!",
+           
         },
         eng: {
             headerinstitucional: "Institutional",
@@ -233,6 +251,24 @@ function traduzir() {
             entraresqueceu: "Forgot your password?",
             entrarconfirmar: "Confirm",
             entrarcadastre: "Don't have an account? Sign up",
+            entrarrecuperar:"Recover password",
+            entrarenviarcod:"Send code",
+            entrardigitecod:"Enter the code",
+            entrarconfircod:"Confirm code",
+            entrarcadastre2:"Sign up",
+            entrarcadastro:"Registration",
+            entrarcadastroong:"NGO Registration",
+            entrarcomconta:"Already have an account? Sign in",
+            entraralterarsenha:"Change password",
+            entrardigiteemailrecuperar:"Enter an email",
+            entrardigitecodrecuperar:"Enter the code",
+            entrarerroaoverificar:"Error verifying code",
+            entrarcodvalido:"Valid code",
+            entrarcodinvalido:"Invalid or expired code",
+            entrarnovasenha:"Enter the new password",
+            entrarcodverificacaocriado:"Verification code created and email sent",
+            entraremailnaoencontrado:"Email not found",
+            entrarsenhaalterada:"Password changed successfully!",
 
         }
     };
@@ -354,7 +390,26 @@ function traduzir() {
     traduzirClasse("entraresqueceu", idioma[idiomaselect].entraresqueceu);
     traduzirClasse("entrarconfirmar", idioma[idiomaselect].entrarconfirmar);
     traduzirClasse("entrarcadastre", idioma[idiomaselect].entrarcadastre);
+    traduzirClasse("entrarrecuperar", idioma[idiomaselect].entrarrecuperar);
+    traduzirClasse("entrarenviarcod", idioma[idiomaselect].entrarenviarcod);
+    traduzirPlaceholder("entrardigitecod", idioma[idiomaselect].entrardigitecod);
+    traduzirClasse("entrarconfircod", idioma[idiomaselect].entrarconfircod);
+    traduzirClasse("entrarcadastre2", idioma[idiomaselect].entrarcadastre2);
+    traduzirClasse("entrarcadastro", idioma[idiomaselect].entrarcadastro);
+    traduzirClasse("entrarcadastroong", idioma[idiomaselect].entrarcadastroong);
+    traduzirClasse("entrarcomconta", idioma[idiomaselect].entrarcomconta);
+    traduzirClasse("entraralterarsenha", idioma[idiomaselect].entraralterarsenha);
+    traduzirClasse("entrardigiteemailrecuperar", idioma[idiomaselect].entrardigiteemailrecuperar);
+    traduzirClasse("entrardigitecodrecuperar", idioma[idiomaselect].entrardigitecodrecuperar);
+    traduzirClasse("entrarerroaoverificar", idioma[idiomaselect].entrarerroaoverificar);
+    traduzirClasse("entrarcodvalido", idioma[idiomaselect].entrarcodvalido);
+    traduzirClasse("entrarcodinvalido", idioma[idiomaselect].entrarcodinvalido);
+    traduzirClasse("entrarnovasenha", idioma[idiomaselect].entrarnovasenha);
+    traduzirClasse("entrarcodverificacaocriado", idioma[idiomaselect].entrarcodverificacaocriado);
+    traduzirClasse("entraremailnaoencontrado", idioma[idiomaselect].entraremailnaoencontrado);
+    traduzirClasse("entrarsenhaalterada", idioma[idiomaselect].entrarsenhaalterada);
     
+
     
 
     document.getElementById('trocarlingua').value = idiomaselect;
