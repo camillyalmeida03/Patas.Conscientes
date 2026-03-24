@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!validarPesoPet()) formularioValido = false;
             if (!validarIdadePet()) formularioValido = false;
             if (!validarEspecie()) formularioValido = false;
+            if (!validarRaca()) formularioValido = false;
             if (!validarPorte()) formularioValido = false;
             if (!validarSexoPet()) formularioValido = false;
             if (!validarFotoPet()) formularioValido = false;
@@ -909,6 +910,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
+    function validarRaca() {
+        const selectRaca = document.getElementById("racaPetSel");
+        if (!selectRaca) return true;
+
+        const raca = selectRaca.value.trim();
+        const erroRaca = document.getElementById("erroRacaPetAdt");
+
+        if (selectRaca) {
+
+            if (raca === "" || raca === "0") {
+                erroRaca.innerHTML = "O campo Raça é obrigatório.";
+                erroRaca.style.display = "block";
+                return false;
+            }
+
+            erroRaca.style.display = "none";
+            return true;
+        }
+    }
+
     // Validação do porte do pet
     function validarPorte() {
         const selectPorte = document.getElementById("portePetSel");
@@ -1016,6 +1037,7 @@ document.addEventListener("DOMContentLoaded", function () {
         { id: "idadePetInput", func: validarIdadePet },
         { id: "tipoIdade", func: validarIdadePet },
         { id: "especiePet", func: validarEspecie },
+        { id: "racaPetSel", func: validarRaca },
         { id: "portePetSel", func: validarPorte },
         { id: "sexoPetSel", func: validarSexoPet },
         { id: "fotopetatt", func: validarFotoPet }
@@ -1057,6 +1079,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.validarPesoPet = validarPesoPet;
     window.validarIdadePet = validarIdadePet;
     window.validarEspecie = validarEspecie;
+    window.validarRaca = validarRaca;
     window.validarPorte = validarPorte;
     window.validarSexoPet = validarSexoPet;
     window.validarFotoPet = validarFotoPet;

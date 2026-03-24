@@ -176,5 +176,40 @@ document.addEventListener("DOMContentLoaded", () => {
       new MensagemFeedback("Erro ao enviar dados. Tente novamente.", feedbackPai).feedbackError();
     }
   });
+  //raças pre definidas no banco
+  const especieSelect = document.getElementById("especiePet");
+  const racaSelect = document.getElementById("racaPetSel");
+
+  especieSelect.addEventListener("change", async () => {
+    const especie = especieSelect.value;
+
+    // limpa as opções antes de carregar novas
+    racaSelect.innerHTML = '<option value="0">Raça *</option>';
+
+    let url = "";
+
+    if (especie == "1") {
+      url = "http://10.93.240.248:6789/racaspets/racascachorro";
+    } else if (especie == "2") {
+      url = "http://10.93.240.248:6789/racaspets/selectracagato";
+    } else {
+      return; // se escolher "Espécie *"
+    }
+
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+
+      data.forEach(raca => {
+        const option = document.createElement("option");
+        option.value = raca.idracapet;
+        option.textContent = raca.raca;
+        racaSelect.appendChild(option);
+      });
+
+    } catch (error) {
+      console.error("Erro ao buscar raças:", error);
+    }
+  });
 }
 );
