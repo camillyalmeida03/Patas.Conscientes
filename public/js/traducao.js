@@ -1,3 +1,5 @@
+const { config } = require("dotenv");
+
 function traduzir() {
     var idiomaselect = localStorage.getItem('idiomaselect') || 'pt';
 
@@ -140,6 +142,8 @@ function traduzir() {
             entrarcodverificacaocriado:"Código de verificação criado e email enviado",
             entraremailnaoencontrado:"Email não encontrado",
             entrarsenhaalterada:"Senha alterada com sucesso!",
+            // pag configurações
+            configuracoes: "Configurações",
            
         },
         eng: {
@@ -269,6 +273,8 @@ function traduzir() {
             entrarcodverificacaocriado:"Verification code created and email sent",
             entraremailnaoencontrado:"Email not found",
             entrarsenhaalterada:"Password changed successfully!",
+            // pag configurações
+            configuracoes: "Settings",
 
         }
     };
@@ -408,6 +414,8 @@ function traduzir() {
     traduzirClasse("entrarcodverificacaocriado", idioma[idiomaselect].entrarcodverificacaocriado);
     traduzirClasse("entraremailnaoencontrado", idioma[idiomaselect].entraremailnaoencontrado);
     traduzirClasse("entrarsenhaalterada", idioma[idiomaselect].entrarsenhaalterada);
+    traduzirClasse("configuracoes", idioma[idiomaselect].configuracoes);
+    
     
 
     
