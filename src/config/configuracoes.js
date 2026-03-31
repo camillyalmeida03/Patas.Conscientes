@@ -115,7 +115,7 @@ function botaoUploadFoto(idUsuario) {
         const usuario = JSON.parse(localStorage.getItem("usuario"));
 
         // Atualiza o campo foto dentro do objeto usuário
-        usuario.foto = `http://localhost:6789/${data.path}`;
+        usuario.foto = data.path;
 
         // Salva novamente o usuário atualizado no localStorage
         localStorage.setItem("usuario", JSON.stringify(usuario));
@@ -125,7 +125,9 @@ function botaoUploadFoto(idUsuario) {
 
         // Se o elemento existir, atualiza a imagem de fundo com a nova foto
         if (fotoEl) {
-          fotoEl.style.backgroundImage = `url('http://localhost:6789/${data.path}')`;
+          location.reload();
+
+          fotoEl.style.backgroundImage = `url('${data.path}')`;
         }
 
         // Exibe uma mensagem de sucesso para o usuário
