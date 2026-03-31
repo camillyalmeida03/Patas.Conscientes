@@ -61,7 +61,7 @@ class AdicionarBotao {
     this.botaoAdd = this.criarElemento.createElement(
       "button",
       "buttonRosa",
-      "Adicionar PET",
+      "Cadastrar PET",
       this.bttAdicionar,
       null
     );

@@ -189,9 +189,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let url = "";
 
     if (especie == "1") {
-      url = "http://10.93.240.248:6789/racaspets/racascachorro";
+      url = "http://localhost:6789/racaspets/racascachorro";
     } else if (especie == "2") {
-      url = "http://10.93.240.248:6789/racaspets/selectracagato";
+      url = "http://localhost:6789/racaspets/selectracagato";
     } else {
       return; // se escolher "Espécie *"
     }
