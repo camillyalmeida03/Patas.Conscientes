@@ -124,27 +124,61 @@ function traduzir() {
             entraresqueceu: "Esqueceu sua senha?",
             entrarconfirmar: "Confirmar",
             entrarcadastre: "Não tem conta? Cadastre-se",
-            entrarrecuperar:"Recuperar senha",
-            entrarenviarcod:"Enviar código",
-            entrardigitecod:"Digite o código",
-            entrarconfircod:"Confirmar código",
-            entrarcadastre2:"Cadastre-se",
-            entrarcadastro:"Cadastro",
-            entrarcadastroong:"Cadastro de ONG",
-            entrarcomconta:"Já tem uma conta? Entrar",
-            entraralterarsenha:"Alterar senha",
-            entrardigiteemailrecuperar:"Digite um email",
-            entrardigitecodrecuperar:"Digite o código",
-            entrarerroaoverificar:"Erro ao verificar código",
-            entrarcodvalido:"Código válido",
-            entrarcodinvalido:"Código inválido ou expirado",
-            entrarnovasenha:"Digite a nova senha",
-            entrarcodverificacaocriado:"Código de verificação criado e email enviado",
-            entraremailnaoencontrado:"Email não encontrado",
-            entrarsenhaalterada:"Senha alterada com sucesso!",
+            entrarrecuperar: "Recuperar senha",
+            entrarenviarcod: "Enviar código",
+            entrardigitecod: "Digite o código",
+            entrarconfircod: "Confirmar código",
+            entrarcadastre2: "Cadastre-se",
+            entrarcadastro: "Cadastro",
+            entrarcadastroong: "Cadastro de ONG",
+            entrarcomconta: "Já tem uma conta? Entrar",
+            entraralterarsenha: "Alterar senha",
+            entrardigiteemailrecuperar: "Digite um email",
+            entrardigitecodrecuperar: "Digite o código",
+            entrarerroaoverificar: "Erro ao verificar código",
+            entrarcodvalido: "Código válido",
+            entrarcodinvalido: "Código inválido ou expirado",
+            entrarnovasenha: "Digite a nova senha",
+            entrarcodverificacaocriado: "Código de verificação criado e email enviado",
+            entraremailnaoencontrado: "Email não encontrado",
+            entrarsenhaalterada: "Senha alterada com sucesso!",
             // pag configurações
             configuracoes: "Configurações",
-           
+            // painel ong
+            painelendereço: "Endereço:",
+            paineldisponiveis: "Pets disponíveis:",
+            painelestatisticas: `Estatísticas <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                            fill="#FFFFFF">
+                            <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
+                        </svg>`,
+            painelcadastrar: "Cadastrar Pet",
+            painelconhecamais: "Conheça mais sobre nós",
+            painelnossospets: "Nossos pets",
+            painelnenhumencontrado: "Nenhum pet encontrado vinculado a esta ONG ainda.",
+            // form cadastrar usuario
+            titulocadastro: "Cadastrar usuário",
+            infousuario: "Informações do Usuário",
+            nomeusuario: "Nome*",
+            emailusuario: "E-mail*",
+            telefoneusuario: "Telefone ou Celular*",
+            cpfusuario: "CPF*",
+            selectgenero: "Selecione seu gênero:*",
+            generofem: "Feminino",
+            generomasc: "Masculino",
+            generonao: "Prefiro não dizer",
+            datanascimento: "Data de Nascimento*",
+            senhausuario: "Senha*",
+            confirmarsenha: "Confirme sua senha*",
+            infoendereco: "Informações de Endereço",
+            cepusuario: "CEP*",
+            selectestado: "Selecione seu estado:*",
+            cidadeusuario: "Cidade*",
+            ruausuario: "Rua*",
+            bairrousuario: "Bairro*",
+            numerousuario: "Número*",
+            complementousuario: "Complemento",
+            botaoconfirmar: "Confirmar",
+
         },
         eng: {
             headerinstitucional: "Institutional",
@@ -255,26 +289,64 @@ function traduzir() {
             entraresqueceu: "Forgot your password?",
             entrarconfirmar: "Confirm",
             entrarcadastre: "Don't have an account? Sign up",
-            entrarrecuperar:"Recover password",
-            entrarenviarcod:"Send code",
-            entrardigitecod:"Enter the code",
-            entrarconfircod:"Confirm code",
-            entrarcadastre2:"Sign up",
-            entrarcadastro:"Registration",
-            entrarcadastroong:"NGO Registration",
-            entrarcomconta:"Already have an account? Sign in",
-            entraralterarsenha:"Change password",
-            entrardigiteemailrecuperar:"Enter an email",
-            entrardigitecodrecuperar:"Enter the code",
-            entrarerroaoverificar:"Error verifying code",
-            entrarcodvalido:"Valid code",
-            entrarcodinvalido:"Invalid or expired code",
-            entrarnovasenha:"Enter the new password",
-            entrarcodverificacaocriado:"Verification code created and email sent",
-            entraremailnaoencontrado:"Email not found",
-            entrarsenhaalterada:"Password changed successfully!",
+            entrarrecuperar: "Recover password",
+            entrarenviarcod: "Send code",
+            entrardigitecod: "Enter the code",
+            entrarconfircod: "Confirm code",
+            entrarcadastre2: "Sign up",
+            entrarcadastro: "Registration",
+            entrarcadastroong: "NGO Registration",
+            entrarcomconta: "Already have an account? Sign in",
+            entraralterarsenha: "Change password",
+            entrardigiteemailrecuperar: "Enter an email",
+            entrardigitecodrecuperar: "Enter the code",
+            entrarerroaoverificar: "Error verifying code",
+            entrarcodvalido: "Valid code",
+            entrarcodinvalido: "Invalid or expired code",
+            entrarnovasenha: "Enter the new password",
+            entrarcodverificacaocriado: "Verification code created and email sent",
+            entraremailnaoencontrado: "Email not found",
+            entrarsenhaalterada: "Password changed successfully!",
             // pag configurações
             configuracoes: "Settings",
+            // painel ong
+            painelendereço: "Adress:",
+            paineldisponiveis: "Available pets:",
+            painelestatisticas: `Statistics <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                            fill="#FFFFFF">
+                            <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
+                        </svg>`,
+            painelcadastrar: "Register Pet",
+            painelconhecamais: "Learn more about us",
+            painelnossospets: "Our pets",
+            painelnenhumencontrado: "No pets found linked to this NGO yet.",
+            // form cadastrar usuario
+            titulocadastro: "User Registration",
+            infousuario: "User Information",
+            nomeusuario: "Name*",
+            emailusuario: "E-mail*",
+            telefoneusuario: "Phone or Mobile*",
+            cpfusuario: "CPF*",
+            selectgenero: "Select your gender:*",
+            generofem: "Female",
+            generomasc: "Male",
+            generonao: "Prefer not to say",
+            datanascimento: "Birth Date*",
+            senhausuario: "Password*",
+            confirmarsenha: "Confirm your password*",
+            infoendereco: "Address Information",
+            cepusuario: "ZIP Code*",
+            selectestado: "Select your state:*",
+            cidadeusuario: "City*",
+            ruausuario: "Street*",
+            bairrousuario: "Neighborhood*",
+            numerousuario: "Number*",
+            complementousuario: "Complement",
+            botaoconfirmar: "Confirm",
+            labelcodigo: "Enter the code sent to your email:",
+            codigoverificacao: "Ex: 123456",
+            btnverificarcodigo: "Verify Code",
+
 
         }
     };
@@ -415,10 +487,47 @@ function traduzir() {
     traduzirClasse("entraremailnaoencontrado", idioma[idiomaselect].entraremailnaoencontrado);
     traduzirClasse("entrarsenhaalterada", idioma[idiomaselect].entrarsenhaalterada);
     traduzirClasse("configuracoes", idioma[idiomaselect].configuracoes);
-    
-    
+    traduzirClasse("painelendereço", idioma[idiomaselect].painelendereço);
+    traduzirClasse("paineldisponiveis", idioma[idiomaselect].paineldisponiveis);
+    traduzirClasse("painelestatisticas", idioma[idiomaselect].painelestatisticas);
+    traduzirClasse("buttonRosa", idioma[idiomaselect].painelcadastrar);
+    traduzirClasse("painelconhecamais", idioma[idiomaselect].painelconhecamais);
+    traduzirClasse("painelnossospets", idioma[idiomaselect].painelnossospets);
+    traduzirClasse("painelnenhumencontrado", idioma[idiomaselect].painelnenhumencontrado);
+    traduzirClasse("titulocadastro", idioma[idiomaselect].titulocadastro);
 
-    
+    traduzirClasse("infoUsuario", idioma[idiomaselect].infousuario);
+
+    traduzirPlaceholder("nomeUsuario", idioma[idiomaselect].nomeusuario);
+    traduzirPlaceholder("emailUsuario", idioma[idiomaselect].emailusuario);
+    traduzirPlaceholder("telefoneUsuario", idioma[idiomaselect].telefoneusuario);
+    traduzirPlaceholder("cpfUsuario", idioma[idiomaselect].cpfusuario);
+
+    traduzirClasse("selectGenero", idioma[idiomaselect].selectgenero);
+    traduzirClasse("generoFem", idioma[idiomaselect].generofem);
+    traduzirClasse("generoMasc", idioma[idiomaselect].generomasc);
+    traduzirClasse("generoNao", idioma[idiomaselect].generonao);
+
+    traduzirPlaceholder("dataNascimento", idioma[idiomaselect].datanascimento);
+    traduzirPlaceholder("senhaUsuario", idioma[idiomaselect].senhausuario);
+    traduzirPlaceholder("confirmarSenha", idioma[idiomaselect].confirmarsenha);
+
+    traduzirClasse("infoEndereco", idioma[idiomaselect].infoendereco);
+
+    traduzirPlaceholder("cepUsuario", idioma[idiomaselect].cepusuario);
+    traduzirClasse("selectEstado", idioma[idiomaselect].selectestado);
+    traduzirPlaceholder("cidadeUsuario", idioma[idiomaselect].cidadeusuario);
+    traduzirPlaceholder("ruaUsuario", idioma[idiomaselect].ruausuario);
+    traduzirPlaceholder("bairroUsuario", idioma[idiomaselect].bairrousuario);
+    traduzirPlaceholder("numeroUsuario", idioma[idiomaselect].numerousuario);
+    traduzirPlaceholder("complementoUsuario", idioma[idiomaselect].complementousuario);
+
+    traduzirClasse("botaoConfirmar", idioma[idiomaselect].botaoconfirmar);
+
+    traduzirClasse("labelCodigo", idioma[idiomaselect].labelcodigo);
+    traduzirPlaceholder("codigoVerificacao", idioma[idiomaselect].codigoverificacao);
+    traduzirClasse("btnVerificarCodigo", idioma[idiomaselect].btnverificarcodigo);
+
 
     document.getElementById('trocarlingua').value = idiomaselect;
 }

@@ -340,12 +340,14 @@
                     <h1 class="h1NomeOng" id="nomeOng">Undefined</h1>
                     <div class="infoCardOngPerfil">
                         <div class="linha"></div>
-                        <p class="endereco" id="enderecoOng">undefined</p>
+                        <p class="painelendereço" id="enderecopagOng">Endereço:</p>
+                        <p class="" id="enderecoOng"></p>
                         <div class="linha"></div>
-                        <p class="petsDisponiveis" id="petsDisponiveis">0</p>
+                        <p class="paineldisponiveis" id="petsDisp">Pets Disponíveis:</p>
+                        <p class="" id="petsDisponiveis">0</p>
                     </div>
 
-                    <button class="bttEstatisticas" id="toggleEstatisticas" aria-expanded="false"
+                    <button class="bttEstatisticas painelestatisticas" id="toggleEstatisticas" aria-expanded="false"
                         aria-controls="divEstatisticas">
                         Estatísticas
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
@@ -364,14 +366,15 @@
 
             <div class="divisaoMaisSobreAdotar">
                 <section class="maisSobreOng">
-                    <h2 class="azul">Conheça mais sobre nós</h2>
+                    <h2 class="azul painelconhecamais">Conheça mais sobre nós</h2>
 
                     <p id="descricaoOng">Undefined</p>
 
-                    <h2 class="azul">Nossos Pets</h2>
+                    <h2 class="azul painelnossospets">Nossos Pets</h2>
                 </section>
 
-                <section class="adotarSec" id="petsAdotarSec">
+                <section class="painelnenhumencontrado" id="petsAdotarSec">
+                    <p class="painelnenhumencontrado">Nenhum pet encontrado vinculado a esta ONG ainda.</p>
                 </section>
             </div>
 
@@ -468,5 +471,6 @@
 
 <script src="/public/js/formularios/formparceiro.js"></script>
 <script src="/public/js/formularios/validacaoFormularios.js"></script>
+<script src="/public/js/traducao.js" defer></script>
 
 </html>

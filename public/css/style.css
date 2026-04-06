@@ -2914,7 +2914,13 @@ textarea {
 
 .endereco::before,
 .petsDisponiveis::before,
-.redesOng {
+.redesOng{
+    font-weight: 700;
+    color: var(--cinza80);
+}
+
+#enderecopagOng,
+#petsDisp{
     font-weight: 700;
     color: var(--cinza80);
 }
@@ -2964,7 +2970,8 @@ textarea {
     height: 1.5rem;
 }
 
-.maisSobreOng {
+.maisSobreOng,
+.painelnenhumencontrado {
     padding: 0 2rem;
 }
 
