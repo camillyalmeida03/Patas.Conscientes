@@ -25,7 +25,7 @@
     <p><a href="/index.html" class="link" title="Link que direciona para a página Inicial">Início</a> | Cadastro </p>
   </section>
 
-  <h1 class="azul centro">Cadastrar usuário</h1>
+  <h1 class="azul centro titulocadastro">Cadastrar usuário</h1>
 
   <main id="MainFormCadAdotante" class="mainForms">
 
@@ -37,29 +37,29 @@
 
 
           <div>
-            <h2>Informações do Usuário</h2>
+            <h2 class="infoUsuario">Informações do Usuário</h2>
             <div class="alinharErro">
-              <input name="nome" type="text" id="nomeUsuarioAdt" class="inputCadastro" placeholder="Nome*">
+              <input name="nome" type="text" id="nomeUsuarioAdt" class="inputCadastro nomeUsuario" placeholder="Nome*">
               <p id="erroNomeUsuarioAdt" class="error-message"></p>
             </div>
 
             <!-- Campo de email de usuário -->
             <div class="alinharErro">
-              <input name="email" type="email" id="emailUsuarioAdt" class="inputCadastro" placeholder="E-mail*">
+              <input name="email" type="email" id="emailUsuarioAdt" class="inputCadastro emailUsuario" placeholder="E-mail*">
               <p id="erroEmailUsuarioAdt" class="error-message"></p>
             </div>
 
             <div>
               <!-- Campo de telefone/celular do usuário -->
               <div class="alinharErro">
-                <input name="telefone" type="tel" id="telcelUsuarioAdt" class="inputCadastro tel"
+                <input name="telefone" type="tel" id="telcelUsuarioAdt" class="inputCadastro tel telefoneUsuario"
                   placeholder="Telefone ou Celular*" maxlength="15">
                 <p id="erroTelCelUsuarioAdt" class="error-message"></p>
               </div>
 
               <!-- Campo de cpf do usuário -->
               <div class="alinharErro">
-                <input name="cpf" type="text" id="cpfUsuarioAdt" class="inputCadastro cpf" placeholder="CPF*"
+                <input name="cpf" type="text" id="cpfUsuarioAdt" class="inputCadastro cpf cpfUsuario" placeholder="CPF*"
                   maxlength="14">
                 <p id="erroCpfUsuarioAdt" class="error-message"></p>
               </div>
@@ -69,10 +69,10 @@
               <!-- Campo de definição de gênero do usuário -->
               <div class="alinharErro">
                 <select name="fk_idsexo" id="genero" class="inputCadastro" aria-labelledby="label-genero">
-                  <option value="" disabled hidden selected class="cinzah3">Selecione seu gênero:*</option>
-                  <option value="1">Feminino</option>
-                  <option value="2">Masculino</option>
-                  <option value="3">Prefiro não dizer</option>
+                  <option value="" disabled hidden selected class="cinzah3 selectGenero">Selecione seu gênero:*</option>
+                  <option value="1" class="generoFem">Feminino</option>
+                  <option value="2" class="generoMasc">Masculino</option>
+                  <option value="3" class="generoNao">Prefiro não dizer</option>
                 </select>
 
                 <p id="erroGenero" class="error-message"></p>
@@ -80,7 +80,7 @@
 
               <!-- Campo de data de nascimento do usuário -->
               <div class="alinharErro">
-                <input name="data_nasc" type="text" id="dataNasc" class="inputCadastro"
+                <input name="data_nasc" type="text" id="dataNasc" class="inputCadastro dataNascimento"
                   placeholder="Data de Nascimento*">
                 <p id="erroDataNasc" class="error-message"></p>
               </div>
@@ -89,23 +89,23 @@
             <div>
               <!-- Campo de senha do usuário -->
               <div class="alinharErro">
-                <input name="senha" type="password" id="senhaUsuarioAdt" placeholder="Senha*" class="inputCadastro">
+                <input name="senha" type="password" id="senhaUsuarioAdt" placeholder="Senha*" class="inputCadastro senhaUsuario">
                 <p id="erroSenhaUsuarioAdt" class="error-message"></p>
               </div>
 
               <!-- Campo de confirmação de senha do usuário -->
               <div class="alinharErro">
                 <input type="password" id="confirmaSenhaUsuarioAdt" placeholder="Confirme sua senha*"
-                  class="inputCadastro">
+                  class="inputCadastro confirmarSenha">
                 <p id="erroConfirSenhaUsuarioAdt" class="error-message"></p>
               </div>
             </div>
 
-            <h2>Informações de Endereço</h2>
+            <h2 class="infoEndereco">Informações de Endereço</h2>
 
             <!-- Campo de CEP do usuário -->
             <div class="alinharErro">
-              <input type="text" id="cep" class="inputCadastro cep" placeholder="CEP*" maxlength="9">
+              <input type="text" id="cep" class="inputCadastro cep cepUsuario" placeholder="CEP*" maxlength="9">
               <p id="erroCep" class="error-message"></p>
             </div>
 
@@ -114,7 +114,7 @@
               <!-- Campo de estado do usuário -->
               <div class="alinharErro">
                 <select id="estado" class="inputCadastro" name="estado" aria-label="Selecione seu estado">
-                  <option value="" disabled selected class="cinzah3">Selecione seu estado:*</option>
+                  <option value="" disabled selected class="cinzah3 selectEstado">Selecione seu estado:*</option>
                   <option value="AC">AC</option>
                   <option value="AL">AL</option>
                   <option value="AP">AP</option>
@@ -149,37 +149,39 @@
 
               <!-- Campo de cidade do usuário -->
               <div class="alinharErro">
-                <input type="text" id="cidade" class="inputCadastro" placeholder="Cidade*">
+                <input type="text" id="cidade" class="inputCadastro cidadeUsuario" placeholder="Cidade*">
                 <p id="erroCidade" class="error-message"></p>
               </div>
             </div>
 
             <!-- Campo de rua do usuário -->
             <div class="alinharErro">
-              <input type="text" id="rua" class="inputCadastro" placeholder="Rua*">
+              <input type="text" id="rua" class="inputCadastro ruaUsuario" placeholder="Rua*">
               <p id="erroRua" class="error-message"></p>
             </div>
 
             <div>
               <!-- Campo de Bairro do usuário -->
               <div class="alinharErro">
-                <input type="text" id="bairro" class="inputCadastro" placeholder="Bairro*">
+                <input type="text" id="bairro" class="inputCadastro bairroUsuario" placeholder="Bairro*">
                 <p id="erroBairro" class="error-message"></p>
               </div>
 
               <!-- Campo de número da casa do usuário -->
               <div class="alinharErro">
-                <input type="text" id="nmr" class="inputCadastro" placeholder="Número*">
+                <input type="text" id="nmr" class="inputCadastro numeroUsuario" placeholder="Número*">
                 <p id="erroNmr" class="error-message"></p>
               </div>
             </div>
 
             <!-- Campo de complemento do usuário -->
-            <input type="text" id="complemento" class="inputCadastro" placeholder="Complemento">
+            <input type="text" id="complemento" class="inputCadastro complementoUsuario" placeholder="Complemento">
 
             <!-- Botão de confirmar cadastro do usuário -->
-            <input title="Confirmar cadastro" type="submit" id="botaoCadastroUsuario" class="buttonRosaForm"
-              value="Confirmar">
+            <!-- <input title="Confirmar cadastro" type="submit" id="botaoCadastroUsuario" class="buttonRosaForm"
+              value="Confirmar"> -->
+            <button title="Confirmar cadastro" type="submit" id="botaoCadastroUsuario" class="buttonRosaForm botaoConfirmar"
+              value="Confirmar">Confirmar</button>
 
             <!-- Mensagem de feedback -->
             <p id="mensagemcriacaodeconta"></p>
@@ -275,6 +277,7 @@
   <script src="/public/js/tema.js" defer></script>
   <script src="/public/js/carregar_pagina.js"></script>
   <script src="/public/js/formularios/validacaoFormularios.js"></script>
+  <script src="/public/js/traducao.js" ></script>
 
 </body>
 

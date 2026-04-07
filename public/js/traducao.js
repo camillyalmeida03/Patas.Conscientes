@@ -144,6 +144,21 @@ function traduzir() {
             entrarsenhaalterada: "Senha alterada com sucesso!",
             // pag configurações
             configuracoes: "Configurações",
+            editarperfil: "Editar perfil",
+            detalhesconta: "Conta",
+            detalhesacessibilidade: "Acessibilidade",
+            detalhespoliticasite: "Políticas do site",
+            confignome: "Nome:",
+            configgenero: "Gênero:",
+            configinfoend: "Informações de endereço",
+            configcep: "Cep:",
+            configestado: "Estado:",
+            configcidade: "Cidade:",
+            configrua: "Rua:",
+            configbairro: "Bairro:",
+            confignum: "Número:",
+            configcomplemento: "Complemento:",
+            configsalvar: "Salvar edições",
             // painel ong
             painelendereço: "Endereço:",
             paineldisponiveis: "Pets disponíveis:",
@@ -177,7 +192,7 @@ function traduzir() {
             bairrousuario: "Bairro*",
             numerousuario: "Número*",
             complementousuario: "Complemento",
-            botaoconfirmar: "Confirmar",
+            botaoConfirmar: "Confirmar",
 
         },
         eng: {
@@ -309,6 +324,22 @@ function traduzir() {
             entrarsenhaalterada: "Password changed successfully!",
             // pag configurações
             configuracoes: "Settings",
+            editarperfil: "Edit profile",
+            detalhesconta: "Account",
+            detalhesacessibilidade: "Accessibility",
+            detalhespoliticasite: "Site policies",
+            confignome: "Name:",
+            configgenero: "Gender:",
+            configinfoend: "Address information",
+            configcep: "ZIP code:",
+            configestado: "State:",
+            configcidade: "City:",
+            configrua: "Street:",
+            configbairro: "Neighborhood:",
+            confignum: "Number:",
+            configcomplemento: "Additional info:",
+            configsalvar: "Save changes",
+
             // painel ong
             painelendereço: "Adress:",
             paineldisponiveis: "Available pets:",
@@ -342,7 +373,7 @@ function traduzir() {
             bairrousuario: "Neighborhood*",
             numerousuario: "Number*",
             complementousuario: "Complement",
-            botaoconfirmar: "Confirm",
+            botaoConfirmar: "Confirm",
             labelcodigo: "Enter the code sent to your email:",
             codigoverificacao: "Ex: 123456",
             btnverificarcodigo: "Verify Code",
@@ -364,6 +395,7 @@ function traduzir() {
             traduzirPlaceholder[i].placeholder = texto;
         }
     }
+
 
     traduzirClasse("instu", idioma[idiomaselect].headerinstitucional);
     traduzirClasse("ongstradutor", idioma[idiomaselect].headerongstradutor);
@@ -486,7 +518,28 @@ function traduzir() {
     traduzirClasse("entrarcodverificacaocriado", idioma[idiomaselect].entrarcodverificacaocriado);
     traduzirClasse("entraremailnaoencontrado", idioma[idiomaselect].entraremailnaoencontrado);
     traduzirClasse("entrarsenhaalterada", idioma[idiomaselect].entrarsenhaalterada);
+    // pag config
     traduzirClasse("configuracoes", idioma[idiomaselect].configuracoes);
+    traduzirClasse("editarperfil", idioma[idiomaselect].editarperfil);
+    traduzirClasse("detalhesconta", idioma[idiomaselect].detalhesconta);
+    traduzirClasse("detalhesacessibilidade", idioma[idiomaselect].detalhesacessibilidade);
+    traduzirClasse("detalhespoliticasite", idioma[idiomaselect].detalhespoliticasite);
+    traduzirClasse("confignome", idioma[idiomaselect].confignome);
+    traduzirClasse("configgenero", idioma[idiomaselect].configgenero);
+    traduzirClasse("configinfoend", idioma[idiomaselect].configinfoend);
+    traduzirClasse("configcep", idioma[idiomaselect].configcep);
+    traduzirClasse("configestado", idioma[idiomaselect].configestado);
+    traduzirClasse("configcidade", idioma[idiomaselect].configcidade);
+    traduzirClasse("configrua", idioma[idiomaselect].configrua);
+    traduzirClasse("configbairro", idioma[idiomaselect].configbairro);
+    traduzirClasse("confignum", idioma[idiomaselect].confignum);
+    traduzirClasse("configcomplemento", idioma[idiomaselect].configcomplemento);
+    traduzirClasse("configsalvar", idioma[idiomaselect].configsalvar);
+    // pag config > placeholder
+    
+      
+
+
     traduzirClasse("painelendereço", idioma[idiomaselect].painelendereço);
     traduzirClasse("paineldisponiveis", idioma[idiomaselect].paineldisponiveis);
     traduzirClasse("painelestatisticas", idioma[idiomaselect].painelestatisticas);
@@ -494,26 +547,21 @@ function traduzir() {
     traduzirClasse("painelconhecamais", idioma[idiomaselect].painelconhecamais);
     traduzirClasse("painelnossospets", idioma[idiomaselect].painelnossospets);
     traduzirClasse("painelnenhumencontrado", idioma[idiomaselect].painelnenhumencontrado);
+    // form cadastrar usuario
     traduzirClasse("titulocadastro", idioma[idiomaselect].titulocadastro);
-
     traduzirClasse("infoUsuario", idioma[idiomaselect].infousuario);
-
     traduzirPlaceholder("nomeUsuario", idioma[idiomaselect].nomeusuario);
     traduzirPlaceholder("emailUsuario", idioma[idiomaselect].emailusuario);
     traduzirPlaceholder("telefoneUsuario", idioma[idiomaselect].telefoneusuario);
     traduzirPlaceholder("cpfUsuario", idioma[idiomaselect].cpfusuario);
-
     traduzirClasse("selectGenero", idioma[idiomaselect].selectgenero);
     traduzirClasse("generoFem", idioma[idiomaselect].generofem);
     traduzirClasse("generoMasc", idioma[idiomaselect].generomasc);
     traduzirClasse("generoNao", idioma[idiomaselect].generonao);
-
     traduzirPlaceholder("dataNascimento", idioma[idiomaselect].datanascimento);
     traduzirPlaceholder("senhaUsuario", idioma[idiomaselect].senhausuario);
     traduzirPlaceholder("confirmarSenha", idioma[idiomaselect].confirmarsenha);
-
     traduzirClasse("infoEndereco", idioma[idiomaselect].infoendereco);
-
     traduzirPlaceholder("cepUsuario", idioma[idiomaselect].cepusuario);
     traduzirClasse("selectEstado", idioma[idiomaselect].selectestado);
     traduzirPlaceholder("cidadeUsuario", idioma[idiomaselect].cidadeusuario);
@@ -521,9 +569,7 @@ function traduzir() {
     traduzirPlaceholder("bairroUsuario", idioma[idiomaselect].bairrousuario);
     traduzirPlaceholder("numeroUsuario", idioma[idiomaselect].numerousuario);
     traduzirPlaceholder("complementoUsuario", idioma[idiomaselect].complementousuario);
-
-    traduzirClasse("botaoConfirmar", idioma[idiomaselect].botaoconfirmar);
-
+    traduzirClasse("botaoConfirmar", idioma[idiomaselect].botaoConfirmar);
     traduzirClasse("labelCodigo", idioma[idiomaselect].labelcodigo);
     traduzirPlaceholder("codigoVerificacao", idioma[idiomaselect].codigoverificacao);
     traduzirClasse("btnVerificarCodigo", idioma[idiomaselect].btnverificarcodigo);

@@ -34,7 +34,7 @@
     <aside class="asideRow">
 
       <!-- Botão que altera para edição de perfil -->
-      <button type="button" title="Editar meu perfil" id="perfilEdicao" class="buttonConfig">Editar
+      <button type="button" title="Editar meu perfil" id="perfilEdicao" class="buttonConfig editarperfil">Editar
         perfil</button>
 
       <!-- Linha divisória -->
@@ -42,20 +42,20 @@
 
       <!-- Botão que altera para configurações da conta -->
       <button type="button" title="Acessar configurações da sua conta" id="configConta"
-        class="buttonConfig">Conta</button>
+        class="buttonConfig detalhesconta">Conta</button>
 
       <!-- Linha divisória -->
       <div class="linha"></div>
 
       <!-- Botão que altera para configurações de acessibilidade -->
       <button type="button" title="Ativar/Desativar barra de acessibilidade" id="buttonAcess"
-        class="buttonConfig">Acessibilidade</button>
+        class="buttonConfig detalhesacessibilidade">Acessibilidade</button>
 
       <!-- Linha divisória -->
       <div class="linha"></div>
 
       <!-- Botão que altera para políticas do site -->
-      <button type="button" title="Acessar Políticas do site" id="politicasConta" class="buttonConfig">Políticas do
+      <button type="button" title="Acessar Políticas do site" id="politicasConta" class="buttonConfig detalhespoliticasite">Políticas do
         site</button>
 
       <!-- Linha divisória -->
@@ -67,7 +67,7 @@
 
     <!-- Seção de edição de perfil -->
     <section id="editarPerfil" class="configConta">
-      <h2 class="titConfig">Editar perfil</h2>
+      <h2 class="titConfig editarperfil">Editar perfil</h2>
 
 
       <!-- Editar foto de usuário -->
@@ -91,7 +91,7 @@
 
         <!-- Nome do usuário -->
         <div id="" class="alterarDadosDiv">
-          <label id="nomeUsuarioconfig" class="before">Nome:</label>
+          <label id="nomeUsuarioconfig" class="before confignome">Nome:</label>
           <input type="text" name="nome" placeholder="O nome do usuário ficará aqui" id="nomeUsuarioAdt"
             class="inputConfig">
           <p id="erroNomeUsuarioAdt" class="error-message"></p>
@@ -100,12 +100,12 @@
 
         <!-- Gênero do usuário -->
         <div class="alterarDadosDiv" id="generoPerfil">
-          <label for="genero" class="before">Gênero:</label>
+          <label for="genero" class="before configgenero">Gênero:</label>
           <select name="fk_idsexo" id="genero" aria-labelledby="label-genero" class="inputConfig">
             <option value="" disabled hidden selected class="cinzah3">Selecione:*</option>
-            <option value="1">Feminino</option>
-            <option value="2">Masculino</option>
-            <option value="3">Prefiro não dizer</option>
+            <option value="1" class="generoFem">Feminino</option>
+            <option value="2" class="generoMasc">Masculino</option>
+            <option value="3" class="generoNao">Prefiro não dizer</option>
           </select>
 
           <p id="erroGenero" class="error-message"></p>
@@ -114,11 +114,11 @@
 
         <!-- Endereço do usuário -->
         <div class="" id="enderecoPerfil">
-          <h2 id="enderecoUsuarioConfig" class="titConfig">Informações de endereço</h2>
+          <h2 id="enderecoUsuarioConfig" class="titConfig configinfoend">Informações de endereço</h2>
 
           <!-- Campo de CEP do usuário -->
           <div class="alterarDadosDiv">
-            <label for="" class="before">CEP: </label>
+            <label for="" class="before configcep">CEP: </label>
             <input type="text" id="cep" class="cep inputConfig" placeholder="O CEP do usuário ficará aqui"
               maxlength="9">
 
@@ -127,9 +127,9 @@
 
           <!-- Campo de estado do usuário -->
           <div class="alterarDadosDiv">
-            <label for="" class="before">Estado:</label>
+            <label for="" class="before configestado">Estado:</label>
             <select id="estado" name="estado" aria-label="Selecione seu estado" class="inputConfig">
-              <option value="" disabled selected class="cinzah3">Selecione seu estado:*</option>
+              <option value="" disabled selected class="cinzah3 selectEstado">Selecione seu estado:*</option>
               <option value="AC">AC</option>
               <option value="AL">AL</option>
               <option value="AP">AP</option>
@@ -164,14 +164,14 @@
 
           <!-- Campo de cidade do usuário -->
           <div class="alterarDadosDiv">
-            <label for="" class="before">Cidade:</label>
+            <label for="" class="before configcidade">Cidade:</label>
             <input type="text" id="cidade" placeholder="A cidade do usuário ficará aqui" class="inputConfig">
             <p id="erroCidade" class="error-message"></p>
           </div>
 
           <!-- Campo de rua do usuário -->
           <div class="alterarDadosDiv">
-            <label for="" class="before">Rua: </label>
+            <label for="" class="before configrua">Rua: </label>
             <input type="text" id="rua" class="inputConfig" placeholder="A rua do usuário ficará aqui">
             <p id="erroRua" class="error-message"></p>
           </div>
@@ -179,14 +179,14 @@
           <div>
             <!-- Campo de Bairro do usuário -->
             <div class="alterarDadosDiv">
-              <label for="" class="before">Bairro: </label>
+              <label for="" class="before configbairro">Bairro: </label>
               <input type="text" id="bairro" class="inputConfig" placeholder="o bairro do usuário ficará aqui">
               <p id="erroBairro" class="error-message"></p>
             </div>
 
             <!-- Campo de número da casa do usuário -->
             <div class="alterarDadosDiv">
-              <label for="" class="before">Número: </label>
+              <label for="" class="before confignum">Número: </label>
               <input type="text" id="nmr" class="inputConfig" placeholder="O número da casa ficará aqui">
               <p id="erroNmr" class="error-message"></p>
             </div>
@@ -194,14 +194,13 @@
 
           <!-- Campo de complemento do usuário -->
           <div class="alterarDadosDiv">
-            <label for="" class="before">Complemento:</label>
+            <label for="" class="before configcomplemento">Complemento:</label>
             <input type="text" id="complemento" class="inputConfig" placeholder="Complemento">
           </div>
         </div>
 
         <!-- Botão de confirmar cadastro do usuário -->
-        <input title="Confirmar cadastro" type="submit" id="botaoSalvarAlteracoes" class="" value="Salvar edições">
-
+        <button title="Confirmar cadastro" type="submit" id="botaoSalvarAlteracoes" class="configsalvar" value="Salvar edições" >Salvar edições</button>
         <!-- Mensagem de feedback -->
         <p id="mensagemFeedback"></p>
 

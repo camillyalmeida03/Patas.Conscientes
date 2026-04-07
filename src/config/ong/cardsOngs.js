@@ -67,8 +67,9 @@ export class CardsOngs {
     }
     this.criarElemento.createElement("span", "cidadeOng", InfoOng.cidade, cidadeDiv);
 
-
-    return cardOng;
+    traduzir();
+    return cardOng
+    ;
   }
 }
 
