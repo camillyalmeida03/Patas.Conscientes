@@ -177,6 +177,14 @@ function controlarBotoesDeUpload(isResponsavel, idOng) {
   }
 }
 
+function controlarBotaoEditar(isResponsavel, idOng) {
+
+  if (!isResponsavel) {
+    const botaoEditar = document.querySelectorAll('.bttEditarOng');
+    botaoEditar.forEach(btn => btn.remove());
+    return;
+  }
+}
 async function preencherPagina() {
   if (!idUrl) {
     console.log("Nenhum ID fornecido na URL");
@@ -204,6 +212,7 @@ async function preencherPagina() {
   botaoAdd.botaoAdicionar();
 
   controlarBotoesDeUpload(isResponsavel, idUrl);
+  controlarBotaoEditar(isResponsavel, idUrl);
   carregarTotalPets(idUrl);
 
   const enderecoCompleto = `${ong.rua || ""}, ${ong.numero || ""} - ${ong.bairro || ""}, ${ong.cidade || ""} - ${ong.sigla || ""}`;
