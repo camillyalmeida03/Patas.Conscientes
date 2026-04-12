@@ -381,8 +381,59 @@
                     <h2 class="azul painelnossospets">Nossos Pets</h2>
                 </section>
 
+                <!-- Opção de gerenciamento de catálogo para a ONG -->
+                <section id="gerenciarCatalogoPet">
+
+                    <!-- Opções para gerenciamento do catálogo -->
+                    <div id="opcoesGerenciamentoCat">
+
+                        <!-- Conjunto de botões -->
+                        <div>
+                            <!-- Botão de adicionar PET -->
+                            <button class="bttIcon buttonRosa" id="abrirModalAdicionar" title="Adicionar novo PET">
+                                <p>Cadastrar Pet</p>
+                                <svg class="icon" viewBox="0 -960 960 960">
+                                    <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" />
+                                </svg>
+                            </button>
+
+                            <!-- Botão de visualizar o catálogo em CARDS -->
+                            <button class="bttIcon" id="visualizarCat" title="Visualizar catálogo em cards">
+                                <p>Visualizar</p>
+                                <svg viewBox="0 -960 960 960" class="icon">
+                                    <path
+                                        d="M607.5-372.5Q660-425 660-500t-52.5-127.5Q555-680 480-680t-127.5 52.5Q300-575 300-500t52.5 127.5Q405-320 480-320t127.5-52.5Zm-204-51Q372-455 372-500t31.5-76.5Q435-608 480-608t76.5 31.5Q588-545 588-500t-31.5 76.5Q525-392 480-392t-76.5-31.5ZM214-281.5Q94-363 40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200q-146 0-266-81.5ZM480-500Zm207.5 160.5Q782-399 832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280q113 0 207.5-59.5Z" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- Barra de pesquisa + filtro -->
+                        <div>
+                            <!-- Barra de pesquisa -->
+                            <div class="bttIcon" id="barraPesquisaCat">
+                                <input type="text" placeholder="Pesquise">
+                                <button title="Pesquisar">
+                                    <svg viewBox="0 0 756 755" class="iconNoFill">
+                                        <path
+                                            d="M680.87 754.48L424.91 498.52C405.29 513.013 382.573 524.55 356.76 533.13C330.947 541.71 303.187 546 273.48 546C197.42 546 132.903 519.513 79.93 466.54C26.9633 413.573 0.47998 349.06 0.47998 273C0.47998 196.94 26.9633 132.427 79.93 79.46C132.903 26.4867 197.42 0 273.48 0C349.54 0 414.053 26.4867 467.02 79.46C519.993 132.427 546.48 196.94 546.48 273C546.48 303.087 542.19 330.847 533.61 356.28C525.03 381.713 513.493 404.053 499 423.3L755.52 680.39L680.87 754.48ZM273.48 440C320.087 440 359.57 423.82 391.93 391.46C424.297 359.093 440.48 319.607 440.48 273C440.48 226.393 424.297 186.907 391.93 154.54C359.57 122.18 320.087 106 273.48 106C226.873 106 187.387 122.18 155.02 154.54C122.66 186.907 106.48 226.393 106.48 273C106.48 319.607 122.66 359.093 155.02 391.46C187.387 423.82 226.873 440 273.48 440Z"
+                                            fill="#FE4E77" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <!-- Botão de filtro -->
+                            <button id="filtroCat" title="Filtros de pesquisa no catálogo">
+                                <svg viewBox="0 -960 960 960" class="icon">
+                                    <path
+                                        d="M400-240v-80h160v80H400ZM240-440v-80h480v80H240ZM120-640v-80h720v80H120Z" />
+                                </svg>
+                            </button>
+                        </div>
+
+                    </div>
+                </section>
+
                 <section class="adotarSec" id="petsAdotarSec">
-                    <!-- <p class="painelnenhumencontrado">Nenhum pet encontrado vinculado a esta ONG ainda.</p> -->
                 </section>
             </div>
 

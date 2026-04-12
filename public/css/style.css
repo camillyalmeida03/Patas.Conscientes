@@ -63,36 +63,10 @@
     width: 1.5rem;
 }
 
-.bttIcon {
-    display: flex;
-    justify-content: space-between;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    align-items: center;
-    border-radius: 0.5rem;
-    font-weight: 500;
+.iconNoFill {
+    height: 1.5rem;
+    width: 1.5rem;
 }
-
-.bttEditarOng {
-    position: absolute;
-    z-index: 100;
-    bottom: 2rem;
-    right: 2rem;
-    background-color: var(--azul_maisclaro);
-    color: white;
-    /* -webkit-box-shadow: 0px 0px 18px -2px rgba(0, 0, 0, 0.7); */
-    box-shadow: 0px 0px 18px -2px rgba(0, 0, 0, 0.5);
-}
-
-.bttEditarOng:hover {
-    transform: scale(110%);
-    transition: all 0.5s;
-}
-
-.bttEditarOng .icon {
-    fill: white;
-}
-
 
 button {
     font-size: 1rem;
@@ -3411,7 +3385,77 @@ textarea {
     background-color: var(--rosa_texto_escuro);
 }
 
+.bttIcon {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    align-items: center;
+    border-radius: 0.5rem;
+    font-weight: 500;
+}
 
+.bttEditarOng {
+    position: absolute;
+    z-index: 100;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: var(--azul_maisclaro);
+    color: white;
+    /* -webkit-box-shadow: 0px 0px 18px -2px rgba(0, 0, 0, 0.7); */
+    box-shadow: 0px 0px 18px -2px rgba(0, 0, 0, 0.5);
+}
+
+.bttEditarOng:hover {
+    transform: scale(110%);
+    transition: all 0.5s;
+}
+
+.bttEditarOng .icon {
+    fill: white;
+}
+
+#opcoesGerenciamentoCat,
+#opcoesGerenciamentoCat>div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+#opcoesGerenciamentoCat {
+    justify-content: space-between;
+    padding: 0 2rem;
+
+}
+
+#abrirModalAdicionar .icon {
+    fill: white;
+}
+
+#visualizarCat,
+#visualizarCat .icon {
+    color: var(--cinza100);
+    fill: var(--cinza100);
+}
+
+#barraPesquisaCat {
+    position: relative;
+}
+
+#barraPesquisaCat input {
+    padding: 0.3rem 0.5rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    border: 1px var(--cinza100) solid;
+    max-width: 20rem;
+    width: fit-content;
+}
+
+#filtroCat .icon {
+    height: 2rem;
+    width: 2rem;
+}
 
 /* -------- MODO ESCURO ------------------------------------------------------------------------------------------------------- */
 
@@ -3886,6 +3930,15 @@ textarea {
 
     .alinharDoisInput input {
         width: 100% !important;
+    }
+
+    .bttIcon>p {
+        display: none;
+    }
+
+    #opcoesGerenciamentoCat,
+    #opcoesGerenciamentoCat>div {
+        gap: 0.5rem;
     }
 
 }
@@ -4414,10 +4467,28 @@ textarea {
         right: 0 !important;
     }
 
-    .bttEditarOng p{
+    .bttEditarOng p {
         display: none;
     }
 
+    #opcoesGerenciamentoCat {
+        flex-direction: column-reverse;
+    }
+
+    #opcoesGerenciamentoCat>div {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    #barraPesquisaCat, #barraPesquisaCat .bttIcon{
+        width: 100%;
+        padding: 0;
+    }
+
+    #barraPesquisaCat input{
+        width: 100%;
+        max-width: none;
+    }
 }
 
 @media screen and (max-width: 450px) {
@@ -4520,7 +4591,7 @@ textarea {
     }
 
     .bttEditarOng {
-    bottom: 1rem;
-    right: 1rem;
-}
+        bottom: 1rem;
+        right: 1rem;
+    }
 }

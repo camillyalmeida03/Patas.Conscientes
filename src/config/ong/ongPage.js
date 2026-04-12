@@ -181,9 +181,13 @@ function controlarBotaoEditar(isResponsavel, idOng) {
 
   if (!isResponsavel) {
     const botaoEditar = document.querySelectorAll('.bttEditarOng');
+    const opcoesGerenciamentoCat = document.getElementById('opcoesGerenciamentoCat');
     botaoEditar.forEach(btn => btn.remove());
+    opcoesGerenciamentoCat.remove()
     return;
   }
+
+  
 }
 async function preencherPagina() {
   if (!idUrl) {
