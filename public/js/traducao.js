@@ -169,7 +169,7 @@ function traduzir() {
             painelcadastrar: "Cadastrar Pet",
             painelconhecamais: "Conheça mais sobre nós",
             painelnossospets: "Nossos pets",
-            painelnenhumencontrado: "Nenhum pet encontrado vinculado a esta ONG ainda.",
+            // painelnenhumencontrado: "Nenhum pet encontrado vinculado a esta ONG ainda.",
             // form cadastrar usuario
             titulocadastro: "Cadastrar usuário",
             infousuario: "Informações do Usuário",
