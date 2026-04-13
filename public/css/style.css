@@ -3426,7 +3426,7 @@ textarea {
 #opcoesGerenciamentoCat {
     justify-content: space-between;
     padding: 0 2rem;
-
+    margin-bottom: 1rem;
 }
 
 #abrirModalAdicionar .icon {
@@ -3455,6 +3455,15 @@ textarea {
 #filtroCat .icon {
     height: 2rem;
     width: 2rem;
+}
+
+#abrirModalAdicionar{
+    background-color: var(--rosa);
+    color: white;
+}
+
+#petsAdotarSec{
+    padding-left: 1.5rem;
 }
 
 /* -------- MODO ESCURO ------------------------------------------------------------------------------------------------------- */
@@ -3540,8 +3549,14 @@ textarea {
 .bodyME .aviso,
 .bodyME label,
 .bodyME #contarCaracteres,
-.bodyME #tipoIdade {
+.bodyME #tipoIdade,
+.bodyME #enderecopagOng,
+.bodyME #petsDisp{
     color: white !important;
+}
+
+.bodyME #barraPesquisaCat input{
+    background-color: var(--cinza201);
 }
 
 .bodyME #news-container {
@@ -3751,6 +3766,15 @@ textarea {
 
 .bodyME .bttEstatisticas:hover {
     background-color: var(--cinza147);
+}
+
+.bodyME .icon{
+    fill: var(--cinza158) !important;
+}
+
+.bodyME #abrirModalAdicionar .icon,
+.bodyME .bttEditarOng .icon{
+    fill: white !important;
 }
 
 /* MODAL RECUPERAR SENHA */
@@ -4488,6 +4512,15 @@ textarea {
     #barraPesquisaCat input{
         width: 100%;
         max-width: none;
+    }
+
+    #abrirModalAdicionar > p{
+        display: flex;
+    }
+
+    #visualizarCat{
+        padding: 0;
+        margin-right: 0.5rem;
     }
 }
 

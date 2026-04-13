@@ -46,33 +46,33 @@ class Redes {
   }
 }
 
-class AdicionarBotao {
-  constructor(isResponsavel) {
-    this.criarElemento = new CriarElementos();
-    this.isResponsavel = isResponsavel;
-  }
+// class AdicionarBotao {
+//   constructor(isResponsavel) {
+//     this.criarElemento = new CriarElementos();
+//     this.isResponsavel = isResponsavel;
+//   }
 
-  botaoAdicionar() {
-    if (!this.isResponsavel) return;
+//   botaoAdicionar() {
+//     if (!this.isResponsavel) return;
 
-    this.bttAdicionar = document.querySelector(".bttAdicionar");
-    if (!this.bttAdicionar) return;
+//     this.bttAdicionar = document.querySelector(".bttAdicionar");
+//     if (!this.bttAdicionar) return;
 
-    this.botaoAdd = this.criarElemento.createElement(
-      "button",
-      "buttonRosa",
-      "Cadastrar PET",
-      this.bttAdicionar,
-      null
-    );
-    this.botaoAdd.id = "abrirModalAdicionar";
+//     this.botaoAdd = this.criarElemento.createElement(
+//       "button",
+//       "buttonRosa",
+//       "Cadastrar PET",
+//       this.bttAdicionar,
+//       null
+//     );
+//     this.botaoAdd.id = "abrirModalAdicionar";
 
-    this.botaoAdd.addEventListener("click", () => {
-      const fundoModal = document.getElementById("fundoAdicionarPet");
-      if (fundoModal) fundoModal.classList.remove("escondido");
-    });
-  }
-}
+//     this.botaoAdd.addEventListener("click", () => {
+//       const fundoModal = document.getElementById("fundoAdicionarPet");
+//       if (fundoModal) fundoModal.classList.remove("escondido");
+//     });
+//   }
+// }
 
 const urlParams = new URLSearchParams(window.location.search);
 const idUrl = parseInt(urlParams.get("id"));
@@ -212,8 +212,8 @@ async function preencherPagina() {
   const redesOng = new Redes(ong);
   redesOng.redes();
 
-  const botaoAdd = new AdicionarBotao(isResponsavel);
-  botaoAdd.botaoAdicionar();
+  // const botaoAdd = new AdicionarBotao(isResponsavel);
+  // botaoAdd.botaoAdicionar();
 
   controlarBotoesDeUpload(isResponsavel, idUrl);
   controlarBotaoEditar(isResponsavel, idUrl);
