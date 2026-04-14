@@ -27,258 +27,198 @@
       ONG</p>
   </section>
 
-  <h1 class="azul centro">Cadastro de ONG</h1>
+<h1 class="azul centro cadastroongtitulotradutor">Cadastro de ONG</h1>
 
-  <main id="MainFormCadOng" class="mainForms">
+<main id="MainFormCadOng" class="mainForms">
 
-    <div class="fundoBranco">
+  <div class="fundoBranco">
 
-      <form action="" id="formOng" class="formCadastro formulario">
+<form action="" id="formOng" class="formCadastro formulario">
 
-        <div class="aviso">
-          <h3>Aviso importante</h3>
-          <p id="avisoP1">Você já possui uma conta de usuário.
-            Ao <span class="negrito">cadastrar uma ONG, esta conta será usada como responsável por ela</span>.
-            Todas as ações e informações da ONG ficarão vinculadas ao seu perfil.</p>
-          <p id="avisoP2">Se deseja continuar, siga para o cadastro da ONG abaixo.</p>
+  <div class="aviso">
+    <h3 class="avisoimportante avisoimportantecadtradutor">Aviso importante</h3>
 
-        </div>
-        <div class="etapasCad">
-          <h2>Formulário de Cadastro</h2>
+    <p id="avisoP1" class="avisop1 avisop1tradutor">
+      Você já possui uma conta de usuário.
+      Ao <span class="negrito avisonegrito avisonegritotradutor">cadastrar uma ONG, esta conta será usada como responsável por ela</span>.
+      Todas as ações e informações da ONG ficarão vinculadas ao seu perfil.
+    </p>
 
-          <div class="bolinhasEtapas" title="Etapas do formulário">
-            <button type="button" id="bttEtapa1" class="bolinha">1</button>
-            <button type="button" id="bttEtapa2" class="bolinha">2</button>
-          </div>
-        </div>
+    <p id="avisoP2" class="avisop2 avisop2tradutor">
+      Se deseja continuar, siga para o cadastro da ONG abaixo.
+    </p>
+  </div>
 
-        <div class="blocosCad" id="formCadOng">
-          <!-- Campo de nome da ONG -->
-          <div class="alinharErro">
-            <input type="text" name="nome" id="nomeOng" class="inputCadastro" placeholder="Nome da ONG*">
-            <p id="erroNomeOng" class="error-message"></p>
-          </div>
+  <div class="etapasCad">
+    <h2 class="formcadastrotradutor">Formulário de Cadastro</h2>
 
-          <!-- Campo de telefone/celular da ONG -->
-          <div class="alinharErro">
-            <input name="telefone" type="tel" id="telcelUsuarioAdt" class="inputCadastro tel"
-              placeholder="Telefone ou Celular*" maxlength="15">
-            <p id="erroTelCelUsuarioAdt" class="error-message"></p>
-          </div>
+    <div class="bolinhasEtapas" title="Etapas do formulário">
+      <button type="button" id="bttEtapa1" class="bolinha">1</button>
+      <button type="button" id="bttEtapa2" class="bolinha">2</button>
+    </div>
+  </div>
 
-          <!-- Campo de CNPJ da ONG -->
-          <div class="alinharErro">
-            <input type="text" name="cnpj" id="cnpj" class="inputCadastro cnpj" placeholder="CNPJ*" maxlength="18">
-            <p id="erroCnpj" class="error-message"></p>
-          </div>
+  <div class="blocosCad" id="formCadOng">
 
-          <!-- Campo de e-mail da ONG -->
-          <div class="alinharErro">
-            <input type="email" name="email" id="emailOng" class="inputCadastro" placeholder="E-mail">
-            <p id="erroEmailOng" class="error-message"></p>
-          </div>
+    <div class="alinharErro">
+      <input type="text" name="nome" id="nomeOng" class="inputCadastro nomeongtradutor" placeholder="Nome da ONG*">
+      <p id="erroNomeOng" class="error-message"></p>
+    </div>
 
-          <div>
-            <!-- Campo de senha da ONG -->
-            <div class="alinharErro">
-              <input id="senhaUsuarioAdt" name="senha" type="password" class="inputCadastro" placeholder="Senha">
-              <p id="erroSenhaUsuarioAdt" class="error-message"></p>
-            </div>
+    <div class="alinharErro">
+      <input name="telefone" type="tel" id="telcelUsuarioAdt" class="inputCadastro tel telefoneongtradutor"
+        placeholder="Telefone ou Celular*" maxlength="15">
+      <p id="erroTelCelUsuarioAdt" class="error-message"></p>
+    </div>
 
-            <!-- Campo de de confirmação de senha da ONG -->
-            <div class="alinharErro">
-              <input id="confirmaSenhaUsuarioAdt" name="senha" type="password" class="inputCadastro"
-                placeholder="Confirme sua senha">
-              <p id="erroConfirSenhaUsuarioAdt" class="error-message"></p>
-            </div>
-          </div>
+    <div class="alinharErro">
+      <input type="text" name="cnpj" id="cnpj" class="inputCadastro cnpj cnpjtradutor" placeholder="CNPJ*"
+        maxlength="18">
+      <p id="erroCnpj" class="error-message"></p>
+    </div>
 
-          <h2>Informações de Endereço</h2>
+    <div class="alinharErro">
+      <input type="email" name="email" id="emailOng" class="inputCadastro emailongtradutor" placeholder="E-mail">
+      <p id="erroEmailOng" class="error-message"></p>
+    </div>
 
-          <!-- Campo de CEP do ong -->
-          <div class="alinharErro">
-            <input type="text" id="cep" name="cep" class="inputCadastro cep" placeholder="CEP*" maxlength="9">
-            <p id="erroCep" class="error-message"></p>
-          </div>
-
-          <div>
-            <!-- Campo de estado do ong -->
-            <div class="alinharErro">
-              <select id="estado" class="inputCadastro" name="estado" aria-label="Selecione seu estado">
-                <option value="" disabled selected class="cinzah3">Selecione seu estado:*</option>
-                <option value="AC">AC</option>
-                <option value="AL">AL</option>
-                <option value="AP">AP</option>
-                <option value="AM">AM</option>
-                <option value="BA">BA</option>
-                <option value="CE">CE</option>
-                <option value="DF">DF</option>
-                <option value="ES">ES</option>
-                <option value="GO">GO</option>
-                <option value="MA">MA</option>
-                <option value="MT">MT</option>
-                <option value="MS">MS</option>
-                <option value="MG">MG</option>
-                <option value="PA">PA</option>
-                <option value="PB">PB</option>
-                <option value="PR">PR</option>
-                <option value="PE">PE</option>
-                <option value="PI">PI</option>
-                <option value="RJ">RJ</option>
-                <option value="RN">RN</option>
-                <option value="RS">RS</option>
-                <option value="RO">RO</option>
-                <option value="RR">RR</option>
-                <option value="SC">SC</option>
-                <option value="SP">SP</option>
-                <option value="SE">SE</option>
-                <option value="TO">TO</option>
-              </select>
-
-              <p id="erroEstado" class="error-message"></p>
-            </div>
-
-            <!-- Campo de cidade do ong -->
-            <div class="alinharErro">
-              <input type="text" id="cidade" name="cidade" class="inputCadastro" placeholder="Cidade*">
-              <p id="erroCidade" class="error-message"></p>
-            </div>
-          </div>
-
-          <!-- Campo de rua do ong -->
-          <div class="alinharErro">
-            <input type="text" id="rua" name="rua" class="inputCadastro" placeholder="Rua*">
-            <p id="erroRua" class="error-message"></p>
-          </div>
-
-          <div>
-            <!-- Campo de Bairro do ong -->
-            <div class="alinharErro">
-              <input type="text" name="bairro" id="bairro" class="inputCadastro" placeholder="Bairro*">
-              <p id="erroBairro" class="error-message"></p>
-            </div>
-
-            <!-- Campo de número da casa do ong -->
-            <div class="alinharErro">
-              <input type="text" name="numero" id="nmr" class="inputCadastro" placeholder="Número*">
-              <p id="erroNmr" class="error-message"></p>
-            </div>
-          </div>
-
-          <!-- Campo de complemento do ong -->
-          <input type="text" name="complemento" id="complemento" class="inputCadastro" placeholder="Complemento">
-
-          <!-- Botão para mostrar próxima etapa -->
-          <button type="button" title="Ir para a próxima etapa do cadastro" id="continuarCadOng"
-            class="buttonRosaForm">Continuar</button>
-        </div>
-
-        <div class="blocosCad" id="formDocs">
-
-          <!-- Campo de envio do comprovante do estatuto da ONG -->
-          <div class="alinharErro">
-            <div class="inputCadastro inputArquivo">
-              <p>Comprovante do Estatuto da ONG</p>
-              <div class="container">
-                <!-- <label for="arquivo1">Escolher arquivo</label> -->
-                <input class="arquivo" id="estatutoOng" type="file">
-              </div>
-            </div>
-
-            <p class="error-message" id="erroCompEst"></p>
-          </div>
-
-          <!-- Campo de envio do comprovante do cnpj da ONG -->
-          <div class="alinharErro">
-            <div class="inputCadastro inputArquivo">
-              <p>Comprovante de CNPJ</p>
-              <div class="container">
-                <!-- <label for="arquivo2">Escolher arquivo</label> -->
-                <input class="arquivo" id="compCnpj" type="file">
-              </div>
-            </div>
-
-            <p class="error-message" id="erroCompCnpj"></p>
-          </div>
-
-
-          <!-- Campo de descrição da ONG -->
-          <div class="alinharErro textAreaCont">
-
-            <div class="textAreaCont">
-              <div class="textoArea">
-
-                <!-- TextArea da descrição -->
-                <textarea name="sobre" id="mensagem" placeholder="Descrição *" class="inputCadastro" maxlength="200"
-                  oninput="atualizarContagem();"></textarea>
-                <div class="fundoCont"></div>
-              </div>
-
-              <!-- Contador de caracteres -->
-              <p id="contarCaracteres"><span id="contagem">0</span>/200</p>
-            </div>
-
-            <!-- Erro da descrição -->
-            <p id="erroDesc" class="error-message"></p>
-          </div>
-
-          <p id="mensagemcriacaodeconta"></p>
-
-          <!-- Botão para enviar formulário -->
-          <button type="submit" title="Confirmar cadastro" class="buttonRosaForm">Confirmar</button>
-        </div>
-
-      </form>
-
-      <div id="verificacaoContainer" style=" display: none; margin-top: 1rem;">
-        <label for="codigoVerificacao">Digite o código enviado ao seu Email:</label>
-        <input type="text" id="codigoVerificacao" placeholder="Ex: 123456">
-        <button type="button" id="verificarCodigoBtn">Verificar Código</button>
+    <div>
+      <div class="alinharErro">
+        <input id="senhaUsuarioAdt" name="senha" type="password" class="inputCadastro senhaongtradutor"
+          placeholder="Senha">
+        <p id="erroSenhaUsuarioAdt" class="error-message"></p>
       </div>
 
-      <!-- Modal que pede para se cadastrar como usuário antes -->
-      <div class="fundoModal escondido" id="modalCadOng">
-        <div class="modal">
-          <h2>Passo inicial para cadastrar sua ONG</h2>
+      <div class="alinharErro">
+        <input id="confirmaSenhaUsuarioAdt" name="senha" type="password"
+          class="inputCadastro confirmasenhatradutor" placeholder="Confirme sua senha">
+        <p id="erroConfirSenhaUsuarioAdt" class="error-message"></p>
+      </div>
+    </div>
 
-          <p>Para <span class="negrito">criar uma conta de ONG</span>, é necessário primeiro <span class="negrito">ter
-              uma conta de usuário comum</span>.
-          </p>
-          <p>Essa conta será usada como <span class="negrito">responsável pela ONG</span>.</p>
+    <h2 class="enderecoongtradutor">Informações de Endereço</h2>
 
-          <div class="redireciona">
-            <p>Se você já possui uma conta</p>
-            <a href="/src/views/login.html">Entre aqui</a>
-            <p>se não</p>
-            <a href="/src/views/cadastroadotante.html">Cadastre-se</a>
-          </div>
+    <div class="alinharErro">
+      <input type="text" id="cep" name="cep" class="inputCadastro cep ceptradutor" placeholder="CEP*"
+        maxlength="9">
+      <p id="erroCep" class="error-message"></p>
+    </div>
 
+    <div>
+      <div class="alinharErro">
+        <select id="estado" class="inputCadastro" name="estado">
+          <option value="" disabled selected class="cinzah3 selecionarestadotradutor">Selecione seu estado:*</option>
+          <option value="AC">AC</option>
+          <option value="AL">AL</option>
+          <option value="AP">AP</option>
+          <option value="AM">AM</option>
+          <option value="BA">BA</option>
+          <option value="CE">CE</option>
+          <option value="DF">DF</option>
+          <option value="ES">ES</option>
+          <option value="GO">GO</option>
+          <option value="MA">MA</option>
+          <option value="MT">MT</option>
+          <option value="MS">MS</option>
+          <option value="MG">MG</option>
+          <option value="PA">PA</option>
+          <option value="PB">PB</option>
+          <option value="PR">PR</option>
+          <option value="PE">PE</option>
+          <option value="PI">PI</option>
+          <option value="RJ">RJ</option>
+          <option value="RN">RN</option>
+          <option value="RS">RS</option>
+          <option value="RO">RO</option>
+          <option value="RR">RR</option>
+          <option value="SC">SC</option>
+          <option value="SP">SP</option>
+          <option value="SE">SE</option>
+          <option value="TO">TO</option>
+        </select>
+
+        <p id="erroEstado" class="error-message"></p>
+      </div>
+
+      <div class="alinharErro">
+        <input type="text" id="cidade" name="cidade" class="inputCadastro cidadetradutor" placeholder="Cidade*">
+        <p id="erroCidade" class="error-message"></p>
+      </div>
+    </div>
+
+    <div class="alinharErro">
+      <input type="text" id="rua" name="rua" class="inputCadastro ruatradutor" placeholder="Rua*">
+      <p id="erroRua" class="error-message"></p>
+    </div>
+
+    <div>
+      <div class="alinharErro">
+        <input type="text" name="bairro" id="bairro" class="inputCadastro bairrotradutor" placeholder="Bairro*">
+        <p id="erroBairro" class="error-message"></p>
+      </div>
+
+      <div class="alinharErro">
+        <input type="text" name="numero" id="nmr" class="inputCadastro numerotradutor" placeholder="Número*">
+        <p id="erroNmr" class="error-message"></p>
+      </div>
+    </div>
+
+    <input type="text" name="complemento" id="complemento" class="inputCadastro complementotradutor"
+      placeholder="Complemento">
+
+    <button type="button" id="continuarCadOng" class="buttonRosaForm continuarcadtradutor">Continuar</button>
+  </div>
+
+  <div class="blocosCad" id="formDocs">
+
+    <div class="alinharErro">
+      <div class="inputCadastro inputArquivo">
+        <p class="estatutoongtradutor">Comprovante do Estatuto da ONG</p>
+        <div class="container">
+          <input class="arquivo" id="estatutoOng" type="file">
         </div>
       </div>
 
-      <!-- Modal de aviso para ongs -->
-      <div class="fundoModal escondido" id="modalCadOngPOngs">
-        <div class="modal">
-          <h2 class="alertaconta">Você já possui uma conta de ONG</h2>
+      <p class="error-message" id="erroCompEst"></p>
+    </div>
 
-          <p class="alertacadong">
-            O sistema identificou que sua conta atual já está cadastrada como uma
-            <span class="negrito">ONG parceira</span>.
-          </p>
-          <p class="alertaongunica">
-            Cada conta pode representar apenas <span class="negrito">uma única ONG</span>.
-            Se desejar atualizar informações ou gerenciar sua ONG, acesse o
-            <span class="negrito">Painel da ONG</span>.
-          </p>
-
-          <div class="redireciona">
-            <a class="alertapainelong" href="/src/views/configuracoes.html">Ir para o Painel da ONG</a>
-            <a class="alertavoltar" href="/index.html" class="voltar">Voltar para a página inicial</a>
-          </div>
+    <div class="alinharErro">
+      <div class="inputCadastro inputArquivo">
+        <p class="cnpjcomprovantetradutor">Comprovante de CNPJ</p>
+        <div class="container">
+          <input class="arquivo" id="compCnpj" type="file">
         </div>
       </div>
 
-  </main>
+      <p class="error-message" id="erroCompCnpj"></p>
+    </div>
+
+    <div class="alinharErro textAreaCont">
+
+      <div class="textAreaCont">
+        <div class="textoArea">
+
+          <textarea name="sobre" id="mensagem" class="inputCadastro descricaotradutor"
+            placeholder="Descrição *" maxlength="200"></textarea>
+
+          <div class="fundoCont"></div>
+        </div>
+
+        <p id="contarCaracteres"><span id="contagem">0</span>/200</p>
+      </div>
+
+      <p id="erroDesc" class="error-message"></p>
+    </div>
+
+    <p id="mensagemcriacaodeconta" class="mensagemcriacaodecontatradutor"></p>
+
+    <button type="submit" class="buttonRosaForm confirmartradutor">Confirmar</button>
+  </div>
+
+</form>
+
+  </div>
+</main>
 
   <div class="accessibility-bar" id="accessibilityBar">
     <div id="botoesAcss"></div>

@@ -159,6 +159,32 @@ function traduzir() {
             confignum: "Número:",
             configcomplemento: "Complemento:",
             configsalvar: "Salvar edições",
+            // pag config> placeholder
+            placeholdername: "O nome do usuário ficará aqui",
+            placeholdercidade: "A cidade do usuário ficará aqui",
+            placeholdercep: "O CEP do usuário ficará aqui",
+            placeholderrua: "A cidade do usuário ficará aqui",
+            placeholderbairro: "o bairro do usuário ficará aqui",
+            placeholdernumero: "O número da casa ficará aqui",
+            placeholdercomplemento: "Complemento",
+            // pag config > conta
+            configaviso: "Aviso: Todos os dados aqui precisam de verificação para serem alterados.",
+            configalteraremail: "Alterar E-mail",
+            configalterarsenha: "Alterar senha",
+            configalterartelefone: "Alterar telefone",
+            configalterarcpf: "Alterar CPF",
+            configexcluirconta: "Excluir conta",
+            modalexcluir: "Digite seu email para receber o código de confirmação",
+            modalemail: "Seu email",
+            modalenvcod: "Enviar código",
+            modalcancelar: "Cancelar",
+            modalconfirexclusao: "Confirmar exclusão",
+            modaldigiteocod: "Digite o código enviado para seu email",
+            modalcod: "Código",
+            modalconfirmar: "Confirmar",
+            modalcancelar: "Cancelar",
+            modalexclusao: "Código confirmado. Excluindo...",
+
             // painel ong
             painelendereço: "Endereço:",
             paineldisponiveis: "Pets disponíveis:",
@@ -193,6 +219,36 @@ function traduzir() {
             numerousuario: "Número*",
             complementousuario: "Complemento",
             botaoConfirmar: "Confirmar",
+            // cadastro ONG
+            cadastroongtitulo: "Cadastro de ONG",
+            avisoimportantecad: "Aviso importante",
+            avisop1cad: `Você já possui uma conta de usuário.
+Ao <span class="negrito">cadastrar uma ONG, esta conta será usada como responsável por ela</span>.
+Todas as ações e informações da ONG ficarão vinculadas ao seu perfil.`,
+            avisop2cad: "Se deseja continuar, siga para o cadastro da ONG abaixo.",
+            formcadastro: "Formulário de Cadastro",
+            enderecoong: "Informações de Endereço",
+            selecionarestado: "Selecione seu estado:*",
+            continuarcad: "Continuar",
+            estatutoong: "Comprovante do Estatuto da ONG",
+            cnpjcomprovante: "Comprovante de CNPJ",
+            descricaoplaceholder: "Descrição *",
+            mensagemcriacaodeconta: "",
+            confirmar: "Confirmar",
+            // placeholders
+            nomeong: "Nome da ONG*",
+            telefoneong: "Telefone ou Celular*",
+            cnpj: "CNPJ*",
+            emailong: "E-mail",
+            senhaong: "Senha",
+            confirmarsenha: "Confirme sua senha",
+            cep: "CEP*",
+            cidade: "Cidade*",
+            rua: "Rua*",
+            bairro: "Bairro*",
+            numero: "Número*",
+            complemento: "Complemento",
+
 
         },
         eng: {
@@ -339,7 +395,31 @@ function traduzir() {
             confignum: "Number:",
             configcomplemento: "Additional info:",
             configsalvar: "Save changes",
-
+            // pag config> placeholder
+            placeholdername: "The user's name will appear here",
+            placeholdercidade: "The user's city will appear here",
+            placeholdercep: "The user's ZIP code will appear here",
+            placeholderrua: "The user's city will appear here",
+            placeholderbairro: "The user's neighborhood will appear here",
+            placeholdernumero: "The house number will appear here",
+            placeholdercomplemento: "Complement",
+            // pag config > conta
+            configaviso: "Notice: All data here must be verified before being changed.",
+            configalteraremail: "Change Email",
+            configalterarsenha: "Change Password",
+            configalterartelefone: "Change Phone Number",
+            configalterarcpf: "Change CPF",
+            configexcluirconta: "Delete Account",
+            modalexcluir: "Enter your email to receive the confirmation code",
+            modalemail: "Your email",
+            modalenvcod: "Send code",
+            modalcancelar: "Cancel",
+            modalconfirexclusao: "Confirm deletion",
+            modaldigiteocod: "Enter the code sent to your email",
+            modalcod: "Verification code",
+            modalconfirmar: "Confirm",
+            modalcancelar: "Cancel",
+            modalexclusao: "Code confirmed. Deleting...",
             // painel ong
             painelendereço: "Adress:",
             paineldisponiveis: "Available pets:",
@@ -377,6 +457,35 @@ function traduzir() {
             labelcodigo: "Enter the code sent to your email:",
             codigoverificacao: "Ex: 123456",
             btnverificarcodigo: "Verify Code",
+            // form cadastrar ONG
+            cadastroongtitulo: "NGO Registration",
+            avisoimportantecad: "Important notice",
+            avisop1cad: `You already have a user account.
+When <span class="negrito">registering an NGO, this account will be used as its responsible</span>.
+All NGO actions and information will be linked to your profile.`,
+            avisop2cad: "If you wish to continue, proceed with the NGO registration below.",
+            formcadastro: "Registration Form",
+            enderecoong: "Address Information",
+            selecionarestado: "Select your state:*",
+            continuarcad: "Continue",
+            estatutoong: "NGO Statute Document",
+            cnpjcomprovante: "CNPJ Document",
+            descricaoplaceholder: "Description *",
+            mensagemcriacaodeconta: "",
+            confirmar: "Confirm",
+            // placeholders
+            nomeong: "NGO Name*",
+            telefoneong: "Phone or Mobile*",
+            cnpj: "CNPJ*",
+            emailong: "E-mail",
+            senhaong: "Password",
+            confirmarsenha: "Confirm your password",
+            cep: "ZIP Code*",
+            cidade: "City*",
+            rua: "Street*",
+            bairro: "Neighborhood*",
+            numero: "Number*",
+            complemento: "Complement",
 
 
         }
@@ -536,10 +645,31 @@ function traduzir() {
     traduzirClasse("configcomplemento", idioma[idiomaselect].configcomplemento);
     traduzirClasse("configsalvar", idioma[idiomaselect].configsalvar);
     // pag config > placeholder
-    
-      
-
-
+    traduzirPlaceholder("placeholdername", idioma[idiomaselect].placeholdername);
+    traduzirPlaceholder("placeholdercidade", idioma[idiomaselect].placeholdercidade);
+    traduzirPlaceholder("placeholdercep", idioma[idiomaselect].placeholdercep);
+    traduzirPlaceholder("placeholderrua", idioma[idiomaselect].placeholderrua);
+    traduzirPlaceholder("placeholderbairro", idioma[idiomaselect].placeholderbairro);
+    traduzirPlaceholder("placeholdernumero", idioma[idiomaselect].placeholdernumero);
+    traduzirPlaceholder("placeholdercomplemento", idioma[idiomaselect].placeholdercomplemento);
+    // pag config > conta
+    traduzirClasse("configaviso", idioma[idiomaselect].configaviso);
+    traduzirClasse("configalteraremail", idioma[idiomaselect].configalteraremail);
+    traduzirClasse("configalterarsenha", idioma[idiomaselect].configalterarsenha);
+    traduzirClasse("configalterartelefone", idioma[idiomaselect].configalterartelefone);
+    traduzirClasse("configalterarcpf", idioma[idiomaselect].configalterarcpf);
+    traduzirClasse("configexcluirconta", idioma[idiomaselect].configexcluirconta);
+    traduzirClasse("modalexcluir", idioma[idiomaselect].modalexcluir);
+    traduzirPlaceholder("modalemail", idioma[idiomaselect].modalemail);
+    traduzirClasse("modalenvcod", idioma[idiomaselect].modalenvcod);
+    traduzirClasse("modalcancelar", idioma[idiomaselect].modalcancelar);
+    traduzirClasse("modalconfirexclusao", idioma[idiomaselect].modalconfirexclusao);
+    traduzirClasse("modaldigiteocod", idioma[idiomaselect].modaldigiteocod);
+    traduzirPlaceholder("modalcod", idioma[idiomaselect].modalcod);
+    traduzirClasse("modalconfirmar", idioma[idiomaselect].modalconfirmar);
+    traduzirClasse("modalcancelar", idioma[idiomaselect].modalcancelar);
+    traduzirClasse("modalexclusao", idioma[idiomaselect].modalexclusao);
+    // painel ong
     traduzirClasse("painelendereço", idioma[idiomaselect].painelendereço);
     traduzirClasse("paineldisponiveis", idioma[idiomaselect].paineldisponiveis);
     traduzirClasse("painelestatisticas", idioma[idiomaselect].painelestatisticas);
@@ -573,6 +703,33 @@ function traduzir() {
     traduzirClasse("labelCodigo", idioma[idiomaselect].labelcodigo);
     traduzirPlaceholder("codigoVerificacao", idioma[idiomaselect].codigoverificacao);
     traduzirClasse("btnVerificarCodigo", idioma[idiomaselect].btnverificarcodigo);
+    // cadastro ONG
+    traduzirClasse("cadastroongtitulotradutor", idioma[idiomaselect].cadastroongtitulo);
+    traduzirClasse("avisoimportantecadtradutor", idioma[idiomaselect].avisoimportantecad);
+    traduzirClasse("avisop1tradutor", idioma[idiomaselect].avisop1cad);
+    traduzirClasse("avisop2tradutor", idioma[idiomaselect].avisop2cad);
+    traduzirClasse("formcadastrotradutor", idioma[idiomaselect].formcadastro);
+    traduzirClasse("enderecoongtradutor", idioma[idiomaselect].enderecoong);
+    traduzirClasse("selecionarestadotradutor", idioma[idiomaselect].selecionarestado);
+    traduzirClasse("continuarcadtradutor", idioma[idiomaselect].continuarcad);
+    traduzirClasse("estatutoongtradutor", idioma[idiomaselect].estatutoong);
+    traduzirClasse("cnpjcomprovantetradutor", idioma[idiomaselect].cnpjcomprovante);
+    traduzirClasse("mensagemcriacaodecontatradutor", idioma[idiomaselect].mensagemcriacaodeconta);
+    traduzirClasse("confirmartradutor", idioma[idiomaselect].confirmar);
+    // placeholders
+    traduzirPlaceholder("nomeongtradutor", idioma[idiomaselect].nomeong);
+    traduzirPlaceholder("telefoneongtradutor", idioma[idiomaselect].telefoneong);
+    traduzirPlaceholder("cnpjtradutor", idioma[idiomaselect].cnpj);
+    traduzirPlaceholder("emailongtradutor", idioma[idiomaselect].emailong);
+    traduzirPlaceholder("senhaongtradutor", idioma[idiomaselect].senhaong);
+    traduzirPlaceholder("confirmasenhatradutor", idioma[idiomaselect].confirmarsenha);
+    traduzirPlaceholder("ceptradutor", idioma[idiomaselect].cep);
+    traduzirPlaceholder("cidadetradutor", idioma[idiomaselect].cidade);
+    traduzirPlaceholder("ruatradutor", idioma[idiomaselect].rua);
+    traduzirPlaceholder("bairrotradutor", idioma[idiomaselect].bairro);
+    traduzirPlaceholder("numerotradutor", idioma[idiomaselect].numero);
+    traduzirPlaceholder("complementotradutor", idioma[idiomaselect].complemento);
+    traduzirPlaceholder("descricaotradutor", idioma[idiomaselect].descricaoplaceholder);
 
 
     document.getElementById('trocarlingua').value = idiomaselect;
