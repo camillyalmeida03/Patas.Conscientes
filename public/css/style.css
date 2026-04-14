@@ -2876,6 +2876,7 @@ textarea {
     display: grid;
     grid-template-columns: 22rem 1fr;
     gap: 1rem;
+    width: 100%;
     /* espaço entre colunas */
 }
 
@@ -3425,8 +3426,8 @@ textarea {
 
 #opcoesGerenciamentoCat {
     justify-content: space-between;
-    padding: 0 2rem;
     margin-bottom: 1rem;
+    width: 100%;
 }
 
 #abrirModalAdicionar .icon {
@@ -3457,12 +3458,12 @@ textarea {
     width: 2rem;
 }
 
-#abrirModalAdicionar{
+#abrirModalAdicionar {
     background-color: var(--rosa);
     color: white;
 }
 
-#petsAdotarSec{
+#petsAdotarSec {
     padding-left: 1.5rem;
 }
 
@@ -3471,30 +3472,61 @@ textarea {
     width: 100%;
 }
 
-table {
-    border: 1px solid #dededf;
-    height: 100%;
-    width: 120%;
-    table-layout: fixed;
-    border-collapse: collapse;
-    border-spacing: 1px;
-    text-align: left;
+#gerenciarCatalogoPet {
+    width: 100% !important;
+    overflow: hidden;
+    padding: 0 2rem;
 }
 
+.divisaoMaisSobreAdotar {
+    width: 100% !important;
+    max-width: 100%;
+    min-width: 0;
+    /* <-- ADICIONE ISSO: Força o Grid a respeitar o limite da tela */
+}
 
+#listagemEdicaoPet {
+    width: 100% !important;
+    padding: 0;
+
+    overflow-x: auto;
+}
 
 th {
     border: 1px solid #dededf;
-    background-color: #eceff1;
-    color: #000000;
-    padding: 5px;
+    background-color: var(--cinza230);
+    padding: 1rem;
 }
 
- td {
-    border: 1px solid #dededf;
-    background-color: #ffffff;
-    color: #000000;
-    padding: 5px;
+td {
+    border: 1px solid var(--cinza230);
+    background-color: white;
+    padding: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* th {
+    max-width: 10rem;
+    width: 50rem !important;
+} */
+
+#tabelaCatPet {
+    border: 1px solid var(--cinza100);
+    height: 100%;
+    /* Remova as tags antigas de table-layout e width e use estas: */
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+    width: 100%;
+    min-width: max-content;
+    /* <-- ADICIONE ISSO: Impede que a tabela esprema e obriga a barra do wrapper a aparecer */
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
 }
 
 /* -------- MODO ESCURO ------------------------------------------------------------------------------------------------------- */
@@ -3582,11 +3614,11 @@ th {
 .bodyME #contarCaracteres,
 .bodyME #tipoIdade,
 .bodyME #enderecopagOng,
-.bodyME #petsDisp{
+.bodyME #petsDisp {
     color: white !important;
 }
 
-.bodyME #barraPesquisaCat input{
+.bodyME #barraPesquisaCat input {
     background-color: var(--cinza201);
 }
 
@@ -3799,12 +3831,12 @@ th {
     background-color: var(--cinza147);
 }
 
-.bodyME .icon{
+.bodyME .icon {
     fill: var(--cinza158) !important;
 }
 
 .bodyME #abrirModalAdicionar .icon,
-.bodyME .bttEditarOng .icon{
+.bodyME .bttEditarOng .icon {
     fill: white !important;
 }
 
@@ -4535,21 +4567,22 @@ th {
         justify-content: space-between;
     }
 
-    #barraPesquisaCat, #barraPesquisaCat .bttIcon{
+    #barraPesquisaCat,
+    #barraPesquisaCat .bttIcon {
         width: 100%;
         padding: 0;
     }
 
-    #barraPesquisaCat input{
+    #barraPesquisaCat input {
         width: 100%;
         max-width: none;
     }
 
-    #abrirModalAdicionar > p{
+    #abrirModalAdicionar>p {
         display: flex;
     }
 
-    #visualizarCat{
+    #visualizarCat {
         padding: 0;
         margin-right: 0.5rem;
     }
