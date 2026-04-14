@@ -1,5 +1,7 @@
 import { InformacoesPets } from "../../../src/config/pets/informacoesPets.js";
 import { CardsPets } from "../../../src/config/pets/cardsPet.js";
+import { tabelaPets } from "../../../src/config/pets/tabelaPet.js";
+
 
 async function carregarPets() {
     try {
@@ -11,10 +13,6 @@ async function carregarPets() {
         if (!res.ok) throw new Error("Erro na resposta da API");
 
         const todosOsPets = await res.json();
-
-        console.log("Qtd de pets vindos da API:", todosOsPets.length);
-        console.log("ID que peguei da URL:", idOngUrl);
-        console.log("Primeiro pet do banco:", todosOsPets[0]);
 
         if (todosOsPets.length > 0) {
             todosOsPets.forEach((pet, index) => {
@@ -33,10 +31,13 @@ async function carregarPets() {
 
 
         const container = document.querySelector(".adotarSec");
+        const tbody = document.getElementById('tbodyTabelaPet');
 
-        if (container) {
-            container.innerHTML = "";
+        if (container || tbody) {
 
+            if (container) {
+                container.innerHTML = "";
+            }
             if (petsFiltrados.length === 0) {
                 const msg = idOngUrl
                     ? "Nenhum pet encontrado vinculado a esta ONG ainda."
@@ -47,6 +48,9 @@ async function carregarPets() {
                 container.appendChild(aviso);
                 return;
             }
+
+            if (tbody) tbody.innerHTML = "";
+
 
             petsFiltrados.forEach((dadoBanco) => {
                 const petInfo = InformacoesPets.fromAPI(dadoBanco);
@@ -63,6 +67,8 @@ async function carregarPets() {
                 if (cardObj.card) {
                     container.appendChild(cardObj.card);
                 }
+
+                const linhaPet = new tabelaPets(petInfo);
             });
         }
     } catch (err) {

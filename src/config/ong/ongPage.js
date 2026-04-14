@@ -181,7 +181,7 @@ function controlarBotaoEditar(isResponsavel, idOng) {
 
   if (!isResponsavel) {
     const botaoEditar = document.querySelectorAll('.bttEditarOng');
-    const opcoesGerenciamentoCat = document.getElementById('opcoesGerenciamentoCat');
+    const opcoesGerenciamentoCat = document.getElementById('gerenciarCatalogoPet');
     botaoEditar.forEach(btn => btn.remove());
     opcoesGerenciamentoCat.remove()
     return;
