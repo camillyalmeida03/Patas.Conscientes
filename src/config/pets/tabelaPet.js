@@ -20,8 +20,30 @@ export class tabelaPets {
         const tbody = document.getElementById('tbodyTabelaPet');
 
         if (tbody) {
+            // Cria a linha para o pet na tabela
             this.trPet = this.criarElemento.createElement("tr", "trPet", null, tbody, null);
-            this.tdStatus = this.criarElemento.createElement("td", "tdStatus", "Em breve", this.trPet);
+
+            // Cria a coluna de status
+            this.tdStatus = this.criarElemento.createElement("td", "tdStatus", null, this.trPet);
+
+            // Criar select do status do pet
+            this.selectStatus = this.criarElemento.createElement("select", "statusSelect", null, this.tdStatus, "statusPetSelect");
+
+                // Cria as opções do select:
+                // Disponível
+                this.optionDisp = this.criarElemento.createElement("option", "optionStatusSel", "Disponível", this.selectStatus, null);
+
+                // Processo de adoção
+                this.optionProc = this.criarElemento.createElement("option", "optionStatusSel", "Em processo", this.selectStatus, null);
+
+                // Adotado
+                this.optionAdot = this.criarElemento.createElement("option", "optionStatusSel", "Adotado", this.selectStatus, null);
+
+                // Indisponível
+                this.optionIndisp = this.criarElemento.createElement("option", "optionStatusSel", "Indisponível", this.selectStatus, null);
+
+
+
             this.tdFoto = this.criarElemento.createElement("td", "tdFoto", "Em breve", this.trPet);
             this.tdNome = this.criarElemento.createElement("td", "tdNome", InfoPet.nome, this.trPet);
             this.tdEspecie = this.criarElemento.createElement("td", "tdEspecie", InfoPet.especie, this.trPet);
