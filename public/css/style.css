@@ -3627,6 +3627,33 @@ td {
     overflow-x: auto;
 }
 
+#statusPetSelect {
+    font-size: 1rem;
+    padding: 0.3rem;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+#statusPetSelect option {
+    font-weight: 500;
+}
+
+#opAdot {
+    color: #2269AA;
+}
+
+#opDisp{
+    color: var(--verde);
+}
+
+#opIndisp{
+    color: var(--vermelho);
+}
+
+#opProcess{
+    color: #f3a600;
+}
+
 /* -------- MODO ESCURO ------------------------------------------------------------------------------------------------------- */
 
 .bodyME {

@@ -31,18 +31,16 @@ export class tabelaPets {
 
                 // Cria as opções do select:
                 // Disponível
-                this.optionDisp = this.criarElemento.createElement("option", "optionStatusSel", "Disponível", this.selectStatus, null);
+                this.optionDisp = this.criarElemento.createOption("optionStatusSel", 1, "Disponível", false, this.selectStatus, "opDisp");
 
                 // Processo de adoção
-                this.optionProc = this.criarElemento.createElement("option", "optionStatusSel", "Em processo", this.selectStatus, null);
+                this.optionProc = this.criarElemento.createOption("optionStatusSel", 2, "Em processo", false, this.selectStatus, "opProcess");
 
                 // Adotado
-                this.optionAdot = this.criarElemento.createElement("option", "optionStatusSel", "Adotado", this.selectStatus, null);
+                this.optionAdot = this.criarElemento.createOption("optionStatusSel", 3, "Adotado", false, this.selectStatus, "opAdot");
 
                 // Indisponível
-                this.optionIndisp = this.criarElemento.createElement("option", "optionStatusSel", "Indisponível", this.selectStatus, null);
-
-
+                this.optionIndisp = this.criarElemento.createOption("optionStatusSel", 4, "Indisponível", false, this.selectStatus, "opIndisp");
 
             this.tdFoto = this.criarElemento.createElement("td", "tdFoto", "Em breve", this.trPet);
             this.tdNome = this.criarElemento.createElement("td", "tdNome", InfoPet.nome, this.trPet);
