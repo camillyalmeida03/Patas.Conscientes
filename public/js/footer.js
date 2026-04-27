@@ -76,10 +76,7 @@ function criar_footer() {
           </svg></a></div>
     </section>
 
-    <select aria-label="Idioma" name="Idioma" id="trocarlingua" onchange="trocaridioma(this.value)">
-          <option value="pt">Português</option>
-          <option value="eng">English</option>
-        </select>`;
+    `;
 }
 
 criar_footer();

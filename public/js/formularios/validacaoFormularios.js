@@ -754,10 +754,16 @@ document.addEventListener("DOMContentLoaded", function () {
         const extensoesValidas = ["pdf", "png", "jpg", "jpeg"];
 
         // Mensagens de erro
-        const msgArquivoObrigatorio = "Por favor, envie um arquivo.";
-        const msgArquivoInvalido = "Apenas arquivos PDF ou imagem (PNG, JPG, JPEG) são permitidos.";
-
-
+        let msgArquivoObrigatorio = "";
+        let msgArquivoInvalido = "";
+        const idioma = localStorage.getItem("idiomaselect") || "pt";
+        if (idioma === "pt") {
+            msgArquivoObrigatorio = "Por favor, envie um arquivo.";
+            msgArquivoInvalido = "Apenas arquivos PDF ou imagem (PNG, JPG, JPEG) são permitidos.";
+        } else {
+            msgArquivoObrigatorio = "Please upload a file.";
+            msgArquivoInvalido = "Only PDF or image files (PNG, JPG, JPEG) are allowed.";
+        }
 
         let tudoValido = true;
 
@@ -800,8 +806,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let tudoValido = true;
 
-        const msgDescricaoObrigatoria = "A descrição é obrigatória.";
-        const msgDescricaoMinima = "A descrição deve ter ao menos 10 caracteres.";
+        let msgDescricaoObrigatoria = "";
+        let msgDescricaoMinima = "";
+        const idioma = localStorage.getItem("idiomaselect") || "pt";
+        
+        if (idioma === "pt") {
+            msgDescricaoObrigatoria = "A descrição é obrigatória.";
+            msgDescricaoMinima = "A descrição deve ter ao menos 10 caracteres.";
+        } else {
+            msgDescricaoObrigatoria = "Description is required.";
+            msgDescricaoMinima = "Description must be at least 10 characters long.";
+        }
+      
 
         const descricao = document.querySelector("#mensagem");
         const erroDesc = document.querySelector("#erroDesc");
