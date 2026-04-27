@@ -1,6 +1,6 @@
 function criar_footer() {
-    const footer = document.getElementById("footer");
-    footer.innerHTML = `    <section class="linksFooter">
+  const footer = document.getElementById("footer");
+  footer.innerHTML = `    <section class="linksFooter">
       <a href="/src/views/index.html#headerIndex"><img class="logobranca" src="/public/img/icons/logobranca.svg"
           alt="Logo do Patas Conscientes"></a>
       <div class="divFooter">
@@ -28,15 +28,7 @@ function criar_footer() {
           <a href="/src/views/ongs.html" title="Link que direciona para a página de ONG's parceiras do site">
             <p class="tituloFooter ongstradutor">ONG's</p>
           </a>
-          <div>
-            <a href="/src/views/ongs.html" title="Link que direciona para a página da Patas Amigas Matão">Patas Amigas Matão</a>
-            <a href="/src/views/ongs.html" title="Link que direciona para a página da Lar dos Peludos Matão">Lar dos Peludos
-              Matão</a>
-            <a href="/src/views/ongs.html" title="Link que direciona para a página da Cãopanheiros Taquaritinga">Cãopanheiros
-              Taquaritinga</a>
-            <a href="/src/views/ongs.html" title="Link que direciona para a página da Amor em Patas Taquaritinga">Amor em Patas
-              Taquaritinga</a>
-          </div>
+          <div id="footer-ongs"></div>
         </div>
 
         <div class="listasFooter">
@@ -79,4 +71,29 @@ function criar_footer() {
     `;
 }
 
+async function carregarOngsFooter() {
+  const container = document.getElementById("footer-ongs");
+
+  if (!container) return;
+
+  try {
+    const response = await fetch("http://localhost:6789/ongs/ultimas");
+    const ongs = await response.json();
+
+    container.innerHTML = "";
+
+    ongs.forEach(ong => {
+      const link = document.createElement("a");
+      link.href = `/src/views/ongs.html?id=${ong.idong}`;
+      link.textContent = ong.nome;
+
+      container.appendChild(link);
+    });
+
+  } catch (error) {
+    console.error("Erro ao carregar ONGs:", error);
+  }
+}
+
 criar_footer();
+carregarOngsFooter();

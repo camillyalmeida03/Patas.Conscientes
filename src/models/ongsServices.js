@@ -88,4 +88,16 @@ const contarPetsPorOng = async (id) => {
 
 };
 
-module.exports = { GetAll, GetById, Post, Put, Erase, atualizarResponsavel, UpdateFoto, UpdateBanner, contarPetsPorOng };
+const GetLastFour = async () => {
+    const query = `
+        SELECT o.idong, o.nome
+        FROM ongs o
+        ORDER BY o.idong DESC
+        LIMIT 4
+    `;
+
+    const [rows] = await banco.query(query);
+    return rows;
+};
+
+module.exports = { GetAll, GetById, Post, Put, Erase, atualizarResponsavel, UpdateFoto, UpdateBanner, contarPetsPorOng, GetLastFour };

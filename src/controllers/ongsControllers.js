@@ -177,6 +177,16 @@ const ongsController = {
             console.error("Erro no Controller ContarPets:", error.message);
             response.status(500).json({ message: "Falha ao executar a ação!" });
         }
+    },
+
+    GetLastFour: async (request, response) => {
+        try {
+            const data = await model.GetLastFour();
+            response.status(200).json(data);
+        } catch (error) {
+            console.error("Erro ao buscar últimas ONGs:", error.message);
+            response.status(500).json({ message: "Falha ao executar a ação!" });
+        }
     }
 }
 

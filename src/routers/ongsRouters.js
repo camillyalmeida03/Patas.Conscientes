@@ -5,6 +5,7 @@ const verificarToken = require("../middlewares/authMiddleware");
 
 const upload = require("../config/multerConfig");
 
+router.get("/ultimas", ongsController.GetLastFour);
 router.get("/", ongsController.GetAll);
 router.get("/:id", ongsController.GetById);
 router.post("/", verificarToken, ongsController.Post);
