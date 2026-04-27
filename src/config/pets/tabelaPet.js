@@ -31,16 +31,21 @@ export class tabelaPets {
 
                 // Cria as opções do select:
                 // Disponível
-                this.optionDisp = this.criarElemento.createOption("optionStatusSel", 1, "Disponível", false, this.selectStatus, "opDisp");
+                this.optionDisp = this.criarElemento.createOption("optionStatusSel", "Disponível", "Disponível", false, this.selectStatus, "opDisp");
 
                 // Processo de adoção
-                this.optionProc = this.criarElemento.createOption("optionStatusSel", 2, "Em processo", false, this.selectStatus, "opProcess");
+                this.optionProc = this.criarElemento.createOption("optionStatusSel", "Em processo", "Em processo", false, this.selectStatus, "opProcess");
 
                 // Adotado
-                this.optionAdot = this.criarElemento.createOption("optionStatusSel", 3, "Adotado", false, this.selectStatus, "opAdot");
+                this.optionAdot = this.criarElemento.createOption("optionStatusSel", "Adotado", "Adotado", false, this.selectStatus, "opAdot");
 
                 // Indisponível
-                this.optionIndisp = this.criarElemento.createOption("optionStatusSel", 4, "Indisponível", false, this.selectStatus, "opIndisp");
+                this.optionIndisp = this.criarElemento.createOption("optionStatusSel", "Indisponível", "Indisponível", false, this.selectStatus, "opIndisp");
+
+                // Apresentando Status do Pet
+                this.selectStatus.value = InfoPet.status;
+
+                console.log(InfoPet)
 
             this.tdFoto = this.criarElemento.createElement("td", "tdFoto", "Em breve", this.trPet);
             this.tdNome = this.criarElemento.createElement("td", "tdNome", InfoPet.nome, this.trPet);
@@ -52,7 +57,7 @@ export class tabelaPets {
             this.tdPeso = this.criarElemento.createElement("td", "tdPeso", InfoPet.peso, this.trPet);
             this.tdDesc = this.criarElemento.createElement("td", "tdDesc", InfoPet.sobre, this.trPet);
             this.tdDtPost = this.criarElemento.createElement("td", "tdDtPost", "Em breve", this.trPet);
-            this.tdDtAtt = this.criarElemento.createElement("td", "tdDtAtt", "Em breve", this.trPet);
+            this.tdDtAtt = this.criarElemento.createElement("td", "tdDtAtt", InfoPet.dataAtt, this.trPet);
             this.tdEditar = this.criarElemento.createElement("td", "tdEditar", null, this.trPet, "botaoEditarPet");
             this.tdDeletar = this.criarElemento.createElement("td", "tdDeletar", null, this.trPet, "botaoDeletarPet");
             this.botaoEditar = this.criarElemento.createButton("botaoTabela", "Editar", this.tdEditar, `Editar ${InfoPet.nome}`);

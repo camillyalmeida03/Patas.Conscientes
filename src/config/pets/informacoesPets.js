@@ -12,7 +12,10 @@ export class InformacoesPets {
     raca,
     sobre,
     ongNome,
-    ongLink
+    ongLink,
+    status,
+    dataPost,
+    dataAtt
   ) {
     this.id = id;
     this.idOng = idOng;
@@ -27,6 +30,9 @@ export class InformacoesPets {
     this.porte = porte;
     this.ongNome = ongNome;
     this.ongLink = ongLink;
+    this.status = status;
+    this.dataPost = dataPost;
+    this.dataAtt = dataAtt;
   }
 
   static fromAPI(data) {
@@ -56,7 +62,10 @@ export class InformacoesPets {
       data.raca,
       data.descricao,
       data.nome_ong,
-      `ongPage.html?id=${data.fk_idong}`
+      `ongPage.html?id=${data.fk_idong}`,
+      data.fk_idstatus ?? data.status ?? data.idstatus, 
+      data.data_post,
+      data.data_att
     );
   }
 }

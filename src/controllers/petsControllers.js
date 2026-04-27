@@ -27,11 +27,8 @@ const petsController = {
         try {
             const { nome, fk_idsexopet, fk_idespecie, fk_idraca, fk_idporte, fk_idong, peso, idade, descricao, fk_idstatus } = request.body;
 
-            // Se o upload funcionou, o link da imagem está aqui
-            // Se não enviou foto, define como null ou uma string vazia
             let fotos = request.file ? request.file.path : null;
 
-            // Se for null, você pode definir uma imagem padrão aqui se quiser, ou deixar o front tratar
             if (!fotos) fotos = null;
 
             const data = await model.Post(nome, fk_idsexopet, fk_idespecie, fk_idraca, fk_idporte, fk_idong, peso, idade, descricao, fotos, fk_idstatus);
