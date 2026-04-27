@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 24/03/2026 às 16:25
+-- Tempo de geração: 27/04/2026 às 12:53
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -423,7 +423,7 @@ INSERT INTO `sexospet` (`idsexopet`, `sexopet`) VALUES
 
 CREATE TABLE `status` (
   `idstatus` int(11) NOT NULL,
-  `status` varchar(10) NOT NULL
+  `status` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
@@ -431,7 +431,10 @@ CREATE TABLE `status` (
 --
 
 INSERT INTO `status` (`idstatus`, `status`) VALUES
-(1, 'Disponível');
+(1, 'Disponível'),
+(2, 'Em processo'),
+(3, 'Adotado'),
+(4, 'Indisponível');
 
 -- --------------------------------------------------------
 
@@ -757,7 +760,7 @@ ALTER TABLE `sexospet`
 -- AUTO_INCREMENT de tabela `status`
 --
 ALTER TABLE `status`
-  MODIFY `idstatus` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idstatus` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `tipos_usuario`
