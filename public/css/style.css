@@ -3654,6 +3654,13 @@ td {
     color: #f3a600;
 }
 
+.fotoPetTabela{
+    height: 4rem;
+    width: 4rem;
+    border-radius: 0.5rem;
+    object-fit: cover;
+}
+
 /* -------- MODO ESCURO ------------------------------------------------------------------------------------------------------- */
 
 .bodyME {

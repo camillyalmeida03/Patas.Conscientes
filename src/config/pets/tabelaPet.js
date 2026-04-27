@@ -45,9 +45,11 @@ export class tabelaPets {
                 // Apresentando Status do Pet
                 this.selectStatus.value = InfoPet.status;
 
-                console.log(InfoPet)
+            // Criar a foto do pet
+            this.tdFoto = this.criarElemento.createElement("td", "tdFoto", null, this.trPet);
 
-            this.tdFoto = this.criarElemento.createElement("td", "tdFoto", "Em breve", this.trPet);
+                // Criar a imagem dentro da coluna de fotos
+                this.fotoPet = this.criarElemento.createImg("fotoPetTabela", InfoPet.foto, `Foto do ${InfoPet.nome}`, "lazy", this.tdFoto);
             this.tdNome = this.criarElemento.createElement("td", "tdNome", InfoPet.nome, this.trPet);
             this.tdEspecie = this.criarElemento.createElement("td", "tdEspecie", InfoPet.especie, this.trPet);
             this.tdRaca = this.criarElemento.createElement("td", "tdRaca", InfoPet.raca, this.trPet);
