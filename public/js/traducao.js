@@ -1,5 +1,3 @@
-const { config } = require("dotenv");
-
 function traduzir() {
     var idiomaselect = localStorage.getItem('idiomaselect') || 'pt';
 
@@ -731,8 +729,9 @@ All NGO actions and information will be linked to your profile.`,
     traduzirPlaceholder("complementotradutor", idioma[idiomaselect].complemento);
     traduzirPlaceholder("descricaotradutor", idioma[idiomaselect].descricaoplaceholder);
 
-
-    document.getElementById('trocarlingua').value = idiomaselect;
+    if (document.getElementById('trocarlingua')) {
+        document.getElementById('trocarlingua').value = idiomaselect;
+    }
 }
 
 function trocaridioma(lang) {

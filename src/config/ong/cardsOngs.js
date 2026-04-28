@@ -57,19 +57,13 @@ export class CardsOngs {
     this.criarElemento.createElement("p", [], textoDescricao, descOng);
 
     const cidadeDiv = this.criarElemento.createElement("div", "cidadeDiv", null, descOng);
-    var idiomaselect = localStorage.getItem('idiomaselect');
-    if (idiomaselect === "pt") {
 
-      this.criarElemento.createElement("p", "ongscity", "Cidade: ", cidadeDiv);
-    } else {
-
-      this.criarElemento.createElement("p", "ongscity", "City: ", cidadeDiv);
-    }
+    this.criarElemento.createElement("p", "ongscity", "Cidade: ", cidadeDiv);
     this.criarElemento.createElement("span", "cidadeOng", InfoOng.cidade, cidadeDiv);
 
     traduzir();
     return cardOng
-    ;
+      ;
   }
 }
 
