@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Fique por dentro das últimas notícias sobre o mundo pet. Descubra novidades, dicas de cuidados, tendências e muito mais para os amantes de animais. Acompanhe tudo o que acontece no universo pet e ajude a promover o bem-estar dos nossos amigos de quatro patas!">
+  <meta name="description"
+    content="Fique por dentro das últimas notícias sobre o mundo pet. Descubra novidades, dicas de cuidados, tendências e muito mais para os amantes de animais. Acompanhe tudo o que acontece no universo pet e ajude a promover o bem-estar dos nossos amigos de quatro patas!">
 
   <link rel="icon" href="/public/img/icons/favicon.svg">
   <link rel="stylesheet" href="/public/css/style.css">
@@ -17,19 +18,18 @@
 </head>
 
 <body>
-<header id="headerIndex">
-  <script type="module" src="/src/config/header.js"></script></header>
+  <header id="headerIndex">
+    <script type="module" src="/src/config/header.js"></script>
+  </header>
 
-  <section class="caminho">
-    <p><a href="/index.html" class="link" title="Link que direciona para a página Inicial">Início</a> | Notícias</p>
-  </section>
+  <section class="caminho"></section>
 
   <main class="maincem">
 
     <div class="fundoBranco">
       <!-- Barra de pesquisa -->
       <div class="search-bar">
-        <input type="text" id="search-input" placeholder="Pesquise por temas do mundo pet..." class="pagnews" 
+        <input type="text" id="search-input" placeholder="Pesquise por temas do mundo pet..." class="pagnews"
           onkeypress="pesquisarNoticias(event)">
         <button id="searchNoticias" class="lupaPesquisa" title="Enviar pesquisa" onclick="pesquisarNoticias(event)">
           <img src="/public/img/icons/lupa_pesquisa_rosa.svg" alt="Pesquisar Notícias" class="lupa">
@@ -114,9 +114,9 @@
     </svg>
   </div>
 
-<footer id="footer">
-  <script src="/public/js/footer.js"></script>
-</footer>
+  <footer id="footer">
+    <script src="/public/js/footer.js"></script>
+  </footer>
 
   <script type="module" src="/public/js/header.js" defer></script>
   <script src="/public/js/barraacessibilidade.js" defer></script>
@@ -124,6 +124,7 @@
   <script src="/public/js/tema.js" defer></script>
   <script src="/public/js/carregar_pagina.js"></script>
   <script src="/public/js/traducao.js"></script>
+  <script type="module" src="/public/js/migalhasPao.js"></script>
 
 
 </body>

@@ -1171,9 +1171,11 @@ footer .listasFooter a:hover {
 /* ----------------------------- institucional.html ----------------------------- */
 
 .caminhoInst {
-    /* height: 8.5rem; */
     display: flex;
     align-items: flex-end;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
     min-width: 275px;
 }
 
@@ -1181,9 +1183,22 @@ footer .listasFooter a:hover {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    justify-content: flex-end;
+    width: auto;
     align-items: center;
     height: 3.5rem;
     min-width: 275px;
+    min-width: 0;
+    gap: 1rem;
+    flex-wrap: nowrap;
+    flex: 0 0 auto;
+}
+
+.caminhoInst .breadcrumb-texto {
+    margin: 0;
+    white-space: nowrap;
+    flex: 1 1 auto;
+    min-width: 0;
 }
 
 /* main */

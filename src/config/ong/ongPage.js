@@ -1,3 +1,4 @@
+import { renderBreadcrumb } from "../../../public/js/migalhasPao.js";
 import { CriarElementos } from "../../../public/js/criarElementos.js";
 // 1. IMPORTAÇÃO DA CLASSE DE MENSAGEM
 import { MensagemFeedback } from "../../../public/js/formularios/mensagemFeedback.js";
@@ -199,6 +200,7 @@ async function preencherPagina() {
 
   if (!ong) {
     document.getElementById("nomeOng").textContent = "ONG não encontrada";
+    renderBreadcrumb("ONG não encontrada");
     return;
   }
 
@@ -225,7 +227,7 @@ async function preencherPagina() {
   document.getElementById("nomeOng").textContent = ong.nome;
   document.getElementById("enderecoOng").textContent = enderecoCompleto;
   document.getElementById("descricaoOng").textContent = ong.descricao || "Sem descrição.";
-  document.getElementById("caminhoPerfilOng").textContent = ong.nome;
+  renderBreadcrumb(ong.nome);
 
   const fotoUrl = ong.foto || "/public/img/user_ong/user/gato_user_ONG.svg";
   const bannerUrl = ong.banner || "/public/img/user_ong/banners/Banner_misto_rosa_ONG.svg";

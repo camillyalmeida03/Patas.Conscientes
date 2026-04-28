@@ -200,7 +200,7 @@ function traduzir() {
                             fill="#FFFFFF">
                             <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
                         </svg>`,
-            painelcadastrar: "Cadastrar Pet",
+            painelcadastrar: "Adotar Pet",
             painelconhecamais: "Conheça mais sobre nós",
             painelnossospets: "Nossos pets",
             // painelnenhumencontrado: "Nenhum pet encontrado vinculado a esta ONG ainda.",
@@ -260,6 +260,21 @@ Todas as ações e informações da ONG ficarão vinculadas ao seu perfil.`,
             banner1: "/public/img/banners/banner-quem-somos.jpg",
             banner2: "/public/img/banners/banner-como-adotar.jpg",
             banner3: "/public/img/banners/banner-como-posso-ajudar.jpg",
+            // Migalha de pão 
+            breadcrumbhome: "Início",
+            breadcrumbadotar: "Adote-me",
+            breadcrumbcadastroong: "Cadastro de ONG",
+            breadcrumbcadastroadotante: "Cadastro",
+            breadcrumbconfiguracoes: "Configurações",
+            breadcrumbfavoritos: "Favoritos",
+            breadcrumbformularioparceiro: "Formulário de cadastro para Parceiros",
+            breadcrumbformularioparceiro2: "Formulário de cadastro para Parceiros",
+            breadcrumbinstitucional: "Institucional",
+            breadcrumblogin: "Login",
+            breadcrumbnoticias: "Notícias",
+            breadcrumbongs: "ONG's",
+            breadcrumbparceiro: "Torne-se Parceiro",
+            breadcrumbplanos: "Planos",
 
         },
         eng: {
@@ -449,7 +464,7 @@ Todas as ações e informações da ONG ficarão vinculadas ao seu perfil.`,
                             fill="#FFFFFF">
                             <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
                         </svg>`,
-            painelcadastrar: "Register Pet",
+            painelcadastrar: "Adopt Pet",
             painelconhecamais: "Learn more about us",
             painelnossospets: "Our pets",
             painelnenhumencontrado: "No pets found linked to this NGO yet.",
@@ -512,6 +527,21 @@ All NGO actions and information will be linked to your profile.`,
             banner1: "/public/img/banners/Banners - QuemsomosING.jpg",
             banner2: "/public/img/banners/Banners - ComoAdotarING.jpg",
             banner3: "/public/img/banners/Banners - ajudaING.jpg",
+            // Migalha de pão
+            breadcrumbhome: "Home",
+            breadcrumbadotar: "Adopt me",
+            breadcrumbcadastroong: "NGO Registration",
+            breadcrumbcadastroadotante: "Registration",
+            breadcrumbconfiguracoes: "Settings",
+            breadcrumbfavoritos: "Favorites",
+            breadcrumbformularioparceiro: "Partner registration form",
+            breadcrumbformularioparceiro2: "Partner registration form",
+            breadcrumbinstitucional: "Institutional",
+            breadcrumblogin: "Login",
+            breadcrumbnoticias: "News",
+            breadcrumbongs: "NGOs",
+            breadcrumbparceiro: "Become a Partner",
+            breadcrumbplanos: "Plans",
 
         }
     };
@@ -778,6 +808,21 @@ All NGO actions and information will be linked to your profile.`,
     traduzirImagem("banner1", idioma[idiomaselect].banner1);
     traduzirImagem("banner2", idioma[idiomaselect].banner2);
     traduzirImagem("banner3", idioma[idiomaselect].banner3);
+    // Migalha de pão
+    traduzirClasse("breadcrumb-home-tradutor", idioma[idiomaselect].breadcrumbhome);
+    traduzirClasse("breadcrumb-adotar-tradutor", idioma[idiomaselect].breadcrumbadotar);
+    traduzirClasse("breadcrumb-cadastroong-tradutor", idioma[idiomaselect].breadcrumbcadastroong);
+    traduzirClasse("breadcrumb-cadastroadotante-tradutor", idioma[idiomaselect].breadcrumbcadastroadotante);
+    traduzirClasse("breadcrumb-configuracoes-tradutor", idioma[idiomaselect].breadcrumbconfiguracoes);
+    traduzirClasse("breadcrumb-favoritos-tradutor", idioma[idiomaselect].breadcrumbfavoritos);
+    traduzirClasse("breadcrumb-formularioparceiro-tradutor", idioma[idiomaselect].breadcrumbformularioparceiro);
+    traduzirClasse("breadcrumb-formularioparceiro2-tradutor", idioma[idiomaselect].breadcrumbformularioparceiro2);
+    traduzirClasse("breadcrumb-institucional-tradutor", idioma[idiomaselect].breadcrumbinstitucional);
+    traduzirClasse("breadcrumb-login-tradutor", idioma[idiomaselect].breadcrumblogin);
+    traduzirClasse("breadcrumb-noticias-tradutor", idioma[idiomaselect].breadcrumbnoticias);
+    traduzirClasse("breadcrumb-ongs-tradutor", idioma[idiomaselect].breadcrumbongs);
+    traduzirClasse("breadcrumb-parceiro-tradutor", idioma[idiomaselect].breadcrumbparceiro);
+    traduzirClasse("breadcrumb-planos-tradutor", idioma[idiomaselect].breadcrumbplanos);
 
     if (document.getElementById('trocarlingua')) {
         document.getElementById('trocarlingua').value = idiomaselect;
