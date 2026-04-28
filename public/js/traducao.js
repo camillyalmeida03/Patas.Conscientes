@@ -182,17 +182,17 @@ function traduzir() {
             modalconfirmar: "Confirmar",
             modalcancelar: "Cancelar",
             modalexclusao: "Código confirmado. Excluindo...",
-            ativardesativaracess:"Ativar/Desativar Barra de Acessibilidade",
-            ativarmodoescuro:"Ativar Modo Escuro",
-            selecionaridioma:"Selecionar Idioma",
-            acesspoliticastitle:"Políticas do site",
-            acesspoliticasp:"Bem-vindo ao Patas Conscientes! Nosso compromisso é promover a adoção responsável e o bem-estar animal. Para garantir uma experiência segura e positiva para todos os usuários, pedimos que leia e siga nossas políticas.",
-            acesspoliticasp1:"Privacidade e Segurança Respeitamos a privacidade dos nossos usuários. As informações pessoais fornecidas serão usadas exclusivamente para fins de comunicação entre o site e os usuários, incluindo ONGs, abrigos e voluntários. Não compartilhamos dados com terceiros sem consentimento prévio.",
-            acesspoliticasp2:"Adoção Responsável Nosso objetivo é conectar ONGs e abrigos com adotantes comprometidos. Ao se candidatar para adoção, solicitamos que todos os usuários sejam honestos e estejam cientes da responsabilidade de adotar um animal.",
-            acesspoliticasp3:"Voluntariado Os voluntários que se inscrevem no Patas Conscientes devem estar cientes das exigências das ONGs parceiras. Encorajamos todos a participar de forma dedicada e respeitosa.",
-            acesspoliticasp4:"Conteúdo e Comportamento Todo conteúdo gerado pelos usuários, incluindo comentários e postagens, deve respeitar os princípios de respeito, empatia e solidariedade. Não toleramos discurso de ódio, discriminação ou comportamento inadequado.",
-            acesspoliticasp5:"Parcerias e Colaborações As ONGs e abrigos que se tornam parceiras do Patas Conscientes devem estar comprometidas com a ética e o bem-estar animal. Reservamo-nos o direito de encerrar parcerias que não atendam a esses critérios.",
-            acesspoliticasp6:"Alterações nas Políticas Patas Conscientes se reserva o direito de modificar estas políticas a qualquer momento. Quaisquer mudanças serão comunicadas aos usuários por meio do site.",
+            ativardesativaracess: "Ativar/Desativar Barra de Acessibilidade",
+            ativarmodoescuro: "Ativar Modo Escuro",
+            selecionaridioma: "Selecionar Idioma",
+            acesspoliticastitle: "Políticas do site",
+            acesspoliticasp: "Bem-vindo ao Patas Conscientes! Nosso compromisso é promover a adoção responsável e o bem-estar animal. Para garantir uma experiência segura e positiva para todos os usuários, pedimos que leia e siga nossas políticas.",
+            acesspoliticasp1: "Privacidade e Segurança Respeitamos a privacidade dos nossos usuários. As informações pessoais fornecidas serão usadas exclusivamente para fins de comunicação entre o site e os usuários, incluindo ONGs, abrigos e voluntários. Não compartilhamos dados com terceiros sem consentimento prévio.",
+            acesspoliticasp2: "Adoção Responsável Nosso objetivo é conectar ONGs e abrigos com adotantes comprometidos. Ao se candidatar para adoção, solicitamos que todos os usuários sejam honestos e estejam cientes da responsabilidade de adotar um animal.",
+            acesspoliticasp3: "Voluntariado Os voluntários que se inscrevem no Patas Conscientes devem estar cientes das exigências das ONGs parceiras. Encorajamos todos a participar de forma dedicada e respeitosa.",
+            acesspoliticasp4: "Conteúdo e Comportamento Todo conteúdo gerado pelos usuários, incluindo comentários e postagens, deve respeitar os princípios de respeito, empatia e solidariedade. Não toleramos discurso de ódio, discriminação ou comportamento inadequado.",
+            acesspoliticasp5: "Parcerias e Colaborações As ONGs e abrigos que se tornam parceiras do Patas Conscientes devem estar comprometidas com a ética e o bem-estar animal. Reservamo-nos o direito de encerrar parcerias que não atendam a esses critérios.",
+            acesspoliticasp6: "Alterações nas Políticas Patas Conscientes se reserva o direito de modificar estas políticas a qualquer momento. Quaisquer mudanças serão comunicadas aos usuários por meio do site.",
             // painel ong
             painelendereço: "Endereço:",
             paineldisponiveis: "Pets disponíveis:",
@@ -256,7 +256,10 @@ Todas as ações e informações da ONG ficarão vinculadas ao seu perfil.`,
             bairro: "Bairro*",
             numero: "Número*",
             complemento: "Complemento",
-
+            // imagens pag institucional
+            banner1: "/public/img/banners/banner-quem-somos.jpg",
+            banner2: "/public/img/banners/banner-como-adotar.jpg",
+            banner3: "/public/img/banners/banner-como-posso-ajudar.jpg",
 
         },
         eng: {
@@ -428,17 +431,17 @@ Todas as ações e informações da ONG ficarão vinculadas ao seu perfil.`,
             modalconfirmar: "Confirm",
             modalcancelar: "Cancel",
             modalexclusao: "Code confirmed. Deleting...",
-            ativardesativaracess:"Enable/Disable Accessibility Bar",
-            ativarmodoescuro:"Enable Dark Mode",
-            selecionaridioma:"Select Language",
-            acesspoliticastitle:"Site Policies",
-            acesspoliticasp:"Welcome to Conscious Paws! Our commitment is to promote responsible adoption and animal welfare. To ensure a safe and positive experience for all users, we ask that you read and follow our policies.",
-            acesspoliticasp1:"Privacy and Security We respect the privacy of our users. The personal information provided will be used exclusively for communication purposes between the site and users, including NGOs, shelters, and volunteers. We do not share data with third parties without prior consent.",
-            acesspoliticasp2:"Responsible Adoption Our goal is to connect NGOs and shelters with committed adopters. When applying for adoption, we ask that all users be honest and aware of the responsibility of adopting an animal.",
-            acesspoliticasp3:"Volunteering Volunteers who sign up with Patas Conscientes must be aware of the requirements of the partner NGOs. We encourage everyone to participate in a dedicated and respectful manner.",
-            acesspoliticasp4:"Content and Behavior All content generated by users, including comments and posts, must respect the principles of respect, empathy, and solidarity. We do not tolerate hate speech, discrimination, or inappropriate behavior.",
-            acesspoliticasp5:"Partnerships and Collaborations NGOs and shelters that become partners of Patas Conscientes must be committed to ethics and animal welfare. We reserve the right to terminate partnerships that do not meet these criteria.",
-            acesspoliticasp6:"Changes to Policies Patas Conscientes reserves the right to modify these policies at any time. Any changes will be communicated to users through the site.",
+            ativardesativaracess: "Enable/Disable Accessibility Bar",
+            ativarmodoescuro: "Enable Dark Mode",
+            selecionaridioma: "Select Language",
+            acesspoliticastitle: "Site Policies",
+            acesspoliticasp: "Welcome to Conscious Paws! Our commitment is to promote responsible adoption and animal welfare. To ensure a safe and positive experience for all users, we ask that you read and follow our policies.",
+            acesspoliticasp1: "Privacy and Security We respect the privacy of our users. The personal information provided will be used exclusively for communication purposes between the site and users, including NGOs, shelters, and volunteers. We do not share data with third parties without prior consent.",
+            acesspoliticasp2: "Responsible Adoption Our goal is to connect NGOs and shelters with committed adopters. When applying for adoption, we ask that all users be honest and aware of the responsibility of adopting an animal.",
+            acesspoliticasp3: "Volunteering Volunteers who sign up with Patas Conscientes must be aware of the requirements of the partner NGOs. We encourage everyone to participate in a dedicated and respectful manner.",
+            acesspoliticasp4: "Content and Behavior All content generated by users, including comments and posts, must respect the principles of respect, empathy, and solidarity. We do not tolerate hate speech, discrimination, or inappropriate behavior.",
+            acesspoliticasp5: "Partnerships and Collaborations NGOs and shelters that become partners of Patas Conscientes must be committed to ethics and animal welfare. We reserve the right to terminate partnerships that do not meet these criteria.",
+            acesspoliticasp6: "Changes to Policies Patas Conscientes reserves the right to modify these policies at any time. Any changes will be communicated to users through the site.",
             // painel ong
             painelendereço: "Adress:",
             paineldisponiveis: "Available pets:",
@@ -505,7 +508,10 @@ All NGO actions and information will be linked to your profile.`,
             bairro: "Neighborhood*",
             numero: "Number*",
             complemento: "Complement",
-
+            // imagens pag institucional
+            banner1: "/public/img/banners/Banners - QuemsomosING.jpg",
+            banner2: "/public/img/banners/Banners - ComoAdotarING.jpg",
+            banner3: "/public/img/banners/Banners - ajudaING.jpg",
 
         }
     };
@@ -521,6 +527,13 @@ All NGO actions and information will be linked to your profile.`,
         var traduzirPlaceholder = document.getElementsByClassName(classe);
         for (var i = 0; i < traduzirPlaceholder.length; i++) {
             traduzirPlaceholder[i].placeholder = texto;
+        }
+    }
+
+    function traduzirImagem(id, caminho) {
+        const elemento = document.getElementById(id);
+        if (elemento) {
+            elemento.src = caminho;
         }
     }
 
@@ -700,8 +713,6 @@ All NGO actions and information will be linked to your profile.`,
     traduzirClasse("acesspoliticasp4", idioma[idiomaselect].acesspoliticasp4);
     traduzirClasse("acesspoliticasp5", idioma[idiomaselect].acesspoliticasp5);
     traduzirClasse("acesspoliticasp6", idioma[idiomaselect].acesspoliticasp6);
-    
-    
     // painel ong
     traduzirClasse("painelendereço", idioma[idiomaselect].painelendereço);
     traduzirClasse("paineldisponiveis", idioma[idiomaselect].paineldisponiveis);
@@ -763,6 +774,10 @@ All NGO actions and information will be linked to your profile.`,
     traduzirPlaceholder("numerotradutor", idioma[idiomaselect].numero);
     traduzirPlaceholder("complementotradutor", idioma[idiomaselect].complemento);
     traduzirPlaceholder("descricaotradutor", idioma[idiomaselect].descricaoplaceholder);
+    // imagens pag institucional
+    traduzirImagem("banner1", idioma[idiomaselect].banner1);
+    traduzirImagem("banner2", idioma[idiomaselect].banner2);
+    traduzirImagem("banner3", idioma[idiomaselect].banner3);
 
     if (document.getElementById('trocarlingua')) {
         document.getElementById('trocarlingua').value = idiomaselect;
@@ -773,6 +788,8 @@ function trocaridioma(lang) {
     localStorage.setItem('idiomaselect', lang);
     traduzir();
 }
+
+
 
 window.addEventListener('DOMContentLoaded', traduzir);
 
