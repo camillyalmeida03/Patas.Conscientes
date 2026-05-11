@@ -187,7 +187,33 @@ const ongsController = {
             console.error("Erro ao buscar últimas ONGs:", error.message);
             response.status(500).json({ message: "Falha ao executar a ação!" });
         }
+    },
+
+     verificarContaExistente: async (request, response) => {
+    try {
+        const { id } = request.params;
+
+        const contaExistente = await model.verificarContaExistente(id);
+
+        if (contaExistente) {
+            return response.status(200).json({
+                message: "ONG existente.",
+                conta: contaExistente
+            });
+        } else {
+            return response.status(404).json({
+                message: "ONG inexistente."
+            });
+        }
+
+    } catch (error) {
+        console.error("Erro ao verificar conta existente:", error.message);
+
+        return response.status(500).json({
+            message: "Falha ao executar a ação!"
+        });
     }
 }
+};
 
 module.exports = ongsController;

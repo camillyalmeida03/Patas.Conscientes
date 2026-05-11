@@ -14,5 +14,6 @@ router.delete("/:id", ongsController.Erase);
 router.patch("/foto/:id", upload.single('foto'), ongsController.AtualizarFoto);
 router.patch("/banner/:id", upload.single('banner'), ongsController.AtualizarBanner);
 router.get("/contar/:id", ongsController.ContarPets);
+router.get("/verificarOng/:id", ongsController.verificarContaExistente);
 
 module.exports = router;

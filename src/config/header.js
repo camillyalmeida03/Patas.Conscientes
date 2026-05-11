@@ -446,6 +446,8 @@ window.addEventListener("resize", () => {
   }
 });
 
+
+
 function criar_header() {
   const header = document.getElementById("headerIndex");
   const headerIndex = document.querySelector(".headerIndex");
@@ -727,4 +729,33 @@ function criar_header() {
   }
 }
 
+
+async function verificarSeUsuarioTemOng() {
+  try {
+    // só verifica se existir usuário logado
+    if (!usuario || !usuario.id) return;
+
+    const response = await fetch(
+      `http://localhost:6789/ongs/verificarOng/${usuario.id}`
+    );
+
+    const data = await response.json();
+
+    // se existir ONG
+    if (response.ok && data.conta) {
+
+      // pega TODOS os botões de cadastrar ONG
+      const botoesCadastrarOng = document.querySelectorAll(".headercadastrarong");
+
+      botoesCadastrarOng.forEach((botao) => {
+        botao.style.display = "none";
+      });
+    }
+
+  } catch (error) {
+    console.error("Erro ao verificar ONG do usuário:", error);
+  }
+}
+
 criar_header();
+verificarSeUsuarioTemOng();

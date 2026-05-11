@@ -100,4 +100,27 @@ const GetLastFour = async () => {
     return rows;
 };
 
-module.exports = { GetAll, GetById, Post, Put, Erase, atualizarResponsavel, UpdateFoto, UpdateBanner, contarPetsPorOng, GetLastFour };
+// Desenvolvimento da verificação de conta existente para exibição ou exclusão do botão "Cadatrar Ong"
+
+const verificarContaExistente = async (id) => {
+    const query = `
+        SELECT 
+            r.fk_idusuario,
+            r.fk_idong,
+            o.nome AS nome_ong
+        FROM responsaveis r
+        INNER JOIN ongs o 
+            ON o.idong = r.fk_idong
+        WHERE r.fk_idusuario = ?;
+    `;
+
+    const [rows] = await banco.query(query, [id]);
+
+    return rows.length > 0 ? rows[0] : null;
+};
+
+module.exports = {
+    verificarContaExistente
+};
+
+module.exports = { GetAll, GetById, Post, Put, Erase, atualizarResponsavel, UpdateFoto, UpdateBanner, contarPetsPorOng, GetLastFour, verificarContaExistente };
