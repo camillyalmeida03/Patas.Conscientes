@@ -197,8 +197,17 @@ document.addEventListener("DOMContentLoaded", () => {
     ?.addEventListener("click", () => aside.mostrar("acess"));
 
   // Evento do botão de Edição de perfil
-  document.getElementById("perfilEdicao")
-    ?.addEventListener("click", () => aside.mostrar("edicao"));
+document.getElementById("perfilEdicao")
+  ?.addEventListener("click", () => {
+    const secao = "edicao";
+
+    aside.mostrar(secao);
+
+    // Atualiza a URL sem recarregar a página
+    const url = new URL(window.location);
+    url.searchParams.set("secao", secao);
+    window.history.pushState({}, "", url);
+});
 
 
   // Configurações da seção de editar perfil
