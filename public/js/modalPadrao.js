@@ -141,176 +141,441 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
 });
-// Modal de exclusão de conta 
-const btnExcluir = document.getElementById("excluirconta");
-
 // pega usuario do localStorage
 const usuario = JSON.parse(localStorage.getItem("usuario"));
 
-btnExcluir.addEventListener("click", () => {
-  criarModalEmail();
-});
+// Modal de exclusão de conta 
 
-function criarModalEmail() {
+document.getElementById("alterarEmail")
+  .addEventListener("click", () => {
+    abrirModalAlteracao(
+      "email",
+      "Alteração de E-mail",
+      "Digite seu novo e-mail",
+      "email"
+    );
+  });
+
+document.getElementById("alterarSenha")
+  .addEventListener("click", () => {
+    abrirModalAlteracao(
+      "senha",
+      "Alteração de senha",
+      "Digite sua nova senha",
+      "password"
+    );
+  });
+
+document.getElementById("alterarTelefone")
+  .addEventListener("click", () => {
+    abrirModalAlteracao(
+      "telefone",
+      "Alteração de telefone",
+      "Digite seu novo telefone",
+      "text"
+    );
+  });
+
+document.getElementById("alterarCpf")
+  .addEventListener("click", () => {
+    abrirModalAlteracao(
+      "cpf",
+      "Alteração de CPF",
+      "Digite seu novo CPF",
+      "text"
+    );
+  });
+
+
+document.getElementById("excluirconta")
+  .addEventListener("click", () => {
+    abrirModalAlteracao(
+      "excluir",
+      "Excluir conta",
+      "Digite seu email para receber o código de confirmação",
+      "email"
+    );
+  });
+
+function abrirModalAlteracao(campo, motivo, placeholder, tipoInput) {
 
   const modal = document.createElement("div");
-  modal.id = "modalExcluirConta";
+
+  modal.id = "modalAlteracao";
+
   modal.innerHTML = `
     <div class="modalBox">
-      <h2 class="configexcluirconta">Excluir conta</h2>
-      <p class="modalexcluir">Digite seu email para receber o código de confirmação</p>
 
-      <input type="email" id="emailExcluir" class="modalemail" placeholder="Seu email">
+      <h2>${motivo}</h2>
 
-        <div class="botoes">
-          <button id="enviarCodigo" class="modalenvcod">Enviar código</button>
-          <button id="fecharModal" class="modalcancelar">Cancelar</button>
-        </div>
+      <p>
+        Digite seu email para receber o código de confirmação
+      </p>
 
-        <p id="mensagemExcluir"></p>
-    </div>
-
-    `;
-    document.body.appendChild(modal);
-  document.getElementById("fecharModal").onclick = () => modal.remove();
-  // mantem a area de mensagem escondida por padrão - iremos apenas controlar display
-  const msgElem = document.getElementById("mensagemExcluir");
-  if (msgElem) msgElem.style.display = "none";
-    document.getElementById("enviarCodigo").onclick = enviarCodigo;
-    traduzir();
-}
-
-async function enviarCodigo() {
-
-  const email = document.getElementById("emailExcluir").value;
-  const msg = document.getElementById("mensagemExcluir");
-  // esconder mensagem anterior
-  if (msg) msg.style.display = "none";
-
-  try {
-
-    const resposta = await fetch("http://localhost:6789/usuarios/gerar-codigo-verificacao", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        email: email,
-        motivo: "Exclusão de conta"
-      })
-    });
-
-    const dados = await resposta.json();
-
-    if (!dados.success) {
-      if (msg) msg.style.display = "flex"; // mostra aviso (texto não alterado aqui)
-      return;
-    }
-
-    if (msg) msg.style.display = "flex"; // mostra confirmação (texto pré-existente)
-
-    mostrarCampoCodigo(email);
-
-  } catch (erro) {
-    if (msg) msg.style.display = "flex";
-    console.error(erro);
-  }
-
-}
-
-function mostrarCampoCodigo(email) {
-
-  const modalBox = document.querySelector(".modalBox");
-
-  modalBox.innerHTML = `
-    <h2 class="modalconfirexclusao">Confirmar exclusão</h2>
-    <p class="modaldigiteocod">Digite o código enviado para seu email</p>
-
-    <input type="text" id="codigoExcluir" class="modalcod" placeholder="Código">
+      <input 
+        type="email" 
+        id="emailVerificacao"
+        class="modalemail"
+        placeholder="Seu email"
+      >
 
       <div class="botoes">
-        <button id="validarCodigo" class="modalconfirmar">Confirmar</button>
-        <button id="cancelarExcluir" class="modalcancelar">Cancelar</button>
+        <button id="enviarCodigo" class="modalenvcod">
+          Enviar código
+        </button>
+
+        <button id="fecharModal" class="modalcancelar">
+          Cancelar
+        </button>
       </div>
 
-      <p class="modalexclusao" id="mensagemExcluir"></p>
-      `;
-  // manter a mensagem escondida quando trocamos o conteúdo do modal
-  const msgElem = document.getElementById("mensagemExcluir");
-  if (msgElem) msgElem.style.display = "none";
+      <p id="mensagemAlteracao"></p>
 
-  traduzir()
-  document.getElementById("cancelarExcluir").onclick = () => {
-    document.getElementById("modalExcluirConta").remove();
-  };
+    </div>
+  `;
 
-  document.getElementById("validarCodigo").onclick = () => validarCodigo(email);
+  document.body.appendChild(modal);
+
+  document.getElementById("fecharModal")
+    .onclick = () => modal.remove();
+
+  document.getElementById("enviarCodigo")
+    .onclick = () =>
+      enviarCodigoAlteracao(
+        campo,
+        motivo,
+        placeholder,
+        tipoInput
+      );
 }
 
-async function validarCodigo(email) {
+async function enviarCodigoAlteracao(
+  campo,
+  motivo,
+  placeholder,
+  tipoInput
+) {
 
-  const codigo = document.getElementById("codigoExcluir").value;
-  const msg = document.getElementById("mensagemExcluir");
-  // esconder mensagem anterior
-  if (msg) msg.style.display = "none";
+  const email =
+    document.getElementById("emailVerificacao").value;
 
   try {
 
-    const resposta = await fetch("http://localhost:6789/usuarios/verificar-codigo", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        email: email,
-        codigo: Number(codigo)
-      })
-    });
+    const resposta = await fetch(
+      "http://localhost:6789/usuarios/gerar-codigo-verificacao",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email,
+          motivo
+        })
+      }
+    );
 
     const dados = await resposta.json();
 
     if (!dados.success) {
-      if (msg) msg.style.display = "flex"; // mostra erro
+      alert("Erro ao enviar código");
       return;
     }
 
-    if (msg) msg.style.display = "flex"; // mostra confirmação
-
-    excluirConta();
+    mostrarConfirmacaoCodigo(
+      email,
+      campo,
+      placeholder,
+      tipoInput
+    );
 
   } catch (erro) {
-    if (msg) msg.style.display = "flex";
+
     console.error(erro);
+
+  }
+
+}
+function mostrarConfirmacaoCodigo(
+  email,
+  campo,
+  placeholder,
+  tipoInput
+) {
+
+  const modalBox =
+    document.querySelector(".modalBox");
+
+  modalBox.innerHTML = `
+  
+    <h2>Confirmar alteração</h2>
+
+    <p>
+      Digite o código enviado para seu email
+    </p>
+
+    <input
+      type="text"
+      id="codigoVerificacao"
+      class="modalcod"
+      placeholder="Código"
+    >
+
+    <div class="botoes">
+
+      <button
+        id="confirmarCodigo"
+        class="modalconfirmar"
+      >
+        Confirmar
+      </button>
+
+      <button
+        id="cancelarModal"
+        class="modalcancelar"
+      >
+        Cancelar
+      </button>
+
+    </div>
+  `;
+
+  document.getElementById("cancelarModal")
+    .onclick = () =>
+      document.getElementById("modalAlteracao")
+        .remove();
+
+  document.getElementById("confirmarCodigo")
+    .onclick = () =>
+      validarCodigoAlteracao(
+        email,
+        campo,
+        placeholder,
+        tipoInput
+      );
+
+}
+
+async function validarCodigoAlteracao(
+  email,
+  campo,
+  placeholder,
+  tipoInput
+) {
+
+  const codigo =
+    document.getElementById("codigoVerificacao").value;
+
+  try {
+
+    const resposta = await fetch(
+      "http://localhost:6789/usuarios/verificar-codigo",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email,
+          codigo: Number(codigo)
+        })
+      }
+    );
+
+    const dados = await resposta.json();
+
+    if (!dados.success) {
+      alert("Código inválido");
+      return;
+    }
+
+    mostrarCampoNovoValor(
+      campo,
+      placeholder,
+      tipoInput
+    );
+
+  } catch (erro) {
+
+    console.error(erro);
+
   }
 
 }
 
-async function excluirConta() {
+function mostrarCampoNovoValor(
+  campo,
+  placeholder,
+  tipoInput
+) {
+
+  const modalBox =
+    document.querySelector(".modalBox");
+
+  modalBox.innerHTML = `
+
+    <h2>Alterar ${campo}</h2>
+
+    <input
+      type="${tipoInput}"
+      id="novoValor"
+      class="modalemail"
+      placeholder="${placeholder}"
+    >
+
+    <div class="botoes">
+
+      <button
+        id="salvarAlteracao"
+        class="modalconfirmar"
+      >
+        Salvar
+      </button>
+
+      <button
+        id="cancelarAlteracao"
+        class="modalcancelar"
+      >
+        Cancelar
+      </button>
+
+    </div>
+  `;
+
+  document.getElementById("cancelarAlteracao")
+    .onclick = () =>
+      document.getElementById("modalAlteracao")
+        .remove();
+
+  document.getElementById("salvarAlteracao")
+    .onclick = () =>
+      salvarAlteracao(campo);
+
+}
+
+async function salvarAlteracao(campo) {
+
+  const novoValor =
+    document.getElementById("novoValor").value;
+
+  let url = "";
+  let body = {};
+  let metodo = "";
+
+
+
+  // EMAIL
+  if (campo === "email") {
+
+    url =
+      `http://localhost:6789/usuarios/email/${usuario.id}`;
+
+    metodo = "PATCH";
+
+    body = {
+      email: novoValor
+    };
+
+  }
+
+
+
+  // TELEFONE
+  else if (campo === "telefone") {
+
+    url =
+      `http://localhost:6789/usuarios/telefone/${usuario.id}`;
+
+    metodo = "PATCH";
+
+    body = {
+      telefone: novoValor
+    };
+
+  }
+
+
+
+  // CPF
+  else if (campo === "cpf") {
+
+    url =
+      `http://localhost:6789/usuarios/cpf/${usuario.id}`;
+
+    metodo = "PATCH";
+
+    body = {
+      cpf: novoValor
+    };
+
+  }
+
+
+
+  // SENHA
+  else if (campo === "senha") {
+
+    url =
+      `http://localhost:6789/usuarios/alterar-senha`;
+
+    metodo = "POST";
+
+    body = {
+      senha: novoValor
+    };
+
+  }
 
   try {
 
-    const resposta = await fetch(`http://localhost:6789/usuarios/${usuario.id}`, {
-      method: "DELETE"
+    const resposta = await fetch(url, {
+
+      method: metodo,
+
+      headers: {
+        "Content-Type": "application/json"
+      },
+
+      body: JSON.stringify(body)
+
     });
 
-    if (resposta.ok) {
+    const dados = await resposta.json();
 
-      alert("Conta excluída com sucesso");
+    if (dados.success || resposta.ok) {
 
-      localStorage.removeItem("usuario");
+      alert("Alteração realizada com sucesso");
 
-      window.location.href = "/";
+
+
+      // atualiza localStorage
+      if (campo !== "senha") {
+
+        usuario[campo] = novoValor;
+
+        localStorage.setItem(
+          "usuario",
+          JSON.stringify(usuario)
+        );
+
+      }
+
+
+
+      document
+        .getElementById("modalAlteracao")
+        .remove();
 
     } else {
 
-      alert("Erro ao excluir conta");
+      alert("Erro ao alterar");
 
     }
 
   } catch (erro) {
+
     console.error(erro);
+
   }
 
 }
-
-
