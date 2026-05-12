@@ -133,14 +133,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const formData = new FormData();
 
-      formData.append("nome", nome);
-      formData.append("peso", peso);
-      formData.append("idade", idadeMeses);
-      formData.append("especie", especie);
-      formData.append("raca", raca);
-      formData.append("porte", porte);
-      formData.append("sexo", sexo);
-      formData.append("descricao", descricao);
       formData.append("fk_idong", ong.id);
 
       const inputFoto = document.getElementById("fotopetatt");
@@ -148,7 +140,17 @@ document.addEventListener("DOMContentLoaded", () => {
         formData.append("fotopet", inputFoto.files[0]);
       }
 
-      const responsePet = await fetch("http://localhost:6789/pets/pornome", {
+      formData.append("nome", nome);
+      formData.append("fk_idsexopet", sexo);
+      formData.append("peso", peso);
+      formData.append("idade", idadeMeses);
+      formData.append("fk_idespecie", especie);
+      formData.append("fk_idporte", porte);
+      formData.append("fk_idraca", raca);
+      formData.append("descricao", descricao);
+      formData.append("fk_idstatus", 1);
+
+      const responsePet = await fetch("http://localhost:6789/pets", {
         method: "POST",
         body: formData
       });
@@ -176,6 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
       new MensagemFeedback("Erro ao enviar dados. Tente novamente.", feedbackPai).feedbackError();
     }
   });
+
   //raças pre definidas no banco
   const especieSelect = document.getElementById("especiePet");
   const racaSelect = document.getElementById("racaPetSel");

@@ -21,7 +21,9 @@ export class InformacoesPets {
     this.idOng = idOng;
     this.foto = foto;
     this.nome = nome;
-    this.sexo = sexo;
+    this.sexoPet = sexo;
+    console.log("Construtor - sexo recebido:", sexo);
+    console.log("Construtor - this.sexo:", this.sexo);
     this.peso = peso;
     this.idade = idade;
     this.especie = especie;
@@ -39,33 +41,38 @@ export class InformacoesPets {
     let caminhoFoto = data.fotos;
 
     if (!caminhoFoto || caminhoFoto.length < 5) {
-      caminhoFoto = "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg"; 
-    }
-    else if (!caminhoFoto.startsWith("http")) {
+      caminhoFoto =
+        "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg";
+    } else if (!caminhoFoto.startsWith("http")) {
       if (!caminhoFoto.includes(".")) {
-        caminhoFoto = "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg";
+        caminhoFoto =
+          "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg";
       } else {
         caminhoFoto = `/public/img/fotos/${caminhoFoto}`;
       }
     }
 
-    return new InformacoesPets(
-      data.idpet,
-      data.fk_idong,
-      caminhoFoto,
-      data.nome,
-      data.sexopet,
-      data.peso,
-      data.idade,
-      data.especie,
-      data.porte,
-      data.raca,
-      data.descricao,
-      data.nome_ong,
-      `ongPage.html?id=${data.fk_idong}`,
-      data.fk_idstatus ?? data.status ?? data.idstatus, 
-      data.data_post,
-      data.data_att
+    const pet = new InformacoesPets(
+      data.idpet,                           // id
+      data.fk_idong,                        // idOng
+      caminhoFoto,                          // foto
+      data.nome,                            // nome
+      data.sexopet,                         // sexo
+      data.peso,                            // peso
+      data.idade,                           // idade
+      data.especie,                         // especie
+      data.porte,                           // porte
+      data.raca,                            // raca
+      data.descricao,                       // sobre
+      data.nome_ong,                        // ongNome
+      `ongPage.html?id=${data.fk_idong}`,   // ongLink
+      data.status,                          // status
+      data.data_post,                       // dataPost
+      data.data_att                         // dataAtt
     );
+
+    console.log("Sexo após fromAPI:", pet.sexo);
+
+    return pet;
   }
 }

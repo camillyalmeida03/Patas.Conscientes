@@ -1,14 +1,14 @@
 // Este arquivo é responsável por gerar uma linha para cada pet nas tabelas de gerenciamento das ONGs
 
 import { CriarElementos } from "../../../public/js/criarElementos.js";
-import { InformacoesPets } from "./informacoesPets.js";
 
 export class tabelaPets {
     constructor(InformacoesPet = null) {
         this.criarElemento = new CriarElementos();
-        this.InformacoesPet = new InformacoesPets();
 
         if (InformacoesPet) {
+            console.log("Objeto recebido na tabela:", InformacoesPet);
+
             this.InfoPet = InformacoesPet;
             this.linhaTabPet = this.criarPetTabela(this.InfoPet);
         }
@@ -17,6 +17,7 @@ export class tabelaPets {
     }
 
     criarPetTabela(InfoPet) {
+        console.log("Sexo recebido:", InfoPet.sexoPet);
         const tbody = document.getElementById('tbodyTabelaPet');
 
         if (tbody) {
@@ -29,31 +30,31 @@ export class tabelaPets {
             // Criar select do status do pet
             this.selectStatus = this.criarElemento.createElement("select", "statusSelect", null, this.tdStatus, "statusPetSelect");
 
-                // Cria as opções do select:
-                // Disponível
-                this.optionDisp = this.criarElemento.createOption("optionStatusSel", "Disponível", "Disponível", false, this.selectStatus, "opDisp");
+            // Cria as opções do select:
+            // Disponível
+            this.optionDisp = this.criarElemento.createOption("optionStatusSel", "Disponível", "Disponível", false, this.selectStatus, "opDisp");
 
-                // Processo de adoção
-                this.optionProc = this.criarElemento.createOption("optionStatusSel", "Em processo", "Em processo", false, this.selectStatus, "opProcess");
+            // Processo de adoção
+            this.optionProc = this.criarElemento.createOption("optionStatusSel", "Em processo", "Em processo", false, this.selectStatus, "opProcess");
 
-                // Adotado
-                this.optionAdot = this.criarElemento.createOption("optionStatusSel", "Adotado", "Adotado", false, this.selectStatus, "opAdot");
+            // Adotado
+            this.optionAdot = this.criarElemento.createOption("optionStatusSel", "Adotado", "Adotado", false, this.selectStatus, "opAdot");
 
-                // Indisponível
-                this.optionIndisp = this.criarElemento.createOption("optionStatusSel", "Indisponível", "Indisponível", false, this.selectStatus, "opIndisp");
+            // Indisponível
+            this.optionIndisp = this.criarElemento.createOption("optionStatusSel", "Indisponível", "Indisponível", false, this.selectStatus, "opIndisp");
 
-                // Apresentando Status do Pet
-                this.selectStatus.value = InfoPet.status;
+            // Apresentando Status do Pet
+            this.selectStatus.value = InfoPet.status;
 
             // Criar a foto do pet
             this.tdFoto = this.criarElemento.createElement("td", "tdFoto", null, this.trPet);
 
-                // Criar a imagem dentro da coluna de fotos
-                this.fotoPet = this.criarElemento.createImg("fotoPetTabela", InfoPet.foto, `Foto do ${InfoPet.nome}`, "lazy", this.tdFoto);
+            // Criar a imagem dentro da coluna de fotos
+            this.fotoPet = this.criarElemento.createImg("fotoPetTabela", InfoPet.foto, `Foto do ${InfoPet.nome}`, "lazy", this.tdFoto);
             this.tdNome = this.criarElemento.createElement("td", "tdNome", InfoPet.nome, this.trPet);
             this.tdEspecie = this.criarElemento.createElement("td", "tdEspecie", InfoPet.especie, this.trPet);
             this.tdRaca = this.criarElemento.createElement("td", "tdRaca", InfoPet.raca, this.trPet);
-            this.tdSexo = this.criarElemento.createElement("td", "tdSexo", InfoPet.sexo, this.trPet);
+            this.tdSexo = this.criarElemento.createElement("td", "tdSexo", InfoPet.sexoPet, this.trPet);
             this.tdPorte = this.criarElemento.createElement("td", "tdPorte", InfoPet.porte, this.trPet);
             this.tdIdade = this.criarElemento.createElement("td", "tdIdade", InfoPet.idade, this.trPet);
             this.tdPeso = this.criarElemento.createElement("td", "tdPeso", InfoPet.peso, this.trPet);
