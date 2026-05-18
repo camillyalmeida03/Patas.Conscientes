@@ -3657,35 +3657,49 @@ td {
     color: #2269AA;
 }
 
-#opDisp{
+#opDisp {
     color: var(--verde);
 }
 
-#opIndisp{
+#opIndisp {
     color: var(--vermelho);
 }
 
-#opProcess{
+#opProcess {
     color: #f3a600;
 }
 
-.fotoPetTabela{
+.fotoPetTabela {
     height: 4rem;
     width: 4rem;
     border-radius: 0.5rem;
     object-fit: cover;
 }
 
-.pesoTable::after{
+.pesoTable::after {
     content: " kg";
 }
 
-#descTable{
+#descTable {
     max-width: 20rem;
 }
 
-.statusCor{
+.statusCor {
     background-color: var(--rosa);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+}
+
+#botaoEditarPet > button {
+    background-color: rgb(226, 194, 15);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+}
+
+#botaoDeletarPet > button {
+    background-color: rgb(190, 36, 8);
     color: white;
     padding: 0.5rem;
     border-radius: 0.3rem;
