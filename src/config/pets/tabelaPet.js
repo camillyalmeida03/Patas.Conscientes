@@ -2,6 +2,7 @@
 
 import { CriarElementos } from "../../../public/js/criarElementos.js";
 import { formatarIdade } from "./idadePet.js";
+import { formatarDataHoraBR } from "../../../public/js/formatarDataHora.js";
 
 export class tabelaPets {
     constructor(InformacoesPet = null) {
@@ -58,10 +59,10 @@ export class tabelaPets {
             this.tdSexo = this.criarElemento.createElement("td", "tdSexo", InfoPet.sexoPet, this.trPet);
             this.tdPorte = this.criarElemento.createElement("td", "tdPorte", InfoPet.porte, this.trPet);
             this.tdIdade = this.criarElemento.createElement("td", "tdIdade", formatarIdade(InfoPet.idade), this.trPet);
-            this.tdPeso = this.criarElemento.createElement("td", "tdPeso", InfoPet.peso, this.trPet);
+            this.tdPeso = this.criarElemento.createElement("td", ["tdPeso", "pesoTable"], InfoPet.peso, this.trPet);
             this.tdDesc = this.criarElemento.createElement("td", "tdDesc", InfoPet.sobre, this.trPet);
-            this.tdDtPost = this.criarElemento.createElement("td", "tdDtPost", "Em breve", this.trPet);
-            this.tdDtAtt = this.criarElemento.createElement("td", "tdDtAtt", InfoPet.dataAtt, this.trPet);
+            this.tdDtPost = this.criarElemento.createElement("td", "tdDtPost", formatarDataHoraBR(InfoPet.dataPost), this.trPet);
+            this.tdDtAtt = this.criarElemento.createElement("td", "tdDtAtt", formatarDataHoraBR(InfoPet.dataAtt), this.trPet);
             this.tdEditar = this.criarElemento.createElement("td", "tdEditar", null, this.trPet, "botaoEditarPet");
             this.tdDeletar = this.criarElemento.createElement("td", "tdDeletar", null, this.trPet, "botaoDeletarPet");
             this.botaoEditar = this.criarElemento.createButton("botaoTabela", "Editar", this.tdEditar, `Editar ${InfoPet.nome}`);

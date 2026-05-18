@@ -3676,6 +3676,14 @@ td {
     object-fit: cover;
 }
 
+.pesoTable::after{
+    content: " kg";
+}
+
+#descTable{
+    max-width: 20rem;
+}
+
 /* -------- MODO ESCURO ------------------------------------------------------------------------------------------------------- */
 
 .bodyME {
