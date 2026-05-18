@@ -1,6 +1,7 @@
 // Este arquivo é responsável por gerar uma linha para cada pet nas tabelas de gerenciamento das ONGs
 
 import { CriarElementos } from "../../../public/js/criarElementos.js";
+import { formatarIdade } from "./idadePet.js";
 
 export class tabelaPets {
     constructor(InformacoesPet = null) {
@@ -56,7 +57,7 @@ export class tabelaPets {
             this.tdRaca = this.criarElemento.createElement("td", "tdRaca", InfoPet.raca, this.trPet);
             this.tdSexo = this.criarElemento.createElement("td", "tdSexo", InfoPet.sexoPet, this.trPet);
             this.tdPorte = this.criarElemento.createElement("td", "tdPorte", InfoPet.porte, this.trPet);
-            this.tdIdade = this.criarElemento.createElement("td", "tdIdade", InfoPet.idade, this.trPet);
+            this.tdIdade = this.criarElemento.createElement("td", "tdIdade", formatarIdade(InfoPet.idade), this.trPet);
             this.tdPeso = this.criarElemento.createElement("td", "tdPeso", InfoPet.peso, this.trPet);
             this.tdDesc = this.criarElemento.createElement("td", "tdDesc", InfoPet.sobre, this.trPet);
             this.tdDtPost = this.criarElemento.createElement("td", "tdDtPost", "Em breve", this.trPet);
