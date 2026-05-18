@@ -3,6 +3,7 @@
 import { CriarElementos } from "../../../public/js/criarElementos.js";
 import { formatarIdade } from "./idadePet.js";
 import { formatarDataHoraBR } from "../../../public/js/formatarDataHora.js";
+import { aplicarCorStatus } from "./statusPet.js";
 
 export class tabelaPets {
     constructor(InformacoesPet = null) {
@@ -27,26 +28,11 @@ export class tabelaPets {
             this.trPet = this.criarElemento.createElement("tr", "trPet", null, tbody, null);
 
             // Cria a coluna de status
-            this.tdStatus = this.criarElemento.createElement("td", "tdStatus", null, this.trPet);
+            this.tdStatus = this.criarElemento.createElement("td", ["tdStatus"], null, this.trPet);
 
-            // Criar select do status do pet
-            this.selectStatus = this.criarElemento.createElement("select", "statusSelect", null, this.tdStatus, "statusPetSelect");
+            this.pTdStatus = this.criarElemento.createElement("p", "statusCor", InfoPet.status, this.tdStatus);
 
-            // Cria as opções do select:
-            // Disponível
-            this.optionDisp = this.criarElemento.createOption("optionStatusSel", "Disponível", "Disponível", false, this.selectStatus, "opDisp");
-
-            // Processo de adoção
-            this.optionProc = this.criarElemento.createOption("optionStatusSel", "Em processo", "Em processo", false, this.selectStatus, "opProcess");
-
-            // Adotado
-            this.optionAdot = this.criarElemento.createOption("optionStatusSel", "Adotado", "Adotado", false, this.selectStatus, "opAdot");
-
-            // Indisponível
-            this.optionIndisp = this.criarElemento.createOption("optionStatusSel", "Indisponível", "Indisponível", false, this.selectStatus, "opIndisp");
-
-            // Apresentando Status do Pet
-            this.selectStatus.value = InfoPet.status;
+            aplicarCorStatus(this.pTdStatus);
 
             // Criar a foto do pet
             this.tdFoto = this.criarElemento.createElement("td", "tdFoto", null, this.trPet);

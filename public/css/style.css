@@ -3684,6 +3684,13 @@ td {
     max-width: 20rem;
 }
 
+.statusCor{
+    background-color: var(--rosa);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+}
+
 /* -------- MODO ESCURO ------------------------------------------------------------------------------------------------------- */
 
 .bodyME {
