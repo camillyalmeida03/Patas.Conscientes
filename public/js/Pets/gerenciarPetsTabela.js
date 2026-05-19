@@ -322,7 +322,7 @@ document.addEventListener("DOMContentLoaded", () => {
     delete formPet.dataset.modo;
     delete formPet.dataset.petId;
 
-    if (campos.titulo) campos.titulo.textContent = "Adotar Pet";
+    if (campos.titulo) campos.titulo.textContent = "Cadastrar Pet";
     botaoSalvar.value = "Adicionar";
 
     if (campos.foto) campos.foto.disabled = false;
