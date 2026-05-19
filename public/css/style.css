@@ -3541,6 +3541,7 @@ textarea {
     justify-content: space-between;
     margin-bottom: 1rem;
     width: 100%;
+    padding: 0 2rem;
 }
 
 #abrirModalAdicionar .icon {
@@ -3551,6 +3552,11 @@ textarea {
 #visualizarCat .icon {
     color: var(--cinza100);
     fill: var(--cinza100);
+    transition: 0.4s all;
+}
+
+#visualizarCat:hover{
+    background-color: var(--cinza215);
 }
 
 #barraPesquisaCat {
@@ -3587,6 +3593,7 @@ textarea {
 
 #gerenciarCatalogoPet {
     width: 100% !important;
+    height: 100vh;
     overflow: hidden;
     padding: 0 2rem;
 }

@@ -182,9 +182,11 @@ function controlarBotaoEditar(isResponsavel, idOng) {
 
   if (!isResponsavel) {
     const botaoEditar = document.querySelectorAll('.bttEditarOng');
-    const opcoesGerenciamentoCat = document.getElementById('gerenciarCatalogoPet');
+    const opcoesGerenciamentoCat = document.getElementById('opcoesGerenciamentoCat');
+    const gerenciarCatalogoPet = document.getElementById('gerenciarCatalogoPet');
     botaoEditar.forEach(btn => btn.remove());
-    opcoesGerenciamentoCat.remove()
+    if (opcoesGerenciamentoCat) opcoesGerenciamentoCat.remove()
+    if (gerenciarCatalogoPet) gerenciarCatalogoPet.remove()
     return;
   }
 
