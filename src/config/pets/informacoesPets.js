@@ -22,8 +22,6 @@ export class InformacoesPets {
     this.foto = foto;
     this.nome = nome;
     this.sexoPet = sexo;
-    console.log("Construtor - sexo recebido:", sexo);
-    console.log("Construtor - this.sexo:", this.sexo);
     this.peso = peso;
     this.idade = idade;
     this.especie = especie;
@@ -71,7 +69,6 @@ export class InformacoesPets {
       data.data_att                         // dataAtt
     );
 
-    console.log("Sexo após fromAPI:", pet.sexo);
 
     return pet;
   }

@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const formPet = document.getElementById("formInfoPet");
   const botaoEnviar = document.getElementById("bttAddPet");
   const feedbackPai = document.getElementById("mensagemFeedback");
+  const fundoAdicionarPet = document.getElementById("fundoAdicionarPet");
 
   function converterIdadeParaMeses() {
 
@@ -76,6 +77,35 @@ document.addEventListener("DOMContentLoaded", () => {
       botaoEnviar.disabled = true;
     }
 
+  }
+
+  function fecharFormularioPet() {
+    const botaoFechar = fundoAdicionarPet?.querySelector(".fechar-modal");
+
+    if (botaoFechar) {
+      botaoFechar.click();
+      return;
+    }
+
+    fundoAdicionarPet?.classList.add("escondido");
+    document.body.style.overflow = "";
+  }
+
+  function limparEstadoVisualFormulario() {
+    if (nomeArquivo) nomeArquivo.textContent = "Nenhum arquivo selecionado";
+
+    if (preview) {
+      preview.removeAttribute("src");
+      preview.style.display = "none";
+    }
+
+    const contador = document.getElementById("contagem");
+    if (contador) contador.textContent = "0";
+
+    formPet.querySelectorAll(".error-message").forEach((erro) => {
+      erro.textContent = "";
+      erro.style.display = "none";
+    });
   }
 
   if (!formPet) return;
@@ -128,6 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
           "Nenhuma ONG encontrada. Faça login novamente.",
           feedbackPai
         ).feedbackError();
+        controlarBotao();
         return;
       }
 
@@ -155,27 +186,32 @@ document.addEventListener("DOMContentLoaded", () => {
         body: formData
       });
 
-      const data = await responsePet.json();
+      const data = await responsePet.json().catch(() => ({}));
 
       if (!responsePet.ok || data.success === false) {
         new MensagemFeedback(data.message || "Erro ao enviar dados.", feedbackPai).feedbackError();
+        controlarBotao();
         return;
       }
 
-      if (data.success) {
-        new MensagemFeedback(
-          "Cadastro realizado com sucesso!",
-          feedbackPai
-        ).feedbackSucess();
-        formPet.reset();
-        setTimeout(() => {
-          window.location.href = `ongPage.html?id=${new URLSearchParams(window.location.search).get("id") || 1}`;
-        }, 2000);
-      }
+      formPet.reset();
+      limparEstadoVisualFormulario();
+      fecharFormularioPet();
+      controlarBotao();
+
+      new MensagemFeedback(
+        "Pet cadastrado com sucesso!",
+        document.body
+      ).feedbackSucess();
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 1800);
 
     } catch (error) {
       console.error("Erro ao enviar dados:", error);
       new MensagemFeedback("Erro ao enviar dados. Tente novamente.", feedbackPai).feedbackError();
+      controlarBotao();
     }
   });
 

@@ -10,7 +10,6 @@ export class tabelaPets {
         this.criarElemento = new CriarElementos();
 
         if (InformacoesPet) {
-            console.log("Objeto recebido na tabela:", InformacoesPet);
 
             this.InfoPet = InformacoesPet;
             this.linhaTabPet = this.criarPetTabela(this.InfoPet);
@@ -20,7 +19,6 @@ export class tabelaPets {
     }
 
     criarPetTabela(InfoPet) {
-        console.log("Sexo recebido:", InfoPet.sexoPet);
         const tbody = document.getElementById('tbodyTabelaPet');
 
         if (tbody) {
