@@ -3256,6 +3256,129 @@ textarea {
     overflow-y: visible;
 }
 
+#editarOngModal {
+    width: min(56rem, calc(100vw - 4rem));
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+#formEditarOng {
+    gap: 1rem;
+}
+
+#formEditarOng .alinharErro {
+    width: 100%;
+}
+
+.editarOngArquivos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.editarOngArquivoCard {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid var(--cinza201);
+    border-radius: 0.8rem;
+}
+
+.editarOngArquivoCard p {
+    font-weight: 700;
+    color: var(--cinza_h3);
+    margin-bottom: 0.6rem;
+}
+
+.editarOngArquivoCard input[type="file"] {
+    display: none;
+}
+
+.editarOngArquivoCard span {
+    display: block;
+    margin-top: 0.5rem;
+    color: var(--cinza_h3);
+    font-size: 0.9rem;
+}
+
+.editarOngPreview {
+    width: 7rem;
+    height: 7rem;
+    background-color: var(--cinza_input);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.editarOngPreviewFoto {
+    border-radius: 50%;
+}
+
+.editarOngPreviewBanner {
+    border-radius: 0.8rem;
+}
+
+.formEditarOngGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    width: 100%;
+}
+
+.formEditarOngGrid .campoInteiro {
+    grid-column: 1 / -1;
+}
+
+#formEditarOng h2 {
+    color: var(--cinza_h3);
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+}
+
+#formEditarOng .labelEditarOng {
+    display: block;
+    color: var(--cinza_h3);
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin: 0 0 0.35rem 0.8rem;
+}
+
+#formEditarOng textarea {
+    height: 8rem;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+#formEditarOng input:disabled {
+    cursor: not-allowed;
+    color: var(--cinza_h3);
+}
+
+#formEditarOng #salvarEdicaoOng {
+    align-self: center;
+    border: none;
+    width: fit-content;
+    min-width: 12rem;
+}
+
+@media (max-width: 720px) {
+    .formEditarOngGrid,
+    .editarOngArquivos {
+        grid-template-columns: 1fr;
+    }
+
+    .editarOngArquivoCard {
+        grid-template-columns: 1fr;
+    }
+
+    #editarOngModal {
+        width: calc(100vw - 2rem);
+        margin: 1rem;
+    }
+}
+
 /* #nomeOng {
     text-align: center;
 } */
@@ -3408,7 +3531,7 @@ textarea {
 
 .botaoUpload {
     border: var(--cinza158) 1px solid;
-    padding: 1rem;
+    padding: 0.5rem;
     font-weight: 400 !important;
     border-radius: 0.5rem;
     width: fit-content;
@@ -3541,6 +3664,7 @@ textarea {
     justify-content: space-between;
     margin-bottom: 1rem;
     width: 100%;
+    padding: 0 2rem;
 }
 
 #abrirModalAdicionar .icon {
@@ -3551,6 +3675,11 @@ textarea {
 #visualizarCat .icon {
     color: var(--cinza100);
     fill: var(--cinza100);
+    transition: 0.4s all;
+}
+
+#visualizarCat:hover{
+    background-color: var(--cinza215);
 }
 
 #barraPesquisaCat {
@@ -3587,6 +3716,7 @@ textarea {
 
 #gerenciarCatalogoPet {
     width: 100% !important;
+    height: 100vh;
     overflow: hidden;
     padding: 0 2rem;
 }
@@ -3657,23 +3787,52 @@ td {
     color: #2269AA;
 }
 
-#opDisp{
+#opDisp {
     color: var(--verde);
 }
 
-#opIndisp{
+#opIndisp {
     color: var(--vermelho);
 }
 
-#opProcess{
+#opProcess {
     color: #f3a600;
 }
 
-.fotoPetTabela{
+.fotoPetTabela {
     height: 4rem;
     width: 4rem;
     border-radius: 0.5rem;
     object-fit: cover;
+}
+
+.pesoTable::after {
+    content: " kg";
+}
+
+#descTable {
+    max-width: 20rem;
+}
+
+.statusCor {
+    background-color: var(--rosa);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+}
+
+#botaoEditarPet > button {
+    background-color: rgb(226, 194, 15);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+}
+
+#botaoDeletarPet > button {
+    background-color: rgb(190, 36, 8);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
 }
 
 /* -------- MODO ESCURO ------------------------------------------------------------------------------------------------------- */

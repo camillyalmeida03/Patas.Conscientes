@@ -122,7 +122,7 @@
                 <form id="formInfoPet" class="formulario">
 
                     <!-- Título -->
-                    <h3>Adotar Pet</h3>
+                    <h3>Cadastrar Pet</h3>
 
                     <div class="alinharErro">
 
@@ -377,11 +377,8 @@
                     <h2 class="azul painelnossospets">Nossos Pets</h2>
                 </section>
 
-                <!-- Opção de gerenciamento de catálogo para a ONG -->
-                <section id="gerenciarCatalogoPet">
-
-                    <!-- Opções para gerenciamento do catálogo -->
-                    <div id="opcoesGerenciamentoCat">
+                <!-- Opções para gerenciamento do catálogo -->
+                <div id="opcoesGerenciamentoCat">
 
                         <!-- Conjunto de botões -->
                         <div>
@@ -426,7 +423,10 @@
                             </button>
                         </div>
 
-                    </div>
+                </div>
+
+                <!-- Opção de gerenciamento de catálogo para a ONG -->
+                <section id="gerenciarCatalogoPet">
 
                     <!-- Catálogo em lista para edição de pets -->
                     <section id="listagemEdicaoPet" class="table-container">
@@ -442,7 +442,7 @@
                                     <th>Porte</th>
                                     <th>Idade</th>
                                     <th>Peso</th>
-                                    <th>Descrição</th>
+                                    <th id="descTable">Descrição</th>
                                     <th>Data de postagem</th>
                                     <th>Data da última atualização</th>
                                     <th>Editar</th>
@@ -549,13 +549,16 @@
 <script src="/public/js/barraacessibilidade.js" defer></script>
 <script src="/public/js/tema.js" defer></script>
 <script type="module" src="/src/config/ong/ongPage.js"></script>
+<script type="module" src="/public/js/Ongs/editarPerfilOng.js"></script>
 <script type="module" src="/public/js/modalPadrao.js"></script>
 
 <script type="module" src="/src/config/pets/formpet.js" defer></script>
 <script type="module" src="/public/js/Pets/listarPets.js"></script>
+<script src="/public/js/Pets/trocarVisualizacaoCatalogo.js" defer></script>
 
 <script src="/public/js/formularios/formparceiro.js"></script>
 <script src="/public/js/formularios/validacaoFormularios.js"></script>
+<script type="module" src="/public/js/Pets/gerenciarPetsTabela.js"></script>
 <script src="/public/js/traducao.js" defer></script>
 <script type="module" src="/public/js/migalhasPao.js"></script>
 
