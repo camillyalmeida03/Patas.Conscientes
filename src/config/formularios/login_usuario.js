@@ -77,7 +77,7 @@ if (responseLogin.ok) {
   formEntrar.reset();
 
   setTimeout(() => {
-    window.location.href = "/src/views/configuracoes.html";
+    window.location.href = "/src/views/adotar.html";
   }, 2000);
 
   return;

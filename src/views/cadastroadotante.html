@@ -88,16 +88,25 @@
             </div>
 
             <div>
-              <!-- Campo de senha do usuário -->
+              <!-- Campo de senha do usuário (com olho para mostrar/ocultar) -->
               <div class="alinharErro">
-                <input name="senha" type="password" id="senhaUsuarioAdt" placeholder="Senha*" class="inputCadastro senhaUsuario">
+                <div style="position: relative; width: 100%;">
+                  <input name="senha" type="password" id="senhaUsuarioAdt" placeholder="Senha*" class="inputCadastro senhaUsuario">
+                  <span id="toggleSenhaAdt" class="eye-icon" style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%);">
+                    <img id="olhoSenhaAdt" src="/public/img/icons/olhofechado.svg" title="Mostrar/Ocultar senha" alt="" style="width:1.5rem; cursor:pointer;">
+                  </span>
+                </div>
                 <p id="erroSenhaUsuarioAdt" class="error-message"></p>
               </div>
 
-              <!-- Campo de confirmação de senha do usuário -->
+              <!-- Campo de confirmação de senha do usuário (com olho para mostrar/ocultar) -->
               <div class="alinharErro">
-                <input type="password" id="confirmaSenhaUsuarioAdt" placeholder="Confirme sua senha*"
-                  class="inputCadastro confirmarSenha">
+                <div style="position: relative; width: 100%;">
+                  <input type="password" id="confirmaSenhaUsuarioAdt" placeholder="Confirme sua senha*" class="inputCadastro confirmarSenha">
+                  <span id="toggleConfirmaSenhaAdt" class="eye-icon" style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%);">
+                    <img id="olhoConfirmaAdt" src="/public/img/icons/olhofechado.svg" title="Mostrar/Ocultar senha" alt="" style="width:1.5rem; cursor:pointer;">
+                  </span>
+                </div>
                 <p id="erroConfirSenhaUsuarioAdt" class="error-message"></p>
               </div>
             </div>
@@ -280,6 +289,49 @@
   <script src="/public/js/formularios/validacaoFormularios.js"></script>
   <script src="/public/js/traducao.js" ></script>
   <script type="module" src="/public/js/migalhasPao.js"></script>
+
+  <script>
+    // Replicando a mesma lógica do olho do login.html para os campos de senha do cadastro de adotante
+    (function () {
+      const toggleSenha = document.getElementById("toggleSenhaAdt");
+      const senhaInput = document.getElementById("senhaUsuarioAdt");
+      const olhoSenha = document.getElementById("olhoSenhaAdt");
+
+      if (toggleSenha && senhaInput && olhoSenha) {
+        toggleSenha.addEventListener("click", function () {
+          const type = senhaInput.getAttribute("type") === "password" ? "text" : "password";
+          senhaInput.setAttribute("type", type);
+
+          if (type === "password") {
+            olhoSenha.src = "/public/img/icons/olhofechado.svg";
+            olhoSenha.title = "Mostrar senha";
+          } else {
+            olhoSenha.src = "/public/img/icons/olhoaberto.svg";
+            olhoSenha.title = "Ocultar senha";
+          }
+        });
+      }
+
+      const toggleConfirma = document.getElementById("toggleConfirmaSenhaAdt");
+      const confirmaInput = document.getElementById("confirmaSenhaUsuarioAdt");
+      const olhoConfirma = document.getElementById("olhoConfirmaAdt");
+
+      if (toggleConfirma && confirmaInput && olhoConfirma) {
+        toggleConfirma.addEventListener("click", function () {
+          const type = confirmaInput.getAttribute("type") === "password" ? "text" : "password";
+          confirmaInput.setAttribute("type", type);
+
+          if (type === "password") {
+            olhoConfirma.src = "/public/img/icons/olhofechado.svg";
+            olhoConfirma.title = "Mostrar senha";
+          } else {
+            olhoConfirma.src = "/public/img/icons/olhoaberto.svg";
+            olhoConfirma.title = "Ocultar senha";
+          }
+        });
+      }
+    })();
+  </script>
 
 </body>
 
