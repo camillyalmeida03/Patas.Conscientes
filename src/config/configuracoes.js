@@ -186,15 +186,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Evento do botão de conta
   document.getElementById("configConta")
-    ?.addEventListener("click", () => aside.mostrar("config"));
+    ?.addEventListener("click", () => {
+      const secao = "config";
+      aside.mostrar(secao);
+      
+      // Atualiza a URL sem recarregar a página
+      const url = new URL(window.location);
+      url.searchParams.set("secao", secao);
+      window.history.pushState({}, "", url);
+    });
 
   // Evento do botão de Políticas do Site
   document.getElementById("politicasConta")
-    ?.addEventListener("click", () => aside.mostrar("politicas"));
+    ?.addEventListener("click", () => {
+      const secao = "politicas";
+      aside.mostrar(secao);
+      
+      // Atualiza a URL sem recarregar a página
+      const url = new URL(window.location);
+      url.searchParams.set("secao", secao);
+      window.history.pushState({}, "", url);
+    });
 
   // Evento do botão de Acessibilidade
   document.getElementById("buttonAcess")
-    ?.addEventListener("click", () => aside.mostrar("acess"));
+    ?.addEventListener("click", () => {
+      const secao = "acess";
+      aside.mostrar(secao);
+      
+      // Atualiza a URL sem recarregar a página
+      const url = new URL(window.location);
+      url.searchParams.set("secao", secao);
+      window.history.pushState({}, "", url);
+    });
 
   // Evento do botão de Edição de perfil
 document.getElementById("perfilEdicao")
@@ -208,6 +232,15 @@ document.getElementById("perfilEdicao")
     url.searchParams.set("secao", secao);
     window.history.pushState({}, "", url);
 });
+
+  // Verifica se há um parâmetro "secao" na URL ao carregar a página
+  const urlParams = new URLSearchParams(window.location.search);
+  const secaoURL = urlParams.get("secao");
+  
+  // Se houver uma seção na URL, exibe ela ao carregar a página
+  if (secaoURL && (secaoURL === "config" || secaoURL === "politicas" || secaoURL === "acess" || secaoURL === "edicao")) {
+    aside.mostrar(secaoURL);
+  }
 
 
   // Configurações da seção de editar perfil
@@ -228,7 +261,7 @@ document.getElementById("perfilEdicao")
 
     // Caso o elemento exista, define a imagem de fundo com a foto salva
     if (fotoEl) {
-      fotoEl.style.backgroundImage = `url('${usuario.foto}')`;
+      fotoEl.style.backgroundImage = url('${usuario.foto}');
     }
   }
 
@@ -446,5 +479,6 @@ document.getElementById("perfilEdicao")
       new MensagemFeedback("Erro de conexão com servidor.", msg).feedbackError();
       console.error(err);
     }
-  });
+  })  ;
 });
+

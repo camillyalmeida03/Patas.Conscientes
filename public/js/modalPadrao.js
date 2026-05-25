@@ -215,16 +215,15 @@ function abrirModalAlteracao(campo, motivo, placeholder, tipoInput) {
       <input 
         type="email" 
         id="emailVerificacao"
-        class="modalemail"
         placeholder="Seu email"
       >
 
       <div class="botoes">
-        <button id="enviarCodigo" class="modalenvcod">
+        <button id="enviarCodigo">
           Enviar código
         </button>
 
-        <button id="fecharModal" class="modalcancelar">
+        <button id="fecharModal">
           Cancelar
         </button>
       </div>
@@ -235,6 +234,12 @@ function abrirModalAlteracao(campo, motivo, placeholder, tipoInput) {
   `;
 
   document.body.appendChild(modal);
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.remove();
+    }
+  });
 
   document.getElementById("fecharModal")
     .onclick = () => modal.remove();
@@ -305,6 +310,7 @@ function mostrarConfirmacaoCodigo(
 
   const modalBox =
     document.querySelector(".modalBox");
+  const modal = document.getElementById("modalAlteracao");
 
   modalBox.innerHTML = `
   
@@ -317,7 +323,6 @@ function mostrarConfirmacaoCodigo(
     <input
       type="text"
       id="codigoVerificacao"
-      class="modalcod"
       placeholder="Código"
     >
 
@@ -325,20 +330,24 @@ function mostrarConfirmacaoCodigo(
 
       <button
         id="confirmarCodigo"
-        class="modalconfirmar"
       >
         Confirmar
       </button>
 
       <button
         id="cancelarModal"
-        class="modalcancelar"
       >
         Cancelar
       </button>
 
     </div>
   `;
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.remove();
+    }
+  });
 
   document.getElementById("cancelarModal")
     .onclick = () =>
@@ -411,6 +420,7 @@ function mostrarCampoNovoValor(
 
   const modalBox =
     document.querySelector(".modalBox");
+  const modal = document.getElementById("modalAlteracao");
 
   modalBox.innerHTML = `
 
@@ -419,7 +429,6 @@ function mostrarCampoNovoValor(
     <input
       type="${tipoInput}"
       id="novoValor"
-      class="modalemail"
       placeholder="${placeholder}"
     >
 
@@ -427,20 +436,24 @@ function mostrarCampoNovoValor(
 
       <button
         id="salvarAlteracao"
-        class="modalconfirmar"
       >
         Salvar
       </button>
 
       <button
         id="cancelarAlteracao"
-        class="modalcancelar"
       >
         Cancelar
       </button>
 
     </div>
   `;
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.remove();
+    }
+  });
 
   document.getElementById("cancelarAlteracao")
     .onclick = () =>
@@ -495,7 +508,6 @@ async function salvarAlteracao(campo) {
   }
 
 
-
   // CPF
   else if (campo === "cpf") {
 
@@ -510,15 +522,13 @@ async function salvarAlteracao(campo) {
 
   }
 
-
-
   // SENHA
   else if (campo === "senha") {
 
     url =
-      `http://localhost:6789/usuarios/alterar-senha`;
+      `http://localhost:6789/usuarios/senha/${usuario.id}`;
 
-    metodo = "POST";
+    metodo = "PATCH";
 
     body = {
       senha: novoValor
@@ -546,8 +556,6 @@ async function salvarAlteracao(campo) {
 
       alert("Alteração realizada com sucesso");
 
-
-
       // atualiza localStorage
       if (campo !== "senha") {
 
@@ -559,8 +567,6 @@ async function salvarAlteracao(campo) {
         );
 
       }
-
-
 
       document
         .getElementById("modalAlteracao")
