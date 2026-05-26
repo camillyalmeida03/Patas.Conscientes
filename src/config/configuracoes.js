@@ -259,9 +259,9 @@ document.getElementById("perfilEdicao")
     // Seleciona o elemento onde a foto de perfil é exibida
     const fotoEl = document.getElementById("fotoUsuarioconfig");
 
-    // Caso o elemento exista, define a imagem de fundo com a foto salva
+    // Caso o elemento exista, define a imagem de fundo com a foto salva, MANTER COMO ESTÁ (:
     if (fotoEl) {
-      fotoEl.style.backgroundImage = url('${usuario.foto}');
+      fotoEl.style.backgroundImage = `url('${usuario.foto}')`;
     }
   }
 
