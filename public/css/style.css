@@ -1280,7 +1280,7 @@ footer .listasFooter a:hover {
 /* botão voltar para o topo */
 
 .botaoVoltarTopo {
-    position: absolute;
+    position: fixed;
     height: 4rem;
     width: 4rem;
     background-color: var(--azul_maisclaro);
@@ -1291,6 +1291,7 @@ footer .listasFooter a:hover {
     justify-content: center;
     right: 2rem;
     bottom: 2rem;
+    z-index: 10;
     transition: all 0.5s;
 }
 
@@ -1481,6 +1482,18 @@ footer .listasFooter a:hover {
 .camadasFiltro div {
     display: flex;
     gap: 0.3rem;
+}
+
+#ongsFiltroLista {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#cidadeFiltroLista {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 /* cards adotar */

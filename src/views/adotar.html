@@ -65,20 +65,8 @@
     <form action="" id="filtrocidade">
          <div class="camadasFiltro" id="cidadeFiltro">
            <h3 class="adotarcidade">Cidade</h3>
-           <div>
-             <input type="radio" name="filter1" id="mt">
-             <label for="mt">Matão</label>
-           </div>
-   
-           <div>
-             <input type="radio" name="filter1" id="tq">
-             <label for="tq">Taquaritinga</label>
-           </div>
-   
-           <div>
-             <input type="radio" name="filter1" id="arq">
-             <label for="arq">Araraquara</label>
-           </div>
+           <p id="cidadeFiltroMensagem" class="cidadeFiltroMensagem" aria-live="polite">Carregando cidades...</p>
+           <div id="cidadeFiltroLista"></div>
          </div>
        </form>
 
@@ -87,36 +75,8 @@
     <!-- Filtro ONG's -->
     <div class="camadasFiltro" id="ongsFiltro">
         <h3 class="adotarong">ONG's</h3>
-
-        <div>
-          <input type="checkbox" name="ong1F" id="ong1F">
-          <label for="ong1F">Patas Amigas Matão</label>
-        </div>
-
-        <div>
-          <input type="checkbox" name="ong2F" id="ong2F">
-          <label for="ong2F">Lar dos Peludos Matão</label>
-        </div>
-
-        <div>
-          <input type="checkbox" name="ong3F" id="ong3F">
-          <label for="ong3F">Vida Animal Matão</label>
-        </div>
-
-        <div>
-          <input type="checkbox" name="ong4F" id="ong4F">
-          <label for="ong4F">Cãopanheiros Taquaritinga</label>
-        </div>
-
-        <div>
-          <input type="checkbox" name="ong5F" id="ong5F">
-          <label for="ong5F">Amor em Patas Taquaritinga</label>
-        </div>
-
-        <div>
-          <input type="checkbox" name="ong6F" id="ong6F">
-          <label for="ong6F">Anjos de Quatro Patas</label>
-        </div>
+          <p id="ongsFiltroMensagem" class="ongsFiltroMensagem" aria-live="polite">Carregando ONGs...</p>
+          <div id="ongsFiltroLista"></div>
       </div>
 
     <div class="linha"></div>

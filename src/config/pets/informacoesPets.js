@@ -33,10 +33,12 @@ export class InformacoesPets {
     this.status = status;
     this.dataPost = dataPost;
     this.dataAtt = dataAtt;
+    this.cidade = "";
   }
 
   static fromAPI(data) {
     let caminhoFoto = data.fotos;
+    const idOng = data.fk_idong || data.id_ong || data.ong_id || data.idong || "";
 
     if (!caminhoFoto || caminhoFoto.length < 5) {
       caminhoFoto =
@@ -52,7 +54,7 @@ export class InformacoesPets {
 
     const pet = new InformacoesPets(
       data.idpet,                           // id
-      data.fk_idong,                        // idOng
+      idOng,                                // idOng
       caminhoFoto,                          // foto
       data.nome,                            // nome
       data.sexopet,                         // sexo
@@ -63,12 +65,13 @@ export class InformacoesPets {
       data.raca,                            // raca
       data.descricao,                       // sobre
       data.nome_ong,                        // ongNome
-      `ongPage.html?id=${data.fk_idong}`,   // ongLink
+      idOng ? `ongPage.html?id=${idOng}` : "ongs.html", // ongLink
       data.status,                          // status
       data.data_post,                       // dataPost
       data.data_att                         // dataAtt
     );
 
+    pet.cidade = data.cidade || "";
 
     return pet;
   }

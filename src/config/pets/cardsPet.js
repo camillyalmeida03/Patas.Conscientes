@@ -20,6 +20,21 @@ export class CardsPets {
     this.informacoesExibidas = false;
   }
 
+  criarBotaoAdotar(parent) {
+    const botaoAdotar = this.criarElemento.createButton(
+      ["buttonRosa", "adotar"],
+      "Adotar",
+      parent,
+      "Adotar " + this.InfoPet.nome
+    );
+
+    if (typeof traduzir === "function") {
+      traduzir();
+    }
+
+    return botaoAdotar;
+  }
+
   // Método responsável por criar o modal de cada pet
   modalPet(InfoPet) {
     this.InfoPet = InfoPet;
@@ -300,17 +315,12 @@ export class CardsPets {
 
     this.bttcard = this.criarElemento.createElement(
       "div",
-      "bttcard",
+      ["bttcard", "bttcardModal"],
       null,
       this.conjInfoPetBtt
     );
 
-    this.botaoAdotar = this.criarElemento.createButton(
-      "buttonRosa",
-      "Adotar",
-      this.bttcard,
-      "Adotar " + this.InfoPet.nome
-    );
+    this.botaoAdotarModal = this.criarBotaoAdotar(this.bttcard);
 
     this.conjFavoritarCompartilhar = this.criarElemento.createElement(
       "div",
@@ -418,7 +428,7 @@ export class CardsPets {
 
     this.linkDesc = this.criarElemento.createA(
       "linkDesc",
-      "ongs.html",
+      this.InfoPet.ongLink,
       "Link para a página de " + this.InfoPet.ongNome,
       this.InfoPet.ongNome,
       this.p
@@ -642,12 +652,7 @@ export class CardsPets {
       }
     });
 
-    this.botaoAdotar = this.criarElemento.createButton(
-      "buttonRosa",
-      "Adotar",
-      this.bttcard,
-      "Adotar " + this.InfoPet.nome
-    );
+    this.botaoAdotar = this.criarBotaoAdotar(this.bttcard);
 
     this.cardsAnimais.classList.add("mostrar-mais");
     this.informacoesExibidas = true;
@@ -678,7 +683,7 @@ export class CardsPets {
 
     this.linkDesc = this.criarElemento.createA(
       "linkDesc",
-      "ongs.html",
+      this.InfoPet.ongLink,
       "Link para a página de " + this.InfoPet.ongNome,
       this.InfoPet.ongNome,
       this.p
@@ -703,17 +708,7 @@ export class CardsPets {
       traduzir();
     }
 
-    this.botaoAdotar = this.criarElemento.createButton(
-      "buttonRosa",
-      "Adotar",
-      this.bttcard,
-      "Adotar " + this.InfoPet.nome
-    );
-
-    this.botaoAdotar.classList.add("adotar");
-    if (typeof traduzir === "function") {
-      traduzir();
-    }
+    this.botaoAdotar = this.criarBotaoAdotar(this.bttcard);
 
     this.cardsAnimais.classList.remove("mostrar-mais");
     this.informacoesExibidas = false;
@@ -746,6 +741,11 @@ export class CardsPets {
       );
 
       this.cardsAnimais.id = `pet-${this.InfoPet.id}`;
+      this.cardsAnimais.dataset.cidade = this.InfoPet.cidade || "";
+      this.cardsAnimais.dataset.ong = this.InfoPet.idOng || "";
+      this.cardsAnimais.dataset.especie = this.InfoPet.especie || "";
+      this.cardsAnimais.dataset.porte = this.InfoPet.porte || "";
+      this.cardsAnimais.dataset.sexo = this.InfoPet.sexo || "";
       this.card = this.cardsAnimais;
 
       this.adotarMiniCard = this.criarElemento.createElement(
