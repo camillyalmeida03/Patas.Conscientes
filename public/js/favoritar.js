@@ -2,51 +2,40 @@
 
 // Importando informações de outros arquivos
 import { CriarElementos } from "./criarElementos.js";
+import { MensagemFeedback } from "./formularios/mensagemFeedback.js";
+import { InformacoesPets } from "../../src/config/pets/informacoesPets.js";
 
+let feedbackPai = document.getElementById("feedbackAdotar");
 
 export class Favoritar {
   constructor(infoOng = null, InfoPet = null) {
     this.criarElemento = new CriarElementos();
     this.infoOng = infoOng;
-    this.InfoPet = InfoPet;
+    this.InformacoesPet = new InformacoesPets();
+    this.InfoPet = this.InformacoesPet;
     this.adicionarFavorito = null;
     this.apagarFavorito = null;
   }
 
-
   // Mostra mensagem de feedback confirmando que foi favoritado
   adicionarFeedbackFavoritado() {
-    const imgAdd = document.createElement("img");
-    imgAdd.src = "/public/img/feedback/fav_adicionado.svg";
-    imgAdd.style.position = "fixed";
-    imgAdd.style.top = "5rem";
-    imgAdd.style.right = "2rem";
-    imgAdd.style.zIndex = "4000";
-    imgAdd.style.height = "6rem";
-    document.body.appendChild(imgAdd);
-    setTimeout(() => imgAdd.remove(), 3000);
+    new MensagemFeedback(`O pet ${this.InfoPet.nome} foi favoritado!`, feedbackPai).feedbackSucess();
+    return;
   }
 
   // Mostra mensagem de feedback confirmando que foi desfavoritado
   adicionarFeedbackDesfavoritado() {
-    const imgRem = document.createElement("img");
-    imgRem.src = "/public/img/feedback/fav_removido.svg";
-    imgRem.style.position = "fixed";
-    imgRem.style.top = "5rem";
-    imgRem.style.right = "2rem";
-    imgRem.style.zIndex = "4000";
-    imgRem.style.height = "6rem";
-    document.body.appendChild(imgRem);
-    setTimeout(() => imgRem.remove(), 3000);
+    new MensagemFeedback(`O pet ${this.InfoPet.nome} foi removido dos favoritos!`, feedbackPai).feedbackSucess();
+    return;
   }
 
   // Remove o feedback, caso eles esteja na tela
-  removeFeedback() {
-    const imgFeedback = document.querySelector(
-      'body > img[src="/public/img/feedback/fav_adicionado.svg"], body > img[src="/public/img/feedback/fav_removido.svg"]'
-    );
-    if (imgFeedback) imgFeedback.remove();
-  }
+  // removeFeedback() {
+  //   const imgFeedback = document.querySelector(
+  //     'body > img[src="/public/img/feedback/fav_adicionado.svg"], body > img[src="/public/img/feedback/fav_removido.svg"]'
+  //   );
+  //   if (imgFeedback) imgFeedback.remove();
+  // }
 
   // Evento de clique no botão de favoritar
   cliqueNoBotFavoritar(elementoPai, nome) {
@@ -66,7 +55,7 @@ export class Favoritar {
 
       this.cliqueNoBotDesfavoritar(elementoPai, nome);
 
-      this.removeFeedback();
+      // this.removeFeedback();
       this.adicionarFeedbackFavoritado();
     });
   }
@@ -89,7 +78,7 @@ export class Favoritar {
 
       this.cliqueNoBotFavoritar(elementoPai, nome);
 
-      this.removeFeedback();
+      // this.removeFeedback();
       this.adicionarFeedbackDesfavoritado();
     });
   }

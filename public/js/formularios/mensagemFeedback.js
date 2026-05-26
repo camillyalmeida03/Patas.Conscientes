@@ -1,6 +1,5 @@
 // Este arquivo montaa uma padrão para as mensagens de feeback no site
 import { CriarElementos } from "../criarElementos.js";
-
 export class MensagemFeedback {
     constructor(mensagem, pai) {
         this.mensagem = mensagem;
