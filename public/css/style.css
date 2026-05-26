@@ -2533,7 +2533,8 @@ ol {
     margin-left: 0.5rem;
 }
 
-#olho {
+#olho,
+.eye-icon img {
     cursor: pointer;
     width: 1.5rem;
 }

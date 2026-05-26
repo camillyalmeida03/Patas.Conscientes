@@ -93,7 +93,7 @@ function criarCheckboxOng(ong) {
 
     const label = document.createElement("label");
     label.htmlFor = checkboxId;
-    label.textContent = ong.cidade ? `${nomeOng} - ${ong.cidade}` : nomeOng;
+    label.textContent = nomeOng;
 
     item.appendChild(input);
     item.appendChild(label);
