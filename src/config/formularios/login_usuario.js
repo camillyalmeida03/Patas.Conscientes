@@ -21,6 +21,15 @@ acssEntrar.addEventListener("click", function () {
 
 const formEntrar = document.getElementById("formEntrar");
 const feedbackPai = document.getElementById("mensagemcriacaodeconta");
+const botaoEntrarLogin = document.getElementById("botaoentrarlogin");
+const textoOriginalBotaoEntrar = botaoEntrarLogin?.textContent || "Confirmar";
+
+function definirEstadoBotaoEntrar(carregando) {
+  if (!botaoEntrarLogin) return;
+
+  botaoEntrarLogin.disabled = carregando;
+  botaoEntrarLogin.textContent = carregando ? "Carregando..." : textoOriginalBotaoEntrar;
+}
 
 if (formEntrar) {
   formEntrar.addEventListener("submit", async (e) => {
@@ -29,12 +38,15 @@ if (formEntrar) {
     const camposValidos = validarEmail() && validarSenhas();
 
     if (!camposValidos) {
+      definirEstadoBotaoEntrar(false);
       new MensagemFeedback(
         "Email ou senha inválidos.",
         feedbackPai
       ).feedbackError();
       return;
     }
+
+    definirEstadoBotaoEntrar(true);
 
     try {
       const email = document.getElementById("emailUsuarioAdt").value.trim();
@@ -49,6 +61,7 @@ if (formEntrar) {
       const data = await responseLogin.json();
 
       if (!responseLogin.ok || data.success === false) {
+        definirEstadoBotaoEntrar(false);
         new MensagemFeedback(
           data.message || "Erro ao enviar dados.",
           feedbackPai
@@ -83,6 +96,7 @@ if (responseLogin.ok) {
   return;
 }
     } catch (error) {
+      definirEstadoBotaoEntrar(false);
       console.error("Erro ao enviar dados:", error);
       new MensagemFeedback(
         "Erro ao enviar dados. Tente novamente.",

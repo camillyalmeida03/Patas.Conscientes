@@ -1632,6 +1632,17 @@ footer .listasFooter a:hover {
     justify-content: space-between;
 }
 
+.modalAcoesPet {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 1rem;
+}
+
+.modalAcoesPet .buttonRosa {
+    width: fit-content;
+}
+
 .adotarMiniCard>img {
     aspect-ratio: 1 / 1;
     width: 100%;

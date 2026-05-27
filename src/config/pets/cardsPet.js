@@ -45,6 +45,11 @@ export class CardsPets {
       document.body
     );
     this.fundoAba.style.display = "none"; // Esconde o fundo da aba
+    this.fundoAba.addEventListener("click", (event) => {
+      if (event.target === this.fundoAba) {
+        this.esconderFundoDaAba();
+      }
+    });
 
     this.maisInfoPet = this.criarElemento.createElement(
       "div",
@@ -313,14 +318,21 @@ export class CardsPets {
       "sobrePet"
     );
 
+    this.modalAcoesPet = this.criarElemento.createElement(
+      "div",
+      "modalAcoesPet",
+      null,
+      this.infoBotaoCardPet
+    );
+
+    this.botaoAdotarModal = this.criarBotaoAdotar(this.modalAcoesPet);
+
     this.bttcard = this.criarElemento.createElement(
       "div",
       ["bttcard", "bttcardModal"],
       null,
       this.conjInfoPetBtt
     );
-
-    this.botaoAdotarModal = this.criarBotaoAdotar(this.bttcard);
 
     this.conjFavoritarCompartilhar = this.criarElemento.createElement(
       "div",

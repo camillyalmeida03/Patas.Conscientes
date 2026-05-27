@@ -59,6 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const raca = document.getElementById("racaPetSel").value.trim();
     const porte = document.getElementById("portePetSel").value;
     const sexo = document.getElementById("sexoPetSel").value;
+    const descricao = document.getElementById("mensagem").value.trim();
 
     const camposPreenchidos =
       nome &&
@@ -67,7 +68,8 @@ document.addEventListener("DOMContentLoaded", () => {
       especie &&
       raca &&
       porte &&
-      sexo;
+      sexo &&
+      descricao.length >= 10;
 
     if (camposPreenchidos) {
       botaoEnviar.classList.remove("desabilitado");
@@ -110,6 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!formPet) return;
 
+  formPet.addEventListener("input", controlarBotao);
   formPet.addEventListener("change", controlarBotao);
 
   controlarBotao();
@@ -127,7 +130,8 @@ document.addEventListener("DOMContentLoaded", () => {
       validarEspecie() &&
       validarPorte() &&
       validarSexoPet() &&
-      validarFotoPet();
+      validarFotoPet() &&
+      validarDescricao();
 
     if (!camposValidos) {
       botaoEnviar.classList.remove("desabilitado");
