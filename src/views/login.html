@@ -49,7 +49,7 @@
           <p id="erroLoginUsuario" class="error-message"></p>
 
           <button class="linkFalso entraresqueceu" type="button" title="Recuperar senha" aria-label="Recuperar senha"
-            id="botaorecuperarsenha">Esqueceu sua
+            id="botaorecuperarsenha">Esqueceu <sua></sua>
             senha?</button>
 
           <button class="entrarconfirmar botLogin" type="submit" id="botaoentrarlogin" title="Entrar na sua conta"
@@ -153,41 +153,64 @@
     </svg>
   </div>
 
-  <!-- Modal Recuperar Senha -->
-  <div id="modalRecuperarSenha" class="modalRecuperar">
-    <div class="modalConteudo">
+<!-- Modal Recuperar Senha -->
+<div id="modalRecuperarSenha" class="modalRecuperar">
+  <div class="modalConteudo">
 
-      <span id="fecharModalRecuperar" class="fecharModal">&times;</span>
+    <span id="fecharModalRecuperar" class="fecharModal">&times;</span>
 
-      <h2 class="azul entrarrecuperar">Recuperar senha</h2>
+    <h2 class="azul entrarrecuperar">Recuperar senha</h2>
 
-      <div class="formRecuperar">
+    <div class="formRecuperar">
 
-        <input class="entraremail" type="email" id="emailRecuperar" placeholder="Digite seu email">
+      <input class="entraremail" type="email" id="emailRecuperar" placeholder="Digite seu email">
 
-        <button id="enviarCodigo" class="botLogin entrarenviarcod">
-          Enviar código
-        </button>
+      <button id="enviarCodigo" class="botLogin entrarenviarcod">
+        Enviar código
+      </button>
 
-        <input class="entrardigitecod" type="text" id="codigoRecuperacao" placeholder="Digite o código">
+      <input class="entrardigitecod" type="text" id="codigoRecuperacao" placeholder="Digite o código">
 
-        <button id="confirmarCodigo" class="botLogin entrarconfircod">
-          Confirmar código
-        </button>
+      <button id="confirmarCodigo" class="botLogin entrarconfircod">
+        Confirmar código
+      </button>
 
-        <input class="entraralterarsenha" type="password" id="novaSenha" placeholder="Digite a nova senha"
-          style="display:none">
+      <input class="entraralterarsenha" type="password" id="novaSenha" placeholder="Digite a nova senha"
+        style="display:none">
 
-        <button id="alterarSenha" class="botLogin entraralterarsenha" style="display:none">
-          Alterar senha
-        </button>
+      <button id="alterarSenha" class="botLogin entraralterarsenha" style="display:none">
+        Alterar senha
+      </button>
 
-        <p id="mensagemRecuperacao"></p>
-
-      </div>
+      <p id="mensagemRecuperacao"></p>
 
     </div>
+
   </div>
+</div>
+
+<!-- Modal Confirmar Fechamento -->
+<div id="modalConfirmarFechar" class="modalRecuperar" style="display:none;">
+  <div class="modalConteudo">
+
+    <h2 class="azul">Tem certeza?</h2>
+
+    <p style="text-align:center; margin:20px 0;">
+      Se você fechar agora, o processo de recuperação de senha será cancelado.
+    </p>
+
+    <div style="display:flex; gap:10px; justify-content:center;">
+      <button id="cancelarFechamento" class="botLogin">
+        Continuar recuperação
+      </button>
+
+      <button id="confirmarFechamento" class="botLogin">
+        Sim, fechar
+      </button>
+    </div>
+
+  </div>
+</div>
 
 
 

@@ -24,6 +24,9 @@ const botaoRecuperar = document.getElementById("botaorecuperarsenha");
 const modal = document.getElementById("modalRecuperarSenha");
 const fecharModal = document.getElementById("fecharModalRecuperar");
 
+const modalConfirmarFechar = document.getElementById("modalConfirmarFechar");
+const cancelarFechamento = document.getElementById("cancelarFechamento");
+const confirmarFechamento = document.getElementById("confirmarFechamento");
 const botaoEnviarCodigo = document.getElementById("enviarCodigo");
 const botaoConfirmarCodigo = document.getElementById("confirmarCodigo");
 const botaoAlterarSenha = document.getElementById("alterarSenha");
@@ -41,10 +44,38 @@ botaoRecuperar.addEventListener("click", () => {
 });
 
 
-// fechar modal
+// abrir confirmação de fechamento
 fecharModal.addEventListener("click", () => {
-  modal.style.display = "none";
+  modalConfirmarFechar.style.display = "flex";
 });
+
+// continuar recuperação
+cancelarFechamento.addEventListener("click", () => {
+  modalConfirmarFechar.style.display = "none";
+});
+
+// confirmar fechamento
+confirmarFechamento.addEventListener("click", () => {
+
+  modal.style.display = "none";
+  modalConfirmarFechar.style.display = "none";
+
+  // limpar campos
+  emailInput.value = "";
+  codigoInput.value = "";
+  novaSenhaInput.value = "";
+
+  mensagem.innerHTML = "";
+
+  // voltar para estado inicial
+  codigoInput.style.display = "block";
+  botaoConfirmarCodigo.style.display = "block";
+
+  novaSenhaInput.style.display = "none";
+  botaoAlterarSenha.style.display = "none";
+});
+
+
 
 
 // enviar código

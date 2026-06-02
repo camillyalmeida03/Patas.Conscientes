@@ -71,6 +71,19 @@ class VerificaAlt {
   }
 }
 
+// Atualiza a foto de perfil exibida na tela de configurações
+function atualizarFotoUsuarioConfig(fotoUrl) {
+  const fotoEl = document.getElementById("fotoUsuarioconfig");
+  if (!fotoEl) return;
+
+  if (fotoUrl) {
+    fotoEl.style.backgroundImage = `url('${fotoUrl}')`;
+    fotoEl.classList.remove("fotoDefaultUsuario");
+  } else {
+    fotoEl.classList.add("fotoDefaultUsuario");
+  }
+}
+
 // Função responsável por realizar o upload da foto de perfil do usuário
 function botaoUploadFoto(idUsuario) {
 
@@ -120,15 +133,8 @@ function botaoUploadFoto(idUsuario) {
         // Salva novamente o usuário atualizado no localStorage
         localStorage.setItem("usuario", JSON.stringify(usuario));
 
-        // Seleciona o elemento que exibe a foto do usuário na tela
-        const fotoEl = document.getElementById("fotoUsuarioconfig");
-
-        // Se o elemento existir, atualiza a imagem de fundo com a nova foto
-        if (fotoEl) {
-          location.reload();
-
-          fotoEl.style.backgroundImage = `url('${data.path}')`;
-        }
+        // Atualiza a foto exibida imediatamente após upload
+        atualizarFotoUsuarioConfig(data.path);
 
         // Exibe uma mensagem de sucesso para o usuário
         new MensagemFeedback(

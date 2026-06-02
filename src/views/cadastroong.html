@@ -83,14 +83,23 @@
 
           <div>
             <div class="alinharErro">
-              <input id="senhaUsuarioAdt" name="senha" type="password" class="inputCadastro senhaongtradutor"
-                placeholder="Senha">
+              <div style="position: relative; width: 100%;">
+                <input id="senhaUsuarioAdt" name="senha" type="password" class="inputCadastro senhaongtradutor senhaUsuario"
+                  placeholder="Senha">
+                <span id="toggleSenhaOng" class="eye-icon" style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%);">
+                  <img id="olhoSenhaOng" src="/public/img/icons/olhofechado.svg" title="Mostrar/Ocultar senha" alt="" style="width:1.5rem; cursor:pointer;">
+                </span>
+              </div>
               <p id="erroSenhaUsuarioAdt" class="error-message"></p>
             </div>
 
             <div class="alinharErro">
-              <input id="confirmaSenhaUsuarioAdt" name="senha" type="password"
-                class="inputCadastro confirmasenhatradutor" placeholder="Confirme sua senha">
+              <div style="position: relative; width: 100%;">
+                <input id="confirmaSenhaUsuarioAdt" name="senha" type="password" class="inputCadastro confirmasenhatradutor confirmarSenha" placeholder="Confirme sua senha">
+                <span id="toggleConfSenhaOng" class="eye-icon" style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%);">
+                  <img id="olhoConfSenhaOng" src="/public/img/icons/olhofechado.svg" title="Mostrar/Ocultar senha" alt="" style="width:1.5rem; cursor:pointer;">
+                </span>
+              </div>
               <p id="erroConfirSenhaUsuarioAdt" class="error-message"></p>
             </div>
           </div>
@@ -304,6 +313,50 @@
   <script src="/public/js/traducao.js"></script>
   <script type="module" src="/public/js/migalhasPao.js"></script>
   <!-- <script src="/public/js/conexaoBanco/form_ong_cx.js"></script> -->
+  <script>
+    // Mostrar/Ocultar senha — mesma lógica do login.js, aplicada aos campos de cadastro de ONG
+    (function () {
+      // Senha principal
+      const toggleSenha = document.getElementById("toggleSenhaOng");
+      const senhaInput = document.getElementById("senhaUsuarioAdt");
+      const olhoSenha = document.getElementById("olhoSenhaOng");
+
+      if (toggleSenha && senhaInput && olhoSenha) {
+        toggleSenha.addEventListener("click", function () {
+          const type = senhaInput.getAttribute("type") === "password" ? "text" : "password";
+          senhaInput.setAttribute("type", type);
+
+          if (type === "password") {
+            olhoSenha.src = "/public/img/icons/olhofechado.svg";
+            olhoSenha.title = "Mostrar senha";
+          } else {
+            olhoSenha.src = "/public/img/icons/olhoaberto.svg";
+            olhoSenha.title = "Ocultar senha";
+          }
+        });
+      }
+
+      // Confirmação de senha
+      const toggleConf = document.getElementById("toggleConfSenhaOng");
+      const confInput = document.getElementById("confirmaSenhaUsuarioAdt");
+      const olhoConf = document.getElementById("olhoConfSenhaOng");
+
+      if (toggleConf && confInput && olhoConf) {
+        toggleConf.addEventListener("click", function () {
+          const type = confInput.getAttribute("type") === "password" ? "text" : "password";
+          confInput.setAttribute("type", type);
+
+          if (type === "password") {
+            olhoConf.src = "/public/img/icons/olhofechado.svg";
+            olhoConf.title = "Mostrar senha";
+          } else {
+            olhoConf.src = "/public/img/icons/olhoaberto.svg";
+            olhoConf.title = "Ocultar senha";
+          }
+        });
+      }
+    })();
+  </script>
 
 
 </body>

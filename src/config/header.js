@@ -351,7 +351,7 @@ export class ContaPopup {
           this.popup = null;
         }
 
-        window.location.reload();
+        window.location.href = "/src/views/login.html";
       });
 
     } else {

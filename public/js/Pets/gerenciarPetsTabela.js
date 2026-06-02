@@ -273,7 +273,7 @@ document.addEventListener("DOMContentLoaded", () => {
     formPet.dataset.petId = pet.idpet;
 
     if (campos.titulo) campos.titulo.textContent = "Editar Pet";
-    botaoSalvar.value = "Salvar alteracoes";
+    botaoSalvar.value = "Salvar alterações";
 
     limparErros();
 

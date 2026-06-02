@@ -1,8 +1,6 @@
-//Este arquivo é responsável por trazer as funcionalidades dos filtros.
-
 const API_CIDADES_URL = "http://localhost:6789/cidades";
 const API_ONGS_URL = "http://localhost:6789/ongs";
-const API_FILTRO_PETS_URL = "http://192.168.1.15:6789/filtro/pets/filtro";
+const API_FILTRO_PETS_URL = "http://localhost:6789/filtro/pets/filtro";
 
 const MAPA_ESPECIE = {
     cachorroF: 1,
@@ -95,7 +93,7 @@ function criarCheckboxOng(ong) {
 
     const label = document.createElement("label");
     label.htmlFor = checkboxId;
-    label.textContent = ong.cidade ? `${nomeOng} - ${ong.cidade}` : nomeOng;
+    label.textContent = nomeOng;
 
     item.appendChild(input);
     item.appendChild(label);

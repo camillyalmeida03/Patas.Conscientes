@@ -252,52 +252,74 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const inputCnpjOng = document.querySelector("#cnpj");
 
-    function validarCnpj() {
-        if (!inputCnpjOng) return true;
+function validarCnpj() {
+    if (!inputCnpjOng) return true;
 
-        // Mensagens de retorno
-        const mensagemCnpjObrigatorio = "O campo CNPJ é obrigatório.";
-        const mensagemCnpjInvalido = "Por favor, insira um CNPJ válido.";
+    const mensagemCnpjObrigatorio = "O campo CNPJ é obrigatório.";
+    const mensagemCnpjInvalido = "Por favor, insira um CNPJ válido.";
 
-        // Pegando dados do doc HTML
-        const cnpjOng = inputCnpjOng.value.trim();
-        const errocnpjOng = document.getElementById("erroCnpj");
+    const cnpjFormatado = inputCnpjOng.value.trim();
+    const errocnpjOng = document.getElementById("erroCnpj");
 
-        // Regex para CNPJ no formato 00.000.000/0000-00
-        const regexCnpj = /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/;
+    if (cnpjFormatado === "") {
+        errocnpjOng.innerHTML = mensagemCnpjObrigatorio;
+        errocnpjOng.style.display = "block";
+        return false;
+    }
 
-        if (inputCnpjOng) {
-            if (cnpjOng === "") {
-                errocnpjOng.innerHTML = mensagemCnpjObrigatorio;
-                errocnpjOng.style.display = "block";
-                return false;
-            } else if (!regexCnpj.test(cnpjOng)) {
-                errocnpjOng.innerHTML = mensagemCnpjInvalido;
-                errocnpjOng.style.display = "block";
-                return false;
-            } else {
-                errocnpjOng.style.display = "none";
-                return true;
-            }
+    // Remove caracteres não numéricos
+    const cnpj = cnpjFormatado.replace(/\D/g, "");
+
+    // Verifica tamanho
+    if (cnpj.length !== 14) {
+        errocnpjOng.innerHTML = mensagemCnpjInvalido;
+        errocnpjOng.style.display = "block";
+        return false;
+    }
+
+    // Verifica sequências repetidas
+    if (/^(\d)\1+$/.test(cnpj)) {
+        errocnpjOng.innerHTML = mensagemCnpjInvalido;
+        errocnpjOng.style.display = "block";
+        return false;
+    }
+
+    // Validação dos dígitos verificadores
+    function calcularDigito(cnpjParcial, pesos) {
+        let soma = 0;
+
+        for (let i = 0; i < pesos.length; i++) {
+            soma += parseInt(cnpjParcial[i]) * pesos[i];
         }
+
+        const resto = soma % 11;
+        return resto < 2 ? 0 : 11 - resto;
     }
 
-    if (inputCnpjOng) {
-        inputCnpjOng.addEventListener("input", function (e) {
-            let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
+    const primeiros12 = cnpj.substring(0, 12);
 
-            // Aplica a máscara
-            if (value.length > 2) value = value.replace(/^(\d{2})(\d)/, "$1.$2");
-            if (value.length > 6)
-                value = value.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
-            if (value.length > 10)
-                value = value.replace(/\.(\d{3})(\d)/, ".$1/$2");
-            if (value.length > 15)
-                value = value.replace(/(\d{4})(\d)/, "$1-$2")
+    const primeiroDigito = calcularDigito(
+        primeiros12,
+        [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
+    );
 
-            e.target.value = value;
-        });
+    const segundoDigito = calcularDigito(
+        primeiros12 + primeiroDigito,
+        [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
+    );
+
+    if (
+        primeiroDigito !== parseInt(cnpj[12]) ||
+        segundoDigito !== parseInt(cnpj[13])
+    ) {
+        errocnpjOng.innerHTML = mensagemCnpjInvalido;
+        errocnpjOng.style.display = "block";
+        return false;
     }
+
+    errocnpjOng.style.display = "none";
+    return true;
+}
 
 
     // Validação gênero do usuário
