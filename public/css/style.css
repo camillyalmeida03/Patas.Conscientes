@@ -177,7 +177,7 @@ main {
     font-weight: normal;
 }
 
-.buttonRosa {
+.buttonRosa, .buttonRosa2 {
     padding: 1rem;
     background-color: var(--rosa);
     color: white;
