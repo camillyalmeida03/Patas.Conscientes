@@ -243,7 +243,7 @@ export class ContaPopup {
           ["favoritostradutor"],
           "/src/views/favoritos.html",
           "Ver meus pets favoritos",
-          "Favoritos",
+          "Meus favoritos",
           configPopup
         );
 
@@ -251,12 +251,17 @@ export class ContaPopup {
           ["processosadocaotradutor"],
           "/src/views/processosAdocao.html",
           "Acompanhar meus processos de adocao",
-          "Processos de adocao",
+          "Meus processos de adocao",
           configPopup
         );
 
         if (ong && (ong.id || ong.idong)) {
           const idDaOng = ong.id || ong.idong;
+          const nomeDaOng = ong.nome || ong.nome_ong || "Minha ONG";
+
+          this.criar.createElement("div", ["linha"], "", configPopup);
+          this.criar.createElement("h5", ["titConfigOng"], "ONG", configPopup);
+          this.criar.createElement("p", ["nomeOngPopup"], nomeDaOng, configPopup);
 
           this.criar.createA(
             ["headerpainelong"],
@@ -265,13 +270,35 @@ export class ContaPopup {
             "Painel da ONG",
             configPopup
           );
+
+          this.criar.createA(
+            ["processosadocaoongtradutor"],
+            `./processosAdocaoOng.html?id=${idDaOng}`,
+            "Acompanhar processos de adocao da ONG",
+            "Processos de adocao da ONG",
+            configPopup
+          );
         }
       } else if (this.tipo === "ong") {
+        const idDaOng = ong?.id || ong?.idong || "";
+        const nomeDaOng = ong?.nome || ong?.nome_ong || "Minha ONG";
+
+        this.criar.createElement("h5", ["titConfigOng"], "ONG", configPopup);
+        this.criar.createElement("p", ["nomeOngPopup"], nomeDaOng, configPopup);
+
         this.criar.createA(
           ["headerpainelong"],
           "./configuracoes.html",
           "Painel administrativo da ONG",
           "Painel da ONG",
+          configPopup
+        );
+
+        this.criar.createA(
+          ["processosadocaoongtradutor"],
+          idDaOng ? `./processosAdocaoOng.html?id=${idDaOng}` : "./processosAdocaoOng.html",
+          "Acompanhar processos de adocao da ONG",
+          "Processos de adocao da ONG",
           configPopup
         );
       }

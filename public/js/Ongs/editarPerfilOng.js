@@ -168,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           </div>
 
-          <button type="submit" id="salvarEdicaoOng" class="buttonRosa desabilitado" disabled>Salvar alteracoes</button>
+          <button type="submit" id="salvarEdicaoOng" class="buttonRosa desabilitado" disabled>Salvar alterações</button>
           <p id="feedbackEditarOng"></p>
         </form>
       </div>
@@ -420,8 +420,8 @@ document.addEventListener("DOMContentLoaded", () => {
           banner: ongAtual.banner || null
         };
 
-        const response = await fetch(`${API_URL}/ongs/perfil/${ongAtual.idong}`, {
-          method: "PATCH",
+        const response = await fetch(`${API_URL}/ongs/${ongAtual.idong}`, {
+          method: "PUT",
           headers: {
             "Content-Type": "application/json"
           },

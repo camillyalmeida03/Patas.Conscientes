@@ -675,6 +675,18 @@ button {
     gap: 1rem;
 }
 
+.titConfigOng {
+    color: var(--azul_claro);
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.nomeOngPopup {
+    color: var(--cinza_h3);
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
 .configFinal {
     display: flex;
     flex-direction: row-reverse;
@@ -3380,6 +3392,14 @@ textarea {
     font-weight: 700;
 }
 
+.processosOngNome {
+    margin-bottom: 0.35rem;
+    color: var(--azul_claro);
+    font-size: 1.25rem;
+    font-weight: 800;
+    overflow-wrap: anywhere;
+}
+
 .listaProcessosAdocao {
     display: grid;
     grid-template-columns: 1fr;
@@ -3512,7 +3532,10 @@ textarea {
 
 .bodyME .processosAdocaoResumo,
 .bodyME .processo-adocao-titulo h2,
-.bodyME .processo-adocao-info-linha strong {
+.bodyME .processo-adocao-info-linha strong,
+.bodyME .nomeOngPopup,
+.bodyME .titConfigOng,
+.bodyME .processosOngNome {
     color: white;
 }
 

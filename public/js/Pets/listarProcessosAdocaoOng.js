@@ -2,6 +2,7 @@ const STORAGE_KEY = "solicitacoesAdocao";
 
 const lista = document.getElementById("listaProcessosAdocao");
 const resumo = document.getElementById("processosAdocaoResumoTexto");
+const nomeOngElemento = document.getElementById("processosOngNome");
 
 function lerJsonLocal(chave, fallback) {
   try {
@@ -12,41 +13,45 @@ function lerJsonLocal(chave, fallback) {
   }
 }
 
-function obterUsuarioLogado() {
-  return lerJsonLocal("usuario", null);
+function obterOngLocal() {
+  return lerJsonLocal("ong", null);
 }
 
-function obterIdUsuario(usuario) {
+function obterIdOng(ong) {
+  const params = new URLSearchParams(window.location.search);
   return (
-    usuario?.id ||
-    usuario?.idusuario ||
-    usuario?.id_usuario ||
-    usuario?.fk_idusuario ||
-    usuario?.usuario?.id ||
+    params.get("id") ||
+    ong?.id ||
+    ong?.idong ||
+    ong?.id_ong ||
+    ong?.fk_idong ||
     null
   );
 }
 
-function normalizarEmail(email) {
-  return String(email || "").trim().toLowerCase();
+function obterNomeOng(ong) {
+  return ong?.nome || ong?.nome_ong || "ONG";
 }
 
-function pertenceAoUsuario(solicitacao, usuario) {
-  const idUsuario = obterIdUsuario(usuario);
-  const emailUsuario = normalizarEmail(usuario?.email);
+function normalizarTexto(texto) {
+  return String(texto || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim()
+    .toLowerCase();
+}
+
+function pertenceAOng(solicitacao, idOng, nomeOng) {
   const idSolicitacao =
-    solicitacao?.fk_idusuario ||
-    solicitacao?.adotante?.id ||
-    solicitacao?.respostas?.idUsuario ||
+    solicitacao?.fk_idong ||
+    solicitacao?.pet?.fk_idong ||
+    solicitacao?.pet?.idOng ||
     null;
-  const emailSolicitacao = normalizarEmail(
-    solicitacao?.adotante?.email || solicitacao?.respostas?.email
-  );
 
-  if (idUsuario && String(idSolicitacao || "") === String(idUsuario)) return true;
-  if (emailUsuario && emailSolicitacao === emailUsuario) return true;
+  if (idOng && String(idSolicitacao || "") === String(idOng)) return true;
 
-  return false;
+  const nomeSolicitacao = solicitacao?.pet?.ong || solicitacao?.ong?.nome || "";
+  return normalizarTexto(nomeOng) && normalizarTexto(nomeSolicitacao) === normalizarTexto(nomeOng);
 }
 
 function formatarData(data) {
@@ -66,8 +71,8 @@ function formatarStatus(status) {
   const statusNormalizado = String(status || "").toLowerCase();
 
   const nomes = {
-    "preparada-localmente": "Solicitação preparada.",
-    preparada: "Solicitação preparada.",
+    "preparada-localmente": "Solicitacao recebida.",
+    preparada: "Solicitacao recebida.",
     enviada: "Enviada para analise.",
     analise: "Em analise.",
     aprovada: "Aprovada.",
@@ -75,7 +80,7 @@ function formatarStatus(status) {
     cancelada: "Cancelada.",
   };
 
-  return nomes[statusNormalizado] || "Solicitação preparada.";
+  return nomes[statusNormalizado] || "Solicitacao recebida.";
 }
 
 function criarElemento(tag, classes = [], texto = "") {
@@ -108,23 +113,17 @@ function criarLinhaInfo(label, valor) {
 
 function criarEtapas(status) {
   const etapaAtual = String(status || "").toLowerCase();
-  const etapas = [
-    { id: "preparada-localmente", label: "Formulario preenchido." },
-    { id: "analise", label: "Analise da ONG." },
-    { id: "retorno", label: "Retorno da ONG." },
-  ];
-
   const etapaAtiva =
     etapaAtual === "aprovada" || etapaAtual === "recusada" || etapaAtual === "cancelada"
       ? 3
       : etapaAtual === "analise" || etapaAtual === "enviada"
         ? 2
         : 1;
-
+  const etapas = ["Recebida.", "Analise.", "Retorno."];
   const container = criarElemento("ol", ["processo-adocao-etapas"]);
 
   etapas.forEach((etapa, index) => {
-    const item = criarElemento("li", [], etapa.label);
+    const item = criarElemento("li", [], etapa);
     if (index + 1 <= etapaAtiva) item.classList.add("ativo");
     container.appendChild(item);
   });
@@ -152,55 +151,59 @@ function criarCardProcesso(solicitacao) {
     criarElemento(
       "p",
       [],
-      [pet.especie, pet.porte, pet.ong].filter(Boolean).join(" | ") || "Detalhes do pet nao informados."
+      [pet.especie, pet.porte].filter(Boolean).join(" | ") || "Detalhes do pet nao informados."
     )
   );
   topo.appendChild(titulo);
 
-  const statusTag = criarElemento("span", ["processo-adocao-status"], formatarStatus(status));
-  topo.appendChild(statusTag);
+  topo.appendChild(criarElemento("span", ["processo-adocao-status"], formatarStatus(status)));
   card.appendChild(topo);
-
   card.appendChild(criarEtapas(status));
 
   const detalhes = criarElemento("div", ["processo-adocao-detalhes"]);
   detalhes.appendChild(criarLinhaInfo("Adotante", adotante.nome || respostas.nome));
+  detalhes.appendChild(criarLinhaInfo("E-mail", adotante.email || respostas.email));
   detalhes.appendChild(criarLinhaInfo("Telefone", adotante.telefone || respostas.telefone));
   detalhes.appendChild(criarLinhaInfo("Cidade", adotante.cidade || respostas.cidade));
   detalhes.appendChild(criarLinhaInfo("Moradia", respostas.moradia));
+  detalhes.appendChild(criarLinhaInfo("Motivacao", respostas.motivacao));
   card.appendChild(detalhes);
 
   return card;
 }
 
-function renderizarProcessos() {
+function renderizarProcessosOng() {
   if (!lista) return;
 
-  const usuario = obterUsuarioLogado();
+  const ong = obterOngLocal();
+  const idOng = obterIdOng(ong);
+  const nomeOng = obterNomeOng(ong);
 
-  if (!usuario) {
-    if (resumo) resumo.textContent = "Entre na sua conta para acompanhar seus processos.";
-    renderizarAviso("Entre na sua conta para ver seus processos de adocao.");
+  if (nomeOngElemento) nomeOngElemento.textContent = nomeOng;
+
+  if (!ong && !idOng) {
+    if (resumo) resumo.textContent = "Esta conta nao possui ONG vinculada.";
+    renderizarAviso("Nenhuma ONG foi encontrada para esta conta.");
     return;
   }
 
   const solicitacoes = lerJsonLocal(STORAGE_KEY, []);
   const processos = Array.isArray(solicitacoes)
     ? solicitacoes
-      .filter((solicitacao) => pertenceAoUsuario(solicitacao, usuario))
+      .filter((solicitacao) => pertenceAOng(solicitacao, idOng, nomeOng))
       .sort((a, b) => new Date(b.data_solicitacao || 0) - new Date(a.data_solicitacao || 0))
     : [];
 
   lista.innerHTML = "";
 
   if (processos.length === 0) {
-    if (resumo) resumo.textContent = "Nenhuma Solicitação iniciada nesta conta.";
-    renderizarAviso("Voce ainda nao iniciou nenhum processo de adocao.");
+    if (resumo) resumo.textContent = `Nenhuma solicitacao recebida por ${nomeOng}.`;
+    renderizarAviso("Esta ONG ainda nao recebeu processos de adocao pelo site.");
     return;
   }
 
   if (resumo) {
-    resumo.textContent = `${processos.length} processo${processos.length > 1 ? "s" : ""} de adocao encontrado${processos.length > 1 ? "s" : ""}.`;
+    resumo.textContent = `${processos.length} processo${processos.length > 1 ? "s" : ""} de adocao recebido${processos.length > 1 ? "s" : ""} por ${nomeOng}.`;
   }
 
   processos.forEach((solicitacao) => {
@@ -208,5 +211,5 @@ function renderizarProcessos() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", renderizarProcessos);
-window.addEventListener("solicitacaoAdocaoCriada", renderizarProcessos);
+document.addEventListener("DOMContentLoaded", renderizarProcessosOng);
+window.addEventListener("solicitacaoAdocaoCriada", renderizarProcessosOng);
