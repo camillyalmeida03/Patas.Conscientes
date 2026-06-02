@@ -20,6 +20,7 @@ function traduzir() {
             headerconta: "Conta",
             headerminhaconta: "Minha conta",
             headerpainelong: "Painel da ONG",
+            headerprocessosadocao: "Processos de adocao",
             headerentrar: "Entrar",
             headersair: "Sair",
             headerbemvindo: "Bem-vindo!",
@@ -267,6 +268,7 @@ Todas as ações e informações da ONG ficarão vinculadas ao seu perfil.`,
             breadcrumbcadastroadotante: "Cadastro",
             breadcrumbconfiguracoes: "Configurações",
             breadcrumbfavoritos: "Favoritos",
+            breadcrumbprocessosadocao: "Processos de adocao",
             breadcrumbformularioparceiro: "Formulário de cadastro para Parceiros",
             breadcrumbformularioparceiro2: "Formulário de cadastro para Parceiros",
             breadcrumbinstitucional: "Institucional",
@@ -294,6 +296,7 @@ Todas as ações e informações da ONG ficarão vinculadas ao seu perfil.`,
             headerconta: "Account",
             headerminhaconta: "My account",
             headerpainelong: "NGO panel",
+            headerprocessosadocao: "Adoption processes",
             headerentrar: "Login",
             headersair: "Exit",
             headerbemvindo: "Welcome!",
@@ -534,6 +537,7 @@ All NGO actions and information will be linked to your profile.`,
             breadcrumbcadastroadotante: "Registration",
             breadcrumbconfiguracoes: "Settings",
             breadcrumbfavoritos: "Favorites",
+            breadcrumbprocessosadocao: "Adoption processes",
             breadcrumbformularioparceiro: "Partner registration form",
             breadcrumbformularioparceiro2: "Partner registration form",
             breadcrumbinstitucional: "Institutional",
@@ -584,6 +588,7 @@ All NGO actions and information will be linked to your profile.`,
     traduzirClasse("titConfig", idioma[idiomaselect].headerconta);
     traduzirClasse("minhacontatradutor", idioma[idiomaselect].headerminhaconta);
     traduzirClasse("headerpainelong", idioma[idiomaselect].headerpainelong);
+    traduzirClasse("processosadocaotradutor", idioma[idiomaselect].headerprocessosadocao);
     traduzirClasse("headersair", idioma[idiomaselect].headersair);
     traduzirClasse("headerbemvindo", idioma[idiomaselect].headerbemvindo);
     traduzirClasse("headeracesseoucrie", idioma[idiomaselect].headeracesseoucrie);
@@ -815,6 +820,7 @@ All NGO actions and information will be linked to your profile.`,
     traduzirClasse("breadcrumb-cadastroadotante-tradutor", idioma[idiomaselect].breadcrumbcadastroadotante);
     traduzirClasse("breadcrumb-configuracoes-tradutor", idioma[idiomaselect].breadcrumbconfiguracoes);
     traduzirClasse("breadcrumb-favoritos-tradutor", idioma[idiomaselect].breadcrumbfavoritos);
+    traduzirClasse("breadcrumb-processos-adocao-tradutor", idioma[idiomaselect].breadcrumbprocessosadocao);
     traduzirClasse("breadcrumb-formularioparceiro-tradutor", idioma[idiomaselect].breadcrumbformularioparceiro);
     traduzirClasse("breadcrumb-formularioparceiro2-tradutor", idioma[idiomaselect].breadcrumbformularioparceiro2);
     traduzirClasse("breadcrumb-institucional-tradutor", idioma[idiomaselect].breadcrumbinstitucional);

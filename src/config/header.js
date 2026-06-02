@@ -238,6 +238,23 @@ export class ContaPopup {
           "Minha conta",
           configPopup
         );
+
+        this.criar.createA(
+          ["favoritostradutor"],
+          "/src/views/favoritos.html",
+          "Ver meus pets favoritos",
+          "Favoritos",
+          configPopup
+        );
+
+        this.criar.createA(
+          ["processosadocaotradutor"],
+          "/src/views/processosAdocao.html",
+          "Acompanhar meus processos de adocao",
+          "Processos de adocao",
+          configPopup
+        );
+
         if (ong && (ong.id || ong.idong)) {
           const idDaOng = ong.id || ong.idong;
 

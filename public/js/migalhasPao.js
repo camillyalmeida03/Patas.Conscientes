@@ -12,6 +12,7 @@ const BREADCRUMB_CLASSES = {
   "ongs.html": "breadcrumb-ongs-tradutor",
   "parceiro.html": "breadcrumb-parceiro-tradutor",
   "planos.html": "breadcrumb-planos-tradutor",
+  "processosAdocao.html": "breadcrumb-processos-adocao-tradutor",
 };
 
 function escapeHtml(text) {

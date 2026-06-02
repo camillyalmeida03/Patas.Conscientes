@@ -25,7 +25,7 @@ export class CardsOngs {
 
     const imgFav = this.criarElemento.createElement(
       "div",
-      ["imgFav", "favoritado"],
+      "imgFav",
       null,
       cardOng
     );

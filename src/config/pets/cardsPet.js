@@ -5,6 +5,7 @@ import { CriarElementos } from "../../../public/js/criarElementos.js";
 import { InformacoesPets } from "./informacoesPets.js";
 import { Favoritar } from "../../../public/js/favoritar.js";
 import { MensagemFeedback } from "../../../public/js/formularios/mensagemFeedback.js";
+import { abrirModalAdocao } from "../../../public/js/Pets/processoAdocaoModal.js";
 
 // Classe responsável por gerar os cards e os modais de cada pet
 export class CardsPets {
@@ -28,6 +29,13 @@ export class CardsPets {
       parent,
       "Adotar " + this.InfoPet.nome
     );
+    botaoAdotar.type = "button";
+
+    botaoAdotar.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      abrirModalAdocao(this.InfoPet);
+    });
 
     if (typeof traduzir === "function") {
       traduzir();
@@ -331,7 +339,7 @@ export class CardsPets {
     );
 
     // Chama o método favoritar, adiciona botão de favoritar e sua funcionalidade
-    this.favoritar = new Favoritar(InfoPet);
+    this.favoritar = new Favoritar(this.InfoPet);
     this.botaoFavorito = this.favoritar.criarBotoesCards(
       this.conjFavoritarCompartilhar,
       this.InfoPet.nome
@@ -412,7 +420,7 @@ export class CardsPets {
     // );
 
     // Chama o método favoritar, adiciona botão de favoritar e sua funcionalidade
-    this.favoritar = new Favoritar(InfoPet);
+    this.favoritar = new Favoritar(this.InfoPet);
     this.botaoFavorito = this.favoritar.criarBotoesCards(
       this.conjFavoritarCompartilhar,
       this.InfoPet.nome
@@ -669,7 +677,7 @@ export class CardsPets {
   mostrarCardNormal(InfoPet) {
     this.limparCardNormal();
     // Chama o método favoritar, adiciona botão de favoritar e sua funcionalidade
-    this.favoritar = new Favoritar(InfoPet);
+    this.favoritar = new Favoritar(this.InfoPet);
     this.botaoFavorito = this.favoritar.criarBotoesCards(
       this.nomIconAdotar,
       this.InfoPet.nome

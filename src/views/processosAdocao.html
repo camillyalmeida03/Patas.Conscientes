@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Acompanhe seus processos de adocao iniciados no Patas Conscientes e revise os dados enviados para as ONGs." />
+
+  <link rel="icon" href="/public/img/icons/favicon.svg">
+  <link rel="stylesheet" href="/public/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet">
+  <title>Processos de adocao - Patas Conscientes</title>
+</head>
+
+<body>
+  <header id="headerIndex">
+    <script type="module" src="/src/config/header.js"></script>
+  </header>
+
+  <section class="caminho"></section>
+
+  <h1 class="azul centro processosadocaotradutor">Processos de adocao</h1>
+
+  <main class="mainProcessosAdocao">
+    <section class="processosAdocaoResumo" aria-live="polite">
+      <p id="processosAdocaoResumoTexto">Acompanhe por aqui as solicitacoes que voce iniciou no site.</p>
+    </section>
+
+    <section id="listaProcessosAdocao" class="listaProcessosAdocao">
+      <!-- Os processos de adocao do usuario serao carregados aqui -->
+    </section>
+  </main>
+
+  <footer id="footer">
+    <script src="/public/js/footer.js"></script>
+  </footer>
+
+  <script src="/public/js/traducao.js"></script>
+  <script type="module" src="/public/js/Pets/listarProcessosAdocao.js"></script>
+  <script src="/public/js/barraacessibilidade.js" defer></script>
+  <script src="/public/js/tema.js" defer></script>
+  <script src="/public/js/carregar_pagina.js"></script>
+  <script type="module" src="/public/js/migalhasPao.js"></script>
+</body>
+
+</html>
