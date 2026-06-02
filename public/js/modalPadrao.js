@@ -2,13 +2,18 @@
 export class ModalPadrao {
   static pilha = [];
   constructor(fundoModal) {
+    this.ativo = Boolean(fundoModal);
+
+    if (!fundoModal) return;
+
     this.fundoModal = fundoModal;
     this.modal = fundoModal.querySelector(".modal");
     this.botaoFechar = fundoModal.querySelector(".fechar-modal");
     this.fotoOng = document.querySelector(".fotoCard");
-    this.originalZIndexFoto = window.getComputedStyle(this.fotoOng).zIndex;
+    this.originalZIndexFoto = this.fotoOng
+      ? window.getComputedStyle(this.fotoOng).zIndex
+      : null;
     this.ultimoFoco = null;
-    this.ativo = true;
 
     this.iniciar();
   }
@@ -35,7 +40,7 @@ export class ModalPadrao {
   }
 
   abrir() {
-    if (!this.ativo) return;
+    if (!this.ativo || !this.fundoModal || !this.modal) return;
 
     const modalAtual = ModalPadrao.pilha[ModalPadrao.pilha.length - 1];
     if (modalAtual && modalAtual !== this) {
@@ -57,6 +62,8 @@ export class ModalPadrao {
   }
 
   fechar() {
+    if (!this.fundoModal) return;
+
     this.fundoModal.classList.add("escondido");
     document.body.style.overflow = "";
 
@@ -73,6 +80,8 @@ export class ModalPadrao {
 
   // Novo método: fecha tudo de verdade, sem restaurar nada
   fecharTudo() {
+    if (!this.fundoModal) return;
+
     this.fundoModal.classList.add("escondido");
     document.body.style.overflow = "";
 
@@ -117,11 +126,13 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  esperarElemento("abrirModalAdicionar", (btn) => {
-    btn.addEventListener("click", () => {
-      modalAdicionarPet.abrir();
+  if (modalAdicionarPet.ativo) {
+    esperarElemento("abrirModalAdicionar", (btn) => {
+      btn.addEventListener("click", () => {
+        modalAdicionarPet.abrir();
+      });
     });
-  });
+  }
 
   /*
   const modalAdicionarFunc = new ModalPadrao(
@@ -147,7 +158,7 @@ const usuario = JSON.parse(localStorage.getItem("usuario"));
 // Modal de exclusão de conta 
 
 document.getElementById("alterarEmail")
-  .addEventListener("click", () => {
+  ?.addEventListener("click", () => {
     abrirModalAlteracao(
       "email",
       "Alteração de E-mail",
@@ -157,7 +168,7 @@ document.getElementById("alterarEmail")
   });
 
 document.getElementById("alterarSenha")
-  .addEventListener("click", () => {
+  ?.addEventListener("click", () => {
     abrirModalAlteracao(
       "senha",
       "Alteração de senha",
@@ -167,7 +178,7 @@ document.getElementById("alterarSenha")
   });
 
 document.getElementById("alterarTelefone")
-  .addEventListener("click", () => {
+  ?.addEventListener("click", () => {
     abrirModalAlteracao(
       "telefone",
       "Alteração de telefone",
@@ -177,7 +188,7 @@ document.getElementById("alterarTelefone")
   });
 
 document.getElementById("alterarCpf")
-  .addEventListener("click", () => {
+  ?.addEventListener("click", () => {
     abrirModalAlteracao(
       "cpf",
       "Alteração de CPF",
@@ -188,7 +199,7 @@ document.getElementById("alterarCpf")
 
 
 document.getElementById("excluirconta")
-  .addEventListener("click", () => {
+  ?.addEventListener("click", () => {
     abrirModalAlteracao(
       "excluir",
       "Excluir conta",

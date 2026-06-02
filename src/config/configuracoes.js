@@ -261,9 +261,14 @@ document.getElementById("perfilEdicao")
   }
   // Verifica se existe usuário e se ele possui uma foto salva
   if (usuario?.foto) {
-    atualizarFotoUsuarioConfig(usuario.foto);
-  } else {
-    atualizarFotoUsuarioConfig("");
+
+    // Seleciona o elemento onde a foto de perfil é exibida
+    const fotoEl = document.getElementById("fotoUsuarioconfig");
+
+    // Caso o elemento exista, define a imagem de fundo com a foto salva, MANTER COMO ESTÁ (:
+    if (fotoEl) {
+      fotoEl.style.backgroundImage = `url('${usuario.foto}')`;
+    }
   }
 
   // Recupera o token de autenticação salvo no navegador

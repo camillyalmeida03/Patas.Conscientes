@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="Veja todos os animais e ONGs que você favoritou em nossa plataforma. Acompanhe suas opções de adoção e conecte-se facilmente com as organizações para apoiar a causa animal e encontrar o pet perfeito para você!">
+    content="Veja todos os animais que voce favoritou em nossa plataforma e acompanhe suas opcoes de adocao para encontrar o pet perfeito para voce.">
 
   <link rel="icon" href="/public/img/icons/favicon.svg">
   <link rel="stylesheet" href="/public/css/style.css">
@@ -14,7 +14,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
     rel="stylesheet">
-  <title> Seus favoritos - Patas Conscientes</title>
+  <title>Meus favoritos - Patas Conscientes</title>
 </head>
 
 <body>
@@ -24,30 +24,14 @@
 
   <section class="caminho"></section>
 
-  <h1 class="azul centro">Favoritos</h1>
+  <h1 class="azul centro">Meus favoritos</h1>
 
-  <main class="mainAside" id="mainFavoritos">
-
-    <aside class="asideFav asideRow">
-      <div class="alinhando">
-        <button title="Pets adicionados aos favoritos" class="buttonConfig" id="botaoPetLadoFavoritos">Pets</button>
-        <button title="ONG's adicionadas aos favoritos" class="buttonConfig" id="botaoOngLadoFavoritos">ONG's</button>
-      </div>
-
-    </aside>
-    <div class="linhaRow"></div>
-
+  <main id="mainFavoritos">
     <section id="petsLadoFavoritos" class="adotarSec petsFav">
 
       <!-- Aqui ficaram os pets favoritos -->
 
     </section>
-
-    <section id="ongLadoFavoritos" class="gridOng">
-
-
-    </section>
-
   </main>
 
   <div class="accessibility-bar" id="accessibilityBar">
@@ -124,14 +108,12 @@
     <script src="/public/js/footer.js"></script>
   </footer>
 
-  <script type="module" src="/public/js/header.js" defer></script>
   <script src="/public/js/barraacessibilidade.js" defer></script>
   <script src="/public/js/trocalado.js" defer></script>
   <script src="/public/js/tema.js" defer></script>
   <script src="/public/js/carregar_pagina.js"></script>
-  <script type="module" src="/public/js/Pets/cardsPet.js"></script>
-  <script type="module" src="/public/js/Ongs/cardsOngs.js"></script>
-  <script src="/public/js/trocaLado.js"></script>
+  <script type="module" src="/public/js/Pets/listarFavoritos.js"></script>
+  <script src="/public/js/traducao.js"></script>
   <script type="module" src="/public/js/migalhasPao.js"></script>
 
 </body>

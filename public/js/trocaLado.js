@@ -35,26 +35,6 @@ class TrocaLado {
   }
 }
 
-let petsLadoFavoritos = document.getElementById("petsLadoFavoritos");
-let ongLadoFavoritos = document.getElementById("ongLadoFavoritos");
-let botaoPetLadoFavoritos = document.getElementById("botaoPetLadoFavoritos");
-let botaoOngLadoFavoritos = document.getElementById("botaoOngLadoFavoritos");
-
-let trocaLadoFavoritos = new TrocaLado();
-
-if (botaoOngLadoFavoritos) {
-  trocaLadoFavoritos.trocarGrid(
-    ongLadoFavoritos,
-    petsLadoFavoritos,
-    botaoPetLadoFavoritos
-  );
-  trocaLadoFavoritos.trocarGrid(
-    petsLadoFavoritos,
-    ongLadoFavoritos,
-    botaoOngLadoFavoritos
-  );
-}
-
 // Trocar lados da página de cadastro de ONG
 let formCadOng = document.querySelector("#formCadOng");
 let formDocs = document.querySelector("#formDocs");
