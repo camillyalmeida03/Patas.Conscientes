@@ -14,17 +14,45 @@ const solicitacoesMock = [
 ];
 
 const statusMap = {
-  analise: { label: "Em Analise", classe: "status-analise" },
-  entrevista: { label: "Entrevista", classe: "status-entrevista" },
-  aguardando: { label: "Aguardando Visita", classe: "status-aguardando" },
-  aprovado: { label: "Aprovado", classe: "status-aprovado" },
+  analise: { label: "EM ANALISE", classe: "status-analise" },
+  entrevista: { label: "ENTREVISTA", classe: "status-entrevista" },
+  aguardando: { label: "AGUARDANDO", classe: "status-aguardando" },
+  aprovado: { label: "APROVADO", classe: "status-aprovado" },
 };
 
 const metricasConfig = [
-  { id: "novas", titulo: "Novas Solicitacoes", status: "analise", variacao: "+12%", cor: "metrica-azul" },
-  { id: "entrevista", titulo: "Em Entrevista", status: "entrevista", variacao: "+5%", cor: "metrica-ciano" },
-  { id: "aguardando", titulo: "Aguardando Visita", status: "aguardando", variacao: "0%", cor: "metrica-rosa" },
-  { id: "aprovados", titulo: "Aprovados", status: "aprovado", variacao: "+8%", cor: "metrica-verde" },
+  {
+    id: "novas",
+    titulo: "Novas Solicitacoes",
+    total: 24,
+    variacao: "+12%",
+    cor: "metrica-azul",
+    icone: `<svg viewBox="0 -960 960 960" aria-hidden="true"><path d="M680-80q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35Zm-30-80h60v-30h30v-60h-30v-30h-60v30h-30v60h30v30ZM200-120q-33 0-56.5-23.5T120-200v-520q0-33 23.5-56.5T200-800h80v-80h80v80h240v-80h80v80h80q33 0 56.5 23.5T840-720v313q-18-12-38-20t-42-11v-122H200v360h280q4 22 12 42t20 38H200Zm0-520h560v-80H200v80Z"/></svg>`,
+  },
+  {
+    id: "entrevista",
+    titulo: "Em Entrevista",
+    total: 18,
+    variacao: "+5%",
+    cor: "metrica-ciano",
+    icone: `<svg viewBox="0 -960 960 960" aria-hidden="true"><path d="M240-400h320v-80H240v80Zm0-120h480v-80H240v80Zm0-120h480v-80H240v80ZM80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Z"/></svg>`,
+  },
+  {
+    id: "aguardando",
+    titulo: "Aguardando Visita",
+    total: 7,
+    variacao: "0%",
+    cor: "metrica-rosa",
+    icone: `<svg viewBox="0 -960 960 960" aria-hidden="true"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>`,
+  },
+  {
+    id: "aprovados",
+    titulo: "Aprovados",
+    total: 42,
+    variacao: "+8%",
+    cor: "metrica-verde",
+    icone: `<svg viewBox="0 -960 960 960" aria-hidden="true"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/></svg>`,
+  },
 ];
 
 const estado = {
@@ -32,6 +60,7 @@ const estado = {
   porPagina: 5,
   filtroStatus: "todos",
   buscaPet: "",
+  totalRegistros: 49,
 };
 
 const refs = {
@@ -45,27 +74,21 @@ const refs = {
   buscar: document.getElementById("ongAdminBuscarBtn"),
 };
 
-function contarPorStatus(status) {
-  return solicitacoesMock.filter((item) => item.status === status).length;
-}
-
 function renderizarMetricas() {
   if (!refs.metricas) return;
 
   refs.metricas.innerHTML = "";
 
   metricasConfig.forEach((metrica) => {
-    const total = contarPorStatus(metrica.status);
-
     const card = document.createElement("article");
     card.className = "ong-admin-metrica-card";
     card.innerHTML = `
       <div class="ong-admin-metrica-topo">
-        <span class="ong-admin-metrica-icone ${metrica.cor}" aria-hidden="true"></span>
+        <span class="ong-admin-metrica-icone ${metrica.cor}" aria-hidden="true">${metrica.icone}</span>
         <span class="ong-admin-metrica-variacao">${metrica.variacao}</span>
       </div>
       <p>${metrica.titulo}</p>
-      <strong>${String(total).padStart(2, "0")}</strong>
+      <strong>${String(metrica.total).padStart(2, "0")}</strong>
     `;
 
     refs.metricas.appendChild(card);
@@ -147,7 +170,7 @@ function renderizarTabela() {
       <td>
         <div class="ong-admin-acoes-linha">
           <button class="ong-admin-link-acao" type="button">Analisar Perfil</button>
-          <button class="ong-admin-btn-status" type="button">Alterar Status</button>
+          <button class="ong-admin-btn-status" type="button">Alterar Situacao</button>
         </div>
       </td>
     `;
@@ -155,7 +178,8 @@ function renderizarTabela() {
     refs.tabelaBody.appendChild(linha);
   });
 
-  refs.resumo.textContent = `Exibindo ${Math.min(fim, total)} de ${total} registros`;
+  const totalGeral = estado.filtroStatus === "todos" && !estado.buscaPet ? estado.totalRegistros : total;
+  refs.resumo.textContent = `Exibindo ${Math.min(fim, total)} de ${totalGeral} registros`;
   renderizarPaginacao(totalPaginas);
 }
 
@@ -200,7 +224,7 @@ function alternarFiltroStatus() {
  }
 
 function buscarPet() {
-  const valor = window.prompt("Digite o nome do pet para buscar:", estado.buscaPet || "");
+  const valor = window.prompt("Digite o nome do animal para buscar:", estado.buscaPet || "");
   if (valor === null) return;
 
   estado.buscaPet = valor;

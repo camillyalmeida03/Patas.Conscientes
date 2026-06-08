@@ -5746,22 +5746,25 @@ td {
 /* Painel Administrativo ONG - Processos de Adocao */
 
 .ong-admin-page {
-    background-color: #eef1f5;
+    background-color: #f4f5f7;
+    color: #0b2f57;
 }
 
 .ong-admin-layout {
-    min-height: 100vh;
+    min-height: calc(100vh - 5rem);
+    padding: 0;
     display: grid;
-    grid-template-columns: 212px minmax(0, 1fr);
+    grid-template-columns: 180px minmax(0, 1fr);
+    background-color: #f6f7f9;
 }
 
 .ong-admin-sidebar {
-    border-right: 1px solid var(--cinza201);
-    background-color: #ffffff;
-    padding: 1rem 0.75rem 1rem;
+    border-right: 1px solid #cfd3d9;
+    background-color: #f2f3f5;
+    padding: 1.35rem 0.7rem 0.75rem;
     display: flex;
     flex-direction: column;
-    gap: 1.1rem;
+    gap: 1.95rem;
 }
 
 .ong-admin-brand {
@@ -5771,52 +5774,55 @@ td {
 .ong-admin-brand-titulo {
     display: flex;
     align-items: flex-start;
-    gap: 0.5rem;
+    gap: 0.45rem;
 }
 
 .ong-admin-brand-titulo svg {
-    width: 1.4rem;
-    height: 1.4rem;
+    width: 1.55rem;
+    height: 1.55rem;
     fill: var(--azul_claro);
-    margin-top: 0.15rem;
+    margin-top: 0.25rem;
 }
 
 .ong-admin-brand-titulo strong {
-    color: #0b2f57;
-    font-size: 1.8rem;
+    color: #0a3157;
+    font-size: 1.15rem;
     line-height: 1.05;
     font-weight: 800;
+    display: block;
+    max-width: 7rem;
 }
 
 .ong-admin-brand-titulo span {
     display: block;
-    margin-top: 0.25rem;
-    color: var(--cinza);
-    font-size: 0.78rem;
+    margin-top: 0.55rem;
+    color: #333b45;
+    font-size: 0.52rem;
 }
 
 .ong-admin-menu {
     display: flex;
     flex-direction: column;
-    gap: 0.2rem;
+    gap: 0.6rem;
 }
 
 .ong-admin-menu-item {
     position: relative;
     display: flex;
     align-items: center;
-    gap: 0.65rem;
-    min-height: 2.55rem;
-    border-radius: 10px;
-    padding: 0.52rem 0.6rem;
-    color: #33404f;
+    gap: 0.62rem;
+    min-height: 2.2rem;
+    border-radius: 8px;
+    padding: 0.46rem 0.64rem;
+    color: #263545;
+    font-size: 0.76rem;
     font-weight: 500;
 }
 
 .ong-admin-menu-item svg {
-    width: 1rem;
-    height: 1rem;
-    fill: #4f5f71;
+    width: 1.05rem;
+    height: 1.05rem;
+    fill: #263545;
     flex: 0 0 auto;
 }
 
@@ -5825,30 +5831,31 @@ td {
 }
 
 .ong-admin-menu-item.ativo {
-    background-color: #edf4ff;
-    color: #123b63;
+    background-color: #e7eff8;
+    color: #0a3157;
     font-weight: 700;
 }
 
 .ong-admin-menu-item.ativo::after {
     content: "";
     position: absolute;
-    right: -0.8rem;
-    top: 0.48rem;
-    bottom: 0.48rem;
-    width: 4px;
-    border-radius: 4px;
-    background-color: var(--rosa_texto_escuro);
+    right: -0.66rem;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    border-radius: 10px;
+    background-color: #c31878;
 }
 
 .ong-admin-new-entry {
     margin-top: auto;
     border: none;
-    border-radius: 10px;
-    min-height: 2.8rem;
-    background-color: var(--azul_claro);
+    border-radius: 8px;
+    min-height: 2.2rem;
+    background-color: #003761;
     color: #fff;
     font-weight: 700;
+    font-size: 0.72rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -5865,48 +5872,53 @@ td {
 }
 
 .ong-admin-conteudo {
-    padding: 1.05rem 1.2rem 1.35rem;
+    padding: 1.4rem 1.25rem 1rem 1.45rem;
+    min-width: 0;
 }
 
 .ong-admin-header {
     display: flex;
+    width: auto;
+    height: auto;
     justify-content: space-between;
     align-items: flex-start;
     gap: 1rem;
-    margin-bottom: 0.25rem;
-    padding: 0.45rem 0.85rem 0.65rem;
+    margin-bottom: 1.8rem;
+    padding: 0;
+    background-color: transparent;
     border-radius: 0.25rem;
 }
 
 .ong-admin-header h1 {
-    color: #0b2f57;
-    font-size: 2.75rem;
-    line-height: 0.98;
+    color: #07345f;
+    font-size: 2.4rem;
+    line-height: 1.04;
     font-weight: 900;
-    letter-spacing: -0.03em;
-    max-width: 10ch;
+    letter-spacing: -0.04em;
+    max-width: 12ch;
 }
 
 .ong-admin-header p {
     margin-top: 0.45rem;
-    color: var(--cinza80);
-    font-size: 0.98rem;
+    color: #4c5560;
+    font-size: 0.84rem;
 }
 
 .ong-admin-acoes {
     display: flex;
-    gap: 0.55rem;
-    padding-top: 0.4rem;
+    gap: 0.4rem;
+    padding-top: 3.6rem;
     flex: 0 0 auto;
 }
 
 .ong-admin-acao {
-    min-width: 130px;
+    min-width: 114px;
     min-height: 3rem;
-    border: 1px solid #9ca8b6;
-    border-radius: 10px;
-    background-color: #fff;
-    color: #183653;
+    border: 1px solid #9da4ad;
+    border-radius: 7px;
+    background-color: transparent;
+    color: #2e3540;
+    font-size: 0.72rem;
     font-weight: 500;
     display: inline-flex;
     align-items: center;
@@ -5917,9 +5929,9 @@ td {
 }
 
 .ong-admin-acao svg {
-    width: 1rem;
-    height: 1rem;
-    fill: #183653;
+    width: 1.08rem;
+    height: 1.08rem;
+    fill: #101820;
     flex: 0 0 auto;
 }
 
@@ -5928,32 +5940,41 @@ td {
 }
 
 .ong-admin-metricas {
-    margin-top: 1rem;
+    margin-top: 0;
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 0.8rem;
+    gap: 1rem;
 }
 
 .ong-admin-metrica-card {
-    border: 1px solid #cad2dc;
-    border-radius: 12px;
+    border: 1px solid #d2d7de;
+    border-radius: 8px;
     background-color: #fff;
-    padding: 0.85rem;
-    min-height: 113px;
+    padding: 1.08rem 1.1rem;
+    min-height: 135px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4);
 }
 
 .ong-admin-metrica-topo {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.75rem;
 }
 
 .ong-admin-metrica-icone {
-    width: 2.15rem;
-    height: 2.15rem;
-    border-radius: 8px;
+    width: 2.42rem;
+    height: 2.42rem;
+    border-radius: 7px;
     display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ong-admin-metrica-icone svg {
+    width: 1rem;
+    height: 1rem;
+    fill: #08345e;
 }
 
 .ong-admin-metrica-icone.metrica-azul {
@@ -5973,48 +5994,52 @@ td {
 }
 
 .ong-admin-metrica-variacao {
-    color: #a05774;
-    font-size: 0.8rem;
+    color: #9e315d;
+    font-size: 0.62rem;
     font-weight: 700;
 }
 
 .ong-admin-metrica-card p {
-    color: #3e4f62;
-    font-size: 0.93rem;
+    color: #1d2835;
+    font-size: 0.74rem;
+    margin-bottom: 0.3rem;
 }
 
 .ong-admin-metrica-card strong {
-    color: #0b2f57;
-    font-size: 1.8rem;
+    color: #07345f;
+    font-size: 1.55rem;
     line-height: 1.05;
 }
 
 .ong-admin-card-tabela {
-    margin-top: 1rem;
-    border: 1px solid #cad2dc;
-    border-radius: 12px;
+    margin-top: 2.2rem;
+    border: 1px solid #d0d5dc;
+    border-radius: 8px;
     overflow: hidden;
     background-color: #fff;
 }
 
 .ong-admin-tabela-topo {
     display: flex;
+    width: auto;
+    height: auto;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-    padding: 0.8rem 0.95rem;
-    border-bottom: 1px solid #e1e6ed;
+    padding: 0.95rem 1.15rem;
+    background-color: #fff;
+    border-bottom: 1px solid #dfe3e8;
 }
 
 .ong-admin-tabela-topo h2 {
-    color: #123b63;
-    font-size: 1.45rem;
+    color: #07345f;
+    font-size: 1.18rem;
     font-weight: 800;
 }
 
 .ong-admin-tabela-topo p {
-    color: #526273;
-    font-size: 0.84rem;
+    color: #4f5964;
+    font-size: 0.57rem;
 }
 
 .ong-admin-tabela-wrap {
@@ -6024,24 +6049,24 @@ td {
 .ong-admin-tabela {
     width: 100%;
     border-collapse: collapse;
-    min-width: 760px;
+    min-width: 700px;
 }
 
 .ong-admin-tabela thead th {
-    background-color: #f0f3f7;
-    color: #33485f;
+    background-color: #e8e8e9;
+    color: #101820;
     text-align: left;
-    font-size: 0.86rem;
+    font-size: 0.68rem;
     font-weight: 700;
-    padding: 0.7rem 0.95rem;
-    border-bottom: 1px solid #d8dee7;
+    padding: 0.72rem 1.15rem;
+    border-bottom: 1px solid #d6d8dc;
 }
 
 .ong-admin-tabela tbody td {
-    padding: 0.74rem 0.95rem;
-    border-bottom: 1px solid #e5eaf0;
-    color: #34485e;
-    font-size: 0.92rem;
+    padding: 0.58rem 1.15rem;
+    border-bottom: 1px solid #dbdee3;
+    color: #252d37;
+    font-size: 0.78rem;
 }
 
 .ong-admin-candidato {
@@ -6051,12 +6076,12 @@ td {
 }
 
 .ong-admin-avatar {
-    width: 1.7rem;
-    height: 1.7rem;
+    width: 1.35rem;
+    height: 1.35rem;
     border-radius: 999px;
     background-color: #dce8ff;
     color: #335173;
-    font-size: 0.72rem;
+    font-size: 0.55rem;
     font-weight: 700;
     display: inline-flex;
     align-items: center;
@@ -6067,7 +6092,7 @@ td {
     display: inline-flex;
     align-items: center;
     gap: 0.3rem;
-    color: #4f4e73;
+    color: #3d3543;
 }
 
 .ong-admin-pet-nome svg {
@@ -6080,10 +6105,10 @@ td {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 104px;
-    padding: 0.25rem 0.65rem;
+    min-width: 72px;
+    padding: 0.2rem 0.55rem;
     border-radius: 999px;
-    font-size: 0.7rem;
+    font-size: 0.58rem;
     font-weight: 800;
     white-space: nowrap;
 }
@@ -6111,13 +6136,15 @@ td {
 .ong-admin-acoes-linha {
     display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
+    gap: 0.5rem;
+    white-space: nowrap;
 }
 
 .ong-admin-link-acao {
     border: none;
     background: transparent;
     color: #123b63;
+    font-size: 0.68rem;
     font-weight: 700;
 }
 
@@ -6128,11 +6155,11 @@ td {
 .ong-admin-btn-status {
     border: none;
     border-radius: 999px;
-    min-height: 1.9rem;
-    padding: 0.2rem 0.72rem;
+    min-height: 1.45rem;
+    padding: 0.16rem 0.72rem;
     background-color: #f35899;
     color: #fff;
-    font-size: 0.72rem;
+    font-size: 0.58rem;
     font-weight: 700;
 }
 
@@ -6148,22 +6175,26 @@ td {
 
 .ong-admin-paginacao {
     display: flex;
+    width: auto;
+    min-height: auto;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-    padding: 0.8rem 0.95rem;
-    background-color: #f8fafc;
+    padding: 1rem 1.15rem;
+    background-color: #fafafa;
 }
 
 .ong-admin-pag-btn,
 .ong-admin-pag-numero {
     border: 1px solid #c9d2dc;
-    border-radius: 8px;
-    min-width: 2.2rem;
-    min-height: 2rem;
+    border-radius: 7px;
+    min-width: 1.86rem;
+    min-height: 1.86rem;
     padding: 0.3rem 0.7rem;
     background-color: #fff;
     color: #30465d;
+    font-size: 0.72rem;
 }
 
 .ong-admin-pag-btn:disabled {
@@ -6237,16 +6268,16 @@ td {
 
 @media (max-width: 1200px) {
     .ong-admin-layout {
-        grid-template-columns: 200px minmax(0, 1fr);
+        grid-template-columns: 180px minmax(0, 1fr);
     }
 
     .ong-admin-header h1 {
-        font-size: 2.45rem;
-        max-width: none;
+        font-size: 2.4rem;
+        max-width: 12ch;
     }
 
     .ong-admin-metricas {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 }
 
