@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="Acompanhe os processos de adocao recebidos pela ONG vinculada a sua conta no Patas Conscientes." />
+    content="Painel administrativo da ONG para acompanhar e gerenciar solicitacoes de adocao." />
 
   <link rel="icon" href="/public/img/icons/favicon.svg">
   <link rel="stylesheet" href="/public/css/style.css">
@@ -14,26 +14,118 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
     rel="stylesheet">
-  <title>Processos de adoção da ONG - Patas Conscientes</title>
+  <title>Gerenciamento de Adocoes - Patas Conscientes</title>
 </head>
 
-<body>
+<body class="ong-admin-page">
   <header id="headerIndex">
     <script type="module" src="/src/config/header.js"></script>
   </header>
 
-  <section class="caminho"></section>
+  <main class="ong-admin-layout" aria-labelledby="ongAdminTituloPagina">
+    <aside class="ong-admin-sidebar" aria-label="Menu do painel da ONG">
+      <div class="ong-admin-brand">
+        <div class="ong-admin-brand-titulo">
+          <svg viewBox="0 -960 960 960" aria-hidden="true">
+            <path
+              d="M180-475q-24 0-42-18t-18-42q0-24 18-42t42-18q24 0 42 18t18 42q0 24-18 42t-42 18Zm600 0q-24 0-42-18t-18-42q0-24 18-42t42-18q24 0 42 18t18 42q0 24-18 42t-42 18ZM312-312q-33 0-56.5-23.5T232-392v-47q0-38 25-68.5t63-39.5q34-7 68.5-10.5T460-561q37 0 71.5 3.5T600-547q38 9 63 39.5t25 68.5v47q0 33-23.5 56.5T608-312H312Zm168-290q-48 0-81-33t-33-81q0-48 33-81t81-33q48 0 81 33t33 81q0 48-33 81t-81 33Z" />
+          </svg>
+          <div>
+            <strong>NGO Dashboard</strong>
+            <span>Management Portal</span>
+          </div>
+        </div>
+      </div>
 
-  <h1 class="azul centro processosadocaoongtradutor">Processos de adoção da ONG</h1>
+      <nav class="ong-admin-menu" aria-label="Navegacao principal do painel">
+        <a href="/src/views/ongPage.html" class="ong-admin-menu-item">
+          <svg viewBox="0 -960 960 960" aria-hidden="true">
+            <path d="M520-600v-280h360v280H520Zm-440 0v-280h360v280H80Zm440 520v-440h360v440H520Zm-440 0v-440h360v440H80Zm80-600h200v-120H160v120Zm440 520h200v-280H600v280Zm0-520h200v-120H600v120Zm-440 520h200v-280H160v280Z" />
+          </svg>
+          <span>Dashboard</span>
+        </a>
 
-  <main class="mainProcessosAdocao">
-    <section class="processosAdocaoResumo" aria-live="polite">
-      <p class="processosOngNome" id="processosOngNome">ONG</p>
-      <p id="processosAdocaoResumoTexto">Acompanhe por aqui as solicitações recebidas pela ONG.</p>
-    </section>
+        <a href="/src/views/processosAdocaoOng.html" class="ong-admin-menu-item ativo" aria-current="page">
+          <svg viewBox="0 -960 960 960" aria-hidden="true">
+            <path d="M680-80v-160H280v160H160v-480q0-83 58.5-141.5T360-760h240q83 0 141.5 58.5T800-560v480H680Zm-400-280h400v-200q0-50-35-85t-85-35H400q-50 0-85 35t-35 85v200Zm80-440q-33 0-56.5-23.5T280-880q0-33 23.5-56.5T360-960q33 0 56.5 23.5T440-880q0 33-23.5 56.5T360-800Zm240 0q-33 0-56.5-23.5T520-880q0-33 23.5-56.5T600-960q33 0 56.5 23.5T680-880q0 33-23.5 56.5T600-800Z" />
+          </svg>
+          <span>Solicitacoes de Adocao</span>
+        </a>
 
-    <section id="listaProcessosAdocao" class="listaProcessosAdocao">
-      <!-- Os processos de adocao da ONG serao carregados aqui -->
+        <a href="/src/views/ongPage.html" class="ong-admin-menu-item">
+          <svg viewBox="0 -960 960 960" aria-hidden="true">
+            <path d="M180-475q-24 0-42-18t-18-42q0-24 18-42t42-18q24 0 42 18t18 42q0 24-18 42t-42 18Zm600 0q-24 0-42-18t-18-42q0-24 18-42t42-18q24 0 42 18t18 42q0 24-18 42t-42 18ZM312-312q-33 0-56.5-23.5T232-392v-47q0-38 25-68.5t63-39.5q34-7 68.5-10.5T460-561q37 0 71.5 3.5T600-547q38 9 63 39.5t25 68.5v47q0 33-23.5 56.5T608-312H312Zm168-290q-48 0-81-33t-33-81q0-48 33-81t81-33q48 0 81 33t33 81q0 48-33 81t-81 33Z" />
+          </svg>
+          <span>Pets</span>
+        </a>
+
+        <a href="/src/views/ongPage.html" class="ong-admin-menu-item">
+          <svg viewBox="0 -960 960 960" aria-hidden="true">
+            <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm40-120h80v-360h-80v360Zm200 0h80v-240h-80v240Zm200 0h80v-480h-80v480Z" />
+          </svg>
+          <span>Analytics</span>
+        </a>
+      </nav>
+
+      <button class="ong-admin-new-entry" type="button">
+        <span aria-hidden="true">+</span>
+        <span>New Entry</span>
+      </button>
+    </aside>
+
+    <section class="ong-admin-conteudo">
+      <header class="ong-admin-header">
+        <div>
+          <h1 id="ongAdminTituloPagina">Gerenciamento de Adocoes</h1>
+          <p>Acompanhe e analise os pedidos de novos lares para nossos amigos.</p>
+        </div>
+
+        <div class="ong-admin-acoes">
+          <button id="ongAdminFiltrarBtn" class="ong-admin-acao" type="button">
+            <svg viewBox="0 -960 960 960" aria-hidden="true">
+              <path d="M400-240v-80h160v80H400ZM240-440v-80h480v80H240ZM120-640v-80h720v80H120Z" />
+            </svg>
+            <span>Filtrar Status</span>
+          </button>
+
+          <button id="ongAdminBuscarBtn" class="ong-admin-acao" type="button">
+            <svg viewBox="0 -960 960 960" aria-hidden="true">
+              <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
+            </svg>
+            <span>Buscar Pet</span>
+          </button>
+        </div>
+      </header>
+
+      <section id="ongAdminMetricas" class="ong-admin-metricas" aria-label="Resumo de metricas"></section>
+
+      <section class="ong-admin-card-tabela" aria-labelledby="ongAdminTabelaTitulo">
+        <header class="ong-admin-tabela-topo">
+          <h2 id="ongAdminTabelaTitulo">Solicitacoes Recentes</h2>
+          <p id="ongAdminResumoRegistros" aria-live="polite">Exibindo 0 de 0 registros</p>
+        </header>
+
+        <div class="ong-admin-tabela-wrap" role="region" aria-label="Tabela de solicitacoes" tabindex="0">
+          <table class="ong-admin-tabela">
+            <thead>
+              <tr>
+                <th scope="col">Candidato</th>
+                <th scope="col">Pet</th>
+                <th scope="col">Data do Pedido</th>
+                <th scope="col">Status</th>
+                <th scope="col">Acoes</th>
+              </tr>
+            </thead>
+            <tbody id="ongAdminTabelaBody"></tbody>
+          </table>
+        </div>
+
+        <footer class="ong-admin-paginacao" aria-label="Paginacao de solicitacoes">
+          <button id="ongAdminPagAnterior" class="ong-admin-pag-btn" type="button">Anterior</button>
+          <div id="ongAdminPaginas" class="ong-admin-pag-numeros"></div>
+          <button id="ongAdminPagProximo" class="ong-admin-pag-btn" type="button">Proximo</button>
+        </footer>
+      </section>
     </section>
   </main>
 
@@ -42,11 +134,9 @@
   </footer>
 
   <script src="/public/js/traducao.js"></script>
-  <script type="module" src="/public/js/Pets/listarProcessosAdocaoOng.js"></script>
-  <script src="/public/js/barraacessibilidade.js" defer></script>
+  <script src="/public/js/processosAdocaoOng.js" defer></script>
   <script src="/public/js/tema.js" defer></script>
   <script src="/public/js/carregar_pagina.js"></script>
-  <script type="module" src="/public/js/migalhasPao.js"></script>
 </body>
 
 </html>

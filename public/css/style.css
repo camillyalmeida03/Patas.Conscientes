@@ -5743,6 +5743,594 @@ td {
     }
 }
 
+/* Painel Administrativo ONG - Processos de Adocao */
+
+.ong-admin-page {
+    background-color: #eef1f5;
+}
+
+.ong-admin-layout {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 212px minmax(0, 1fr);
+}
+
+.ong-admin-sidebar {
+    border-right: 1px solid var(--cinza201);
+    background-color: #ffffff;
+    padding: 1rem 0.75rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.ong-admin-brand {
+    padding: 0 0.5rem;
+}
+
+.ong-admin-brand-titulo {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.ong-admin-brand-titulo svg {
+    width: 1.4rem;
+    height: 1.4rem;
+    fill: var(--azul_claro);
+    margin-top: 0.15rem;
+}
+
+.ong-admin-brand-titulo strong {
+    color: #0b2f57;
+    font-size: 1.8rem;
+    line-height: 1.05;
+    font-weight: 800;
+}
+
+.ong-admin-brand-titulo span {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--cinza);
+    font-size: 0.78rem;
+}
+
+.ong-admin-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.ong-admin-menu-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    min-height: 2.55rem;
+    border-radius: 10px;
+    padding: 0.52rem 0.6rem;
+    color: #33404f;
+    font-weight: 500;
+}
+
+.ong-admin-menu-item svg {
+    width: 1rem;
+    height: 1rem;
+    fill: #4f5f71;
+    flex: 0 0 auto;
+}
+
+.ong-admin-menu-item:hover {
+    background-color: #edf4ff;
+}
+
+.ong-admin-menu-item.ativo {
+    background-color: #edf4ff;
+    color: #123b63;
+    font-weight: 700;
+}
+
+.ong-admin-menu-item.ativo::after {
+    content: "";
+    position: absolute;
+    right: -0.8rem;
+    top: 0.48rem;
+    bottom: 0.48rem;
+    width: 4px;
+    border-radius: 4px;
+    background-color: var(--rosa_texto_escuro);
+}
+
+.ong-admin-new-entry {
+    margin-top: auto;
+    border: none;
+    border-radius: 10px;
+    min-height: 2.8rem;
+    background-color: var(--azul_claro);
+    color: #fff;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+}
+
+.ong-admin-new-entry span:first-child {
+    font-size: 1.15rem;
+    line-height: 1;
+}
+
+.ong-admin-new-entry:hover {
+    background-color: var(--azul_maisclaro);
+}
+
+.ong-admin-conteudo {
+    padding: 1.05rem 1.2rem 1.35rem;
+}
+
+.ong-admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.25rem;
+    padding: 0.45rem 0.85rem 0.65rem;
+    border-radius: 0.25rem;
+}
+
+.ong-admin-header h1 {
+    color: #0b2f57;
+    font-size: 2.75rem;
+    line-height: 0.98;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    max-width: 10ch;
+}
+
+.ong-admin-header p {
+    margin-top: 0.45rem;
+    color: var(--cinza80);
+    font-size: 0.98rem;
+}
+
+.ong-admin-acoes {
+    display: flex;
+    gap: 0.55rem;
+    padding-top: 0.4rem;
+    flex: 0 0 auto;
+}
+
+.ong-admin-acao {
+    min-width: 130px;
+    min-height: 3rem;
+    border: 1px solid #9ca8b6;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #183653;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.35rem 0.7rem;
+    text-align: left;
+}
+
+.ong-admin-acao svg {
+    width: 1rem;
+    height: 1rem;
+    fill: #183653;
+    flex: 0 0 auto;
+}
+
+.ong-admin-acao:hover {
+    background-color: #edf4ff;
+}
+
+.ong-admin-metricas {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.8rem;
+}
+
+.ong-admin-metrica-card {
+    border: 1px solid #cad2dc;
+    border-radius: 12px;
+    background-color: #fff;
+    padding: 0.85rem;
+    min-height: 113px;
+}
+
+.ong-admin-metrica-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.6rem;
+}
+
+.ong-admin-metrica-icone {
+    width: 2.15rem;
+    height: 2.15rem;
+    border-radius: 8px;
+    display: inline-flex;
+}
+
+.ong-admin-metrica-icone.metrica-azul {
+    background: #e5efff;
+}
+
+.ong-admin-metrica-icone.metrica-ciano {
+    background: #dff4ff;
+}
+
+.ong-admin-metrica-icone.metrica-rosa {
+    background: #ffe7ef;
+}
+
+.ong-admin-metrica-icone.metrica-verde {
+    background: #dff8ea;
+}
+
+.ong-admin-metrica-variacao {
+    color: #a05774;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.ong-admin-metrica-card p {
+    color: #3e4f62;
+    font-size: 0.93rem;
+}
+
+.ong-admin-metrica-card strong {
+    color: #0b2f57;
+    font-size: 1.8rem;
+    line-height: 1.05;
+}
+
+.ong-admin-card-tabela {
+    margin-top: 1rem;
+    border: 1px solid #cad2dc;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.ong-admin-tabela-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem 0.95rem;
+    border-bottom: 1px solid #e1e6ed;
+}
+
+.ong-admin-tabela-topo h2 {
+    color: #123b63;
+    font-size: 1.45rem;
+    font-weight: 800;
+}
+
+.ong-admin-tabela-topo p {
+    color: #526273;
+    font-size: 0.84rem;
+}
+
+.ong-admin-tabela-wrap {
+    overflow: auto;
+}
+
+.ong-admin-tabela {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 760px;
+}
+
+.ong-admin-tabela thead th {
+    background-color: #f0f3f7;
+    color: #33485f;
+    text-align: left;
+    font-size: 0.86rem;
+    font-weight: 700;
+    padding: 0.7rem 0.95rem;
+    border-bottom: 1px solid #d8dee7;
+}
+
+.ong-admin-tabela tbody td {
+    padding: 0.74rem 0.95rem;
+    border-bottom: 1px solid #e5eaf0;
+    color: #34485e;
+    font-size: 0.92rem;
+}
+
+.ong-admin-candidato {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ong-admin-avatar {
+    width: 1.7rem;
+    height: 1.7rem;
+    border-radius: 999px;
+    background-color: #dce8ff;
+    color: #335173;
+    font-size: 0.72rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ong-admin-pet-nome {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: #4f4e73;
+}
+
+.ong-admin-pet-nome svg {
+    width: 0.85rem;
+    height: 0.85rem;
+    fill: #d42676;
+}
+
+.ong-admin-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 104px;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.ong-admin-status.status-analise {
+    background-color: #f6efc8;
+    color: #776100;
+}
+
+.ong-admin-status.status-entrevista {
+    background-color: #dce9ff;
+    color: #2d5898;
+}
+
+.ong-admin-status.status-aguardando {
+    background-color: #ffe5ef;
+    color: #9e2c5c;
+}
+
+.ong-admin-status.status-aprovado {
+    background-color: #dbf6e6;
+    color: #2f7f4f;
+}
+
+.ong-admin-acoes-linha {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.ong-admin-link-acao {
+    border: none;
+    background: transparent;
+    color: #123b63;
+    font-weight: 700;
+}
+
+.ong-admin-link-acao:hover {
+    color: var(--azul_maisclaro);
+}
+
+.ong-admin-btn-status {
+    border: none;
+    border-radius: 999px;
+    min-height: 1.9rem;
+    padding: 0.2rem 0.72rem;
+    background-color: #f35899;
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+.ong-admin-btn-status:hover {
+    background-color: #d74585;
+}
+
+.ong-admin-vazio {
+    text-align: center;
+    color: #496380;
+    font-weight: 700;
+}
+
+.ong-admin-paginacao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem 0.95rem;
+    background-color: #f8fafc;
+}
+
+.ong-admin-pag-btn,
+.ong-admin-pag-numero {
+    border: 1px solid #c9d2dc;
+    border-radius: 8px;
+    min-width: 2.2rem;
+    min-height: 2rem;
+    padding: 0.3rem 0.7rem;
+    background-color: #fff;
+    color: #30465d;
+}
+
+.ong-admin-pag-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.ong-admin-pag-numeros {
+    display: inline-flex;
+    gap: 0.4rem;
+}
+
+.ong-admin-pag-numero.ativo {
+    border-color: #0b2f57;
+    background-color: #0b2f57;
+    color: #fff;
+    font-weight: 700;
+}
+
+.bodyME .ong-admin-page {
+    background-color: var(--cinza46);
+}
+
+.bodyME .ong-admin-sidebar,
+.bodyME .ong-admin-metrica-card,
+.bodyME .ong-admin-card-tabela,
+.bodyME .ong-admin-tabela thead th,
+.bodyME .ong-admin-paginacao,
+.bodyME .ong-admin-acao,
+.bodyME .ong-admin-pag-btn,
+.bodyME .ong-admin-pag-numero {
+    background-color: var(--cinza34);
+    border-color: var(--cinza100);
+}
+
+.bodyME .ong-admin-header h1,
+.bodyME .ong-admin-brand-titulo strong,
+.bodyME .ong-admin-menu-item,
+.bodyME .ong-admin-tabela-topo h2,
+.bodyME .ong-admin-link-acao,
+.bodyME .ong-admin-tabela tbody td,
+.bodyME .ong-admin-tabela thead th {
+    color: #ffffff;
+}
+
+.bodyME .ong-admin-brand-titulo span,
+.bodyME .ong-admin-header p,
+.bodyME .ong-admin-tabela-topo p,
+.bodyME .ong-admin-metrica-card p,
+.bodyME .ong-admin-metrica-variacao,
+.bodyME .ong-admin-pet-nome,
+.bodyME .ong-admin-vazio {
+    color: var(--cinza147);
+}
+
+.bodyME .ong-admin-menu-item svg,
+.bodyME .ong-admin-acao svg {
+    fill: var(--azulME2);
+}
+
+.bodyME .ong-admin-menu-item.ativo,
+.bodyME .ong-admin-menu-item:hover,
+.bodyME .ong-admin-acao:hover {
+    background-color: var(--cinza80);
+}
+
+.bodyME .ong-admin-avatar {
+    background-color: var(--cinza80);
+    color: #d2e3f9;
+}
+
+@media (max-width: 1200px) {
+    .ong-admin-layout {
+        grid-template-columns: 200px minmax(0, 1fr);
+    }
+
+    .ong-admin-header h1 {
+        font-size: 2.45rem;
+        max-width: none;
+    }
+
+    .ong-admin-metricas {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 900px) {
+    .ong-admin-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .ong-admin-sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--cinza201);
+    }
+
+    .ong-admin-menu {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.35rem;
+    }
+
+    .ong-admin-menu-item.ativo::after {
+        right: 0.45rem;
+        top: auto;
+        bottom: 0.35rem;
+        width: calc(100% - 0.9rem);
+        height: 3px;
+    }
+
+    .ong-admin-new-entry {
+        margin-top: 0.2rem;
+    }
+}
+
+@media (max-width: 760px) {
+    .ong-admin-conteudo {
+        padding: 1rem 0.75rem;
+    }
+
+    .ong-admin-header {
+        flex-direction: column;
+    }
+
+    .ong-admin-header h1 {
+        font-size: 2rem;
+        max-width: none;
+    }
+
+    .ong-admin-acoes {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .ong-admin-acao {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .ong-admin-metricas {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 520px) {
+    .ong-admin-brand-titulo strong {
+        font-size: 1.45rem;
+    }
+
+    .ong-admin-brand-titulo {
+        align-items: center;
+    }
+
+    .ong-admin-menu {
+        grid-template-columns: 1fr;
+    }
+
+    .ong-admin-acoes {
+        grid-template-columns: 1fr;
+    }
+
+    .ong-admin-paginacao {
+        flex-wrap: wrap;
+    }
+}
+
 
 /* MODAL RECUPERAR SENHA */
 
