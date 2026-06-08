@@ -4951,6 +4951,364 @@ td {
     fill: white !important;
 }
 
+/* Página de Processo adoção */
+
+.processos-adocao-page {
+    width: 100%;
+    margin: 0 0 4rem;
+    padding: 0 1.5rem 2rem;
+}
+
+.processos-adocao-hero {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 1.25rem auto 2.1rem;
+    padding: 0;
+    background-color: transparent;
+    text-align: center;
+}
+
+.processos-adocao-hero h1 {
+    margin-bottom: 0.55rem;
+    font-size: 2rem;
+    line-height: 1.2;
+    font-weight: 800;
+}
+
+.processos-adocao-hero p {
+    max-width: 800px;
+    margin: 0 auto;
+    color: var(--cinza_h3);
+    font-size: 1rem;
+    line-height: 1.45;
+}
+
+.processos-adocao-layout {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 1.75rem;
+    align-items: start;
+    width: 100%;
+}
+
+.processos-adocao-filtros {
+    position: sticky;
+    top: 6rem;
+    padding: 1.55rem 1.35rem;
+    border: 1px solid var(--cinza201);
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.processos-adocao-filtros h2 {
+    margin-bottom: 1.05rem;
+    color: var(--azul_claro);
+    font-size: 0.95rem;
+    font-weight: 800;
+}
+
+.processos-adocao-filtro-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.processos-adocao-filtro-opcao {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: var(--cinza_h3);
+    font-size: 1rem;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.processos-adocao-filtro-opcao:hover {
+    color: var(--azul_claro);
+    transform: translateX(2px);
+}
+
+.processos-adocao-filtro-opcao input {
+    width: 1.05rem;
+    height: 1.05rem;
+    margin: 0;
+    accent-color: var(--azul_claro);
+    cursor: pointer;
+}
+
+.processos-adocao-conteudo {
+    min-width: 0;
+    width: 100%;
+}
+
+.processos-adocao-resumo {
+    min-height: 1.2rem;
+    margin: 0 0 0.75rem;
+    color: var(--cinza);
+    font-size: 0.95rem;
+}
+
+.processos-adocao-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.processos-adocao-card {
+    display: grid;
+    grid-template-columns: 176px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1.35rem;
+    width: 100%;
+    min-height: 148px;
+    padding: 1rem 1rem 1rem 1.05rem;
+    border: 1px solid var(--cinza201);
+    border-radius: 8px;
+    background-color: #fff;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.processos-adocao-card:hover {
+    border-color: var(--azul_contorno);
+    box-shadow: 0 12px 26px rgba(0, 59, 74, 0.12);
+    transform: translateY(-3px);
+}
+
+
+.processos-adocao-foto {
+    width: 176px;
+    height: 112px;
+    border-radius: 6px;
+    object-fit: cover;
+    background-color: var(--cinza215);
+}
+
+.processos-adocao-info {
+    min-width: 0;
+}
+
+.processos-adocao-info h2 {
+    margin-bottom: 0.35rem;
+    color: var(--azul_claro);
+    font-size: 1.55rem;
+    line-height: 1.1;
+    font-weight: 800;
+    overflow-wrap: anywhere;
+}
+
+.processos-adocao-info p {
+    color: var(--cinza_h3);
+    font-size: 1rem;
+    line-height: 1.45;
+}
+
+.processos-adocao-local {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.processos-adocao-local svg {
+    width: 0.95rem;
+    height: 0.95rem;
+    flex: 0 0 auto;
+    fill: var(--azul_claro);
+}
+
+.processos-adocao-acoes {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1.35rem;
+}
+
+.processos-adocao-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    min-width: 116px;
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    line-height: 1;
+    white-space: nowrap;
+    transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.processos-adocao-card:hover .processos-adocao-badge {
+    transform: scale(1.03);
+}
+
+.processos-adocao-badge svg {
+    width: 0.8rem;
+    height: 0.8rem;
+    fill: currentColor;
+}
+
+.processos-adocao-badge--analise {
+    background-color: #075b72;
+    color: #e9fbff;
+}
+
+.processos-adocao-badge--entrevista {
+    background-color: #ffd1de;
+    color: #a20044;
+}
+
+.processos-adocao-badge--aprovado {
+    background-color: #cbf5dc;
+    color: #07743a;
+}
+
+.processos-adocao-detalhes {
+    min-width: 128px;
+    padding: 0.82rem 1rem;
+    border-radius: 8px;
+    background-color: var(--rosa_texto_escuro);
+    color: #fff;
+    font-weight: 800;
+    text-align: center;
+    transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.processos-adocao-detalhes:hover,
+.processos-adocao-detalhes:focus-visible {
+    background-color: var(--rosa);
+    box-shadow: 0 8px 18px rgba(185, 19, 119, 0.24);
+    transform: translateY(-2px);
+}
+
+.processos-adocao-vazio {
+    padding: 2rem;
+    border: 1px solid var(--cinza201);
+    border-radius: 8px;
+    background-color: #fff;
+    color: var(--azul_claro);
+    font-weight: 800;
+    text-align: center;
+}
+
+.processos-adocao-card.is-hidden {
+    display: none;
+}
+
+.bodyME .processos-adocao-hero p,
+.bodyME .processos-adocao-info p,
+.bodyME .processos-adocao-resumo,
+.bodyME .processos-adocao-filtro-opcao {
+    color: white;
+}
+
+.bodyME .processos-adocao-filtros,
+.bodyME .processos-adocao-card,
+.bodyME .processos-adocao-vazio {
+    border-color: var(--cinza100);
+    background-color: var(--cinza34);
+}
+
+.bodyME .processos-adocao-info h2,
+.bodyME .processos-adocao-filtros h2 {
+    color: var(--azulME2);
+}
+
+@media (max-width: 1050px) {
+    .processos-adocao-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .processos-adocao-filtros {
+        position: static;
+    }
+
+    .processos-adocao-filtro-lista {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0.9rem 1.1rem;
+    }
+}
+
+@media (max-width: 860px) {
+    .processos-adocao-card {
+        grid-template-columns: 150px minmax(0, 1fr);
+    }
+
+    .processos-adocao-foto {
+        width: 150px;
+        height: 104px;
+    }
+
+    .processos-adocao-acoes {
+        grid-column: 1 / -1;
+        justify-content: space-between;
+        padding-left: calc(150px + 1.35rem);
+    }
+}
+
+@media (max-width: 680px) {
+    .processos-adocao-page {
+        width: calc(100% - 1.5rem);
+    }
+
+    .processos-adocao-hero h1 {
+        font-size: 1.65rem;
+    }
+
+    .processos-adocao-filtro-lista {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .processos-adocao-card {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .processos-adocao-foto {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
+
+    .processos-adocao-acoes {
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 460px) {
+    .processos-adocao-page {
+        width: calc(100% - 1rem);
+    }
+
+    .processos-adocao-filtros,
+    .processos-adocao-card {
+        padding: 1rem;
+    }
+
+    .processos-adocao-filtro-lista {
+        grid-template-columns: 1fr;
+    }
+
+    .processos-adocao-info h2 {
+        font-size: 1.35rem;
+    }
+
+    .processos-adocao-acoes {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.8rem;
+    }
+
+    .processos-adocao-badge,
+    .processos-adocao-detalhes {
+        width: 100%;
+    }
+}
+
+
 /* MODAL RECUPERAR SENHA */
 
 .modalRecuperar {
