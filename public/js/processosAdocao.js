@@ -1,4 +1,5 @@
 const STORAGE_KEY = "solicitacoesAdocao";
+const STORAGE_DETALHE_KEY = "processoAdocaoSelecionado";
 
 const processosFallback = [
   {
@@ -168,7 +169,14 @@ function criarCard(processo) {
   `;
 
   card.querySelector(".processos-adocao-detalhes").addEventListener("click", () => {
-    window.dispatchEvent(new CustomEvent("processoAdocaoDetalhes", { detail: processo }));
+    try {
+      sessionStorage.setItem(STORAGE_DETALHE_KEY, JSON.stringify(processo));
+    } catch (erro) {
+      // Ignore storage errors and continue navigation.
+    }
+
+    const id = encodeURIComponent(processo.id || "");
+    window.location.href = `/src/views/detalhesProcesso.html?id=${id}`;
   });
 
   return card;

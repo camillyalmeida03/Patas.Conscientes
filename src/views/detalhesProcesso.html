@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Acompanhe os detalhes completos do processo de adocao, incluindo dados do pet, ONG responsavel e status da jornada." />
+
+  <link rel="icon" href="/public/img/icons/favicon.svg">
+  <link rel="stylesheet" href="/public/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet">
+  <title>Detalhes da ado&ccedil;&atilde;o - Patas Conscientes</title>
+</head>
+
+<body>
+  <header id="headerIndex">
+    <script type="module" src="/src/config/header.js"></script>
+  </header>
+
+  <section class="caminho"></section>
+
+  <main class="detalhes-processo-page" aria-labelledby="detalhesProcessoTitulo">
+    <section class="detalhes-processo-topo">
+      <div class="detalhes-processo-titulo-wrap">
+        <button id="detalhesProcessoVoltar" class="detalhes-processo-voltar" type="button" aria-label="Voltar">
+          <svg viewBox="0 -960 960 960" aria-hidden="true">
+            <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z" />
+          </svg>
+        </button>
+        <h1 id="detalhesProcessoTitulo" class="azul">Detalhes da Ado&ccedil;&atilde;o</h1>
+      </div>
+      <span id="detalhesProcessoBadge" class="processos-adocao-badge processos-adocao-badge--analise">Em an&aacute;lise</span>
+    </section>
+
+    <section class="detalhes-processo-grade-principal" aria-live="polite">
+      <article class="detalhes-processo-card detalhes-processo-card-pet">
+        <div class="detalhes-processo-pet-foto-wrap">
+          <img id="detalhesProcessoPetFoto" class="detalhes-processo-pet-foto" src="/public/img/fotos/dog1.jpg"
+            alt="Foto do pet" loading="lazy">
+        </div>
+
+        <div class="detalhes-processo-pet-conteudo">
+          <div class="detalhes-processo-pet-cabecalho">
+            <h2 id="detalhesProcessoPetNome">Pet</h2>
+            <span id="detalhesProcessoPetGeneroIcone" class="detalhes-processo-genero" aria-hidden="true"></span>
+          </div>
+
+          <div class="detalhes-processo-pet-metricas">
+            <div class="detalhes-processo-metrica">
+              <span>IDADE</span>
+              <strong id="detalhesProcessoPetIdade">-</strong>
+            </div>
+            <div class="detalhes-processo-metrica">
+              <span>GENERO</span>
+              <strong id="detalhesProcessoPetGenero">-</strong>
+            </div>
+            <div class="detalhes-processo-metrica">
+              <span>RACA</span>
+              <strong id="detalhesProcessoPetRaca">-</strong>
+            </div>
+          </div>
+
+          <ul id="detalhesProcessoPetTags" class="detalhes-processo-pet-tags"></ul>
+        </div>
+      </article>
+
+      <aside class="detalhes-processo-card detalhes-processo-card-ong" aria-labelledby="detalhesProcessoOngTitulo">
+        <p class="detalhes-processo-label">INFORMACOES DA ONG</p>
+        <div class="detalhes-processo-ong-cabecalho">
+          <span class="detalhes-processo-ong-icone" aria-hidden="true">
+            <svg viewBox="0 -960 960 960">
+              <path
+                d="M180-475q-24 0-42-18t-18-42q0-24 18-42t42-18q24 0 42 18t18 42q0 24-18 42t-42 18Zm600 0q-24 0-42-18t-18-42q0-24 18-42t42-18q24 0 42 18t18 42q0 24-18 42t-42 18ZM312-312q-33 0-56.5-23.5T232-392v-47q0-38 25-68.5t63-39.5q34-7 68.5-10.5T460-561q37 0 71.5 3.5T600-547q38 9 63 39.5t25 68.5v47q0 33-23.5 56.5T608-312H312Zm168-290q-48 0-81-33t-33-81q0-48 33-81t81-33q48 0 81 33t33 81q0 48-33 81t-81 33Z" />
+            </svg>
+          </span>
+          <div>
+            <h3 id="detalhesProcessoOngTitulo">ONG</h3>
+            <p id="detalhesProcessoOngLocal">-</p>
+          </div>
+        </div>
+
+        <ul class="detalhes-processo-ong-lista">
+          <li>
+            <svg viewBox="0 -960 960 960" aria-hidden="true">
+              <path
+                d="M172-120q-32.99 0-56.5-23.5Q92-167 92-200v-560q0-33 23.5-56.5T172-840h616q32.99 0 56.5 23.5Q868-793 868-760v560q0 33-23.5 56.5T788-120H172Zm308-318L172-639v439h616v-439L480-438Zm0-102 308-200H172l308 200Zm-308-99v-101 540-439Z" />
+            </svg>
+            <span id="detalhesProcessoOngEmail">-</span>
+          </li>
+          <li>
+            <svg viewBox="0 -960 960 960" aria-hidden="true">
+              <path
+                d="M796-120q-119 0-236.5-54T347-328q-95-95-149-212.5T144-777q0-24 15.5-39.5T199-832h154q19 0 34 12.5T404-786l24 114q4 20-1 38.5T410-600l-93 93q18 37 40 70t49 61q27 27 60 49t70 40l93-93q14-14 32.5-20t38.5-2l114 24q21 5 33.5 20T860-323v154q0 24-15.5 39.5T805-120h-9Z" />
+            </svg>
+            <span id="detalhesProcessoOngTelefone">-</span>
+          </li>
+          <li>
+            <svg viewBox="0 -960 960 960" aria-hidden="true">
+              <path
+                d="M480-80q-141-114-210.5-212.5T200-478q0-126 80.5-204T480-760q119 0 199.5 78T760-478q0 87-69.5 185.5T480-80Zm0-280q33 0 56.5-23.5T560-440q0-33-23.5-56.5T480-520q-33 0-56.5 23.5T400-440q0 33 23.5 56.5T480-360Z" />
+            </svg>
+            <span id="detalhesProcessoOngEndereco">-</span>
+          </li>
+        </ul>
+
+        <a id="detalhesProcessoPerfilOng" class="detalhes-processo-botao-ong" href="/src/views/ongs.html">Ver Perfil da ONG</a>
+      </aside>
+    </section>
+
+    <section class="detalhes-processo-card detalhes-processo-card-jornada" aria-labelledby="detalhesProcessoJornadaTitulo">
+      <h2 id="detalhesProcessoJornadaTitulo">Status da Jornada</h2>
+      <ol id="detalhesProcessoTimeline" class="detalhes-processo-timeline"></ol>
+    </section>
+
+    <section class="detalhes-processo-card detalhes-processo-card-contexto" aria-labelledby="detalhesProcessoContextoTitulo">
+      <h2 id="detalhesProcessoContextoTitulo">
+        <svg viewBox="0 -960 960 960" aria-hidden="true">
+          <path
+            d="M480-280q17 0 28.5-11.5T520-320v-180q0-17-11.5-28.5T480-540q-17 0-28.5 11.5T440-500v180q0 17 11.5 28.5T480-280Zm0-280q17 0 28.5-11.5T520-600q0-17-11.5-28.5T480-640q-17 0-28.5 11.5T440-600q0 17 11.5 28.5T480-560Zm0 480q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z" />
+        </svg>
+        O que esperar agora?
+      </h2>
+      <p id="detalhesProcessoProximosPassos"></p>
+    </section>
+  </main>
+
+  <footer id="footer">
+    <script src="/public/js/footer.js"></script>
+  </footer>
+
+  <script src="/public/js/traducao.js"></script>
+  <script src="/public/js/Pets/detalhesProcesso.js" defer></script>
+  <script src="/public/js/barraacessibilidade.js" defer></script>
+  <script src="/public/js/tema.js" defer></script>
+  <script src="/public/js/carregar_pagina.js"></script>
+</body>
+
+</html>
