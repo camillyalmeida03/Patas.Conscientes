@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
             validarNome() &&
             validarEmail() &&
             validarTelCel() &&
-            validarCnpj() &&
+            // validarCnpj() &&
             validarSenhas() &&
             validarDescricao() &&
             validarCep() &&

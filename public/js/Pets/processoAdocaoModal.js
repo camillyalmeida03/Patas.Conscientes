@@ -134,7 +134,7 @@ function renderizarModal() {
   elementos.status.innerHTML = estado.bloqueado
     ? "Solicita&ccedil;&atilde;o j&aacute; enviada"
     : estado.enviado
-    ? "Solicita&ccedil;&atilde;o preparada"
+    ? "Solicita&ccedil;&atilde;o enviada"
     : `Etapa ${estado.etapa} de 3${estado.carregandoPerfil ? " - atualizando dados..." : ""}`;
 
   if (estado.bloqueado) {
@@ -332,8 +332,8 @@ function renderizarSucesso() {
   return `
     <div class="adocao-sucesso">
       <div class="adocao-sucesso-icone" aria-hidden="true">OK</div>
-      <h3>Solicita&ccedil;&atilde;o preparada!</h3>
-      <p>Os dados foram preenchidos e salvos localmente no site. Quando a rota de ado&ccedil;&atilde;o existir na API, o mesmo payload j&aacute; pode ser enviado para o banco.</p>
+      <h3>Solicita&ccedil;&atilde;o enviada!</h3>
+      <p>A ONG ja recebeu seu pedido e ele aparecera nos processos de adocao.</p>
     </div>
   `;
 }
@@ -378,7 +378,7 @@ function renderizarRodape() {
   return `
     <button type="button" class="adocao-botao-secundario" data-action="voltar">Voltar</button>
     <button type="button" class="buttonRosa adocao-botao-principal" data-action="enviar" ${estado.enviando ? "disabled" : ""}>
-      ${estado.enviando ? "Preparando..." : "Enviar solicita&ccedil;&atilde;o"}
+      ${estado.enviando ? "Enviando..." : "Enviar solicita&ccedil;&atilde;o"}
     </button>
   `;
 }
@@ -506,7 +506,7 @@ function irParaProximaEtapa() {
 
 function validarEtapa(etapa) {
   if (etapa === 1) {
-    const obrigatorios = ["nome", "idade", "telefone", "cidade", "moradia", "possuiAnimais", "possuiCriancas"];
+    const obrigatorios = ["nome", "idade", "telefone", "email", "cidade", "moradia", "possuiAnimais", "possuiCriancas"];
     const incompleto = obrigatorios.some((campo) => !String(estado.form[campo] || "").trim());
     return incompleto ? "Preencha os dados basicos antes de continuar." : "";
   }
@@ -535,7 +535,26 @@ async function enviarSolicitacao() {
   renderizarModal();
 
   const payload = montarPayloadSolicitacao();
-  const solicitacaoExistente = buscarSolicitacaoExistente(payload);
+  const usuarioId = payload.fk_idusuario;
+  const petId = payload.fk_idpet;
+
+  if (!usuarioId) {
+    estado.enviando = false;
+    renderizarModal();
+    notificar("Entre com uma conta de usuario comum antes de solicitar uma adocao.", "erro");
+    return;
+  }
+
+  if (!petId) {
+    estado.enviando = false;
+    renderizarModal();
+    notificar("Nao foi possivel identificar o pet escolhido.", "erro");
+    return;
+  }
+
+  const solicitacaoExistente =
+    buscarSolicitacaoExistente(payload) ||
+    await buscarSolicitacaoExistenteNoBanco(usuarioId, petId);
 
   if (solicitacaoExistente) {
     estado.enviando = false;
@@ -546,15 +565,22 @@ async function enviarSolicitacao() {
     return;
   }
 
-  salvarSolicitacaoLocal(payload);
-  window.ultimaSolicitacaoAdocao = payload;
-
-  await new Promise((resolve) => setTimeout(resolve, 650));
+  try {
+    const solicitacaoSalva = await enviarSolicitacaoParaBanco(payload);
+    salvarSolicitacaoLocal(solicitacaoSalva);
+    window.ultimaSolicitacaoAdocao = solicitacaoSalva;
+  } catch (erroEnvio) {
+    console.error("Erro ao enviar solicitacao para o banco:", erroEnvio);
+    estado.enviando = false;
+    renderizarModal();
+    notificar(erroEnvio.message || "Nao foi possivel salvar a solicitacao no banco.", "erro");
+    return;
+  }
 
   estado.enviando = false;
   estado.enviado = true;
   renderizarModal();
-  notificar("Solicitacao de adocao preparada com sucesso.", "sucesso");
+  notificar("Solicitacao de adocao enviada com sucesso.", "sucesso");
 }
 
 function montarPayloadSolicitacao() {
@@ -589,6 +615,131 @@ function montarPayloadSolicitacao() {
     },
     respostas: { ...estado.form },
   };
+}
+
+async function buscarSolicitacaoExistenteNoBanco(usuarioId, petId) {
+  if (!usuarioId || !petId) return null;
+
+  try {
+    const resposta = await fetch(`${API_BASE}/solicitacoesadocao/usuario/${usuarioId}`);
+    const dados = await resposta.json().catch(() => []);
+
+    if (!resposta.ok || !Array.isArray(dados)) return null;
+
+    return dados.find((solicitacao) => {
+      const petSolicitado = solicitacao.fk_idpet || solicitacao.pet_id || solicitacao.idpet;
+      return String(petSolicitado || "") === String(petId || "");
+    }) || null;
+  } catch (erro) {
+    console.warn("Nao foi possivel verificar solicitacoes existentes no banco.", erro);
+    return null;
+  }
+}
+
+async function enviarSolicitacaoParaBanco(payload) {
+  const headers = obterHeadersJson();
+
+  const respostaSolicitacao = await fetch(`${API_BASE}/solicitacoesadocao`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({
+      fk_idpet: payload.fk_idpet,
+      fk_idusuario: payload.fk_idusuario,
+      status: "Nova",
+    }),
+  });
+
+  const solicitacaoData = await respostaSolicitacao.json().catch(() => ({}));
+
+  if (!respostaSolicitacao.ok) {
+    throw new Error(solicitacaoData.message || "Erro ao criar solicitacao de adocao.");
+  }
+
+  const idSolicitacao = solicitacaoData.id || solicitacaoData.idsolicitacao;
+
+  if (!idSolicitacao) {
+    throw new Error("A API nao retornou o ID da solicitacao criada.");
+  }
+
+  await criarEtapa1NoBanco(idSolicitacao);
+  await criarEtapa2NoBanco(idSolicitacao);
+
+  return {
+    ...payload,
+    id: idSolicitacao,
+    idsolicitacao: idSolicitacao,
+    status: "Nova",
+    data_solicitacao: new Date().toISOString(),
+  };
+}
+
+async function criarEtapa1NoBanco(idSolicitacao) {
+  const resposta = await fetch(`${API_BASE}/adocaoetapa1`, {
+    method: "POST",
+    headers: obterHeadersJson(),
+    body: JSON.stringify({
+      fk_idsolicitacao: idSolicitacao,
+      nome: estado.form.nome,
+      idade: estado.form.idade,
+      telefone: estado.form.telefone,
+      cidade: estado.form.cidade,
+      moradia: estado.form.moradia,
+      possui_animais: estado.form.possuiAnimais,
+      possui_criancas: estado.form.possuiCriancas,
+    }),
+  });
+
+  const dados = await resposta.json().catch(() => ({}));
+
+  if (!resposta.ok) {
+    throw new Error(dados.message || "Erro ao salvar os dados do adotante.");
+  }
+}
+
+async function criarEtapa2NoBanco(idSolicitacao) {
+  const resposta = await fetch(`${API_BASE}/adocaoetapa2`, {
+    method: "POST",
+    headers: obterHeadersJson(),
+    body: JSON.stringify({
+      fk_idsolicitacao: idSolicitacao,
+      motivacao: estado.form.motivacao === "Outro" && estado.form.motivacaoOutro
+        ? estado.form.motivacaoOutro
+        : estado.form.motivacao,
+      experiencia: estado.form.experiencia === "Ja teve pets" && estado.form.experienciaTexto
+        ? estado.form.experienciaTexto
+        : estado.form.experiencia,
+      apoio_familia: estado.form.apoioFamilia,
+      rotina: estado.form.rotina,
+      financeiro: estado.form.financeiro,
+      ambiente: estado.form.ambiente,
+    }),
+  });
+
+  const dados = await resposta.json().catch(() => ({}));
+
+  if (!resposta.ok) {
+    throw new Error(dados.message || "Erro ao salvar o questionario de adocao.");
+  }
+}
+
+function obterHeadersJson() {
+  const headers = { "Content-Type": "application/json" };
+  const token = obterTokenLocal();
+
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+
+  return headers;
+}
+
+function obterTokenLocal() {
+  return (
+    localStorage.getItem("token") ||
+    localStorage.getItem("authToken") ||
+    sessionStorage.getItem("token") ||
+    sessionStorage.getItem("authToken")
+  );
 }
 
 function salvarSolicitacaoLocal(payload) {

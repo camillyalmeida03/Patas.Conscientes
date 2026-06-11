@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!validarEmail()) formularioValido = false;
             if (!validarTelCel()) formularioValido = false;
             if (!validarCpf()) formularioValido = false;
-            if (!validarCnpj()) formularioValido = false;
+            // if (!validarCnpj()) formularioValido = false;
             if (!validarGenero()) formularioValido = false;
             if (!validarDataNasc()) formularioValido = false;
             if (!validarData()) formularioValido = false;
@@ -1055,7 +1055,7 @@ function validarCnpj() {
         { id: "emailUsuarioAdt", func: validarEmail },
         { id: "telcelUsuarioAdt", func: validarTelCel },
         { id: "cpfUsuarioAdt", func: validarCpf },
-        { id: "cnpj", func: validarCnpj },
+        // { id: "cnpj", func: validarCnpj },
         { id: "genero", func: validarGenero },
         { id: "dataNasc", func: validarDataNasc },
         { id: "dataCriacao", func: validarData },
@@ -1100,7 +1100,7 @@ function validarCnpj() {
     window.validarEmail = validarEmail;
     window.validarTelCel = validarTelCel;
     window.validarCpf = validarCpf;
-    window.validarCnpj = validarCnpj;
+    // window.validarCnpj = validarCnpj;
     window.validarGenero = validarGenero;
     window.validarDataNasc = validarDataNasc;
     window.validarData = validarData;
