@@ -1,66 +1,52 @@
-const solicitacoesMock = [
-  { id: 1, candidato: "Joao Silva", pet: "Pipoca", dataPedido: "2023-10-12", status: "analise" },
-  { id: 2, candidato: "Maria de Andrade", pet: "Rex", dataPedido: "2023-10-11", status: "entrevista" },
-  { id: 3, candidato: "Ricardo Pereira", pet: "Bolinha", dataPedido: "2023-10-10", status: "aprovado" },
-  { id: 4, candidato: "Carla Lima", pet: "Mel", dataPedido: "2023-10-09", status: "analise" },
-  { id: 5, candidato: "Fernando Bruno", pet: "Luna", dataPedido: "2023-10-08", status: "entrevista" },
-  { id: 6, candidato: "Paula Ramos", pet: "Nick", dataPedido: "2023-10-07", status: "aguardando" },
-  { id: 7, candidato: "Bruno Mello", pet: "Belinha", dataPedido: "2023-10-06", status: "aprovado" },
-  { id: 8, candidato: "Aline Rocha", pet: "Mingau", dataPedido: "2023-10-05", status: "analise" },
-  { id: 9, candidato: "Sergio Luiz", pet: "Toddy", dataPedido: "2023-10-04", status: "aguardando" },
-  { id: 10, candidato: "Vanessa Costa", pet: "Bidu", dataPedido: "2023-10-03", status: "entrevista" },
-  { id: 11, candidato: "Elisa Prado", pet: "Thor", dataPedido: "2023-10-02", status: "aprovado" },
-  { id: 12, candidato: "Diego Santos", pet: "Lili", dataPedido: "2023-10-01", status: "analise" },
-];
+const API_URL = "http://localhost:6789";
 
 const statusMap = {
+  nova: { label: "NOVA", classe: "status-aguardando" },
   analise: { label: "EM ANALISE", classe: "status-analise" },
   entrevista: { label: "ENTREVISTA", classe: "status-entrevista" },
-  aguardando: { label: "AGUARDANDO", classe: "status-aguardando" },
+  visita: { label: "VISITA", classe: "status-aguardando" },
   aprovado: { label: "APROVADO", classe: "status-aprovado" },
+  reprovado: { label: "REPROVADO", classe: "status-reprovado" },
+  finalizado: { label: "FINALIZADO", classe: "status-aprovado" },
 };
 
 const metricasConfig = [
   {
     id: "novas",
     titulo: "Novas Solicitacoes",
-    total: 24,
-    variacao: "+12%",
+    status: "nova",
     cor: "metrica-azul",
     icone: `<svg viewBox="0 -960 960 960" aria-hidden="true"><path d="M680-80q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35Zm-30-80h60v-30h30v-60h-30v-30h-60v30h-30v60h30v30ZM200-120q-33 0-56.5-23.5T120-200v-520q0-33 23.5-56.5T200-800h80v-80h80v80h240v-80h80v80h80q33 0 56.5 23.5T840-720v313q-18-12-38-20t-42-11v-122H200v360h280q4 22 12 42t20 38H200Zm0-520h560v-80H200v80Z"/></svg>`,
   },
   {
     id: "entrevista",
     titulo: "Em Entrevista",
-    total: 18,
-    variacao: "+5%",
+    status: "entrevista",
     cor: "metrica-ciano",
     icone: `<svg viewBox="0 -960 960 960" aria-hidden="true"><path d="M240-400h320v-80H240v80Zm0-120h480v-80H240v80Zm0-120h480v-80H240v80ZM80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Z"/></svg>`,
   },
   {
-    id: "aguardando",
+    id: "visita",
     titulo: "Aguardando Visita",
-    total: 7,
-    variacao: "0%",
+    status: "visita",
     cor: "metrica-rosa",
     icone: `<svg viewBox="0 -960 960 960" aria-hidden="true"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>`,
   },
   {
     id: "aprovados",
     titulo: "Aprovados",
-    total: 42,
-    variacao: "+8%",
+    status: "aprovado",
     cor: "metrica-verde",
     icone: `<svg viewBox="0 -960 960 960" aria-hidden="true"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/></svg>`,
   },
 ];
 
 const estado = {
+  solicitacoes: [],
   paginaAtual: 1,
   porPagina: 5,
   filtroStatus: "todos",
   buscaPet: "",
-  totalRegistros: 49,
 };
 
 const refs = {
@@ -74,29 +60,82 @@ const refs = {
   buscar: document.getElementById("ongAdminBuscarBtn"),
 };
 
-function renderizarMetricas() {
-  if (!refs.metricas) return;
+function normalizar(texto) {
+  return String(texto || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
+}
 
-  refs.metricas.innerHTML = "";
+function getIdOngUrl() {
+  return new URLSearchParams(window.location.search).get("id");
+}
 
-  metricasConfig.forEach((metrica) => {
-    const card = document.createElement("article");
-    card.className = "ong-admin-metrica-card";
-    card.innerHTML = `
-      <div class="ong-admin-metrica-topo">
-        <span class="ong-admin-metrica-icone ${metrica.cor}" aria-hidden="true">${metrica.icone}</span>
-        <span class="ong-admin-metrica-variacao">${metrica.variacao}</span>
-      </div>
-      <p>${metrica.titulo}</p>
-      <strong>${String(metrica.total).padStart(2, "0")}</strong>
-    `;
+function getTokenSalvo() {
+  return (
+    localStorage.getItem("token") ||
+    localStorage.getItem("authToken") ||
+    sessionStorage.getItem("token") ||
+    sessionStorage.getItem("authToken")
+  );
+}
 
-    refs.metricas.appendChild(card);
-  });
+function getIdOngDoToken() {
+  const token = getTokenSalvo();
+  if (!token || !token.includes(".")) return null;
+
+  try {
+    const payloadBase64 = token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
+    const payload = JSON.parse(atob(payloadBase64));
+    return payload.ong || null;
+  } catch (error) {
+    console.warn("Nao foi possivel ler o token do login:", error);
+    return null;
+  }
+}
+
+function getIdOng() {
+  return getIdOngUrl() || getIdOngDoToken();
+}
+
+function getHeadersJson() {
+  const headers = { "Content-Type": "application/json" };
+  const token = getTokenSalvo();
+
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+
+  return headers;
+}
+
+function statusChave(status) {
+  const chave = normalizar(status);
+  if (!chave) return "nova";
+  if (chave === "em analise") return "analise";
+  if (chave === "nao aprovado") return "reprovado";
+  return chave;
+}
+
+function statusParaBanco(chave) {
+  const mapa = {
+    nova: "Nova",
+    analise: "Em análise",
+    entrevista: "Entrevista",
+    visita: "Visita",
+    aprovado: "Aprovado",
+    reprovado: "Reprovado",
+    finalizado: "Finalizado",
+  };
+
+  return mapa[chave] || "Nova";
 }
 
 function formatarData(dataIso) {
-  const data = new Date(`${dataIso}T00:00:00`);
+  if (!dataIso) return "--/--/----";
+
+  const data = new Date(dataIso);
   if (Number.isNaN(data.getTime())) return "--/--/----";
 
   return data.toLocaleDateString("pt-BR", {
@@ -112,14 +151,71 @@ function gerarAvatar(nome) {
   return iniciais || "NA";
 }
 
+function adaptarSolicitacao(item) {
+  const status = item.status || "Nova";
+
+  return {
+    id: item.idsolicitacao,
+    fk_idpet: item.fk_idpet,
+    fk_idusuario: item.fk_idusuario,
+    candidato: item.etapa1_nome || item.usuario || "Candidato nao informado",
+    pet: item.pet || "Animal nao informado",
+    dataPedido: item.data_solicitacao,
+    statusOriginal: status,
+    status: statusChave(status),
+  };
+}
+
+async function buscarSolicitacoesDaOng() {
+  const idOng = getIdOng();
+
+  if (!idOng) {
+    throw new Error("ID da ONG nao encontrado. Abra a pagina com ?id=ID_DA_ONG, igual ao gerenciar pets.");
+  }
+
+  const response = await fetch(`${API_URL}/solicitacoesadocao/ong/${idOng}`, {
+    headers: getHeadersJson(),
+  });
+
+  const data = await response.json().catch(() => []);
+
+  if (!response.ok) {
+    throw new Error(data.message || "Erro ao buscar solicitacoes da ONG.");
+  }
+
+  return Array.isArray(data) ? data.map(adaptarSolicitacao) : [];
+}
+
 function obterDadosFiltrados() {
   const statusAtivo = estado.filtroStatus;
-  const busca = estado.buscaPet.trim().toLowerCase();
+  const busca = normalizar(estado.buscaPet);
 
-  return solicitacoesMock.filter((item) => {
+  return estado.solicitacoes.filter((item) => {
     const filtraStatus = statusAtivo === "todos" || item.status === statusAtivo;
-    const filtraBusca = !busca || item.pet.toLowerCase().includes(busca);
+    const filtraBusca = !busca || normalizar(item.pet).includes(busca);
     return filtraStatus && filtraBusca;
+  });
+}
+
+function renderizarMetricas() {
+  if (!refs.metricas) return;
+
+  refs.metricas.innerHTML = "";
+
+  metricasConfig.forEach((metrica) => {
+    const total = estado.solicitacoes.filter((item) => item.status === metrica.status).length;
+    const card = document.createElement("article");
+    card.className = "ong-admin-metrica-card";
+    card.innerHTML = `
+      <div class="ong-admin-metrica-topo">
+        <span class="ong-admin-metrica-icone ${metrica.cor}" aria-hidden="true">${metrica.icone}</span>
+        <span class="ong-admin-metrica-variacao">BD</span>
+      </div>
+      <p>${metrica.titulo}</p>
+      <strong>${String(total).padStart(2, "0")}</strong>
+    `;
+
+    refs.metricas.appendChild(card);
   });
 }
 
@@ -147,8 +243,9 @@ function renderizarTabela() {
   }
 
   pagina.forEach((item) => {
-    const statusInfo = statusMap[item.status] || statusMap.analise;
+    const statusInfo = statusMap[item.status] || statusMap.nova;
     const linha = document.createElement("tr");
+    linha.dataset.id = item.id;
 
     linha.innerHTML = `
       <td>
@@ -169,8 +266,8 @@ function renderizarTabela() {
       <td><span class="ong-admin-status ${statusInfo.classe}">${statusInfo.label}</span></td>
       <td>
         <div class="ong-admin-acoes-linha">
-          <button class="ong-admin-link-acao" type="button">Analisar Perfil</button>
-          <button class="ong-admin-btn-status" type="button">Alterar Situacao</button>
+          <button class="ong-admin-link-acao" data-acao="analisar" type="button">Analisar Perfil</button>
+          <button class="ong-admin-btn-status" data-acao="status" type="button">Alterar Situacao</button>
         </div>
       </td>
     `;
@@ -178,8 +275,7 @@ function renderizarTabela() {
     refs.tabelaBody.appendChild(linha);
   });
 
-  const totalGeral = estado.filtroStatus === "todos" && !estado.buscaPet ? estado.totalRegistros : total;
-  refs.resumo.textContent = `Exibindo ${Math.min(fim, total)} de ${totalGeral} registros`;
+  refs.resumo.textContent = `Exibindo ${Math.min(fim, total)} de ${total} registros`;
   renderizarPaginacao(totalPaginas);
 }
 
@@ -206,31 +302,74 @@ function renderizarPaginacao(totalPaginas) {
 }
 
 function alternarFiltroStatus() {
-  const ordem = ["todos", "analise", "entrevista", "aguardando", "aprovado"];
+  const ordem = ["todos", "nova", "analise", "entrevista", "visita", "aprovado", "reprovado", "finalizado"];
   const indiceAtual = ordem.indexOf(estado.filtroStatus);
   const proximoIndice = (indiceAtual + 1) % ordem.length;
   const labels = {
     todos: "Todos",
+    nova: "Nova",
     analise: "Em Analise",
     entrevista: "Entrevista",
-    aguardando: "Aguardando Visita",
+    visita: "Visita",
     aprovado: "Aprovado",
+    reprovado: "Reprovado",
+    finalizado: "Finalizado",
   };
 
-   estado.filtroStatus = ordem[proximoIndice];
+  estado.filtroStatus = ordem[proximoIndice];
   refs.filtrar.querySelector("span").textContent = `Filtrar: ${labels[estado.filtroStatus]}`;
-   estado.paginaAtual = 1;
-   renderizarTabela();
- }
+  estado.paginaAtual = 1;
+  renderizarTabela();
+}
 
 function buscarPet() {
   const valor = window.prompt("Digite o nome do animal para buscar:", estado.buscaPet || "");
   if (valor === null) return;
 
   estado.buscaPet = valor;
-   estado.paginaAtual = 1;
-   renderizarTabela();
- }
+  estado.paginaAtual = 1;
+  renderizarTabela();
+}
+
+async function alterarStatus(solicitacao) {
+  const ordem = ["Nova", "Em análise", "Entrevista", "Visita", "Aprovado", "Reprovado", "Finalizado"];
+  const atual = statusParaBanco(solicitacao.status);
+  const indiceAtual = ordem.indexOf(atual);
+  const proximoStatus = ordem[(indiceAtual + 1) % ordem.length];
+
+  const confirmou = window.confirm(`Alterar situacao de ${solicitacao.pet} para "${proximoStatus}"?`);
+  if (!confirmou) return;
+
+  const response = await fetch(`${API_URL}/solicitacoesadocao/${solicitacao.id}`, {
+    method: "PUT",
+    headers: getHeadersJson(),
+    body: JSON.stringify({ status: proximoStatus }),
+  });
+
+  const data = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    throw new Error(data.message || "Erro ao alterar situacao.");
+  }
+
+  solicitacao.statusOriginal = proximoStatus;
+  solicitacao.status = statusChave(proximoStatus);
+  renderizarMetricas();
+  renderizarTabela();
+}
+
+function analisarPerfil(solicitacao) {
+  const etapa1 = `${API_URL}/adocaoetapa1/solicitacao/${solicitacao.id}`;
+  const etapa2 = `${API_URL}/adocaoetapa2/solicitacao/${solicitacao.id}`;
+
+  window.alert(
+    `Solicitacao #${solicitacao.id}\n\n` +
+    `Candidato: ${solicitacao.candidato}\n` +
+    `Animal: ${solicitacao.pet}\n` +
+    `Status: ${solicitacao.statusOriginal}\n\n` +
+    `Dados completos no backend:\n${etapa1}\n${etapa2}`
+  );
+}
 
 function configurarEventos() {
   if (refs.filtrar) {
@@ -257,10 +396,53 @@ function configurarEventos() {
       renderizarTabela();
     });
   }
+
+  if (refs.tabelaBody) {
+    refs.tabelaBody.addEventListener("click", async (event) => {
+      const botao = event.target.closest("button[data-acao]");
+      if (!botao) return;
+
+      const linha = botao.closest("tr");
+      const id = linha?.dataset?.id;
+      const solicitacao = estado.solicitacoes.find((item) => String(item.id) === String(id));
+
+      if (!solicitacao) {
+        window.alert("Solicitacao nao encontrada.");
+        return;
+      }
+
+      try {
+        if (botao.dataset.acao === "status") {
+          await alterarStatus(solicitacao);
+        }
+
+        if (botao.dataset.acao === "analisar") {
+          analisarPerfil(solicitacao);
+        }
+      } catch (error) {
+        console.error("Erro ao executar acao:", error);
+        window.alert(error.message || "Nao foi possivel executar esta acao.");
+      }
+    });
+  }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  renderizarMetricas();
+async function inicializar() {
   configurarEventos();
-  renderizarTabela();
-});
+
+  try {
+    estado.solicitacoes = await buscarSolicitacoesDaOng();
+    renderizarMetricas();
+    renderizarTabela();
+  } catch (error) {
+    console.error("Erro ao carregar solicitacoes:", error);
+
+    if (refs.metricas) refs.metricas.innerHTML = "";
+    if (refs.tabelaBody) {
+      refs.tabelaBody.innerHTML = `<tr><td class="ong-admin-vazio" colspan="5">${error.message}</td></tr>`;
+    }
+    if (refs.resumo) refs.resumo.textContent = "Exibindo 0 de 0 registros";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", inicializar);

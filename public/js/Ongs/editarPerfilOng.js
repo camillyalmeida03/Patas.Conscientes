@@ -168,6 +168,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
           </div>
 
+                   <button type="submit" id="salvarEdicaoOng" class="buttonRosa2 desabilitado" disabled>Salvar alterações</button>
+
           <p id="feedbackEditarOng"></p>
         </form>
       </div>
