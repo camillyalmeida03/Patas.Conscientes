@@ -1,5 +1,6 @@
 const API_URL = "http://localhost:6789";
 const STORAGE_DETALHE_KEY = "processoAdocaoSelecionado";
+import { formatarIdade } from "../../../src/config/pets/idadePet.js";
 
 const statusConfig = {
   nova: {
@@ -103,18 +104,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return `/public/img/fotos/${foto}`;
   }
 
-  function formatarIdade(meses) {
-    const valor = Number(meses);
-    if (!Number.isFinite(valor) || valor <= 0) return "Não informado";
-
-    if (valor < 12) {
-      return `${valor} ${valor === 1 ? "mês" : "meses"}`;
-    }
-
-    const anos = Math.floor(valor / 12);
-    return `${anos} ${anos === 1 ? "ano" : "anos"}`;
-  }
-
   function montarLocalizacao(solicitacao) {
     const cidade = solicitacao.ong_cidade || solicitacao.cidade || "";
     const estado = solicitacao.ong_estado || solicitacao.estado_sigla || solicitacao.sigla || "";
@@ -156,6 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
         email: solicitacao.ong_email || "E-mail não informado",
         telefone: solicitacao.ong_telefone || "Telefone não informado",
         endereco: montarEnderecoOng(solicitacao),
+        fotoOng: solicitacao.ong_foto || "/public/img/fotos/ong1.jpg",
         perfilUrl: solicitacao.fk_idong
           ? `/src/views/ongPage.html?id=${encodeURIComponent(solicitacao.fk_idong)}`
           : "/src/views/ongs.html",
@@ -280,6 +270,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const telefone = document.getElementById("detalhesProcessoOngTelefone");
     const endereco = document.getElementById("detalhesProcessoOngEndereco");
     const link = document.getElementById("detalhesProcessoPerfilOng");
+    const foto = document.getElementById("detalhes-processo-ong-icone");
 
     if (nome) nome.textContent = processo.ongNome;
     if (local) local.textContent = processo.localizacao;
@@ -287,6 +278,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (telefone) telefone.textContent = processo.ong.telefone;
     if (endereco) endereco.textContent = processo.ong.endereco;
     if (link) link.href = processo.ong.perfilUrl;
+    if (foto) foto.style.backgroundImage = `url('${processo.ong.fotoOng}')`;
+  
   }
 
   function renderizarStatusAtual(processo) {
